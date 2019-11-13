@@ -22,7 +22,7 @@ Official technical documentation, user and developer guides of the Parsec projec
 
 ## Using
 
-Access it online by visiting http://parallaxsecond.github.io/parsec-book
+Access it online by visiting https://parallaxsecond.github.io/parsec-book
 
 You can also build the book and read it locally with the following steps:
 
