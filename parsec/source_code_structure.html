@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Source Code Structure - Parsec Documentation</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="expanded "><a href="../parsec/index.html"><strong aria-hidden="true">2.</strong> Platform Abstraction for Security</a></li><li><ol class="section"><li class="expanded "><a href="../parsec/operations/index.html"><strong aria-hidden="true">2.1.</strong> Operations</a></li><li><ol class="section"><li class="expanded "><a href="../parsec/operations/add_client.html"><strong aria-hidden="true">2.1.1.</strong> AddClient</a></li><li class="expanded "><a href="../parsec/operations/list_opcodes.html"><strong aria-hidden="true">2.1.2.</strong> ListOpcodes</a></li><li class="expanded "><a href="../parsec/operations/list_providers.html"><strong aria-hidden="true">2.1.3.</strong> ListProviders</a></li><li class="expanded "><a href="../parsec/operations/ping.html"><strong aria-hidden="true">2.1.4.</strong> Ping</a></li><li class="expanded "><a href="../parsec/operations/prove_client.html"><strong aria-hidden="true">2.1.5.</strong> ProveClient</a></li><li class="expanded "><a href="../parsec/operations/psa_asymmetric_sign.html"><strong aria-hidden="true">2.1.6.</strong> PsaAsymmetricSign</a></li><li class="expanded "><a href="../parsec/operations/psa_asymmetric_verify.html"><strong aria-hidden="true">2.1.7.</strong> PsaAsymmetricVerify</a></li><li class="expanded "><a href="../parsec/operations/psa_create_key.html"><strong aria-hidden="true">2.1.8.</strong> PsaCreateKey</a></li><li class="expanded "><a href="../parsec/operations/psa_destroy_key.html"><strong aria-hidden="true">2.1.9.</strong> PsaDestroyKey</a></li><li class="expanded "><a href="../parsec/operations/psa_export_public_key.html"><strong aria-hidden="true">2.1.10.</strong> PsaExportPublicKey</a></li><li class="expanded "><a href="../parsec/operations/psa_import_key.html"><strong aria-hidden="true">2.1.11.</strong> PsaImportKey</a></li><li class="expanded "><a href="../parsec/operations/share_trust_bundle.html"><strong aria-hidden="true">2.1.12.</strong> ShareTrustBundle</a></li><li class="expanded "><a href="../parsec/operations/key_attributes.html"><strong aria-hidden="true">2.1.13.</strong> Key Attributes</a></li></ol></li><li class="expanded "><a href="../parsec/providers.html"><strong aria-hidden="true">2.2.</strong> Providers</a></li><li class="expanded "><a href="../parsec/api_overview.html"><strong aria-hidden="true">2.3.</strong> API Overview</a></li><li class="expanded "><a href="../parsec/interfaces_and_dataflow.html"><strong aria-hidden="true">2.4.</strong> Interfaces and Dataflow</a></li><li class="expanded "><a href="../parsec/source_code_structure.html" class="active"><strong aria-hidden="true">2.5.</strong> Source Code Structure</a></li><li class="expanded "><a href="../parsec/status_codes.html"><strong aria-hidden="true">2.6.</strong> Status Codes</a></li><li class="expanded "><a href="../parsec/system_architecture.html"><strong aria-hidden="true">2.7.</strong> System Architecture</a></li><li class="expanded "><a href="../parsec/wire_protocol.html"><strong aria-hidden="true">2.8.</strong> Wire Protocol</a></li></ol></li><li class="expanded "><a href="../user_guides/index.html"><strong aria-hidden="true">3.</strong> User guides</a></li><li><ol class="section"><li class="expanded "><a href="../user_guides/install_parsec_linux.html"><strong aria-hidden="true">3.1.</strong> How to install Parsec on Linux</a></li><li class="expanded "><a href="../user_guides/configuration.html"><strong aria-hidden="true">3.2.</strong> Parsec Configuration</a></li><li class="expanded "><a href="../user_guides/use_parsec.html"><strong aria-hidden="true">3.3.</strong> How to use Parsec</a></li></ol></li><li class="expanded "><a href="../dev_guides/index.html"><strong aria-hidden="true">4.</strong> Developper guides</a></li><li><ol class="section"><li class="expanded "><a href="../dev_guides/build.html"><strong aria-hidden="true">4.1.</strong> How to build Parsec</a></li><li class="expanded "><a href="../dev_guides/test.html"><strong aria-hidden="true">4.2.</strong> How to test Parsec</a></li><li class="expanded "><a href="../dev_guides/writing_library.html"><strong aria-hidden="true">4.3.</strong> Writing a new Parsec Client Library</a></li><li class="expanded "><a href="../dev_guides/adding_provider.html"><strong aria-hidden="true">4.4.</strong> Adding a new Parsec Provider</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Parsec Documentation</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#source-code-structure" id="source-code-structure"><strong>Source Code Structure</strong></a></h1>
+<h2><a class="header" href="#introduction" id="introduction"><strong>Introduction</strong></a></h2>
+<p>This document presents the overall organisation of the source code repository, and provides pointers to key definitions and implementations.</p>
+<h2><a class="header" href="#status" id="status"><strong>Status</strong></a></h2>
+<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
+<h2><a class="header" href="#audience" id="audience"><strong>Audience</strong></a></h2>
+<p>An understanding of the source code repository structure is essential for developers who are contributing functionality to the service or any of its client libraries.</p>
+<h2><a class="header" href="#overview" id="overview"><strong>Overview</strong></a></h2>
+<p>This project is a client-server system. It is composed of a service, which exposes an API to clients that reside in separate processes on the same host. An IPC mechanism is defined to allow these external client processes to call the API in any programming language. This project maintains client libraries for a number of popular programming languages. The service itself is written in the <a href="https://www.rust-lang.org">Rust</a> programming language. The API provides access to platform security facilities for key management and cryptography. Client applications call the API in order to access these facilities without needing to know about the underlying platform hardware. The service fulfills the operations by routing them to whatever platform facilities are available, such as a Hardware Security Module (HSM), Trusted Platform Module (TPM) or Trusted Application (TA).</p>
+<p>The API is closely aligned with the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf">Platform Security Architecture (PSA) Crypto API</a>. PSA Crypto is specifically a C interface. This project takes the operations of that C interface and wraps each of them in an IPC <a href="wire_protocol.html">wire protocol</a>. There is intentionally a very close correpondence between the two APIs, and the contracts of the operations are identical in the majority of cases. However, the service also exposes a number of new operations that are designed to help clients consume it more easily.</p>
+<p>The source code is organised into three main components: the <a href="https://github.com/parallaxsecond/parsec"><strong>service</strong></a>, the <a href="https://github.com/parallaxsecond/parsec-client-go"><strong>client</strong></a> and the <a href="https://github.com/parallaxsecond/parsec-interface-rs"><strong>interface</strong></a>. Each of these components is distributed as a GitHub repository. </p>
+<p>Other items are the <strong>docs</strong>, found in the service and which contains all of the documentation for the project (some of which you are reading now), the <a href="https://github.com/parallaxsecond/parsec-client-test"><strong>test</strong></a> repository, which contains integration tests for the end-to-end system, and the <a href="https://github.com/parallaxsecond/parsec-operations"><strong>operations</strong></a> repository which contains the language-agnostic contracts for communicating with the service.</p>
+<p>The remainder of the document will examine the contents of these repositories.</p>
+<h2><a class="header" href="#the-service-repository" id="the-service-repository"><strong>The <code>service</code> Repository</strong></a></h2>
+<p>The <code>service</code> repository contains the code for the service. The service is written in <a href="https://www.rust-lang.org"><strong>Rust</strong></a>. Rust projects are organised into modular units known as <a href="https://doc.rust-lang.org/beta/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong>crates</strong></a>, each of which is formed of one or more <a href="https://doc.rust-lang.org/beta/book/ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong>modules</strong></a>, which are built using the <a href="https://doc.rust-lang.org/beta/book/ch01-03-hello-cargo.html"><strong>Cargo</strong></a> build system. A Rust crate can be compiled into either a library or an executable. The service is composed of a series of modules - represented by folders - defining the major components of the system.</p>
+<p>The <code>bin</code> directory defines the executable which links all the components together and runs the main loop of the service.</p>
+<p>The <code>front</code> module houses the code for the front-end functionality of the service. The front-end is responsible for listening on the endpoint, such as a domain socket, and using the <a href="wire_protocol.html">wire protocol</a> to read and interpret API requests from clients. The front-end is also responsible for serializing responses according to the same wire protocol, in order to relay them back to the calling client.</p>
+<p>The <code>back</code> module is responsible for routing client API requests to a back-end <strong>provider</strong>. A provider is a module that knows how to fulfill a request using available platform facilities such as HSM, TPM, TA or software. The service can be linked against one or more providers. The back-end module includes a registration mechanism that allows the providers to announce their presence in the overall system. There is also a dispatch mechanism that allows each incoming request to be routed to the appropriate provider. The provider is instructed to perform the operation, and the results are marshalled back to the front-end for onward serialization and return to the client.</p>
+<p>The <code>authenticators</code> module contains the components that carry out the authentication of incoming requests. Depending on the <code>auth_type</code> specified in the request header, the appropriate authenticator is selected to parse and assess the <code>authentication</code> request field. The result is either an error or the identifier of the application sending the request. Authenticators may use the underlying security hardware to determine if the request has been correctly authenticated. For a more detailed description of authentication and application identity, see the <a href="api_overview.html"><strong>API overview</strong></a>.</p>
+<p>The <code>key_id_managers</code> module offers functionality for the providers for persisting mappings between key names and provider-specific key IDs. The key ID managers close the gap between the API, which allows keys to be addressed by a UTF-8 name, and the providers which have specific requirements for key handles (e.g. Mbed Crypto uses a 32 bit value for handles of persistent keys). Using a key ID manager is only required for persistent keys and the only current implementation stores the mappings on disk.</p>
+<p>Building the service will combine the frontend and backend components mentioned above into one executable. It also links additional Rust crates that contain the providers, as well as crates to support the IPC interface. On Linux systems, this binary runs as a daemon. While it is running, client applications (on the same host) can locate the endpoint and make API calls.</p>
+<h3><a class="header" href="#the-provider-sub-folder" id="the-provider-sub-folder"><strong>The <code>provider</code> Sub-Folder</strong></a></h3>
+<p>The <code>provider</code> folder contains the provider modules, which connect the service back-end with the hardware or software security facilities of supported target platforms.</p>
+<p>Providers can be linked statically into the service. Where this is done, they must be written in Rust and modularised as crates. Existing providers that follow this pattern include the <code>core_provider</code> and the <code>mbed_provider</code>.</p>
+<p>The <code>core_provider</code> module is a provider of operations that are implemented by the service itself, rather than by the platform's underlying security facilities. These core operations include operations for discovery, configuration and housekeeping of the service. They are not cryptographic or key management operations. (The &quot;ping&quot; operation is an example of one that is serviced by the core provider: it allows a client to determine whether the service itself is responding).</p>
+<p>The <code>mbed_provider</code> module houses a provider based on <a href="https://github.com/ARMmbed/mbed-crypto"><strong>MBed Crypto</strong></a>, which is the reference implementation of the PSA Crypto API Specification. The <code>mbed_provider</code> is a full provider in its own right, and allows for the full capabilities of the service to be provided in a software-only solution. But the <code>mbed_provider</code> also services as a branching point to connect with hardware or trusted applications through its own internal Harware Abstraction Layer (HAL). This provider only supports persistent key storage.</p>
+<p>Like the <code>client</code> folder, the <code>provider</code> folder is also a key extension point for partner contributors. This project eagerly welcomes contributions of new providers in order to connect the service with the security facilities of host platforms and extend the ecosystem.</p>
+<p>It is not necessary for providers to be written in Rust. A provider must be written in Rust in order to be statically linked into the core service and hence to reside within the same running process. But the architecture also supports providers running as separate processes. These providers can be written in any suitable programming language. This is an option to consider if you wish to contribute a new back-end provider, but you wish to use a programming language other than Rust.</p>
+<h2><a class="header" href="#the-interface-repository" id="the-interface-repository"><strong>The <code>interface</code> Repository</strong></a></h2>
+<p>The <code>interface</code> crate contains the Rust code that is needed to allow the service to conform to the interface and wire protocol. It is also used by the Rust client library, but it is not used by other client libraries (since those are written in other languages).</p>
+<p>The crate contains three Rust modules: <code>requests</code>, <code>operations</code> and <code>operations_protobuf</code>.</p>
+<p>The <code>requests</code> module defines model objects for request and response headers as described in the wire protocol specification. It also contains the Rust code needed to serialize and de-serialize these header structures (a process sometimes known as <em>marshalling</em>). This code is hand-written and verified according to the written specification. It is not auto-generated, and it is unrelated to the protobuf API contracts. The <code>requests</code> module functions according to the wire protocol specification, regardless of whether protobuf is used in request body. This leaves the door open for supporting schemes other than protobuf in the future.</p>
+<p>The <code>operations</code> module defines model objects for each of the operations in the API. Again, these definitions are independent of protobuf so that encoding schemes other than protobuf can be adopted if needed. The Rust structs in the operations module capture the specific inputs and outputs for each API operation.</p>
+<p>The <code>operations_protobuf</code> module provides compatibility between the protobuf contracts and the equivalent model objects in the <code>operations</code> module. Auto-generated code is generated from the protobuf contracts at build-time, and is injected into this module, alongside hand-written converters that translate to and from the <code>operations</code> structs. This extra level of translation may seem cumbersome, but it is important in order to isolate the use of protobuf from the rest of the system, so that a different encoding scheme could be adopted in the future without affecting anything else. Most of the service uses the <code>operations</code> module to model API operations and their results.</p>
+<h2><a class="header" href="#the-operations-repository" id="the-operations-repository"><strong>The <code>operations</code> Repository</strong></a></h2>
+<p>The <code>protobuf</code> folder in the <code>operations</code> repository contains the language-neutral input and output contracts of all of the operations that are supported in the API. This includes all of the operations that derive from the PSA Crypto API Specification, as well as additional operations that are specific to this service. All of these contracts are defined using <a href="https://developers.google.com/protocol-buffers/"><strong>protocol buffers</strong></a>, also known as <strong>protobuf</strong>. Refer to the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a> for more details on the use of protobuf. The protobuf contracts are programming-language-agnostic, and can be used to develop interoperable code within both the service and the client.</p>
+<p>The API is a collection of <strong>operations</strong>. Each operation is denoted by an integer <strong>opcode</strong>, an <strong>input contract</strong> and an <strong>output contract</strong>. Each input contract and output contract is defined using a protobuf <strong>message</strong> structure. These messages collect together the inputs and outputs of each operation. The messages can be used in combination with a <a href="https://github.com/protocolbuffers/protobuf"><strong>protobuf compiler</strong></a> tool to generate language bindings for these inputs and outputs. A client library uses these bindings alongside code derived from the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a> in order to create a complete language binding for the API.</p>
+<h2><a class="header" href="#the-client-repository" id="the-client-repository"><strong>The <code>client</code> Repository</strong></a></h2>
+<p>The <code>client</code> folder contains the client libraries for the API.</p>
+<p>The repository structure specifies only that each client library should be housed in a single sub-folder named after the programming language that it targets. There will be a sub-folder for <code>rust</code>, a sub-folder for <code>go</code>, a sub-folder for <code>java</code> and so on and so forth as the client ecosystem expands. Each client library is subject to its own sub-structure, build system and documentation system underneath that. The structures and build systems will naturally vary from one language to another, and these are not governed by the project overall.</p>
+<p>The <code>client</code> folder is a key extension point for partner contributors. This project eagerly welcomes contributions of new client libraries in different programming languages in order to enhance the ecosystem and increase adoption. A quick glance inside this folder will show which languages are already supported. To begin contributing a client library in a new language, simply create a new folder for that language, and start developing your new client library within it.</p>
+<h2><a class="header" href="#repository-map" id="repository-map"><strong>Repository Map</strong></a></h2>
+<p>Please refer to the following diagram to understand the overall code structure and the dependency arcs between the modules.</p>
+<p><img src="diagrams/source_code_structure.png" alt="Repository Map" /></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../parsec/interfaces_and_dataflow.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../parsec/status_codes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../parsec/interfaces_and_dataflow.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../parsec/status_codes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

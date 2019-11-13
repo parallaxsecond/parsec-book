@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Platform Abstraction for Security - Parsec Documentation</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="expanded "><a href="../parsec/index.html" class="active"><strong aria-hidden="true">2.</strong> Platform Abstraction for Security</a></li><li><ol class="section"><li class="expanded "><a href="../parsec/operations/index.html"><strong aria-hidden="true">2.1.</strong> Operations</a></li><li><ol class="section"><li class="expanded "><a href="../parsec/operations/add_client.html"><strong aria-hidden="true">2.1.1.</strong> AddClient</a></li><li class="expanded "><a href="../parsec/operations/list_opcodes.html"><strong aria-hidden="true">2.1.2.</strong> ListOpcodes</a></li><li class="expanded "><a href="../parsec/operations/list_providers.html"><strong aria-hidden="true">2.1.3.</strong> ListProviders</a></li><li class="expanded "><a href="../parsec/operations/ping.html"><strong aria-hidden="true">2.1.4.</strong> Ping</a></li><li class="expanded "><a href="../parsec/operations/prove_client.html"><strong aria-hidden="true">2.1.5.</strong> ProveClient</a></li><li class="expanded "><a href="../parsec/operations/psa_asymmetric_sign.html"><strong aria-hidden="true">2.1.6.</strong> PsaAsymmetricSign</a></li><li class="expanded "><a href="../parsec/operations/psa_asymmetric_verify.html"><strong aria-hidden="true">2.1.7.</strong> PsaAsymmetricVerify</a></li><li class="expanded "><a href="../parsec/operations/psa_create_key.html"><strong aria-hidden="true">2.1.8.</strong> PsaCreateKey</a></li><li class="expanded "><a href="../parsec/operations/psa_destroy_key.html"><strong aria-hidden="true">2.1.9.</strong> PsaDestroyKey</a></li><li class="expanded "><a href="../parsec/operations/psa_export_public_key.html"><strong aria-hidden="true">2.1.10.</strong> PsaExportPublicKey</a></li><li class="expanded "><a href="../parsec/operations/psa_import_key.html"><strong aria-hidden="true">2.1.11.</strong> PsaImportKey</a></li><li class="expanded "><a href="../parsec/operations/share_trust_bundle.html"><strong aria-hidden="true">2.1.12.</strong> ShareTrustBundle</a></li><li class="expanded "><a href="../parsec/operations/key_attributes.html"><strong aria-hidden="true">2.1.13.</strong> Key Attributes</a></li></ol></li><li class="expanded "><a href="../parsec/providers.html"><strong aria-hidden="true">2.2.</strong> Providers</a></li><li class="expanded "><a href="../parsec/api_overview.html"><strong aria-hidden="true">2.3.</strong> API Overview</a></li><li class="expanded "><a href="../parsec/interfaces_and_dataflow.html"><strong aria-hidden="true">2.4.</strong> Interfaces and Dataflow</a></li><li class="expanded "><a href="../parsec/source_code_structure.html"><strong aria-hidden="true">2.5.</strong> Source Code Structure</a></li><li class="expanded "><a href="../parsec/status_codes.html"><strong aria-hidden="true">2.6.</strong> Status Codes</a></li><li class="expanded "><a href="../parsec/system_architecture.html"><strong aria-hidden="true">2.7.</strong> System Architecture</a></li><li class="expanded "><a href="../parsec/wire_protocol.html"><strong aria-hidden="true">2.8.</strong> Wire Protocol</a></li></ol></li><li class="expanded "><a href="../user_guides/index.html"><strong aria-hidden="true">3.</strong> User guides</a></li><li><ol class="section"><li class="expanded "><a href="../user_guides/install_parsec_linux.html"><strong aria-hidden="true">3.1.</strong> How to install Parsec on Linux</a></li><li class="expanded "><a href="../user_guides/configuration.html"><strong aria-hidden="true">3.2.</strong> Parsec Configuration</a></li><li class="expanded "><a href="../user_guides/use_parsec.html"><strong aria-hidden="true">3.3.</strong> How to use Parsec</a></li></ol></li><li class="expanded "><a href="../dev_guides/index.html"><strong aria-hidden="true">4.</strong> Developper guides</a></li><li><ol class="section"><li class="expanded "><a href="../dev_guides/build.html"><strong aria-hidden="true">4.1.</strong> How to build Parsec</a></li><li class="expanded "><a href="../dev_guides/test.html"><strong aria-hidden="true">4.2.</strong> How to test Parsec</a></li><li class="expanded "><a href="../dev_guides/writing_library.html"><strong aria-hidden="true">4.3.</strong> Writing a new Parsec Client Library</a></li><li class="expanded "><a href="../dev_guides/adding_provider.html"><strong aria-hidden="true">4.4.</strong> Adding a new Parsec Provider</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Parsec Documentation</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#welcome-to-parsec" id="welcome-to-parsec">Welcome to Parsec</a></h1>
+<p><strong>Parsec</strong> is the <strong>P</strong>latform <strong>A</strong>bst<strong>R</strong>action for <strong>SEC</strong>urity, a new open-source initiative to provide a common API to secure services in a platform-agnostic way.</p>
+<p>Parsec aims to define a universal software standard for interacting with secure object storage and cryptography services, creating a common way to interface with functions that would traditionally have been accessed by more specialised APIs. Parsec establishes an ecosystem of developer-friendly libraries in a variety of popular programming languages. Each library is designed to be highly ergonomic and simple to consume. This growing ecosystem will put secure facilities at the fingertips of developers across a broad range of use cases in infrastructure computing, edge computing and the secure Internet of Things.</p>
+<h1><a class="header" href="#why-platform-agnostic-security" id="why-platform-agnostic-security">Why Platform-Agnostic Security?</a></h1>
+<p>Today's computing platforms have evolved to offer a range of facilities for secure storage and secure operations. There are hardware-backed facilities such as the Hardware Security Module (HSM) or Trusted Platform Module (TPM). There are firmware services running in Trusted Execution Environments (TEE). There are also cloud-based security services. At a bare minimum, security facilities may be provided purely in software, where they are protected by mechanisms provided in the operating system.</p>
+<p>Over the years, software standards have emerged to allow developers to use these facilities from their applications. But these standards bring with them the following challenges:</p>
+<ul>
+<li>They are defined with the expectation that the caller is the &quot;owner&quot; of the platform, meaning that it has sole access to the underlying hardware. In reality, this is often not the case, because the caller might reside in a container or virtual machine, where it is sharing the host hardware with other applications. Existing software standards do not cater well for this situation.</li>
+<li>They are defined exhaustively, with lengthy specifications detailing all permissible operations and parameters. They are written from the perspective of the security device and its capabilities, rather than from the perspective of the application and its use case. This can offer a daunting and bewildering experience for developers, who spend a lot of time and effort figuring out how to map their use case onto the API. There is nothing to tailor the API so that it can be consumed easily for common, simple cases.</li>
+<li>They are specific to a programming language such as C. To consume them in other languages, it is necessary to use interoperability layers such as Foreign Function Interface (FFI), which can make the developer experience even more cumbersome and unnatural. Interoperability layers can also be a source of vulnerabilities.</li>
+<li>Standards tend to be adopted based on some knowledge of the target platform. So while it might be possible for code to be portable across multiple HSM vendors, for example, it is much harder to make code portable between an HSM-based platform and a TPM-based platform.</li>
+</ul>
+<p>Parsec inverts this traditional approach to standardizing security interfaces, and it does so by putting applications front and center. It offers an API that is no less comprehensive, but it does so in a way that puts the needs of applications and their common use cases first.</p>
+<p>Applications simply want the best-available security, and they want to be able to consume it in a way that is simple, natural, and hard to get wrong.</p>
+<p>The following observations can be made about such applications:</p>
+<ul>
+<li>
+<p>They can be written in a variety of programming languages.</p>
+</li>
+<li>
+<p>They may be written with no explicit knowledge of the hardware capabilities of the target platform, such as whether an HSM or TPM is available.</p>
+</li>
+<li>
+<p>They are often sharing the target platform hardware with other applications due to the use of virtualization or containerization technology.</p>
+</li>
+<li>
+<p>The secure assets owned by one application must be isolated from those owned by another. For example, private keys provisioned on a hardware device must be isolated such that only the provisioning application would be able to perform subsequent operations with those keys.</p>
+</li>
+<li>
+<p>They have differing requirements in terms of permissible cryptographic algorithms and key strengths.</p>
+</li>
+</ul>
+<p>These observations motivate the need for a new platform abstraction that offers a common palette of security primitives via a software interface that is both agnostic with respect to the underlying hardware capabilities, and also capable of supporting multiple client applications on the same host, whether those be within containers or within traditional virtual machines.</p>
+<p>Parsec is a new software architecture and ecosystem that addresses this need.</p>
+<h1><a class="header" href="#basis-in-platform-security-architecture" id="basis-in-platform-security-architecture">Basis in Platform Security Architecture</a></h1>
+<p>Parsec is founded on the <a href="https://developer.arm.com/architectures/security-architectures/platform-security-architecture"><strong>Platform Security Architecture (PSA)</strong></a>. The PSA is a holistic set of threat models, security analyses, hardware and firmware architecture specifications, and an open source firmware reference implementation. The PSA provides a recipe, based on industry best practice, that allows security to be consistently designed in, at both a hardware and firmware level.</p>
+<p>One of the provisions of the PSA is the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API</strong></a>. The PSA Crypto API is a comprehensive library of modern security primitives covering the following functional areas:</p>
+<ul>
+<li>Key provisioning and management</li>
+<li>Hashing</li>
+<li>Signing</li>
+<li>Message Authentication Codes (MAC)</li>
+<li>Asymmetric encryption</li>
+<li>Symmetric encryption</li>
+<li>Authenticated Encryption with Associated Data (AEAD)</li>
+<li>Key derivation</li>
+<li>Entropy (random number generation)</li>
+</ul>
+<p>A crucial characteristic of the PSA Crypto API is that applications always reference the keys opaquely, making it ideally suited to implementations where keys are provisioned within hardware and are never exposed.</p>
+<p>The PSA Crypto API is defined in the C language. Parsec adopts the operations and contracts of the C API, and uses them as the basis for a language-independent <strong>wire protocol</strong>. Each operation is defined, along with all of its inputs and outputs, as a serializable contract, making it suitable to be invoked over an Inter-Process Communication (IPC) transport. Parsec maintains functional equivalence with the PSA Crypto API, but allows for out-of-process callers in any programming language.</p>
+<h1><a class="header" href="#the-parsec-service" id="the-parsec-service">The Parsec Service</a></h1>
+<p>The core component of Parsec is the <strong>security service</strong> (or <strong>security daemon</strong>). This is a background process that runs on the host platform and provides connectivity with the secure facilities of that host and surfaces the wire protocol based on PSA Crypto.</p>
+<p>The security service listens on a suitable transport medium. The transport technology is one of Parsec's many pluggable components, and no single transport is mandated. Choice of transport is dependent on the operating system and the deployment. On Linux-based systems where the client applications are running in containers (isolation with a shared kernel), the transport can be based on Unix sockets.</p>
+<p>Client applications make connections with the service by posting API requests to the transport endpoint. This is usually done via a client library that hides the details of both the wire protocol and the transport. This is one of the ways in which the client library simplifies the experience of Parsec for application developers.</p>
+<p>A single instance of the Parsec service executes on each physical host. In virtualized environments, the Parsec service may reside on a specially-assigned guest, or potentially within the hypervisor.</p>
+<p>The security service does not support remote client applications. Each physical host or node must have its own instance of the service. However, it is possible for the service to initiate outbound remote calls of other services, such as cloud-hosted HSM services.</p>
+<h1><a class="header" href="#multitenancy-and-access-control" id="multitenancy-and-access-control">Multitenancy and Access Control</a></h1>
+<p>In addition to surfacing the common API, the Parsec service is also responsible for brokering access to the underlying security facilities amongst the multiple client applications. The exact way that this is done will vary from one deployment to another. (See the section below on pluggable back-end modules). Some of the brokering functionality may already reside in kernel drivers and other parts of the software stack. The Parsec service is responsible for creating isolated views of key storage and cryptographic services for each client application. The secure assets of one client must be kept protected from those of another.</p>
+<p>Central to this multi-tenant operation is the notion of <strong>application identity</strong> and the need for a separate <strong>identity provider</strong> service. A Parsec-enabled host must contain an identity provider service in addition to the Parsec service itself.</p>
+<p>For more information about application identities and the identity provider, please refer to the <a href="system_architecture.html"><strong>system architecture</strong></a> document.</p>
+<h1><a class="header" href="#pluggable-back-end-modules" id="pluggable-back-end-modules">Pluggable Back-End Modules</a></h1>
+<p>The Parsec service employs a layered architecture, structured into a front-end and a back-end.</p>
+<p>The front-end module provides the transport endpoint and listens for connections from clients. The front-end understands the wire protocol and the common API. It is responsible for serialization and de-serialization of the operation contracts.</p>
+<p>The back-end modules are known as <strong>providers</strong>. An instance of the Parsec security service can load one or more providers. Providers implement the API operations using platform-specific or vendor-specific code. They provide the &quot;last mile&quot; of connectivity down to the underlying hardware, software or firmware.</p>
+<p>For a deeper dive into the modular structure of the Parsec service, please take a look at the <a href="interfaces_and_dataflow.html"><strong>interfaces and dataflow</strong></a> design document.</p>
+<p>Then delve into the <a href="source_code_structure.html"><strong>source code</strong></a> to discover the back-end provider modules that exist. If you cannot find one that is compatible with the platform you intend to use, then please consider contributing a new provider.</p>
+<h1><a class="header" href="#beautiful-client-libraries" id="beautiful-client-libraries">Beautiful Client Libraries</a></h1>
+<p>A key aim of Parsec is to evolve an ecosystem of developer-friendly client libraries in multiple programming languages.</p>
+<p>Parsec avoids the cumbersome, auto-generated language bindings that are so often a part of standardized interfaces.</p>
+<p>Parsec's client libraries are beautiful.</p>
+<p>Each client library is carefully crafted to follow the idioms of the language that it targets. Consuming a Parsec client library will always feel natural to a developer who works in that language. Everything from naming conventions to object lifecycle will be blended to create a highly-idiomatic developer experience.</p>
+<p>But Parsec's focus on developer ergonomics goes further than this. Parsec's client interface is filled with conveniences to eliminate complexity unless complexity is required. The Parsec API is functionally equivalent with the PSA Crypto API, and none of this functional completeness is lost in the client layer. All possible variants of key type and algorithm type are exposed in case they are needed. But the client library offers smart default behaviours so that simple use cases can be achieved with very little code. Parsec enables client code to be small and elegant. And even if it needs to be less small, it should still be elegant.</p>
+<h1><a class="header" href="#source-code-structure" id="source-code-structure">Source Code Structure</a></h1>
+<p>Parsec is composed of multiple code repositories. The repository that you are currently viewing contains the Parsec security service itself. For more information about how the code in the repository is organized, please see the <a href="source_code_structure.html"><strong>source code structure</strong></a> document.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../parsec/operations/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../parsec/operations/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

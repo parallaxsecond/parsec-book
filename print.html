@@ -1,0 +1,1638 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Parsec Documentation</title>
+        
+        <meta name="robots" content="noindex" />
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="expanded "><a href="parsec/index.html"><strong aria-hidden="true">2.</strong> Platform Abstraction for Security</a></li><li><ol class="section"><li class="expanded "><a href="parsec/operations/index.html"><strong aria-hidden="true">2.1.</strong> Operations</a></li><li><ol class="section"><li class="expanded "><a href="parsec/operations/add_client.html"><strong aria-hidden="true">2.1.1.</strong> AddClient</a></li><li class="expanded "><a href="parsec/operations/list_opcodes.html"><strong aria-hidden="true">2.1.2.</strong> ListOpcodes</a></li><li class="expanded "><a href="parsec/operations/list_providers.html"><strong aria-hidden="true">2.1.3.</strong> ListProviders</a></li><li class="expanded "><a href="parsec/operations/ping.html"><strong aria-hidden="true">2.1.4.</strong> Ping</a></li><li class="expanded "><a href="parsec/operations/prove_client.html"><strong aria-hidden="true">2.1.5.</strong> ProveClient</a></li><li class="expanded "><a href="parsec/operations/psa_asymmetric_sign.html"><strong aria-hidden="true">2.1.6.</strong> PsaAsymmetricSign</a></li><li class="expanded "><a href="parsec/operations/psa_asymmetric_verify.html"><strong aria-hidden="true">2.1.7.</strong> PsaAsymmetricVerify</a></li><li class="expanded "><a href="parsec/operations/psa_create_key.html"><strong aria-hidden="true">2.1.8.</strong> PsaCreateKey</a></li><li class="expanded "><a href="parsec/operations/psa_destroy_key.html"><strong aria-hidden="true">2.1.9.</strong> PsaDestroyKey</a></li><li class="expanded "><a href="parsec/operations/psa_export_public_key.html"><strong aria-hidden="true">2.1.10.</strong> PsaExportPublicKey</a></li><li class="expanded "><a href="parsec/operations/psa_import_key.html"><strong aria-hidden="true">2.1.11.</strong> PsaImportKey</a></li><li class="expanded "><a href="parsec/operations/share_trust_bundle.html"><strong aria-hidden="true">2.1.12.</strong> ShareTrustBundle</a></li><li class="expanded "><a href="parsec/operations/key_attributes.html"><strong aria-hidden="true">2.1.13.</strong> Key Attributes</a></li></ol></li><li class="expanded "><a href="parsec/providers.html"><strong aria-hidden="true">2.2.</strong> Providers</a></li><li class="expanded "><a href="parsec/api_overview.html"><strong aria-hidden="true">2.3.</strong> API Overview</a></li><li class="expanded "><a href="parsec/interfaces_and_dataflow.html"><strong aria-hidden="true">2.4.</strong> Interfaces and Dataflow</a></li><li class="expanded "><a href="parsec/source_code_structure.html"><strong aria-hidden="true">2.5.</strong> Source Code Structure</a></li><li class="expanded "><a href="parsec/status_codes.html"><strong aria-hidden="true">2.6.</strong> Status Codes</a></li><li class="expanded "><a href="parsec/system_architecture.html"><strong aria-hidden="true">2.7.</strong> System Architecture</a></li><li class="expanded "><a href="parsec/wire_protocol.html"><strong aria-hidden="true">2.8.</strong> Wire Protocol</a></li></ol></li><li class="expanded "><a href="user_guides/index.html"><strong aria-hidden="true">3.</strong> User guides</a></li><li><ol class="section"><li class="expanded "><a href="user_guides/install_parsec_linux.html"><strong aria-hidden="true">3.1.</strong> How to install Parsec on Linux</a></li><li class="expanded "><a href="user_guides/configuration.html"><strong aria-hidden="true">3.2.</strong> Parsec Configuration</a></li><li class="expanded "><a href="user_guides/use_parsec.html"><strong aria-hidden="true">3.3.</strong> How to use Parsec</a></li></ol></li><li class="expanded "><a href="dev_guides/index.html"><strong aria-hidden="true">4.</strong> Developper guides</a></li><li><ol class="section"><li class="expanded "><a href="dev_guides/build.html"><strong aria-hidden="true">4.1.</strong> How to build Parsec</a></li><li class="expanded "><a href="dev_guides/test.html"><strong aria-hidden="true">4.2.</strong> How to test Parsec</a></li><li class="expanded "><a href="dev_guides/writing_library.html"><strong aria-hidden="true">4.3.</strong> Writing a new Parsec Client Library</a></li><li class="expanded "><a href="dev_guides/adding_provider.html"><strong aria-hidden="true">4.4.</strong> Adding a new Parsec Provider</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Parsec Documentation</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#parsec" id="parsec">Parsec</a></h1>
+<p><strong>Parsec</strong> is the <strong>P</strong>latform <strong>A</strong>bst<strong>R</strong>action for <strong>SEC</strong>urity,
+a new open-source initiative to provide a common API to secure services in a platform-agnostic way.</p>
+<p>Find here all the technical documentation of Parsec, alongside user and developper guides.</p>
+<h1><a class="header" href="#disclaimer" id="disclaimer">Disclaimer</a></h1>
+<p>Parsec is a new open source project and is under development. This code repository is being made
+available so that the developer community can learn and give feedback about the new interfaces and the concepts of platform-agnostic security.
+The implementation that is provided is suitable for exploratory testing and experimentation only.
+This test implementation does not offer any tangible security benefits and therefore is not
+suitable for use in production. Documentation pages may be incomplete and are subject to change
+without notice. Interfaces may change in such a way as to break compatibility with client code.
+Contributions from the developer community are welcome. Please refer to the contribution guidelines.</p>
+<h1><a class="header" href="#license" id="license">License</a></h1>
+<p>Parsec and all the repositories under the <code>parallaxsecond</code> organization are provided under Apache-2.0.
+Contributions to this project are accepted under the same license.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#welcome-to-parsec" id="welcome-to-parsec">Welcome to Parsec</a></h1>
+<p><strong>Parsec</strong> is the <strong>P</strong>latform <strong>A</strong>bst<strong>R</strong>action for <strong>SEC</strong>urity, a new open-source initiative to provide a common API to secure services in a platform-agnostic way.</p>
+<p>Parsec aims to define a universal software standard for interacting with secure object storage and cryptography services, creating a common way to interface with functions that would traditionally have been accessed by more specialised APIs. Parsec establishes an ecosystem of developer-friendly libraries in a variety of popular programming languages. Each library is designed to be highly ergonomic and simple to consume. This growing ecosystem will put secure facilities at the fingertips of developers across a broad range of use cases in infrastructure computing, edge computing and the secure Internet of Things.</p>
+<h1><a class="header" href="#why-platform-agnostic-security" id="why-platform-agnostic-security">Why Platform-Agnostic Security?</a></h1>
+<p>Today's computing platforms have evolved to offer a range of facilities for secure storage and secure operations. There are hardware-backed facilities such as the Hardware Security Module (HSM) or Trusted Platform Module (TPM). There are firmware services running in Trusted Execution Environments (TEE). There are also cloud-based security services. At a bare minimum, security facilities may be provided purely in software, where they are protected by mechanisms provided in the operating system.</p>
+<p>Over the years, software standards have emerged to allow developers to use these facilities from their applications. But these standards bring with them the following challenges:</p>
+<ul>
+<li>They are defined with the expectation that the caller is the &quot;owner&quot; of the platform, meaning that it has sole access to the underlying hardware. In reality, this is often not the case, because the caller might reside in a container or virtual machine, where it is sharing the host hardware with other applications. Existing software standards do not cater well for this situation.</li>
+<li>They are defined exhaustively, with lengthy specifications detailing all permissible operations and parameters. They are written from the perspective of the security device and its capabilities, rather than from the perspective of the application and its use case. This can offer a daunting and bewildering experience for developers, who spend a lot of time and effort figuring out how to map their use case onto the API. There is nothing to tailor the API so that it can be consumed easily for common, simple cases.</li>
+<li>They are specific to a programming language such as C. To consume them in other languages, it is necessary to use interoperability layers such as Foreign Function Interface (FFI), which can make the developer experience even more cumbersome and unnatural. Interoperability layers can also be a source of vulnerabilities.</li>
+<li>Standards tend to be adopted based on some knowledge of the target platform. So while it might be possible for code to be portable across multiple HSM vendors, for example, it is much harder to make code portable between an HSM-based platform and a TPM-based platform.</li>
+</ul>
+<p>Parsec inverts this traditional approach to standardizing security interfaces, and it does so by putting applications front and center. It offers an API that is no less comprehensive, but it does so in a way that puts the needs of applications and their common use cases first.</p>
+<p>Applications simply want the best-available security, and they want to be able to consume it in a way that is simple, natural, and hard to get wrong.</p>
+<p>The following observations can be made about such applications:</p>
+<ul>
+<li>
+<p>They can be written in a variety of programming languages.</p>
+</li>
+<li>
+<p>They may be written with no explicit knowledge of the hardware capabilities of the target platform, such as whether an HSM or TPM is available.</p>
+</li>
+<li>
+<p>They are often sharing the target platform hardware with other applications due to the use of virtualization or containerization technology.</p>
+</li>
+<li>
+<p>The secure assets owned by one application must be isolated from those owned by another. For example, private keys provisioned on a hardware device must be isolated such that only the provisioning application would be able to perform subsequent operations with those keys.</p>
+</li>
+<li>
+<p>They have differing requirements in terms of permissible cryptographic algorithms and key strengths.</p>
+</li>
+</ul>
+<p>These observations motivate the need for a new platform abstraction that offers a common palette of security primitives via a software interface that is both agnostic with respect to the underlying hardware capabilities, and also capable of supporting multiple client applications on the same host, whether those be within containers or within traditional virtual machines.</p>
+<p>Parsec is a new software architecture and ecosystem that addresses this need.</p>
+<h1><a class="header" href="#basis-in-platform-security-architecture" id="basis-in-platform-security-architecture">Basis in Platform Security Architecture</a></h1>
+<p>Parsec is founded on the <a href="https://developer.arm.com/architectures/security-architectures/platform-security-architecture"><strong>Platform Security Architecture (PSA)</strong></a>. The PSA is a holistic set of threat models, security analyses, hardware and firmware architecture specifications, and an open source firmware reference implementation. The PSA provides a recipe, based on industry best practice, that allows security to be consistently designed in, at both a hardware and firmware level.</p>
+<p>One of the provisions of the PSA is the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API</strong></a>. The PSA Crypto API is a comprehensive library of modern security primitives covering the following functional areas:</p>
+<ul>
+<li>Key provisioning and management</li>
+<li>Hashing</li>
+<li>Signing</li>
+<li>Message Authentication Codes (MAC)</li>
+<li>Asymmetric encryption</li>
+<li>Symmetric encryption</li>
+<li>Authenticated Encryption with Associated Data (AEAD)</li>
+<li>Key derivation</li>
+<li>Entropy (random number generation)</li>
+</ul>
+<p>A crucial characteristic of the PSA Crypto API is that applications always reference the keys opaquely, making it ideally suited to implementations where keys are provisioned within hardware and are never exposed.</p>
+<p>The PSA Crypto API is defined in the C language. Parsec adopts the operations and contracts of the C API, and uses them as the basis for a language-independent <strong>wire protocol</strong>. Each operation is defined, along with all of its inputs and outputs, as a serializable contract, making it suitable to be invoked over an Inter-Process Communication (IPC) transport. Parsec maintains functional equivalence with the PSA Crypto API, but allows for out-of-process callers in any programming language.</p>
+<h1><a class="header" href="#the-parsec-service" id="the-parsec-service">The Parsec Service</a></h1>
+<p>The core component of Parsec is the <strong>security service</strong> (or <strong>security daemon</strong>). This is a background process that runs on the host platform and provides connectivity with the secure facilities of that host and surfaces the wire protocol based on PSA Crypto.</p>
+<p>The security service listens on a suitable transport medium. The transport technology is one of Parsec's many pluggable components, and no single transport is mandated. Choice of transport is dependent on the operating system and the deployment. On Linux-based systems where the client applications are running in containers (isolation with a shared kernel), the transport can be based on Unix sockets.</p>
+<p>Client applications make connections with the service by posting API requests to the transport endpoint. This is usually done via a client library that hides the details of both the wire protocol and the transport. This is one of the ways in which the client library simplifies the experience of Parsec for application developers.</p>
+<p>A single instance of the Parsec service executes on each physical host. In virtualized environments, the Parsec service may reside on a specially-assigned guest, or potentially within the hypervisor.</p>
+<p>The security service does not support remote client applications. Each physical host or node must have its own instance of the service. However, it is possible for the service to initiate outbound remote calls of other services, such as cloud-hosted HSM services.</p>
+<h1><a class="header" href="#multitenancy-and-access-control" id="multitenancy-and-access-control">Multitenancy and Access Control</a></h1>
+<p>In addition to surfacing the common API, the Parsec service is also responsible for brokering access to the underlying security facilities amongst the multiple client applications. The exact way that this is done will vary from one deployment to another. (See the section below on pluggable back-end modules). Some of the brokering functionality may already reside in kernel drivers and other parts of the software stack. The Parsec service is responsible for creating isolated views of key storage and cryptographic services for each client application. The secure assets of one client must be kept protected from those of another.</p>
+<p>Central to this multi-tenant operation is the notion of <strong>application identity</strong> and the need for a separate <strong>identity provider</strong> service. A Parsec-enabled host must contain an identity provider service in addition to the Parsec service itself.</p>
+<p>For more information about application identities and the identity provider, please refer to the <a href="parsec/system_architecture.html"><strong>system architecture</strong></a> document.</p>
+<h1><a class="header" href="#pluggable-back-end-modules" id="pluggable-back-end-modules">Pluggable Back-End Modules</a></h1>
+<p>The Parsec service employs a layered architecture, structured into a front-end and a back-end.</p>
+<p>The front-end module provides the transport endpoint and listens for connections from clients. The front-end understands the wire protocol and the common API. It is responsible for serialization and de-serialization of the operation contracts.</p>
+<p>The back-end modules are known as <strong>providers</strong>. An instance of the Parsec security service can load one or more providers. Providers implement the API operations using platform-specific or vendor-specific code. They provide the &quot;last mile&quot; of connectivity down to the underlying hardware, software or firmware.</p>
+<p>For a deeper dive into the modular structure of the Parsec service, please take a look at the <a href="parsec/interfaces_and_dataflow.html"><strong>interfaces and dataflow</strong></a> design document.</p>
+<p>Then delve into the <a href="parsec/source_code_structure.html"><strong>source code</strong></a> to discover the back-end provider modules that exist. If you cannot find one that is compatible with the platform you intend to use, then please consider contributing a new provider.</p>
+<h1><a class="header" href="#beautiful-client-libraries" id="beautiful-client-libraries">Beautiful Client Libraries</a></h1>
+<p>A key aim of Parsec is to evolve an ecosystem of developer-friendly client libraries in multiple programming languages.</p>
+<p>Parsec avoids the cumbersome, auto-generated language bindings that are so often a part of standardized interfaces.</p>
+<p>Parsec's client libraries are beautiful.</p>
+<p>Each client library is carefully crafted to follow the idioms of the language that it targets. Consuming a Parsec client library will always feel natural to a developer who works in that language. Everything from naming conventions to object lifecycle will be blended to create a highly-idiomatic developer experience.</p>
+<p>But Parsec's focus on developer ergonomics goes further than this. Parsec's client interface is filled with conveniences to eliminate complexity unless complexity is required. The Parsec API is functionally equivalent with the PSA Crypto API, and none of this functional completeness is lost in the client layer. All possible variants of key type and algorithm type are exposed in case they are needed. But the client library offers smart default behaviours so that simple use cases can be achieved with very little code. Parsec enables client code to be small and elegant. And even if it needs to be less small, it should still be elegant.</p>
+<h1><a class="header" href="#source-code-structure" id="source-code-structure">Source Code Structure</a></h1>
+<p>Parsec is composed of multiple code repositories. The repository that you are currently viewing contains the Parsec security service itself. For more information about how the code in the repository is organized, please see the <a href="parsec/source_code_structure.html"><strong>source code structure</strong></a> document.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#operations" id="operations">Operations</a></h1>
+<h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
+<p>This document provides links to full descriptions for all of the operations in the API.</p>
+<h2><a class="header" href="#status-note" id="status-note">Status Note</a></h2>
+<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice. Some operations are listed without being linked to documentation pages. These operations are not currently supported, but are intended for future roadmap. Only a small number of the PSA Crypto operations are supported in the current version.</p>
+<h2><a class="header" href="#identity-operations" id="identity-operations">Identity Operations</a></h2>
+<p>Identity operations are not supported by the security service. These operations are reserved for use only by the identity provider, which is a separate service in the system, but supports a common wire protocol.</p>
+<ul>
+<li><a href="parsec/operations/add_client.html"><strong>AddClient</strong></a></li>
+<li><a href="parsec/operations/prove_client.html"><strong>ProveClient</strong></a></li>
+</ul>
+<h2><a class="header" href="#core-operations" id="core-operations">Core Operations</a></h2>
+<p>Core operations are non-cryptographic operations supported by the core provider. Set the <strong>provider</strong> field of the request header to 0 (<code>0x00</code>) to invoke these operations.</p>
+<h3><a class="header" href="#service-health" id="service-health">Service Health</a></h3>
+<ul>
+<li><a href="parsec/operations/ping.html"><strong>Ping</strong></a></li>
+</ul>
+<h3><a class="header" href="#service-configuration" id="service-configuration">Service Configuration</a></h3>
+<ul>
+<li><a href="parsec/operations/list_providers.html"><strong>ListProviders</strong></a></li>
+<li><a href="parsec/operations/list_opcodes.html"><strong>ListOpcodes</strong></a></li>
+</ul>
+<h3><a class="header" href="#trust" id="trust">Trust</a></h3>
+<ul>
+<li><a href="parsec/operations/share_trust_bundle.html"><strong>ShareTrustBundle</strong></a></li>
+</ul>
+<h2><a class="header" href="#psa-crypto-operations" id="psa-crypto-operations">PSA Crypto Operations</a></h2>
+<p>These operations are all derived from equivalent function definitions in the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API Specification</strong></a>. </p>
+<h3><a class="header" href="#key-management" id="key-management">Key Management</a></h3>
+<ul>
+<li><a href="parsec/operations/psa_create_key.html"><strong>PsaCreateKey</strong></a></li>
+<li><strong>PsaExportKey</strong></li>
+<li><a href="parsec/operations/psa_export_public_key.html"><strong>PsaExportPublicKey</strong></a></li>
+<li><a href="parsec/operations/psa_import_key.html"><strong>PsaImportKey</strong></a></li>
+<li><strong>PsaCopyKey</strong></li>
+<li><a href="parsec/operations/psa_destroy_key.html"><strong>PsaDestroyKey</strong></a></li>
+</ul>
+<h3><a class="header" href="#symmetric-cryptography" id="symmetric-cryptography">Symmetric Cryptography</a></h3>
+<ul>
+<li><strong>PsaCipherEncrypt</strong></li>
+<li><strong>PsaCipherDecrypt</strong></li>
+<li><strong>PsaCipherOperationInit</strong></li>
+<li><strong>PsaCipherEncryptSetup</strong></li>
+<li><strong>PsaCipherDecryptSetup</strong></li>
+<li><strong>PsaCipherGenerateIv</strong></li>
+<li><strong>PsaCipherSetIv</strong></li>
+<li><strong>PsaCipherUpdate</strong></li>
+<li><strong>PsaCipherFinish</strong></li>
+<li><strong>PsaCipherAbort</strong></li>
+</ul>
+<h3><a class="header" href="#asymmetric-cryptography" id="asymmetric-cryptography">Asymmetric Cryptography</a></h3>
+<ul>
+<li><a href="parsec/operations/psa_asymmetric_sign.html"><strong>PsaAsymmetricSign</strong></a></li>
+<li><a href="parsec/operations/psa_asymmetric_verify.html"><strong>PsaAsymmetricVerify</strong></a></li>
+<li><strong>PsaAsymmetricEncrypt</strong></li>
+<li><strong>PsaAsymmetricDecrypt</strong></li>
+</ul>
+<h3><a class="header" href="#authenticated-encryption-with-associated-data-aead" id="authenticated-encryption-with-associated-data-aead">Authenticated Encryption with Associated Data (AEAD)</a></h3>
+<ul>
+<li><strong>PsaAeadEncrypt</strong></li>
+<li><strong>PsaAeadDecrypt</strong></li>
+<li><strong>PsaAeadOperationInit</strong></li>
+<li><strong>PsaAeadEncryptSetup</strong></li>
+<li><strong>PsaAeadDecryptSetup</strong></li>
+<li><strong>PsaAeadGenerateNonce</strong></li>
+<li><strong>PsaAeadSetNonce</strong></li>
+<li><strong>PsaAeadSetLengths</strong></li>
+<li><strong>PsaAeadUpdateAd</strong></li>
+<li><strong>PsaAeadUpdate</strong></li>
+<li><strong>PsaAeadFinish</strong></li>
+<li><strong>PsaAeadVerify</strong></li>
+<li><strong>PsaAeadAbort</strong></li>
+</ul>
+<h3><a class="header" href="#digests" id="digests">Digests</a></h3>
+<ul>
+<li><strong>PsaHashCompute</strong></li>
+<li><strong>PsaHashCompare</strong></li>
+<li><strong>PsaHashOperationInit</strong></li>
+<li><strong>PsaHashSetup</strong></li>
+<li><strong>PsaHashUpdate</strong></li>
+<li><strong>PsaHashFinish</strong></li>
+<li><strong>PsaHashVerify</strong></li>
+<li><strong>PsaHashAbort</strong></li>
+<li><strong>PsaHashClone</strong></li>
+</ul>
+<h3><a class="header" href="#message-authentication-codes-mac" id="message-authentication-codes-mac">Message Authentication Codes (MAC)</a></h3>
+<ul>
+<li><strong>PsaMacCompute</strong></li>
+<li><strong>PsaMacVerify</strong></li>
+<li><strong>PsaMacOperationInit</strong></li>
+<li><strong>PsaMacSignSetup</strong></li>
+<li><strong>PsaMacVerifySetup</strong></li>
+<li><strong>PsaMacUpdate</strong></li>
+<li><strong>PsaMacSignFinish</strong></li>
+<li><strong>PsaMacVerifyFinish</strong></li>
+<li><strong>PsaMacAbort</strong></li>
+</ul>
+<h3><a class="header" href="#key-derivation" id="key-derivation">Key Derivation</a></h3>
+<ul>
+<li><strong>PsaKeyDerivationOperationInit</strong></li>
+<li><strong>PsaKeyDerivationSetup</strong></li>
+<li><strong>PsaKeyDerivationGetCapacity</strong></li>
+<li><strong>PsaKeyDerivationSetCapacity</strong></li>
+<li><strong>PsaKeyDerivationInputBytes</strong></li>
+<li><strong>PsaKeyDerivationInputKey</strong></li>
+<li><strong>PsaKeyDerivationKeyAgreement</strong></li>
+<li><strong>PsaKeyDerivationOutputBytes</strong></li>
+<li><strong>PsaKeyDerivationOutputKey</strong></li>
+<li><strong>PsaKeyDerivationAbort</strong></li>
+<li><strong>PsaRawKeyAgreement</strong></li>
+</ul>
+<h3><a class="header" href="#entropy" id="entropy">Entropy</a></h3>
+<ul>
+<li><strong>PsaGenerateRandom</strong></li>
+</ul>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#addclient" id="addclient"><strong>AddClient</strong></a></h1>
+<p>Placeholder page.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#listopcodes" id="listopcodes"><strong>ListOpcodes</strong></a></h1>
+<h2><a class="header" href="#opcode-9-decimal-0x0009-hex" id="opcode-9-decimal-0x0009-hex"><strong>Opcode: 9 (decimal), 0x0009 (hex)</strong></a></h2>
+<h2><a class="header" href="#summary" id="summary"><strong>Summary</strong></a></h2>
+<p>Gets a list of available opcodes supported by a PARSEC provider.</p>
+<h2><a class="header" href="#contract" id="contract"><strong>Contract</strong></a></h2>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_opcodes.proto">Protobuf</a></p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#listproviders" id="listproviders"><strong>ListProviders</strong></a></h1>
+<h2><a class="header" href="#opcode-8-decimal-0x0008-hex" id="opcode-8-decimal-0x0008-hex"><strong>Opcode: 8 (decimal), 0x0008 (hex)</strong></a></h2>
+<h2><a class="header" href="#summary-1" id="summary-1"><strong>Summary</strong></a></h2>
+<p>Gets a list of available PARSEC providers to be used by clients.</p>
+<h2><a class="header" href="#contract-1" id="contract-1"><strong>Contract</strong></a></h2>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_providers.proto">Protobuf</a></p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#ping" id="ping"><strong>Ping</strong></a></h1>
+<h2><a class="header" href="#opcode-1-decimal-0x0001-hex" id="opcode-1-decimal-0x0001-hex"><strong>Opcode: 1 (decimal), 0x0001 (hex)</strong></a></h2>
+<h2><a class="header" href="#summary-2" id="summary-2"><strong>Summary</strong></a></h2>
+<p>Determines whether the service is present and responsive on the expected endpoint.</p>
+<h2><a class="header" href="#contract-2" id="contract-2"><strong>Contract</strong></a></h2>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/ping.proto">Protobuf</a></p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#proveclient" id="proveclient"><strong>ProveClient</strong></a></h1>
+<p>Placeholder page.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#psaasymmetricsign" id="psaasymmetricsign"><strong>PsaAsymmetricSign</strong></a></h1>
+<h2><a class="header" href="#opcode-4-decimal-0x0004-hex" id="opcode-4-decimal-0x0004-hex"><strong>Opcode: 4 (decimal), 0x0004 (hex)</strong></a></h2>
+<h2><a class="header" href="#summary-3" id="summary-3"><strong>Summary</strong></a></h2>
+<p>Sign a hash or short message with a private key.</p>
+<p>Note that to perform a hash-and-sign signature algorithm, you must first calculate the hash of the data you want to sign. Then pass the resulting hash as the <code>hash</code> parameter to this function.</p>
+<h2><a class="header" href="#parameters" id="parameters"><strong>Parameters</strong></a></h2>
+<p><strong><code>key_name</code></strong>  Name of the key used for signing the hash
+<strong><code>hash</code></strong>  Hash of the data that must be signed</p>
+<h2><a class="header" href="#result-values" id="result-values"><strong>Result values</strong></a></h2>
+<p><strong><code>signature</code></strong>  Bytes forming up the requested signature</p>
+<h2><a class="header" href="#contract-3" id="contract-3"><strong>Contract</strong></a></h2>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/asym_sign.proto">Protobuf</a></p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#psaasymmetricverify" id="psaasymmetricverify"><strong>PsaAsymmetricVerify</strong></a></h1>
+<h2><a class="header" href="#opcode-5-decimal-0x0005-hex" id="opcode-5-decimal-0x0005-hex"><strong>Opcode: 5 (decimal), 0x0005 (hex)</strong></a></h2>
+<h2><a class="header" href="#summary-4" id="summary-4"><strong>Summary</strong></a></h2>
+<p>Verify the signature of a hash or short message using a public key</p>
+<p>Note that to perform a hash-and-sign signature algorithm, you must first calculate the hash of the data you want to sign. Then pass the resulting hash as the <code>hash</code> parameter to this function.</p>
+<h2><a class="header" href="#parameters-1" id="parameters-1"><strong>Parameters</strong></a></h2>
+<p><strong><code>key_name</code></strong>  Name of the key used for signing the hash
+<strong><code>hash</code></strong>  Hash of the data that was signed
+<strong><code>signature</code></strong>  Signature that must be verified</p>
+<h2><a class="header" href="#contract-4" id="contract-4"><strong>Contract</strong></a></h2>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/asym_verify.proto">Protobuf</a></p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#psacreatekey" id="psacreatekey"><strong>PsaCreateKey</strong></a></h1>
+<h2><a class="header" href="#opcode-2-decimal-0x0002-hex" id="opcode-2-decimal-0x0002-hex"><strong>Opcode: 2 (decimal), 0x0002 (hex)</strong></a></h2>
+<h2><a class="header" href="#summary-5" id="summary-5"><strong>Summary</strong></a></h2>
+<p>Generate a key or key pair.</p>
+<p>The key is generated randomly. Its location, policy, type and size are taken from <code>key_attributes</code>.</p>
+<p>The following type-specific considerations apply:</p>
+<ul>
+<li>For RSA keys (<code>RSA_Keypair</code>), the public exponent is 65537. The modulus is a product of two probabilistic primes between 2^{n-1} and 2^n where n is the bit size specified in the attributes.</li>
+</ul>
+<h2><a class="header" href="#parameters-2" id="parameters-2"><strong>Parameters</strong></a></h2>
+<p><strong><code>key_name</code></strong>  Name of the key used for signing the hash
+<strong><code>key_attributes</code></strong>  Attributes of the key to be created (see the <a href="parsec/operations//key_attributes.html"><strong>key attributes</strong></a> file for more details)</p>
+<h2><a class="header" href="#contract-5" id="contract-5"><strong>Contract</strong></a></h2>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/create_key.proto">Protobuf</a></p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#psadestroykey" id="psadestroykey"><strong>PsaDestroyKey</strong></a></h1>
+<h2><a class="header" href="#opcode-3-decimal-0x0003-hex" id="opcode-3-decimal-0x0003-hex"><strong>Opcode: 3 (decimal), 0x0003 (hex)</strong></a></h2>
+<h2><a class="header" href="#summary-6" id="summary-6"><strong>Summary</strong></a></h2>
+<p>Destroy a key.</p>
+<p>This function destroys a key from both volatile memory and, if applicable, non-volatile storage. Implementations shall make a best effort to ensure that that the key material cannot be recovered.</p>
+<p>This function also erases any metadata such as policies and frees all resources associated with the key.</p>
+<h2><a class="header" href="#parameters-3" id="parameters-3"><strong>Parameters</strong></a></h2>
+<p><strong><code>key_name</code></strong>  Name of the key used for signing the hash</p>
+<h2><a class="header" href="#contract-6" id="contract-6"><strong>Contract</strong></a></h2>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/destroy_key.proto">Protobuf</a></p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#psaexportpublickey" id="psaexportpublickey"><strong>PsaExportPublicKey</strong></a></h1>
+<h2><a class="header" href="#opcode-7-decimal-0x0007-hex" id="opcode-7-decimal-0x0007-hex"><strong>Opcode: 7 (decimal), 0x0007 (hex)</strong></a></h2>
+<h2><a class="header" href="#summary-7" id="summary-7"><strong>Summary</strong></a></h2>
+<p>Export a public key or the public part of a key pair in binary format.</p>
+<p>The output of this function can be passed to <a href="parsec/operations/psa_import_key.html"><em>PSA Import Key</em></a> to create an object that is equivalent to the public key.</p>
+<p>This specification supports a single format for each key type. Implementations may support other formats as long as the standard format is supported. Implementations that support other formats should ensure that the formats are clearly unambiguous so as to minimize the risk that an invalid input is accidentally interpreted according to a different format.</p>
+<p>For standard key types, the output format is as follows:</p>
+<ul>
+<li>For RSA public keys (<a href="parsec/operations/key_attributes.html"><code>RSA_Public_Key</code></a>), the DER encoding of the representation defined by <em>RFC 3279 §2.3.1</em> as <code>RSAPublicKey</code>:</li>
+</ul>
+<pre><code>RSAPublicKey ::= SEQUENCE {
+    modulus             INTEGER, -- n
+    publicExponent      INTEGER  -- e
+}
+</code></pre>
+<ul>
+<li>
+<p>For elliptic curve public keys (key of type <a href="parsec/operations/key_attributes.html"><code>ECC_Public_Key</code></a>), the format is the uncompressed representation defined by <em>SEC1 §2.3.3</em> as the content of an <code>ECPoint</code>. Let <code>m</code> be the bit size associated with the curve, i.e. the bit size of <code>q</code> for a curve over <code>F\_q</code>. The representation consists of:</p>
+<ul>
+<li>The byte <code>0x04</code>;</li>
+<li><code>x\_P</code> as a <code>ceiling(m/8)</code>-byte string, big-endian;</li>
+<li><code>y\_P</code> as a <code>ceiling(m/8)</code>-byte string, big-endian.</li>
+</ul>
+</li>
+<li>
+<p>For DSA public keys (<a href="parsec/operations/key_attributes.html"><code>DSA_Public_Key</code></a>), the <code>subjectPublicKey</code> format is defined by <em>RFC 3279 §2.3.2</em> as <code>DSAPublicKey</code>,  with the OID <code>id-dsa</code>, and with the parameters <code>DSS-Parms</code>.</p>
+</li>
+</ul>
+<pre><code>id-dsa OBJECT IDENTIFIER ::= {
+    iso(1) member-body(2) us(840) x9-57(10040) x9cm(4) 1
+}
+
+Dss-Parms ::= SEQUENCE {
+    p                  INTEGER,
+    q                  INTEGER,
+    g                  INTEGER
+}
+
+DSAPublicKey ::= INTEGER -- public key, Y
+</code></pre>
+<h2><a class="header" href="#parameters-4" id="parameters-4"><strong>Parameters</strong></a></h2>
+<p><strong><code>key_name</code></strong>  Name of the key used for signing the hash</p>
+<h2><a class="header" href="#result-values-1" id="result-values-1"><strong>Result values</strong></a></h2>
+<p><strong><code>key_data</code></strong>  Bytes of the key in one of the formats described above</p>
+<h2><a class="header" href="#contract-7" id="contract-7"><strong>Contract</strong></a></h2>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/export_public_key.proto">Protobuf</a></p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#psaimportkey" id="psaimportkey"><strong>PsaImportKey</strong></a></h1>
+<h2><a class="header" href="#opcode-6-decimal-0x0006-hex" id="opcode-6-decimal-0x0006-hex"><strong>Opcode: 6 (decimal), 0x0006 (hex)</strong></a></h2>
+<h2><a class="header" href="#summary-8" id="summary-8"><strong>Summary</strong></a></h2>
+<p>Import a key in binary format.</p>
+<p>This function supports any output from <strong>PSA Export Key</strong>. Refer to the documentation of <a href="parsec/operations/psa_export_public_key.html"><strong>PSA Export Public Key</strong></a> for the format of public keys and to the documentation of <strong>PSA Export Key</strong> for the format for other key types.</p>
+<p>This specification supports a single format for each key type. Implementations may support other formats as long as the standard format is supported. Implementations that support other formats should ensure that the formats are clearly unambiguous so as to minimize the risk that an invalid input is accidentally interpreted according to a different format.</p>
+<h2><a class="header" href="#parameters-5" id="parameters-5"><strong>Parameters</strong></a></h2>
+<p><strong><code>key_name</code></strong>  Name of the key used for signing the hash
+<strong><code>key_data</code></strong>  Bytes of the key in one of the formats described above</p>
+<h2><a class="header" href="#contract-8" id="contract-8"><strong>Contract</strong></a></h2>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/import_key.proto">Protobuf</a></p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#sharetrustbundle" id="sharetrustbundle"><strong>ShareTrustBundle</strong></a></h1>
+<p>Placeholder page.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#psa-crypto-key-attributes" id="psa-crypto-key-attributes"><strong>PSA Crypto Key Attributes</strong></a></h1>
+<h2><a class="header" href="#key-type-and-algorithm" id="key-type-and-algorithm"><strong>Key Type and Algorithm</strong></a></h2>
+<p>Types of cryptographic keys and cryptographic algorithms are encoded separately. Each is encoded as a field in the <em>Key Attributes</em> structure.</p>
+<p>There is some overlap in the information conveyed by key types and algorithms. Both types contain enough information, so that the meaning of an algorithm type value does not depend on what type of key it is used with, and vice versa. However, the particular instance of an algorithm may depend on the key type. For example, the <em>AEAD Algorithm</em> <code>GCM</code> can be instantiated as any AEAD algorithm using the GCM mode over a block cipher. The underlying block cipher is determined by the key type.</p>
+<p>Key types do not encode the key size. For example, AES-128, AES-192 and AES-256 share a key type <code>AES_Key</code>.</p>
+<h3><a class="header" href="#algorithm-types" id="algorithm-types"><strong>Algorithm Types</strong></a></h3>
+<p><strong>TO BE DONE</strong></p>
+<h2><a class="header" href="#other-attributes" id="other-attributes"><strong>Other Attributes</strong></a></h2>
+<ul>
+<li>
+<p><strong>ECC Curve</strong>
+Determines the ECC curve to be used for keys of types <code>ECC_Public_Key</code> and <code>ECC_Keypair</code>.</p>
+</li>
+<li>
+<p><strong>Key Size</strong>
+Determines the size of the key in bits. This must be used for choosing key sizes for both symmetric and asymmetric keys.</p>
+</li>
+<li>
+<p><strong>Permit Export</strong>
+Determines whether the key material can be exported.</p>
+</li>
+<li>
+<p><strong>Permit Encrypt</strong>
+Determines whether the key can be used to encrypt data.</p>
+</li>
+<li>
+<p><strong>Permit Decrypt</strong>
+Determines whether the key can be used to decrypt data.</p>
+</li>
+<li>
+<p><strong>Permit Sign</strong>
+Determines whether the key can be used to sign data.</p>
+</li>
+<li>
+<p><strong>Permit Verify</strong>
+Determines whether the key can be used to verify a signature.</p>
+</li>
+<li>
+<p><strong>Permit Derive</strong>
+Determines whether the key can be used to derive further keys.</p>
+</li>
+</ul>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#providers" id="providers"><strong>Providers</strong></a></h1>
+<p>This document offers details on the currently supported providers.</p>
+<p>For information regarding the function providers play in the Parsec service, read the <a href="parsec/interfaces_and_dataflow.html"><em>Interfaces and Dataflow</em></a> doc. For details on how the service code is structured around providers, read the <a href="parsec/source_code_structure.html"><em>Source Code Structure</em></a> doc.</p>
+<h2><a class="header" href="#core-provider" id="core-provider"><strong>Core Provider</strong></a></h2>
+<p><strong>Provider UUID: 47049873-2a43-4845-9d72-831eab668784</strong></p>
+<p>The core provider is a non-cryptographic provider, tasked with storing and distributing both static and dynamic information about the service. It is the base for </p>
+<p>One instance of the core provider must always be running with a provider ID of 0. </p>
+<h2><a class="header" href="#mbed-provider" id="mbed-provider"><strong>Mbed Provider</strong></a></h2>
+<p><strong>Provider UUID: 1c1139dc-ad7c-47dc-ad6b-db6fdb466552</strong></p>
+<p>The Mbed provider is a software-based provider built on top of Mbed Crypto - the reference implementation of the PSA cryptography specification. Mbed Crypto is loaded as a static library and executes with the rest of the service in user-space. </p>
+<p>The software version of the Mbed provider is meant as a proof-of-concept and should not be used in real-world environments. Future improvements will expand the security guarantee of Mbed Crypto-based providers. </p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#api-overview" id="api-overview"><strong>API Overview</strong></a></h1>
+<h2><a class="header" href="#introduction-1" id="introduction-1"><strong>Introduction</strong></a></h2>
+<p>This document introduces the API contract that exists between the client and the service, covering its general principles and organisation. Use this document in combination with the <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a> and the <a href="parsec/operations"><strong>operation directory</strong></a> as a reference guide for the development of client libraries.</p>
+<h2><a class="header" href="#status-note-1" id="status-note-1"><strong>Status Note</strong></a></h2>
+<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
+<h2><a class="header" href="#audience" id="audience"><strong>Audience</strong></a></h2>
+<p>This document details the API that is exposed directly by the service to its clients. This is the API that is invoked over the IPC transport between the client process and the service. Client applications do not consume this API directly. Instead, they consume a client library in their chosen programming language. The client library will present an idiomatic and simplified view of the API, making heavy use of argument defaulting to shield application developers from much of the complexity of invoking cryptographic operations. Client libraries should present the API in a form that is &quot;easy to use and hard to get wrong&quot;. The audience for this document is the client library developer, <em>not</em> the application developer. Application developers should consult the client library documentation package instead.</p>
+<h2><a class="header" href="#opcodes-and-contracts" id="opcodes-and-contracts"><strong>Opcodes and Contracts</strong></a></h2>
+<p>The API is expressed as a set of individual and distinct <strong>operations</strong>. Each operation has a unique numerical <strong>opcode</strong> to set it apart from other operations, and to allow for it to be unambiguously selected for in a client request. (See the <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a> for information about how the client must structure such requests). Each operation also has an <strong>input contract</strong>, which defines the arguments that the client must supply when invoking it. It also has an <strong>output contract</strong>, which defines the operation results that the client can expect to receive from the service upon completion. In current manifestations of the API, all input and output contracts are defined as protobuf messages, which provides a strong contractual definition and good interoperability with multiple programming languages.</p>
+<p>All operations are catalogued in the <a href="parsec/operations"><strong>operation directory</strong></a>. There is a separate documentation page for each operation, which will specify the correct opcode to use, and will provide links to the input and output contracts.</p>
+<p>In order to make an API call, the client must use the <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a> to form a valid request to the service. The request header must contain the opcode of the operation being performed, and the request body must contain serialized data bytes conforming to that operation's input contract. The service will execute the operation, and form a response according to the wire protocol. The response will contain serialized data bytes conforming to the operation's output contract.</p>
+<h2><a class="header" href="#selecting-providers" id="selecting-providers"><strong>Selecting Providers</strong></a></h2>
+<p>All of the operations in the API are implemented by back-end modules known as <strong>providers</strong>. A provider is a module that is capable of implementing operations by making use of available platform hardware or services. For example, if cryptographic services are supplied by a hardware secure element of some kind, then there would be a provider for that secure element. There may be a different provider for a software-only solution. And so forth. It is valid for these different providers to co-reside within the service. The availability of providers is governed by configuration that is applied at service-deployment time.</p>
+<p>While the service can be composed from multiple providers, any given API operation needs to be implemented by a single provider. This means that client code needs to specify the target provider when it makes an operation request. To achieve this, the service assigns an 8-bit integer value (from 0 to 255) to each available provider. In practice, the numer of providers would be very small: probably just two or three. This integer value is the <strong>provider identifier</strong>. Client code must set a single provider identifier in each API request. The <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a> explains how a request header field is used to route the request to the correct provider.</p>
+<p>In order to set a provider identifier in an API request, the client must first be able to determine what providers are available, what their identifiers are, and what their characteristics are (such as whether they are hardware-backed or software-backed). This is done by first referencing the <strong>core provider</strong>. The core provider is the only provider that is guaranteed to be available in any deployment of the service. It has a provider identifier of zero (the only reserved value for provider identifiers). The core provider is special in that it doesn't implement any security or cryptographic operations. The core provider is used to represent the service as a whole. The operations of the core provider can be used to gather information about the health and configuration of the service. It can be used to ping the service to check whether it is responsive, and to check the highest version of the wire protocol that it supports. The core provider can also be used to get information about the cryptographic providers, their characteristics and their 8-bit identifier values. Based on this information, the client can determine which provider is best suited to its requirements. It can then use the integer identifier of that provider to make API requests.</p>
+<p>The expected pattern is that a client would determine a single provider that best suits its needs, and then use that provider exclusively for all cryptographic operations. While this usage would be considered typical, it is certainly not enforced. There is nothing to prevent a client from using different providers for different operations if it so desires. In many deployments, it is possible that only a single cryptographic provider would be available anyway. To determine the best available or most suitable provider, a client application can use the capability check mechanism, described below.</p>
+<h2><a class="header" href="#open-closed-principle" id="open-closed-principle"><strong>Open-Closed Principle</strong></a></h2>
+<p>The API is designed to evolve over time. This evolution will be governed by the <em>open-closed principle</em>. In practice, this means that each operation in the API, once introduced, will not be contractually modified. The API can only change by introducing new operations. This preserves backwards compatability with client code. Any client code that makes use of any given operation will continue to work, even if new operations are introduced.</p>
+<h2><a class="header" href="#deprecation" id="deprecation"><strong>Deprecation</strong></a></h2>
+<p>While the open-closed principle dictates that operations will not be contractually changed once they have been introduced, it may sometimes be necessary to deprecate specific operations. This will often be to encourage the use of a new operation with an improved feature set and a different contract. Deprecation is largely a documentation exercise: the <a href="parsec/operations"><strong>operation directory</strong></a> will indicate when an operation has been deprecated. This does not mean that the operation will no longer work. It simply means that any new use of the operation is strongly discouraged in favour of a better alternative.</p>
+<h2><a class="header" href="#capability-checks" id="capability-checks"><strong>Capability Checks</strong></a></h2>
+<p>The API includes a capability check operation, which allows the client to determine the set of operations that are available. There are two reasons why the client needs this capability check:</p>
+<ul>
+<li>The API can evolve over time, introducing new operations with new opcodes. In general, a client cannot know whether it is talking to a service that supports these newer operations, so it needs to check the level of support in advance.</li>
+<li>Different cryptographic providers have different capabilities. An operation that is supported in one provider might not be supported in another.</li>
+</ul>
+<p>Refer to the <a href="parsec/operations"><strong>operation directory</strong></a> for information on how to perform a capability check.</p>
+<h2><a class="header" href="#application-identity" id="application-identity"><strong>Application Identity</strong></a></h2>
+<p>Every client application that uses the API must present an <strong>application identity</strong>. Application identities are arbitrary byte strings, which are used by the service to isolate the activities of one client from those of another. The storage of secure assets such as keys is segregated on a per-client basis: assets created by one client cannot be accessed by another. The service always uses the client's application identity string to maintain this separation.</p>
+<p>The means by which application identities are generated or assigned is outside of the scope of this specification. The only requirements for application identities is that they must be <strong>unique</strong> and <strong>stable</strong>. This means that any given application identity string can be used to identify one and only one client application. It also means that the application identity string for any given client should remain the same over time, even across system resets.</p>
+<p>The granularity of application identities is not defined. In particular, there is no assumption that a client <em>application</em> corresponds precisely with a single client <em>process</em>. A client application might be composed of multiple processes. Conversely, a single process might contain multiple distinct client applications. Client applications might also be organised into isolated environments such as containers. Provided that client application is able to present a unique and stable identity string for each API call, it does not matter how they are structured and deployed.</p>
+<h2><a class="header" href="#authentication-and-sessions" id="authentication-and-sessions"><strong>Authentication and Sessions</strong></a></h2>
+<p>Clients present their identity strings to the service on each API call. As set out in the <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a>, they do this using the <strong>authentication</strong> field of the API request.</p>
+<p>There are two ways in which the client can use the authentication field to share its identity with the service: <strong>direct authentication</strong> and <strong>authentication tokens</strong>.</p>
+<p>With <strong>direct authentication</strong>, the client authenticates the request by directly copying the application identity string into the <strong>authentication</strong> field of the request.</p>
+<p>With <strong>authentication tokens</strong>, the client obtains a token from an identity provider and sends it as the <strong>authentication</strong> field of the request. The token is reusable for a specified duration of time, after which a new one must be issued. The application identity is contained in the token and can be extracted by the service after verifying the authenticity of the token. A more detailed description of authentication tokens and their lifecycle is present in the <a href="parsec/system_architecture.html"><strong>sytem architecture specification</strong></a>.</p>
+<p>When it makes an API request, the client needs to tell the server which kind of authentication is being used. This is so that the server knows how to interepret the bytes in the <strong>authentication</strong> field of the request. As described in the <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a>, the client does this by setting an integer value in the <strong>auth type</strong> field of the request header. The permitted numerical values for this field are given as follows:-</p>
+<ul>
+<li>A value of 0 (<code>0x00</code>) indicates that there is no authentication. The service will not expect any content in the <strong>authentication</strong> field of the request. If any authentication bytes are present, they will be ignored, but the request will still be considered valid. (For clients, it is considered bad practice to supply a non-empty <strong>authentication</strong> field in this case, because it is contradictory to supply authentication material while indicating an unauthenticated call, and it indicates improper coding or a possible defect on the client side). See the section below on unauthenticated operations.</li>
+<li>A value of 1 (<code>0x01</code>) indicates direct authentication. The service will expect the <strong>authentication</strong> field to contain a cleartext copy of the application identity.</li>
+<li>A value of 2 (<code>0x02</code>) indicates authentication tokens. The service will expect the <strong>authentication</strong> field to contain a JWT token. Tokens must be signed with the private key of the identity provider and their validity period must cover the moment when the check is done.</li>
+</ul>
+<p>Other values are unsupported and will be rejected by the service.</p>
+<h2><a class="header" href="#unauthenticated-operations" id="unauthenticated-operations"><strong>Unauthenticated Operations</strong></a></h2>
+<p>Authentication via the application identity is only needed for cryptographic operations. Core provider operations do not require authentication. Core provider operations include those that are used to ping the service and gather information about its capabilities. These operations neither require nor support any notion of per-client isolation. Consequently, they can be called without any authentication. For requests to the core provider, the <strong>auth type</strong> header field should always be set to 0 (<code>0x00</code>).</p>
+<h2><a class="header" href="#content-type-and-accept-type" id="content-type-and-accept-type"><strong>Content Type and Accept Type</strong></a></h2>
+<p>As per the <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a>, API request headers contain fields for <strong>content type</strong> and <strong>accept type</strong>, which respectively indicate how the request body and response body are encoded. Currently, the only supported value for these fields is 1 (<code>0x01</code>), meaning that all request and response bodies contain serialized protobuf messages. All other values are unsupported and will be rejected by the service.</p>
+<h2><a class="header" href="#psa-crypto-operations-1" id="psa-crypto-operations-1"><strong>PSA Crypto Operations</strong></a></h2>
+<p>The majority of the operations in this API are derived from the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API Specification</strong></a>. There is a near one-to-one correspondence of functional operations between the two APIs. The main difference is that the PSA Crypto API is defined in the C programming language, whereas the API described here is language-agnostic. There is otherwise a close contractual equivalence between the two, and this is intentional.</p>
+<p>In the <a href="parsec/operations"><strong>operation directory</strong></a>, operations derived from the PSA Crypto API have symbolic names that start with the <strong>Psa</strong> prefix, and their numerical opcodes are all in the 1,000-1,999 (decimal) range. Opcode ranges are an important aspect of the API design because they form the basis of an extensibility mechanism. In the future, it will be possible for contributors to partition the numerical opcode space with ranges for custom operations.</p>
+<h2><a class="header" href="#key-names-enumerating-and-referencing" id="key-names-enumerating-and-referencing"><strong>Key Names, Enumerating and Referencing</strong></a></h2>
+<p>While this API is closely aligned with the PSA Crypto API, there are some differences. One important difference is in the conventions used to name and reference cryptographic keys.</p>
+<p>In the PSA Crypto API, every key has a 32-bit numerical identifier. This identifier is set by the caller when the key is created. Client code then uses this 32-bit identifier to <strong>open</strong> the key. A key must be opened before it can be used in any cryptographic operations. An open key is referenced using a <strong>handle</strong> (which is distinct from the identifier). The handle is the only way that the client code can involve the key in cryptographic functions. Once the client has finished using the key, it <strong>closes</strong> the handle.</p>
+<p>This API differs in two ways. Firstly, the key names are not 32-bit numerical values: they are <strong>strings</strong>. Secondly, there is no notion of key handles. Keys are always referenced by name. There is no operation to open or close a key. Cryptographic operations are all specified in terms of the key name string. However, while the notion of a key handle is absent, it is important to understand that the opacity of keys - one of the critical design characteristics of the PSA Crypto API - is preserved here. Key names are used to reference keys for cryptographic operations, but the actual key material is <em>never</em> exposed to the caller of the API unless an explicit operation is invoked to export the key (and the key's usage policy permits for such an export to occur).</p>
+<p>The use of string names offers greater flexibility in how names can be chosen and structured. It allows for names to be readable and meaningful. It also allows for names to follow a structured pattern with separators, similar to a file path. This allows keys to not only be named in meaningful ways, but also for them to be organised according to a meaningful structure, just like files on a file system. Keys with a similar purpose, for example, can be stored in the same part of the notional &quot;tree&quot;.</p>
+<p>Key names adopt a path structure similar to Unix file paths, such as <code>/keys/rsa/my_key_1</code>.</p>
+<p>This key naming convention permits for the API to support key <strong>enumeration</strong>, where the client is able to determine the set of known keys according to some wildcard pattern such as <code>/keys/rsa/*</code>.</p>
+<p>All key names are implicitly in a per-client namespace, so it is impossible for one client application to enumerate or otherwise discover the keys that are owned by another client application.</p>
+<p>Providers can impose length restrictions on key names to help with internal storage and argument validation. This API reference does not define any single fixed maximum length. Clients must determine the maximum length at runtime using the capability checking mechanism.</p>
+<h2><a class="header" href="#full-api-reference" id="full-api-reference"><strong>Full API Reference</strong></a></h2>
+<p>For the full reference guide to individual API operations, please refer to the <a href="parsec/operations"><strong>operation directory</strong></a>.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#interfaces-and-dataflow" id="interfaces-and-dataflow"><strong>Interfaces and Dataflow</strong></a></h1>
+<h2><a class="header" href="#introduction-2" id="introduction-2"><strong>Introduction</strong></a></h2>
+<p>This document describes the key interfaces and data flows within the service. It can be used in combination with the <a href="parsec/source_code_structure.html"><strong>source code structure</strong></a> and <a href="parsec/wire_protocol.html"><strong>wire protocol</strong></a> documents to gain an understanding of how API requests are received by the service and ultimately fulfilled by providers.</p>
+<h2><a class="header" href="#status-note-2" id="status-note-2"><strong>Status Note</strong></a></h2>
+<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
+<h2><a class="header" href="#data-flow-diagram" id="data-flow-diagram"><strong>Data Flow Diagram</strong></a></h2>
+<p>The sections within this documentation are best understood with reference to the following data flow diagram. The shaded areas below can also be used to cross-reference the data flow with the <a href="parsec/source_code_structure.html"><strong>source code structure</strong></a> document, which can help with finding the relevant definitions and implementations.</p>
+<p><img src="parsec/diagrams/interfaces_and_dataflow.png" alt="Data Flow Diagram" /></p>
+<h2><a class="header" href="#the-data-flow-backbone" id="the-data-flow-backbone"><strong>The Data Flow Backbone</strong></a></h2>
+<p>The <strong>data flow backbone</strong> refers to the overall flow of a single API request from a client application, via the client library, through the IPC transport, through the service to a provider, and then back again. It is captured by the bold red boxes in the flow diagram above. This fundamental flow is common to all requests, no matter how they are fulfilled. Once a request hits a back-end provider, it can be processed in an arbitrary number of different ways, using a combination of hardware and software facilities provided by the target platform. However, the same fundamental flow is always used to carry the request through the core parts of the service between the provider and the client application.</p>
+<p>There are at least two distinct process involved in any API interaction: the client application and the service. The architecture also supports out-of-process co-services that can be spawned as child processes by the main service, making it possible for a full deployment to involve three or even more distinct processes. Whenever data is transferred between processes, whether between the client and the service, or between the service and a co-service, the same wire protocol specification is always used to transfer the data as a serialized stream of bytes.</p>
+<p>Out-of-process providers are supported in the architecture, but are not yet supported in the implementation. The rationale for out-of-process providers is that it allows for them to be developed in programming languages other than Rust.</p>
+<p>This document concentrates on the data flows within the service. It does so by examining the role of the key Rust objects, modules and interfaces, and the stages by which they process the request and return the result.</p>
+<h2><a class="header" href="#the-listener" id="the-listener"><strong>The <code>Listener</code></strong></a></h2>
+<p>The <code>Listener</code> is responsible for accepting incoming connections from clients on the transport endpoint. This could take the form of a Unix domain socket listener. It is the only part of the system that understands the form of transport being used. Its responsibility is to accept connections, obtain byte streams of input, and write byte streams back to the output for each connection. The <code>Listener</code> does not perform any serialization or deserialization (marshalling) functions. It deals only in connections and streams.</p>
+<h2><a class="header" href="#the-frontendhandler" id="the-frontendhandler"><strong>The <code>FrontEndHandler</code></strong></a></h2>
+<p>Once an incoming byte stream has been obtained by the <code>Listener</code>, the stream is passed to the <code>FrontEndHandler</code>, which is where the first phase of wire protocol interpretation is performed. The <code>FrontEndHandler</code> is responsible for de-serializating the request header using the rules set out in the <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a>.</p>
+<p>The <code>FrontEndHandler</code> only de-serializes the request <em>header</em>. It does <em>not</em> serialize the request <em>body</em>. The body content is processed at a later step. This means that the <code>FrontEndHandler</code> only needs to understand the documented encoding scheme of the header format. It does not need to understand protobuf or any other encoding scheme that might be employed for the body. The <code>FrontEndHandler</code> makes use of the model objects and de-serialization support in the <code>interface</code> crate to create a structured data model for the request. In this structured model, the request header fields are all fully parsed, but the request body is still just an array of bytes.</p>
+<p>The partially-decoded request is now sent to the <code>Dispatcher</code>.</p>
+<h2><a class="header" href="#the-dispatcher" id="the-dispatcher"><strong>The <code>Dispatcher</code></strong></a></h2>
+<p>The <code>Dispatcher</code> processes the <code>requests::Request</code> object, which represents a request with a fully-parsed header, but an unparsed byte array for the body. Since the header is parsed, the <code>Dispatcher</code> has access to all of the information that is needed to dispatch a request to the appropriate back-end. This information includes the provider identifier, the body encoding type (which is currently always protobuf, but in theory could be something else), and the protocol version major and minor fields.</p>
+<p>The responsibility of the <code>Dispatcher</code> is to loop over the available <code>BackEndHandler</code>s in order to find one that is capable of servicing the request.</p>
+<p>Aside from selecting a suitable <code>BackEndHandler</code>, the <code>Dispatcher</code> does not perform any additional processing of the request. It is passed to the next stage still in the form of the <code>requests::Request</code> structure, which contains the parsed header fields and the unparsed body.</p>
+<p>The next stage of processing is a branch point. The service contains only a single <code>Dispatcher</code>, but there are multiple <code>BackEndHandler</code>s. The <code>Dispatcher</code> is informed about the available handlers via a registration mechanism that executes at server start-up.</p>
+<h2><a class="header" href="#the-backendhandler" id="the-backendhandler"><strong>The <code>BackEndHandler</code></strong></a></h2>
+<p>The <code>BackEndHandler</code> accepts the request in order to route it to its associated provider. The flow differs here depending on whether the provider is an in-process Rust <code>Provider</code> object, or a provider residing in an out-of-process co-server. If the provider is in a co-server, the <code>BackEndHandler</code> will use the wire protocol to re-serialize the request and transmit it to the co-server's transport endpoint, where it will then block in order to wait for a response. The onward flow within the co-server is beyond the scope of this document, since co-servers can have arbitrary implementations.</p>
+<p>Assuming that the provider is an in-process Rust <code>Provider</code> object, the <code>BackEndHandler</code> will fully-decode the request in order to turn it into a model object from the <code>operations</code> module. These model objects have names beginning with the prefix <code>Op</code>, such as <code>OpKeyCreate</code> or <code>OpKeyList</code>. Once the operation model has been constructed, it is executed on the <code>Provider</code>.</p>
+<h2><a class="header" href="#the-provider" id="the-provider"><strong>The <code>Provider</code></strong></a></h2>
+<p>The <code>Provider</code> is where the request is fulfilled using whatever combined software and hardware stack it has been coded for. The service can support any number of providers to interact with platform facilities such as TPM, HSM or TA. The provider does whatever is necessary to implement the operation. It then returns a result. Results are also communicated using model objects from the <code>operations</code> module. These have names with the prefix <code>Result</code>, such as <code>ResultKeyCreate</code> or <code>ResultKeyList</code>. This is where the data flow changes direction and begins its return journey to the client application. For a more detailed description of the current providers, see the <a href="parsec/providers.html"><strong>Providers</strong></a> page.</p>
+<h2><a class="header" href="#return-journey" id="return-journey"><strong>Return Journey</strong></a></h2>
+<p>The return journey is a mirror-image of what has been described above, except that there is no dispatch phase (because the provider has already been chosen). The result is handled by the <code>BackEndHandler</code>, which uses the correct encoding scheme (currently always protobuf) to serialize the operation outputs into a new <code>requests::Response</code> struct. It also populates the response header fields.</p>
+<p>The <code>Response</code> is passed directly back from the <code>Dispatcher</code> to the <code>FrontEndHandler</code>, which uses the rules of the wire protocol to transform the response header into a byte stream that can be concatenated with the operation outputs that were already serialized in the above step. Again, it makes use of serialization functions in the <code>interface</code> crate to serialize the header.</p>
+<p>The response, at this stage, is now simply a sequence of bytes, which can be written back to the transport endpoint by the <code>Listener</code>, thus completing the cycle.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#source-code-structure-1" id="source-code-structure-1"><strong>Source Code Structure</strong></a></h1>
+<h2><a class="header" href="#introduction-3" id="introduction-3"><strong>Introduction</strong></a></h2>
+<p>This document presents the overall organisation of the source code repository, and provides pointers to key definitions and implementations.</p>
+<h2><a class="header" href="#status" id="status"><strong>Status</strong></a></h2>
+<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
+<h2><a class="header" href="#audience-1" id="audience-1"><strong>Audience</strong></a></h2>
+<p>An understanding of the source code repository structure is essential for developers who are contributing functionality to the service or any of its client libraries.</p>
+<h2><a class="header" href="#overview" id="overview"><strong>Overview</strong></a></h2>
+<p>This project is a client-server system. It is composed of a service, which exposes an API to clients that reside in separate processes on the same host. An IPC mechanism is defined to allow these external client processes to call the API in any programming language. This project maintains client libraries for a number of popular programming languages. The service itself is written in the <a href="https://www.rust-lang.org">Rust</a> programming language. The API provides access to platform security facilities for key management and cryptography. Client applications call the API in order to access these facilities without needing to know about the underlying platform hardware. The service fulfills the operations by routing them to whatever platform facilities are available, such as a Hardware Security Module (HSM), Trusted Platform Module (TPM) or Trusted Application (TA).</p>
+<p>The API is closely aligned with the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf">Platform Security Architecture (PSA) Crypto API</a>. PSA Crypto is specifically a C interface. This project takes the operations of that C interface and wraps each of them in an IPC <a href="parsec/wire_protocol.html">wire protocol</a>. There is intentionally a very close correpondence between the two APIs, and the contracts of the operations are identical in the majority of cases. However, the service also exposes a number of new operations that are designed to help clients consume it more easily.</p>
+<p>The source code is organised into three main components: the <a href="https://github.com/parallaxsecond/parsec"><strong>service</strong></a>, the <a href="https://github.com/parallaxsecond/parsec-client-go"><strong>client</strong></a> and the <a href="https://github.com/parallaxsecond/parsec-interface-rs"><strong>interface</strong></a>. Each of these components is distributed as a GitHub repository. </p>
+<p>Other items are the <strong>docs</strong>, found in the service and which contains all of the documentation for the project (some of which you are reading now), the <a href="https://github.com/parallaxsecond/parsec-client-test"><strong>test</strong></a> repository, which contains integration tests for the end-to-end system, and the <a href="https://github.com/parallaxsecond/parsec-operations"><strong>operations</strong></a> repository which contains the language-agnostic contracts for communicating with the service.</p>
+<p>The remainder of the document will examine the contents of these repositories.</p>
+<h2><a class="header" href="#the-service-repository" id="the-service-repository"><strong>The <code>service</code> Repository</strong></a></h2>
+<p>The <code>service</code> repository contains the code for the service. The service is written in <a href="https://www.rust-lang.org"><strong>Rust</strong></a>. Rust projects are organised into modular units known as <a href="https://doc.rust-lang.org/beta/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong>crates</strong></a>, each of which is formed of one or more <a href="https://doc.rust-lang.org/beta/book/ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong>modules</strong></a>, which are built using the <a href="https://doc.rust-lang.org/beta/book/ch01-03-hello-cargo.html"><strong>Cargo</strong></a> build system. A Rust crate can be compiled into either a library or an executable. The service is composed of a series of modules - represented by folders - defining the major components of the system.</p>
+<p>The <code>bin</code> directory defines the executable which links all the components together and runs the main loop of the service.</p>
+<p>The <code>front</code> module houses the code for the front-end functionality of the service. The front-end is responsible for listening on the endpoint, such as a domain socket, and using the <a href="parsec/wire_protocol.html">wire protocol</a> to read and interpret API requests from clients. The front-end is also responsible for serializing responses according to the same wire protocol, in order to relay them back to the calling client.</p>
+<p>The <code>back</code> module is responsible for routing client API requests to a back-end <strong>provider</strong>. A provider is a module that knows how to fulfill a request using available platform facilities such as HSM, TPM, TA or software. The service can be linked against one or more providers. The back-end module includes a registration mechanism that allows the providers to announce their presence in the overall system. There is also a dispatch mechanism that allows each incoming request to be routed to the appropriate provider. The provider is instructed to perform the operation, and the results are marshalled back to the front-end for onward serialization and return to the client.</p>
+<p>The <code>authenticators</code> module contains the components that carry out the authentication of incoming requests. Depending on the <code>auth_type</code> specified in the request header, the appropriate authenticator is selected to parse and assess the <code>authentication</code> request field. The result is either an error or the identifier of the application sending the request. Authenticators may use the underlying security hardware to determine if the request has been correctly authenticated. For a more detailed description of authentication and application identity, see the <a href="parsec/api_overview.html"><strong>API overview</strong></a>.</p>
+<p>The <code>key_id_managers</code> module offers functionality for the providers for persisting mappings between key names and provider-specific key IDs. The key ID managers close the gap between the API, which allows keys to be addressed by a UTF-8 name, and the providers which have specific requirements for key handles (e.g. Mbed Crypto uses a 32 bit value for handles of persistent keys). Using a key ID manager is only required for persistent keys and the only current implementation stores the mappings on disk.</p>
+<p>Building the service will combine the frontend and backend components mentioned above into one executable. It also links additional Rust crates that contain the providers, as well as crates to support the IPC interface. On Linux systems, this binary runs as a daemon. While it is running, client applications (on the same host) can locate the endpoint and make API calls.</p>
+<h3><a class="header" href="#the-provider-sub-folder" id="the-provider-sub-folder"><strong>The <code>provider</code> Sub-Folder</strong></a></h3>
+<p>The <code>provider</code> folder contains the provider modules, which connect the service back-end with the hardware or software security facilities of supported target platforms.</p>
+<p>Providers can be linked statically into the service. Where this is done, they must be written in Rust and modularised as crates. Existing providers that follow this pattern include the <code>core_provider</code> and the <code>mbed_provider</code>.</p>
+<p>The <code>core_provider</code> module is a provider of operations that are implemented by the service itself, rather than by the platform's underlying security facilities. These core operations include operations for discovery, configuration and housekeeping of the service. They are not cryptographic or key management operations. (The &quot;ping&quot; operation is an example of one that is serviced by the core provider: it allows a client to determine whether the service itself is responding).</p>
+<p>The <code>mbed_provider</code> module houses a provider based on <a href="https://github.com/ARMmbed/mbed-crypto"><strong>MBed Crypto</strong></a>, which is the reference implementation of the PSA Crypto API Specification. The <code>mbed_provider</code> is a full provider in its own right, and allows for the full capabilities of the service to be provided in a software-only solution. But the <code>mbed_provider</code> also services as a branching point to connect with hardware or trusted applications through its own internal Harware Abstraction Layer (HAL). This provider only supports persistent key storage.</p>
+<p>Like the <code>client</code> folder, the <code>provider</code> folder is also a key extension point for partner contributors. This project eagerly welcomes contributions of new providers in order to connect the service with the security facilities of host platforms and extend the ecosystem.</p>
+<p>It is not necessary for providers to be written in Rust. A provider must be written in Rust in order to be statically linked into the core service and hence to reside within the same running process. But the architecture also supports providers running as separate processes. These providers can be written in any suitable programming language. This is an option to consider if you wish to contribute a new back-end provider, but you wish to use a programming language other than Rust.</p>
+<h2><a class="header" href="#the-interface-repository" id="the-interface-repository"><strong>The <code>interface</code> Repository</strong></a></h2>
+<p>The <code>interface</code> crate contains the Rust code that is needed to allow the service to conform to the interface and wire protocol. It is also used by the Rust client library, but it is not used by other client libraries (since those are written in other languages).</p>
+<p>The crate contains three Rust modules: <code>requests</code>, <code>operations</code> and <code>operations_protobuf</code>.</p>
+<p>The <code>requests</code> module defines model objects for request and response headers as described in the wire protocol specification. It also contains the Rust code needed to serialize and de-serialize these header structures (a process sometimes known as <em>marshalling</em>). This code is hand-written and verified according to the written specification. It is not auto-generated, and it is unrelated to the protobuf API contracts. The <code>requests</code> module functions according to the wire protocol specification, regardless of whether protobuf is used in request body. This leaves the door open for supporting schemes other than protobuf in the future.</p>
+<p>The <code>operations</code> module defines model objects for each of the operations in the API. Again, these definitions are independent of protobuf so that encoding schemes other than protobuf can be adopted if needed. The Rust structs in the operations module capture the specific inputs and outputs for each API operation.</p>
+<p>The <code>operations_protobuf</code> module provides compatibility between the protobuf contracts and the equivalent model objects in the <code>operations</code> module. Auto-generated code is generated from the protobuf contracts at build-time, and is injected into this module, alongside hand-written converters that translate to and from the <code>operations</code> structs. This extra level of translation may seem cumbersome, but it is important in order to isolate the use of protobuf from the rest of the system, so that a different encoding scheme could be adopted in the future without affecting anything else. Most of the service uses the <code>operations</code> module to model API operations and their results.</p>
+<h2><a class="header" href="#the-operations-repository" id="the-operations-repository"><strong>The <code>operations</code> Repository</strong></a></h2>
+<p>The <code>protobuf</code> folder in the <code>operations</code> repository contains the language-neutral input and output contracts of all of the operations that are supported in the API. This includes all of the operations that derive from the PSA Crypto API Specification, as well as additional operations that are specific to this service. All of these contracts are defined using <a href="https://developers.google.com/protocol-buffers/"><strong>protocol buffers</strong></a>, also known as <strong>protobuf</strong>. Refer to the <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a> for more details on the use of protobuf. The protobuf contracts are programming-language-agnostic, and can be used to develop interoperable code within both the service and the client.</p>
+<p>The API is a collection of <strong>operations</strong>. Each operation is denoted by an integer <strong>opcode</strong>, an <strong>input contract</strong> and an <strong>output contract</strong>. Each input contract and output contract is defined using a protobuf <strong>message</strong> structure. These messages collect together the inputs and outputs of each operation. The messages can be used in combination with a <a href="https://github.com/protocolbuffers/protobuf"><strong>protobuf compiler</strong></a> tool to generate language bindings for these inputs and outputs. A client library uses these bindings alongside code derived from the <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a> in order to create a complete language binding for the API.</p>
+<h2><a class="header" href="#the-client-repository" id="the-client-repository"><strong>The <code>client</code> Repository</strong></a></h2>
+<p>The <code>client</code> folder contains the client libraries for the API.</p>
+<p>The repository structure specifies only that each client library should be housed in a single sub-folder named after the programming language that it targets. There will be a sub-folder for <code>rust</code>, a sub-folder for <code>go</code>, a sub-folder for <code>java</code> and so on and so forth as the client ecosystem expands. Each client library is subject to its own sub-structure, build system and documentation system underneath that. The structures and build systems will naturally vary from one language to another, and these are not governed by the project overall.</p>
+<p>The <code>client</code> folder is a key extension point for partner contributors. This project eagerly welcomes contributions of new client libraries in different programming languages in order to enhance the ecosystem and increase adoption. A quick glance inside this folder will show which languages are already supported. To begin contributing a client library in a new language, simply create a new folder for that language, and start developing your new client library within it.</p>
+<h2><a class="header" href="#repository-map" id="repository-map"><strong>Repository Map</strong></a></h2>
+<p>Please refer to the following diagram to understand the overall code structure and the dependency arcs between the modules.</p>
+<p><img src="parsec/diagrams/source_code_structure.png" alt="Repository Map" /></p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#response-status-codes" id="response-status-codes"><strong>Response Status Codes</strong></a></h1>
+<ul>
+<li>
+<p><strong>Success</strong> (value: 0) - successful operation</p>
+</li>
+<li>
+<p><strong>WrongProviderID</strong> (value: 1) - requested provider ID does not match that of the backend</p>
+</li>
+<li>
+<p><strong>ContentTypeNotSupported</strong> (value: 2) - requested content type is not supported by the backend</p>
+</li>
+<li>
+<p><strong>AcceptTypeNotSupported</strong> (value: 3) - requested accept type is not supported by the backend</p>
+</li>
+<li>
+<p><strong>VersionTooBig</strong> (value: 4) - requested version is not supported by the backend</p>
+</li>
+<li>
+<p><strong>ProviderNotRegistered</strong> (value: 5) - no provider registered for the requested provider ID</p>
+</li>
+<li>
+<p><strong>ProviderDoesNotExist</strong> (value: 6) - no provider defined for requested provider ID</p>
+</li>
+<li>
+<p><strong>DeserializingBodyFailed</strong> (value: 7) - failed to deserialize the body of the message</p>
+</li>
+<li>
+<p><strong>SerializingBodyFailed</strong> (value: 8) - failed to serialize the body of the message</p>
+</li>
+<li>
+<p><strong>OpcodeDoesNotExist</strong> (value: 9) - requested operation is not defined</p>
+</li>
+<li>
+<p><strong>ResponseTooLarge</strong> (value: 10) - response size exceeds allowed limits</p>
+</li>
+<li>
+<p><strong>UnsupportedOperation</strong> (value: 11) - requested operation is not supported by the provider</p>
+</li>
+<li>
+<p><strong>AuthenticationError</strong> (value: 12) - authentication failed</p>
+</li>
+<li>
+<p><strong>AuthenticatorDoesNotExist</strong> (value: 13) - authenticator not supported</p>
+</li>
+<li>
+<p><strong>AuthenticatorNotRegistered</strong> (value: 14) - authenticator not supported</p>
+</li>
+<li>
+<p><strong>KeyDoesNotExist</strong> (value: 15) - key does not exist</p>
+</li>
+<li>
+<p><strong>KeyAlreadyExists</strong> (value: 16) - key with requested name already exists in the specified provider</p>
+</li>
+<li>
+<p><strong>KeyIDManagerError</strong> (value: 17) - internal error in the Key ID Manager</p>
+</li>
+<li>
+<p><strong>ConnectionError</strong> (value: 18) - operation on underlying IPC connection failed</p>
+</li>
+<li>
+<p><strong>InvalidEncoding</strong> (value: 19) - wire encoding of header is invalid</p>
+</li>
+<li>
+<p><strong>InvalidHeader</strong> (value: 20) - constant fields in header are invalid</p>
+</li>
+<li>
+<p><strong>InvalidResponseStatus</strong> (value: 21) - received response status is invalid</p>
+</li>
+<li>
+<p><strong>WrongProviderUuid</strong> (value: 22) - the UUID vector needs to only contain 16 bytes</p>
+</li>
+<li>
+<p><strong>NotAuthenticated</strong> (value: 23) - request did not provide a required authentication</p>
+</li>
+<li>
+<p><strong>PsaErrorGenericError</strong> (value: 1132) - an error occurred that does not correspond to any defined failure cause</p>
+</li>
+<li>
+<p><strong>PsaErrorNotPermitted</strong> (value: 1133) - the requested action is denied by a policy</p>
+</li>
+<li>
+<p><strong>PsaErrorNotSupported</strong> (value: 1134) - the requested operation or a parameter is not supported by this implementation</p>
+</li>
+<li>
+<p><strong>PsaErrorInvalidArgument</strong> (value: 1135) - the parameters passed to the function are invalid</p>
+</li>
+<li>
+<p><strong>PsaErrorInvalidHandle</strong> (value: 1136) - the key handle is not valid</p>
+</li>
+<li>
+<p><strong>PsaErrorBadState</strong> (value: 1137) - the requested action cannot be performed in the current state</p>
+</li>
+<li>
+<p><strong>PsaErrorBufferTooSmall</strong> (value: 1138) - an output buffer is too small</p>
+</li>
+<li>
+<p><strong>PsaErrorAlreadyExists</strong> (value: 1139) - asking for an item that already exists</p>
+</li>
+<li>
+<p><strong>PsaErrorDoesNotExist</strong> (value: 1140) - asking for an item that doesn't exist</p>
+</li>
+<li>
+<p><strong>PsaErrorInsufficientMemory</strong> (value: 1141) - there is not enough runtime memory</p>
+</li>
+<li>
+<p><strong>PsaErrorInsufficientStorage</strong> (value: 1142) - there is not enough persistent storage</p>
+</li>
+<li>
+<p><strong>PsaErrorInssuficientData</strong> (value: 1143) - insufficient data when attempting to read from a resource</p>
+</li>
+<li>
+<p><strong>PsaErrorCommunicationFailure</strong> (value: 1145) - there was a communication failure inside the implementation</p>
+</li>
+<li>
+<p><strong>PsaErrorStorageFailure</strong> (value: 1146) - there was a storage failure that may have led to data loss</p>
+</li>
+<li>
+<p><strong>PsaErrorHardwareFailure</strong> (value: 1147) - a hardware failure was detected</p>
+</li>
+<li>
+<p><strong>PsaErrorInsufficientEntropy</strong> (value: 1148) - there is not enough entropy to generate random data needed for the requested action</p>
+</li>
+<li>
+<p><strong>PsaErrorInvalidSignature</strong> (value: 1149) - the signature, MAC or hash is incorrect</p>
+</li>
+<li>
+<p><strong>PsaErrorInvalidPadding</strong> (value: 1150) - the decrypted padding is incorrect</p>
+</li>
+<li>
+<p><strong>PsaErrorTamperingDetected</strong> (value: 1151) - a tampering attempt was detected</p>
+</li>
+</ul>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#system-architecture" id="system-architecture"><strong>System Architecture</strong></a></h1>
+<h2><a class="header" href="#introduction-4" id="introduction-4"><strong>Introduction</strong></a></h2>
+<p>This document sets out a system architecture for a deployment of the security service as part of a complete system where it can be used by client applications. This system architecture is constructed around an example deployment where the applications are running in containers within a shared operating system kernel (without full virtualisation). This is not the only possible deployment pattern, and many of the concepts in this document could be adapted to suit other deployments.</p>
+<h2><a class="header" href="#status-note-3" id="status-note-3"><strong>Status Note</strong></a></h2>
+<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
+<h2><a class="header" href="#overview-1" id="overview-1"><strong>Overview</strong></a></h2>
+<p>The security service provides an API to key storage and cryptographic operations. This API is based on the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API Specification</strong></a>. The API is exposed to clients over a transport medium using a <a href="parsec/wire_protocol.html"><strong>wire protocol</strong></a>, so that it can be consumed by client applications in multiple programming languages, residing in separate processes on the shared physical host. The security service is a <strong>multi-tenant</strong> service. It isolates and partitions the key store such that secure assets provisioned by one client application cannot be used by another. This isolation can only be achieved if every client application is able to present a unique and stable identity to the security service. This identity also has to be validated on the host system, so that client applications can prove their identity and therefore authenticate themselves to use the security service.</p>
+<p>The distribution and validation of client identitites is a vital part of the overall deployment of the system. This system architecture sets out one possible way in which this can be achieved end-to-end.</p>
+<p>The goal of this or any system architecture is to show how any client application can call an individual cryptographic operation, such that the security service can not only trust the source of the call, but also perform it with the required degree of isolation from other clients.</p>
+<p>Isolation is based on the critical concept of an <strong>application identity</strong>. An application identity is a canonical string value, akin to a namespace, which is used to partition all storage (whether persistent or ephemeral) and all activities within the security service. Application identities are unique per client application. They are stable across application restarts, system restarts, and component upgrades.</p>
+<p>The system architecture enables each client application to pass its application identity to the security service in a way that is cryptographically proven end-to-end. This allows the security service to trust the caller's identity, and to implement the required isolation. The architecture achieves this by placing the security service alongside some additional components that understand the client application lifecycle and are able to both provide and prove the identity string for each client.</p>
+<p>The system architecture document is structured as follows:</p>
+<ul>
+<li>A set of <strong>design goals</strong> is established to act as guiding principles and constraints for the architecture.</li>
+<li>The <strong>participating components</strong> are listed along with a definition of their roles within the system. Note that the security service is the only component whose implementation is contained in this source code repository. Additional components are implemented separately. This document only sets out the required roles and contracts of those additional components. Their precise implementation can depend on the deployment.</li>
+<li>The <strong>trust relationships</strong> are described in terms of how they are established and maintained, and also in terms of which components share such relationships.</li>
+<li>The <strong>trusted data payloads</strong> are described. These are the data objects that are subject to cryptographic signing and verification according to the defined trust relationships.</li>
+<li>Finally, the <strong>flows</strong> of data between components are captured in a sequence diagram, which shows how the system is bootstrapped and then used on an ongoing basis.</li>
+</ul>
+<h2><a class="header" href="#design-goals" id="design-goals"><strong>Design Goals</strong></a></h2>
+<p>The system architecture aims to address the following design goals and constraints:</p>
+<ul>
+<li>The system should be <strong>fault tolerant</strong> in general, but specifically with respect to any transient loss or restart of any of the participating components. If one component restarts, then other components should be able to recover their ability to communicate with it, such that there is no loss of functionality across the system as a whole. It is acceptable for sub-optimal performance to be incurred for a transient period during recovery.</li>
+<li>Communication channels should be <strong>stateless</strong>. This is partly to address the fault-tolerance requirement set out above, but also because it is generally considered to be good practice in service-oriented architectures of which this system is an example. The participating components will necessarily have their own internal state where needed, both persistent and ephemeral. The security service, for example, has at least one store for secure assets (such as keys). But components should not rely on shared state without an ability to re-synchronize that state at arbitrary times.</li>
+<li>Communication channels should be <strong>secretless</strong>. Passing private keys or other secrets across wire protocol interfaces is forbidden. Only public keys or other non-confidential assets can be passed.</li>
+<li>Components should store any secret data <strong>in local process memory only</strong>, unless there is an overriding requirement for it to be stored persistently. Trust relationships between components need to be re-established (by sharing the public part of a new key pair) in the case where a component is restarted.</li>
+<li>The system should be <strong>cryptographically secure</strong>. A cryptographically-provable mechanism must exist in the communication channels between components.</li>
+<li>Cryptographic security should be established on a <strong>short-lived</strong> basis. Trust between components must be refreshed periodically.</li>
+</ul>
+<h2><a class="header" href="#participating-components-and-their-roles" id="participating-components-and-their-roles"><strong>Participating Components and their Roles</strong></a></h2>
+<p>The system architecture defines the following participating components, all of which are assumed to co-reside on the same physical host:</p>
+<ul>
+<li>
+<p>The <strong>client application</strong> is the ultimate consumer of the security API. Any number of client applications can share the same physical host. They can be written in different programming languages, and reside across multiple containers or processes. The functionality of each client application is arbitrary, and the only thing that they have in common is their shared requirement to access the cryptographic services of the host platform. Client applications should not be confused with processes or containers. It is possible for a single client application to be spread across multiple processes or containers. Conversely, it is possible for a single process or container to house multiple client applications. The boundary between client applications is a security boundary that is defined and arbitrated by other components in the system.</p>
+</li>
+<li>
+<p>The <strong>client library</strong> is a convenience layer that provides a simplified and idiomatic way to access the security API in a specific programming language. The client library is loaded by the client application and shares its address space. Communications between the client application and the client library are in-process and in-language procedure calls with no IPC. There is one client library per supported programming language. Client libraries are more than just bindings. Each one offers a highly-designed developer experience tailored to the programming language, providing the API in a form that is simple to consume and hard to get wrong. This means that it has facilities for things like smart defaulting, so that the client application can call APIs with fewer arguments and simplified contracts that are tailored for specific use cases. The client library is then fundamentally an adaptor or wrapper: it converts between the simplified developer experience and the comprehensive API definition based on the PSA Crypto API. It makes calls to the security service according to the defined <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a>.</p>
+</li>
+<li>
+<p>The <strong>orchestrator</strong> is the component that manages the lifecycle of the client applications on the physical host. It is responsible for starting and stopping their containers or processes. In a containerized environment on a Linux system, a daemon such as <a href="https://docs.docker.com/engine/reference/commandline/dockerd/"><strong>dockerd</strong></a> would naturally assume the role of the orchestrator in this system architecture. A single instance of the orchestrator runs on the host system.</p>
+</li>
+<li>
+<p>The <strong>security service</strong> is the component that provides the API to the cryptographic services of the host platform. This API is based on the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API Specification</strong></a>. A single instance of this service runs on the host system (deployed, for example, as a daemon). It listens on a suitable host-local transport medium such as a Unix domain socket and exposes a <a href="parsec/wire_protocol.html"><strong>wire protocol</strong></a> with a <a href="parsec/api_overview.html"><strong>defined API</strong></a>. The inner architecture of the service is described in the other documents in this repository.</p>
+</li>
+<li>
+<p>The <strong>identity provider</strong> is the component that assigns unique and stable application identities to each client application. Any string that can be used persistently and unambiguously to refer to one and only one client application is suitable. This system architecture proposes the use of a Uniform Resource Identifier (URI), such as the identity scheme used by <a href="https://spiffe.io"><strong>SPIFFE</strong></a>. The identity provider receives application lifecycle events from the orchestrator, and these events contain enough information for the identity provider to deduce the application identity and return it to client applications on request. The identity provider is fundamentally a mapping service, with orchestrator data as its input and application identities as its output. The identity provider exposes the same <a href="parsec/wire_protocol.html"><strong>wire protocol</strong></a> as the security service, albeit with a different set of APIs to reflect its very different role.</p>
+</li>
+<li>
+<p>The <strong>crypto provider</strong> is a back-end software module within the security service that interfaces with the hardware or software facilities of the platform in order to implement key storage and cryptographic operations. Within the service itself, these modules are simply called &quot;providers&quot;, but the term &quot;crypto provider&quot; is used here to avoid confusion with the identity provider component. Crypto providers provide access to hardware facilities such as Trusted Platform Modules (TPMs) or Hardware Security Modules (HSMs). Alternatively, they might interact with software components running in a Trusted Execution Environment (TEE), or secure enclave, if the host platform supports them. Their implementations would vary considerably depending on the platforms, and these details are largely irrelevant to the system architecture. They are included here largely for completeness, since they are the ultimate provider of the cryptographic services being consumed by the client applications.</p>
+</li>
+</ul>
+<h2><a class="header" href="#trust-relationships" id="trust-relationships"><strong>Trust Relationships</strong></a></h2>
+<p>This section outlines the trust relationships that exist between components, how they are established, and how they are maintained over the component lifetimes. This section covers only those trust relationships that are material to the system architecture: other trust relationships might exist in the system for various reasons.</p>
+<p>The trust relationships detailed below are always established between pairs of components: the <strong>trusted component</strong> and the <strong>trusting component</strong>. They are based on <strong>asymmetric digital signatures</strong>. They rely on trusted component being able to sign some data such that the trusting component can verify it.</p>
+<ul>
+<li>The trusted component generates a <strong>root key-pair</strong>.</li>
+<li>The trusted component maintains the <strong>root private key</strong> in process-local memory only. The private key is not shared with any other component, nor is it stored persistently.</li>
+<li>The trusted component sends the <strong>root public key</strong> to the trusting component as an X509 certificate. This is done by making an API call according to the conventions of the <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a>. This is strictly a one-time operation, and this must be enforced by the trusting component. Any attempt to send revised root keys must be rejected. For more information, refer to the <a href="parsec/operations/share_trust_bundle.html"><strong>ShareTrustBundle</strong></a> operation in the API reference.</li>
+<li>On a periodic basis, the trusted component generates a new <strong>intermediate key pair</strong>, and once again keeps the private key in process-local memory only.</li>
+<li>On each periodic refresh, the trusted component sends a new <strong>intermediate public key</strong> to the trusting component, again as an X509 certificate. (This allows the trusting component to view the intermediate certificate and the root certificate as a chain).</li>
+<li>In general communication, the trusted component will use its private key to sign data, and the trusting component will use the public certificate chain to verify it. If verification passes, then the data can be trusted.</li>
+</ul>
+<p>The term &quot;root&quot; here should be qualified, since any root key or certificate is only a root from the perspective of this system architecture. This does not exclude the possibility that these roots are themselves part of a longer trust chain involving an external Certificate Authority (CA). Integrations with external CAs are outside of the scope of this document. The term &quot;root&quot; should always be considered with this qualification in mind.</p>
+<p>In this system architecture, two trust relationships exist, each of which is established and maintained according to the scheme described above. The trust relationships are as follows:</p>
+<ul>
+<li>Between the <strong>orchestrator</strong> and the <strong>identity provider</strong>. In this case, the orchestrator is the trusted component and the identity provider is the trusting component. The need for a trust relationship here is due to the orchestrator being a presenter of client definitions and proofs to the identity provider.</li>
+<li>Between the <strong>identity provider</strong> and the <strong>security service</strong>. In this case, the identity provider is the trusted component and the security service is the trusting component. The need for this trust relationship is to allow the identity provider to sign authentication tokens on behalf of each client, such that the security service can verify those tokens and permit an API call to proceed.</li>
+</ul>
+<h2><a class="header" href="#wire-protocols" id="wire-protocols"><strong>Wire Protocols</strong></a></h2>
+<p>Both the identity provider and the security service expose an API endpoint based on the common <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a>. However, the roles of these two components are very different, and it follows that the set of API operations offered by each endpoint will be likewise different. In the case of the security service, the majority of its API operations are for key storage and cryptography, and are based on the PSA Crypto API. In the case of the identity provider, a much smaller set of operations are needed, and these enable the sharing of client definitions and proofs.</p>
+<p>The only part of the API that is common between the two components is the <a href="parsec/operations/share_trust_bundle.html"><strong>ShareTrustBundle</strong></a> operation, which is used to establish and maintain trust relationships.</p>
+<p>The identity provider additionally offers the <a href="parsec/operations/add_client.html"><strong>AddClient</strong></a> and <a href="parsec/operations/prove_client"><strong>ProveClient</strong></a> operations, which allow the orchestrator to inform the identity provider about the lifecycle of client applications. This small operation set represents the entirety of the identity provider's API.</p>
+<p>By contrast, the security service exposes the full capabilities of the PSA Crypto API.</p>
+<h2><a class="header" href="#trusted-data-payloads" id="trusted-data-payloads"><strong>Trusted Data Payloads</strong></a></h2>
+<p>A trusted data payload is any data payload that is signed and verified according to one of the defined trust relationships. Since two trust relationships are defined in this system architecture, it follows that a trusted data payload is either a payload that is signed by the orchestrator and verified by the identity provider, or it is a payload that is signed by the identity provider and verified by the security service. This section outlines the trusted data payloads that are subject to such sign-and-verify procedures.</p>
+<h3><a class="header" href="#client-definitions" id="client-definitions"><strong>Client Definitions</strong></a></h3>
+<p>The system architecture requires each client application to have an identity that is unique and stable. This requirement for stability is especially important given that many low-level characteristics of a client application may change over time. Process identifiers, for example, can change as a client application restarts. Even the contents of a client application image can change due to an upgrade. So a client application needs to be able to present enough pieces of information to the identity provider in order for the identify provider to make a binding decision about the identity.</p>
+<p>These pieces of information are collected together into what is called a <strong>client definition</strong>.</p>
+<p>There can be no fixed set of properties that would make an adequate client definition in any environment. The system architecture only requires that the orchestrator and the identity provider are able to agree on what the client definition should be. Client definition is essentially a contract between those two components. An example of a client definition might be a JSON document containing properties such as the container image identifier, host identifier and kernel namespace.</p>
+<p>Client definition formats are agreed between the orchestrator and the identity provider on any given system. A JSON or similar structure would be typical. The client definition is constructed by the orchestrator, and notified to the identity provider at key lifecycle points such as client start-up or shut-down. (More details are given in the section on dataflows below).</p>
+<p>Client definitions, regardless of their precise format and content, must be signed by the orchestrator and verified upon receipt by the identity provider. The orchestrator will use its own private key for signing, and verification will be via the shared public key. See the section above on trust relationships for details of how these keys are generated and shared.</p>
+<h3><a class="header" href="#client-proofs" id="client-proofs"><strong>Client Proofs</strong></a></h3>
+<p>A client definition is essentially a set of claims. By presenting a client definition, the client application is asserting its worthiness to be assigned a particular identity string by the identity provider. In order for these claims to be made valid inputs to the mapping process, the identity provider needs to be able to trust them. They cannot simply be asserted. They must also be <strong>proved</strong>. Proofs are obtained through an attestation process, the precise details of which are beyond the scope of this document, but illustrative examples might be:</p>
+<ul>
+<li>Supply-chain proofs, such as an image signature or signatures on component binaries.</li>
+<li>Host proofs, such as might be derived from a platform root-of-trust.</li>
+<li>Runtime proofs, such as process identifiers, user/group identifiers, kernel namespaces or application-specific key pairs.</li>
+</ul>
+<p>As with client definitions, client proofs must be signed by the orchestrator and verified upon receipt by the identity provider. The orchestrator will use its own private key for signing, and verification will be via the shared public key. See the section above on trust relationships for details of how these keys are generated and shared.</p>
+<h3><a class="header" href="#authentication-tokens" id="authentication-tokens"><strong>Authentication Tokens</strong></a></h3>
+<p>When client applications invoke API operations in the security service, they must include their application identity string somehow. This allows the security service to provide the required level of isolation amongst the multiple clients that might exist. Not only must the identity string be specified, but it must be specified in a way that allows the security service to be sure that it is genuine. Client applications do this by means of an <strong>authentication token</strong>. </p>
+<p>The <a href="parsec/wire_protocol.html"><strong>wire protocol specification</strong></a> has an <strong>authentication header</strong> field that is suited to this purpose. The protocol is very flexible, and the authentication header can be used in a variety of ways. It would be entirely possible for the client application to simply pass its application identity directly as a cleartext string. The security service would support this (and it offers an authentication style known as <strong>direct authentication</strong> for this purpose). This is simple, and works well in a demo or proof-of-concept environment. But it is not suitable for a deployed system architecture, because it does not fulfil the stated design goal of secretless communication.</p>
+<p>The solution to this problem is for the authentication header to contain a payload that not only includes the application identity, but also proves cryptographically that it is from a valid client. This payload takes the form of a <a href="https://tools.ietf.org/html/rfc7519"><strong>signed JSON Web Token (JWT)</strong></a>.</p>
+<p>The application identity string will be carried as one of the JWT claim fields. (TODO: which one?) Since the JWT will be signed, this allows the security service to verify that it is genuine, and thus permit the call to go ahead with the required level of isolation.</p>
+<p>JWT tokens are not directly signed by client applications, since client applications do not participate in any of the trust relationships that this system architecture has defined. Instead, they are signed by the identity provider, and passed back to the client application in order to eventually be forwarded to (and verified by) the security service. The identity provider uses its private key to sign the JWT. The security service has the public part of this key, and is hence able to perform the verification. The identity provider and the security service share one of the trust relationships that were defined above.</p>
+<h2><a class="header" href="#block-architecture-summary" id="block-architecture-summary"><strong>Block Architecture Summary</strong></a></h2>
+<p>Refer to the figure below for a block representation of the key architectural components.</p>
+<p><img src="parsec/diagrams/system_architecture.png" alt="System Architecture Diagram" /></p>
+<h2><a class="header" href="#flows" id="flows"><strong>Flows</strong></a></h2>
+<h3><a class="header" href="#system-lifecycle-boot" id="system-lifecycle-boot"><strong>System Lifecycle: Boot</strong></a></h3>
+<p>The following bootstrapping actions are needed in order to establish the trust relationships that exist between the orchestrator and the identity provider, and between the identity provider and the security service respectively. For more details, see the section above on trust relationships. The bootstrapping flows require each component to generate a root key pair, to store the private key part in process-local memory, and to share the public part (as an X509 certificate) with the trusting component.</p>
+<p>Public root certificates are shared using the <a href="parsec/operations/share_trust_bundle.html"><strong>ShareTrustBundle</strong></a> API operation, with a flag to indicate that this is a root certificate as opposed to an intermediate. Both the security service and the identity provider support this operation via the respective (separate) wire protocol endpoints.</p>
+<p>Root certificates may be shared only once. The <a href="parsec/operations/share_trust_bundle.html"><strong>ShareTrustBundle</strong></a> operation is defined to fail if it is called more than once with the root flag set.</p>
+<h3><a class="header" href="#system-lifecycle-refresh" id="system-lifecycle-refresh"><strong>System Lifecycle: Refresh</strong></a></h3>
+<p>Background flows occur on a periodic cadence while the system is active, and they are aimed at maintaining the trust relationships between the orchestrator, identity provider and security service.</p>
+<p>Trust relationships require intermediate key pairs to be generated periodically in order to fulfil the stated design objective around short-lived cryptography. The root key pairs generated in the bootstrapping phase do not fulfil this objective by themselves.</p>
+<p>Intermediate key pairs are generated by both the orchestrator and identity provider. Each component stores its private key in local process memory, but needs to share the public key. As with the bootstrapping flows, the orchestrator shares its public key with the identity provider, and the identity provider shares its public key with the security service. There is a common API in the wire protocol to support this operation.</p>
+<p>Public intermediate certificates are shared using the <a href="parsec/operations/share_trust_bundle.html"><strong>ShareTrustBundle</strong></a> API operation, with a flag to indicate that this is an intermediate certificate as opposed to a root. Both the security service and the identity provider support this operation via the respective (separate) wire protocol endpoints.</p>
+<p>Intermediate public certificates may be shared any number of times. Any previous intermediate certificate is immediately invalidated upon the event of a new intermediate being shared.</p>
+<h3><a class="header" href="#application-lifecycle" id="application-lifecycle"><strong>Application Lifecycle</strong></a></h3>
+<p>Client application lifecycles are governed by the orchestrator. The orchestrator is responsible for starting and stopping the client application containers or processes. It is also responsible for notifying these events to the identity provider, and for sending the client definitions and client proofs.</p>
+<p>To add a new client definition to the identity provider, the orchestrator calls the <a href="parsec/operations/add_client.html"><strong>AddClient</strong></a> operation with a signed data payload containing the client definition properties (typically a JSON document).</p>
+<p>Having informed the identity provider of a new client definition, the next role of the orchestrator is to run an attestation process to prove its validity. The results of the attestation process are then sent to the identity provider using the <a href="parsec/operations/prove_client.html"><strong>ProveClient</strong></a> operation, again with a signed data payload containing the proofs.</p>
+<h3><a class="header" href="#general-usage-flows" id="general-usage-flows"><strong>General Usage Flows</strong></a></h3>
+<p>The final flow to consider is the general use case of the client application making a call to the security service to perform a cryptographic operation with isolation. This is obviously the most commonly-occurring flow, and everything else in the system is geared towards enabling this fundamental operation.</p>
+<p>This flow begins with the client application, which consumes the security API via the client library. Recall that client libraries exist for a variety of popular programming languages. Recall also that each client library offers a highly-designed developer experience, with appropriate levels of simplification and argument defaulting so that common cryptographic use cases are catered for with a minimum of effort on the part of the application developer.</p>
+<p>The client library is responsible for implementing the language-specific idioms in terms of one or more wire protocol API calls to the security service. In order to make these calls, it needs a signed JWT token that embeds the correct application identity for the client. These tokens come from the identity provider. Hence the client library must first call the identity provider to obtain this token. It can then call the security service with the signed token.</p>
+<p>The security service is responsible for verifying the token and extracting the application identity from it. This identity can then be used as a namespace for all secure assets that are stored for that client.</p>
+<p>Once the security service has verified and accepted a call to an API operation, it becomes the responsibility of the back-end cryptographic provider to actually implement the call either in software or hardware. Once the operation has been executed, the results can be marshalled back to the client library, which can once again implement whatever simplifications or interpretations are required to make them suitable for the application developer.</p>
+<h3><a class="header" href="#sequence-diagram" id="sequence-diagram"><strong>Sequence Diagram</strong></a></h3>
+<p>All flows are summarised and captured in the sequence diagram below. The diagram attempts to collect together and summarise all of the flows that are needed for bootstrapping, background operations and also general usage as described above. In order to strike the right balance between completeness and simplicity, the flow diagram does not include every possible path. In particular, the actions taken in response to errors or failed verifications are not captured here.</p>
+<p><img src="parsec/diagrams/ident_provider_seq.png" alt="Sequence Diagram" />.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#wire-protocol" id="wire-protocol"><strong>Wire Protocol</strong></a></h1>
+<h2><a class="header" href="#introduction-5" id="introduction-5"><strong>Introduction</strong></a></h2>
+<p>This document describes and specifies the wire protocol that exists between the service and its clients. It explains the general principles of how the protocol is structured, and goes on to provide a full specification that can be used as the basis of both client-side and service-side code.</p>
+<h2><a class="header" href="#status-note-4" id="status-note-4"><strong>Status Note</strong></a></h2>
+<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
+<h2><a class="header" href="#scope" id="scope"><strong>Scope</strong></a></h2>
+<p>This document describes the principles, patterns and low-level details of the wire protocol. This covers the details that are common to all messages that pass between the service and its clients. This document is <em>not</em> an API specification for the service. Individual API operations, along with their behaviours, inputs and outputs are described separately in the API specification. The wire protocol is the underlying message-passing mechanism that enables the API.</p>
+<h2><a class="header" href="#audience-2" id="audience-2"><strong>Audience</strong></a></h2>
+<p>A thorough understanding of the wire protocol is necessary if you are developing new capabilities within certain parts of the service, or if you are developing or extending one of its client libraries. However, it is not necessary to understand the wire protocol in order to consume the client API into an application.</p>
+<h2><a class="header" href="#general-principles" id="general-principles"><strong>General Principles</strong></a></h2>
+<h3><a class="header" href="#binary-protocol" id="binary-protocol"><strong>Binary Protocol</strong></a></h3>
+<p>The wire protocol is a <a href="https://en.wikipedia.org/wiki/Binary_protocol"><strong>binary</strong></a> and <strong>stream-oriented</strong> protocol. It is designed for speed and compactness of transmission.</p>
+<h3><a class="header" href="#requests-and-responses" id="requests-and-responses"><strong>Requests and Responses</strong></a></h3>
+<p>The wire protocol is principally structured around the notion of a <strong>request</strong> and a <strong>response</strong>. Requests and responses are self-contained pairs of entities, where each request is answered by exactly one response. Requests always travel from the client to the service, and responses always travel back from the service to the client. Each pair of request and response encapsulates a single call to a single operation provided by the service. Client library code is concerned with forming requests and transmitting them to the service. Service code is concerned with processing requests, forming responses, and transmitting those responses back to the client. The term <strong>message</strong> is used to refer generically to requests and responses in contexts where there is no need to draw a distinction between them.</p>
+<h3><a class="header" href="#analogy-with-http-and-rest" id="analogy-with-http-and-rest"><strong>Analogy With HTTP and REST</strong></a></h3>
+<p>The request-response pattern of the wire protocol is intentionally modelled on the familiar notion of calling a REST API over HTTP. In fact, one of the guiding principles of the wire protocol design has been to create something that might loosely be called a &quot;lightweight REST&quot;. This term must be applied with caution, however. REST is a collection of architectural principles, not a protocol. It does not follow that all of the RESTful principles are adopted here. However, thinking of the wire protocol as being like a web service protocol, only without any dependency on HTTP or similar stacks, can be a good way to gain an initial understanding. Some patterns of the wire protocol design have their foundation in a mixture of concepts taken from HTTP and REST, but the wire protocol itself is neither of these things: it is an entirely bespoke protocol.</p>
+<h3><a class="header" href="#synchronous-operation" id="synchronous-operation"><strong>Synchronous Operation</strong></a></h3>
+<p>The wire protocol operation is synchronous: the client initiates a connection and transmits a request. It then blocks while the service performs the request and transmits the response on the return stream. The protocol therefore only supports short-lived operations (meaning that the fulfillment time must be well within any timeout limitations that the transport might impose). The protocol can support longer-lived operations, but it is the responsibility of the service API to define how these are managed. There could, for example, be a pattern whereby there are separate initiation and status polling operations.</p>
+<h3><a class="header" href="#separation-of-protocol-and-transport" id="separation-of-protocol-and-transport"><strong>Separation of Protocol and Transport</strong></a></h3>
+<p>The wire protocol defines the format of messages, and some key characteristics and invariants concerning their transmission between the service and its clients. It does not mandate a specific transport stack. The wire protocol is a binary, stream-oriented protocol. As such, it can be carried by any transport medium that supports the reliable transmission of binary octet streams, such as Unix domain sockets (connected in streaming mode) or TCP sockets. Datagram-oriented transports are <strong>not</strong> supported, because the protocol depends on the reliable transmission of entire messages in the proper sequence.</p>
+<h3><a class="header" href="#separation-of-header-and-body" id="separation-of-header-and-body"><strong>Separation of Header and Body</strong></a></h3>
+<p>Every message (whether request or response) has a <strong>header</strong> and a <strong>body</strong>. Again, this is conceptually similar to the separation of header and body in HTTP. And, like HTTP, this protocol allows some flexibility in how the body content is encoded. The wire protocol borrows HTTP's notion of the <strong>content-type</strong> and <strong>accept</strong> header fields, which allow the client to tell the server how to interpret the content, and also to declare what kind of response is acceptable in return. The only difference is that the wire protocol uses numerical byte fields to indicate these values, where HTTP uses string key-value pairs and media types. This is another illustration of how the wire protocol can be viewed as a more compact and stripped-down HTTP.</p>
+<p>The message headers are <strong>fixed-length</strong> and <strong>fixed-format</strong>. The headers themselves have no variability in their encoding, nor do they adhere to any encoding or serialization standard. The format of the header is defined solely by this specification. When writing code to either transmit or receive a header, the code must be written and validated according to this specification alone. Headers are composed of a series of single-byte and multi-byte fields. The request headers and the response headers differ somewhat from each other. A full specification of the byte fields for both request headers and response headers will be found later on in this document.</p>
+<p>Headers carry a fixed set of metadata fields that are common to all messages. However, they do not carry any inputs to or outputs from specific API operations. API inputs and outputs are always carried in the body. Unlike the header, the body can be both variable-length and variable-format.</p>
+<h3><a class="header" href="#protobuf-body" id="protobuf-body"><strong>Protobuf Body</strong></a></h3>
+<p>As described above, the wire protocol design allows for the message body to be structured and encoded in a variety of formats. However, in current manifestations of the protocol, only a single encoding is defined for use in the message bodies, and this encoding is based on <a href="https://developers.google.com/protocol-buffers/"><strong>protocol buffers</strong></a>, also known as <strong>protobuf</strong>.</p>
+<p>For each operation in the API, two separate protobuf message definitions will exist: one for that operation's inputs, and another for its outputs. The content bytes in a request message can be converted through protobuf-generated code into a model object for the inputs. Likewise, the content bytes in a response message can be converted through protobuf-generated code into a model object for the outputs.</p>
+<p>Processing any message is, therefore, a two-phase process: firstly, the header must be processed by writing code that is conformant with this specification; and secondly, the content must be processed according to its content type, which is currently always protobuf.</p>
+<p>Future manifestations of the wire protocol might support encoding schemes other than protobuf, in which case the second phase of processing would differ. This is the reason why the protocol design has granted some flexibility in terms of the message body encoding.</p>
+<p>It is worth re-iterating that protobuf encodings are employed only for <em>message bodies</em> and not for headers. As explained above, headers employ a bespoke binary encoding that is fully defined within this specification alone. There is no use of protobuf within the header. Headers can be parsed and generated only by writing code that conforms to this specification document. Again, this permits for the possibility that a future manifesation might support different encoding schemes.</p>
+<h3><a class="header" href="#authentication" id="authentication"><strong>Authentication</strong></a></h3>
+<p>As described above, all messages in this protocol have a header and a body. If a message is a request (as opposed to a response), then it will additionally carry a third component: its <strong>authentication</strong> field. </p>
+<p>The wire protocol is agnostic about how the authentication field is interpreted. The request header measures the size of the field so that the service can consume the correct number of bytes from the input stream. The request header also includes a one-byte integer label to inform the service how to interpret the authentication bytes.</p>
+<p>Authentication is based on the invariant that all client applications have access to a persistent unique identifier. This is a string token that allows the assets and actions of one client to be cleanly separated from those of another. But while this identifier string is the core component of authentication, there are different ways that it can be used, and consequently there are different ways for the authentication field to be populated. One simple method is for the client identifier to be passed directly. But it is also possible to use the identifier as input to an HMAC algorithm over the content bytes, in which case the authentication field would contain the computed HMAC, rather than the identifier itself.</p>
+<h3><a class="header" href="#sessions" id="sessions"><strong>Sessions</strong></a></h3>
+<p>The wire protocol supports the notion of sessions, which can be used to allow the client and the service to track state across multiple API calls. The protocol allocates space within the request header and the response header for an 8-byte session identifier. Details of how to create and manage sessions are given in the API specification.</p>
+<h3><a class="header" href="#versioning" id="versioning"><strong>Versioning</strong></a></h3>
+<p>The wire protocol is versioned. It caters for situations where the service and its clients may be operating at different versions. All messages (requests and responses) carry a major and minor version number field. All versions of the service must respond to at least one API operation using version 1.0 of the protocol. This API operation would typically be some kind of &quot;ping&quot; or &quot;status&quot; operation. The output of this operation will allow the client to determine the highest version of the protocol that the service supports, so that it can upgrade to this version if desired.</p>
+<h3><a class="header" href="#opcodes" id="opcodes"><strong>Opcodes</strong></a></h3>
+<p>All requests contain an unsigned 2-byte integer field called the <strong>opcode</strong>. The opcode is the value that determines which API operation is being invoked by the requests. Recall that each request/response pair corresponds to the invocation of exactly one API operation, and each of these operations is assigned an integer opcode.</p>
+<p>The opcode zero is not used and is not valid. The lowest valid opcode is 1, and the highest valid opcode is 65,535. Within this overall numerical range, certain partitions and conventions are established. Ranges of opcodes must be carefully observed and not abused. Contributing developers will have the opportunity to claim parts of the numerical range for their own unique features and operations.</p>
+<p>Currently, opcodes 1-999 are reserved for internal service housekeeping operations, and opcodes 1000-1999 are reserved for key management and cryptographic operations corresponding to those of the Platform Security Architecture (PSA) Cryptography API.</p>
+<p>Opcodes from 2000 onwards are currently unused and unreserved. No service or client code may be contributed that uses such opcodes. Please see the contribution guidelines for further information.</p>
+<p>All opcodes are defined within the API specification.</p>
+<h3><a class="header" href="#status-1" id="status-1"><strong>Status</strong></a></h3>
+<p>All responses contain an unsigned 2-byte integer field called the <strong>status</strong>, which is defined to indicate the overall success or failure of the operation.</p>
+<p>The status value of zero is used universally to mean that the operation completed successfully.</p>
+<p>With the exception of zero as a special case, other status values are partitioned according to the same strategy as the opcodes. Status values from 1-999 are reserved for internal service housekeeping operations, and status values from 1000-1999 are reserved for status codes corresponding to the Platform Security Architecture (PSA) Cryptography API.</p>
+<p>All status values and their definition can be found on the <a href="parsec/status_codes.html"><strong>Status Codes</strong></a> page.</p>
+<h2><a class="header" href="#message-structure-specifications" id="message-structure-specifications"><strong>Message Structure Specifications</strong></a></h2>
+<h3><a class="header" href="#general-rules" id="general-rules"><strong>General Rules</strong></a></h3>
+<p>This section provides a complete specification for the interpretation of messages. Based on this specification, service and client code can be created to both consume and produce conformant messages on any suitable transport medium.</p>
+<p>All multi-byte numerical fields are transported in <strong>little-endian</strong> format.</p>
+<h3><a class="header" href="#requests" id="requests"><strong>Requests</strong></a></h3>
+<p>Requests are structured in the wire protocol as follows:</p>
+<p><img src="parsec/diagrams/wire_request.png" alt="Request Structure" /></p>
+<p>Field descriptions:</p>
+<ul>
+<li>Magic number: a 32-bit unsigned integer whose value must be 0x5EC0A710 (selected to be an approximate transcoding of SECurity API). This field can be used as an initial validity check for incoming messages. This field <strong>must</strong> be populated in outgoing messages.</li>
+<li>Header size: a 16-bit unsigned integer whose value is the size of the <strong>remainder</strong> of the header in bytes (once the magic number and header size fields have been consumed). Consumers <strong>must</strong> use this field to consume the correct number of bytes of header from the input stream, rather than use this specification to deduce the header size.</li>
+<li>Major version number: an 8-bit versioning field. Currently the only supported and valid value for this field is 1.</li>
+<li>Minor version number: an 8-bit versioning sub-field. Currently the only supported and valid value for this field is 0.</li>
+<li>Provider: an 8-bit field identifying the back-end service provider for which the request is intended. A value of zero indicates that the request is not intended for any specific provider. Available providers and their characteristics can be queried through discovery operations in the API.</li>
+<li>Session handle: an 8-byte session identifier.</li>
+<li>Content type: an 8-bit field that defines how the request body should be processed. The only currently-supported value is 1, which indicates that the request body should be treated as a serialized protobuf message.</li>
+<li>Accept type: an 8-bit field that defines how the service should provide its response. The only currently-supported value is 1, which indicates that the service should provide a response whose body is a serialized protobuf message.</li>
+<li>Auth type: an 8-bit field that defines how the authentication bytes should be interpreted.</li>
+<li>Content length: a 32-bit unsigned integer field providing the exact number of bytes of content.</li>
+<li>Auth length: a 16-bit unsigned integer field providing the exact number of bytes of authentication.</li>
+<li>OPCODE: the 16-bit unsigned integer opcode, indicating the operation being performed by this request. See the section above on opcodes.</li>
+</ul>
+<p>The request body bytes <strong>must</strong> immediately follow the request header bytes.</p>
+<p>The authentication bytes <strong>must</strong> immediately follow the request body bytes.</p>
+<h3><a class="header" href="#responses" id="responses"><strong>Responses</strong></a></h3>
+<p>Responses are structured in the wire protocol as follows, and have many properties in common with requests:</p>
+<p><img src="parsec/diagrams/wire_response.png" alt="Response Structure" /></p>
+<p>Field descriptions:</p>
+<ul>
+<li>Magic number: a 32-bit unsigned integer whose value must be 0x5EC0A710 (selected to be an approximate transcoding of SECurity API). This field can be used as an initial validity check for incoming messages. This field <strong>must</strong> be populated in outgoing messages.</li>
+<li>Header size: a 16-bit unsigned integer whose value is the size of the <strong>remainder</strong> of the header in bytes (once the magic number and header size fields have been consumed). Consumers <strong>must</strong> use this field to consume the correct number of bytes of header from the input stream, rather than use this specification to deduce the header size.</li>
+<li>Major version number: an 8-bit versioning field. Currently the only supported and valid value for this field is 1.</li>
+<li>Minor version number: an 8-bit versioning sub-field. Currently the only supported and valid value for this field is 0.</li>
+<li>Provider: an 8-bit field identifying the back-end service provider for which the request is intended. A value of zero indicates that the request is not intended for any specific provider. Available providers and their characteristics can be queried through discovery operations in the API.</li>
+<li>Session handle: an 8-byte session identifier.</li>
+<li>Content type: an 8-bit field that defines how the response body should be processed. The only currently-supported value is 1, which indicates that the request body should be treated as a serialized protobuf message. In the future, alternative values might be supported, in which case the requirement is that the content type of the response <strong>must</strong> match the specified accept type of the corresponding request.</li>
+<li>Content length: a 32-bit unsigned integer field providing the exact number of bytes of content.</li>
+<li>OPCODE: the 16-bit unsigned integer opcode, indicating the operation that was performed. This <strong>must</strong> match the OPCODE field from the corresponding request, and can be used as a validation check within the client.</li>
+<li>STATUS: the 16-bit unsigned integer status, indicating the overall success or failure of the operation. A value of zero is used universally to mean success. Other values should be interpreted according to the API specification.</li>
+</ul>
+<p>The request body bytes <strong>must</strong> immediately follow the request header bytes.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#how-to-install-parsec-on-linux" id="how-to-install-parsec-on-linux">How to install Parsec on Linux</a></h1>
+<p>Parsec can be built and installed as a Linux daemon using systemd. The Parsec daemon uses socket
+activation which means that the daemon will be automatically started when a client request is
+made on the socket. The daemon is a systemd user daemon run by the <code>parsec</code> user.</p>
+<p>If your Linux system uses systemd to manage daemons, you can follow these steps.</p>
+<ul>
+<li>Create and log in to a new user named <code>parsec</code></li>
+<li>In its home directory, pull and install Parsec as a daemon</li>
+</ul>
+<pre><code class="language-bash">git pull https://github.com/parallaxsecond/parsec.git
+cargo install --path parsec
+</code></pre>
+<ul>
+<li>Install the systemd unit files and activate the Parsec socket</li>
+</ul>
+<pre><code class="language-bash">mkdir -p ~/.config/systemd/user
+cp -r systemd-daemon/parsec.service systemd-daemon/parsec.socket ~/.config/systemd/user
+systemctl --user enable parsec.socket
+systemctl --user start parsec.socket
+</code></pre>
+<p>Every user on the system can now use Parsec!</p>
+<p>You can test it going inside the <code>parsec</code> directory and:</p>
+<pre><code class="language-bash">cargo test --test normal
+</code></pre>
+<p>Check the Parsec logs with:</p>
+<pre><code class="language-bash">journalclt --user -u parsec
+</code></pre>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#parsec-configuration" id="parsec-configuration">Parsec Configuration</a></h1>
+<p>All Parsec configuration is done at startup with a configuration file.
+The <code>config.toml</code> file needs to be in the same directory where the <code>parsec</code> command is executed.
+Please check in the source code of Parsec an
+<a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">example</a> of a configuration file.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#how-to-use-parsec" id="how-to-use-parsec">How to use Parsec</a></h1>
+<p>On a system where Parsec is installed, it can easily be used with a Parsec Client Library.
+Those libraries communicate with the Parsec service and integrate with the rest of the software
+idiomatically.</p>
+<p>Parsec Client Libraries are available in the following languages:</p>
+<ul>
+<li><a href="https://github.com/parallaxsecond/parsec-client-go">Go</a></li>
+</ul>
+<p>Please <a href="user_guides/../dev_guides/writing_library.html">contribute</a> to add more Parsec Client Libraries in the
+languages that you want!</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#how-to-build-parsec" id="how-to-build-parsec">How to build Parsec</a></h1>
+<p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install Rust</a>.
+To build and run the service, execute <code>cargo run</code>. <code>parsec</code> will then wait for clients.</p>
+<p>To cross-compile the service for the Linux on Arm64 target, you will need to install the
+appropriate toolchain for this target. By default the Arm GNU toolchain is used to
+compile Mbed Crypto and link everything together. The <code>aarch64-linux-gnu-*</code> tools will be
+needed. Change <code>build-conf.toml</code> and <code>.cargo/config</code> files to change the cross-compiling
+toolchain used.
+Just execute the following command to cross-compile for the Linux on Arm64 target:</p>
+<pre><code class="language-bash">cargo build --target aarch64-unknown-linux-gnu
+</code></pre>
+<p>Alternatively, you can install and use <a href="https://github.com/rust-embedded/cross"><code>cross</code></a>
+to do the same without having to install the toolchain!</p>
+<pre><code class="language-bash">cargo install cross
+docker build -t parsec-cross tests/
+cross build --target aarch64-unknown-linux-gnu
+</code></pre>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#how-to-test-parsec" id="how-to-test-parsec">How to test Parsec</a></h1>
+<p>The <code>tests/all.sh</code> script executes all tests. <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a>
+and <a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed.</p>
+<p>You can execute unit tests with <code>cargo test --lib</code>.</p>
+<p>The <a href="https://github.com/parallaxsecond/parsec-client-test">test client</a> is used for integration
+testing. Check that repository for more details.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#writing-a-new-parsec-client-library" id="writing-a-new-parsec-client-library">Writing a new Parsec Client Library</a></h1>
+<p>If a client library does not already exist in your preferred programming language, you can create
+one. Writing a new client library is a great way to enhance the Parsec client ecosystem.</p>
+<p>When creating a new client library, please make sure you understand the
+<a href="dev_guides/../parsec#beautiful-client-libraries">Parsec philosophy for client libraries</a>. It is very important that you design
+your client library to provide a highly ergonomic and idiomatic developer experience.</p>
+<p>Take a look at the <a href="https://github.com/parallaxsecond/parsec-client-go"><strong>client library for Go</strong></a> as an example.
+The <a href="https://github.com/parallaxsecond/parsec-client-test">Rust Test Client</a> is a client library used
+for testing but with no goal of being ergonomic nor easy to use.
+It can however help how to build a real Rust client library.</p>
+<p>You will need to understand the <a href="dev_guides/../parsec/wire_protocol.html"><strong>wire protocol specification</strong></a> and the <a href="dev_guides/../parsec/api_overview.html"><strong>API specification</strong></a> in depth in order to create a client library.</p>
+<!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#adding-a-new-parsec-provider" id="adding-a-new-parsec-provider">Adding a new Parsec Provider</a></h1>
+<p>To be written!</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+        
+        
+
+    </body>
+</html>
