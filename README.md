@@ -18,7 +18,7 @@
 ![Parsec](parsec.png)
 # Parsec documentation
 
-Official technical documentation, user and developper guides of the Parsec project.
+Official technical documentation, user and developer guides of the Parsec project.
 
 ## Using
 

@@ -44,7 +44,7 @@
     - [How to install Parsec on Linux](user_guides/install_parsec_linux.md)
     - [Parsec Configuration](user_guides/configuration.md)
     - [How to use Parsec](user_guides/use_parsec.md)
-- [Developper guides](dev_guides/README.md)
+- [Developer guides](dev_guides/README.md)
     - [How to build Parsec](dev_guides/build.md)
     - [How to test Parsec](dev_guides/test.md)
     - [Writing a new Parsec Client Library](dev_guides/writing_library.md)
