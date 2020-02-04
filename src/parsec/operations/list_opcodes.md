@@ -1,5 +1,5 @@
 <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
   -- SPDX-License-Identifier: Apache-2.0
   --
   -- Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -19,7 +19,7 @@
 
 ## **Summary**
 
-Gets a list of available opcodes supported by a PARSEC provider.
+Gets a list of available opcodes supported by a Parsec provider.
 
 ## **Contract**
 

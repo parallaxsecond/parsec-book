@@ -1,0 +1,5 @@
+# Rule for markdown files
+*.md        @ionut-arm @hug-dev
+
+# Rule for GitHub-specific files
+.github/*   @ionut-arm @hug-dev
