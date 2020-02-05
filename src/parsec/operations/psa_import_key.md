@@ -14,10 +14,11 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-# **PsaImportKey**
-## **Opcode: 6 (decimal), 0x0006 (hex)**
+# PsaImportKey
 
-## **Summary**
+## Opcode: 6 (decimal), 0x0006 (hex)
+
+## Summary
 
 Import a key in binary format.
 
@@ -25,12 +26,11 @@ This function supports any output from **PSA Export Key**. Refer to the document
 
 This specification supports a single format for each key type. Implementations may support other formats as long as the standard format is supported. Implementations that support other formats should ensure that the formats are clearly unambiguous so as to minimize the risk that an invalid input is accidentally interpreted according to a different format.
 
-## **Parameters**
+## Parameters
 
-**`key_name`**  Name of the key used for signing the hash
-**`key_data`**  Bytes of the key in one of the formats described above
+* **key_name**  Name of the key used for signing the hash.
+* **key_data**  Bytes of the key in one of the formats described above.
 
-## **Contract**
+## Contract
 
 [Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/import_key.proto)
-

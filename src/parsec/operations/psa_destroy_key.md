@@ -14,10 +14,11 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-# **PsaDestroyKey**
-## **Opcode: 3 (decimal), 0x0003 (hex)**
+# PsaDestroyKey
 
-## **Summary**
+## Opcode: 3 (decimal), 0x0003 (hex)
+
+## Summary
 
 Destroy a key.
 
@@ -25,11 +26,10 @@ This function destroys a key from both volatile memory and, if applicable, non-v
 
 This function also erases any metadata such as policies and frees all resources associated with the key.
 
-## **Parameters**
+## Parameters
 
-**`key_name`**  Name of the key used for signing the hash
+* **key_name** - Name of the key to be destroyed.
 
-## **Contract**
+## Contract
 
 [Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/destroy_key.proto)
-
