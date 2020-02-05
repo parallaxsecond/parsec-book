@@ -149,7 +149,7 @@
                 <div id="content" class="content">
                     <main>
                         <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
   -- SPDX-License-Identifier: Apache-2.0
   --
   -- Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -165,8 +165,15 @@
   -- limitations under the License.
 --->
 <h1><a class="header" href="#how-to-build-parsec" id="how-to-build-parsec">How to build Parsec</a></h1>
-<p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install Rust</a>.
-To build and run the service, execute <code>cargo run</code>. <code>parsec</code> will then wait for clients.</p>
+<p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install Rust</a>.</p>
+<p>Because the providers supported by Parsec are dependent on libraries and/or hardware features present on the platform, the build is fragmented through Rust features so that the resulting binary only contains the desired providers. Currently the service provides the following features: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>.</p>
+<p>In order for the service to be spun up, a number of parameters are required in a TOML file. The repository contains an <a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">example</a> of such a configuration file which shows all the options and their default values.</p>
+<p>To build and run the service, set <code>DESIRED_FEATURES</code> to be a subset of the features mentioned above, space or comma separated, and execute:</p>
+<pre><code class="language-bash">cargo run --no-default-features --features $DESIRED_FEATURES
+</code></pre>
+<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients. If the configuration file is not in the directory from which Parsec is run, its path must be passed via CLI:</p>
+<pre><code class="language-bash">cargo run --no-default-features --features $DESIRED_FEATURES -- --config $PATH_TO_CONFIG
+</code></pre>
 <p>To cross-compile the service for the Linux on Arm64 target, you will need to install the
 appropriate toolchain for this target. By default the Arm GNU toolchain is used to
 compile Mbed Crypto and link everything together. The <code>aarch64-linux-gnu-*</code> tools will be

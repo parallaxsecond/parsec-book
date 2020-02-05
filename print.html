@@ -421,7 +421,7 @@ Contributions to this project are accepted under the same license.</p>
 <h1><a class="header" href="#addclient" id="addclient"><strong>AddClient</strong></a></h1>
 <p>Placeholder page.</p>
 <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
   -- SPDX-License-Identifier: Apache-2.0
   --
   -- Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -439,11 +439,11 @@ Contributions to this project are accepted under the same license.</p>
 <h1><a class="header" href="#listopcodes" id="listopcodes"><strong>ListOpcodes</strong></a></h1>
 <h2><a class="header" href="#opcode-9-decimal-0x0009-hex" id="opcode-9-decimal-0x0009-hex"><strong>Opcode: 9 (decimal), 0x0009 (hex)</strong></a></h2>
 <h2><a class="header" href="#summary" id="summary"><strong>Summary</strong></a></h2>
-<p>Gets a list of available opcodes supported by a PARSEC provider.</p>
+<p>Gets a list of available opcodes supported by a Parsec provider.</p>
 <h2><a class="header" href="#contract" id="contract"><strong>Contract</strong></a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_opcodes.proto">Protobuf</a></p>
 <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
   -- SPDX-License-Identifier: Apache-2.0
   --
   -- Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -461,7 +461,7 @@ Contributions to this project are accepted under the same license.</p>
 <h1><a class="header" href="#listproviders" id="listproviders"><strong>ListProviders</strong></a></h1>
 <h2><a class="header" href="#opcode-8-decimal-0x0008-hex" id="opcode-8-decimal-0x0008-hex"><strong>Opcode: 8 (decimal), 0x0008 (hex)</strong></a></h2>
 <h2><a class="header" href="#summary-1" id="summary-1"><strong>Summary</strong></a></h2>
-<p>Gets a list of available PARSEC providers to be used by clients.</p>
+<p>Gets a list of available Parsec providers to be used by clients.</p>
 <h2><a class="header" href="#contract-1" id="contract-1"><strong>Contract</strong></a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_providers.proto">Protobuf</a></p>
 <!--
@@ -1476,7 +1476,31 @@ idiomatically.</p>
 <p>Please <a href="user_guides/../dev_guides/writing_library.html">contribute</a> to add more Parsec Client Libraries in the
 languages that you want!</p>
 <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#developer-guides" id="developer-guides">Developer guides</a></h1>
+<p>These notes are meant as a guide for those looking to work hands-on with the Parsec service source code. They cover the following concepts:</p>
+<ul>
+<li><a href="dev_guides/build.html">Building</a> - description of the options that can be used for building the service and how they relate to the build environment</li>
+<li><a href="dev_guides/test.html">Testing</a> - details about the kinds of tests we employ and how to set up your environment in preparation for running them</li>
+<li><a href="dev_guides/writing_library.html">Writing a client</a> - guide for implementing a new client library</li>
+<li><a href="dev_guides/adding_provider.html">Writing a provider</a> - guide for implementing a new provider that will add Parsec support for new platforms</li>
+</ul>
+<!--
+  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
   -- SPDX-License-Identifier: Apache-2.0
   --
   -- Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -1492,8 +1516,15 @@ languages that you want!</p>
   -- limitations under the License.
 --->
 <h1><a class="header" href="#how-to-build-parsec" id="how-to-build-parsec">How to build Parsec</a></h1>
-<p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install Rust</a>.
-To build and run the service, execute <code>cargo run</code>. <code>parsec</code> will then wait for clients.</p>
+<p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install Rust</a>.</p>
+<p>Because the providers supported by Parsec are dependent on libraries and/or hardware features present on the platform, the build is fragmented through Rust features so that the resulting binary only contains the desired providers. Currently the service provides the following features: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>.</p>
+<p>In order for the service to be spun up, a number of parameters are required in a TOML file. The repository contains an <a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">example</a> of such a configuration file which shows all the options and their default values.</p>
+<p>To build and run the service, set <code>DESIRED_FEATURES</code> to be a subset of the features mentioned above, space or comma separated, and execute:</p>
+<pre><code class="language-bash">cargo run --no-default-features --features $DESIRED_FEATURES
+</code></pre>
+<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients. If the configuration file is not in the directory from which Parsec is run, its path must be passed via CLI:</p>
+<pre><code class="language-bash">cargo run --no-default-features --features $DESIRED_FEATURES -- --config $PATH_TO_CONFIG
+</code></pre>
 <p>To cross-compile the service for the Linux on Arm64 target, you will need to install the
 appropriate toolchain for this target. By default the Arm GNU toolchain is used to
 compile Mbed Crypto and link everything together. The <code>aarch64-linux-gnu-*</code> tools will be
@@ -1509,7 +1540,7 @@ docker build -t parsec-cross tests/
 cross build --target aarch64-unknown-linux-gnu
 </code></pre>
 <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
   -- SPDX-License-Identifier: Apache-2.0
   --
   -- Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -1525,11 +1556,19 @@ cross build --target aarch64-unknown-linux-gnu
   -- limitations under the License.
 --->
 <h1><a class="header" href="#how-to-test-parsec" id="how-to-test-parsec">How to test Parsec</a></h1>
-<p>The <code>tests/all.sh</code> script executes all tests. <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a>
-and <a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed.</p>
-<p>You can execute unit tests with <code>cargo test --lib</code>.</p>
+<p>Parsec relies on a mix of unit, integration, stress and fuzz tests. Unit tests are usually found in the same module as the code they verify. Integration tests can be found in the <code>tests</code> directory (along with the code framework required for running them), and come in two flavours: single-provider and all-providers.</p>
+<p>Single-provider tests do a thorough verification of each individual provider, while all-providers tests check that the common functionality is capable of supporting multiple providers at the same time. Another subcategory of integration tests are persistance tests which check that key material is persisted through service restarts.</p>
+<p>The stress test simply constructs and sends random requests as fast as possible using a multithreaded client. Valid requests are sent intermittently so as to check that the service is still up and working correctly.</p>
+<p>The <code>tests/ci.sh</code> script executes all tests. <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a>
+and <a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed for code formatting and static checks.</p>
+<p>You can execute unit tests with <code>cargo test --lib</code> or stress tests with <code>cargo test stress_test</code>.</p>
 <p>The <a href="https://github.com/parallaxsecond/parsec-client-test">test client</a> is used for integration
 testing. Check that repository for more details.</p>
+<h2><a class="header" href="#fuzz-testing" id="fuzz-testing">Fuzz testing</a></h2>
+<p>Fuzz testing works, at the moment, on a service level, generating random requests and sending them to be processed. Running the fuzz tests can be done through the <code>fuzz.sh</code> script in the root of the repository. </p>
+<p><code>./fuzz.sh run</code> builds a Docker image where the fuzz tests will run. It then sets up the environment and initiates the test in the container. The fuzzing engine (<a href="http://llvm.org/docs/LibFuzzer.html">libFuzzer</a>) works by generating random inputs for a fuzzing target and then observing the code segments reached using said input.</p>
+<p>To stop the fuzzer, simply run <code>./fuzz.sh stop</code>. To view the logs of a currently executing fuzzer, run <code>./fuzz.sh follow</code>.</p>
+<p>Any crashes or slow tests, as well as tests that lead to a timeout, are stored in <code>./fuzz/artifacts/fuzz_service/</code>.</p>
 <!--
   -- Copyright (c) 2019, Arm Limited, All Rights Reserved
   -- SPDX-License-Identifier: Apache-2.0
@@ -1558,7 +1597,7 @@ for testing but with no goal of being ergonomic nor easy to use.
 It can however help how to build a real Rust client library.</p>
 <p>You will need to understand the <a href="dev_guides/../parsec/wire_protocol.html"><strong>wire protocol specification</strong></a> and the <a href="dev_guides/../parsec/api_overview.html"><strong>API specification</strong></a> in depth in order to create a client library.</p>
 <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
   -- SPDX-License-Identifier: Apache-2.0
   --
   -- Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -1574,7 +1613,11 @@ It can however help how to build a real Rust client library.</p>
   -- limitations under the License.
 --->
 <h1><a class="header" href="#adding-a-new-parsec-provider" id="adding-a-new-parsec-provider">Adding a new Parsec Provider</a></h1>
-<p>To be written!</p>
+<p>Creating new providers means enabling Parsec to work on new platforms and is one of the main goals of the project. As such, the interface that must be implemented by each provider was built with modularity in mind, allowing developers to choose which operations they implement and when. This interface is represented by a Rust <a href="https://doc.rust-lang.org/book/ch10-02-traits.html"><code>trait</code></a> - more precisely, the <a href="https://github.com/parallaxsecond/parsec/blob/master/src/providers/mod.rs"><code>Provide</code></a> trait.</p>
+<p>The full list of operations that can be implemented can be found in the link above and will be expanded as the project progresses towards supporting more use cases.</p>
+<p>Apart from <code>list_opcodes</code> and <code>describe</code>, no method is mandatory and client libraries are expected to use these two operations to bootstrap their usage of the service. Thus, once an operation is correctly supported, its opcode can be added to those returned by <code>list_opcodes</code>. Any operation that is not implemented will return a response code of <code>UnsupportedOperation</code> by default.</p>
+<p>Each provider must offer a description of itself in the shape of a <a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations/list_providers.rs"><code>ProviderInfo</code></a> value, by implementing the <code>describe</code> method. The UUID identifying the provider is developer-generated and should not clash with existing providers. This process also requires the new provider to be added to the <a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/requests/mod.rs"><code>ProviderID</code></a> enum.</p>
+<p>Lots of care must be taken when implementing operations that the inputs and outputs are in the correct format, especially in the case of byte arrays. Detailed description of all input and output can be found in the <a href="dev_guides/../parsec/operations/README.html">operations documentation</a>.</p>
 
                     </main>
 

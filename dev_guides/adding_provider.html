@@ -149,7 +149,7 @@
                 <div id="content" class="content">
                     <main>
                         <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
   -- SPDX-License-Identifier: Apache-2.0
   --
   -- Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -165,7 +165,11 @@
   -- limitations under the License.
 --->
 <h1><a class="header" href="#adding-a-new-parsec-provider" id="adding-a-new-parsec-provider">Adding a new Parsec Provider</a></h1>
-<p>To be written!</p>
+<p>Creating new providers means enabling Parsec to work on new platforms and is one of the main goals of the project. As such, the interface that must be implemented by each provider was built with modularity in mind, allowing developers to choose which operations they implement and when. This interface is represented by a Rust <a href="https://doc.rust-lang.org/book/ch10-02-traits.html"><code>trait</code></a> - more precisely, the <a href="https://github.com/parallaxsecond/parsec/blob/master/src/providers/mod.rs"><code>Provide</code></a> trait.</p>
+<p>The full list of operations that can be implemented can be found in the link above and will be expanded as the project progresses towards supporting more use cases.</p>
+<p>Apart from <code>list_opcodes</code> and <code>describe</code>, no method is mandatory and client libraries are expected to use these two operations to bootstrap their usage of the service. Thus, once an operation is correctly supported, its opcode can be added to those returned by <code>list_opcodes</code>. Any operation that is not implemented will return a response code of <code>UnsupportedOperation</code> by default.</p>
+<p>Each provider must offer a description of itself in the shape of a <a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations/list_providers.rs"><code>ProviderInfo</code></a> value, by implementing the <code>describe</code> method. The UUID identifying the provider is developer-generated and should not clash with existing providers. This process also requires the new provider to be added to the <a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/requests/mod.rs"><code>ProviderID</code></a> enum.</p>
+<p>Lots of care must be taken when implementing operations that the inputs and outputs are in the correct format, especially in the case of byte arrays. Detailed description of all input and output can be found in the <a href="../parsec/operations/README.html">operations documentation</a>.</p>
 
                     </main>
 
