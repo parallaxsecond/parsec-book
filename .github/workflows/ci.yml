@@ -11,9 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install mdbook
-    - run: cargo install mdbook
+      run: cargo install mdbook
     - name: Build book
-    - run: mdbook build
+      run: mdbook build
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v2
