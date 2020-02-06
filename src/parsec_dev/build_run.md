@@ -15,7 +15,7 @@
   -- limitations under the License.
 --->
 
-# How to build Parsec
+# How to build and run Parsec
 
 This project is coded in the Rust Programming Language. To build it, you first need to [install Rust](https://www.rust-lang.org/tools/install).
 
@@ -33,6 +33,54 @@ cargo run --no-default-features --features $DESIRED_FEATURES
 cargo run --no-default-features --features $DESIRED_FEATURES -- --config $PATH_TO_CONFIG
 ```
 
+From another terminal, it is now possible to execute [integration tests](test.md#integration-tests) on Parsec!
+
+## Killing Parsec
+
+On Linux, sending `SIGTERM` will gracefully terminate Parsec, waiting all of
+its threads to finish.
+```bash
+pkill parsec
+```
+
+## Reloading Parsec
+
+On Linux, sending `SIGHUP` will reload Parsec: it will wait for its threads to
+finish, drop all of its components, read the configuration and instantiate
+all the components again. It is usefull to change the Parsec configuration
+without having to kill the service.
+```bash
+pkill -SIGHUP parsec
+```
+
+## External dependencies
+
+Each provider has external dependencies that are needed to compile.
+
+### Mbed Crypto (`mbed-crypto-provider`)
+
+If Mbed Crypto is not already available on the system, the build script will
+try to download and compile it. The following commands need to be available:
+
+* a C toolchain, by default `clang` and `ar` are used but this is [configurable](https://github.com/parallaxsecond/parsec/blob/master/build-conf.toml)
+* `wget`
+* `tar`
+* `make`
+* `python3`
+
+### PKCS 11 Crypto (`pkcs11-provider`)
+
+The PKCS 11 provider will try to dynamically load the library indicated in the
+configuration file, hence a library implementing the PKCS 11 API is needed.
+
+### TPM Crypto (`tpm-provider`)
+
+The TPM provider will try to build the `tss-esapi` crate which needs built
+TSS 2.0 esys and tctildr libraries. It will use `pkg-config` to find them
+using the names `tss2-esys` and `tss2-tctildr`.
+
+## Cross-compiling for Arm64
+
 To cross-compile the service for the Linux on Arm64 target, you will need to install the
 appropriate toolchain for this target. By default the Arm GNU toolchain is used to
 compile Mbed Crypto and link everything together. The `aarch64-linux-gnu-*` tools will be
@@ -42,12 +90,3 @@ Just execute the following command to cross-compile for the Linux on Arm64 targe
 ```bash
 cargo build --target aarch64-unknown-linux-gnu
 ```
-
-Alternatively, you can install and use [`cross`](https://github.com/rust-embedded/cross)
-to do the same without having to install the toolchain!
-```bash
-cargo install cross
-docker build -t parsec-cross tests/
-cross build --target aarch64-unknown-linux-gnu
-```
-
