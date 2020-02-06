@@ -164,17 +164,21 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-<h1><a class="header" href="#psaasymmetricsign" id="psaasymmetricsign"><strong>PsaAsymmetricSign</strong></a></h1>
-<h2><a class="header" href="#opcode-4-decimal-0x0004-hex" id="opcode-4-decimal-0x0004-hex"><strong>Opcode: 4 (decimal), 0x0004 (hex)</strong></a></h2>
-<h2><a class="header" href="#summary" id="summary"><strong>Summary</strong></a></h2>
+<h1><a class="header" href="#psaasymmetricsign" id="psaasymmetricsign">PsaAsymmetricSign</a></h1>
+<h2><a class="header" href="#opcode-4-decimal-0x0004-hex" id="opcode-4-decimal-0x0004-hex">Opcode: 4 (decimal), 0x0004 (hex)</a></h2>
+<h2><a class="header" href="#summary" id="summary">Summary</a></h2>
 <p>Sign a hash or short message with a private key.</p>
 <p>Note that to perform a hash-and-sign signature algorithm, you must first calculate the hash of the data you want to sign. Then pass the resulting hash as the <code>hash</code> parameter to this function.</p>
-<h2><a class="header" href="#parameters" id="parameters"><strong>Parameters</strong></a></h2>
-<p><strong><code>key_name</code></strong>  Name of the key used for signing the hash
-<strong><code>hash</code></strong>  Hash of the data that must be signed</p>
-<h2><a class="header" href="#result-values" id="result-values"><strong>Result values</strong></a></h2>
-<p><strong><code>signature</code></strong>  Bytes forming up the requested signature</p>
-<h2><a class="header" href="#contract" id="contract"><strong>Contract</strong></a></h2>
+<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<ul>
+<li><strong>key_name</strong> - Name of the key used for signing the hash.</li>
+<li><strong>hash</strong> - Digest of the data to be signed. The digest must be in a raw binary format, with no padding or encoding unless the <code>RsaPkcs1v15Sign</code> algorithm is used, with no associated hash algorithm.</li>
+</ul>
+<h2><a class="header" href="#result-values" id="result-values">Result values</a></h2>
+<ul>
+<li><strong>signature</strong> - Bytes forming up the requested signature</li>
+</ul>
+<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/asym_sign.proto">Protobuf</a></p>
 
                     </main>

@@ -164,9 +164,9 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-<h1><a class="header" href="#psaexportpublickey" id="psaexportpublickey"><strong>PsaExportPublicKey</strong></a></h1>
-<h2><a class="header" href="#opcode-7-decimal-0x0007-hex" id="opcode-7-decimal-0x0007-hex"><strong>Opcode: 7 (decimal), 0x0007 (hex)</strong></a></h2>
-<h2><a class="header" href="#summary" id="summary"><strong>Summary</strong></a></h2>
+<h1><a class="header" href="#psaexportpublickey" id="psaexportpublickey">PsaExportPublicKey</a></h1>
+<h2><a class="header" href="#opcode-7-decimal-0x0007-hex" id="opcode-7-decimal-0x0007-hex">Opcode: 7 (decimal), 0x0007 (hex)</a></h2>
+<h2><a class="header" href="#summary" id="summary">Summary</a></h2>
 <p>Export a public key or the public part of a key pair in binary format.</p>
 <p>The output of this function can be passed to <a href="psa_import_key.html"><em>PSA Import Key</em></a> to create an object that is equivalent to the public key.</p>
 <p>This specification supports a single format for each key type. Implementations may support other formats as long as the standard format is supported. Implementations that support other formats should ensure that the formats are clearly unambiguous so as to minimize the risk that an invalid input is accidentally interpreted according to a different format.</p>
@@ -182,11 +182,15 @@
 <ul>
 <li>
 <p>For elliptic curve public keys (key of type <a href="key_attributes.html"><code>ECC_Public_Key</code></a>), the format is the uncompressed representation defined by <em>SEC1 §2.3.3</em> as the content of an <code>ECPoint</code>. Let <code>m</code> be the bit size associated with the curve, i.e. the bit size of <code>q</code> for a curve over <code>F\_q</code>. The representation consists of:</p>
-<ul>
-<li>The byte <code>0x04</code>;</li>
-<li><code>x\_P</code> as a <code>ceiling(m/8)</code>-byte string, big-endian;</li>
-<li><code>y\_P</code> as a <code>ceiling(m/8)</code>-byte string, big-endian.</li>
-</ul>
+</li>
+<li>
+<p>The byte <code>0x04</code>;</p>
+</li>
+<li>
+<p><code>x\_P</code> as a <code>ceiling(m/8)</code>-byte string, big-endian;</p>
+</li>
+<li>
+<p><code>y\_P</code> as a <code>ceiling(m/8)</code>-byte string, big-endian.</p>
 </li>
 <li>
 <p>For DSA public keys (<a href="key_attributes.html"><code>DSA_Public_Key</code></a>), the <code>subjectPublicKey</code> format is defined by <em>RFC 3279 §2.3.2</em> as <code>DSAPublicKey</code>,  with the OID <code>id-dsa</code>, and with the parameters <code>DSS-Parms</code>.</p>
@@ -204,11 +208,15 @@ Dss-Parms ::= SEQUENCE {
 
 DSAPublicKey ::= INTEGER -- public key, Y
 </code></pre>
-<h2><a class="header" href="#parameters" id="parameters"><strong>Parameters</strong></a></h2>
-<p><strong><code>key_name</code></strong>  Name of the key used for signing the hash</p>
-<h2><a class="header" href="#result-values" id="result-values"><strong>Result values</strong></a></h2>
-<p><strong><code>key_data</code></strong>  Bytes of the key in one of the formats described above</p>
-<h2><a class="header" href="#contract" id="contract"><strong>Contract</strong></a></h2>
+<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<ul>
+<li><strong>key_name</strong> - Name of the key used for signing the hash.</li>
+</ul>
+<h2><a class="header" href="#result-values" id="result-values">Result values</a></h2>
+<ul>
+<li><strong>key_data</strong> - Bytes of the key in one of the formats described above.</li>
+</ul>
+<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/export_public_key.proto">Protobuf</a></p>
 
                     </main>

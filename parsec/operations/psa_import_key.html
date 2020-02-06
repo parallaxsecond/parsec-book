@@ -164,16 +164,18 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-<h1><a class="header" href="#psaimportkey" id="psaimportkey"><strong>PsaImportKey</strong></a></h1>
-<h2><a class="header" href="#opcode-6-decimal-0x0006-hex" id="opcode-6-decimal-0x0006-hex"><strong>Opcode: 6 (decimal), 0x0006 (hex)</strong></a></h2>
-<h2><a class="header" href="#summary" id="summary"><strong>Summary</strong></a></h2>
+<h1><a class="header" href="#psaimportkey" id="psaimportkey">PsaImportKey</a></h1>
+<h2><a class="header" href="#opcode-6-decimal-0x0006-hex" id="opcode-6-decimal-0x0006-hex">Opcode: 6 (decimal), 0x0006 (hex)</a></h2>
+<h2><a class="header" href="#summary" id="summary">Summary</a></h2>
 <p>Import a key in binary format.</p>
 <p>This function supports any output from <strong>PSA Export Key</strong>. Refer to the documentation of <a href="psa_export_public_key.html"><strong>PSA Export Public Key</strong></a> for the format of public keys and to the documentation of <strong>PSA Export Key</strong> for the format for other key types.</p>
 <p>This specification supports a single format for each key type. Implementations may support other formats as long as the standard format is supported. Implementations that support other formats should ensure that the formats are clearly unambiguous so as to minimize the risk that an invalid input is accidentally interpreted according to a different format.</p>
-<h2><a class="header" href="#parameters" id="parameters"><strong>Parameters</strong></a></h2>
-<p><strong><code>key_name</code></strong>  Name of the key used for signing the hash
-<strong><code>key_data</code></strong>  Bytes of the key in one of the formats described above</p>
-<h2><a class="header" href="#contract" id="contract"><strong>Contract</strong></a></h2>
+<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<ul>
+<li><strong>key_name</strong>  Name of the key used for signing the hash.</li>
+<li><strong>key_data</strong>  Bytes of the key in one of the formats described above.</li>
+</ul>
+<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/import_key.proto">Protobuf</a></p>
 
                     </main>
