@@ -14,14 +14,14 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-# **ListProviders**
-## **Opcode: 8 (decimal), 0x0008 (hex)**
+# ListProviders
 
-## **Summary**
+## Opcode: 8 (decimal), 0x0008 (hex)
+
+## Summary
 
 Gets a list of available Parsec providers to be used by clients.
 
-## **Contract**
+## Contract
 
 [Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_providers.proto)
-

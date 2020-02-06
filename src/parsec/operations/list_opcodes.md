@@ -14,14 +14,14 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-# **ListOpcodes**
-## **Opcode: 9 (decimal), 0x0009 (hex)**
+# ListOpcodes
 
-## **Summary**
+## Opcode: 9 (decimal), 0x0009 (hex)
+
+## Summary
 
 Gets a list of available opcodes supported by a Parsec provider.
 
-## **Contract**
+## Contract
 
 [Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_opcodes.proto)
-

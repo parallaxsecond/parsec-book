@@ -14,22 +14,22 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-# **PsaAsymmetricVerify**
-## **Opcode: 5 (decimal), 0x0005 (hex)**
+# PsaAsymmetricVerify
 
-## **Summary**
+## Opcode: 5 (decimal), 0x0005 (hex)
+
+## Summary
 
 Verify the signature of a hash or short message using a public key
 
-Note that to perform a hash-and-sign signature algorithm, you must first calculate the hash of the data you want to sign. Then pass the resulting hash as the `hash` parameter to this function.
+Note that to perform a hash-and-sign signature algorithm, you must first calculate the hash of the data you want to sign. Then pass the resulting digest as the `hash` parameter to this function.
 
-## **Parameters**
+## Parameters
 
-**`key_name`**  Name of the key used for signing the hash
-**`hash`**  Hash of the data that was signed
-**`signature`**  Signature that must be verified
+* **key_name** - Name of the key to be used for verifying the hash.
+* **hash** - Digest of the data that was signed. The digest must be in a raw binary format, with no padding or encoding unless the `RsaPkcs1v15Sign` algorithm is used, with no associated hash algorithm.
+* **signature** - Signature that must be verified, in raw binary format.
 
-## **Contract**
+## Contract
 
 [Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/asym_verify.proto)
-

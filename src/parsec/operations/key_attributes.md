@@ -14,9 +14,9 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-# **PSA Crypto Key Attributes**
+# PSA Crypto Key Attributes
 
-## **Key Type and Algorithm**
+## Key Type and Algorithm
 
 Types of cryptographic keys and cryptographic algorithms are encoded separately. Each is encoded as a field in the *Key Attributes* structure.
 
@@ -24,33 +24,26 @@ There is some overlap in the information conveyed by key types and algorithms. B
 
 Key types do not encode the key size. For example, AES-128, AES-192 and AES-256 share a key type `AES_Key`.
 
-### **Algorithm Types**
-**TO BE DONE**
+**Important notice:** The attributes mentioned on this page are only the ones currently supported by Parsec (i.e. is recognised as a valid parameter for some operations by at least one provider), not those defined by the [PSA crypto API specification](https://armmbed.github.io/mbed-crypto/PSA_Cryptography_API_Specification.pdf). The plan is for the former to converge towards the latter.
 
-## **Other Attributes**
+### Key Type
 
-* **ECC Curve**
-Determines the ECC curve to be used for keys of types `ECC_Public_Key` and `ECC_Keypair`.
+* **RsaKeypair** - RSA key pair (private and public key).
+* **RsaPublicKey** - RSA public key.
 
-* **Key Size**
-Determines the size of the key in bits. This must be used for choosing key sizes for both symmetric and asymmetric keys.
+### Algorithm
 
-* **Permit Export**
-Determines whether the key material can be exported.
+#### Asymmetric signing
 
-* **Permit Encrypt**
-Determines whether the key can be used to encrypt data.
+ **RsaPkcs1v15Sign** - The RSA PKCS v1.5 digital signature scheme as defined in [RFC 3447](https://tools.ietf.org/html/rfc3447#section-8.2).
 
-* **Permit Decrypt**
-Determines whether the key can be used to decrypt data.
+#### Hashing
 
-* **Permit Sign**
-Determines whether the key can be used to sign data.
+ **Sha256** - Secure Hash Algorithm with 256 bit digest size as defined in [RFC 4634](https://tools.ietf.org/html/rfc4634)
 
-* **Permit Verify**
-Determines whether the key can be used to verify a signature.
+## Other Attributes
 
-* **Permit Derive**
-Determines whether the key can be used to derive further keys.
-
-
+* **Key Size** - Determines the size of the key in bits. This must be used for choosing key sizes for both symmetric and asymmetric keys.
+* **Permit Export** - Determines whether the key material can be exported.
+* **Permit Sign** - Determines whether the key can be used to compute a digital signature.
+* **Permit Verify** - Determines whether the key can be used to verify a digital signature.
