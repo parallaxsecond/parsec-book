@@ -25,4 +25,6 @@ Apart from `list_opcodes` and `describe`, no method is mandatory and client libr
 
 Each provider must offer a description of itself in the shape of a [`ProviderInfo`](https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations/list_providers.rs) value, by implementing the `describe` method. The UUID identifying the provider is developer-generated and should not clash with existing providers. This process also requires the new provider to be added to the [`ProviderID`](https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/requests/mod.rs) enum.
 
-Lots of care must be taken when implementing operations that the inputs and outputs are in the correct format, especially in the case of byte arrays. Detailed description of all input and output can be found in the [operations documentation](../parsec/operations/README.md).
+Lots of care must be taken when implementing operations that the inputs and outputs are in the correct format, especially in the case of byte arrays. Detailed description of all input and output can be found in the [operations documentation](../parsec_client/operations/README.md).
+
+A helpful utility that the Parsec service offers to providers is the use of key ID managers. These allow the provider to persist mappings between key names and key handles or material and is generally needed since providers are expected to support UTF-8 encoded strings as key names.
