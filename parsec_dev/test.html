@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Parsec Configuration - Parsec Documentation</title>
+        <title>How to test Parsec - Parsec Documentation</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="expanded "><a href="../parsec/index.html"><strong aria-hidden="true">2.</strong> Platform Abstraction for Security</a></li><li><ol class="section"><li class="expanded "><a href="../parsec/operations/index.html"><strong aria-hidden="true">2.1.</strong> Operations</a></li><li><ol class="section"><li class="expanded "><a href="../parsec/operations/add_client.html"><strong aria-hidden="true">2.1.1.</strong> AddClient</a></li><li class="expanded "><a href="../parsec/operations/list_opcodes.html"><strong aria-hidden="true">2.1.2.</strong> ListOpcodes</a></li><li class="expanded "><a href="../parsec/operations/list_providers.html"><strong aria-hidden="true">2.1.3.</strong> ListProviders</a></li><li class="expanded "><a href="../parsec/operations/ping.html"><strong aria-hidden="true">2.1.4.</strong> Ping</a></li><li class="expanded "><a href="../parsec/operations/prove_client.html"><strong aria-hidden="true">2.1.5.</strong> ProveClient</a></li><li class="expanded "><a href="../parsec/operations/psa_asymmetric_sign.html"><strong aria-hidden="true">2.1.6.</strong> PsaAsymmetricSign</a></li><li class="expanded "><a href="../parsec/operations/psa_asymmetric_verify.html"><strong aria-hidden="true">2.1.7.</strong> PsaAsymmetricVerify</a></li><li class="expanded "><a href="../parsec/operations/psa_create_key.html"><strong aria-hidden="true">2.1.8.</strong> PsaCreateKey</a></li><li class="expanded "><a href="../parsec/operations/psa_destroy_key.html"><strong aria-hidden="true">2.1.9.</strong> PsaDestroyKey</a></li><li class="expanded "><a href="../parsec/operations/psa_export_public_key.html"><strong aria-hidden="true">2.1.10.</strong> PsaExportPublicKey</a></li><li class="expanded "><a href="../parsec/operations/psa_import_key.html"><strong aria-hidden="true">2.1.11.</strong> PsaImportKey</a></li><li class="expanded "><a href="../parsec/operations/share_trust_bundle.html"><strong aria-hidden="true">2.1.12.</strong> ShareTrustBundle</a></li><li class="expanded "><a href="../parsec/operations/key_attributes.html"><strong aria-hidden="true">2.1.13.</strong> Key Attributes</a></li></ol></li><li class="expanded "><a href="../parsec/providers.html"><strong aria-hidden="true">2.2.</strong> Providers</a></li><li class="expanded "><a href="../parsec/api_overview.html"><strong aria-hidden="true">2.3.</strong> API Overview</a></li><li class="expanded "><a href="../parsec/interfaces_and_dataflow.html"><strong aria-hidden="true">2.4.</strong> Interfaces and Dataflow</a></li><li class="expanded "><a href="../parsec/source_code_structure.html"><strong aria-hidden="true">2.5.</strong> Source Code Structure</a></li><li class="expanded "><a href="../parsec/status_codes.html"><strong aria-hidden="true">2.6.</strong> Status Codes</a></li><li class="expanded "><a href="../parsec/system_architecture.html"><strong aria-hidden="true">2.7.</strong> System Architecture</a></li><li class="expanded "><a href="../parsec/wire_protocol.html"><strong aria-hidden="true">2.8.</strong> Wire Protocol</a></li></ol></li><li class="expanded "><a href="../user_guides/index.html"><strong aria-hidden="true">3.</strong> User guides</a></li><li><ol class="section"><li class="expanded "><a href="../user_guides/install_parsec_linux.html"><strong aria-hidden="true">3.1.</strong> How to install Parsec on Linux</a></li><li class="expanded "><a href="../user_guides/configuration.html" class="active"><strong aria-hidden="true">3.2.</strong> Parsec Configuration</a></li><li class="expanded "><a href="../user_guides/use_parsec.html"><strong aria-hidden="true">3.3.</strong> How to use Parsec</a></li></ol></li><li class="expanded "><a href="../dev_guides/index.html"><strong aria-hidden="true">4.</strong> Developer guides</a></li><li><ol class="section"><li class="expanded "><a href="../dev_guides/build.html"><strong aria-hidden="true">4.1.</strong> How to build Parsec</a></li><li class="expanded "><a href="../dev_guides/test.html"><strong aria-hidden="true">4.2.</strong> How to test Parsec</a></li><li class="expanded "><a href="../dev_guides/writing_library.html"><strong aria-hidden="true">4.3.</strong> Writing a new Parsec Client Library</a></li><li class="expanded "><a href="../dev_guides/adding_provider.html"><strong aria-hidden="true">4.4.</strong> Adding a new Parsec Provider</a></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="expanded "><a href="../parsec/index.html"><strong aria-hidden="true">2.</strong> Platform Abstraction for Security</a></li><li><ol class="section"><li class="expanded "><a href="../parsec/operations/index.html"><strong aria-hidden="true">2.1.</strong> Operations</a></li><li><ol class="section"><li class="expanded "><a href="../parsec/operations/add_client.html"><strong aria-hidden="true">2.1.1.</strong> AddClient</a></li><li class="expanded "><a href="../parsec/operations/list_opcodes.html"><strong aria-hidden="true">2.1.2.</strong> ListOpcodes</a></li><li class="expanded "><a href="../parsec/operations/list_providers.html"><strong aria-hidden="true">2.1.3.</strong> ListProviders</a></li><li class="expanded "><a href="../parsec/operations/ping.html"><strong aria-hidden="true">2.1.4.</strong> Ping</a></li><li class="expanded "><a href="../parsec/operations/prove_client.html"><strong aria-hidden="true">2.1.5.</strong> ProveClient</a></li><li class="expanded "><a href="../parsec/operations/psa_asymmetric_sign.html"><strong aria-hidden="true">2.1.6.</strong> PsaAsymmetricSign</a></li><li class="expanded "><a href="../parsec/operations/psa_asymmetric_verify.html"><strong aria-hidden="true">2.1.7.</strong> PsaAsymmetricVerify</a></li><li class="expanded "><a href="../parsec/operations/psa_create_key.html"><strong aria-hidden="true">2.1.8.</strong> PsaCreateKey</a></li><li class="expanded "><a href="../parsec/operations/psa_destroy_key.html"><strong aria-hidden="true">2.1.9.</strong> PsaDestroyKey</a></li><li class="expanded "><a href="../parsec/operations/psa_export_public_key.html"><strong aria-hidden="true">2.1.10.</strong> PsaExportPublicKey</a></li><li class="expanded "><a href="../parsec/operations/psa_import_key.html"><strong aria-hidden="true">2.1.11.</strong> PsaImportKey</a></li><li class="expanded "><a href="../parsec/operations/share_trust_bundle.html"><strong aria-hidden="true">2.1.12.</strong> ShareTrustBundle</a></li><li class="expanded "><a href="../parsec/operations/key_attributes.html"><strong aria-hidden="true">2.1.13.</strong> Key Attributes</a></li></ol></li><li class="expanded "><a href="../parsec/providers.html"><strong aria-hidden="true">2.2.</strong> Providers</a></li><li class="expanded "><a href="../parsec/api_overview.html"><strong aria-hidden="true">2.3.</strong> API Overview</a></li><li class="expanded "><a href="../parsec/interfaces_and_dataflow.html"><strong aria-hidden="true">2.4.</strong> Interfaces and Dataflow</a></li><li class="expanded "><a href="../parsec/source_code_structure.html"><strong aria-hidden="true">2.5.</strong> Source Code Structure</a></li><li class="expanded "><a href="../parsec/status_codes.html"><strong aria-hidden="true">2.6.</strong> Status Codes</a></li><li class="expanded "><a href="../parsec/system_architecture.html"><strong aria-hidden="true">2.7.</strong> System Architecture</a></li><li class="expanded "><a href="../parsec/wire_protocol.html"><strong aria-hidden="true">2.8.</strong> Wire Protocol</a></li><li class="expanded "><a href="../parsec/use_parsec.html"><strong aria-hidden="true">2.9.</strong> How to use Parsec</a></li></ol></li><li class="expanded "><a href="../parsec_dev/index.html"><strong aria-hidden="true">3.</strong> Parsec for developers</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_dev/build_run.html"><strong aria-hidden="true">3.1.</strong> How to build and run Parsec</a></li><li class="expanded "><a href="../parsec_dev/install_parsec_linux.html"><strong aria-hidden="true">3.2.</strong> How to install Parsec on Linux</a></li><li class="expanded "><a href="../parsec_dev/configuration.html"><strong aria-hidden="true">3.3.</strong> Parsec Configuration</a></li><li class="expanded "><a href="../parsec_dev/test.html" class="active"><strong aria-hidden="true">3.4.</strong> How to test Parsec</a></li><li class="expanded "><a href="../parsec_dev/writing_library.html"><strong aria-hidden="true">3.5.</strong> Writing a new Parsec Client Library</a></li><li class="expanded "><a href="../parsec_dev/adding_provider.html"><strong aria-hidden="true">3.6.</strong> Adding a new Parsec Provider</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -149,7 +149,7 @@
                 <div id="content" class="content">
                     <main>
                         <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
   -- SPDX-License-Identifier: Apache-2.0
   --
   -- Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -164,24 +164,74 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-<h1><a class="header" href="#parsec-configuration" id="parsec-configuration">Parsec Configuration</a></h1>
-<p>All Parsec configuration is done at startup with a configuration file.
-The <code>config.toml</code> file needs to be in the same directory where the <code>parsec</code> command is executed.
-Please check in the source code of Parsec an
-<a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">example</a> of a configuration file.</p>
+<h1><a class="header" href="#how-to-test-parsec" id="how-to-test-parsec">How to test Parsec</a></h1>
+<p>Parsec relies on a mix of unit, integration, stress and fuzz tests. Unit tests are usually found in the same module as the code they verify. Integration tests can be found in the <code>tests</code> directory (along with the code framework required for running them), and come in two flavours: single-provider and all-providers.</p>
+<p>Single-provider tests do a thorough verification of each individual provider, while all-providers tests check that the common functionality is capable of supporting multiple providers at the same time. Another subcategory of integration tests are persistance tests which check that key material is persisted through service restarts.</p>
+<p>The stress test simply constructs and sends random requests as fast as possible using a multithreaded client. Valid requests are sent intermittently so as to check that the service is still up and working correctly.</p>
+<p>The <code>tests/ci.sh</code> script executes all tests and is used on the CI. <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a>
+and <a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed for code formatting and static checks.</p>
+<p>The <a href="https://github.com/parallaxsecond/parsec-client-test">test client</a> is used for integration
+testing. Check that repository for more details.</p>
+<h2><a class="header" href="#executing-tests-manually" id="executing-tests-manually">Executing tests manually</a></h2>
+<h3><a class="header" href="#static-tests" id="static-tests">Static tests</a></h3>
+<ul>
+<li>Checking code formatting</li>
+</ul>
+<pre><code class="language-bash">cargo fmt --all -- --check
+</code></pre>
+<ul>
+<li>Checking lints</li>
+</ul>
+<pre><code class="language-bash">cargo clippy --all-targets --all-features -- -D clippy::all -D clippy::cargo
+</code></pre>
+<h3><a class="header" href="#unit-tests" id="unit-tests">Unit tests</a></h3>
+<ul>
+<li>Doc tests</li>
+</ul>
+<pre><code class="language-bash">cargo test --doc --all-features
+</code></pre>
+<ul>
+<li>Unit tests</li>
+</ul>
+<pre><code class="language-bash">cargo test --lib --all-features
+</code></pre>
+<h3><a class="header" href="#integration-tests" id="integration-tests">Integration tests</a></h3>
+<ul>
+<li>Normal integration tests</li>
+</ul>
+<pre><code class="language-bash">cargo test normal_tests
+</code></pre>
+<ul>
+<li>Persistence integration tests: checking if the Key ID mapping persist after a
+shutdown (check the <code>tests/ci.sh</code> script for details of commands to execute)</li>
+<li>Stress tests</li>
+</ul>
+<pre><code class="language-bash">cargo test stress_test
+</code></pre>
+<ul>
+<li>All providers integration tests. This expect the Parsec service to include
+all providers.</li>
+</ul>
+<pre><code class="language-bash">cargo test all_providers
+</code></pre>
+<h2><a class="header" href="#fuzz-testing" id="fuzz-testing">Fuzz testing</a></h2>
+<p>Fuzz testing works, at the moment, on a service level, generating random requests and sending them to be processed. Running the fuzz tests can be done through the <code>fuzz.sh</code> script in the root of the repository. </p>
+<p><code>./fuzz.sh run</code> builds a Docker image where the fuzz tests will run. It then sets up the environment and initiates the test in the container. The fuzzing engine (<a href="http://llvm.org/docs/LibFuzzer.html">libFuzzer</a>) works by generating random inputs for a fuzzing target and then observing the code segments reached using said input.</p>
+<p>To stop the fuzzer, simply run <code>./fuzz.sh stop</code>. To view the logs of a currently executing fuzzer, run <code>./fuzz.sh follow</code>.</p>
+<p>Any crashes or slow tests, as well as tests that lead to a timeout, are stored in <code>./fuzz/artifacts/fuzz_service/</code>.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../user_guides/install_parsec_linux.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../parsec_dev/configuration.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../user_guides/use_parsec.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../parsec_dev/writing_library.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -193,13 +243,13 @@ Please check in the source code of Parsec an
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../user_guides/install_parsec_linux.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../parsec_dev/configuration.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="../user_guides/use_parsec.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../parsec_dev/writing_library.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
