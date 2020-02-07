@@ -23,13 +23,53 @@ Single-provider tests do a thorough verification of each individual provider, wh
 
 The stress test simply constructs and sends random requests as fast as possible using a multithreaded client. Valid requests are sent intermittently so as to check that the service is still up and working correctly.
 
-The `tests/ci.sh` script executes all tests. [`rustfmt`](https://github.com/rust-lang/rustfmt)
+The `tests/ci.sh` script executes all tests and is used on the CI. [`rustfmt`](https://github.com/rust-lang/rustfmt)
 and [`clippy`](https://github.com/rust-lang/rust-clippy) are needed for code formatting and static checks.
-
-You can execute unit tests with `cargo test --lib` or stress tests with `cargo test stress_test`.
 
 The [test client](https://github.com/parallaxsecond/parsec-client-test) is used for integration
 testing. Check that repository for more details.
+
+## Executing tests manually
+
+### Static tests
+
+* Checking code formatting
+```bash
+cargo fmt --all -- --check
+```
+* Checking lints
+```bash
+cargo clippy --all-targets --all-features -- -D clippy::all -D clippy::cargo
+```
+
+### Unit tests
+
+* Doc tests
+```bash
+cargo test --doc --all-features
+```
+* Unit tests
+```bash
+cargo test --lib --all-features
+```
+
+### Integration tests
+
+* Normal integration tests
+```bash
+cargo test normal_tests
+```
+* Persistence integration tests: checking if the Key ID mapping persist after a
+shutdown (check the `tests/ci.sh` script for details of commands to execute)
+* Stress tests
+```bash
+cargo test stress_test
+```
+* All providers integration tests. This expect the Parsec service to include
+all providers.
+```bash
+cargo test all_providers
+```
 
 ## Fuzz testing
 
