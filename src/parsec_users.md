@@ -1,33 +1,21 @@
-<!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
-  -- SPDX-License-Identifier: Apache-2.0
-  --
-  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
-  -- not use this file except in compliance with the License.
-  -- You may obtain a copy of the License at
-  --
-  -- http://www.apache.org/licenses/LICENSE-2.0
-  --
-  -- Unless required by applicable law or agreed to in writing, software
-  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  -- See the License for the specific language governing permissions and
-  -- limitations under the License.
---->
-
 # Parsec for users
 
 ## How to install Parsec
 
-Currently only Unix-based operating systems are supported and we provide [a guide for installing the service on Linux](parsec_service/install_parsec_linux.md).
+Currently only Unix-based operating systems are supported and we provide [a guide for installing the
+service on Linux](parsec_service/install_parsec_linux.md).
 
 ## How to use Parsec
 
-On a system where Parsec is installed, it can easily be used with a Parsec Client Library.
-Those libraries communicate with the Parsec service and integrate with the rest of the software idiomatically.
+On a system where Parsec is installed, it can easily be used with a Parsec Client Library. Those
+libraries communicate with the Parsec service and integrate with the rest of the software
+idiomatically.
 
 Parsec Client Libraries are available in the following languages:
-* [Go](https://github.com/parallaxsecond/parsec-client-go)
 
-Please [contribute](writing_library.md) to add more Parsec Client Libraries in the
-languages that you want!
+- [Go](https://github.com/parallaxsecond/parsec-client-go)
+
+Please [contribute](writing_library.md) to add more Parsec Client Libraries in the languages that
+you want!
+
+*Copyright (c) 2019, Arm Limited. All rights reserved.*
