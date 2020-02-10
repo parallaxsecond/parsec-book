@@ -29,4 +29,4 @@ The [Rust Test Client](https://github.com/parallaxsecond/parsec-client-test) is 
 for testing but with no goal of being ergonomic nor easy to use.
 It can however help how to build a real Rust client library.
 
-You will need to understand the [**wire protocol specification**](../parsec/wire_protocol.md) and the [**API specification**](../parsec/api_overview.md) in depth in order to create a client library.
+You will need to understand the [**wire protocol specification**](wire_protocol.md) and the [**API specification**](api_overview.md) in depth in order to create a client library.

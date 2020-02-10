@@ -17,7 +17,7 @@
 
 # Welcome to Parsec
 
-**Parsec** is the **P**latform **A**bst**R**action for **SEC**urity, a new open-source initiative to provide a common API to secure services in a platform-agnostic way.
+**Parsec** is the **P**latform **A**bst**R**action for **SEC**urity, a new open-source initiative to provide a common [API](parsec_client/api_overview.md) to secure services in a platform-agnostic way.
 
 Parsec aims to define a universal software standard for interacting with secure object storage and cryptography services, creating a common way to interface with functions that would traditionally have been accessed by more specialised APIs. Parsec establishes an ecosystem of developer-friendly libraries in a variety of popular programming languages. Each library is designed to be highly ergonomic and simple to consume. This growing ecosystem will put secure facilities at the fingertips of developers across a broad range of use cases in infrastructure computing, edge computing and the secure Internet of Things.
 
@@ -68,7 +68,7 @@ One of the provisions of the PSA is the [**PSA Crypto API**](https://github.com/
 
 A crucial characteristic of the PSA Crypto API is that applications always reference the keys opaquely, making it ideally suited to implementations where keys are provisioned within hardware and are never exposed.
 
-The PSA Crypto API is defined in the C language. Parsec adopts the operations and contracts of the C API, and uses them as the basis for a language-independent **wire protocol**. Each operation is defined, along with all of its inputs and outputs, as a serializable contract, making it suitable to be invoked over an Inter-Process Communication (IPC) transport. Parsec maintains functional equivalence with the PSA Crypto API, but allows for out-of-process callers in any programming language.
+The PSA Crypto API is defined in the C language. Parsec adopts the operations and contracts of the C API, and uses them as the basis for a language-independent [**wire protocol**](parsec_client/wire_protocol.md). Each [operation](parsec_client/operations) is defined, along with all of its inputs and outputs, as a serializable contract, making it suitable to be invoked over an Inter-Process Communication (IPC) transport. Parsec maintains functional equivalence with the PSA Crypto API, but allows for out-of-process callers in any programming language.
 
 # The Parsec Service
 The core component of Parsec is the **security service** (or **security daemon**). This is a background process that runs on the host platform and provides connectivity with the secure facilities of that host and surfaces the wire protocol based on PSA Crypto.
@@ -86,7 +86,7 @@ In addition to surfacing the common API, the Parsec service is also responsible 
 
 Central to this multi-tenant operation is the notion of **application identity** and the need for a separate **identity provider** service. A Parsec-enabled host must contain an identity provider service in addition to the Parsec service itself.
 
-For more information about application identities and the identity provider, please refer to the [**system architecture**](system_architecture.md) document.
+For more information about application identities and the identity provider, please refer to the [**system architecture**](parsec_service/system_architecture.md) document.
 
 # Pluggable Back-End Modules
 The Parsec service employs a layered architecture, structured into a front-end and a back-end.
@@ -95,9 +95,9 @@ The front-end module provides the transport endpoint and listens for connections
 
 The back-end modules are known as **providers**. An instance of the Parsec security service can load one or more providers. Providers implement the API operations using platform-specific or vendor-specific code. They provide the "last mile" of connectivity down to the underlying hardware, software or firmware.
 
-For a deeper dive into the modular structure of the Parsec service, please take a look at the [**interfaces and dataflow**](interfaces_and_dataflow.md) design document.
+For a deeper dive into the modular structure of the Parsec service, please take a look at the [**interfaces and dataflow**](parsec_service/interfaces_and_dataflow.md) design document.
 
-Then delve into the [**source code**](source_code_structure.md) to discover the back-end provider modules that exist. If you cannot find one that is compatible with the platform you intend to use, then please consider contributing a new provider.
+Then delve into the [**source code**](parsec_service/source_code_structure.md) to discover the back-end provider modules that exist. If you cannot find one that is compatible with the platform you intend to use, then please consider contributing a new provider.
 
 # Beautiful Client Libraries
 A key aim of Parsec is to evolve an ecosystem of developer-friendly client libraries in multiple programming languages.
@@ -111,4 +111,4 @@ Each client library is carefully crafted to follow the idioms of the language th
 But Parsec's focus on developer ergonomics goes further than this. Parsec's client interface is filled with conveniences to eliminate complexity unless complexity is required. The Parsec API is functionally equivalent with the PSA Crypto API, and none of this functional completeness is lost in the client layer. All possible variants of key type and algorithm type are exposed in case they are needed. But the client library offers smart default behaviours so that simple use cases can be achieved with very little code. Parsec enables client code to be small and elegant. And even if it needs to be less small, it should still be elegant.
 
 # Source Code Structure
-Parsec is composed of multiple code repositories. The repository that you are currently viewing contains the Parsec security service itself. For more information about how the code in the repository is organized, please see the [**source code structure**](source_code_structure.md) document.
+Parsec is composed of multiple code repositories. For more information about how the code in the repository is organized, please see the [**source code structure**](parsec_service/source_code_structure.md) document.

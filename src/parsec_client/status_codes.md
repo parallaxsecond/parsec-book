@@ -14,7 +14,7 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
-# **Response Status Codes**
+# Response Status Codes
 
 * **Success** (value: 0) - successful operation
 
@@ -38,31 +38,25 @@
 
 * **ResponseTooLarge** (value: 10) - response size exceeds allowed limits
 
-* **UnsupportedOperation** (value: 11) - requested operation is not supported by the provider
+* **AuthenticationError** (value: 11) - authentication failed
 
-* **AuthenticationError** (value: 12) - authentication failed
+* **AuthenticatorDoesNotExist** (value: 12) - authenticator not supported
 
-* **AuthenticatorDoesNotExist** (value: 13) - authenticator not supported
+* **AuthenticatorNotRegistered** (value: 13) - authenticator not supported
 
-* **AuthenticatorNotRegistered** (value: 14) - authenticator not supported
+* **KeyIDManagerError** (value: 14) - internal error in the Key ID Manager
 
-* **KeyDoesNotExist** (value: 15) - key does not exist
+* **ConnectionError** (value: 15) - generic input/output error
 
-* **KeyAlreadyExists** (value: 16) - key with requested name already exists in the specified provider
+* **InvalidEncoding** (value: 16) - invalid value for this data type
 
-* **KeyIDManagerError** (value: 17) - internal error in the Key ID Manager
+* **InvalidHeader** (value: 17) - constant fields in header are invalid
 
-* **ConnectionError** (value: 18) - operation on underlying IPC connection failed
+* **WrongProviderUuid** (value: 18) - the UUID vector needs to only contain 16 bytes
 
-* **InvalidEncoding** (value: 19) - wire encoding of header is invalid
+* **NotAuthenticated** (value: 19) - request did not provide a required authentication
 
-* **InvalidHeader** (value: 20) - constant fields in header are invalid
-
-* **InvalidResponseStatus** (value: 21) - received response status is invalid
-
-* **WrongProviderUuid** (value: 22) - the UUID vector needs to only contain 16 bytes
-
-* **NotAuthenticated** (value: 23) - request did not provide a required authentication
+* **BodySizeExceedsLimit** (value: 20) - request length specified in the header is above defined limit
 
 * **PsaErrorGenericError** (value: 1132) - an error occurred that does not correspond to any defined failure cause
 
@@ -84,7 +78,7 @@
 
 * **PsaErrorInsufficientMemory** (value: 1141) - there is not enough runtime memory
 
-* **PsaErrorInsufficientStorage** (value: 1142) - there is not enough persistent storage
+* **PsaErrorInsufficientStorage** (value: 1142) - there is not enough persistent storage available
 
 * **PsaErrorInssuficientData** (value: 1143) - insufficient data when attempting to read from a resource
 
