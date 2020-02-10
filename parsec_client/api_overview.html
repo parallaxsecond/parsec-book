@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>API Overview - Parsec Documentation</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="expanded "><a href="../overview.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="expanded "><a href="../parsec_users.html"><strong aria-hidden="true">3.</strong> Parsec for users</a></li><li class="expanded "><a href="../parsec_client/index.html"><strong aria-hidden="true">4.</strong> Parsec for client developers</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_client/operations/index.html"><strong aria-hidden="true">4.1.</strong> Operations</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_client/operations/add_client.html"><strong aria-hidden="true">4.1.1.</strong> AddClient</a></li><li class="expanded "><a href="../parsec_client/operations/list_opcodes.html"><strong aria-hidden="true">4.1.2.</strong> ListOpcodes</a></li><li class="expanded "><a href="../parsec_client/operations/list_providers.html"><strong aria-hidden="true">4.1.3.</strong> ListProviders</a></li><li class="expanded "><a href="../parsec_client/operations/ping.html"><strong aria-hidden="true">4.1.4.</strong> Ping</a></li><li class="expanded "><a href="../parsec_client/operations/prove_client.html"><strong aria-hidden="true">4.1.5.</strong> ProveClient</a></li><li class="expanded "><a href="../parsec_client/operations/psa_asymmetric_sign.html"><strong aria-hidden="true">4.1.6.</strong> PsaAsymmetricSign</a></li><li class="expanded "><a href="../parsec_client/operations/psa_asymmetric_verify.html"><strong aria-hidden="true">4.1.7.</strong> PsaAsymmetricVerify</a></li><li class="expanded "><a href="../parsec_client/operations/psa_create_key.html"><strong aria-hidden="true">4.1.8.</strong> PsaCreateKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_destroy_key.html"><strong aria-hidden="true">4.1.9.</strong> PsaDestroyKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_export_public_key.html"><strong aria-hidden="true">4.1.10.</strong> PsaExportPublicKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_import_key.html"><strong aria-hidden="true">4.1.11.</strong> PsaImportKey</a></li><li class="expanded "><a href="../parsec_client/operations/share_trust_bundle.html"><strong aria-hidden="true">4.1.12.</strong> ShareTrustBundle</a></li><li class="expanded "><a href="../parsec_client/operations/key_attributes.html"><strong aria-hidden="true">4.1.13.</strong> Key Attributes</a></li></ol></li><li class="expanded "><a href="../parsec_client/api_overview.html" class="active"><strong aria-hidden="true">4.2.</strong> API Overview</a></li><li class="expanded "><a href="../parsec_client/status_codes.html"><strong aria-hidden="true">4.3.</strong> Status Codes</a></li><li class="expanded "><a href="../parsec_client/wire_protocol.html"><strong aria-hidden="true">4.4.</strong> Wire Protocol</a></li><li class="expanded "><a href="../parsec_client/writing_library.html"><strong aria-hidden="true">4.5.</strong> Writing a new Parsec Client Library</a></li></ol></li><li class="expanded "><a href="../parsec_service/index.html"><strong aria-hidden="true">5.</strong> Parsec for service developers</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_service/system_architecture.html"><strong aria-hidden="true">5.1.</strong> System Architecture</a></li><li class="expanded "><a href="../parsec_service/interfaces_and_dataflow.html"><strong aria-hidden="true">5.2.</strong> Interfaces and Dataflow</a></li><li class="expanded "><a href="../parsec_service/source_code_structure.html"><strong aria-hidden="true">5.3.</strong> Source Code Structure</a></li><li class="expanded "><a href="../parsec_service/providers.html"><strong aria-hidden="true">5.4.</strong> Providers</a></li><li class="expanded "><a href="../parsec_service/adding_provider.html"><strong aria-hidden="true">5.5.</strong> Adding a new Parsec Provider</a></li><li class="expanded "><a href="../parsec_service/build_run.html"><strong aria-hidden="true">5.6.</strong> How to build and run Parsec</a></li><li class="expanded "><a href="../parsec_service/install_parsec_linux.html"><strong aria-hidden="true">5.7.</strong> How to install Parsec on Linux</a></li><li class="expanded "><a href="../parsec_service/configuration.html"><strong aria-hidden="true">5.8.</strong> Parsec Configuration</a></li><li class="expanded "><a href="../parsec_service/test.html"><strong aria-hidden="true">5.9.</strong> How to test Parsec</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Parsec Documentation</h1>
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <!--
+  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
+  -- SPDX-License-Identifier: Apache-2.0
+  --
+  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
+  -- not use this file except in compliance with the License.
+  -- You may obtain a copy of the License at
+  --
+  -- http://www.apache.org/licenses/LICENSE-2.0
+  --
+  -- Unless required by applicable law or agreed to in writing, software
+  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  -- See the License for the specific language governing permissions and
+  -- limitations under the License.
+--->
+<h1><a class="header" href="#api-overview" id="api-overview">API Overview</a></h1>
+<h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
+<p>This document introduces the API contract that exists between the client and the service, covering its general principles and organisation. Use this document in combination with the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a> and the <a href="operations"><strong>operation directory</strong></a> as a reference guide for the development of client libraries.</p>
+<h2><a class="header" href="#status-note" id="status-note">Status Note</a></h2>
+<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
+<h2><a class="header" href="#audience" id="audience">Audience</a></h2>
+<p>This document details the API that is exposed directly by the service to its clients. This is the API that is invoked over the IPC transport between the client process and the service. Client applications do not consume this API directly. Instead, they consume a client library in their chosen programming language. The client library will present an idiomatic and simplified view of the API, making heavy use of argument defaulting to shield application developers from much of the complexity of invoking cryptographic operations. Client libraries should present the API in a form that is &quot;easy to use and hard to get wrong&quot;. The audience for this document is the client library developer, <em>not</em> the application developer. Application developers should consult the client library documentation package instead.</p>
+<h2><a class="header" href="#opcodes-and-contracts" id="opcodes-and-contracts">Opcodes and Contracts</a></h2>
+<p>The API is expressed as a set of individual and distinct <strong>operations</strong>. Each operation has a unique numerical <strong>opcode</strong> to set it apart from other operations, and to allow for it to be unambiguously selected for in a client request. (See the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a> for information about how the client must structure such requests). Each operation also has an <strong>input contract</strong>, which defines the arguments that the client must supply when invoking it. It also has an <strong>output contract</strong>, which defines the operation results that the client can expect to receive from the service upon completion. In current manifestations of the API, all input and output contracts are defined as protobuf messages, which provides a strong contractual definition and good interoperability with multiple programming languages.</p>
+<p>All operations are catalogued in the <a href="operations"><strong>operation directory</strong></a>. There is a separate documentation page for each operation, which will specify the correct opcode to use, and will provide links to the input and output contracts.</p>
+<p>In order to make an API call, the client must use the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a> to form a valid request to the service. The request header must contain the opcode of the operation being performed, and the request body must contain serialized data bytes conforming to that operation's input contract. The service will execute the operation, and form a response according to the wire protocol. The response will contain serialized data bytes conforming to the operation's output contract.</p>
+<h2><a class="header" href="#selecting-providers" id="selecting-providers">Selecting Providers</a></h2>
+<p>All of the operations in the API are implemented by back-end modules known as <strong>providers</strong>. A provider is a module that is capable of implementing operations by making use of available platform hardware or services. For example, if cryptographic services are supplied by a hardware secure element of some kind, then there would be a provider for that secure element. There may be a different provider for a software-only solution. And so forth. It is valid for these different providers to co-reside within the service. The availability of providers is governed by configuration that is applied at service-deployment time.</p>
+<p>While the service can be composed from multiple providers, any given API operation needs to be implemented by a single provider. This means that client code needs to specify the target provider when it makes an operation request. To achieve this, the service assigns an 8-bit integer value (from 0 to 255) to each available provider. In practice, the numer of providers would be very small: probably just two or three. This integer value is the <strong>provider identifier</strong>. Client code must set a single provider identifier in each API request. The <a href="wire_protocol.html"><strong>wire protocol specification</strong></a> explains how a request header field is used to route the request to the correct provider.</p>
+<p>In order to set a provider identifier in an API request, the client must first be able to determine what providers are available, what their identifiers are, and what their characteristics are (such as whether they are hardware-backed or software-backed). This is done by first referencing the <strong>core provider</strong>. The core provider is the only provider that is guaranteed to be available in any deployment of the service. It has a provider identifier of zero (the only reserved value for provider identifiers). The core provider is special in that it doesn't implement any security or cryptographic operations. The core provider is used to represent the service as a whole. The operations of the core provider can be used to gather information about the health and configuration of the service. It can be used to ping the service to check whether it is responsive, and to check the highest version of the wire protocol that it supports. The core provider can also be used to get information about the cryptographic providers, their characteristics and their 8-bit identifier values. Based on this information, the client can determine which provider is best suited to its requirements. It can then use the integer identifier of that provider to make API requests.</p>
+<p>The expected pattern is that a client would determine a single provider that best suits its needs, and then use that provider exclusively for all cryptographic operations. While this usage would be considered typical, it is certainly not enforced. There is nothing to prevent a client from using different providers for different operations if it so desires. In many deployments, it is possible that only a single cryptographic provider would be available anyway. To determine the best available or most suitable provider, a client application can use the capability check mechanism, described below.</p>
+<h2><a class="header" href="#open-closed-principle" id="open-closed-principle">Open-Closed Principle</a></h2>
+<p>The API is designed to evolve over time. This evolution will be governed by the <em>open-closed principle</em>. In practice, this means that each operation in the API, once introduced, will not be contractually modified. The API can only change by introducing new operations. This preserves backwards compatability with client code. Any client code that makes use of any given operation will continue to work, even if new operations are introduced.</p>
+<h2><a class="header" href="#deprecation" id="deprecation">Deprecation</a></h2>
+<p>While the open-closed principle dictates that operations will not be contractually changed once they have been introduced, it may sometimes be necessary to deprecate specific operations. This will often be to encourage the use of a new operation with an improved feature set and a different contract. Deprecation is largely a documentation exercise: the <a href="operations"><strong>operation directory</strong></a> will indicate when an operation has been deprecated. This does not mean that the operation will no longer work. It simply means that any new use of the operation is strongly discouraged in favour of a better alternative.</p>
+<h2><a class="header" href="#capability-checks" id="capability-checks">Capability Checks</a></h2>
+<p>The API includes a capability check operation, which allows the client to determine the set of operations that are available. There are two reasons why the client needs this capability check:</p>
+<ul>
+<li>The API can evolve over time, introducing new operations with new opcodes. In general, a client cannot know whether it is talking to a service that supports these newer operations, so it needs to check the level of support in advance.</li>
+<li>Different cryptographic providers have different capabilities. An operation that is supported in one provider might not be supported in another.</li>
+</ul>
+<p>Refer to the <a href="operations"><strong>operation directory</strong></a> for information on how to perform a capability check.</p>
+<h2><a class="header" href="#application-identity" id="application-identity">Application Identity</a></h2>
+<p>Every client application that uses the API must present an <strong>application identity</strong>. Application identities are arbitrary byte strings, which are used by the service to isolate the activities of one client from those of another. The storage of secure assets such as keys is segregated on a per-client basis: assets created by one client cannot be accessed by another. The service always uses the client's application identity string to maintain this separation.</p>
+<p>The means by which application identities are generated or assigned is outside of the scope of this specification. The only requirements for application identities is that they must be <strong>unique</strong> and <strong>stable</strong>. This means that any given application identity string can be used to identify one and only one client application. It also means that the application identity string for any given client should remain the same over time, even across system resets.</p>
+<p>The granularity of application identities is not defined. In particular, there is no assumption that a client <em>application</em> corresponds precisely with a single client <em>process</em>. A client application might be composed of multiple processes. Conversely, a single process might contain multiple distinct client applications. Client applications might also be organised into isolated environments such as containers. Provided that client application is able to present a unique and stable identity string for each API call, it does not matter how they are structured and deployed.</p>
+<h2><a class="header" href="#authentication-and-sessions" id="authentication-and-sessions">Authentication and Sessions</a></h2>
+<p>Clients present their identity strings to the service on each API call. As set out in the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a>, they do this using the <strong>authentication</strong> field of the API request.</p>
+<p>There are two ways in which the client can use the authentication field to share its identity with the service: <strong>direct authentication</strong> and <strong>authentication tokens</strong>.</p>
+<p>With <strong>direct authentication</strong>, the client authenticates the request by directly copying the application identity string into the <strong>authentication</strong> field of the request.</p>
+<p>With <strong>authentication tokens</strong>, the client obtains a token from an identity provider and sends it as the <strong>authentication</strong> field of the request. The token is reusable for a specified duration of time, after which a new one must be issued. The application identity is contained in the token and can be extracted by the service after verifying the authenticity of the token. A more detailed description of authentication tokens and their lifecycle is present in the <a href="system_architecture.html"><strong>sytem architecture specification</strong></a>.</p>
+<p>When it makes an API request, the client needs to tell the server which kind of authentication is being used. This is so that the server knows how to interepret the bytes in the <strong>authentication</strong> field of the request. As described in the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a>, the client does this by setting an integer value in the <strong>auth type</strong> field of the request header. The permitted numerical values for this field are given as follows:-</p>
+<ul>
+<li>A value of 0 (<code>0x00</code>) indicates that there is no authentication. The service will not expect any content in the <strong>authentication</strong> field of the request. If any authentication bytes are present, they will be ignored, but the request will still be considered valid. (For clients, it is considered bad practice to supply a non-empty <strong>authentication</strong> field in this case, because it is contradictory to supply authentication material while indicating an unauthenticated call, and it indicates improper coding or a possible defect on the client side). See the section below on unauthenticated operations.</li>
+<li>A value of 1 (<code>0x01</code>) indicates direct authentication. The service will expect the <strong>authentication</strong> field to contain a cleartext copy of the application identity.</li>
+<li>A value of 2 (<code>0x02</code>) indicates authentication tokens. The service will expect the <strong>authentication</strong> field to contain a JWT token. Tokens must be signed with the private key of the identity provider and their validity period must cover the moment when the check is done.</li>
+</ul>
+<p>Other values are unsupported and will be rejected by the service.</p>
+<h2><a class="header" href="#unauthenticated-operations" id="unauthenticated-operations">Unauthenticated Operations</a></h2>
+<p>Authentication via the application identity is only needed for cryptographic operations. Core provider operations do not require authentication. Core provider operations include those that are used to ping the service and gather information about its capabilities. These operations neither require nor support any notion of per-client isolation. Consequently, they can be called without any authentication. For requests to the core provider, the <strong>auth type</strong> header field should always be set to 0 (<code>0x00</code>).</p>
+<h2><a class="header" href="#content-type-and-accept-type" id="content-type-and-accept-type">Content Type and Accept Type</a></h2>
+<p>As per the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a>, API request headers contain fields for <strong>content type</strong> and <strong>accept type</strong>, which respectively indicate how the request body and response body are encoded. Currently, the only supported value for these fields is 1 (<code>0x01</code>), meaning that all request and response bodies contain serialized protobuf messages. All other values are unsupported and will be rejected by the service.</p>
+<h2><a class="header" href="#psa-crypto-operations" id="psa-crypto-operations">PSA Crypto Operations</a></h2>
+<p>The majority of the operations in this API are derived from the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API Specification</strong></a>. There is a near one-to-one correspondence of functional operations between the two APIs. The main difference is that the PSA Crypto API is defined in the C programming language, whereas the API described here is language-agnostic. There is otherwise a close contractual equivalence between the two, and this is intentional.</p>
+<p>In the <a href="operations"><strong>operation directory</strong></a>, operations derived from the PSA Crypto API have symbolic names that start with the <strong>Psa</strong> prefix, and their numerical opcodes are all in the 1,000-1,999 (decimal) range. Opcode ranges are an important aspect of the API design because they form the basis of an extensibility mechanism. In the future, it will be possible for contributors to partition the numerical opcode space with ranges for custom operations.</p>
+<h2><a class="header" href="#key-names-enumerating-and-referencing" id="key-names-enumerating-and-referencing">Key Names, Enumerating and Referencing</a></h2>
+<p>While this API is closely aligned with the PSA Crypto API, there are some differences. One important difference is in the conventions used to name and reference cryptographic keys.</p>
+<p>In the PSA Crypto API, every key has a 32-bit numerical identifier. This identifier is set by the caller when the key is created. Client code then uses this 32-bit identifier to <strong>open</strong> the key. A key must be opened before it can be used in any cryptographic operations. An open key is referenced using a <strong>handle</strong> (which is distinct from the identifier). The handle is the only way that the client code can involve the key in cryptographic functions. Once the client has finished using the key, it <strong>closes</strong> the handle.</p>
+<p>This API differs in two ways. Firstly, the key names are not 32-bit numerical values: they are <strong>strings</strong>. Secondly, there is no notion of key handles. Keys are always referenced by name. There is no operation to open or close a key. Cryptographic operations are all specified in terms of the key name string. However, while the notion of a key handle is absent, it is important to understand that the opacity of keys - one of the critical design characteristics of the PSA Crypto API - is preserved here. Key names are used to reference keys for cryptographic operations, but the actual key material is <em>never</em> exposed to the caller of the API unless an explicit operation is invoked to export the key (and the key's usage policy permits for such an export to occur).</p>
+<p>The use of string names offers greater flexibility in how names can be chosen and structured. It allows for names to be readable and meaningful. It also allows for names to follow a structured pattern with separators, similar to a file path. This allows keys to not only be named in meaningful ways, but also for them to be organised according to a meaningful structure, just like files on a file system. Keys with a similar purpose, for example, can be stored in the same part of the notional &quot;tree&quot;.</p>
+<p>Key names adopt a path structure similar to Unix file paths, such as <code>/keys/rsa/my_key_1</code>.</p>
+<p>This key naming convention permits for the API to support key <strong>enumeration</strong>, where the client is able to determine the set of known keys according to some wildcard pattern such as <code>/keys/rsa/*</code>.</p>
+<p>All key names are implicitly in a per-client namespace, so it is impossible for one client application to enumerate or otherwise discover the keys that are owned by another client application.</p>
+<p>Providers can impose length restrictions on key names to help with internal storage and argument validation. This API reference does not define any single fixed maximum length. Clients must determine the maximum length at runtime using the capability checking mechanism.</p>
+<h2><a class="header" href="#full-api-reference" id="full-api-reference">Full API Reference</a></h2>
+<p>For the full reference guide to individual API operations, please refer to the <a href="operations"><strong>operation directory</strong></a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../parsec_client/operations/key_attributes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../parsec_client/status_codes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../parsec_client/operations/key_attributes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="../parsec_client/status_codes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
