@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Status Codes - Parsec Documentation</title>
+        <title>Status Codes - The Parsec Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -113,7 +113,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Parsec Documentation</h1>
+                        <h1 class="menu-title">The Parsec Book</h1>
 
                         <div class="right-buttons">
                             <a href="../print.html" title="Print this book" aria-label="Print this book">
@@ -148,145 +148,57 @@
 
                 <div id="content" class="content">
                     <main>
-                        <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
-  -- SPDX-License-Identifier: Apache-2.0
-  --
-  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
-  -- not use this file except in compliance with the License.
-  -- You may obtain a copy of the License at
-  --
-  -- http://www.apache.org/licenses/LICENSE-2.0
-  --
-  -- Unless required by applicable law or agreed to in writing, software
-  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  -- See the License for the specific language governing permissions and
-  -- limitations under the License.
---->
-<h1><a class="header" href="#response-status-codes" id="response-status-codes">Response Status Codes</a></h1>
+                        <h1><a class="header" href="#response-status-codes" id="response-status-codes">Response Status Codes</a></h1>
 <ul>
-<li>
-<p><strong>Success</strong> (value: 0) - successful operation</p>
-</li>
-<li>
-<p><strong>WrongProviderID</strong> (value: 1) - requested provider ID does not match that of the backend</p>
-</li>
-<li>
-<p><strong>ContentTypeNotSupported</strong> (value: 2) - requested content type is not supported by the backend</p>
-</li>
-<li>
-<p><strong>AcceptTypeNotSupported</strong> (value: 3) - requested accept type is not supported by the backend</p>
-</li>
-<li>
-<p><strong>VersionTooBig</strong> (value: 4) - requested version is not supported by the backend</p>
-</li>
-<li>
-<p><strong>ProviderNotRegistered</strong> (value: 5) - no provider registered for the requested provider ID</p>
-</li>
-<li>
-<p><strong>ProviderDoesNotExist</strong> (value: 6) - no provider defined for requested provider ID</p>
-</li>
-<li>
-<p><strong>DeserializingBodyFailed</strong> (value: 7) - failed to deserialize the body of the message</p>
-</li>
-<li>
-<p><strong>SerializingBodyFailed</strong> (value: 8) - failed to serialize the body of the message</p>
-</li>
-<li>
-<p><strong>OpcodeDoesNotExist</strong> (value: 9) - requested operation is not defined</p>
-</li>
-<li>
-<p><strong>ResponseTooLarge</strong> (value: 10) - response size exceeds allowed limits</p>
-</li>
-<li>
-<p><strong>AuthenticationError</strong> (value: 11) - authentication failed</p>
-</li>
-<li>
-<p><strong>AuthenticatorDoesNotExist</strong> (value: 12) - authenticator not supported</p>
-</li>
-<li>
-<p><strong>AuthenticatorNotRegistered</strong> (value: 13) - authenticator not supported</p>
-</li>
-<li>
-<p><strong>KeyIDManagerError</strong> (value: 14) - internal error in the Key ID Manager</p>
-</li>
-<li>
-<p><strong>ConnectionError</strong> (value: 15) - generic input/output error</p>
-</li>
-<li>
-<p><strong>InvalidEncoding</strong> (value: 16) - invalid value for this data type</p>
-</li>
-<li>
-<p><strong>InvalidHeader</strong> (value: 17) - constant fields in header are invalid</p>
-</li>
-<li>
-<p><strong>WrongProviderUuid</strong> (value: 18) - the UUID vector needs to only contain 16 bytes</p>
-</li>
-<li>
-<p><strong>NotAuthenticated</strong> (value: 19) - request did not provide a required authentication</p>
-</li>
-<li>
-<p><strong>BodySizeExceedsLimit</strong> (value: 20) - request length specified in the header is above defined limit</p>
-</li>
-<li>
-<p><strong>PsaErrorGenericError</strong> (value: 1132) - an error occurred that does not correspond to any defined failure cause</p>
-</li>
-<li>
-<p><strong>PsaErrorNotPermitted</strong> (value: 1133) - the requested action is denied by a policy</p>
-</li>
-<li>
-<p><strong>PsaErrorNotSupported</strong> (value: 1134) - the requested operation or a parameter is not supported by this implementation</p>
-</li>
-<li>
-<p><strong>PsaErrorInvalidArgument</strong> (value: 1135) - the parameters passed to the function are invalid</p>
-</li>
-<li>
-<p><strong>PsaErrorInvalidHandle</strong> (value: 1136) - the key handle is not valid</p>
-</li>
-<li>
-<p><strong>PsaErrorBadState</strong> (value: 1137) - the requested action cannot be performed in the current state</p>
-</li>
-<li>
-<p><strong>PsaErrorBufferTooSmall</strong> (value: 1138) - an output buffer is too small</p>
-</li>
-<li>
-<p><strong>PsaErrorAlreadyExists</strong> (value: 1139) - asking for an item that already exists</p>
-</li>
-<li>
-<p><strong>PsaErrorDoesNotExist</strong> (value: 1140) - asking for an item that doesn't exist</p>
-</li>
-<li>
-<p><strong>PsaErrorInsufficientMemory</strong> (value: 1141) - there is not enough runtime memory</p>
-</li>
-<li>
-<p><strong>PsaErrorInsufficientStorage</strong> (value: 1142) - there is not enough persistent storage available</p>
-</li>
-<li>
-<p><strong>PsaErrorInssuficientData</strong> (value: 1143) - insufficient data when attempting to read from a resource</p>
-</li>
-<li>
-<p><strong>PsaErrorCommunicationFailure</strong> (value: 1145) - there was a communication failure inside the implementation</p>
-</li>
-<li>
-<p><strong>PsaErrorStorageFailure</strong> (value: 1146) - there was a storage failure that may have led to data loss</p>
-</li>
-<li>
-<p><strong>PsaErrorHardwareFailure</strong> (value: 1147) - a hardware failure was detected</p>
-</li>
-<li>
-<p><strong>PsaErrorInsufficientEntropy</strong> (value: 1148) - there is not enough entropy to generate random data needed for the requested action</p>
-</li>
-<li>
-<p><strong>PsaErrorInvalidSignature</strong> (value: 1149) - the signature, MAC or hash is incorrect</p>
-</li>
-<li>
-<p><strong>PsaErrorInvalidPadding</strong> (value: 1150) - the decrypted padding is incorrect</p>
-</li>
-<li>
-<p><strong>PsaErrorTamperingDetected</strong> (value: 1151) - a tampering attempt was detected</p>
-</li>
+<li><strong>Success</strong> (value: 0) - successful operation</li>
+<li><strong>WrongProviderID</strong> (value: 1) - requested provider ID does not match that of the backend</li>
+<li><strong>ContentTypeNotSupported</strong> (value: 2) - requested content type is not supported by the backend</li>
+<li><strong>AcceptTypeNotSupported</strong> (value: 3) - requested accept type is not supported by the backend</li>
+<li><strong>VersionTooBig</strong> (value: 4) - requested version is not supported by the backend</li>
+<li><strong>ProviderNotRegistered</strong> (value: 5) - no provider registered for the requested provider ID</li>
+<li><strong>ProviderDoesNotExist</strong> (value: 6) - no provider defined for requested provider ID</li>
+<li><strong>DeserializingBodyFailed</strong> (value: 7) - failed to deserialize the body of the message</li>
+<li><strong>SerializingBodyFailed</strong> (value: 8) - failed to serialize the body of the message</li>
+<li><strong>OpcodeDoesNotExist</strong> (value: 9) - requested operation is not defined</li>
+<li><strong>ResponseTooLarge</strong> (value: 10) - response size exceeds allowed limits</li>
+<li><strong>AuthenticationError</strong> (value: 11) - authentication failed</li>
+<li><strong>AuthenticatorDoesNotExist</strong> (value: 12) - authenticator not supported</li>
+<li><strong>AuthenticatorNotRegistered</strong> (value: 13) - authenticator not supported</li>
+<li><strong>KeyIDManagerError</strong> (value: 14) - internal error in the Key ID Manager</li>
+<li><strong>ConnectionError</strong> (value: 15) - generic input/output error</li>
+<li><strong>InvalidEncoding</strong> (value: 16) - invalid value for this data type</li>
+<li><strong>InvalidHeader</strong> (value: 17) - constant fields in header are invalid</li>
+<li><strong>WrongProviderUuid</strong> (value: 18) - the UUID vector needs to only contain 16 bytes</li>
+<li><strong>NotAuthenticated</strong> (value: 19) - request did not provide a required authentication</li>
+<li><strong>BodySizeExceedsLimit</strong> (value: 20) - request length specified in the header is above defined
+limit</li>
+<li><strong>PsaErrorGenericError</strong> (value: 1132) - an error occurred that does not correspond to any defined
+failure cause</li>
+<li><strong>PsaErrorNotPermitted</strong> (value: 1133) - the requested action is denied by a policy</li>
+<li><strong>PsaErrorNotSupported</strong> (value: 1134) - the requested operation or a parameter is not supported
+by this implementation</li>
+<li><strong>PsaErrorInvalidArgument</strong> (value: 1135) - the parameters passed to the function are invalid</li>
+<li><strong>PsaErrorInvalidHandle</strong> (value: 1136) - the key handle is not valid</li>
+<li><strong>PsaErrorBadState</strong> (value: 1137) - the requested action cannot be performed in the current state</li>
+<li><strong>PsaErrorBufferTooSmall</strong> (value: 1138) - an output buffer is too small</li>
+<li><strong>PsaErrorAlreadyExists</strong> (value: 1139) - asking for an item that already exists</li>
+<li><strong>PsaErrorDoesNotExist</strong> (value: 1140) - asking for an item that doesn't exist</li>
+<li><strong>PsaErrorInsufficientMemory</strong> (value: 1141) - there is not enough runtime memory</li>
+<li><strong>PsaErrorInsufficientStorage</strong> (value: 1142) - there is not enough persistent storage available</li>
+<li><strong>PsaErrorInssuficientData</strong> (value: 1143) - insufficient data when attempting to read from a
+resource</li>
+<li><strong>PsaErrorCommunicationFailure</strong> (value: 1145) - there was a communication failure inside the
+implementation</li>
+<li><strong>PsaErrorStorageFailure</strong> (value: 1146) - there was a storage failure that may have led to data
+loss</li>
+<li><strong>PsaErrorHardwareFailure</strong> (value: 1147) - a hardware failure was detected</li>
+<li><strong>PsaErrorInsufficientEntropy</strong> (value: 1148) - there is not enough entropy to generate random
+data needed for the requested action</li>
+<li><strong>PsaErrorInvalidSignature</strong> (value: 1149) - the signature, MAC or hash is incorrect</li>
+<li><strong>PsaErrorInvalidPadding</strong> (value: 1150) - the decrypted padding is incorrect</li>
+<li><strong>PsaErrorTamperingDetected</strong> (value: 1151) - a tampering attempt was detected</li>
 </ul>
+<p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 
                     </main>
 

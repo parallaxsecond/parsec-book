@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>How to install Parsec on Linux - Parsec Documentation</title>
+        <title>How to install Parsec on Linux - The Parsec Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -113,7 +113,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Parsec Documentation</h1>
+                        <h1 class="menu-title">The Parsec Book</h1>
 
                         <div class="right-buttons">
                             <a href="../print.html" title="Print this book" aria-label="Print this book">
@@ -148,57 +148,40 @@
 
                 <div id="content" class="content">
                     <main>
-                        <!--
-  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
-  -- SPDX-License-Identifier: Apache-2.0
-  --
-  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
-  -- not use this file except in compliance with the License.
-  -- You may obtain a copy of the License at
-  --
-  -- http://www.apache.org/licenses/LICENSE-2.0
-  --
-  -- Unless required by applicable law or agreed to in writing, software
-  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  -- See the License for the specific language governing permissions and
-  -- limitations under the License.
---->
-<h1><a class="header" href="#how-to-install-parsec-on-linux" id="how-to-install-parsec-on-linux">How to install Parsec on Linux</a></h1>
+                        <h1><a class="header" href="#how-to-install-parsec-on-linux" id="how-to-install-parsec-on-linux">How to install Parsec on Linux</a></h1>
 <p>Parsec can be built and installed as a Linux daemon using systemd. The Parsec daemon uses socket
-activation which means that the daemon will be automatically started when a client request is
-made on the socket. The daemon is a systemd user daemon run by the <code>parsec</code> user.</p>
-<p>If your Linux system uses systemd to manage daemons, you can follow these steps.
-<code>$DESIRED_FEATURES</code> can be a space or comma-separated subset of:
-<code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>. Choose the
-providers you want to install depending on what is available on the platform.</p>
-<ul>
-<li>Create and log in to a new user named <code>parsec</code></li>
-<li>In its home directory, pull and install Parsec as a daemon</li>
-</ul>
-<pre><code class="language-bash">git clone https://github.com/parallaxsecond/parsec.git
+activation which means that the daemon will be automatically started when a client request is made
+on the socket. The daemon is a systemd user daemon run by the <code>parsec</code> user.</p>
+<p>If your Linux system uses systemd to manage daemons, you can follow these steps. <code>$DESIRED_FEATURES</code>
+can be a space or comma-separated subset of: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and
+<code>tpm-provider</code>. Choose the providers you want to install depending on what is available on the
+platform.</p>
+<p>Create and log in to a new user named <code>parsec</code>.</p>
+<pre><code>sudo useradd -m parsec
+sudo passwd parsec
+su --login parsec
+</code></pre>
+<p>In its home directory, pull and install Parsec as a daemon.</p>
+<pre><code>git clone https://github.com/parallaxsecond/parsec.git
 cargo install --no-default-features --features $DESIRED_FEATURES --path parsec
 </code></pre>
-<ul>
-<li>Copy and adapt the <a href="configuration.html">configuration</a> you want to use</li>
-</ul>
-<pre><code class="language-bash">cp parsec/config.toml config.toml
+<p>Copy and adapt the <a href="configuration.html">configuration</a> you want to use.</p>
+<pre><code>cp parsec/config.toml config.toml
 </code></pre>
-<ul>
-<li>Install the systemd unit files and activate the Parsec socket</li>
-</ul>
-<pre><code class="language-bash">mkdir -p ~/.config/systemd/user
+<p>Install the systemd unit files and activate the Parsec socket.</p>
+<pre><code>mkdir -p ~/.config/systemd/user
 cp -r parsec/systemd-daemon/parsec.service parsec/systemd-daemon/parsec.socket ~/.config/systemd/user
 systemctl --user enable parsec.socket
 systemctl --user start parsec.socket
 </code></pre>
-<p>Every user on the system can now use Parsec!</p>
-<p>You can test it going inside the <code>parsec</code> directory and:</p>
-<pre><code class="language-bash">cargo test --test normal
+<p>Every user on the system can now use Parsec! You can test it going inside the <code>parsec</code> directory
+and:</p>
+<pre><code>cargo test --test normal
 </code></pre>
 <p>Check the Parsec logs with:</p>
-<pre><code class="language-bash">journalclt --user -u parsec
+<pre><code>journalclt --user -u parsec
 </code></pre>
+<p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 
                     </main>
 

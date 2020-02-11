@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Operations - Parsec Documentation</title>
+        <title>Operations - The Parsec Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -113,7 +113,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Parsec Documentation</h1>
+                        <h1 class="menu-title">The Parsec Book</h1>
 
                         <div class="right-buttons">
                             <a href="../../print.html" title="Print this book" aria-label="Print this book">
@@ -148,35 +148,25 @@
 
                 <div id="content" class="content">
                     <main>
-                        <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
-  -- SPDX-License-Identifier: Apache-2.0
-  --
-  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
-  -- not use this file except in compliance with the License.
-  -- You may obtain a copy of the License at
-  --
-  -- http://www.apache.org/licenses/LICENSE-2.0
-  --
-  -- Unless required by applicable law or agreed to in writing, software
-  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  -- See the License for the specific language governing permissions and
-  -- limitations under the License.
---->
-<h1><a class="header" href="#operations" id="operations">Operations</a></h1>
+                        <h1><a class="header" href="#operations" id="operations">Operations</a></h1>
 <h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
 <p>This document provides links to full descriptions for all of the operations in the API.</p>
 <h2><a class="header" href="#status-note" id="status-note">Status Note</a></h2>
-<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice. Some operations are listed without being linked to documentation pages. These operations are not currently supported, but are intended for future roadmap. Only a small number of the PSA Crypto operations are supported in the current version.</p>
+<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.
+Some operations are listed without being linked to documentation pages. These operations are not
+currently supported, but are intended for future roadmap. Only a small number of the PSA Crypto
+operations are supported in the current version.</p>
 <h2><a class="header" href="#identity-operations" id="identity-operations">Identity Operations</a></h2>
-<p>Identity operations are not supported by the security service. These operations are reserved for use only by the identity provider, which is a separate service in the system, but supports a common wire protocol.</p>
+<p>Identity operations are not supported by the security service. These operations are reserved for use
+only by the identity provider, which is a separate service in the system, but supports a common wire
+protocol.</p>
 <ul>
 <li><a href="add_client.html"><strong>AddClient</strong></a></li>
 <li><a href="prove_client.html"><strong>ProveClient</strong></a></li>
 </ul>
 <h2><a class="header" href="#core-operations" id="core-operations">Core Operations</a></h2>
-<p>Core operations are non-cryptographic operations supported by the core provider. Set the <strong>provider</strong> field of the request header to 0 (<code>0x00</code>) to invoke these operations.</p>
+<p>Core operations are non-cryptographic operations supported by the core provider. Set the
+<strong>provider</strong> field of the request header to 0 (<code>0x00</code>) to invoke these operations.</p>
 <h3><a class="header" href="#service-health" id="service-health">Service Health</a></h3>
 <ul>
 <li><a href="ping.html"><strong>Ping</strong></a></li>
@@ -191,7 +181,8 @@
 <li><a href="share_trust_bundle.html"><strong>ShareTrustBundle</strong></a></li>
 </ul>
 <h2><a class="header" href="#psa-crypto-operations" id="psa-crypto-operations">PSA Crypto Operations</a></h2>
-<p>These operations are all derived from equivalent function definitions in the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API Specification</strong></a>. </p>
+<p>These operations are all derived from equivalent function definitions in the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API
+Specification</strong></a>.</p>
 <h3><a class="header" href="#key-management" id="key-management">Key Management</a></h3>
 <ul>
 <li><a href="psa_create_key.html"><strong>PsaCreateKey</strong></a></li>
@@ -279,6 +270,7 @@
 <ul>
 <li><strong>PsaGenerateRandom</strong></li>
 </ul>
+<p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 
                     </main>
 

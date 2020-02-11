@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Providers - Parsec Documentation</title>
+        <title>Providers - The Parsec Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -113,7 +113,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Parsec Documentation</h1>
+                        <h1 class="menu-title">The Parsec Book</h1>
 
                         <div class="right-buttons">
                             <a href="../print.html" title="Print this book" aria-label="Print this book">
@@ -148,41 +148,43 @@
 
                 <div id="content" class="content">
                     <main>
-                        <!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
-  -- SPDX-License-Identifier: Apache-2.0
-  --
-  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
-  -- not use this file except in compliance with the License.
-  -- You may obtain a copy of the License at
-  --
-  -- http://www.apache.org/licenses/LICENSE-2.0
-  --
-  -- Unless required by applicable law or agreed to in writing, software
-  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  -- See the License for the specific language governing permissions and
-  -- limitations under the License.
---->
-<h1><a class="header" href="#providers" id="providers">Providers</a></h1>
+                        <h1><a class="header" href="#providers" id="providers">Providers</a></h1>
 <p>This document offers details on the currently supported providers.</p>
-<p>For information regarding the function providers play in the Parsec service, read the <a href="interfaces_and_dataflow.html"><em>Interfaces and Dataflow</em></a> doc. For details on how the service code is structured around providers, read the <a href="source_code_structure.html"><em>Source Code Structure</em></a> doc.</p>
+<p>For information regarding the function providers play in the Parsec service, read the <a href="interfaces_and_dataflow.html"><em>Interfaces
+and Dataflow</em></a> doc. For details on how the service code is structured
+around providers, read the <a href="source_code_structure.html"><em>Source Code Structure</em></a> doc.</p>
 <h2><a class="header" href="#core-provider" id="core-provider">Core Provider</a></h2>
 <p><strong>Provider UUID: 47049873-2a43-4845-9d72-831eab668784</strong></p>
-<p>The core provider is a non-cryptographic provider, tasked with storing and distributing both static and dynamic information about the service. It is the base for service discovery, helping clients identify what functionality is available.</p>
-<p>One instance of the core provider must always be running with a provider ID of 0. </p>
+<p>The core provider is a non-cryptographic provider, tasked with storing and distributing both static
+and dynamic information about the service. It is the base for service discovery, helping clients
+identify what functionality is available.</p>
+<p>One instance of the core provider must always be running with a provider ID of 0.</p>
 <h2><a class="header" href="#mbed-provider" id="mbed-provider">Mbed Provider</a></h2>
 <p><strong>Provider UUID: 1c1139dc-ad7c-47dc-ad6b-db6fdb466552</strong></p>
-<p>The Mbed provider is a software-based provider built on top of Mbed Crypto - the reference implementation of the PSA cryptography specification. Mbed Crypto is loaded as a static library and executes with the rest of the service in user-space. </p>
-<p>The software version of the Mbed provider is meant as a proof-of-concept and should not be used in real-world environments. Future improvements will expand the security guarantee of Mbed Crypto-based providers. </p>
+<p>The Mbed provider is a software-based provider built on top of Mbed Crypto - the reference
+implementation of the PSA cryptography specification. Mbed Crypto is loaded as a static library and
+executes with the rest of the service in user-space.</p>
+<p>The software version of the Mbed provider is meant as a proof-of-concept and should not be used in
+real-world environments. Future improvements will expand the security guarantee of Mbed Crypto-based
+providers.</p>
 <h2><a class="header" href="#tpm-provider" id="tpm-provider">TPM Provider</a></h2>
 <p><strong>Provider UUID: 1e4954a4-ff21-46d3-ab0c-661eeb667e1d</strong></p>
-<p>The TPM provider offers an abstraction over hardware (or software) Trusted Platform Modules (TPM) version 2. It uses the TPM2 Software Stack <a href="https://trustedcomputinggroup.org/resource/tcg-tss-2-0-enhanced-system-api-esapi-specification/">Enhanced System API</a> to communicate with the TPM and thus requires the TSS libraries to be on the machine.</p>
-<p>The provider operates with keys based in the Owner Hierarchy. Thus, Parsec needs to be able to authenticate with the TPM and to create a primary key and children keys derived from the primary. Given current constraints, only one request at a time can be serviced by this provider - the rest being blocked, waiting their turn.</p>
+<p>The TPM provider offers an abstraction over hardware (or software) Trusted Platform Modules (TPM)
+version 2. It uses the TPM2 Software Stack <a href="https://trustedcomputinggroup.org/resource/tcg-tss-2-0-enhanced-system-api-esapi-specification/">Enhanced System
+API</a>
+to communicate with the TPM and thus requires the TSS libraries to be on the machine.</p>
+<p>The provider operates with keys based in the Owner Hierarchy. Thus, Parsec needs to be able to
+authenticate with the TPM and to create a primary key and children keys derived from the primary.
+Given current constraints, only one request at a time can be serviced by this provider - the rest
+being blocked, waiting their turn.</p>
 <h2><a class="header" href="#pkcs-11-provider" id="pkcs-11-provider">PKCS 11 Provider</a></h2>
 <p><strong>Provider UUID: 30e39502-eba6-4d60-a4af-c518b7f5e38f</strong></p>
-<p>The PKCS11 provider is a wrapper around the PKCS 11 standard interface, capable of working with software or hardware modules that expose this API. Linking is done dynamically, and requires a library that can drive the crypto engine.</p>
-<p>Connecting to the PKCS11 module requires a slot number and, ideally, a PIN number that secures the slot.</p>
+<p>The PKCS11 provider is a wrapper around the PKCS 11 standard interface, capable of working with
+software or hardware modules that expose this API. Linking is done dynamically, and requires a
+library that can drive the crypto engine.</p>
+<p>Connecting to the PKCS11 module requires a slot number and, ideally, a PIN number that secures the
+slot.</p>
+<p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 
                     </main>
 

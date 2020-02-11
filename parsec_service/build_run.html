@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>How to build and run Parsec - Parsec Documentation</title>
+        <title>How to build and run Parsec - The Parsec Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -113,7 +113,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Parsec Documentation</h1>
+                        <h1 class="menu-title">The Parsec Book</h1>
 
                         <div class="right-buttons">
                             <a href="../print.html" title="Print this book" aria-label="Print this book">
@@ -148,73 +148,65 @@
 
                 <div id="content" class="content">
                     <main>
-                        <!--
-  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
-  -- SPDX-License-Identifier: Apache-2.0
-  --
-  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
-  -- not use this file except in compliance with the License.
-  -- You may obtain a copy of the License at
-  --
-  -- http://www.apache.org/licenses/LICENSE-2.0
-  --
-  -- Unless required by applicable law or agreed to in writing, software
-  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  -- See the License for the specific language governing permissions and
-  -- limitations under the License.
---->
-<h1><a class="header" href="#how-to-build-and-run-parsec" id="how-to-build-and-run-parsec">How to build and run Parsec</a></h1>
-<p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install Rust</a>.</p>
-<p>Because the providers supported by Parsec are dependent on libraries and/or hardware features present on the platform, the build is fragmented through Rust features so that the resulting binary only contains the desired providers. Currently the service provides the following features: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>.</p>
-<p>In order for the service to be spun up, a number of parameters are required in a TOML file. The repository contains an <a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">example</a> of such a configuration file which shows all the options and their default values.</p>
-<p>To build and run the service, set <code>DESIRED_FEATURES</code> to be a subset of the features mentioned above, space or comma separated, and execute:</p>
-<pre><code class="language-bash">cargo run --no-default-features --features $DESIRED_FEATURES
+                        <h1><a class="header" href="#how-to-build-and-run-parsec" id="how-to-build-and-run-parsec">How to build and run Parsec</a></h1>
+<p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install
+Rust</a>.</p>
+<p>Because the providers supported by Parsec are dependent on libraries and/or hardware features
+present on the platform, the build is fragmented through Rust features so that the resulting binary
+only contains the desired providers. Currently the service provides the following features:
+<code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>.</p>
+<p>In order for the service to be spun up, a number of parameters are required in a TOML file. The
+repository contains an <a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">example</a>
+of such a configuration file which shows all the options and their default values.</p>
+<p>To build and run the service, set <code>DESIRED_FEATURES</code> to be a subset of the features mentioned above,
+space or comma separated, and execute:</p>
+<pre><code>cargo run --no-default-features --features $DESIRED_FEATURES
 </code></pre>
-<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients. If the configuration file is not in the directory from which Parsec is run, its path must be passed via CLI:</p>
-<pre><code class="language-bash">cargo run --no-default-features --features $DESIRED_FEATURES -- --config $PATH_TO_CONFIG
+<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients. If
+the configuration file is not in the directory from which Parsec is run, its path must be passed via
+CLI:</p>
+<pre><code>cargo run --no-default-features --features $DESIRED_FEATURES -- --config $PATH_TO_CONFIG
 </code></pre>
-<p>From another terminal, it is now possible to execute <a href="test.html#integration-tests">integration tests</a> on Parsec!</p>
+<p>From another terminal, it is now possible to execute <a href="test.html#integration-tests">integration tests</a>
+on Parsec!</p>
 <h2><a class="header" href="#killing-parsec" id="killing-parsec">Killing Parsec</a></h2>
-<p>On Linux, sending <code>SIGTERM</code> will gracefully terminate Parsec, waiting all of
-its threads to finish.</p>
-<pre><code class="language-bash">pkill parsec
+<p>On Linux, sending <code>SIGTERM</code> will gracefully terminate Parsec, waiting all of its threads to finish.</p>
+<pre><code>pkill parsec
 </code></pre>
 <h2><a class="header" href="#reloading-parsec" id="reloading-parsec">Reloading Parsec</a></h2>
-<p>On Linux, sending <code>SIGHUP</code> will reload Parsec: it will wait for its threads to
-finish, drop all of its components, read the configuration and instantiate
-all the components again. It is usefull to change the Parsec configuration
-without having to kill the service.</p>
-<pre><code class="language-bash">pkill -SIGHUP parsec
+<p>On Linux, sending <code>SIGHUP</code> will reload Parsec: it will wait for its threads to finish, drop all of
+its components, read the configuration and instantiate all the components again. It is usefull to
+change the Parsec configuration without having to kill the service.</p>
+<pre><code>pkill -SIGHUP parsec
 </code></pre>
 <h2><a class="header" href="#external-dependencies" id="external-dependencies">External dependencies</a></h2>
 <p>Each provider has external dependencies that are needed to compile.</p>
-<h3><a class="header" href="#mbed-crypto-mbed-crypto-provider" id="mbed-crypto-mbed-crypto-provider">Mbed Crypto (<code>mbed-crypto-provider</code>)</a></h3>
-<p>If Mbed Crypto is not already available on the system, the build script will
-try to download and compile it. The following commands need to be available:</p>
+<h3><a class="header" href="#mbed-crypto" id="mbed-crypto">Mbed Crypto</a></h3>
+<p>If Mbed Crypto is not already available on the system, the build script will try to download and
+compile it. The following commands need to be available:</p>
 <ul>
-<li>a C toolchain, by default <code>clang</code> and <code>ar</code> are used but this is <a href="https://github.com/parallaxsecond/parsec/blob/master/build-conf.toml">configurable</a></li>
+<li>a C toolchain, by default <code>clang</code> and <code>ar</code> are used but this is
+<a href="https://github.com/parallaxsecond/parsec/blob/master/build-conf.toml">configurable</a></li>
 <li><code>wget</code></li>
 <li><code>tar</code></li>
 <li><code>make</code></li>
 <li><code>python3</code></li>
 </ul>
-<h3><a class="header" href="#pkcs-11-crypto-pkcs11-provider" id="pkcs-11-crypto-pkcs11-provider">PKCS 11 Crypto (<code>pkcs11-provider</code>)</a></h3>
-<p>The PKCS 11 provider will try to dynamically load the library indicated in the
-configuration file, hence a library implementing the PKCS 11 API is needed.</p>
-<h3><a class="header" href="#tpm-crypto-tpm-provider" id="tpm-crypto-tpm-provider">TPM Crypto (<code>tpm-provider</code>)</a></h3>
-<p>The TPM provider will try to build the <code>tss-esapi</code> crate which needs built
-TSS 2.0 esys and tctildr libraries. It will use <code>pkg-config</code> to find them
-using the names <code>tss2-esys</code> and <code>tss2-tctildr</code>.</p>
+<h3><a class="header" href="#pkcs-11-crypto" id="pkcs-11-crypto">PKCS 11 Crypto</a></h3>
+<p>The PKCS 11 provider will try to dynamically load the library indicated in the configuration file,
+hence a library implementing the PKCS 11 API is needed.</p>
+<h3><a class="header" href="#tpm-crypto" id="tpm-crypto">TPM Crypto</a></h3>
+<p>The TPM provider will try to build the <code>tss-esapi</code> crate which needs built TSS 2.0 esys and tctildr
+libraries. It will use <code>pkg-config</code> to find them using the names <code>tss2-esys</code> and <code>tss2-tctildr</code>.</p>
 <h2><a class="header" href="#cross-compiling-for-arm64" id="cross-compiling-for-arm64">Cross-compiling for Arm64</a></h2>
-<p>To cross-compile the service for the Linux on Arm64 target, you will need to install the
-appropriate toolchain for this target. By default the Arm GNU toolchain is used to
-compile Mbed Crypto and link everything together. The <code>aarch64-linux-gnu-*</code> tools will be
-needed. Change <code>build-conf.toml</code> and <code>.cargo/config</code> files to change the cross-compiling
-toolchain used.
-Just execute the following command to cross-compile for the Linux on Arm64 target:</p>
-<pre><code class="language-bash">cargo build --target aarch64-unknown-linux-gnu
+<p>To cross-compile the service for the Linux on Arm64 target, you will need to install the appropriate
+toolchain for this target. By default the Arm GNU toolchain is used to compile Mbed Crypto and link
+everything together. The <code>aarch64-linux-gnu-*</code> tools will be needed. Change <code>build-conf.toml</code> and
+<code>.cargo/config</code> files to change the cross-compiling toolchain used. Just execute the following
+command to cross-compile for the Linux on Arm64 target:</p>
+<pre><code>cargo build --target aarch64-unknown-linux-gnu
 </code></pre>
+<p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 
                     </main>
 

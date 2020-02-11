@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>How to test Parsec - Parsec Documentation</title>
+        <title>How to test Parsec - The Parsec Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -113,7 +113,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Parsec Documentation</h1>
+                        <h1 class="menu-title">The Parsec Book</h1>
 
                         <div class="right-buttons">
                             <a href="../print.html" title="Print this book" aria-label="Print this book">
@@ -148,77 +148,64 @@
 
                 <div id="content" class="content">
                     <main>
-                        <!--
-  -- Copyright (c) 2020, Arm Limited, All Rights Reserved
-  -- SPDX-License-Identifier: Apache-2.0
-  --
-  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
-  -- not use this file except in compliance with the License.
-  -- You may obtain a copy of the License at
-  --
-  -- http://www.apache.org/licenses/LICENSE-2.0
-  --
-  -- Unless required by applicable law or agreed to in writing, software
-  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  -- See the License for the specific language governing permissions and
-  -- limitations under the License.
---->
-<h1><a class="header" href="#how-to-test-parsec" id="how-to-test-parsec">How to test Parsec</a></h1>
-<p>Parsec relies on a mix of unit, integration, stress and fuzz tests. Unit tests are usually found in the same module as the code they verify. Integration tests can be found in the <code>tests</code> directory (along with the code framework required for running them), and come in two flavours: single-provider and all-providers.</p>
-<p>Single-provider tests do a thorough verification of each individual provider, while all-providers tests check that the common functionality is capable of supporting multiple providers at the same time. Another subcategory of integration tests are persistance tests which check that key material is persisted through service restarts.</p>
-<p>The stress test simply constructs and sends random requests as fast as possible using a multithreaded client. Valid requests are sent intermittently so as to check that the service is still up and working correctly.</p>
-<p>The <code>tests/ci.sh</code> script executes all tests and is used on the CI. <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a>
-and <a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed for code formatting and static checks.</p>
+                        <h1><a class="header" href="#how-to-test-parsec" id="how-to-test-parsec">How to test Parsec</a></h1>
+<p>Parsec relies on a mix of unit, integration, stress and fuzz tests. Unit tests are usually found in
+the same module as the code they verify. Integration tests can be found in the <code>tests</code> directory
+(along with the code framework required for running them), and come in two flavours: single-provider
+and all-providers.</p>
+<p>Single-provider tests do a thorough verification of each individual provider, while all-providers
+tests check that the common functionality is capable of supporting multiple providers at the same
+time. Another subcategory of integration tests are persistance tests which check that key material
+is persisted through service restarts.</p>
+<p>The stress test simply constructs and sends random requests as fast as possible using a
+multithreaded client. Valid requests are sent intermittently so as to check that the service is
+still up and working correctly.</p>
+<p>The <code>tests/ci.sh</code> script executes all tests and is used on the CI.
+<a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a> and
+<a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed for code formatting and static
+checks.</p>
 <p>The <a href="https://github.com/parallaxsecond/parsec-client-test">test client</a> is used for integration
 testing. Check that repository for more details.</p>
 <h2><a class="header" href="#executing-tests-manually" id="executing-tests-manually">Executing tests manually</a></h2>
 <h3><a class="header" href="#static-tests" id="static-tests">Static tests</a></h3>
-<ul>
-<li>Checking code formatting</li>
-</ul>
-<pre><code class="language-bash">cargo fmt --all -- --check
+<h4><a class="header" href="#checking-code-formatting" id="checking-code-formatting">Checking code formatting</a></h4>
+<pre><code>cargo fmt --all -- --check
 </code></pre>
-<ul>
-<li>Checking lints</li>
-</ul>
-<pre><code class="language-bash">cargo clippy --all-targets --all-features -- -D clippy::all -D clippy::cargo
+<h4><a class="header" href="#checking-lints" id="checking-lints">Checking lints</a></h4>
+<pre><code>cargo clippy --all-targets --all-features -- -D clippy::all -D clippy::cargo
 </code></pre>
 <h3><a class="header" href="#unit-tests" id="unit-tests">Unit tests</a></h3>
-<ul>
-<li>Doc tests</li>
-</ul>
-<pre><code class="language-bash">cargo test --doc --all-features
+<h4><a class="header" href="#doc-tests" id="doc-tests">Doc tests</a></h4>
+<pre><code>cargo test --doc --all-features
 </code></pre>
-<ul>
-<li>Unit tests</li>
-</ul>
-<pre><code class="language-bash">cargo test --lib --all-features
+<h4><a class="header" href="#unit-tests-1" id="unit-tests-1">Unit tests</a></h4>
+<pre><code>cargo test --lib --all-features
 </code></pre>
 <h3><a class="header" href="#integration-tests" id="integration-tests">Integration tests</a></h3>
-<ul>
-<li>Normal integration tests</li>
-</ul>
-<pre><code class="language-bash">cargo test normal_tests
+<h4><a class="header" href="#normal-integration-tests" id="normal-integration-tests">Normal integration tests</a></h4>
+<pre><code>cargo test normal_tests
 </code></pre>
-<ul>
-<li>Persistence integration tests: checking if the Key ID mapping persist after a
-shutdown (check the <code>tests/ci.sh</code> script for details of commands to execute)</li>
-<li>Stress tests</li>
-</ul>
-<pre><code class="language-bash">cargo test stress_test
+<h4><a class="header" href="#persistence-integration-tests" id="persistence-integration-tests">Persistence integration tests</a></h4>
+<p>Those check if the Key ID mapping persist after a shutdown (check the <code>tests/ci.sh</code> script for
+details of commands to execute).</p>
+<h4><a class="header" href="#stress-tests" id="stress-tests">Stress tests</a></h4>
+<pre><code>cargo test stress_test
 </code></pre>
-<ul>
-<li>All providers integration tests. This expect the Parsec service to include
-all providers.</li>
-</ul>
-<pre><code class="language-bash">cargo test all_providers
+<h4><a class="header" href="#all-providers-integration-tests" id="all-providers-integration-tests">All providers integration tests.</a></h4>
+<p>This expect the Parsec service to include all providers.</p>
+<pre><code>cargo test all_providers
 </code></pre>
 <h2><a class="header" href="#fuzz-testing" id="fuzz-testing">Fuzz testing</a></h2>
-<p>Fuzz testing works, at the moment, on a service level, generating random requests and sending them to be processed. Running the fuzz tests can be done through the <code>fuzz.sh</code> script in the root of the repository. </p>
-<p><code>./fuzz.sh run</code> builds a Docker image where the fuzz tests will run. It then sets up the environment and initiates the test in the container. The fuzzing engine (<a href="http://llvm.org/docs/LibFuzzer.html">libFuzzer</a>) works by generating random inputs for a fuzzing target and then observing the code segments reached using said input.</p>
-<p>To stop the fuzzer, simply run <code>./fuzz.sh stop</code>. To view the logs of a currently executing fuzzer, run <code>./fuzz.sh follow</code>.</p>
-<p>Any crashes or slow tests, as well as tests that lead to a timeout, are stored in <code>./fuzz/artifacts/fuzz_service/</code>.</p>
+<p>Fuzz testing works, at the moment, on a service level, generating random requests and sending them
+to be processed. Running the fuzz tests can be done through the <code>fuzz.sh</code> script in the root of the
+repository. <code>./fuzz.sh run</code> builds a Docker image where the fuzz tests will run. It then sets up the
+environment and initiates the test in the container. The fuzzing engine
+(<a href="http://llvm.org/docs/LibFuzzer.html">libFuzzer</a>) works by generating random inputs for a fuzzing
+target and then observing the code segments reached using said input. To stop the fuzzer, simply run
+<code>./fuzz.sh stop</code>. To view the logs of a currently executing fuzzer, run <code>./fuzz.sh follow</code>. Any
+crashes or slow tests, as well as tests that lead to a timeout, are stored in
+<code>./fuzz/artifacts/fuzz_service/</code>.</p>
+<p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 
                     </main>
 
