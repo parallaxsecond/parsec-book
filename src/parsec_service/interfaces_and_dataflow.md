@@ -44,13 +44,19 @@ This document concentrates on the data flows within the service. It does so by e
 
 The `Listener` is responsible for accepting incoming connections from clients on the transport endpoint. This could take the form of a Unix domain socket listener. It is the only part of the system that understands the form of transport being used. Its responsibility is to accept connections and to produce streams capable of reading from and writing to the underlying connection. The `Listener` does not perform any serialization or deserialization (marshalling) functions. It deals only in connections and streams.
 
+The `Listener` implements the `Listen` trait.
+
 ## The `FrontEndHandler`
 
 Once an incoming byte stream has been obtained by the `Listener`, the stream is passed to the `FrontEndHandler`, which is where the first phase of wire protocol interpretation is performed. The `FrontEndHandler` is responsible for de-serializating the request header using the rules set out in the [**wire protocol specification**](../parsec_client/wire_protocol.md).
 
-The `FrontEndHandler` only de-serializes the request *header*. It does *not* serialize the request *body*. The body content is processed at a later step. This means that the `FrontEndHandler` only needs to understand the documented encoding scheme of the header format. It does not need to understand protobuf or any other encoding scheme that might be employed for the body. The `FrontEndHandler` makes use of the model objects and de-serialization support in the `interface` crate to create a structured data model for the request. In this structured model, the request header fields are all fully parsed, but the request body and authentication fields are still just arrays of bytes.
+The `FrontEndHandler` only de-serializes the request *header*. It does *not* serialize the request *body*. The body content is processed at a later step. This means that the `FrontEndHandler` only needs to understand the documented encoding scheme of the header format. It does not need to understand protobuf or any other encoding scheme that might be employed for the body. The `FrontEndHandler` makes use of the model objects and de-serialization support in the interface crate to create a structured data model for the request. In this structured model, the request header fields are all fully parsed, but the request body and authentication fields are still just arrays of bytes.
+
+### The `Authenticator`
 
 Before the request is sent forward it must be authenticated. This involves the `FrontEndHandler` choosing an appropriate `Authenticator` object from the set created at system startup, based on the `AuthType` field in the request header. The `Authenticator` either returns an application name if the authentication was successful, or an error value which is then returned to the client.
+
+The `Authenticator` implements the `Authenticate` trait.
 
 The partially-decoded request and application name are now sent to the `Dispatcher`.
 
@@ -68,13 +74,27 @@ The next stage of processing is a branch point. The service contains only a sing
 
 The `BackEndHandler` accepts the request in order to route it to its associated provider. The flow differs here depending on whether the provider is an in-process Rust `Provider` object, or a provider residing in an out-of-process co-server. If the provider is in a co-server, the `BackEndHandler` will use the wire protocol to re-serialize the request and transmit it to the co-server's transport endpoint, where it will then block in order to wait for a response. The onward flow within the co-server is beyond the scope of this document, since co-servers can have arbitrary implementations.
 
-Assuming that the provider is an in-process Rust `Provider` object, the `BackEndHandler` will fully-decode the request in order to turn it into a model object from the `operations` module. These model objects have names beginning with the prefix `Op`, such as `OpKeyCreate` or `OpKeyList`. Once the operation model has been constructed, it is executed on the `Provider`.
+Assuming that the provider is an in-process Rust `Provider` object, the `BackEndHandler` will fully-decode the request in order to turn it into a model object from the `operations` module.
+These model objects have names beginning with the prefix `Op`, such as `OpKeyCreate` or `OpKeyList`. Once the operation model has been constructed, it is executed on the `Provider`.
+
+### The `Converter`
+
+The `Converter` in the interface crate is responsible to deserialize the body of the request to an operation from the `operations` module or to serialize a result to a response body. There is one `Converter` per format of operation contracts.
+`protobuf` converter is currently implemented in the interface.
+
+The `Converter` implements the `Convert` trait.
 
 ## The `Provider`
 
 The `Provider` is where the request is fulfilled using whatever combined software and hardware stack it has been coded for. The service can support any number of providers to interact with platform facilities such as TPM, HSM or TA. The provider does whatever is necessary to implement the operation. It then returns a result. Results are also communicated using model objects from the `operations` module. These have names with the prefix `Result`, such as `ResultKeyCreate` or `ResultKeyList`. This is where the data flow changes direction and begins its return journey to the client application. For a more detailed description of the current providers, see the [**Providers**](providers.md) page.
 
+The `Provider` implements the `Provide` trait.
+
+### The `KeyIDManager`
+
 Providers may make use of `KeyIdManagers` to persistently and safely store key handles or material, and thus another step for conversion from key name to provider-specific identifier is needed.
+
+The `KeyIDManager` implements the `ManageKeyIDs` trait.
 
 ## Return Journey
 
