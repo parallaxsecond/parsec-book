@@ -1,51 +1,36 @@
-<!--
-  -- Copyright (c) 2019, Arm Limited, All Rights Reserved
-  -- SPDX-License-Identifier: Apache-2.0
-  --
-  -- Licensed under the Apache License, Version 2.0 (the "License"); you may
-  -- not use this file except in compliance with the License.
-  -- You may obtain a copy of the License at
-  --
-  -- http://www.apache.org/licenses/LICENSE-2.0
-  --
-  -- Unless required by applicable law or agreed to in writing, software
-  -- distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-  -- WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  -- See the License for the specific language governing permissions and
-  -- limitations under the License.
---->
-
 # Summary
 
 - [Introduction](README.md)
 - [Overview](overview.md)
 - [Parsec for users](parsec_users.md)
 - [Parsec for client developers](parsec_client/README.md)
-    - [Operations](parsec_client/operations/README.md)
-        - [AddClient](parsec_client/operations/add_client.md)
-        - [ListOpcodes](parsec_client/operations/list_opcodes.md)
-        - [ListProviders](parsec_client/operations/list_providers.md)
-        - [Ping](parsec_client/operations/ping.md)
-        - [ProveClient](parsec_client/operations/prove_client.md)
-        - [PsaAsymmetricSign](parsec_client/operations/psa_asymmetric_sign.md)
-        - [PsaAsymmetricVerify](parsec_client/operations/psa_asymmetric_verify.md)
-        - [PsaCreateKey](parsec_client/operations/psa_create_key.md)
-        - [PsaDestroyKey](parsec_client/operations/psa_destroy_key.md)
-        - [PsaExportPublicKey](parsec_client/operations/psa_export_public_key.md)
-        - [PsaImportKey](parsec_client/operations/psa_import_key.md)
-        - [ShareTrustBundle](parsec_client/operations/share_trust_bundle.md)
-        - [Key Attributes](parsec_client/operations/key_attributes.md)
-    - [API Overview](parsec_client/api_overview.md)
-    - [Status Codes](parsec_client/status_codes.md)
-    - [Wire Protocol](parsec_client/wire_protocol.md)
-    - [Writing a new Parsec Client Library](parsec_client/writing_library.md)
+   - [Operations](parsec_client/operations/README.md)
+      - [AddClient](parsec_client/operations/add_client.md)
+      - [ListOpcodes](parsec_client/operations/list_opcodes.md)
+      - [ListProviders](parsec_client/operations/list_providers.md)
+      - [Ping](parsec_client/operations/ping.md)
+      - [ProveClient](parsec_client/operations/prove_client.md)
+      - [PsaAsymmetricSign](parsec_client/operations/psa_asymmetric_sign.md)
+      - [PsaAsymmetricVerify](parsec_client/operations/psa_asymmetric_verify.md)
+      - [PsaCreateKey](parsec_client/operations/psa_create_key.md)
+      - [PsaDestroyKey](parsec_client/operations/psa_destroy_key.md)
+      - [PsaExportPublicKey](parsec_client/operations/psa_export_public_key.md)
+      - [PsaImportKey](parsec_client/operations/psa_import_key.md)
+      - [ShareTrustBundle](parsec_client/operations/share_trust_bundle.md)
+      - [Key Attributes](parsec_client/operations/key_attributes.md)
+   - [API Overview](parsec_client/api_overview.md)
+   - [Status Codes](parsec_client/status_codes.md)
+   - [Wire Protocol](parsec_client/wire_protocol.md)
+   - [Writing a new Parsec Client Library](parsec_client/writing_library.md)
 - [Parsec for service developers](parsec_service/README.md)
-    - [System Architecture](parsec_service/system_architecture.md)
-    - [Interfaces and Dataflow](parsec_service/interfaces_and_dataflow.md)
-    - [Source Code Structure](parsec_service/source_code_structure.md)
-    - [Providers](parsec_service/providers.md)
-    - [Adding a new Parsec Provider](parsec_service/adding_provider.md)
-    - [How to build and run Parsec](parsec_service/build_run.md)
-    - [How to install Parsec on Linux](parsec_service/install_parsec_linux.md)
-    - [Parsec Configuration](parsec_service/configuration.md)
-    - [How to test Parsec](parsec_service/test.md)
+   - [System Architecture](parsec_service/system_architecture.md)
+   - [Interfaces and Dataflow](parsec_service/interfaces_and_dataflow.md)
+   - [Source Code Structure](parsec_service/source_code_structure.md)
+   - [Providers](parsec_service/providers.md)
+   - [Adding a new Parsec Provider](parsec_service/adding_provider.md)
+   - [How to build and run Parsec](parsec_service/build_run.md)
+   - [How to install Parsec on Linux](parsec_service/install_parsec_linux.md)
+   - [Parsec Configuration](parsec_service/configuration.md)
+   - [How to test Parsec](parsec_service/test.md)
+
+*Copyright (c) 2019, Arm Limited. All rights reserved.*

@@ -14,11 +14,13 @@
   -- See the License for the specific language governing permissions and
   -- limitations under the License.
 --->
+# The Parsec Book 📖
 
-![Parsec](parsec.png)
-# Parsec documentation
+![](https://github.com/parallaxsecond/parsec-book/workflows/Continuous%20Integration/badge.svg)
+![](https://github.com/parallaxsecond/parsec-book/workflows/Deploy/badge.svg)
 
-Official technical documentation, user and developer guides of the Parsec project.
+Official Parsec documentation source. User, Client and Service developer guides
+of the Parsec project.
 
 ## Using
 
@@ -32,6 +34,14 @@ $ cd parsec-book
 $ cargo install mdbook
 $ mdbook serve
 ```
+
+This book uses the [Versioned Markdown](https://github.com/bobertlo/vmd) format which allows
+us to use the `vmdfmt` formatting tool. The lines should be wrapped after 100 characters.
+If you have the `vmdfmt` command available on the command-line,
+```bash
+$ ./ci/check_format.sh
+```
+will check if your files are formatted correctly.
 
 ## Contributing
 
