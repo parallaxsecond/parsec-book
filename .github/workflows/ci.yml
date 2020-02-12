@@ -23,7 +23,9 @@ jobs:
           mkdir /tmp/go
           export GOPATH=/tmp/go
           go get github.com/bobertlo/vmd/cmd/vmdfmt
+    - name: Install markdown-link-check tool
+      run: npm install markdown-link-check
     - name: Check formatting
       run: |
-          export PATH="/tmp/go/bin:$PATH"
+          export PATH="$PATH:/tmp/go/bin:$(pwd)/node_modules/.bin"
           ./ci/check_format.sh

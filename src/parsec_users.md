@@ -15,7 +15,7 @@ Parsec Client Libraries are available in the following languages:
 
 - [Go](https://github.com/parallaxsecond/parsec-client-go)
 
-Please [contribute](writing_library.md) to add more Parsec Client Libraries in the languages that
-you want!
+Please [contribute](parsec_client/writing_library.md) to add more Parsec Client Libraries in the
+languages that you want!
 
 *Copyright (c) 2019, Arm Limited. All rights reserved.*

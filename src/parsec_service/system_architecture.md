@@ -130,8 +130,9 @@ co-reside on the same physical host:
    Specification**](https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf).
    A single instance of this service runs on the host system (deployed, for example, as a daemon).
    It listens on a suitable host-local transport medium such as a Unix domain socket and exposes a
-   [**wire protocol**](../parsec_client/wire_protocol.md) with a [**defined API**](api_overview.md).
-   The inner architecture of the service is described in the other documents in this repository.
+   [**wire protocol**](../parsec_client/wire_protocol.md) with a [**defined
+   API**](../parsec_client/api_overview.md). The inner architecture of the service is described in
+   the other documents in this repository.
 - The **identity provider** is the component that assigns unique and stable application identities
    to each client application. Any string that can be used persistently and unambiguously to refer
    to one and only one client application is suitable. This system architecture proposes the use of
@@ -221,9 +222,9 @@ to establish and maintain trust relationships.
 
 The identity provider additionally offers the
 [**AddClient**](../parsec_client/operations/add_client.md) and
-[**ProveClient**](../parsec_client/operations/prove_client) operations, which allow the orchestrator
-to inform the identity provider about the lifecycle of client applications. This small operation set
-represents the entirety of the identity provider's API.
+[**ProveClient**](../parsec_client/operations/prove_client.md) operations, which allow the
+orchestrator to inform the identity provider about the lifecycle of client applications. This small
+operation set represents the entirety of the identity provider's API.
 
 By contrast, the security service exposes the full capabilities of the PSA Crypto API.
 
