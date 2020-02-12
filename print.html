@@ -338,8 +338,8 @@ idiomatically.</p>
 <ul>
 <li><a href="https://github.com/parallaxsecond/parsec-client-go">Go</a></li>
 </ul>
-<p>Please <a href="writing_library.html">contribute</a> to add more Parsec Client Libraries in the languages that
-you want!</p>
+<p>Please <a href="parsec_client/writing_library.html">contribute</a> to add more Parsec Client Libraries in the
+languages that you want!</p>
 <p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 <h1><a class="header" href="#parsec-for-client-library-developers" id="parsec-for-client-library-developers">Parsec for client library developers</a></h1>
 <p>This section offers the information needed for building Parsec client libraries. The topics covered
@@ -556,7 +556,7 @@ probabilistic primes between 2^{n-1} and 2^n where n is the bit size specified i
 <h2><a class="header" href="#parameters-2" id="parameters-2">Parameters</a></h2>
 <ul>
 <li><strong>key_name</strong> - Name of the key used for signing the hash.</li>
-<li><strong>key_attributes</strong> - Attributes of the key to be created (see the <a href="parsec_client/operations//key_attributes.html"><strong>key
+<li><strong>key_attributes</strong> - Attributes of the key to be created (see the <a href="parsec_client/operations/key_attributes.html"><strong>key
 attributes</strong></a> file for more details).</li>
 </ul>
 <h2><a class="header" href="#contract-5" id="contract-5">Contract</a></h2>
@@ -800,7 +800,7 @@ application identity string into the <strong>authentication</strong> field of th
 the <strong>authentication</strong> field of the request. The token is reusable for a specified duration of time,
 after which a new one must be issued. The application identity is contained in the token and can be
 extracted by the service after verifying the authenticity of the token. A more detailed description
-of authentication tokens and their lifecycle is present in the <a href="parsec_client/system_architecture.html"><strong>sytem architecture
+of authentication tokens and their lifecycle is present in the <a href="parsec_client/../parsec_service/system_architecture.html"><strong>sytem architecture
 specification</strong></a>.</p>
 <p>When it makes an API request, the client needs to tell the server which kind of authentication is
 being used. This is so that the server knows how to interepret the bytes in the <strong>authentication</strong>
@@ -1168,9 +1168,9 @@ interpreted according to the API specification.</li>
 <h1><a class="header" href="#writing-a-new-parsec-client-library" id="writing-a-new-parsec-client-library">Writing a new Parsec Client Library</a></h1>
 <p>If a client library does not already exist in your preferred programming language, you can create
 one. Writing a new client library is a great way to enhance the Parsec client ecosystem.</p>
-<p>When creating a new client library, please make sure you understand the <a href="parsec_client/../parsec#beautiful-client-libraries">Parsec philosophy for
-client libraries</a>. It is very important that you design your
-client library to provide a highly ergonomic and idiomatic developer experience.</p>
+<p>When creating a new client library, please make sure you understand the <a href="parsec_client/../overview.html#beautiful-client-libraries">Parsec philosophy for
+client libraries</a>. It is very important that you design
+your client library to provide a highly ergonomic and idiomatic developer experience.</p>
 <p>Take a look at the <a href="https://github.com/parallaxsecond/parsec-client-go"><strong>client library for Go</strong></a>
 as an example. The <a href="https://github.com/parallaxsecond/parsec-client-test">Rust Test Client</a> is a
 client library used for testing but with no goal of being ergonomic nor easy to use. It can however
@@ -1318,8 +1318,9 @@ the host platform. This API is based on the <a href="https://github.com/ARMmbed/
 Specification</strong></a>.
 A single instance of this service runs on the host system (deployed, for example, as a daemon).
 It listens on a suitable host-local transport medium such as a Unix domain socket and exposes a
-<a href="parsec_service/../parsec_client/wire_protocol.html"><strong>wire protocol</strong></a> with a <a href="parsec_service/api_overview.html"><strong>defined API</strong></a>.
-The inner architecture of the service is described in the other documents in this repository.</li>
+<a href="parsec_service/../parsec_client/wire_protocol.html"><strong>wire protocol</strong></a> with a <a href="parsec_service/../parsec_client/api_overview.html"><strong>defined
+API</strong></a>. The inner architecture of the service is described in
+the other documents in this repository.</li>
 <li>The <strong>identity provider</strong> is the component that assigns unique and stable application identities
 to each client application. Any string that can be used persistently and unambiguously to refer
 to one and only one client application is suitable. This system architecture proposes the use of
@@ -1403,9 +1404,9 @@ client definitions and proofs.</p>
 to establish and maintain trust relationships.</p>
 <p>The identity provider additionally offers the
 <a href="parsec_service/../parsec_client/operations/add_client.html"><strong>AddClient</strong></a> and
-<a href="parsec_service/../parsec_client/operations/prove_client"><strong>ProveClient</strong></a> operations, which allow the orchestrator
-to inform the identity provider about the lifecycle of client applications. This small operation set
-represents the entirety of the identity provider's API.</p>
+<a href="parsec_service/../parsec_client/operations/prove_client.html"><strong>ProveClient</strong></a> operations, which allow the
+orchestrator to inform the identity provider about the lifecycle of client applications. This small
+operation set represents the entirety of the identity provider's API.</p>
 <p>By contrast, the security service exposes the full capabilities of the PSA Crypto API.</p>
 <h2><a class="header" href="#trusted-data-payloads" id="trusted-data-payloads">Trusted Data Payloads</a></h2>
 <p>A trusted data payload is any data payload that is signed and verified according to one of the
@@ -1841,8 +1842,8 @@ systems will naturally vary from one language to another, and these are not gove
 overall.</p>
 <p>The <code>client</code> folder is a key extension point for partner contributors. This project eagerly welcomes
 contributions of new client libraries in different programming languages in order to enhance the
-ecosystem and increase adoption. The <a href="parsec_service/../parsec_client/use_parsec.html"><code>How to use Parsec</code></a> page
-contains a list of currently available client libraries.</p>
+ecosystem and increase adoption. The <a href="parsec_service/../parsec_users.html"><code>Parsec for users</code></a> page contains a list
+of currently available client libraries.</p>
 <h2><a class="header" href="#repository-map" id="repository-map">Repository Map</a></h2>
 <p>Please refer to the following diagram to understand the overall code structure and the dependency
 arcs between the modules.</p>

@@ -267,8 +267,9 @@ the host platform. This API is based on the <a href="https://github.com/ARMmbed/
 Specification</strong></a>.
 A single instance of this service runs on the host system (deployed, for example, as a daemon).
 It listens on a suitable host-local transport medium such as a Unix domain socket and exposes a
-<a href="../parsec_client/wire_protocol.html"><strong>wire protocol</strong></a> with a <a href="api_overview.html"><strong>defined API</strong></a>.
-The inner architecture of the service is described in the other documents in this repository.</li>
+<a href="../parsec_client/wire_protocol.html"><strong>wire protocol</strong></a> with a <a href="../parsec_client/api_overview.html"><strong>defined
+API</strong></a>. The inner architecture of the service is described in
+the other documents in this repository.</li>
 <li>The <strong>identity provider</strong> is the component that assigns unique and stable application identities
 to each client application. Any string that can be used persistently and unambiguously to refer
 to one and only one client application is suitable. This system architecture proposes the use of
@@ -352,9 +353,9 @@ client definitions and proofs.</p>
 to establish and maintain trust relationships.</p>
 <p>The identity provider additionally offers the
 <a href="../parsec_client/operations/add_client.html"><strong>AddClient</strong></a> and
-<a href="../parsec_client/operations/prove_client"><strong>ProveClient</strong></a> operations, which allow the orchestrator
-to inform the identity provider about the lifecycle of client applications. This small operation set
-represents the entirety of the identity provider's API.</p>
+<a href="../parsec_client/operations/prove_client.html"><strong>ProveClient</strong></a> operations, which allow the
+orchestrator to inform the identity provider about the lifecycle of client applications. This small
+operation set represents the entirety of the identity provider's API.</p>
 <p>By contrast, the security service exposes the full capabilities of the PSA Crypto API.</p>
 <h2><a class="header" href="#trusted-data-payloads" id="trusted-data-payloads">Trusted Data Payloads</a></h2>
 <p>A trusted data payload is any data payload that is signed and verified according to one of the
