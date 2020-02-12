@@ -17,7 +17,7 @@ The following type-specific considerations apply:
 
 - **key_name** - Name of the key used for signing the hash.
 - **key_attributes** - Attributes of the key to be created (see the [**key
-   attributes**](/key_attributes.md) file for more details).
+   attributes**](key_attributes.md) file for more details).
 
 ## Contract
 

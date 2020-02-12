@@ -157,7 +157,7 @@ the **authentication** field of the request. The token is reusable for a specifi
 after which a new one must be issued. The application identity is contained in the token and can be
 extracted by the service after verifying the authenticity of the token. A more detailed description
 of authentication tokens and their lifecycle is present in the [**sytem architecture
-specification**](system_architecture.md).
+specification**](../parsec_service/system_architecture.md).
 
 When it makes an API request, the client needs to tell the server which kind of authentication is
 being used. This is so that the server knows how to interepret the bytes in the **authentication**

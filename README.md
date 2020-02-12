@@ -39,6 +39,10 @@ This book uses the [Versioned Markdown](https://github.com/bobertlo/vmd) format 
 us to use the `vmdfmt` formatting tool. The lines should be wrapped after 100 characters.
 If you have the `vmdfmt` command available on the command-line,
 ```bash
+vmdfmt -cols 100 -w -l src/
+```
+will format in-place all the markdown files in your current directory, and
+```bash
 $ ./ci/check_format.sh
 ```
 will check if your files are formatted correctly.

@@ -190,8 +190,8 @@ overall.
 
 The `client` folder is a key extension point for partner contributors. This project eagerly welcomes
 contributions of new client libraries in different programming languages in order to enhance the
-ecosystem and increase adoption. The [`How to use Parsec`](../parsec_client/use_parsec.md) page
-contains a list of currently available client libraries.
+ecosystem and increase adoption. The [`Parsec for users`](../parsec_users.md) page contains a list
+of currently available client libraries.
 
 ## Repository Map
 

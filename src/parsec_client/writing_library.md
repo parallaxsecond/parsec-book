@@ -4,8 +4,8 @@ If a client library does not already exist in your preferred programming languag
 one. Writing a new client library is a great way to enhance the Parsec client ecosystem.
 
 When creating a new client library, please make sure you understand the [Parsec philosophy for
-client libraries](../parsec#beautiful-client-libraries). It is very important that you design your
-client library to provide a highly ergonomic and idiomatic developer experience.
+client libraries](../overview.md#beautiful-client-libraries). It is very important that you design
+your client library to provide a highly ergonomic and idiomatic developer experience.
 
 Take a look at the [**client library for Go**](https://github.com/parallaxsecond/parsec-client-go)
 as an example. The [Rust Test Client](https://github.com/parallaxsecond/parsec-client-test) is a
