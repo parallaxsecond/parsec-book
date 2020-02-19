@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Adding a new Parsec Provider - The Parsec Book</title>
+        <title>Listeners - The Parsec Book</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div id="sidebar-scrollbox" class="sidebar-scrollbox">
-                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="expanded "><a href="../overview.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="expanded "><a href="../parsec_users.html"><strong aria-hidden="true">3.</strong> Parsec for users</a></li><li class="expanded "><a href="../parsec_client/index.html"><strong aria-hidden="true">4.</strong> Parsec for client developers</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_client/operations/index.html"><strong aria-hidden="true">4.1.</strong> Operations</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_client/operations/add_client.html"><strong aria-hidden="true">4.1.1.</strong> AddClient</a></li><li class="expanded "><a href="../parsec_client/operations/list_opcodes.html"><strong aria-hidden="true">4.1.2.</strong> ListOpcodes</a></li><li class="expanded "><a href="../parsec_client/operations/list_providers.html"><strong aria-hidden="true">4.1.3.</strong> ListProviders</a></li><li class="expanded "><a href="../parsec_client/operations/ping.html"><strong aria-hidden="true">4.1.4.</strong> Ping</a></li><li class="expanded "><a href="../parsec_client/operations/prove_client.html"><strong aria-hidden="true">4.1.5.</strong> ProveClient</a></li><li class="expanded "><a href="../parsec_client/operations/psa_asymmetric_sign.html"><strong aria-hidden="true">4.1.6.</strong> PsaAsymmetricSign</a></li><li class="expanded "><a href="../parsec_client/operations/psa_asymmetric_verify.html"><strong aria-hidden="true">4.1.7.</strong> PsaAsymmetricVerify</a></li><li class="expanded "><a href="../parsec_client/operations/psa_create_key.html"><strong aria-hidden="true">4.1.8.</strong> PsaCreateKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_destroy_key.html"><strong aria-hidden="true">4.1.9.</strong> PsaDestroyKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_export_public_key.html"><strong aria-hidden="true">4.1.10.</strong> PsaExportPublicKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_import_key.html"><strong aria-hidden="true">4.1.11.</strong> PsaImportKey</a></li><li class="expanded "><a href="../parsec_client/operations/share_trust_bundle.html"><strong aria-hidden="true">4.1.12.</strong> ShareTrustBundle</a></li><li class="expanded "><a href="../parsec_client/operations/key_attributes.html"><strong aria-hidden="true">4.1.13.</strong> Key Attributes</a></li></ol></li><li class="expanded "><a href="../parsec_client/api_overview.html"><strong aria-hidden="true">4.2.</strong> API Overview</a></li><li class="expanded "><a href="../parsec_client/status_codes.html"><strong aria-hidden="true">4.3.</strong> Status Codes</a></li><li class="expanded "><a href="../parsec_client/wire_protocol.html"><strong aria-hidden="true">4.4.</strong> Wire Protocol</a></li><li class="expanded "><a href="../parsec_client/writing_library.html"><strong aria-hidden="true">4.5.</strong> Writing a new Parsec Client Library</a></li></ol></li><li class="expanded "><a href="../parsec_service/index.html"><strong aria-hidden="true">5.</strong> Parsec for service developers</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_service/system_architecture.html"><strong aria-hidden="true">5.1.</strong> System Architecture</a></li><li class="expanded "><a href="../parsec_service/interfaces_and_dataflow.html"><strong aria-hidden="true">5.2.</strong> Interfaces and Dataflow</a></li><li class="expanded "><a href="../parsec_service/source_code_structure.html"><strong aria-hidden="true">5.3.</strong> Source Code Structure</a></li><li class="expanded "><a href="../parsec_service/providers.html"><strong aria-hidden="true">5.4.</strong> Providers</a></li><li class="expanded "><a href="../parsec_service/converters.html"><strong aria-hidden="true">5.5.</strong> Converters</a></li><li class="expanded "><a href="../parsec_service/authenticators.html"><strong aria-hidden="true">5.6.</strong> Authenticators</a></li><li class="expanded "><a href="../parsec_service/listeners.html"><strong aria-hidden="true">5.7.</strong> Listeners</a></li><li class="expanded "><a href="../parsec_service/key_id_managers.html"><strong aria-hidden="true">5.8.</strong> Key ID Managers</a></li><li class="expanded "><a href="../parsec_service/adding_provider.html" class="active"><strong aria-hidden="true">5.9.</strong> Adding a new Parsec Provider</a></li><li class="expanded "><a href="../parsec_service/build_run.html"><strong aria-hidden="true">5.10.</strong> How to build and run Parsec</a></li><li class="expanded "><a href="../parsec_service/install_parsec_linux.html"><strong aria-hidden="true">5.11.</strong> How to install Parsec on Linux</a></li><li class="expanded "><a href="../parsec_service/configuration.html"><strong aria-hidden="true">5.12.</strong> Parsec Configuration</a></li><li class="expanded "><a href="../parsec_service/test.html"><strong aria-hidden="true">5.13.</strong> How to test Parsec</a></li></ol></li></ol>
+                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="expanded "><a href="../overview.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="expanded "><a href="../parsec_users.html"><strong aria-hidden="true">3.</strong> Parsec for users</a></li><li class="expanded "><a href="../parsec_client/index.html"><strong aria-hidden="true">4.</strong> Parsec for client developers</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_client/operations/index.html"><strong aria-hidden="true">4.1.</strong> Operations</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_client/operations/add_client.html"><strong aria-hidden="true">4.1.1.</strong> AddClient</a></li><li class="expanded "><a href="../parsec_client/operations/list_opcodes.html"><strong aria-hidden="true">4.1.2.</strong> ListOpcodes</a></li><li class="expanded "><a href="../parsec_client/operations/list_providers.html"><strong aria-hidden="true">4.1.3.</strong> ListProviders</a></li><li class="expanded "><a href="../parsec_client/operations/ping.html"><strong aria-hidden="true">4.1.4.</strong> Ping</a></li><li class="expanded "><a href="../parsec_client/operations/prove_client.html"><strong aria-hidden="true">4.1.5.</strong> ProveClient</a></li><li class="expanded "><a href="../parsec_client/operations/psa_asymmetric_sign.html"><strong aria-hidden="true">4.1.6.</strong> PsaAsymmetricSign</a></li><li class="expanded "><a href="../parsec_client/operations/psa_asymmetric_verify.html"><strong aria-hidden="true">4.1.7.</strong> PsaAsymmetricVerify</a></li><li class="expanded "><a href="../parsec_client/operations/psa_create_key.html"><strong aria-hidden="true">4.1.8.</strong> PsaCreateKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_destroy_key.html"><strong aria-hidden="true">4.1.9.</strong> PsaDestroyKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_export_public_key.html"><strong aria-hidden="true">4.1.10.</strong> PsaExportPublicKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_import_key.html"><strong aria-hidden="true">4.1.11.</strong> PsaImportKey</a></li><li class="expanded "><a href="../parsec_client/operations/share_trust_bundle.html"><strong aria-hidden="true">4.1.12.</strong> ShareTrustBundle</a></li><li class="expanded "><a href="../parsec_client/operations/key_attributes.html"><strong aria-hidden="true">4.1.13.</strong> Key Attributes</a></li></ol></li><li class="expanded "><a href="../parsec_client/api_overview.html"><strong aria-hidden="true">4.2.</strong> API Overview</a></li><li class="expanded "><a href="../parsec_client/status_codes.html"><strong aria-hidden="true">4.3.</strong> Status Codes</a></li><li class="expanded "><a href="../parsec_client/wire_protocol.html"><strong aria-hidden="true">4.4.</strong> Wire Protocol</a></li><li class="expanded "><a href="../parsec_client/writing_library.html"><strong aria-hidden="true">4.5.</strong> Writing a new Parsec Client Library</a></li></ol></li><li class="expanded "><a href="../parsec_service/index.html"><strong aria-hidden="true">5.</strong> Parsec for service developers</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_service/system_architecture.html"><strong aria-hidden="true">5.1.</strong> System Architecture</a></li><li class="expanded "><a href="../parsec_service/interfaces_and_dataflow.html"><strong aria-hidden="true">5.2.</strong> Interfaces and Dataflow</a></li><li class="expanded "><a href="../parsec_service/source_code_structure.html"><strong aria-hidden="true">5.3.</strong> Source Code Structure</a></li><li class="expanded "><a href="../parsec_service/providers.html"><strong aria-hidden="true">5.4.</strong> Providers</a></li><li class="expanded "><a href="../parsec_service/converters.html"><strong aria-hidden="true">5.5.</strong> Converters</a></li><li class="expanded "><a href="../parsec_service/authenticators.html"><strong aria-hidden="true">5.6.</strong> Authenticators</a></li><li class="expanded "><a href="../parsec_service/listeners.html" class="active"><strong aria-hidden="true">5.7.</strong> Listeners</a></li><li class="expanded "><a href="../parsec_service/key_id_managers.html"><strong aria-hidden="true">5.8.</strong> Key ID Managers</a></li><li class="expanded "><a href="../parsec_service/adding_provider.html"><strong aria-hidden="true">5.9.</strong> Adding a new Parsec Provider</a></li><li class="expanded "><a href="../parsec_service/build_run.html"><strong aria-hidden="true">5.10.</strong> How to build and run Parsec</a></li><li class="expanded "><a href="../parsec_service/install_parsec_linux.html"><strong aria-hidden="true">5.11.</strong> How to install Parsec on Linux</a></li><li class="expanded "><a href="../parsec_service/configuration.html"><strong aria-hidden="true">5.12.</strong> Parsec Configuration</a></li><li class="expanded "><a href="../parsec_service/test.html"><strong aria-hidden="true">5.13.</strong> How to test Parsec</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -148,46 +148,28 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#adding-a-new-parsec-provider" id="adding-a-new-parsec-provider">Adding a new Parsec Provider</a></h1>
-<p>Creating new providers means enabling Parsec to work on new platforms and is one of the main goals
-of the project. As such, the interface that must be implemented by each provider was built with
-modularity in mind, allowing developers to choose which operations they implement and when. This
-interface is represented by a Rust <a href="https://doc.rust-lang.org/book/ch10-02-traits.html"><code>trait</code></a> -
-more precisely, the
-<a href="https://github.com/parallaxsecond/parsec/blob/master/src/providers/mod.rs"><code>Provide</code></a> trait.</p>
-<p>The full list of operations that can be implemented can be found in the link above and will be
-expanded as the project progresses towards supporting more use cases.</p>
-<p>Apart from <code>list_opcodes</code> and <code>describe</code>, no method is mandatory and client libraries are expected
-to use these two operations to bootstrap their usage of the service. Thus, once an operation is
-correctly supported, its opcode can be added to those returned by <code>list_opcodes</code>. Any operation that
-is not implemented will return a response code of <code>UnsupportedOperation</code> by default.</p>
-<p>Each provider must offer a description of itself in the shape of a
-<a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations/list_providers.rs"><code>ProviderInfo</code></a>
-value, by implementing the <code>describe</code> method. The UUID identifying the provider is
-developer-generated and should not clash with existing providers. This process also requires the new
-provider to be added to the
-<a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/requests/mod.rs"><code>ProviderID</code></a>
-enum.</p>
-<p>Lots of care must be taken when implementing operations that the inputs and outputs are in the
-correct format, especially in the case of byte arrays. Detailed description of all input and output
-can be found in the <a href="../parsec_client/operations/README.html">operations documentation</a>.</p>
-<p>A helpful utility that the Parsec service offers to providers is the use of key ID managers. These
-allow the provider to persist mappings between key names and key handles or material and is
-generally needed since providers are expected to support UTF-8 encoded strings as key names.</p>
-<p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
+                        <h1><a class="header" href="#listeners" id="listeners">Listeners</a></h1>
+<h2><a class="header" href="#domain-socket-listener" id="domain-socket-listener">Domain Socket Listener</a></h2>
+<p>This listener communicates with its client using a <a href="https://en.wikipedia.org/wiki/Unix_domain_socket">Unix domain
+socket</a>.</p>
+<p>When running the service executable directly, the socket path is fixed to
+<code>/tmp/security-daemon-socket</code>. When launched as a daemon by systemd, the socket is at
+<code>/home/parsec/parsec.sock</code>. Clients communicating with a Parsec service configured with that
+listener must connect to that socket path.</p>
+<p><em>Copyright (c) 2020, Arm Limited. All rights reserved.</em></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../parsec_service/key_id_managers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../parsec_service/authenticators.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../parsec_service/build_run.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../parsec_service/key_id_managers.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -199,13 +181,13 @@ generally needed since providers are expected to support UTF-8 encoded strings a
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../parsec_service/key_id_managers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../parsec_service/authenticators.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="../parsec_service/build_run.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../parsec_service/key_id_managers.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
