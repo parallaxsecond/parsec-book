@@ -9,10 +9,14 @@ They cover the following concepts:
    the Parsec service and their interactions
 - [Source Code Structure](source_code_structure.md) - overview of Parsec service source code
    organisation
-- [Parsec providers](providers.md) - overview of current Parsec providers
-- [Writing a provider](adding_provider.md) - guide for implementing a new provider that will add
+- [Parsec Providers](providers.md) - overview of current Parsec providers
+- [Parsec Converters](converters.md) - overview of current Parsec converters
+- [Parsec Authenticators](authenticators.md) - overview of current Parsec authenticators
+- [Parsec Listeners](listeners.md) - overview of current Parsec listeners
+- [Parsec Key ID Managers](key_id_managers.md) - overview of current Parsec key ID managers
+- [Writing a Provider](adding_provider.md) - guide for implementing a new provider that will add
    Parsec support for new platforms
-- [Building and running](build_run.md) - description of the options that can be used for building
+- [Building and Running](build_run.md) - description of the options that can be used for building
    and running the service
 - [Installation](install_parsec_linux.md) - installing Parsec as a systemd daemon
 - [Configuration](configuration.md) - how to configure Parsec

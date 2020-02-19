@@ -15,4 +15,7 @@ help how to build a real Rust client library.
 You will need to understand the [**wire protocol specification**](wire_protocol.md) and the [**API
 specification**](api_overview.md) in depth in order to create a client library.
 
+You will need to know which [`Listener`](../parsec_service/listeners.md) the Parsec service is
+currently using and how it was configured in order to communicate with it.
+
 *Copyright (c) 2019, Arm Limited. All rights reserved.*

@@ -55,7 +55,7 @@ connections and to produce streams capable of reading from and writing to the un
 The `Listener` does not perform any serialization or deserialization (marshalling) functions. It
 deals only in connections and streams.
 
-The `Listener` implements the `Listen` trait.
+The `Listener` implements the `Listen` trait. Possible listeners are listed [here](listeners.md).
 
 ## The Front-End Handler
 
@@ -80,7 +80,8 @@ choosing an appropriate `Authenticator` object from the set created at system st
 `AuthType` field in the request header. The `Authenticator` either returns an application name if
 the authentication was successful, or an error value which is then returned to the client.
 
-The `Authenticator` implements the `Authenticate` trait.
+The `Authenticator` implements the `Authenticate` trait. Possible authenticators are listed
+[here](authenticators.md).
 
 The partially-decoded request and application name are now sent to the `Dispatcher`.
 
@@ -126,7 +127,8 @@ operation from the `operations` module or to serialize a result to a response bo
 `Converter` per format of operation contracts. `protobuf` converter is currently implemented in the
 interface.
 
-The `Converter` implements the `Convert` trait.
+The `Converter` implements the `Convert` trait. Possible converters are listed
+[here](converters.md).
 
 ## The Provider
 
@@ -146,7 +148,8 @@ The `Provider` implements the `Provide` trait.
 Providers may make use of `KeyIdManagers` to persistently and safely store key handles or material,
 and thus another step for conversion from key name to provider-specific identifier is needed.
 
-The `KeyIDManager` implements the `ManageKeyIDs` trait.
+The `KeyIDManager` implements the `ManageKeyIDs` trait. Possible key ID managers are listed
+[here](key_id_managers.md).
 
 ## Return Journey
 
