@@ -2037,7 +2037,7 @@ systemctl --user start parsec.socket
 </code></pre>
 <p>Every user on the system can now use Parsec! You can test it going inside the <code>parsec</code> directory
 and:</p>
-<pre><code>cargo test --test normal
+<pre><code>cargo test normal_tests
 </code></pre>
 <p>Check the Parsec logs with:</p>
 <pre><code>journalclt --user -u parsec
