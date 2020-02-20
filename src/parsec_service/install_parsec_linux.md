@@ -43,7 +43,7 @@ Every user on the system can now use Parsec! You can test it going inside the `p
 and:
 
 ```
-cargo test --test normal
+cargo test normal_tests
 ```
 
 Check the Parsec logs with:
