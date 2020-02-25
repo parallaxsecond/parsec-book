@@ -151,7 +151,14 @@
                         <h1><a class="header" href="#ping" id="ping">Ping</a></h1>
 <h2><a class="header" href="#opcode-1-decimal-0x0001-hex" id="opcode-1-decimal-0x0001-hex">Opcode: 1 (decimal), 0x0001 (hex)</a></h2>
 <h2><a class="header" href="#summary" id="summary">Summary</a></h2>
-<p>Determines whether the service is present and responsive on the expected endpoint.</p>
+<p>Determines whether the service is present and responsive on the expected endpoint. Clients should
+follow the following bootstrapping sequence if they want to switch to the highest wire protocol
+version that the service support:</p>
+<ol>
+<li>Client requests a Ping operation using the wire protocol version <code>1.0</code>.</li>
+<li>Service responds with the highest wire protocol version supported <code>x.y</code>.</li>
+<li>Client can now use any wire protocol version up to and including <code>x.y</code> for further requests.</li>
+</ol>
 <h2><a class="header" href="#contract" id="contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/ping.proto">Protobuf</a></p>
 <p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>

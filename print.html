@@ -493,13 +493,23 @@ Specification</strong></a>.</p>
 <h2><a class="header" href="#opcode-8-decimal-0x0008-hex" id="opcode-8-decimal-0x0008-hex">Opcode: 8 (decimal), 0x0008 (hex)</a></h2>
 <h2><a class="header" href="#summary-1" id="summary-1">Summary</a></h2>
 <p>Gets a list of available Parsec providers to be used by clients.</p>
+<p>The version triplet returned by this operation (<code>version_maj</code>, <code>version_min</code> and <code>version_rev</code>) is
+the implementation version of the specific Parsec provider. For the Core Provider, this version is
+the implementation version of the whole Parsec service.</p>
 <h2><a class="header" href="#contract-1" id="contract-1">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_providers.proto">Protobuf</a></p>
 <p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 <h1><a class="header" href="#ping" id="ping">Ping</a></h1>
 <h2><a class="header" href="#opcode-1-decimal-0x0001-hex" id="opcode-1-decimal-0x0001-hex">Opcode: 1 (decimal), 0x0001 (hex)</a></h2>
 <h2><a class="header" href="#summary-2" id="summary-2">Summary</a></h2>
-<p>Determines whether the service is present and responsive on the expected endpoint.</p>
+<p>Determines whether the service is present and responsive on the expected endpoint. Clients should
+follow the following bootstrapping sequence if they want to switch to the highest wire protocol
+version that the service support:</p>
+<ol>
+<li>Client requests a Ping operation using the wire protocol version <code>1.0</code>.</li>
+<li>Service responds with the highest wire protocol version supported <code>x.y</code>.</li>
+<li>Client can now use any wire protocol version up to and including <code>x.y</code> for further requests.</li>
+</ol>
 <h2><a class="header" href="#contract-2" id="contract-2">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/ping.proto">Protobuf</a></p>
 <p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
@@ -889,7 +899,7 @@ directory</strong></a>.</p>
 <li><strong>WrongProviderID</strong> (value: 1) - requested provider ID does not match that of the backend</li>
 <li><strong>ContentTypeNotSupported</strong> (value: 2) - requested content type is not supported by the backend</li>
 <li><strong>AcceptTypeNotSupported</strong> (value: 3) - requested accept type is not supported by the backend</li>
-<li><strong>VersionTooBig</strong> (value: 4) - requested version is not supported by the backend</li>
+<li><strong>WireProtocolVersionNotSupported</strong> (value: 4) - requested version is not supported by the backend</li>
 <li><strong>ProviderNotRegistered</strong> (value: 5) - no provider registered for the requested provider ID</li>
 <li><strong>ProviderDoesNotExist</strong> (value: 6) - no provider defined for requested provider ID</li>
 <li><strong>DeserializingBodyFailed</strong> (value: 7) - failed to deserialize the body of the message</li>
@@ -1054,13 +1064,19 @@ than the identifier itself.</p>
 service to track state across multiple API calls. The protocol allocates space within the request
 header and the response header for an 8-byte session identifier. Details of how to create and manage
 sessions are given in the API specification.</p>
-<h3><a class="header" href="#versioning" id="versioning">Versioning</a></h3>
+<h3><a class="header" href="#wire-protocol-versions" id="wire-protocol-versions">Wire Protocol Versions</a></h3>
 <p>The wire protocol is versioned. It caters for situations where the service and its clients may be
 operating at different versions. All messages (requests and responses) carry a major and minor
-version number field. All versions of the service must respond to at least one API operation using
-version 1.0 of the protocol. This API operation would typically be some kind of &quot;ping&quot; or &quot;status&quot;
-operation. The output of this operation will allow the client to determine the highest version of
-the protocol that the service supports, so that it can upgrade to this version if desired.</p>
+version number field. Although the design supports having different wire protocol versions, changes
+are not expected to happen regularly, and they may not happen at all.</p>
+<p>Clients can use the <a href="parsec_client/operations/ping.html">Ping</a> operation to determine what is the highest version of
+the protocol that the service support and switch to that one if they want to. Requests made with a
+wire protocol version not supported by the service will be sent back a
+<code>WireProtocolVersionNotSupported</code> status code response.</p>
+<p>Responses will be sent using the same wire protocol version than the requests they originate from.</p>
+<p>Please note that the wire protocol version is <strong>not</strong> the mean of finding out the level of support
+for specific operations in the API. The ListOpcodes operation should be used, per provider basis, to
+determine if an operation is supported by the provider.</p>
 <h3><a class="header" href="#opcodes" id="opcodes">Opcodes</a></h3>
 <p>All requests contain an unsigned 2-byte integer field called the <strong>opcode</strong>. The opcode is the value
 that determines which API operation is being invoked by the requests. Recall that each
@@ -1099,15 +1115,20 @@ messages on any suitable transport medium.</p>
 <ul>
 <li>Magic number: a 32-bit unsigned integer whose value must be 0x5EC0A710 (selected to be an
 approximate transcoding of SECurity API). This field can be used as an initial validity check for
-incoming messages. This field <strong>must</strong> be populated in outgoing messages.</li>
+incoming messages. This field <strong>must</strong> be populated in outgoing messages. This field will remain
+the same across different wire protocol versions.</li>
 <li>Header size: a 16-bit unsigned integer whose value is the size of the <strong>remainder</strong> of the header
 in bytes (once the magic number and header size fields have been consumed). Consumers <strong>must</strong>
 use this field to consume the correct number of bytes of header from the input stream, rather
-than use this specification to deduce the header size.</li>
+than use this specification to deduce the header size. This field's position and width will
+remain the same across different wire protocol versions. Only the value of this field may change
+between versions.</li>
 <li>Major version number: an 8-bit versioning field. Currently the only supported and valid value for
-this field is 1.</li>
+this field is 1. This field's position and width will remain the same across different wire
+protocol versions. Only the value of this field may change between versions.</li>
 <li>Minor version number: an 8-bit versioning sub-field. Currently the only supported and valid value
-for this field is 0.</li>
+for this field is 0. This field's position and width will remain the same across different wire
+protocol versions. Only the value of this field may change between versions.</li>
 <li>Provider: an 8-bit field identifying the back-end service provider for which the request is
 intended. A value of zero indicates that the request is not intended for any specific provider.
 Available providers and their characteristics can be queried through discovery operations in the
