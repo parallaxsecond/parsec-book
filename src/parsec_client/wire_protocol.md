@@ -154,14 +154,23 @@ service to track state across multiple API calls. The protocol allocates space w
 header and the response header for an 8-byte session identifier. Details of how to create and manage
 sessions are given in the API specification.
 
-### Versioning
+### Wire Protocol Versions
 
 The wire protocol is versioned. It caters for situations where the service and its clients may be
 operating at different versions. All messages (requests and responses) carry a major and minor
-version number field. All versions of the service must respond to at least one API operation using
-version 1.0 of the protocol. This API operation would typically be some kind of "ping" or "status"
-operation. The output of this operation will allow the client to determine the highest version of
-the protocol that the service supports, so that it can upgrade to this version if desired.
+version number field. Although the design supports having different wire protocol versions, changes
+are not expected to happen regularly, and they may not happen at all.
+
+Clients can use the [Ping](operations/ping.md) operation to determine what is the highest version of
+the protocol that the service support and switch to that one if they want to. Requests made with a
+wire protocol version not supported by the service will be sent back a
+`WireProtocolVersionNotSupported` status code response.
+
+Responses will be sent using the same wire protocol version than the requests they originate from.
+
+Please note that the wire protocol version is **not** the mean of finding out the level of support
+for specific operations in the API. The ListOpcodes operation should be used, per provider basis, to
+determine if an operation is supported by the provider.
 
 ### Opcodes
 
@@ -219,15 +228,20 @@ Field descriptions:
 
 - Magic number: a 32-bit unsigned integer whose value must be 0x5EC0A710 (selected to be an
    approximate transcoding of SECurity API). This field can be used as an initial validity check for
-   incoming messages. This field **must** be populated in outgoing messages.
+   incoming messages. This field **must** be populated in outgoing messages. This field will remain
+   the same across different wire protocol versions.
 - Header size: a 16-bit unsigned integer whose value is the size of the **remainder** of the header
    in bytes (once the magic number and header size fields have been consumed). Consumers **must**
    use this field to consume the correct number of bytes of header from the input stream, rather
-   than use this specification to deduce the header size.
+   than use this specification to deduce the header size. This field's position and width will
+   remain the same across different wire protocol versions. Only the value of this field may change
+   between versions.
 - Major version number: an 8-bit versioning field. Currently the only supported and valid value for
-   this field is 1.
+   this field is 1. This field's position and width will remain the same across different wire
+   protocol versions. Only the value of this field may change between versions.
 - Minor version number: an 8-bit versioning sub-field. Currently the only supported and valid value
-   for this field is 0.
+   for this field is 0. This field's position and width will remain the same across different wire
+   protocol versions. Only the value of this field may change between versions.
 - Provider: an 8-bit field identifying the back-end service provider for which the request is
    intended. A value of zero indicates that the request is not intended for any specific provider.
    Available providers and their characteristics can be queried through discovery operations in the

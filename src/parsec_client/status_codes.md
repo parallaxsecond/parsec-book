@@ -4,7 +4,7 @@
 - **WrongProviderID** (value: 1) - requested provider ID does not match that of the backend
 - **ContentTypeNotSupported** (value: 2) - requested content type is not supported by the backend
 - **AcceptTypeNotSupported** (value: 3) - requested accept type is not supported by the backend
-- **VersionTooBig** (value: 4) - requested version is not supported by the backend
+- **WireProtocolVersionNotSupported** (value: 4) - requested version is not supported by the backend
 - **ProviderNotRegistered** (value: 5) - no provider registered for the requested provider ID
 - **ProviderDoesNotExist** (value: 6) - no provider defined for requested provider ID
 - **DeserializingBodyFailed** (value: 7) - failed to deserialize the body of the message
