@@ -37,6 +37,11 @@ version 2. It uses the TPM2 Software Stack [Enhanced System
 API](https://trustedcomputinggroup.org/resource/tcg-tss-2-0-enhanced-system-api-esapi-specification/)
 to communicate with the TPM and thus requires the TSS libraries to be on the machine.
 
+Follow the [installation guide](https://github.com/tpm2-software/tpm2-tss/blob/master/INSTALL.md) to
+install the TSS libraries. To use the "device" TCTI, the user running Parsec will need to have
+access rights on `/dev/tpm0` and `/dev/tpmrm0`. For that matter, installing the udev rules is needed
+and the user running Parsec will need to be in the `tss` group.
+
 The provider operates with keys based in the Owner Hierarchy. Thus, Parsec needs to be able to
 authenticate with the TPM and to create a primary key and children keys derived from the primary.
 Given current constraints, only one request at a time can be serviced by this provider - the rest
