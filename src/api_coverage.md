@@ -22,32 +22,32 @@ in the future and will be organized by operation type.
 
 ### Single part operations
 
-| Operation name                     | Protobuf contract exists                                                                                               |
-|------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| `psa_import_key`                   | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/import_key.proto)        |
-| `psa_generate_key`                 | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/generate_key.proto)      |
-| `psa_key_derivation_output_key`    | :x:                                                                                                                    |
-| `psa_copy_key`                     | :x:                                                                                                                    |
-| `psa_export_public_key`            | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/export_public_key.proto) |
-| `psa_export_key`                   | :x:                                                                                                                    |
-| `psa_purge_key`                    | :x:                                                                                                                    |
-| `psa_destroy_key`                  | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/destroy_key.proto)       |
-| `psa_hash_compute`                 | :x:                                                                                                                    |
-| `psa_hash_compare`                 | :x:                                                                                                                    |
-| `psa_mac_compute`                  | :x:                                                                                                                    |
-| `psa_mac_verify`                   | :x:                                                                                                                    |
-| `psa_cipher_encrypt`               | :x:                                                                                                                    |
-| `psa_cipher_decrypt`               | :x:                                                                                                                    |
-| `psa_aead_encrypt`                 | :x:                                                                                                                    |
-| `psa_aead_decrypt`                 | :x:                                                                                                                    |
-| `psa_asymmetric_encrypt`           | :x:                                                                                                                    |
-| `psa_asymmetric_decrypt`           | :x:                                                                                                                    |
-| `psa_sign_message`                 | :x:                                                                                                                    |
-| `psa_verify_message`               | :x:                                                                                                                    |
-| `psa_sign_hash`                    | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/sign_hash.proto)         |
-| `psa_verify_hash`                  | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/verify_hash.proto)       |
-| `psa_key_derivation_key_agreement` | :x:                                                                                                                    |
-| `psa_raw_key_agreement`            | :x:                                                                                                                    |
+| Operation name                     | Protobuf contract exists                                                                                                   |
+|------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| `psa_import_key`                   | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto)        |
+| `psa_generate_key`                 | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto)      |
+| `psa_key_derivation_output_key`    | :x:                                                                                                                        |
+| `psa_copy_key`                     | :x:                                                                                                                        |
+| `psa_export_public_key`            | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto) |
+| `psa_export_key`                   | :x:                                                                                                                        |
+| `psa_purge_key`                    | :x:                                                                                                                        |
+| `psa_destroy_key`                  | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)       |
+| `psa_hash_compute`                 | :x:                                                                                                                        |
+| `psa_hash_compare`                 | :x:                                                                                                                        |
+| `psa_mac_compute`                  | :x:                                                                                                                        |
+| `psa_mac_verify`                   | :x:                                                                                                                        |
+| `psa_cipher_encrypt`               | :x:                                                                                                                        |
+| `psa_cipher_decrypt`               | :x:                                                                                                                        |
+| `psa_aead_encrypt`                 | :x:                                                                                                                        |
+| `psa_aead_decrypt`                 | :x:                                                                                                                        |
+| `psa_asymmetric_encrypt`           | :x:                                                                                                                        |
+| `psa_asymmetric_decrypt`           | :x:                                                                                                                        |
+| `psa_sign_message`                 | :x:                                                                                                                        |
+| `psa_verify_message`               | :x:                                                                                                                        |
+| `psa_sign_hash`                    | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto)         |
+| `psa_verify_hash`                  | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto)       |
+| `psa_key_derivation_key_agreement` | :x:                                                                                                                        |
+| `psa_raw_key_agreement`            | :x:                                                                                                                        |
 
 ## API support per-provider
 

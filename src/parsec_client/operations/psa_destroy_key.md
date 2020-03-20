@@ -18,6 +18,6 @@ key.
 
 ## Contract
 
-[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/destroy_key.proto)
+[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)
 
 *Copyright (c) 2019, Arm Limited. All rights reserved.*
