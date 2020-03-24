@@ -2,7 +2,9 @@
 
 ## Introduction
 
-This document provides links to full descriptions for all of the operations in the API.
+This document provides links to full descriptions for all of the operations in the API. The
+operations are defined in a format-neutral language where types can easily and implicitely be
+translated to the specific operation implementation language used.
 
 ## Status Note
 
@@ -41,11 +43,12 @@ Core operations are non-cryptographic operations supported by the core provider.
 ## PSA Crypto Operations
 
 These operations are all derived from equivalent function definitions in the [**PSA Crypto API
-Specification**](https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf).
+Specification**](https://developer.arm.com/architectures/security-architectures/platform-security-architecture/documentation).
+Most of the documentation in this book directly come from the specification.
 
 ### Key Management
 
-- [**PsaCreateKey**](psa_create_key.md)
+- [**PsaGenerateKey**](psa_generate_key.md)
 - **PsaExportKey**
 - [**PsaExportPublicKey**](psa_export_public_key.md)
 - [**PsaImportKey**](psa_import_key.md)
