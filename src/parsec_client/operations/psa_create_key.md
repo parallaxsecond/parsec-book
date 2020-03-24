@@ -21,6 +21,6 @@ The following type-specific considerations apply:
 
 ## Contract
 
-[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/generate_key.proto)
+[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto)
 
 *Copyright (c) 2019, Arm Limited. All rights reserved.*

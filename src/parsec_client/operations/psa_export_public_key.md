@@ -39,6 +39,6 @@ For standard key types, the output format is as follows:
 
 ## Contract
 
-[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/export_public_key.proto)
+[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto)
 
 *Copyright (c) 2019, Arm Limited. All rights reserved.*

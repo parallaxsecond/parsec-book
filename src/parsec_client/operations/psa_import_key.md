@@ -22,6 +22,6 @@ input is accidentally interpreted according to a different format.
 
 ## Contract
 
-[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/import_key.proto)
+[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto)
 
 *Copyright (c) 2019, Arm Limited. All rights reserved.*

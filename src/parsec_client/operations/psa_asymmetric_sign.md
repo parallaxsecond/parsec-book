@@ -22,6 +22,6 @@ data you want to sign. Then pass the resulting hash as the `hash` parameter to t
 
 ## Contract
 
-[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/sign_hash.proto)
+[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto)
 
 *Copyright (c) 2019, Arm Limited. All rights reserved.*
