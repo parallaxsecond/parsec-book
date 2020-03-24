@@ -92,37 +92,36 @@
 
             <div class="page">
                 
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                            
-                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            
-                        </div>
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
 
-                        <h1 class="menu-title">The Parsec Book</h1>
+                    <h1 class="menu-title">The Parsec Book</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                            
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -346,14 +345,14 @@ encourage each library to publish its own coverage figures in their format of ch
 in the future and will be organized by operation type.</p>
 <h3><a class="header" href="#single-part-operations" id="single-part-operations">Single part operations</a></h3>
 <table><thead><tr><th>Operation name</th><th>Protobuf contract exists</th></tr></thead><tbody>
-<tr><td><code>psa_import_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/import_key.proto">:white_check_mark:</a></td></tr>
-<tr><td><code>psa_generate_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/generate_key.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_import_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_generate_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto">:white_check_mark:</a></td></tr>
 <tr><td><code>psa_key_derivation_output_key</code></td><td>:x:</td></tr>
 <tr><td><code>psa_copy_key</code></td><td>:x:</td></tr>
-<tr><td><code>psa_export_public_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/export_public_key.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_export_public_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto">:white_check_mark:</a></td></tr>
 <tr><td><code>psa_export_key</code></td><td>:x:</td></tr>
 <tr><td><code>psa_purge_key</code></td><td>:x:</td></tr>
-<tr><td><code>psa_destroy_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/destroy_key.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_destroy_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto">:white_check_mark:</a></td></tr>
 <tr><td><code>psa_hash_compute</code></td><td>:x:</td></tr>
 <tr><td><code>psa_hash_compare</code></td><td>:x:</td></tr>
 <tr><td><code>psa_mac_compute</code></td><td>:x:</td></tr>
@@ -366,8 +365,8 @@ in the future and will be organized by operation type.</p>
 <tr><td><code>psa_asymmetric_decrypt</code></td><td>:x:</td></tr>
 <tr><td><code>psa_sign_message</code></td><td>:x:</td></tr>
 <tr><td><code>psa_verify_message</code></td><td>:x:</td></tr>
-<tr><td><code>psa_sign_hash</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/sign_hash.proto">:white_check_mark:</a></td></tr>
-<tr><td><code>psa_verify_hash</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/verify_hash.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_sign_hash</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_verify_hash</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto">:white_check_mark:</a></td></tr>
 <tr><td><code>psa_key_derivation_key_agreement</code></td><td>:x:</td></tr>
 <tr><td><code>psa_raw_key_agreement</code></td><td>:x:</td></tr>
 </tbody></table>
@@ -622,7 +621,7 @@ algorithm.</li>
 <li><strong>signature</strong> - Bytes forming up the requested signature</li>
 </ul>
 <h2><a class="header" href="#contract-3" id="contract-3">Contract</a></h2>
-<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/sign_hash.proto">Protobuf</a></p>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto">Protobuf</a></p>
 <p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 <h1><a class="header" href="#psaasymmetricverify" id="psaasymmetricverify">PsaAsymmetricVerify</a></h1>
 <h2><a class="header" href="#opcode-5-decimal-0x0005-hex" id="opcode-5-decimal-0x0005-hex">Opcode: 5 (decimal), 0x0005 (hex)</a></h2>
@@ -639,7 +638,7 @@ algorithm.</li>
 <li><strong>signature</strong> - Signature that must be verified, in raw binary format.</li>
 </ul>
 <h2><a class="header" href="#contract-4" id="contract-4">Contract</a></h2>
-<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/verify_hash.proto">Protobuf</a></p>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto">Protobuf</a></p>
 <p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 <h1><a class="header" href="#psacreatekey" id="psacreatekey">PsaCreateKey</a></h1>
 <h2><a class="header" href="#opcode-2-decimal-0x0002-hex" id="opcode-2-decimal-0x0002-hex">Opcode: 2 (decimal), 0x0002 (hex)</a></h2>
@@ -658,7 +657,7 @@ probabilistic primes between 2^{n-1} and 2^n where n is the bit size specified i
 attributes</strong></a> file for more details).</li>
 </ul>
 <h2><a class="header" href="#contract-5" id="contract-5">Contract</a></h2>
-<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/generate_key.proto">Protobuf</a></p>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto">Protobuf</a></p>
 <p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 <h1><a class="header" href="#psadestroykey" id="psadestroykey">PsaDestroyKey</a></h1>
 <h2><a class="header" href="#opcode-3-decimal-0x0003-hex" id="opcode-3-decimal-0x0003-hex">Opcode: 3 (decimal), 0x0003 (hex)</a></h2>
@@ -673,7 +672,7 @@ key.</p>
 <li><strong>key_name</strong> - Name of the key to be destroyed.</li>
 </ul>
 <h2><a class="header" href="#contract-6" id="contract-6">Contract</a></h2>
-<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/destroy_key.proto">Protobuf</a></p>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto">Protobuf</a></p>
 <p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 <h1><a class="header" href="#psaexportpublickey" id="psaexportpublickey">PsaExportPublicKey</a></h1>
 <h2><a class="header" href="#opcode-7-decimal-0x0007-hex" id="opcode-7-decimal-0x0007-hex">Opcode: 7 (decimal), 0x0007 (hex)</a></h2>
@@ -709,7 +708,7 @@ defined by <em>RFC 3279 §2.3.2</em> as <code>DSAPublicKey</code>, with the OID 
 <li><strong>key_data</strong> - Bytes of the key in one of the formats described above.</li>
 </ul>
 <h2><a class="header" href="#contract-7" id="contract-7">Contract</a></h2>
-<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/export_public_key.proto">Protobuf</a></p>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto">Protobuf</a></p>
 <p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 <h1><a class="header" href="#psaimportkey" id="psaimportkey">PsaImportKey</a></h1>
 <h2><a class="header" href="#opcode-6-decimal-0x0006-hex" id="opcode-6-decimal-0x0006-hex">Opcode: 6 (decimal), 0x0006 (hex)</a></h2>
@@ -728,7 +727,7 @@ input is accidentally interpreted according to a different format.</p>
 <li><strong>key_data</strong> Bytes of the key in one of the formats described above.</li>
 </ul>
 <h2><a class="header" href="#contract-8" id="contract-8">Contract</a></h2>
-<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/import_key.proto">Protobuf</a></p>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto">Protobuf</a></p>
 <p><em>Copyright (c) 2019, Arm Limited. All rights reserved.</em></p>
 <h1><a class="header" href="#sharetrustbundle" id="sharetrustbundle">ShareTrustBundle</a></h1>
 <p>Placeholder page.</p>

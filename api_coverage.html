@@ -90,37 +90,36 @@
 
             <div class="page">
                 
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                            
-                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            
-                        </div>
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
 
-                        <h1 class="menu-title">The Parsec Book</h1>
+                    <h1 class="menu-title">The Parsec Book</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                            
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -168,14 +167,14 @@ encourage each library to publish its own coverage figures in their format of ch
 in the future and will be organized by operation type.</p>
 <h3><a class="header" href="#single-part-operations" id="single-part-operations">Single part operations</a></h3>
 <table><thead><tr><th>Operation name</th><th>Protobuf contract exists</th></tr></thead><tbody>
-<tr><td><code>psa_import_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/import_key.proto">:white_check_mark:</a></td></tr>
-<tr><td><code>psa_generate_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/generate_key.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_import_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_generate_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto">:white_check_mark:</a></td></tr>
 <tr><td><code>psa_key_derivation_output_key</code></td><td>:x:</td></tr>
 <tr><td><code>psa_copy_key</code></td><td>:x:</td></tr>
-<tr><td><code>psa_export_public_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/export_public_key.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_export_public_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto">:white_check_mark:</a></td></tr>
 <tr><td><code>psa_export_key</code></td><td>:x:</td></tr>
 <tr><td><code>psa_purge_key</code></td><td>:x:</td></tr>
-<tr><td><code>psa_destroy_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/destroy_key.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_destroy_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto">:white_check_mark:</a></td></tr>
 <tr><td><code>psa_hash_compute</code></td><td>:x:</td></tr>
 <tr><td><code>psa_hash_compare</code></td><td>:x:</td></tr>
 <tr><td><code>psa_mac_compute</code></td><td>:x:</td></tr>
@@ -188,8 +187,8 @@ in the future and will be organized by operation type.</p>
 <tr><td><code>psa_asymmetric_decrypt</code></td><td>:x:</td></tr>
 <tr><td><code>psa_sign_message</code></td><td>:x:</td></tr>
 <tr><td><code>psa_verify_message</code></td><td>:x:</td></tr>
-<tr><td><code>psa_sign_hash</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/sign_hash.proto">:white_check_mark:</a></td></tr>
-<tr><td><code>psa_verify_hash</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/verify_hash.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_sign_hash</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto">:white_check_mark:</a></td></tr>
+<tr><td><code>psa_verify_hash</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto">:white_check_mark:</a></td></tr>
 <tr><td><code>psa_key_derivation_key_agreement</code></td><td>:x:</td></tr>
 <tr><td><code>psa_raw_key_agreement</code></td><td>:x:</td></tr>
 </tbody></table>
@@ -260,13 +259,13 @@ option marked as supported is necessarily supported for all operations on which 
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="overview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="overview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="parsec_users.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="parsec_users.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
