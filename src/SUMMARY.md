@@ -3,6 +3,7 @@
 - [Introduction](README.md)
 - [Overview](overview.md)
 - [API coverage](api_coverage.md)
+- [Parsec Threat Model](threat_model/threat_model.md)
 - [Parsec for users](parsec_users.md)
 - [Parsec for client developers](parsec_client/README.md)
    - [Operations](parsec_client/operations/README.md)
