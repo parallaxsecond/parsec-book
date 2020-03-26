@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Parsec Threat Model - The Parsec Book</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div id="sidebar-scrollbox" class="sidebar-scrollbox">
+                <ol class="chapter"><li class="expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="expanded "><a href="../overview.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="expanded "><a href="../api_coverage.html"><strong aria-hidden="true">3.</strong> API coverage</a></li><li class="expanded "><a href="../threat_model/threat_model.html" class="active"><strong aria-hidden="true">4.</strong> Parsec Threat Model</a></li><li class="expanded "><a href="../parsec_users.html"><strong aria-hidden="true">5.</strong> Parsec for users</a></li><li class="expanded "><a href="../parsec_client/index.html"><strong aria-hidden="true">6.</strong> Parsec for client developers</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_client/operations/index.html"><strong aria-hidden="true">6.1.</strong> Operations</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_client/operations/add_client.html"><strong aria-hidden="true">6.1.1.</strong> AddClient</a></li><li class="expanded "><a href="../parsec_client/operations/list_opcodes.html"><strong aria-hidden="true">6.1.2.</strong> ListOpcodes</a></li><li class="expanded "><a href="../parsec_client/operations/list_providers.html"><strong aria-hidden="true">6.1.3.</strong> ListProviders</a></li><li class="expanded "><a href="../parsec_client/operations/ping.html"><strong aria-hidden="true">6.1.4.</strong> Ping</a></li><li class="expanded "><a href="../parsec_client/operations/prove_client.html"><strong aria-hidden="true">6.1.5.</strong> ProveClient</a></li><li class="expanded "><a href="../parsec_client/operations/psa_asymmetric_sign.html"><strong aria-hidden="true">6.1.6.</strong> PsaAsymmetricSign</a></li><li class="expanded "><a href="../parsec_client/operations/psa_asymmetric_verify.html"><strong aria-hidden="true">6.1.7.</strong> PsaAsymmetricVerify</a></li><li class="expanded "><a href="../parsec_client/operations/psa_create_key.html"><strong aria-hidden="true">6.1.8.</strong> PsaCreateKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_destroy_key.html"><strong aria-hidden="true">6.1.9.</strong> PsaDestroyKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_export_public_key.html"><strong aria-hidden="true">6.1.10.</strong> PsaExportPublicKey</a></li><li class="expanded "><a href="../parsec_client/operations/psa_import_key.html"><strong aria-hidden="true">6.1.11.</strong> PsaImportKey</a></li><li class="expanded "><a href="../parsec_client/operations/share_trust_bundle.html"><strong aria-hidden="true">6.1.12.</strong> ShareTrustBundle</a></li><li class="expanded "><a href="../parsec_client/operations/key_attributes.html"><strong aria-hidden="true">6.1.13.</strong> Key Attributes</a></li></ol></li><li class="expanded "><a href="../parsec_client/api_overview.html"><strong aria-hidden="true">6.2.</strong> API Overview</a></li><li class="expanded "><a href="../parsec_client/status_codes.html"><strong aria-hidden="true">6.3.</strong> Status Codes</a></li><li class="expanded "><a href="../parsec_client/wire_protocol.html"><strong aria-hidden="true">6.4.</strong> Wire Protocol</a></li><li class="expanded "><a href="../parsec_client/writing_library.html"><strong aria-hidden="true">6.5.</strong> Writing a new Parsec Client Library</a></li></ol></li><li class="expanded "><a href="../parsec_service/index.html"><strong aria-hidden="true">7.</strong> Parsec for service developers</a></li><li><ol class="section"><li class="expanded "><a href="../parsec_service/system_architecture.html"><strong aria-hidden="true">7.1.</strong> System Architecture</a></li><li class="expanded "><a href="../parsec_service/interfaces_and_dataflow.html"><strong aria-hidden="true">7.2.</strong> Interfaces and Dataflow</a></li><li class="expanded "><a href="../parsec_service/source_code_structure.html"><strong aria-hidden="true">7.3.</strong> Source Code Structure</a></li><li class="expanded "><a href="../parsec_service/providers.html"><strong aria-hidden="true">7.4.</strong> Providers</a></li><li class="expanded "><a href="../parsec_service/converters.html"><strong aria-hidden="true">7.5.</strong> Converters</a></li><li class="expanded "><a href="../parsec_service/authenticators.html"><strong aria-hidden="true">7.6.</strong> Authenticators</a></li><li class="expanded "><a href="../parsec_service/listeners.html"><strong aria-hidden="true">7.7.</strong> Listeners</a></li><li class="expanded "><a href="../parsec_service/key_id_managers.html"><strong aria-hidden="true">7.8.</strong> Key ID Managers</a></li><li class="expanded "><a href="../parsec_service/adding_provider.html"><strong aria-hidden="true">7.9.</strong> Adding a new Parsec Provider</a></li><li class="expanded "><a href="../parsec_service/build_run.html"><strong aria-hidden="true">7.10.</strong> How to build and run Parsec</a></li><li class="expanded "><a href="../parsec_service/install_parsec_linux.html"><strong aria-hidden="true">7.11.</strong> How to install Parsec on Linux</a></li><li class="expanded "><a href="../parsec_service/configuration.html"><strong aria-hidden="true">7.12.</strong> Parsec Configuration</a></li><li class="expanded "><a href="../parsec_service/test.html"><strong aria-hidden="true">7.13.</strong> How to test Parsec</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The Parsec Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#parsec-threat-model" id="parsec-threat-model">Parsec Threat Model</a></h1>
+<p>This document presents the generic Parsec Threat Model in a multi-tenant environment.</p>
+<p>Parsec could also be deployed in an environment where all clients trust each other and there is no
+Identity Provider present, and this would lead to some changes to the Threat Model. <em>These changes
+will be written in italic.</em></p>
+<h2><a class="header" href="#dataflow-diagram" id="dataflow-diagram">Dataflow Diagram</a></h2>
+<p><img src="diagrams/dataflow_diagram.png" alt="Dataflow Diagram" /></p>
+<h2><a class="header" href="#assumptions" id="assumptions">Assumptions</a></h2>
+<p>Basic requirements based on which the service can operate securely. Mitigations can be implemented
+to make the system more resilient, but if some of these assumptions are not met, the security stance
+of the service cannot be guaranteed. For each assumption, the mitigations, operational mitigations
+and &quot;unmitigations&quot; that relate to it are mentioned.</p>
+<ol>
+<li>The hardware modules are physically and functionally secure. Only trusted agents can physically
+access the system.</li>
+<li>The service is configured and started by a trusted administrator.</li>
+<li>The OS can be trusted to enforce access-control over critical resources (configuration file, key
+ID mappings, communication socket, etc.) and inter-process communication mechanisms.</li>
+<li>Users with privilege rights are trusted to exercise them in a non-malicious way.</li>
+<li>The authentication tokens are stored with confidentiality by the clients. <em>(N/A)</em></li>
+<li>There is a trusted Identity Provider available. <em>(N/A)</em></li>
+</ol>
+<h2><a class="header" href="#assets" id="assets">Assets</a></h2>
+<p>What we want to protect. Each one of these has a combination of security properties:
+Confidentiality, Integrity and Availability. The assets are labelled so that it can be seen in the
+threat tables below which ones are impacted by each threat.</p>
+<h3><a class="header" href="#application-identity---as1" id="application-identity---as1">Application Identity - AS1</a></h3>
+<p>The Client Library gets its Application Identity from the Identity Provider. It is signed by the
+IP's private key and sent by the Client Library on each request. Parsec verifies the Authentication
+Token using the IP's public key.</p>
+<p><strong>Confidentiality</strong> : if known (the authentication token), an attacker could impersonate a specific
+application and execute operations in their name.</p>
+<p><em>Not applicable for deployments with no Identity Provider. In a deployment without an Identity
+Provider tenants will still have an identity in the form of an application name, but all entities in
+the system are trusted not to use identities of other tenants and so confidentiality is not
+critical.</em></p>
+<h3><a class="header" href="#identity-provider-public-key--as2" id="identity-provider-public-key--as2">Identity Provider Public Key- AS2</a></h3>
+<p>The IP's public certificate is sent to the service periodically. It is used by the service to verify
+the authentication tokens.</p>
+<p><strong>Integrity</strong> : if sent by a malicious IP, attackers could then sign their own application
+identities and Parsec will verify them successfully. If they know the Application Identity of
+clients, they can impersonate them.</p>
+<p><strong>Availability</strong> : Parsec needs it in order to execute a request.</p>
+<p><em>Not applicable for deployments with no Identity Provider.</em></p>
+<h3><a class="header" href="#private-keys--as3" id="private-keys--as3">Private Keys- AS3</a></h3>
+<p>Private keys created by Parsec on behalf of its clients. They should be stored on hardware and never
+be extractable.</p>
+<p><strong>Confidentiality, Integrity and Availability</strong> : by nature.</p>
+<h3><a class="header" href="#clients-data--as4" id="clients-data--as4">Client's data- AS4</a></h3>
+<p>Data sent by the client as part of a request or data about a client processed by the service. This
+could appear in logs.</p>
+<p><strong>Confidentiality</strong> : some of the client's data could be confidential (example: a buffer to
+encrypt).</p>
+<p><strong>Integrity</strong> : the data should not be modifiable by attackers. Parsec should be sure that the
+source is trusted, and that the client is not being impersonated.</p>
+<p><strong>Availability</strong> : the client should be able to access its stored data in a certain amount of time.</p>
+<h3><a class="header" href="#configuration-data--as5" id="configuration-data--as5">Configuration data- AS5</a></h3>
+<p>Data stored in the configuration file, read at each reloading of Parsec to instantiate components.</p>
+<p><strong>Confidentiality</strong> : the data contains secrets like the user pin of the PKCS 11 device or the owner
+hierarchy password of the TPM device.</p>
+<p><strong>Integrity</strong> : the data should only be modified by a trusted Parsec administrator.</p>
+<p><strong>Availability</strong> : the data should be available when loading or re-loading Parsec.</p>
+<h3><a class="header" href="#availability-of-the-service--as6" id="availability-of-the-service--as6">Availability of the service- AS6</a></h3>
+<p>General asset to describe the fact that each client's request should be done in a sane amount of
+time. The service should be available at any given point from the moment it is started by the
+administrator.</p>
+<h2><a class="header" href="#attackers" id="attackers">Attackers</a></h2>
+<p>Each dataflow is analysed from an attacker's perspective using STRIDE method. Nothing is supposed on
+the different components.</p>
+<p>In the following tables are present the type of each possible threat, its description, its
+mitigation status and the assets impacted. A threat can be unmitigated (U), mitigated within the
+service (M) or mitigated through operational requirements (O). The assumptions context applies for
+all threats but when one of them is particularly relevant, it will be noted with A.</p>
+<p><em>In deployments without an Identity Provider, the A1, A2 and A10 attackers are not considered in
+scope, dependent on the O-10 mitigation being deployed.</em></p>
+<h3><a class="header" href="#attacker-client-request---a1" id="attacker-client-request---a1">Attacker &quot;Client Request&quot; - A1</a></h3>
+<p>This attacker uses the existing Listener endpoint, created by the service, to communicate with it.</p>
+<p><em>Not applicable for deployments with no Identity Provider.</em></p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>An attacker uses another client's authentication token. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-2</td><td>AS3</td></tr>
+<tr><td>S</td><td>An attacker uses brute-force on the AUTH field of the request until he does not have an AuthenticationError response status to then deduce a valid authentication token.</td><td>M-2</td><td>AS1</td></tr>
+<tr><td>T</td><td>An attacker modifies the valid request of another client to modify the operation and make it non-secure.</td><td>M-3</td><td>AS4</td></tr>
+<tr><td>R</td><td>A client denies the authorship of a request.</td><td>M-4</td><td></td></tr>
+<tr><td>I</td><td>An attacker can read the confidential information of a request from another client.</td><td>M-3</td><td>AS1, AS4</td></tr>
+<tr><td>I</td><td>An attacker steals the authentication token from a client's request to then execute any operation in their name.</td><td>M-3</td><td>AS4, AS3</td></tr>
+<tr><td>D</td><td>An attacker modifies the valid request of another client to modify the operation and make it fail.</td><td>M-3</td><td>AS6</td></tr>
+<tr><td>D</td><td>An attacker overloads/crashes the system and thus prevents any other user from making use of the service.</td><td>Crashes: M-0, M-5 Overloads: U-0</td><td>AS6</td></tr>
+<tr><td>E</td><td>A malicious request, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-5</td><td>All</td></tr>
+<tr><td>E</td><td>A malicious request exploits a vulnerability in the software stack and leads to an attacker having Parsec privilege level on key management in the underlying hardware.</td><td>U-3, M-5</td><td>AS3, AS6</td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-service-response---a2" id="attacker-service-response---a2">Attacker &quot;Service Response&quot; - A2</a></h3>
+<p>This attacker uses the existing Listener endpoint, created by the service, to communicate with the
+client. It can also create a spoofed endpoint, mimicking the service's one.</p>
+<p><em>Not applicable for deployments with no Identity Provider.</em></p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>An attacker impersonates the Parsec service: clients share their data with a malicious entity.</td><td>O-2, O-9</td><td>AS3, AS4, AS6</td></tr>
+<tr><td>T</td><td>An attacker modifies the response of another client to change its body or its header and thus alter the type, content or status of the response.</td><td>M-3</td><td>AS4</td></tr>
+<tr><td>R</td><td>A client denies that the response was indeed sent by the Parsec service.</td><td>O-2, M-4, O-9</td><td></td></tr>
+<tr><td>I</td><td>An attacker can read the content of a response.</td><td>M-3</td><td>AS4</td></tr>
+<tr><td>I</td><td>The response code of a request gives too much information about the way the data is processed by the service that an attacker can use for an attack.</td><td>M-1</td><td>Depends on the attack</td></tr>
+<tr><td>D</td><td>An attacker modifies the valid response of another client to pretend it failed or succeeded.</td><td>M-3</td><td>AS6</td></tr>
+<tr><td>D</td><td>An attacker modifies the response in such a way that it leads the client to crash.</td><td>M-3</td><td></td></tr>
+<tr><td>E</td><td>An attacker modifies the response in such a way that it leads to code execution in the client sandbox at the same level as the client.</td><td>M-3</td><td></td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-os-signal---a3" id="attacker-os-signal---a3">Attacker &quot;OS Signal&quot; - A3</a></h3>
+<p>This attacker has the capability of sending signals to the Parsec process. For example, on a Linux
+machine a <code>SIGINT</code> signal.</p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>N/A</td><td></td><td></td></tr>
+<tr><td>T</td><td>A <code>SIGHUP</code> is modified by an attacker into <code>SIGTERM</code> or the other way around.</td><td>A-3</td><td>AS6</td></tr>
+<tr><td>R</td><td>N/A</td><td></td><td></td></tr>
+<tr><td>I</td><td>N/A</td><td></td><td></td></tr>
+<tr><td>D</td><td>An attacker can kill the Parsec service, gracefully or not or trigger an infinite loop of configuration reloads.</td><td>O-0</td><td>AS6</td></tr>
+<tr><td>E</td><td>N/A</td><td></td><td></td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-service-operation---a4" id="attacker-service-operation---a4">Attacker &quot;Service Operation&quot; - A4</a></h3>
+<p>This attacker communicates with the security hardware on the platform using the operating system
+interfaces.</p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>An attacker directly drives the platform hardware to execute commands on it.</td><td>O-8</td><td>AS3, AS6</td></tr>
+<tr><td>T</td><td>An attacker modifies the commands sent to hardware modules.</td><td>O-8, U-3</td><td>AS3, AS6</td></tr>
+<tr><td>R</td><td>Commands cannot be proven to have originated in the service.</td><td>M-4</td><td></td></tr>
+<tr><td>I</td><td>An attacker can read the content of commands to the hardware.</td><td>O-8, U-3</td><td>AS3, AS4, AS5</td></tr>
+<tr><td>D</td><td>An attacker modifies the commands sent to the hardware to make them fail.</td><td>O-8, U-3</td><td>AS6</td></tr>
+<tr><td>D</td><td>Attacker causes the underlying hardware to fail or be generally unusable.</td><td>O-8, U-3, U-1</td><td>AS6</td></tr>
+<tr><td>D</td><td>Attacker disrupts the software stack that drives the hardware (e.g. replaces or removes PKCS 11 dynamic libraries).</td><td>O-8, U-3</td><td>AS6</td></tr>
+<tr><td>E</td><td>An attacker uses the configured state of a hardware module to make operations with a higher privilege on it.</td><td>O-8, U-3, U-4</td><td>AS3, AS6</td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-hardware-result---a5" id="attacker-hardware-result---a5">Attacker &quot;Hardware Result&quot; - A5</a></h3>
+<p>This attacker communicates with the service using the operating system interfaces for hardware. It
+can also create a spoofed hardware interface.</p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>An attacker impersonates a hardware module or uses a malicious module plugged to the machine.</td><td>O-1, A-2</td><td>AS4, AS6</td></tr>
+<tr><td>T</td><td>An attacker modifies the response of a hardware command.</td><td>O-8, U-3</td><td>AS4, AS6</td></tr>
+<tr><td>R</td><td>Responses cannot be proven to originate from the hardware module.</td><td>M-4</td><td></td></tr>
+<tr><td>I</td><td>An attacker can read the content of a command response.</td><td>U-3, O-8</td><td>AS3, AS4, AS5</td></tr>
+<tr><td>D</td><td>An attacker modifies the valid command response to pretend it failed or succeeded.</td><td>U-3, O-8</td><td>AS6</td></tr>
+<tr><td>E</td><td>A malicious command response, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-5, O-8</td><td>All</td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-key-mapping-storage---a6" id="attacker-key-mapping-storage---a6">Attacker &quot;Key Mapping Storage&quot; - A6</a></h3>
+<p>Attacker with access to the key ID mapping stream generated by Key ID Managers when storing its data
+and to the persistent storage mechanism used for this purpose.</p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>An attacker stores spoofed key handles/material, e.g. allowing themselves to access keys they should not have access to.</td><td>O-3</td><td>AS3, AS6</td></tr>
+<tr><td>T</td><td>An attacker modifies the data stored for a mapping to either divert another user to use a different key, or to allow himself access to some key.</td><td>O-3</td><td>AS3, AS6</td></tr>
+<tr><td>R</td><td>The mappings cannot be proven to have been generated by the service.</td><td>M-4</td><td></td></tr>
+<tr><td>I</td><td>Key handles could be leaked and thus used to access keys through other means.</td><td>O-3</td><td>AS3,AS4</td></tr>
+<tr><td>D</td><td>An attacker could prevent the storage to be completed, e.g. by filling up the disk and running into space-related issues.</td><td>O-4</td><td>AS6</td></tr>
+<tr><td>E</td><td>N/A</td><td></td><td></td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-key-mapping-retrieval---a7" id="attacker-key-mapping-retrieval---a7">Attacker &quot;Key Mapping Retrieval&quot; - A7</a></h3>
+<p>Attacker with access to the data stream returning to the Key ID Manager from its source of
+persistent storage.</p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>Attacker spoofs the existence of a mapping and makes the service use an incorrect or invalid key (handle).</td><td>M-6, O-3</td><td>AS3, AS4, AS6</td></tr>
+<tr><td>T</td><td>An attacker alters the retrieval of stored material to change the key that is used for an operation initiated by either himself or some other user.</td><td>M-6</td><td>AS3, AS6</td></tr>
+<tr><td>R</td><td>There is no way to guarantee that the mapping being retrieved was previously stored by the service.</td><td>M-4</td><td></td></tr>
+<tr><td>I</td><td>An attacker can read the mapping in transit.</td><td>M-6</td><td>AS3</td></tr>
+<tr><td>D</td><td>An attacker prevents the value from being read.</td><td>M-6</td><td>AS6</td></tr>
+<tr><td>D</td><td>An attacker removes all stored values, preventing users from utilizing their keys.</td><td>O-3</td><td>AS6</td></tr>
+<tr><td>D</td><td>A malicious key handle, formatted in a specific way, leads to a service crash.</td><td>O-3, M-5, U-3</td><td>AS6</td></tr>
+<tr><td>E</td><td>A malicious key handle, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>O-3, M-5, U-3</td><td>All</td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-logging---a8" id="attacker-logging---a8">Attacker &quot;Logging&quot; - A8</a></h3>
+<p>Attacker with access to the log stream generated by the Parsec service and to the log file.</p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>An attacker could write to the log file, pretending to be the Parsec service and dilute the true logs, potentially hiding errors or crashes.</td><td>O-5</td><td>AS6</td></tr>
+<tr><td>S</td><td>An attacker uses the same logging façade mechanism to write on the logs from a malicious Parsec dependency.</td><td>M-7</td><td>AS6</td></tr>
+<tr><td>T</td><td>Attacker can modify logs to hide/modify details about crashes, errors or any other suspicious activity.</td><td>O-5</td><td>AS6</td></tr>
+<tr><td>T</td><td>An attacker can delete the log file, removing all evidence of previous activity.</td><td>O-5</td><td>AS6</td></tr>
+<tr><td>R</td><td>There is no guarantee about the true origin of log messages.</td><td>O-5</td><td></td></tr>
+<tr><td>I</td><td>Log messages can be read by an adversary and their contents can disclose information about the activity of other users.</td><td>O-5</td><td>AS1, AS4, AS5</td></tr>
+<tr><td>D</td><td>An attacker prevents access to the logging system by the service putting it in a stall state or triggering errors/crashes.</td><td>O-5, O-4</td><td>AS6</td></tr>
+<tr><td>E</td><td>N/A</td><td></td><td></td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-configuration---a9" id="attacker-configuration---a9">Attacker &quot;Configuration&quot; - A9</a></h3>
+<p>Attacker with access to the configuration file for the Parsec service or to the OS-provided
+mechanism for reading it.</p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>An adversary can spoof a configuration file, leading to the service operating in an ineffective state or not starting at all.</td><td>O-6</td><td>AS5, AS6</td></tr>
+<tr><td>T</td><td>The configuration file set up by the administrator might be modified, leading to the service being ineffective or broken.</td><td>O-6</td><td>AS5, AS6</td></tr>
+<tr><td>R</td><td>There are no guarantees that the person setting up the configuration file was authorised to do so.</td><td>O-6</td><td></td></tr>
+<tr><td>I</td><td>The configuration file might, if read by an adversary, provide information that opens different attack avenues.</td><td>O-6</td><td>AS5</td></tr>
+<tr><td>I</td><td>If the configuration file is tampered, information about the existing keys can be extracted through rogue providers.</td><td>O-6</td><td>AS5</td></tr>
+<tr><td>D</td><td>Removing or altering the configuration file can lead to the Parsec service not starting or working in a broken state.</td><td>O-6</td><td>AS6</td></tr>
+<tr><td>E</td><td>Parsing a malicious configuration file can lead to code execution at the Parsec privilege level.</td><td>M-5, U-3, O-6</td><td>All</td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-identity-provider---a10" id="attacker-identity-provider---a10">Attacker &quot;Identity Provider&quot; - A10</a></h3>
+<p>Attacker with access to the communication running from the Identity Provider to the Parsec service.</p>
+<p><em>Not applicable for deployments with no Identity Provider.</em></p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>The initial trust bundle can be spoofed, and an attacker can thus gain complete control over the service.</td><td>O-7</td><td>AS2 and then all</td></tr>
+<tr><td>T</td><td>The trust bundle shared by the identity provider can be modified in transit to disrupt the operation of the service or take control of it.</td><td>M-3</td><td>AS2 and then all</td></tr>
+<tr><td>R</td><td>The service cannot guarantee that the trust bundle it received comes from the trusted identity provider.</td><td>O-7</td><td></td></tr>
+<tr><td>I</td><td>N/A - the trust bundle contains public information</td><td></td><td></td></tr>
+<tr><td>D</td><td>If the communication path between identity provider and service is disrupted, the service will not be in a fully functional state as it will not be able to authenticate requests.</td><td>M-3</td><td>AS2, AS6</td></tr>
+<tr><td>D</td><td>A malicious share bundle could trigger a parsing bug and lead the service to crash.</td><td>M-5, U-3</td><td>AS2, AS6</td></tr>
+<tr><td>E</td><td>A malicious share bundle could trigger a parsing bug and lead to code execution at the Parsec privilege level.</td><td>M-5, U-3</td><td>All</td></tr>
+</tbody></table>
+<h2><a class="header" href="#unmitigations" id="unmitigations">Unmitigations</a></h2>
+<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
+<tr><td>0</td><td>An attacker can use all the threads of the service's thread pool, requesting for a time-consuming operation on each one of them, to leave the less amount of free time possible to other clients.</td></tr>
+<tr><td>1</td><td>Physical Denial of Service attacks are unmitigated.</td></tr>
+<tr><td>2</td><td>It is assumed that the authentication token is stored with confidentiality by the clients. If it is stolen, the service cannot prevent access with it unless the token is revoked.</td></tr>
+<tr><td>3</td><td>Parsec dependencies are not checked for Security Vulnerabilities.</td></tr>
+<tr><td>4</td><td>While Parsec is authenticated on the device, anyone can brute force a key ID to execute operations with the key. Unmitigated for the PKCS 11 Provider: all sessions share the login state; if one session logs in then all other opened sessions will also be logged in. Other sessions only need a valid key ID to execute operations with private keys. Mitigated for the TPM Provider: each key is protected by a long, random authentication value, generated by the TPM</td></tr>
+</tbody></table>
+<h2><a class="header" href="#mitigations" id="mitigations">Mitigations</a></h2>
+<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
+<tr><td>0</td><td>Parsec uses a thread pool with a configurable amount of threads to limit the number of concurrent operations it can support so that the machine is not overloaded.</td></tr>
+<tr><td>1</td><td>Response statuses are audited to not give too much information to the client.</td></tr>
+<tr><td>2</td><td>The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible.</td></tr>
+<tr><td>3</td><td>Listener implementations use an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made). - Unix Domain Socket Listener: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
+<tr><td>4</td><td>The following events are logged by the service with information containing the application identity, time and date: &quot;new request received&quot;, &quot;response sent back&quot;, &quot;new mapping created&quot;, &quot;mapping is read from the persistent store&quot;, &quot;a hardware command is issued&quot; and &quot;a hardware command is received&quot;.</td></tr>
+<tr><td>5</td><td>Parsec is coded with safety in mind and is tested extensively (TODO: add a link of test document describing the tests that we do in high-level terms on what platform).</td></tr>
+<tr><td>6</td><td>The <code>ManageKeyID</code> implementations communicate with its persistence storage backend through a mechanism respecting confidentiality, integrity and availability. On-Disk Key ID Manager: the mappings are stored on-disk using the filesystem provided by the OS. OS file permissions are used.</td></tr>
+<tr><td>7</td><td>Logging is configured to include the software component from where logs are generated.</td></tr>
+</tbody></table>
+<h2><a class="header" href="#operational-mitigations" id="operational-mitigations">Operational mitigations</a></h2>
+<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
+<tr><td>0</td><td>A trusted administrator should start the service in such a way that un-privileged processes cannot send signals to the service.</td></tr>
+<tr><td>1</td><td>A trusted administrator should check the validity of the providers and hardware modules written in the service's configuration before starting/reloading it.</td></tr>
+<tr><td>2</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.</td></tr>
+<tr><td>3</td><td>Mappings should be put in a location that only the Parsec service and the trusted administrator can access.</td></tr>
+<tr><td>4</td><td>The trusted administrator needs to be notified when any kind of resource is running out.</td></tr>
+<tr><td>5</td><td>Parsec logs coming from the service binary should be redirected to a file that is only writable by the service and readable by the trusted administrator.</td></tr>
+<tr><td>6</td><td>Parsec configuration file should be only writable by the trusted administrator and readable by the service.</td></tr>
+<tr><td>7</td><td>The trusted administrator needs to check that during the boot process the trusted identity provider has successfully given the root trust bundle to the service.</td></tr>
+<tr><td>8</td><td>The hardware descriptors should only be accessible by trusted privileged processes.</td></tr>
+<tr><td>9</td><td>The Listener endpoint should be put in a location that only the Parsec service and the trusted administrator can access.</td></tr>
+<tr><td><em>10</em></td><td><em>A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.</em></td></tr>
+</tbody></table>
+<p><em>Copyright (c) 2020, Arm Limited. All rights reserved.</em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../api_coverage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../parsec_users.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../api_coverage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../parsec_users.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
