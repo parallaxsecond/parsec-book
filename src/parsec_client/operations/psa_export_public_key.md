@@ -16,16 +16,16 @@ input is accidentally interpreted according to a different format.
 
 For standard key types, the output format is as follows:
 
-- For RSA public keys ([`RSA_Public_Key`](key_attributes.md)), the DER encoding of the
+- For RSA public keys ([`RSA_Public_Key`](psa_key_attributes.md)), the DER encoding of the
    representation defined by *RFC 3279 §2.3.1* as `RSAPublicKey`:
-- For elliptic curve public keys (key of type [`ECC_Public_Key`](key_attributes.md)), the format is
-   the uncompressed representation defined by *SEC1 §2.3.3* as the content of an `ECPoint`. Let `m`
-   be the bit size associated with the curve, i.e. the bit size of `q` for a curve over `F\_q`. The
-   representation consists of:
+- For elliptic curve public keys (key of type [`ECC_Public_Key`](psa_key_attributes.md)), the format
+   is the uncompressed representation defined by *SEC1 §2.3.3* as the content of an `ECPoint`. Let
+   `m` be the bit size associated with the curve, i.e. the bit size of `q` for a curve over `F\_q`.
+   The representation consists of:
 - The byte `0x04`;
 - `x\_P` as a `ceiling(m/8)`-byte string, big-endian;
 - `y\_P` as a `ceiling(m/8)`-byte string, big-endian.
-- For DSA public keys ([`DSA_Public_Key`](key_attributes.md)), the `subjectPublicKey` format is
+- For DSA public keys ([`DSA_Public_Key`](psa_key_attributes.md)), the `subjectPublicKey` format is
    defined by *RFC 3279 §2.3.2* as `DSAPublicKey`, with the OID `id-dsa`, and with the parameters
    `DSS-Parms`.
 
