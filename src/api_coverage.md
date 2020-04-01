@@ -22,32 +22,32 @@ in the future and will be organized by operation type.
 
 ### Single part operations
 
-| Operation name                     | Protobuf contract exists                                                                                                   |
-|------------------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| `psa_import_key`                   | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto)        |
-| `psa_generate_key`                 | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto)      |
-| `psa_key_derivation_output_key`    | :x:                                                                                                                        |
-| `psa_copy_key`                     | :x:                                                                                                                        |
-| `psa_export_public_key`            | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto) |
-| `psa_export_key`                   | :x:                                                                                                                        |
-| `psa_purge_key`                    | :x:                                                                                                                        |
-| `psa_destroy_key`                  | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)       |
-| `psa_hash_compute`                 | :x:                                                                                                                        |
-| `psa_hash_compare`                 | :x:                                                                                                                        |
-| `psa_mac_compute`                  | :x:                                                                                                                        |
-| `psa_mac_verify`                   | :x:                                                                                                                        |
-| `psa_cipher_encrypt`               | :x:                                                                                                                        |
-| `psa_cipher_decrypt`               | :x:                                                                                                                        |
-| `psa_aead_encrypt`                 | :x:                                                                                                                        |
-| `psa_aead_decrypt`                 | :x:                                                                                                                        |
-| `psa_asymmetric_encrypt`           | :x:                                                                                                                        |
-| `psa_asymmetric_decrypt`           | :x:                                                                                                                        |
-| `psa_sign_message`                 | :x:                                                                                                                        |
-| `psa_verify_message`               | :x:                                                                                                                        |
-| `psa_sign_hash`                    | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto)         |
-| `psa_verify_hash`                  | [:white_check_mark:](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto)       |
-| `psa_key_derivation_key_agreement` | :x:                                                                                                                        |
-| `psa_raw_key_agreement`            | :x:                                                                                                                        |
+| Operation name                     | Protobuf contract exists                                                                                    |
+|------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| `psa_import_key`                   | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto)        |
+| `psa_generate_key`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto)      |
+| `psa_key_derivation_output_key`    | ❌                                                                                                         |
+| `psa_copy_key`                     | ❌                                                                                                         |
+| `psa_export_public_key`            | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto) |
+| `psa_export_key`                   | ❌                                                                                                         |
+| `psa_purge_key`                    | ❌                                                                                                         |
+| `psa_destroy_key`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)       |
+| `psa_hash_compute`                 | ❌                                                                                                         |
+| `psa_hash_compare`                 | ❌                                                                                                         |
+| `psa_mac_compute`                  | ❌                                                                                                         |
+| `psa_mac_verify`                   | ❌                                                                                                         |
+| `psa_cipher_encrypt`               | ❌                                                                                                         |
+| `psa_cipher_decrypt`               | ❌                                                                                                         |
+| `psa_aead_encrypt`                 | ❌                                                                                                         |
+| `psa_aead_decrypt`                 | ❌                                                                                                         |
+| `psa_asymmetric_encrypt`           | ❌                                                                                                         |
+| `psa_asymmetric_decrypt`           | ❌                                                                                                         |
+| `psa_sign_message`                 | ❌                                                                                                         |
+| `psa_verify_message`               | ❌                                                                                                         |
+| `psa_sign_hash`                    | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto)         |
+| `psa_verify_hash`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto)       |
+| `psa_key_derivation_key_agreement` | ❌                                                                                                         |
+| `psa_raw_key_agreement`            | ❌                                                                                                         |
 
 ## API support per-provider
 
@@ -57,47 +57,47 @@ option marked as supported is necessarily supported for all operations on which 
 
 ### Operation support
 
-| Operation         | Mbed Crypto provider | PKCS 11 provider   | TPM 2.0 provider   |
-|-------------------|----------------------|--------------------|--------------------|
-| Import key        | :white_check_mark:   | :white_check_mark: | :white_check_mark: |
-| Generate key      | :white_check_mark:   | :white_check_mark: | :white_check_mark: |
-| Export public key | :white_check_mark:   | :white_check_mark: | :white_check_mark: |
-| Destroy key       | :white_check_mark:   | :white_check_mark: | :white_check_mark: |
-| Sign hash         | :white_check_mark:   | :white_check_mark: | :white_check_mark: |
-| Verify hash       | :white_check_mark:   | :white_check_mark: | :white_check_mark: |
+| Operation         | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|-------------------|----------------------|------------------|------------------|
+| Import key        | ✅                  | ✅              | ✅              |
+| Generate key      | ✅                  | ✅              | ✅              |
+| Export public key | ✅                  | ✅              | ✅              |
+| Destroy key       | ✅                  | ✅              | ✅              |
+| Sign hash         | ✅                  | ✅              | ✅              |
+| Verify hash       | ✅                  | ✅              | ✅              |
 
 ### Algorithm support
 
 #### Hash algorithms
 
-| Algorithm   | Mbed Crypto provider | PKCS 11 provider   | TPM 2.0 provider   |
-|-------------|----------------------|--------------------|--------------------|
-| MD2         | :x:                  | :x:                | :x:                |
-| MD4         | :x:                  | :x:                | :x:                |
-| MD5         | :x:                  | :x:                | :x:                |
-| RIPEMD160   | :x:                  | :x:                | :x:                |
-| SHA-1       | :x:                  | :x:                | :x:                |
-| SHA-224     | :x:                  | :x:                | :x:                |
-| SHA-256     | :white_check_mark:   | :white_check_mark: | :white_check_mark: |
-| SHA-384     | :x:                  | :x:                | :x:                |
-| SHA-512     | :x:                  | :x:                | :x:                |
-| SHA-512-224 | :x:                  | :x:                | :x:                |
-| SHA-512-256 | :x:                  | :x:                | :x:                |
-| SHA3-224    | :x:                  | :x:                | :x:                |
-| SHA3-256    | :x:                  | :x:                | :x:                |
-| SHA3-384    | :x:                  | :x:                | :x:                |
-| SHA3-512    | :x:                  | :x:                | :x:                |
-| Any hash    | :x:                  | :x:                | :x:                |
+| Algorithm   | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|-------------|----------------------|------------------|------------------|
+| MD2         | ❌                  | ❌              | ❌              |
+| MD4         | ❌                  | ❌              | ❌              |
+| MD5         | ❌                  | ❌              | ❌              |
+| RIPEMD160   | ❌                  | ❌              | ❌              |
+| SHA-1       | ❌                  | ❌              | ❌              |
+| SHA-224     | ❌                  | ❌              | ❌              |
+| SHA-256     | ✅                  | ✅              | ✅              |
+| SHA-384     | ❌                  | ❌              | ❌              |
+| SHA-512     | ❌                  | ❌              | ❌              |
+| SHA-512-224 | ❌                  | ❌              | ❌              |
+| SHA-512-256 | ❌                  | ❌              | ❌              |
+| SHA3-224    | ❌                  | ❌              | ❌              |
+| SHA3-256    | ❌                  | ❌              | ❌              |
+| SHA3-384    | ❌                  | ❌              | ❌              |
+| SHA3-512    | ❌                  | ❌              | ❌              |
+| Any hash    | ❌                  | ❌              | ❌              |
 
 #### Asymmetric signing algorithms
 
-| Algorithm              | Mbed Crypto provider | PKCS 11 provider   | TPM 2.0 provider   |
-|------------------------|----------------------|--------------------|--------------------|
-| RSA PKCS 1v5 with hash | :white_check_mark:   | :white_check_mark: | :white_check_mark: |
-| Raw RSA PKCS 1v5       | :x:                  | :x:                | :x:                |
-| RSA PSS                | :x:                  | :x:                | :x:                |
-| ECDSA                  | :x:                  | :x:                | :x:                |
-| ECDSA with any hash    | :x:                  | :x:                | :x:                |
-| Deterministic ECDSA    | :x:                  | :x:                | :x:                |
+| Algorithm              | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|------------------------|----------------------|------------------|------------------|
+| RSA PKCS 1v5 with hash | ✅                  | ✅              | ✅              |
+| Raw RSA PKCS 1v5       | ❌                  | ❌              | ❌              |
+| RSA PSS                | ❌                  | ❌              | ❌              |
+| ECDSA                  | ❌                  | ❌              | ❌              |
+| ECDSA with any hash    | ❌                  | ❌              | ❌              |
+| Deterministic ECDSA    | ❌                  | ❌              | ❌              |
 
 *Copyright (c) 2020, Arm Limited. All rights reserved.*
