@@ -19,8 +19,8 @@ Identity operations are not supported by the security service. These operations 
 only by the identity provider, which is a separate service in the system, but supports a common wire
 protocol.
 
-- [**AddClient**](add_client.md)
-- [**ProveClient**](prove_client.md)
+- [AddClient](add_client.md)
+- [ProveClient](prove_client.md)
 
 ## Core Operations
 
@@ -29,16 +29,16 @@ Core operations are non-cryptographic operations supported by the core provider.
 
 ### Service Health
 
-- [**Ping**](ping.md)
+- [Ping](ping.md)
 
 ### Service Configuration
 
-- [**ListProviders**](list_providers.md)
-- [**ListOpcodes**](list_opcodes.md)
+- [ListProviders](list_providers.md)
+- [ListOpcodes](list_opcodes.md)
 
 ### Trust
 
-- [**ShareTrustBundle**](share_trust_bundle.md)
+- [ShareTrustBundle](share_trust_bundle.md)
 
 ## PSA Crypto Operations
 
@@ -48,89 +48,99 @@ Most of the documentation in this book directly come from the specification.
 
 ### Key Management
 
-- [**PsaGenerateKey**](psa_generate_key.md)
-- **PsaExportKey**
-- [**PsaExportPublicKey**](psa_export_public_key.md)
-- [**PsaImportKey**](psa_import_key.md)
-- **PsaCopyKey**
-- [**PsaDestroyKey**](psa_destroy_key.md)
+- [PsaImportKey](psa_import_key.md)
+- [PsaGenerateKey](psa_generate_key.md)
+- PsaCopyKey
+- [PsaDestroyKey](psa_destroy_key.md)
+- PsaExportKey
+- [PsaExportPublicKey](psa_export_public_key.md)
 
-### Symmetric Cryptography
+### Message Digests
 
-- **PsaCipherEncrypt**
-- **PsaCipherDecrypt**
-- **PsaCipherOperationInit**
-- **PsaCipherEncryptSetup**
-- **PsaCipherDecryptSetup**
-- **PsaCipherGenerateIv**
-- **PsaCipherSetIv**
-- **PsaCipherUpdate**
-- **PsaCipherFinish**
-- **PsaCipherAbort**
-
-### Asymmetric Cryptography
-
-- [**PsaAsymmetricSign**](psa_asymmetric_sign.md)
-- [**PsaAsymmetricVerify**](psa_asymmetric_verify.md)
-- **PsaAsymmetricEncrypt**
-- **PsaAsymmetricDecrypt**
-
-### Authenticated Encryption with Associated Data (AEAD)
-
-- **PsaAeadEncrypt**
-- **PsaAeadDecrypt**
-- **PsaAeadOperationInit**
-- **PsaAeadEncryptSetup**
-- **PsaAeadDecryptSetup**
-- **PsaAeadGenerateNonce**
-- **PsaAeadSetNonce**
-- **PsaAeadSetLengths**
-- **PsaAeadUpdateAd**
-- **PsaAeadUpdate**
-- **PsaAeadFinish**
-- **PsaAeadVerify**
-- **PsaAeadAbort**
-
-### Digests
-
-- **PsaHashCompute**
-- **PsaHashCompare**
-- **PsaHashOperationInit**
-- **PsaHashSetup**
-- **PsaHashUpdate**
-- **PsaHashFinish**
-- **PsaHashVerify**
-- **PsaHashAbort**
-- **PsaHashClone**
+- PsaHashCompute
+- PsaHashCompare
+- PsaHashOperationInit
+- PsaHashSetup
+- PsaHashUpdate
+- PsaHashFinish
+- PsaHashVerify
+- PsaHashAbort
+- PsaHashSuspend
+- PsaHashResume
+- PsaHashClone
 
 ### Message Authentication Codes (MAC)
 
-- **PsaMacCompute**
-- **PsaMacVerify**
-- **PsaMacOperationInit**
-- **PsaMacSignSetup**
-- **PsaMacVerifySetup**
-- **PsaMacUpdate**
-- **PsaMacSignFinish**
-- **PsaMacVerifyFinish**
-- **PsaMacAbort**
+- PsaMacCompute
+- PsaMacVerify
+- PsaMacOperationInit
+- PsaMacSignSetup
+- PsaMacVerifySetup
+- PsaMacUpdate
+- PsaMacSignFinish
+- PsaMacVerifyFinish
+- PsaMacAbort
+
+### Unauthenticated Ciphers
+
+- PsaCipherEncrypt
+- PsaCipherDecrypt
+- PsaCipherOperationInit
+- PsaCipherEncryptSetup
+- PsaCipherDecryptSetup
+- PsaCipherGenerateIv
+- PsaCipherSetIv
+- PsaCipherUpdate
+- PsaCipherFinish
+- PsaCipherAbort
+
+### Authenticated Encryption with Associated Data (AEAD)
+
+- PsaAeadEncrypt
+- PsaAeadDecrypt
+- PsaAeadOperationInit
+- PsaAeadEncryptSetup
+- PsaAeadDecryptSetup
+- PsaAeadGenerateNonce
+- PsaAeadSetNonce
+- PsaAeadSetLengths
+- PsaAeadUpdateAd
+- PsaAeadUpdate
+- PsaAeadFinish
+- PsaAeadVerify
+- PsaAeadAbort
 
 ### Key Derivation
 
-- **PsaKeyDerivationOperationInit**
-- **PsaKeyDerivationSetup**
-- **PsaKeyDerivationGetCapacity**
-- **PsaKeyDerivationSetCapacity**
-- **PsaKeyDerivationInputBytes**
-- **PsaKeyDerivationInputKey**
-- **PsaKeyDerivationKeyAgreement**
-- **PsaKeyDerivationOutputBytes**
-- **PsaKeyDerivationOutputKey**
-- **PsaKeyDerivationAbort**
-- **PsaRawKeyAgreement**
+- PsaKeyDerivationOperationInit
+- PsaKeyDerivationSetup
+- PsaKeyDerivationGetCapacity
+- PsaKeyDerivationSetCapacity
+- PsaKeyDerivationInputBytes
+- PsaKeyDerivationInputKey
+- PsaKeyDerivationOutputBytes
+- PsaKeyDerivationOutputKey
+- PsaKeyDerivationAbort
 
-### Entropy
+### Asymmetric Signature
 
-- **PsaGenerateRandom**
+- PsaSignMessage
+- PsaVerifyMessage
+- [PsaSignHash](psa_sign_hash.md)
+- [PsaVerifyHash](psa_verify_hash.md)
+
+### Asymmetric Encryption
+
+- PsaAsymmetricEncrypt
+- PsaAsymmetricDecrypt
+
+### Key Agreement
+
+- PsaRawKeyAgreement
+- PsaKeyDerivationKeyAgreement
+
+### Random Number Generation
+
+- PsaGenerateRandom
 
 *Copyright (c) 2019, Arm Limited. All rights reserved.*

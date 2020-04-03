@@ -188,17 +188,17 @@ following members:
 Definition of the usage flags. They encode what kind of operations are permitted on the key. A
 `UsageFlags` type contains the following members:
 
-| Name             | Type   | Description                                        |
-|------------------|--------|----------------------------------------------------|
-| `export`         | `bool` | Permission to export the key                       |
-| `copy`           | `bool` | Permission to copy the key                         |
-| `cache`          | `bool` | Permission for the implementation to cache the key |
-| `encrypt`        | `bool` | Permission to encrypt a message with the key       |
-| `decrypt`        | `bool` | Permission to decrypt a message with the key       |
-| `sign_message`   | `bool` | Permission to sign a message with the key          |
-| `verify_message` | `bool` | Permission to verify a message with the key        |
-| `sign_hash`      | `bool` | Permission to sign a hash with the key             |
-| `verify_hash`    | `bool` | Permission to verify a hash with the key           |
-| `derive`         | `bool` | Permission to derive other keys from this key      |
+| Name             | Type    | Description                                        |
+|------------------|---------|----------------------------------------------------|
+| `export`         | Boolean | Permission to export the key                       |
+| `copy`           | Boolean | Permission to copy the key                         |
+| `cache`          | Boolean | Permission for the implementation to cache the key |
+| `encrypt`        | Boolean | Permission to encrypt a message with the key       |
+| `decrypt`        | Boolean | Permission to decrypt a message with the key       |
+| `sign_message`   | Boolean | Permission to sign a message with the key          |
+| `verify_message` | Boolean | Permission to verify a message with the key        |
+| `sign_hash`      | Boolean | Permission to sign a hash with the key             |
+| `verify_hash`    | Boolean | Permission to verify a hash with the key           |
+| `derive`         | Boolean | Permission to derive other keys from this key      |
 
 *Copyright (c) 2019-2020, Arm Limited. All rights reserved.*
