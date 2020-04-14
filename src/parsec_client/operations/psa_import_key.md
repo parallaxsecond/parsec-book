@@ -12,7 +12,9 @@ Import a key in binary format. Opcode: 6 (`0x0006`)
 
 The content of the `data` buffer is interpreted according to the type declared in attributes. Parsec
 supports the formats described in the documentation of PsaExportKey or
-[PsaExportPublicKey](psa_export_public_key.md) for the chosen type.
+[PsaExportPublicKey](psa_export_public_key.md) for the chosen type. The key size is always
+determined from the data buffer. If the key size in attributes is nonzero, it must be equal to the
+size from data.
 
 ## Results
 
