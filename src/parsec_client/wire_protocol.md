@@ -243,9 +243,8 @@ Field descriptions:
    for this field is 0. This field's position and width will remain the same across different wire
    protocol versions. Only the value of this field may change between versions.
 - Provider: an 8-bit field identifying the back-end service provider for which the request is
-   intended. A value of zero indicates that the request is not intended for any specific provider.
-   Available providers and their characteristics can be queried through discovery operations in the
-   API.
+   intended. A value of zero indicates that the request is intended for a special provider which
+   always exist and is used for service discovery and communication bootstrapping.
 - Session handle: an 8-byte session identifier.
 - Content type: an 8-bit field that defines how the request body should be processed. The only
    currently-supported value is 1, which indicates that the request body should be treated as a
@@ -284,10 +283,7 @@ Field descriptions:
    this field is 1.
 - Minor version number: an 8-bit versioning sub-field. Currently the only supported and valid value
    for this field is 0.
-- Provider: an 8-bit field identifying the back-end service provider for which the request is
-   intended. A value of zero indicates that the request is not intended for any specific provider.
-   Available providers and their characteristics can be queried through discovery operations in the
-   API.
+- Provider: an 8-bit field identifying the back-end service provider the response is coming from.
 - Session handle: an 8-byte session identifier.
 - Content type: an 8-bit field that defines how the response body should be processed. The only
    currently-supported value is 1, which indicates that the request body should be treated as a
