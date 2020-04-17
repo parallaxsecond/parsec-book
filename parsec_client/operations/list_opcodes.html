@@ -150,7 +150,9 @@
                         <h1><a class="header" href="#listopcodes" id="listopcodes">ListOpcodes</a></h1>
 <p>Gets a list of available opcodes supported by a Parsec provider. Opcode: 9 (<code>0x0009</code>)</p>
 <h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
-<p>No parameters are needed for this operation.</p>
+<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>provider_id</code></td><td>Unsigned integer</td><td>Provider for which the supported opcodes are requested.</td></tr>
+</tbody></table>
 <h2><a class="header" href="#results" id="results">Results</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>opcodes</code></td><td>Vector of unsigned integers</td><td>List of supported opcodes</td></tr>

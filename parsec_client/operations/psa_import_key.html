@@ -157,7 +157,9 @@
 </tbody></table>
 <p>The content of the <code>data</code> buffer is interpreted according to the type declared in attributes. Parsec
 supports the formats described in the documentation of PsaExportKey or
-<a href="psa_export_public_key.html">PsaExportPublicKey</a> for the chosen type.</p>
+<a href="psa_export_public_key.html">PsaExportPublicKey</a> for the chosen type. The key size is always
+determined from the data buffer. If the key size in attributes is nonzero, it must be equal to the
+size from data.</p>
 <h2><a class="header" href="#results" id="results">Results</a></h2>
 <p>No values are returned by this operation.</p>
 <h2><a class="header" href="#specific-response-status-codes" id="specific-response-status-codes">Specific response status codes</a></h2>

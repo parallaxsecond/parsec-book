@@ -818,7 +818,9 @@ Most of the documentation in this book directly come from the specification.</p>
 <h1><a class="header" href="#listopcodes" id="listopcodes">ListOpcodes</a></h1>
 <p>Gets a list of available opcodes supported by a Parsec provider. Opcode: 9 (<code>0x0009</code>)</p>
 <h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
-<p>No parameters are needed for this operation.</p>
+<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>provider_id</code></td><td>Unsigned integer</td><td>Provider for which the supported opcodes are requested.</td></tr>
+</tbody></table>
 <h2><a class="header" href="#results" id="results">Results</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>opcodes</code></td><td>Vector of unsigned integers</td><td>List of supported opcodes</td></tr>
@@ -1004,7 +1006,9 @@ where n is the bit size specified in the attributes.</li>
 </tbody></table>
 <p>The content of the <code>data</code> buffer is interpreted according to the type declared in attributes. Parsec
 supports the formats described in the documentation of PsaExportKey or
-<a href="parsec_client/operations/psa_export_public_key.html">PsaExportPublicKey</a> for the chosen type.</p>
+<a href="parsec_client/operations/psa_export_public_key.html">PsaExportPublicKey</a> for the chosen type. The key size is always
+determined from the data buffer. If the key size in attributes is nonzero, it must be equal to the
+size from data.</p>
 <h2><a class="header" href="#results-6" id="results-6">Results</a></h2>
 <p>No values are returned by this operation.</p>
 <h2><a class="header" href="#specific-response-status-codes-6" id="specific-response-status-codes-6">Specific response status codes</a></h2>
@@ -1895,9 +1899,8 @@ protocol versions. Only the value of this field may change between versions.</li
 for this field is 0. This field's position and width will remain the same across different wire
 protocol versions. Only the value of this field may change between versions.</li>
 <li>Provider: an 8-bit field identifying the back-end service provider for which the request is
-intended. A value of zero indicates that the request is not intended for any specific provider.
-Available providers and their characteristics can be queried through discovery operations in the
-API.</li>
+intended. A value of zero indicates that the request is intended for a special provider which
+always exist and is used for service discovery and communication bootstrapping.</li>
 <li>Session handle: an 8-byte session identifier.</li>
 <li>Content type: an 8-bit field that defines how the request body should be processed. The only
 currently-supported value is 1, which indicates that the request body should be treated as a
@@ -1931,10 +1934,7 @@ than use this specification to deduce the header size.</li>
 this field is 1.</li>
 <li>Minor version number: an 8-bit versioning sub-field. Currently the only supported and valid value
 for this field is 0.</li>
-<li>Provider: an 8-bit field identifying the back-end service provider for which the request is
-intended. A value of zero indicates that the request is not intended for any specific provider.
-Available providers and their characteristics can be queried through discovery operations in the
-API.</li>
+<li>Provider: an 8-bit field identifying the back-end service provider the response is coming from.</li>
 <li>Session handle: an 8-byte session identifier.</li>
 <li>Content type: an 8-bit field that defines how the response body should be processed. The only
 currently-supported value is 1, which indicates that the request body should be treated as a
