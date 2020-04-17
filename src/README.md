@@ -21,4 +21,4 @@ to the contribution guidelines.
 Parsec and all the repositories under the `parallaxsecond` organization are provided under
 Apache-2.0. Contributions to this project are accepted under the same license.
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

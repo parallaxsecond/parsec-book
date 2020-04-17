@@ -305,4 +305,4 @@ Attacker with access to the communication running from the Identity Provider to 
 | 9    | The Listener endpoint should be put in a location that only the Parsec service and the trusted administrator can access.                                         |
 | *10* | *A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.*                                                                |
 
-*Copyright (c) 2020, Arm Limited. All rights reserved.*
+*Copyright 2020 Contributors to the Parsec project.*

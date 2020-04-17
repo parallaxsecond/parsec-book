@@ -31,4 +31,4 @@ A helpful utility that the Parsec service offers to providers is the use of key 
 allow the provider to persist mappings between key names and key handles or material and is
 generally needed since providers are expected to support UTF-8 encoded strings as key names.
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

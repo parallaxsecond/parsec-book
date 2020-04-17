@@ -91,4 +91,4 @@ target and then observing the code segments reached using said input. To stop th
 crashes or slow tests, as well as tests that lead to a timeout, are stored in
 `./fuzz/artifacts/fuzz_service/`.
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

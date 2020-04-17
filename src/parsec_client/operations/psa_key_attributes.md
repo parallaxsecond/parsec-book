@@ -201,4 +201,4 @@ Definition of the usage flags. They encode what kind of operations are permitted
 | `verify_hash`    | Boolean | Permission to verify a hash with the key           |
 | `derive`         | Boolean | Permission to derive other keys from this key      |
 
-*Copyright (c) 2019-2020, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

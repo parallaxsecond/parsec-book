@@ -143,4 +143,4 @@ Most of the documentation in this book directly come from the specification.
 
 - PsaGenerateRandom
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

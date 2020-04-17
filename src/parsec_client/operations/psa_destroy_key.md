@@ -37,4 +37,4 @@ then destroying the key will cause the multi-part operation to fail.
 
 [Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

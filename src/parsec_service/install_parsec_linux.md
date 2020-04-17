@@ -52,4 +52,4 @@ Check the Parsec logs with:
 journalclt --user -u parsec
 ```
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

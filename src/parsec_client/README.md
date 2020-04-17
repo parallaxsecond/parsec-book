@@ -13,4 +13,4 @@ are:
 - [Writing a new client library](writing_library.md) - hints and tips for getting started with
    developing a new client library
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

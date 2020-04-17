@@ -258,4 +258,4 @@ determine the maximum length at runtime using the capability checking mechanism.
 For the full reference guide to individual API operations, please refer to the [**operation
 directory**](operations).
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

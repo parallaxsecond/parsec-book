@@ -200,4 +200,4 @@ arcs between the modules.
 
 ![Repository Map](diagrams/source_code_structure.png)
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

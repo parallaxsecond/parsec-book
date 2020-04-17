@@ -193,4 +193,4 @@ Parsec is composed of multiple code repositories. For more information about how
 repository is organized, please see the [**source code
 structure**](parsec_service/source_code_structure.md) document.
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*
