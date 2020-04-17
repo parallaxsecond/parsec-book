@@ -4,7 +4,9 @@ Gets a list of available opcodes supported by a Parsec provider. Opcode: 9 (`0x0
 
 ## Parameters
 
-No parameters are needed for this operation.
+| Name          | Type             | Description                                             |
+|---------------|------------------|---------------------------------------------------------|
+| `provider_id` | Unsigned integer | Provider for which the supported opcodes are requested. |
 
 ## Results
 
