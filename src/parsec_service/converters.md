@@ -6,4 +6,4 @@ The Protobuf converter uses the Protobuf format for the operation contracts to c
 request and response bodies and native operation objects. The Protobuf converter is the one
 currently used in the Parsec service.
 
-*Copyright (c) 2020, Arm Limited. All rights reserved.*
+*Copyright 2020 Contributors to the Parsec project.*

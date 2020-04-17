@@ -57,4 +57,4 @@ These codes originate from within the `Provide` trait implementation.
 | `PsaErrorCorruptionDetected`   | 1151  | A tampering attempt was detected                                                    |
 | `PsaErrorDataCorrupt`          | 1152  | Stored data has been corrupted                                                      |
 
-*Copyright (c) 2019-2020, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

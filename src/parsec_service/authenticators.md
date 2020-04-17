@@ -7,4 +7,4 @@ named](https://github.com/parallaxsecond/parsec-interface-rs/issues/22) "simple 
 the code, directly parse the authentication field as a UTF-8 string and uses that as application
 identity. The direct authenticator is the one currently used by the Parsec service.
 
-*Copyright (c) 2020, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

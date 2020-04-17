@@ -86,4 +86,4 @@ command to cross-compile for the Linux on Arm64 target:
 cargo build --target aarch64-unknown-linux-gnu
 ```````
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

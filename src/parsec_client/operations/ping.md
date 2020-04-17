@@ -31,4 +31,4 @@ wire protocol version that the service support:
 
 [Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/ping.proto)
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

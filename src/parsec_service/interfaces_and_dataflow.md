@@ -167,4 +167,4 @@ makes use of serialization functions in the `interface` crate to serialize the h
 The response, at this stage, is now simply a sequence of bytes, which can be written back to the
 transport endpoint by the `FrontEndHandler`, thus completing the cycle.
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

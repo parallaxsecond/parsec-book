@@ -23,4 +23,4 @@ They cover the following concepts:
 - [Testing](test.md) - details about the kinds of tests we employ and how to set up your environment
    in preparation for running them
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

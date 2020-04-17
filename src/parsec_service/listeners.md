@@ -10,4 +10,4 @@ When running the service executable directly, the socket path is fixed to
 `/home/parsec/parsec.sock`. Clients communicating with a Parsec service configured with that
 listener must connect to that socket path.
 
-*Copyright (c) 2020, Arm Limited. All rights reserved.*
+*Copyright 2020 Contributors to the Parsec project.*

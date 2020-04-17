@@ -426,4 +426,4 @@ in response to errors or failed verifications are not captured here.
 
 ![Sequence Diagram](diagrams/ident_provider_seq.png).
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

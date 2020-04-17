@@ -100,4 +100,4 @@ option marked as supported is necessarily supported for all operations on which 
 | ECDSA with any hash    | ❌                  | ❌              | ❌              |
 | Deterministic ECDSA    | ❌                  | ❌              | ❌              |
 
-*Copyright (c) 2020, Arm Limited. All rights reserved.*
+*Copyright 2020 Contributors to the Parsec project.*
