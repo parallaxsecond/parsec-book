@@ -22,7 +22,7 @@ the providers.
 | `AuthenticationError`             | 11    | Authentication failed                                         |
 | `AuthenticatorDoesNotExist`       | 12    | Authenticator not supported                                   |
 | `AuthenticatorNotRegistered`      | 13    | Authenticator not supported                                   |
-| `KeyIDManagerError`               | 14    | Internal error in the Key ID Manager                          |
+| `KeyInfoManagerError`             | 14    | Internal error in the Key Info Manager                        |
 | `ConnectionError`                 | 15    | Generic input/output error                                    |
 | `InvalidEncoding`                 | 16    | Invalid value for this data type                              |
 | `InvalidHeader`                   | 17    | Constant fields in header are invalid                         |

@@ -86,12 +86,12 @@ underlying security hardware to determine if the request has been correctly auth
 more detailed description of authentication and application identity, see the [**API
 overview**](../parsec_client/api_overview.md).
 
-The `key_id_managers` module offers functionality for the providers for persisting mappings between
-key names and provider-specific key IDs. The key ID managers close the gap between the API, which
-allows keys to be addressed by a UTF-8 name, and the providers which have specific requirements for
-key handles (e.g. Mbed Crypto uses a 32 bit value for handles of persistent keys). Using a key ID
-manager is only required for persistent keys and the only current implementation stores the mappings
-on disk.
+The `key_info_managers` module offers functionality for the providers for persisting mappings
+between key names and provider-specific key information. The key info managers close the gap between
+the API, which allows keys to be addressed by a UTF-8 name, and the providers which have specific
+requirements for key handles (e.g. Mbed Crypto uses a 32 bit value for handles of persistent keys).
+Using a key info manager is only required for persistent keys and the only current implementation
+stores the mappings on disk.
 
 Building the service will combine the frontend and backend components mentioned above into one
 executable. It also links additional Rust crates that contain the providers, as well as crates to

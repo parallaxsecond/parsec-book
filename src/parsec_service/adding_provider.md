@@ -27,8 +27,8 @@ Lots of care must be taken when implementing operations that the inputs and outp
 correct format, especially in the case of byte arrays. Detailed description of all input and output
 can be found in the [operations documentation](../parsec_client/operations/README.md).
 
-A helpful utility that the Parsec service offers to providers is the use of key ID managers. These
-allow the provider to persist mappings between key names and key handles or material and is
+A helpful utility that the Parsec service offers to providers is the use of key info managers. These
+allow the provider to persist mappings between key names and key information material and is
 generally needed since providers are expected to support UTF-8 encoded strings as key names.
 
 *Copyright 2019 Contributors to the Parsec project.*
