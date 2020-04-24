@@ -143,13 +143,14 @@ client application. For a more detailed description of the current providers, se
 
 The `Provider` implements the `Provide` trait.
 
-### The Key ID Manager
+### The Key Info Manager
 
-Providers may make use of `KeyIdManagers` to persistently and safely store key handles or material,
-and thus another step for conversion from key name to provider-specific identifier is needed.
+Providers may make use of Key Info Managers to persistently and safely store key information
+material, and thus another step for conversion from key name to provider-specific identifier is
+needed.
 
-The `KeyIDManager` implements the `ManageKeyIDs` trait. Possible key ID managers are listed
-[here](key_id_managers.md).
+The `KeyInfoManager` implements the `ManageKeyInfo` trait. Possible key info managers are listed
+[here](key_info_managers.md).
 
 ## Return Journey
 

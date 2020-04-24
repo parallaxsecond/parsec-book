@@ -33,7 +33,7 @@
    - [Converters](parsec_service/converters.md)
    - [Authenticators](parsec_service/authenticators.md)
    - [Listeners](parsec_service/listeners.md)
-   - [Key ID Managers](parsec_service/key_id_managers.md)
+   - [Key Info Managers](parsec_service/key_info_managers.md)
    - [Adding a new Parsec Provider](parsec_service/adding_provider.md)
    - [How to build and run Parsec](parsec_service/build_run.md)
    - [How to install Parsec on Linux](parsec_service/install_parsec_linux.md)

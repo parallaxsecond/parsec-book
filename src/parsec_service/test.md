@@ -62,7 +62,7 @@ cargo test normal_tests
 
 #### Persistence integration tests
 
-Those check if the Key ID mapping persist after a shutdown (check the `tests/ci.sh` script for
+Those check if the Key Info mapping persist after a shutdown (check the `tests/ci.sh` script for
 details of commands to execute).
 
 #### Stress tests
