@@ -43,4 +43,4 @@ single call, you could use PsaSignMessage (not yet implemented).
 
 [Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto)
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

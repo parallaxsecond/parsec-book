@@ -26,4 +26,4 @@ Gets a list of available opcodes supported by a Parsec provider.
 
 [Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_opcodes.proto)
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

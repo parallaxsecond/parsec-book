@@ -174,4 +174,4 @@ Key derivation algorithms.
 - **TLS-1.2 PRF algorithm.** Uses of the hash algorithms supported.
 - **TLS-1.2 PSK-to-MasterSecret algorithm.** Uses of the hash algorithms supported.
 
-*Copyright (c) 2020, Arm Limited. All rights reserved.*
+*Copyright 2020 Contributors to the Parsec project.*

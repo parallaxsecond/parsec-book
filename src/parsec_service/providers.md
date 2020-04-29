@@ -58,4 +58,4 @@ library that can drive the crypto engine.
 Connecting to the PKCS11 module requires a slot number and, ideally, a PIN number that secures the
 slot.
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

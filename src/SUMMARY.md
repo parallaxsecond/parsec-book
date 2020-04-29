@@ -33,11 +33,12 @@
    - [Converters](parsec_service/converters.md)
    - [Authenticators](parsec_service/authenticators.md)
    - [Listeners](parsec_service/listeners.md)
-   - [Key ID Managers](parsec_service/key_id_managers.md)
+   - [Key Info Managers](parsec_service/key_info_managers.md)
    - [Adding a new Parsec Provider](parsec_service/adding_provider.md)
    - [How to build and run Parsec](parsec_service/build_run.md)
    - [How to install Parsec on Linux](parsec_service/install_parsec_linux.md)
    - [Parsec Configuration](parsec_service/configuration.md)
    - [How to test Parsec](parsec_service/test.md)
+- [Contributing](contributing.md)
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*

@@ -44,4 +44,4 @@ signature in a single call, you could use PsaVerifyMessage (not yet implemented)
 
 [Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto)
 
-*Copyright (c) 2019, Arm Limited. All rights reserved.*
+*Copyright 2019 Contributors to the Parsec project.*
