@@ -92,13 +92,20 @@ The message headers are **fixed-length** and **fixed-format**. The headers thems
 variability in their encoding, nor do they adhere to any encoding or serialization standard. The
 format of the header is defined solely by this specification. When writing code to either transmit
 or receive a header, the code must be written and validated according to this specification alone.
-Headers are composed of a series of single-byte and multi-byte fields. The request headers and the
-response headers differ somewhat from each other. A full specification of the byte fields for both
-request headers and response headers will be found later on in this document.
+Headers are composed of a series of single-byte and multi-byte fields.
+
+The header format is specified to be identical for requests and responses. Request and response
+headers are of identical size, and have identical fields specified at identical offsets. This means
+that developers only need to understand and code to a single header format. This design also means
+that shared memory transport technologies can be used where the header resides in a single shared
+buffer. However, this design does also means that some fields are redundant depending on the
+context. A full specification of the byte fields for the header will be found later in this
+document, including information about how and when they should be populated or interpreted.
 
 Headers carry a fixed set of metadata fields that are common to all messages. However, they do not
 carry any inputs to or outputs from specific API operations. API inputs and outputs are always
-carried in the body. Unlike the header, the body can be both variable-length and variable-format.
+carried in the body. Unlike the header, which is always fixed-length and fixed-format, the body can
+be both variable-length and variable-format.
 
 ### Protobuf Body
 
@@ -174,13 +181,13 @@ determine if an operation is supported by the provider.
 
 ### Opcodes
 
-All requests contain an unsigned 2-byte integer field called the **opcode**. The opcode is the value
+All requests contain an unsigned 4-byte integer field called the **opcode**. The opcode is the value
 that determines which API operation is being invoked by the requests. Recall that each
 request/response pair corresponds to the invocation of exactly one API operation, and each of these
 operations is assigned an integer opcode.
 
 The opcode zero is not used and is not valid. The lowest valid opcode is 1, and the highest valid
-opcode is 65,535. Within this overall numerical range, certain partitions and conventions are
+opcode is (2^32-1). Within this overall numerical range, certain partitions and conventions are
 established. Ranges of opcodes must be carefully observed and not abused. Contributing developers
 will have the opportunity to claim parts of the numerical range for their own unique features and
 operations.
@@ -218,86 +225,99 @@ messages on any suitable transport medium.
 
 All multi-byte numerical fields are transported in **little-endian** format.
 
-### Requests
+### The Fixed Common Header
 
-Requests are structured in the wire protocol as follows:
+Requests and responses share a common fixed-format header whose specification is given below.
+Because the header format is the same for requests and responses, it means that some of the data
+fields in the header are unused/ignored depending on whether the header is an outgoing request
+(being transmitted from the client to the service), or an incoming response (being returned from the
+service back to the client). However, most fields are relevant and common to both.
 
-![Request Structure](diagrams/wire_request.png)
+Each field is annotated according to the following scheme:
+
+- The annotation *common* indicates that the field is common to both request messages and response
+   messages.
+- The annotation *requests only* indicates that the field is only used in requests and may be
+   ignored in responses.
+- The annotation *responses only* indicates that the field is only used in responses and may be
+   ignored in requests.
+
+Fields occur in contiguous memory and there must be no additional padding between them.
+
+![Header Structure](diagrams/wire_header.png)
 
 Field descriptions:
 
-- Magic number: a 32-bit unsigned integer whose value must be 0x5EC0A710 (selected to be an
-   approximate transcoding of SECurity API). This field can be used as an initial validity check for
-   incoming messages. This field **must** be populated in outgoing messages. This field will remain
+- Magic number (*common*): a 32-bit unsigned integer whose value must be 0x5EC0A710 (selected to be
+   an approximate transcoding of SECurity API). This field can be used as an initial validity check
+   for incoming messages. This field **must** be populated in all messages. This field will remain
    the same across different wire protocol versions.
-- Header size: a 16-bit unsigned integer whose value is the size of the **remainder** of the header
-   in bytes (once the magic number and header size fields have been consumed). Consumers **must**
-   use this field to consume the correct number of bytes of header from the input stream, rather
-   than use this specification to deduce the header size. This field's position and width will
-   remain the same across different wire protocol versions. Only the value of this field may change
-   between versions.
-- Major version number: an 8-bit versioning field. Currently the only supported and valid value for
-   this field is 1. This field's position and width will remain the same across different wire
-   protocol versions. Only the value of this field may change between versions.
-- Minor version number: an 8-bit versioning sub-field. Currently the only supported and valid value
-   for this field is 0. This field's position and width will remain the same across different wire
-   protocol versions. Only the value of this field may change between versions.
-- Provider: an 8-bit field identifying the back-end service provider for which the request is
-   intended. A value of zero indicates that the request is intended for a special provider which
-   always exist and is used for service discovery and communication bootstrapping.
-- Session handle: an 8-byte session identifier.
-- Content type: an 8-bit field that defines how the request body should be processed. The only
-   currently-supported value is 1, which indicates that the request body should be treated as a
+- Header size (*common*): a 16-bit unsigned integer whose value is the size of the **remainder** of
+   the header in bytes (once the magic number and header size fields have been consumed). Consumers
+   **must** use this field to consume the correct number of bytes of header from the input stream,
+   rather than use this specification to deduce the header size. This field's position and width
+   will remain the same across different wire protocol versions. Only the value of this field may
+   change between versions.
+- Major version number (*common*): an 8-bit versioning field. Currently the only supported and valid
+   value for this field is 1. This field's position and width will remain the same across different
+   wire protocol versions. Only the value of this field may change between versions.
+- Minor version number (*common*): an 8-bit versioning sub-field. Currently the only supported and
+   valid value for this field is 0. This field's position and width will remain the same across
+   different wire protocol versions. Only the value of this field may change between versions.
+- Flags (*common*): a 16-bit field that is currently unused and should be set to zero.
+- Provider (*common*): an 8-bit field identifying the back-end service provider for which the
+   request is intended. A value of zero indicates that the request is intended for a special
+   provider, which always exists, and is used for service discovery and communication bootstrapping.
+- Session handle (*common*): a 64-bit session identifier.
+- Content type (*common*): an 8-bit field that defines how the request body should be processed. The
+   only currently-supported value is 1, which indicates that the request body should be treated as a
    serialized protobuf message.
-- Accept type: an 8-bit field that defines how the service should provide its response. The only
-   currently-supported value is 1, which indicates that the service should provide a response whose
-   body is a serialized protobuf message.
-- Auth type: an 8-bit field that defines how the authentication bytes should be interpreted.
-- Content length: a 32-bit unsigned integer field providing the exact number of bytes of content.
-- Auth length: a 16-bit unsigned integer field providing the exact number of bytes of
-   authentication.
-- OPCODE: the 16-bit unsigned integer opcode, indicating the operation being performed by this
-   request. See the section above on opcodes.
+- Accept type (*requests only*): an 8-bit field that defines how the service should provide its
+   response. The only currently-supported value is 1, which indicates that the service should
+   provide a response whose body is a serialized protobuf message.
+- Auth type (*requests only*): an 8-bit field that defines how the authentication bytes should be
+   interpreted.
+- Content length (*common*): a 32-bit unsigned integer field providing the exact number of bytes of
+   content.
+- Auth length (*requests only*): a 16-bit unsigned integer field providing the exact number of bytes
+   of authentication.
+- OPCODE (*common*): the 32-bit unsigned integer opcode, indicating the operation being performed by
+   this request. See the section above on opcodes.
+- STATUS (*responses only*): the 16-bit unsigned integer status, indicating the overall success or
+   failure of the operation. A value of zero is used universally to mean success. Other values
+   should be interpreted according to the API specification.
+- RESERVED (*common*): a 16-bit field that is currently unused and must be set to zero.
 
-The request body bytes **must** immediately follow the request header bytes.
+### Requests
 
-The authentication bytes **must** immediately follow the request body bytes.
+A request message begins with the fixed-format header as specified above, followed contiguously by a
+variable-length field of zero or more **message body** bytes, which is in turn followed contiguously
+in memory by a variable-length field of zero or more **authentication** bytes.
+
+The interpretation of the body and authentication bytes is specified by the relevant fields in the
+fixed-format header.
+
+The request body bytes **must** immediately follow the request header bytes, and the size of the
+body must precisely match the Content Length field of the header with no additional padding or
+alignment.
+
+The authentication bytes **must** immediately follow the request body bytes, and the size of the
+authentication field must precisely match the Auth Length field of the header with no additional
+padding or alignment.
+
+![Wire Request](diagrams/wire_request.png)
 
 ### Responses
 
-Responses are structured in the wire protocol as follows, and have many properties in common with
-requests:
+A response message begins with the fixed-format header as specified above, followed contiguously by
+a variable-length field of zero or more **message body** bytes.
 
-![Response Structure](diagrams/wire_response.png)
+The interpretation of the body is specified by the relevant fields in the fixed-format header.
 
-Field descriptions:
+The response body bytes **must** immediately follow the response header bytes, and the size of the
+body must precisely match the Content Length field of the header with no additional padding or
+alignment.
 
-- Magic number: a 32-bit unsigned integer whose value must be 0x5EC0A710 (selected to be an
-   approximate transcoding of SECurity API). This field can be used as an initial validity check for
-   incoming messages. This field **must** be populated in outgoing messages.
-- Header size: a 16-bit unsigned integer whose value is the size of the **remainder** of the header
-   in bytes (once the magic number and header size fields have been consumed). Consumers **must**
-   use this field to consume the correct number of bytes of header from the input stream, rather
-   than use this specification to deduce the header size.
-- Major version number: an 8-bit versioning field. Currently the only supported and valid value for
-   this field is 1.
-- Minor version number: an 8-bit versioning sub-field. Currently the only supported and valid value
-   for this field is 0.
-- Provider: an 8-bit field identifying the back-end service provider the response is coming from.
-- Session handle: an 8-byte session identifier.
-- Content type: an 8-bit field that defines how the response body should be processed. The only
-   currently-supported value is 1, which indicates that the request body should be treated as a
-   serialized protobuf message. In the future, alternative values might be supported, in which case
-   the requirement is that the content type of the response **must** match the specified accept type
-   of the corresponding request.
-- Content length: a 32-bit unsigned integer field providing the exact number of bytes of content.
-- OPCODE: the 16-bit unsigned integer opcode, indicating the operation that was performed. This
-   **must** match the OPCODE field from the corresponding request, and can be used as a validation
-   check within the client.
-- STATUS: the 16-bit unsigned integer status, indicating the overall success or failure of the
-   operation. A value of zero is used universally to mean success. Other values should be
-   interpreted according to the API specification.
-
-The request body bytes **must** immediately follow the request header bytes.
+![Wire Response](diagrams/wire_response.png)
 
 *Copyright 2019 Contributors to the Parsec project.*
