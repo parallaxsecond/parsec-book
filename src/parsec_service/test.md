@@ -1,9 +1,10 @@
 # How to test Parsec
 
-Parsec relies on a mix of unit, integration, stress and fuzz tests. Unit tests are usually found in
-the same module as the code they verify. Integration tests can be found in the `tests` directory
-(along with the code framework required for running them), and come in two flavours: single-provider
-and all-providers.
+Parsec relies on a mix of unit, end-to-end, integration, stress and fuzz tests. Unit tests are
+usually found in the same module as the code they verify. End-to-end and stress tests can be found
+in the `e2e_tests` directory (along with the code framework required for running them), and come in
+two flavours: single-provider and all-providers. Integration tests are found in the `tests`
+directory and test the public module that the `parsec-service` crate exports.
 
 Single-provider tests do a thorough verification of each individual provider, while all-providers
 tests check that the common functionality is capable of supporting multiple providers at the same
@@ -14,13 +15,10 @@ The stress test simply constructs and sends random requests as fast as possible 
 multithreaded client. Valid requests are sent intermittently so as to check that the service is
 still up and working correctly.
 
-The `tests/ci.sh` script executes all tests and is used on the CI.
+The `ci.sh` script executes all tests and is used on the CI.
 [`rustfmt`](https://github.com/rust-lang/rustfmt) and
 [`clippy`](https://github.com/rust-lang/rust-clippy) are needed for code formatting and static
 checks.
-
-The [test client](https://github.com/parallaxsecond/parsec-client-test) is used for integration
-testing. Check that repository for more details.
 
 ## Executing tests manually
 
@@ -54,7 +52,18 @@ cargo test --lib --all-features
 
 ### Integration tests
 
-#### Normal integration tests
+Executing doc, unit and integration tests (it is currently not possible to isolate only the
+integration tests):
+
+```
+cargo test --all-features
+```
+
+### End-to-end tests
+
+They need to be executed from the `e2e_tests` folder.
+
+#### Normal tests
 
 ```
 cargo test normal_tests
@@ -62,8 +71,8 @@ cargo test normal_tests
 
 #### Persistence integration tests
 
-Those check if the Key Info mapping persist after a shutdown (check the `tests/ci.sh` script for
-details of commands to execute).
+Those check if the Key Info mapping persist after a shutdown (check the `ci.sh` script for details
+of commands to execute).
 
 #### Stress tests
 
@@ -71,9 +80,9 @@ details of commands to execute).
 cargo test stress_test
 ```
 
-#### All providers integration tests.
+#### All providers end-to-end tests.
 
-This expect the Parsec service to include all providers.
+This expects the Parsec service to include all providers.
 
 ```
 cargo test all_providers
