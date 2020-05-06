@@ -647,16 +647,17 @@ mechanism for reading it.</p>
 </tbody></table>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#parsec-for-users" id="parsec-for-users">Parsec for users</a></h1>
-<h2><a class="header" href="#how-to-install-parsec" id="how-to-install-parsec">How to install Parsec</a></h2>
-<p>Currently only Unix-based operating systems are supported and we provide <a href="parsec_service/install_parsec_linux.html">a guide for installing the
-service on Linux</a>.</p>
 <h2><a class="header" href="#how-to-use-parsec" id="how-to-use-parsec">How to use Parsec</a></h2>
 <p>On a system where Parsec is installed, it can easily be used with a Parsec Client Library. Those
 libraries communicate with the Parsec service and integrate with the rest of the software
 idiomatically.</p>
 <p>Parsec Client Libraries are available in the following languages:</p>
 <ul>
-<li><a href="https://github.com/parallaxsecond/parsec-client-go">Go</a></li>
+<li><a href="https://crates.io/crates/parsec-client">Rust</a></li>
+<li><a href="https://github.com/parallaxsecond/parsec-se-driver">C</a>: support is currently being built to use
+Parsec through the PSA Crypto API</li>
+<li><a href="https://github.com/parallaxsecond/parsec-client-go">Go</a> (not currently working but contributions
+are welcome!)</li>
 </ul>
 <p>Please <a href="parsec_client/writing_library.html">contribute</a> to add more Parsec Client Libraries in the
 languages that you want!</p>
@@ -1970,10 +1971,6 @@ one. Writing a new client library is a great way to enhance the Parsec client ec
 <p>When creating a new client library, please make sure you understand the <a href="parsec_client/../overview.html#beautiful-client-libraries">Parsec philosophy for
 client libraries</a>. It is very important that you design
 your client library to provide a highly ergonomic and idiomatic developer experience.</p>
-<p>Take a look at the <a href="https://github.com/parallaxsecond/parsec-client-go"><strong>client library for Go</strong></a>
-as an example. The <a href="https://github.com/parallaxsecond/parsec-client-test">Rust Test Client</a> is a
-client library used for testing but with no goal of being ergonomic nor easy to use. It can however
-help how to build a real Rust client library.</p>
 <p>You will need to understand the <a href="parsec_client/wire_protocol.html"><strong>wire protocol specification</strong></a> and the <a href="parsec_client/api_overview.html"><strong>API
 specification</strong></a> in depth in order to create a client library.</p>
 <p>You will need to know which <a href="parsec_client/../parsec_service/listeners.html"><code>Listener</code></a> the Parsec service is
@@ -2765,21 +2762,32 @@ Rust</a>.</p>
 <p>Because the providers supported by Parsec are dependent on libraries and/or hardware features
 present on the platform, the build is fragmented through Rust features so that the resulting binary
 only contains the desired providers. Currently the service provides the following features:
-<code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>.</p>
+<code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>. Please check the
+<a href="parsec_service/build_run.html#dependencies">dependencies</a> for what is needed to build each provider.</p>
 <p>In order for the service to be spun up, a number of parameters are required in a TOML file. The
 repository contains an <a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">example</a>
-of such a configuration file which shows all the options and their default values.</p>
-<p>To build and run the service, set <code>DESIRED_FEATURES</code> to be a subset of the features mentioned above,
-space or comma separated, and execute:</p>
-<pre><code>cargo run --no-default-features --features $DESIRED_FEATURES
+of such a configuration file which shows all the options and their default values. You can also take
+example of the ones used for testing, for example <a href="https://github.com/parallaxsecond/parsec/blob/master/e2e_tests/provider_cfg/tpm/config.toml">the TPM provider
+one</a>.</p>
+<p>The <code>mbed-crypto-provider</code> feature is going to be used as an example in this guide. This can be
+replaced by a subset of the features mentioned above, space or comma separated.</p>
+<p>To build and run Parsec from source:</p>
+<pre><code>RUST_LOG=info cargo run --features mbed-crypto-provider
 </code></pre>
-<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients. If
-the configuration file is not in the directory from which Parsec is run, its path must be passed via
-CLI:</p>
-<pre><code>cargo run --no-default-features --features $DESIRED_FEATURES -- --config $PATH_TO_CONFIG
+<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients.
+Setting <code>RUST_LOG=info</code> on the command line is not needed if the log level was modified via the
+configuration file.</p>
+<p>At the end of initialization, it should print <code>Parsec is ready</code> which means that it is ready to take
+requests from clients.</p>
+<p>If the configuration file is not in the directory from which Parsec is run, its path must be passed
+via a command-line argument:</p>
+<pre><code>cargo run --features mbed-crypto-provider -- --config e2e_tests/provider_cfg/mbed-crypto/config.toml
 </code></pre>
-<p>From another terminal, it is now possible to execute <a href="parsec_service/test.html#integration-tests">integration tests</a>
-on Parsec!</p>
+<p>From another terminal, it is now possible to execute the <a href="parsec_service/test.html#end-to-end-tests">end-to-end
+tests</a> on Parsec!</p>
+<pre><code>cd e2e_tests
+cargo test normal_tests
+</code></pre>
 <h2><a class="header" href="#killing-parsec" id="killing-parsec">Killing Parsec</a></h2>
 <p>On Linux, sending <code>SIGTERM</code> will gracefully terminate Parsec, waiting all of its threads to finish.</p>
 <pre><code>pkill parsec
@@ -2790,7 +2798,12 @@ its components, read the configuration and instantiate all the components again.
 change the Parsec configuration without having to kill the service.</p>
 <pre><code>pkill -SIGHUP parsec
 </code></pre>
-<h2><a class="header" href="#external-dependencies" id="external-dependencies">External dependencies</a></h2>
+<h2><a class="header" href="#dependencies" id="dependencies">Dependencies</a></h2>
+<p>The Parsec Interface needs the <code>protoc</code> command to be available on the <code>PATH</code> in order to use the
+Protobuf contracts. On Ubuntu-like distributions, it can be installed via the package manager under
+the name <code>protobuf-compiler</code>:</p>
+<pre><code>sudo apt install protobuf-compiler
+</code></pre>
 <p>Each provider has external dependencies that are needed to compile.</p>
 <h3><a class="header" href="#mbed-crypto" id="mbed-crypto">Mbed Crypto</a></h3>
 <p>If Mbed Crypto is not already available on the system, the build script will try to download and
@@ -2833,7 +2846,7 @@ su --login parsec
 </code></pre>
 <p>In its home directory, pull and install Parsec as a daemon.</p>
 <pre><code>git clone https://github.com/parallaxsecond/parsec.git
-cargo install --no-default-features --features $DESIRED_FEATURES --path parsec
+cargo install --features $DESIRED_FEATURES --path parsec
 </code></pre>
 <p>Copy and adapt the <a href="parsec_service/configuration.html">configuration</a> you want to use.</p>
 <pre><code>cp parsec/config.toml config.toml
@@ -2844,8 +2857,8 @@ cp -r parsec/systemd-daemon/parsec.service parsec/systemd-daemon/parsec.socket ~
 systemctl --user enable parsec.socket
 systemctl --user start parsec.socket
 </code></pre>
-<p>Every user on the system can now use Parsec! You can test it going inside the <code>parsec</code> directory
-and:</p>
+<p>Every user on the system can now use Parsec! You can test it going inside the <code>parsec/e2e_tests</code>
+directory and:</p>
 <pre><code>cargo test normal_tests
 </code></pre>
 <p>Check the Parsec logs with:</p>
@@ -2859,10 +2872,11 @@ of Parsec for an <a href="https://github.com/parallaxsecond/parsec/blob/master/c
 configuration file.</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#how-to-test-parsec" id="how-to-test-parsec">How to test Parsec</a></h1>
-<p>Parsec relies on a mix of unit, integration, stress and fuzz tests. Unit tests are usually found in
-the same module as the code they verify. Integration tests can be found in the <code>tests</code> directory
-(along with the code framework required for running them), and come in two flavours: single-provider
-and all-providers.</p>
+<p>Parsec relies on a mix of unit, end-to-end, integration, stress and fuzz tests. Unit tests are
+usually found in the same module as the code they verify. End-to-end and stress tests can be found
+in the <code>e2e_tests</code> directory (along with the code framework required for running them), and come in
+two flavours: single-provider and all-providers. Integration tests are found in the <code>tests</code>
+directory and test the public module that the <code>parsec-service</code> crate exports.</p>
 <p>Single-provider tests do a thorough verification of each individual provider, while all-providers
 tests check that the common functionality is capable of supporting multiple providers at the same
 time. Another subcategory of integration tests are persistance tests which check that key material
@@ -2870,12 +2884,10 @@ is persisted through service restarts.</p>
 <p>The stress test simply constructs and sends random requests as fast as possible using a
 multithreaded client. Valid requests are sent intermittently so as to check that the service is
 still up and working correctly.</p>
-<p>The <code>tests/ci.sh</code> script executes all tests and is used on the CI.
+<p>The <code>ci.sh</code> script executes all tests and is used on the CI.
 <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a> and
 <a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed for code formatting and static
 checks.</p>
-<p>The <a href="https://github.com/parallaxsecond/parsec-client-test">test client</a> is used for integration
-testing. Check that repository for more details.</p>
 <h2><a class="header" href="#executing-tests-manually" id="executing-tests-manually">Executing tests manually</a></h2>
 <h3><a class="header" href="#static-tests" id="static-tests">Static tests</a></h3>
 <h4><a class="header" href="#checking-code-formatting" id="checking-code-formatting">Checking code formatting</a></h4>
@@ -2892,17 +2904,23 @@ testing. Check that repository for more details.</p>
 <pre><code>cargo test --lib --all-features
 </code></pre>
 <h3><a class="header" href="#integration-tests" id="integration-tests">Integration tests</a></h3>
-<h4><a class="header" href="#normal-integration-tests" id="normal-integration-tests">Normal integration tests</a></h4>
+<p>Executing doc, unit and integration tests (it is currently not possible to isolate only the
+integration tests):</p>
+<pre><code>cargo test --all-features
+</code></pre>
+<h3><a class="header" href="#end-to-end-tests" id="end-to-end-tests">End-to-end tests</a></h3>
+<p>They need to be executed from the <code>e2e_tests</code> folder.</p>
+<h4><a class="header" href="#normal-tests" id="normal-tests">Normal tests</a></h4>
 <pre><code>cargo test normal_tests
 </code></pre>
 <h4><a class="header" href="#persistence-integration-tests" id="persistence-integration-tests">Persistence integration tests</a></h4>
-<p>Those check if the Key Info mapping persist after a shutdown (check the <code>tests/ci.sh</code> script for
-details of commands to execute).</p>
+<p>Those check if the Key Info mapping persist after a shutdown (check the <code>ci.sh</code> script for details
+of commands to execute).</p>
 <h4><a class="header" href="#stress-tests" id="stress-tests">Stress tests</a></h4>
 <pre><code>cargo test stress_test
 </code></pre>
-<h4><a class="header" href="#all-providers-integration-tests" id="all-providers-integration-tests">All providers integration tests.</a></h4>
-<p>This expect the Parsec service to include all providers.</p>
+<h4><a class="header" href="#all-providers-end-to-end-tests" id="all-providers-end-to-end-tests">All providers end-to-end tests.</a></h4>
+<p>This expects the Parsec service to include all providers.</p>
 <pre><code>cargo test all_providers
 </code></pre>
 <h2><a class="header" href="#fuzz-testing" id="fuzz-testing">Fuzz testing</a></h2>

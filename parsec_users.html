@@ -148,16 +148,17 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#parsec-for-users" id="parsec-for-users">Parsec for users</a></h1>
-<h2><a class="header" href="#how-to-install-parsec" id="how-to-install-parsec">How to install Parsec</a></h2>
-<p>Currently only Unix-based operating systems are supported and we provide <a href="parsec_service/install_parsec_linux.html">a guide for installing the
-service on Linux</a>.</p>
 <h2><a class="header" href="#how-to-use-parsec" id="how-to-use-parsec">How to use Parsec</a></h2>
 <p>On a system where Parsec is installed, it can easily be used with a Parsec Client Library. Those
 libraries communicate with the Parsec service and integrate with the rest of the software
 idiomatically.</p>
 <p>Parsec Client Libraries are available in the following languages:</p>
 <ul>
-<li><a href="https://github.com/parallaxsecond/parsec-client-go">Go</a></li>
+<li><a href="https://crates.io/crates/parsec-client">Rust</a></li>
+<li><a href="https://github.com/parallaxsecond/parsec-se-driver">C</a>: support is currently being built to use
+Parsec through the PSA Crypto API</li>
+<li><a href="https://github.com/parallaxsecond/parsec-client-go">Go</a> (not currently working but contributions
+are welcome!)</li>
 </ul>
 <p>Please <a href="parsec_client/writing_library.html">contribute</a> to add more Parsec Client Libraries in the
 languages that you want!</p>

@@ -153,21 +153,32 @@ Rust</a>.</p>
 <p>Because the providers supported by Parsec are dependent on libraries and/or hardware features
 present on the platform, the build is fragmented through Rust features so that the resulting binary
 only contains the desired providers. Currently the service provides the following features:
-<code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>.</p>
+<code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>. Please check the
+<a href="#dependencies">dependencies</a> for what is needed to build each provider.</p>
 <p>In order for the service to be spun up, a number of parameters are required in a TOML file. The
 repository contains an <a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">example</a>
-of such a configuration file which shows all the options and their default values.</p>
-<p>To build and run the service, set <code>DESIRED_FEATURES</code> to be a subset of the features mentioned above,
-space or comma separated, and execute:</p>
-<pre><code>cargo run --no-default-features --features $DESIRED_FEATURES
+of such a configuration file which shows all the options and their default values. You can also take
+example of the ones used for testing, for example <a href="https://github.com/parallaxsecond/parsec/blob/master/e2e_tests/provider_cfg/tpm/config.toml">the TPM provider
+one</a>.</p>
+<p>The <code>mbed-crypto-provider</code> feature is going to be used as an example in this guide. This can be
+replaced by a subset of the features mentioned above, space or comma separated.</p>
+<p>To build and run Parsec from source:</p>
+<pre><code>RUST_LOG=info cargo run --features mbed-crypto-provider
 </code></pre>
-<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients. If
-the configuration file is not in the directory from which Parsec is run, its path must be passed via
-CLI:</p>
-<pre><code>cargo run --no-default-features --features $DESIRED_FEATURES -- --config $PATH_TO_CONFIG
+<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients.
+Setting <code>RUST_LOG=info</code> on the command line is not needed if the log level was modified via the
+configuration file.</p>
+<p>At the end of initialization, it should print <code>Parsec is ready</code> which means that it is ready to take
+requests from clients.</p>
+<p>If the configuration file is not in the directory from which Parsec is run, its path must be passed
+via a command-line argument:</p>
+<pre><code>cargo run --features mbed-crypto-provider -- --config e2e_tests/provider_cfg/mbed-crypto/config.toml
 </code></pre>
-<p>From another terminal, it is now possible to execute <a href="test.html#integration-tests">integration tests</a>
-on Parsec!</p>
+<p>From another terminal, it is now possible to execute the <a href="test.html#end-to-end-tests">end-to-end
+tests</a> on Parsec!</p>
+<pre><code>cd e2e_tests
+cargo test normal_tests
+</code></pre>
 <h2><a class="header" href="#killing-parsec" id="killing-parsec">Killing Parsec</a></h2>
 <p>On Linux, sending <code>SIGTERM</code> will gracefully terminate Parsec, waiting all of its threads to finish.</p>
 <pre><code>pkill parsec
@@ -178,7 +189,12 @@ its components, read the configuration and instantiate all the components again.
 change the Parsec configuration without having to kill the service.</p>
 <pre><code>pkill -SIGHUP parsec
 </code></pre>
-<h2><a class="header" href="#external-dependencies" id="external-dependencies">External dependencies</a></h2>
+<h2><a class="header" href="#dependencies" id="dependencies">Dependencies</a></h2>
+<p>The Parsec Interface needs the <code>protoc</code> command to be available on the <code>PATH</code> in order to use the
+Protobuf contracts. On Ubuntu-like distributions, it can be installed via the package manager under
+the name <code>protobuf-compiler</code>:</p>
+<pre><code>sudo apt install protobuf-compiler
+</code></pre>
 <p>Each provider has external dependencies that are needed to compile.</p>
 <h3><a class="header" href="#mbed-crypto" id="mbed-crypto">Mbed Crypto</a></h3>
 <p>If Mbed Crypto is not already available on the system, the build script will try to download and

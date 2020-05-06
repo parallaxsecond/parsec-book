@@ -162,7 +162,7 @@ su --login parsec
 </code></pre>
 <p>In its home directory, pull and install Parsec as a daemon.</p>
 <pre><code>git clone https://github.com/parallaxsecond/parsec.git
-cargo install --no-default-features --features $DESIRED_FEATURES --path parsec
+cargo install --features $DESIRED_FEATURES --path parsec
 </code></pre>
 <p>Copy and adapt the <a href="configuration.html">configuration</a> you want to use.</p>
 <pre><code>cp parsec/config.toml config.toml
@@ -173,8 +173,8 @@ cp -r parsec/systemd-daemon/parsec.service parsec/systemd-daemon/parsec.socket ~
 systemctl --user enable parsec.socket
 systemctl --user start parsec.socket
 </code></pre>
-<p>Every user on the system can now use Parsec! You can test it going inside the <code>parsec</code> directory
-and:</p>
+<p>Every user on the system can now use Parsec! You can test it going inside the <code>parsec/e2e_tests</code>
+directory and:</p>
 <pre><code>cargo test normal_tests
 </code></pre>
 <p>Check the Parsec logs with:</p>

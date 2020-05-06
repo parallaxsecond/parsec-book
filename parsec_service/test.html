@@ -148,10 +148,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#how-to-test-parsec" id="how-to-test-parsec">How to test Parsec</a></h1>
-<p>Parsec relies on a mix of unit, integration, stress and fuzz tests. Unit tests are usually found in
-the same module as the code they verify. Integration tests can be found in the <code>tests</code> directory
-(along with the code framework required for running them), and come in two flavours: single-provider
-and all-providers.</p>
+<p>Parsec relies on a mix of unit, end-to-end, integration, stress and fuzz tests. Unit tests are
+usually found in the same module as the code they verify. End-to-end and stress tests can be found
+in the <code>e2e_tests</code> directory (along with the code framework required for running them), and come in
+two flavours: single-provider and all-providers. Integration tests are found in the <code>tests</code>
+directory and test the public module that the <code>parsec-service</code> crate exports.</p>
 <p>Single-provider tests do a thorough verification of each individual provider, while all-providers
 tests check that the common functionality is capable of supporting multiple providers at the same
 time. Another subcategory of integration tests are persistance tests which check that key material
@@ -159,12 +160,10 @@ is persisted through service restarts.</p>
 <p>The stress test simply constructs and sends random requests as fast as possible using a
 multithreaded client. Valid requests are sent intermittently so as to check that the service is
 still up and working correctly.</p>
-<p>The <code>tests/ci.sh</code> script executes all tests and is used on the CI.
+<p>The <code>ci.sh</code> script executes all tests and is used on the CI.
 <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a> and
 <a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed for code formatting and static
 checks.</p>
-<p>The <a href="https://github.com/parallaxsecond/parsec-client-test">test client</a> is used for integration
-testing. Check that repository for more details.</p>
 <h2><a class="header" href="#executing-tests-manually" id="executing-tests-manually">Executing tests manually</a></h2>
 <h3><a class="header" href="#static-tests" id="static-tests">Static tests</a></h3>
 <h4><a class="header" href="#checking-code-formatting" id="checking-code-formatting">Checking code formatting</a></h4>
@@ -181,17 +180,23 @@ testing. Check that repository for more details.</p>
 <pre><code>cargo test --lib --all-features
 </code></pre>
 <h3><a class="header" href="#integration-tests" id="integration-tests">Integration tests</a></h3>
-<h4><a class="header" href="#normal-integration-tests" id="normal-integration-tests">Normal integration tests</a></h4>
+<p>Executing doc, unit and integration tests (it is currently not possible to isolate only the
+integration tests):</p>
+<pre><code>cargo test --all-features
+</code></pre>
+<h3><a class="header" href="#end-to-end-tests" id="end-to-end-tests">End-to-end tests</a></h3>
+<p>They need to be executed from the <code>e2e_tests</code> folder.</p>
+<h4><a class="header" href="#normal-tests" id="normal-tests">Normal tests</a></h4>
 <pre><code>cargo test normal_tests
 </code></pre>
 <h4><a class="header" href="#persistence-integration-tests" id="persistence-integration-tests">Persistence integration tests</a></h4>
-<p>Those check if the Key Info mapping persist after a shutdown (check the <code>tests/ci.sh</code> script for
-details of commands to execute).</p>
+<p>Those check if the Key Info mapping persist after a shutdown (check the <code>ci.sh</code> script for details
+of commands to execute).</p>
 <h4><a class="header" href="#stress-tests" id="stress-tests">Stress tests</a></h4>
 <pre><code>cargo test stress_test
 </code></pre>
-<h4><a class="header" href="#all-providers-integration-tests" id="all-providers-integration-tests">All providers integration tests.</a></h4>
-<p>This expect the Parsec service to include all providers.</p>
+<h4><a class="header" href="#all-providers-end-to-end-tests" id="all-providers-end-to-end-tests">All providers end-to-end tests.</a></h4>
+<p>This expects the Parsec service to include all providers.</p>
 <pre><code>cargo test all_providers
 </code></pre>
 <h2><a class="header" href="#fuzz-testing" id="fuzz-testing">Fuzz testing</a></h2>
