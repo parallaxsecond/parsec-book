@@ -21,7 +21,7 @@ In its home directory, pull and install Parsec as a daemon.
 
 ```
 git clone https://github.com/parallaxsecond/parsec.git
-cargo install --no-default-features --features $DESIRED_FEATURES --path parsec
+cargo install --features $DESIRED_FEATURES --path parsec
 ```
 
 Copy and adapt the [configuration](configuration.md) you want to use.
@@ -39,8 +39,8 @@ systemctl --user enable parsec.socket
 systemctl --user start parsec.socket
 ```
 
-Every user on the system can now use Parsec! You can test it going inside the `parsec` directory
-and:
+Every user on the system can now use Parsec! You can test it going inside the `parsec/e2e_tests`
+directory and:
 
 ```
 cargo test normal_tests
