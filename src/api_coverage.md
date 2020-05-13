@@ -76,17 +76,17 @@ option marked as supported is necessarily supported for all operations on which 
 | MD4         | ❌                  | ❌              | ❌              |
 | MD5         | ❌                  | ❌              | ❌              |
 | RIPEMD160   | ❌                  | ❌              | ❌              |
-| SHA-1       | ❌                  | ❌              | ❌              |
+| SHA-1       | ❌                  | ❌              | ✅              |
 | SHA-224     | ❌                  | ❌              | ❌              |
 | SHA-256     | ✅                  | ✅              | ✅              |
-| SHA-384     | ❌                  | ❌              | ❌              |
-| SHA-512     | ❌                  | ❌              | ❌              |
+| SHA-384     | ❌                  | ❌              | ✅              |
+| SHA-512     | ❌                  | ❌              | ✅              |
 | SHA-512-224 | ❌                  | ❌              | ❌              |
 | SHA-512-256 | ❌                  | ❌              | ❌              |
 | SHA3-224    | ❌                  | ❌              | ❌              |
-| SHA3-256    | ❌                  | ❌              | ❌              |
-| SHA3-384    | ❌                  | ❌              | ❌              |
-| SHA3-512    | ❌                  | ❌              | ❌              |
+| SHA3-256    | ❌                  | ❌              | ✅              |
+| SHA3-384    | ❌                  | ❌              | ✅              |
+| SHA3-512    | ❌                  | ❌              | ✅              |
 | Any hash    | ❌                  | ❌              | ❌              |
 
 #### Asymmetric signing algorithms
@@ -96,7 +96,7 @@ option marked as supported is necessarily supported for all operations on which 
 | RSA PKCS 1v5 with hash | ✅                  | ✅              | ✅              |
 | Raw RSA PKCS 1v5       | ❌                  | ❌              | ❌              |
 | RSA PSS                | ❌                  | ❌              | ❌              |
-| ECDSA                  | ❌                  | ❌              | ❌              |
+| ECDSA                  | ❌                  | ❌              | ✅              |
 | ECDSA with any hash    | ❌                  | ❌              | ❌              |
 | Deterministic ECDSA    | ❌                  | ❌              | ❌              |
 

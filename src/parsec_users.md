@@ -8,7 +8,7 @@ idiomatically.
 
 Parsec Client Libraries are available in the following languages:
 
-- [Rust](https://crates.io/crates/parsec-client)
+- [Rust](https://docs.rs/parsec-client/*/parsec_client/)
 - [C](https://github.com/parallaxsecond/parsec-se-driver): support is currently being built to use
    Parsec through the PSA Crypto API
 - [Go](https://github.com/parallaxsecond/parsec-client-go) (not currently working but contributions
