@@ -390,17 +390,17 @@ option marked as supported is necessarily supported for all operations on which 
 <tr><td>MD4</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>MD5</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>RIPEMD160</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td>SHA-1</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>SHA-1</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>SHA-224</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>SHA-256</td><td>✅</td><td>✅</td><td>✅</td></tr>
-<tr><td>SHA-384</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td>SHA-512</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>SHA-384</td><td>❌</td><td>❌</td><td>✅</td></tr>
+<tr><td>SHA-512</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>SHA-512-224</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>SHA-512-256</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>SHA3-224</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td>SHA3-256</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td>SHA3-384</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td>SHA3-512</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>SHA3-256</td><td>❌</td><td>❌</td><td>✅</td></tr>
+<tr><td>SHA3-384</td><td>❌</td><td>❌</td><td>✅</td></tr>
+<tr><td>SHA3-512</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>Any hash</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
 <h4><a class="header" href="#asymmetric-signing-algorithms" id="asymmetric-signing-algorithms">Asymmetric signing algorithms</a></h4>
@@ -408,7 +408,7 @@ option marked as supported is necessarily supported for all operations on which 
 <tr><td>RSA PKCS 1v5 with hash</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>Raw RSA PKCS 1v5</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>RSA PSS</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td>ECDSA</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>ECDSA</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>ECDSA with any hash</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>Deterministic ECDSA</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
@@ -653,7 +653,7 @@ libraries communicate with the Parsec service and integrate with the rest of the
 idiomatically.</p>
 <p>Parsec Client Libraries are available in the following languages:</p>
 <ul>
-<li><a href="https://crates.io/crates/parsec-client">Rust</a></li>
+<li><a href="https://docs.rs/parsec-client/*/parsec_client/">Rust</a></li>
 <li><a href="https://github.com/parallaxsecond/parsec-se-driver">C</a>: support is currently being built to use
 Parsec through the PSA Crypto API</li>
 <li><a href="https://github.com/parallaxsecond/parsec-client-go">Go</a> (not currently working but contributions
