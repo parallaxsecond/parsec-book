@@ -52,9 +52,6 @@ Possible hash algorithms are:
 - **SHA3-256.**
 - **SHA3-384.**
 - **SHA3-512.**
-- **Any Hash.** In a hash-and-sign algorithm policy, allow any hash algorithm. This value must not
-   be used to build an algorithm specification to perform an operation. It is only valid to build
-   policies.
 
 ### Mac algorithm
 
@@ -146,6 +143,11 @@ Asymmetric signature algorithms. Supported algorithms:
 - **Deterministic ECDSA signature with hashing.** This is the deterministic ECDSA signature scheme
    defined by [RFC 6979](https://tools.ietf.org/html/rfc6979.html). Uses one of the hash algorithm
    supported.
+
+When defining the permitted algorithms in a key policy, the hash-and-sign algorithms above can use
+the value **Any Hash** for their hash algorithm, meaning that it will allow any hash algorithm. This
+value must not be used to build an algorithm specification to perform an operation. It is only valid
+to build policies.
 
 ### AsymmetricEncryption algorithm
 
