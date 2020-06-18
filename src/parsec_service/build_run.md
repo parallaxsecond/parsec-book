@@ -16,7 +16,9 @@ example of the ones used for testing, for example [the TPM provider
 one](https://github.com/parallaxsecond/parsec/blob/master/e2e_tests/provider_cfg/tpm/config.toml).
 
 The `mbed-crypto-provider` feature is going to be used as an example in this guide. This can be
-replaced by a subset of the features mentioned above, space or comma separated.
+replaced by a subset of the features mentioned above, space or comma separated. If you would like to
+test the TPM or PKCS check the [related
+guides](test.md#testing-the-tpm-provider-using-the-software-tpm).
 
 To build and run Parsec from source:
 
@@ -74,6 +76,12 @@ the name `protobuf-compiler`:
 sudo apt install protobuf-compiler
 ```````
 
+To use `bindgen` and generate the Rust to C wrappers, `libclang` (version at least 3.9) is needed:
+
+```````
+sudo apt install llvm-dev libclang-dev clang
+```````
+
 Each provider has external dependencies that are needed to compile.
 
 ### Mbed Crypto
@@ -81,7 +89,7 @@ Each provider has external dependencies that are needed to compile.
 If Mbed Crypto is not already available on the system, the build script will try to download and
 compile it. The following commands need to be available:
 
-- a C toolchain, by default `clang` and `ar` are used but this is
+- a C toolchain to compile the Mbed Crypto library, by default `clang` and `ar` are used but this is
    [configurable](https://github.com/parallaxsecond/parsec/blob/master/build-conf.toml)
 - `wget`
 - `tar`
@@ -97,6 +105,7 @@ hence a library implementing the PKCS 11 API is needed.
 
 The TPM provider will try to build the `tss-esapi` crate which needs built TSS 2.0 esys and tctildr
 libraries. It will use `pkg-config` to find them using the names `tss2-esys` and `tss2-tctildr`.
+Make sure you also follow the requirements of the [tss-esapi crate](https://docs.rs/tss-esapi).
 
 ## Cross-compiling for Arm64
 
