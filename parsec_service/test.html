@@ -209,6 +209,53 @@ target and then observing the code segments reached using said input. To stop th
 <code>./fuzz.sh stop</code>. To view the logs of a currently executing fuzzer, run <code>./fuzz.sh follow</code>. Any
 crashes or slow tests, as well as tests that lead to a timeout, are stored in
 <code>./fuzz/artifacts/fuzz_service/</code>.</p>
+<h2><a class="header" href="#testing-the-tpm-provider-using-the-software-tpm" id="testing-the-tpm-provider-using-the-software-tpm">Testing the TPM provider using the Software TPM</a></h2>
+<p>If you do not have a hardware TPM, or you do not want to use it for tests, you might want to use the
+IBM Software TPM. You will need to follow these steps:</p>
+<ul>
+<li>install the TSS libraries (<a href="https://github.com/tpm2-software/tpm2-tss/blob/master/INSTALL.md">installation
+guide</a>). Parsec has been tested
+with version 2.3.3.</li>
+<li>install the <a href="https://github.com/tpm2-software/tpm2-tools">TPM tools</a></li>
+<li>install the <a href="https://sourceforge.net/projects/ibmswtpm2/">Software TPM</a>, run <code>make</code> in the <code>src</code>
+directory. It will build the <code>tpm_server</code> executable.</li>
+<li>install Parsec with the <code>tpm-provider</code> feature: <code>cargo build --features tpm-provider</code>.</li>
+</ul>
+<p>Once the required software is installed you can:</p>
+<p>Launch the TPM server in the background (in the <code>src</code> folder where the TPM is installed):</p>
+<pre><code>$ rm NVChip # this deletes the TPM cache
+$ ./tpm_server &amp;
+</code></pre>
+<p>Use the TPM tools to startup the TPM server and set its owner hierarchy password (the tools need to
+be on the <code>PATH</code>):</p>
+<pre><code>$ tpm2_startup -c -T mssim
+$ tpm2_changeauth -c owner tpm_pass -T mssim
+</code></pre>
+<p>Start Parsec with the TPM configuration:</p>
+<pre><code>$ RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/tpm/config.toml
+</code></pre>
+<p>Which should print a <code>[INFO parsec] Parsec is ready.</code> You can now execute the end-to-end tests using
+that provider!</p>
+<h2><a class="header" href="#testing-the-pkcs11-provider-using-the-software-hsm" id="testing-the-pkcs11-provider-using-the-software-hsm">Testing the PKCS11 provider using the Software HSM</a></h2>
+<p>If you do not have a hardware HSM, or you do not want to use it for tests, you might want to use the
+Software HSM. You will need to follow these steps:</p>
+<ul>
+<li>install <a href="https://github.com/opendnssec/SoftHSMv2">SoftHSMv2</a>. We use version 2.5.0 for tests in
+Parsec.</li>
+<li>install Parsec with the <code>pkcs11-provider</code> feature: <code>cargo build --features pkcs11-provider</code>.</li>
+</ul>
+<p>Create a new token in a new slot. The slot number assigned will be random and is found with the
+<code>find_slot_number</code> script.</p>
+<pre><code>softhsm2-util --init-token --slot 0 --label &quot;Parsec Tests&quot; --pin 123456 --so-pin 123456
+</code></pre>
+<p>Find and append the slot number at the end of the configuration file:</p>
+<pre><code>./e2e_tests/provider_cfg/pkcs11/find_slot_number.sh e2e_tests/provider_cfg/pkcs11/config.toml
+</code></pre>
+<p>Start Parsec with the PKCS11 configuration:</p>
+<pre><code>$ RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/pkcs11/config.toml
+</code></pre>
+<p>Which should print a <code>[INFO parsec] Parsec is ready.</code> You can now execute the end-to-end tests using
+that provider!</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 
                     </main>

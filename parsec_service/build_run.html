@@ -161,7 +161,9 @@ of such a configuration file which shows all the options and their default value
 example of the ones used for testing, for example <a href="https://github.com/parallaxsecond/parsec/blob/master/e2e_tests/provider_cfg/tpm/config.toml">the TPM provider
 one</a>.</p>
 <p>The <code>mbed-crypto-provider</code> feature is going to be used as an example in this guide. This can be
-replaced by a subset of the features mentioned above, space or comma separated.</p>
+replaced by a subset of the features mentioned above, space or comma separated. If you would like to
+test the TPM or PKCS check the <a href="test.html#testing-the-tpm-provider-using-the-software-tpm">related
+guides</a>.</p>
 <p>To build and run Parsec from source:</p>
 <pre><code>RUST_LOG=info cargo run --features mbed-crypto-provider
 </code></pre>
@@ -195,12 +197,15 @@ Protobuf contracts. On Ubuntu-like distributions, it can be installed via the pa
 the name <code>protobuf-compiler</code>:</p>
 <pre><code>sudo apt install protobuf-compiler
 </code></pre>
+<p>To use <code>bindgen</code> and generate the Rust to C wrappers, <code>libclang</code> (version at least 3.9) is needed:</p>
+<pre><code>sudo apt install llvm-dev libclang-dev clang
+</code></pre>
 <p>Each provider has external dependencies that are needed to compile.</p>
 <h3><a class="header" href="#mbed-crypto" id="mbed-crypto">Mbed Crypto</a></h3>
 <p>If Mbed Crypto is not already available on the system, the build script will try to download and
 compile it. The following commands need to be available:</p>
 <ul>
-<li>a C toolchain, by default <code>clang</code> and <code>ar</code> are used but this is
+<li>a C toolchain to compile the Mbed Crypto library, by default <code>clang</code> and <code>ar</code> are used but this is
 <a href="https://github.com/parallaxsecond/parsec/blob/master/build-conf.toml">configurable</a></li>
 <li><code>wget</code></li>
 <li><code>tar</code></li>
@@ -212,7 +217,8 @@ compile it. The following commands need to be available:</p>
 hence a library implementing the PKCS 11 API is needed.</p>
 <h3><a class="header" href="#tpm-crypto" id="tpm-crypto">TPM Crypto</a></h3>
 <p>The TPM provider will try to build the <code>tss-esapi</code> crate which needs built TSS 2.0 esys and tctildr
-libraries. It will use <code>pkg-config</code> to find them using the names <code>tss2-esys</code> and <code>tss2-tctildr</code>.</p>
+libraries. It will use <code>pkg-config</code> to find them using the names <code>tss2-esys</code> and <code>tss2-tctildr</code>.
+Make sure you also follow the requirements of the <a href="https://docs.rs/tss-esapi">tss-esapi crate</a>.</p>
 <h2><a class="header" href="#cross-compiling-for-arm64" id="cross-compiling-for-arm64">Cross-compiling for Arm64</a></h2>
 <p>To cross-compile the service for the Linux on Arm64 target, you will need to install the appropriate
 toolchain for this target. By default the Arm GNU toolchain is used to compile Mbed Crypto and link

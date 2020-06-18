@@ -193,9 +193,6 @@ protocols.</li>
 <li><strong>SHA3-256.</strong></li>
 <li><strong>SHA3-384.</strong></li>
 <li><strong>SHA3-512.</strong></li>
-<li><strong>Any Hash.</strong> In a hash-and-sign algorithm policy, allow any hash algorithm. This value must not
-be used to build an algorithm specification to perform an operation. It is only valid to build
-policies.</li>
 </ul>
 <h3><a class="header" href="#mac-algorithm" id="mac-algorithm">Mac algorithm</a></h3>
 <p>The Message Authentication Code algorithms supported are:</p>
@@ -284,6 +281,10 @@ or truncated on the left as required to fit the curve size.</li>
 defined by <a href="https://tools.ietf.org/html/rfc6979.html">RFC 6979</a>. Uses one of the hash algorithm
 supported.</li>
 </ul>
+<p>When defining the permitted algorithms in a key policy, the hash-and-sign algorithms above can use
+the value <strong>Any Hash</strong> for their hash algorithm, meaning that it will allow any hash algorithm. This
+value must not be used to build an algorithm specification to perform an operation. It is only valid
+to build policies.</p>
 <h3><a class="header" href="#asymmetricencryption-algorithm" id="asymmetricencryption-algorithm">AsymmetricEncryption algorithm</a></h3>
 <p>Asymmetric encryption algorithms. Supported algorithms:</p>
 <ul>
