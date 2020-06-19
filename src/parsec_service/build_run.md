@@ -86,15 +86,9 @@ Each provider has external dependencies that are needed to compile.
 
 ### Mbed Crypto
 
-If Mbed Crypto is not already available on the system, the build script will try to download and
-compile it. The following commands need to be available:
-
-- a C toolchain to compile the Mbed Crypto library, by default `clang` and `ar` are used but this is
-   [configurable](https://github.com/parallaxsecond/parsec/blob/master/build-conf.toml)
-- `wget`
-- `tar`
-- `make`
-- `python3`
+The Mbed Crypto provider is built on top of the reference implementation of the PSA Cryptography
+API. You can find a list of dependencies
+[here](https://github.com/parallaxsecond/rust-psa-crypto/tree/master/psa-crypto-sys).
 
 ### PKCS 11 Crypto
 
