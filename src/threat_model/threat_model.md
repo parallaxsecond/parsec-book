@@ -14,8 +14,7 @@ will be written in italic.*
 
 Basic requirements based on which the service can operate securely. Mitigations can be implemented
 to make the system more resilient, but if some of these assumptions are not met, the security stance
-of the service cannot be guaranteed. For each assumption, the mitigations, operational mitigations
-and "unmitigations" that relate to it are mentioned.
+of the service cannot be guaranteed.
 
 1. The hardware modules are physically and functionally secure. Only trusted agents can physically
    access the system.
@@ -32,9 +31,9 @@ What we want to protect. Each one of these has a combination of security propert
 Confidentiality, Integrity and Availability. The assets are labelled so that it can be seen in the
 threat tables below which ones are impacted by each threat.
 
-### Application Identity - AS1
+### Authentication Token - AS1
 
-The Client Library gets its Application Identity from the Identity Provider. It is signed by the
+The Client Library gets its Authentication Token from the Identity Provider. It is signed by the
 IP's private key and sent by the Client Library on each request. Parsec verifies the Authentication
 Token using the IP's public key.
 
@@ -52,7 +51,7 @@ The IP's public certificate is sent to the service periodically. It is used by t
 the authentication tokens.
 
 **Integrity** : if sent by a malicious IP, attackers could then sign their own application
-identities and Parsec will verify them successfully. If they know the Application Identity of
+identities and Parsec will verify them successfully. If they know the Authentication Token of
 clients, they can impersonate them.
 
 **Availability** : Parsec needs it in order to execute a request.
@@ -96,6 +95,28 @@ General asset to describe the fact that each client's request should be done in 
 time. The service should be available at any given point from the moment it is started by the
 administrator.
 
+### Key Triple Mappings- AS7
+
+Data containing the mapping between a Key Triple (application name, provider ID, key name) and the
+key attributes with a provider-specific identifier of the key. For the Mbed Crypto and PKCS11
+providers this is an ID number, for the TPM provider this is the wrapped key.
+
+**Integrity** : Parsec expects this data to be valid.
+
+**Availability** : the data should be available when Parsec needs the specific key.
+
+### Logs- AS8
+
+Data stored in logs emitted by any component of the stack.
+
+**Confidentiality** : the logs can contain confidential information of different parts of the
+service.
+
+**Integrity** : the integrity of the logs is essential to prove that some events took place in
+Parsec.
+
+**Availability** : the logs should be available for reading and writing when needed.
+
 ## Attackers
 
 Each dataflow is analysed from an attacker's perspective using STRIDE method. Nothing is supposed on
@@ -104,7 +125,7 @@ the different components.
 In the following tables are present the type of each possible threat, its description, its
 mitigation status and the assets impacted. A threat can be unmitigated (U), mitigated within the
 service (M) or mitigated through operational requirements (O). The assumptions context applies for
-all threats but when one of them is particularly relevant, it will be noted with A.
+all threats but when one of them is particularly relevant, it will be noted with ASUM.
 
 *In deployments without an Identity Provider, the A1, A2 and A10 attackers are not considered in
 scope, dependent on the O-10 mitigation being deployed.*
@@ -133,6 +154,8 @@ This attacker uses the existing Listener endpoint, created by the service, to co
 This attacker uses the existing Listener endpoint, created by the service, to communicate with the
 client. It can also create a spoofed endpoint, mimicking the service's one.
 
+For protection of the clients' assets, please check the Parsec Clients Threat Models.
+
 *Not applicable for deployments with no Identity Provider.*
 
 |   | Description                                                                                                                                          | Mitigation    | Assets                |
@@ -154,7 +177,7 @@ machine a `SIGINT` signal.
 |   | Description                                                                                                      | Mitigation | Assets |
 |---|------------------------------------------------------------------------------------------------------------------|------------|--------|
 | S | N/A                                                                                                              |            |        |
-| T | A `SIGHUP` is modified by an attacker into `SIGTERM` or the other way around.                                    | A-3        | AS6    |
+| T | A `SIGHUP` is modified by an attacker into `SIGTERM` or the other way around.                                    | ASUM-3     | AS6    |
 | R | N/A                                                                                                              |            |        |
 | I | N/A                                                                                                              |            |        |
 | D | An attacker can kill the Parsec service, gracefully or not or trigger an infinite loop of configuration reloads. | O-0        | AS6    |
@@ -183,7 +206,7 @@ can also create a spoofed hardware interface.
 
 |   | Description                                                                                                          | Mitigation    | Assets        |
 |---|----------------------------------------------------------------------------------------------------------------------|---------------|---------------|
-| S | An attacker impersonates a hardware module or uses a malicious module plugged to the machine.                        | O-1, A-2      | AS4, AS6      |
+| S | An attacker impersonates a hardware module or uses a malicious module plugged to the machine.                        | O-1, ASUM-2   | AS4, AS6      |
 | T | An attacker modifies the response of a hardware command.                                                             | O-8, U-3      | AS4, AS6      |
 | R | Responses cannot be proven to originate from the hardware module.                                                    | M-4           |               |
 | I | An attacker can read the content of a command response.                                                              | U-3, O-8      | AS3, AS4, AS5 |
@@ -266,6 +289,16 @@ Attacker with access to the communication running from the Identity Provider to 
 | D | A malicious share bundle could trigger a parsing bug and lead the service to crash.                                                                                                | M-5, U-3   | AS2, AS6         |
 | E | A malicious share bundle could trigger a parsing bug and lead to code execution at the Parsec privilege level.                                                                     | M-5, U-3   | All              |
 
+### Attacker "Local Memory" - A11
+
+Attacker with access to the local memory regions used by Parsec. This attacker can be another
+process scheduled by the OS in the same timeframe than Parsec and reading the memory which was not
+cleared.
+
+|   | Description                                                                              | Mitigation | Assets                |
+|---|------------------------------------------------------------------------------------------|------------|-----------------------|
+| I | The attacker can read all the confidential assets placed in local memory by the service. |            | AS1, AS2, AS4 and AS5 |
+
 ## Unmitigations
 
 | ID | Justification                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
@@ -275,6 +308,7 @@ Attacker with access to the communication running from the Identity Provider to 
 | 2  | It is assumed that the authentication token is stored with confidentiality by the clients. If it is stolen, the service cannot prevent access with it unless the token is revoked.                                                                                                                                                                                                                                                                                           |
 | 3  | Parsec dependencies are not checked for Security Vulnerabilities.                                                                                                                                                                                                                                                                                                                                                                                                            |
 | 4  | While Parsec is authenticated on the device, anyone can brute force a key ID to execute operations with the key. Unmitigated for the PKCS 11 Provider: all sessions share the login state; if one session logs in then all other opened sessions will also be logged in. Other sessions only need a valid key ID to execute operations with private keys. Mitigated for the TPM Provider: each key is protected by a long, random authentication value, generated by the TPM |
+| 5  | Parsec does not currently clear sensitive data in memory after use. [This is looked at here](https://github.com/parallaxsecond/parsec/issues/122).                                                                                                                                                                                                                                                                                                                           |
 
 ## Mitigations
 
