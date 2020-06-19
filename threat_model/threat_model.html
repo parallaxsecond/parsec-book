@@ -157,8 +157,7 @@ will be written in italic.</em></p>
 <h2><a class="header" href="#assumptions" id="assumptions">Assumptions</a></h2>
 <p>Basic requirements based on which the service can operate securely. Mitigations can be implemented
 to make the system more resilient, but if some of these assumptions are not met, the security stance
-of the service cannot be guaranteed. For each assumption, the mitigations, operational mitigations
-and &quot;unmitigations&quot; that relate to it are mentioned.</p>
+of the service cannot be guaranteed.</p>
 <ol>
 <li>The hardware modules are physically and functionally secure. Only trusted agents can physically
 access the system.</li>
@@ -173,8 +172,8 @@ info mappings, communication socket, etc.) and inter-process communication mecha
 <p>What we want to protect. Each one of these has a combination of security properties:
 Confidentiality, Integrity and Availability. The assets are labelled so that it can be seen in the
 threat tables below which ones are impacted by each threat.</p>
-<h3><a class="header" href="#application-identity---as1" id="application-identity---as1">Application Identity - AS1</a></h3>
-<p>The Client Library gets its Application Identity from the Identity Provider. It is signed by the
+<h3><a class="header" href="#authentication-token---as1" id="authentication-token---as1">Authentication Token - AS1</a></h3>
+<p>The Client Library gets its Authentication Token from the Identity Provider. It is signed by the
 IP's private key and sent by the Client Library on each request. Parsec verifies the Authentication
 Token using the IP's public key.</p>
 <p><strong>Confidentiality</strong> : if known (the authentication token), an attacker could impersonate a specific
@@ -187,7 +186,7 @@ critical.</em></p>
 <p>The IP's public certificate is sent to the service periodically. It is used by the service to verify
 the authentication tokens.</p>
 <p><strong>Integrity</strong> : if sent by a malicious IP, attackers could then sign their own application
-identities and Parsec will verify them successfully. If they know the Application Identity of
+identities and Parsec will verify them successfully. If they know the Authentication Token of
 clients, they can impersonate them.</p>
 <p><strong>Availability</strong> : Parsec needs it in order to execute a request.</p>
 <p><em>Not applicable for deployments with no Identity Provider.</em></p>
@@ -213,13 +212,26 @@ hierarchy password of the TPM device.</p>
 <p>General asset to describe the fact that each client's request should be done in a sane amount of
 time. The service should be available at any given point from the moment it is started by the
 administrator.</p>
+<h3><a class="header" href="#key-triple-mappings--as7" id="key-triple-mappings--as7">Key Triple Mappings- AS7</a></h3>
+<p>Data containing the mapping between a Key Triple (application name, provider ID, key name) and the
+key attributes with a provider-specific identifier of the key. For the Mbed Crypto and PKCS11
+providers this is an ID number, for the TPM provider this is the wrapped key.</p>
+<p><strong>Integrity</strong> : Parsec expects this data to be valid.</p>
+<p><strong>Availability</strong> : the data should be available when Parsec needs the specific key.</p>
+<h3><a class="header" href="#logs--as8" id="logs--as8">Logs- AS8</a></h3>
+<p>Data stored in logs emitted by any component of the stack.</p>
+<p><strong>Confidentiality</strong> : the logs can contain confidential information of different parts of the
+service.</p>
+<p><strong>Integrity</strong> : the integrity of the logs is essential to prove that some events took place in
+Parsec.</p>
+<p><strong>Availability</strong> : the logs should be available for reading and writing when needed.</p>
 <h2><a class="header" href="#attackers" id="attackers">Attackers</a></h2>
 <p>Each dataflow is analysed from an attacker's perspective using STRIDE method. Nothing is supposed on
 the different components.</p>
 <p>In the following tables are present the type of each possible threat, its description, its
 mitigation status and the assets impacted. A threat can be unmitigated (U), mitigated within the
 service (M) or mitigated through operational requirements (O). The assumptions context applies for
-all threats but when one of them is particularly relevant, it will be noted with A.</p>
+all threats but when one of them is particularly relevant, it will be noted with ASUM.</p>
 <p><em>In deployments without an Identity Provider, the A1, A2 and A10 attackers are not considered in
 scope, dependent on the O-10 mitigation being deployed.</em></p>
 <h3><a class="header" href="#attacker-client-request---a1" id="attacker-client-request---a1">Attacker &quot;Client Request&quot; - A1</a></h3>
@@ -240,6 +252,7 @@ scope, dependent on the O-10 mitigation being deployed.</em></p>
 <h3><a class="header" href="#attacker-service-response---a2" id="attacker-service-response---a2">Attacker &quot;Service Response&quot; - A2</a></h3>
 <p>This attacker uses the existing Listener endpoint, created by the service, to communicate with the
 client. It can also create a spoofed endpoint, mimicking the service's one.</p>
+<p>For protection of the clients' assets, please check the Parsec Clients Threat Models.</p>
 <p><em>Not applicable for deployments with no Identity Provider.</em></p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates the Parsec service: clients share their data with a malicious entity.</td><td>O-2, O-9</td><td>AS3, AS4, AS6</td></tr>
@@ -256,7 +269,7 @@ client. It can also create a spoofed endpoint, mimicking the service's one.</p>
 machine a <code>SIGINT</code> signal.</p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>N/A</td><td></td><td></td></tr>
-<tr><td>T</td><td>A <code>SIGHUP</code> is modified by an attacker into <code>SIGTERM</code> or the other way around.</td><td>A-3</td><td>AS6</td></tr>
+<tr><td>T</td><td>A <code>SIGHUP</code> is modified by an attacker into <code>SIGTERM</code> or the other way around.</td><td>ASUM-3</td><td>AS6</td></tr>
 <tr><td>R</td><td>N/A</td><td></td><td></td></tr>
 <tr><td>I</td><td>N/A</td><td></td><td></td></tr>
 <tr><td>D</td><td>An attacker can kill the Parsec service, gracefully or not or trigger an infinite loop of configuration reloads.</td><td>O-0</td><td>AS6</td></tr>
@@ -279,7 +292,7 @@ interfaces.</p>
 <p>This attacker communicates with the service using the operating system interfaces for hardware. It
 can also create a spoofed hardware interface.</p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
-<tr><td>S</td><td>An attacker impersonates a hardware module or uses a malicious module plugged to the machine.</td><td>O-1, A-2</td><td>AS4, AS6</td></tr>
+<tr><td>S</td><td>An attacker impersonates a hardware module or uses a malicious module plugged to the machine.</td><td>O-1, ASUM-2</td><td>AS4, AS6</td></tr>
 <tr><td>T</td><td>An attacker modifies the response of a hardware command.</td><td>O-8, U-3</td><td>AS4, AS6</td></tr>
 <tr><td>R</td><td>Responses cannot be proven to originate from the hardware module.</td><td>M-4</td><td></td></tr>
 <tr><td>I</td><td>An attacker can read the content of a command response.</td><td>U-3, O-8</td><td>AS3, AS4, AS5</td></tr>
@@ -346,6 +359,13 @@ mechanism for reading it.</p>
 <tr><td>D</td><td>A malicious share bundle could trigger a parsing bug and lead the service to crash.</td><td>M-5, U-3</td><td>AS2, AS6</td></tr>
 <tr><td>E</td><td>A malicious share bundle could trigger a parsing bug and lead to code execution at the Parsec privilege level.</td><td>M-5, U-3</td><td>All</td></tr>
 </tbody></table>
+<h3><a class="header" href="#attacker-local-memory---a11" id="attacker-local-memory---a11">Attacker &quot;Local Memory&quot; - A11</a></h3>
+<p>Attacker with access to the local memory regions used by Parsec. This attacker can be another
+process scheduled by the OS in the same timeframe than Parsec and reading the memory which was not
+cleared.</p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>I</td><td>The attacker can read all the confidential assets placed in local memory by the service.</td><td></td><td>AS1, AS2, AS4 and AS5</td></tr>
+</tbody></table>
 <h2><a class="header" href="#unmitigations" id="unmitigations">Unmitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
 <tr><td>0</td><td>An attacker can use all the threads of the service's thread pool, requesting for a time-consuming operation on each one of them, to leave the less amount of free time possible to other clients.</td></tr>
@@ -353,6 +373,7 @@ mechanism for reading it.</p>
 <tr><td>2</td><td>It is assumed that the authentication token is stored with confidentiality by the clients. If it is stolen, the service cannot prevent access with it unless the token is revoked.</td></tr>
 <tr><td>3</td><td>Parsec dependencies are not checked for Security Vulnerabilities.</td></tr>
 <tr><td>4</td><td>While Parsec is authenticated on the device, anyone can brute force a key ID to execute operations with the key. Unmitigated for the PKCS 11 Provider: all sessions share the login state; if one session logs in then all other opened sessions will also be logged in. Other sessions only need a valid key ID to execute operations with private keys. Mitigated for the TPM Provider: each key is protected by a long, random authentication value, generated by the TPM</td></tr>
+<tr><td>5</td><td>Parsec does not currently clear sensitive data in memory after use. <a href="https://github.com/parallaxsecond/parsec/issues/122">This is looked at here</a>.</td></tr>
 </tbody></table>
 <h2><a class="header" href="#mitigations" id="mitigations">Mitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
