@@ -364,7 +364,7 @@ mechanism for reading it.</p>
 process scheduled by the OS in the same timeframe than Parsec and reading the memory which was not
 cleared.</p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
-<tr><td>I</td><td>The attacker can read all the confidential assets placed in local memory by the service.</td><td></td><td>AS1, AS2, AS4 and AS5</td></tr>
+<tr><td>I</td><td>The attacker can read all the confidential assets placed in local memory by the service.</td><td>U-5</td><td>AS1, AS2, AS4 and AS5</td></tr>
 </tbody></table>
 <h2><a class="header" href="#unmitigations" id="unmitigations">Unmitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
@@ -376,15 +376,15 @@ cleared.</p>
 <tr><td>5</td><td>Parsec does not currently clear sensitive data in memory after use. <a href="https://github.com/parallaxsecond/parsec/issues/122">This is looked at here</a>.</td></tr>
 </tbody></table>
 <h2><a class="header" href="#mitigations" id="mitigations">Mitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
-<tr><td>0</td><td>Parsec uses a thread pool with a configurable amount of threads to limit the number of concurrent operations it can support so that the machine is not overloaded.</td></tr>
-<tr><td>1</td><td>Response statuses are audited to not give too much information to the client.</td></tr>
-<tr><td>2</td><td>The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible.</td></tr>
-<tr><td>3</td><td>Listener implementations use an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made). - Unix Domain Socket Listener: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
-<tr><td>4</td><td>The following events are logged by the service with information containing the application identity, time and date: &quot;new request received&quot;, &quot;response sent back&quot;, &quot;new mapping created&quot;, &quot;mapping is read from the persistent store&quot;, &quot;a hardware command is issued&quot; and &quot;a hardware command is received&quot;.</td></tr>
-<tr><td>5</td><td>Parsec is coded with safety in mind and is tested extensively (TODO: add a link of test document describing the tests that we do in high-level terms on what platform).</td></tr>
-<tr><td>6</td><td>The <code>ManageKeyInfo</code> implementations communicate with its persistence storage backend through a mechanism respecting confidentiality, integrity and availability. On-Disk Key Info Manager: the mappings are stored on-disk using the filesystem provided by the OS. OS file permissions are used.</td></tr>
-<tr><td>7</td><td>Logging is configured to include the software component from where logs are generated.</td></tr>
+<table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
+<tr><td>0</td><td>Parsec uses a thread pool with a configurable amount of threads to limit the number of concurrent operations it can support so that the machine is not overloaded.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/e87984c4d3eaafa1a1cb977dceadf773aca1f7db">Done</a></td></tr>
+<tr><td>1</td><td>Response statuses are audited to not give too much information to the client.</td><td><a href="https://github.com/parallaxsecond/parsec-interface-rs/issues/59">Open</a></td></tr>
+<tr><td>2</td><td>The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible.</td><td>Parsec does not use an authenticator in a deployment without an Identity Provider.</td></tr>
+<tr><td>3</td><td>Listener implementations use an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made).</td><td>Unix Domain Socket Listener: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
+<tr><td>4</td><td>The following events are logged by the service with information containing the application identity, time and date: &quot;new request received&quot;, &quot;response sent back&quot;, &quot;new mapping created&quot;, &quot;mapping is read from the persistent store&quot;, &quot;a hardware command is issued&quot; and &quot;a hardware command is received&quot;.</td><td><a href="https://github.com/parallaxsecond/parsec/pull/189">In progress for Parsec</a> and <a href="https://github.com/parallaxsecond/rust-tss-esapi/issues/86">open for TPM</a></td></tr>
+<tr><td>5</td><td>Parsec is coded with safety in mind and is tested extensively.</td><td><a href="https://github.com/parallaxsecond/parsec-book/issues/35">Open</a></td></tr>
+<tr><td>6</td><td>The <code>ManageKeyInfo</code> implementations communicate with its persistence storage backend through a mechanism respecting confidentiality, integrity and availability.</td><td>On-Disk Key Info Manager: the mappings are stored on-disk using the filesystem provided by the OS. OS file permissions are used.</td></tr>
+<tr><td>7</td><td>Logging is configured to include the software component from where logs are generated.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/aafd176b49dd01c3f08866d564f2fff092d1305e">Done</a></td></tr>
 </tbody></table>
 <h2><a class="header" href="#operational-mitigations" id="operational-mitigations">Operational mitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
