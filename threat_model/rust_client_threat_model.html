@@ -1,0 +1,321 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Parsec Rust client Threat Model - The Parsec Book</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../overview.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="chapter-item expanded "><a href="../api_coverage.html"><strong aria-hidden="true">3.</strong> API coverage</a></li><li class="chapter-item expanded "><a href="../threat_model/threat_model.html"><strong aria-hidden="true">4.</strong> Parsec Threat Model</a></li><li class="chapter-item expanded "><a href="../threat_model/rust_client_threat_model.html" class="active"><strong aria-hidden="true">5.</strong> Parsec Rust client Threat Model</a></li><li class="chapter-item expanded "><a href="../parsec_users.html"><strong aria-hidden="true">6.</strong> Parsec for users</a></li><li class="chapter-item expanded "><a href="../parsec_client/index.html"><strong aria-hidden="true">7.</strong> Parsec for client developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../parsec_client/operations/index.html"><strong aria-hidden="true">7.1.</strong> Operations</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../parsec_client/operations/add_client.html"><strong aria-hidden="true">7.1.1.</strong> AddClient</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/list_opcodes.html"><strong aria-hidden="true">7.1.2.</strong> ListOpcodes</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/list_providers.html"><strong aria-hidden="true">7.1.3.</strong> ListProviders</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/ping.html"><strong aria-hidden="true">7.1.4.</strong> Ping</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/prove_client.html"><strong aria-hidden="true">7.1.5.</strong> ProveClient</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_destroy_key.html"><strong aria-hidden="true">7.1.6.</strong> PsaDestroyKey</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_export_public_key.html"><strong aria-hidden="true">7.1.7.</strong> PsaExportPublicKey</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_generate_key.html"><strong aria-hidden="true">7.1.8.</strong> PsaGenerateKey</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_import_key.html"><strong aria-hidden="true">7.1.9.</strong> PsaImportKey</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_sign_hash.html"><strong aria-hidden="true">7.1.10.</strong> PsaSignHash</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_key_attributes.html"><strong aria-hidden="true">7.1.11.</strong> PSA Key Attributes</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_algorithm.html"><strong aria-hidden="true">7.1.12.</strong> PSA Algorithm</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_verify_hash.html"><strong aria-hidden="true">7.1.13.</strong> PsaVerifyHash</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/share_trust_bundle.html"><strong aria-hidden="true">7.1.14.</strong> ShareTrustBundle</a></li></ol></li><li class="chapter-item expanded "><a href="../parsec_client/api_overview.html"><strong aria-hidden="true">7.2.</strong> API Overview</a></li><li class="chapter-item expanded "><a href="../parsec_client/status_codes.html"><strong aria-hidden="true">7.3.</strong> Status Codes</a></li><li class="chapter-item expanded "><a href="../parsec_client/wire_protocol.html"><strong aria-hidden="true">7.4.</strong> Wire Protocol</a></li><li class="chapter-item expanded "><a href="../parsec_client/writing_library.html"><strong aria-hidden="true">7.5.</strong> Writing a new Parsec Client Library</a></li></ol></li><li class="chapter-item expanded "><a href="../parsec_service/index.html"><strong aria-hidden="true">8.</strong> Parsec for service developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../parsec_service/system_architecture.html"><strong aria-hidden="true">8.1.</strong> System Architecture</a></li><li class="chapter-item expanded "><a href="../parsec_service/interfaces_and_dataflow.html"><strong aria-hidden="true">8.2.</strong> Interfaces and Dataflow</a></li><li class="chapter-item expanded "><a href="../parsec_service/source_code_structure.html"><strong aria-hidden="true">8.3.</strong> Source Code Structure</a></li><li class="chapter-item expanded "><a href="../parsec_service/providers.html"><strong aria-hidden="true">8.4.</strong> Providers</a></li><li class="chapter-item expanded "><a href="../parsec_service/converters.html"><strong aria-hidden="true">8.5.</strong> Converters</a></li><li class="chapter-item expanded "><a href="../parsec_service/authenticators.html"><strong aria-hidden="true">8.6.</strong> Authenticators</a></li><li class="chapter-item expanded "><a href="../parsec_service/listeners.html"><strong aria-hidden="true">8.7.</strong> Listeners</a></li><li class="chapter-item expanded "><a href="../parsec_service/key_info_managers.html"><strong aria-hidden="true">8.8.</strong> Key Info Managers</a></li><li class="chapter-item expanded "><a href="../parsec_service/adding_provider.html"><strong aria-hidden="true">8.9.</strong> Adding a new Parsec Provider</a></li><li class="chapter-item expanded "><a href="../parsec_service/build_run.html"><strong aria-hidden="true">8.10.</strong> How to build and run Parsec</a></li><li class="chapter-item expanded "><a href="../parsec_service/install_parsec_linux.html"><strong aria-hidden="true">8.11.</strong> How to install Parsec on Linux</a></li><li class="chapter-item expanded "><a href="../parsec_service/configuration.html"><strong aria-hidden="true">8.12.</strong> Parsec Configuration</a></li><li class="chapter-item expanded "><a href="../parsec_service/test.html"><strong aria-hidden="true">8.13.</strong> How to test Parsec</a></li></ol></li><li class="chapter-item expanded "><a href="../contributing.html"><strong aria-hidden="true">9.</strong> Contributing</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The Parsec Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#parsec-rust-client-threat-model" id="parsec-rust-client-threat-model">Parsec Rust Client Threat Model</a></h1>
+<p>This document presents the Threat Model for the Parsec Rust client crate. The interactions between
+the Parsec client library and any external software components is assessed. Currently the presence
+of an Identity Provider is not considered as part of the scheme due to uncertainty as to how the
+dataflow would look in such a case and what security issues might arise. The threat model indirectly
+covers a secondary use pattern, namely via a Secure Element Driver (SE Driver) that bridges between
+Mbed Crypto and the Parsec client, allowing usage of the Rust stack from a C-language environment.</p>
+<h2><a class="header" href="#dataflow-diagram" id="dataflow-diagram">Dataflow Diagram</a></h2>
+<p><img src="diagrams/rust_client_diagram.png" alt="Dataflow Diagram" /></p>
+<h2><a class="header" href="#assumptions" id="assumptions">Assumptions</a></h2>
+<p>Basic requirements based on which the client can be used securely. Mitigations can be implemented to
+make the system more resilient, but if some of these assumptions are not met, the security implied
+by Parsec cannot be guaranteed.</p>
+<ol>
+<li>The platform on which the client application is running is trusted by the client to host the
+Parsec service</li>
+<li>With the lack of an identity provider, all applications running in parallel on the platform that
+could access the Parsec service are trusted to not interfere with or impersonate the client
+application.</li>
+<li>The client application obtains or generates a persistent name that it uses consistently for
+accessing its service-side assets.</li>
+</ol>
+<h2><a class="header" href="#assets" id="assets">Assets</a></h2>
+<p>What we want to protect. Each one of these has a combination of Security Property: Confidentiality,
+Integrity and Availability. The assets are labelled so that it can be seen in the threat tables
+below which ones are impacted by each threat.</p>
+<h3><a class="header" href="#application-identity---as1" id="application-identity---as1">Application Identity - AS1</a></h3>
+<p>Ideally, the Client Library gets its Application Identity from the Identity Provider. However,
+without an Identity Provider in the system applications are expected to handle their identities on
+their own. The identity will be used by the service to partition the assets it stores for clients
+into a namespace for each one.</p>
+<p><strong>Confidentiality</strong> : if known (the authentication token), an attacker could impersonate a specific
+application and execute operations in their name.</p>
+<h3><a class="header" href="#clients-data--as2" id="clients-data--as2">Client’s data- AS2</a></h3>
+<p>Data sent through the client as part of a request to the service.</p>
+<p><strong>Confidentiality</strong> : some of the client’s data could be confidential (example: a buffer to
+encrypt).</p>
+<p><strong>Integrity</strong> : the data should not be modifiable by attackers. The client should be certain that it
+is interacting with the legitimate Parsec service.</p>
+<h3><a class="header" href="#configuration-data--as3" id="configuration-data--as3">Configuration data- AS3</a></h3>
+<p>Configuration data passed by the client application to the library. There is some overlap between
+the configuration data and the application identity, as the identity is stored within the client
+library and could thus be considered part of its configuration data.</p>
+<p><strong>Confidentiality</strong> : if known (the authentication token), an attacker could impersonate a specific
+application and execute operations in their name.</p>
+<p><strong>Integrity</strong> : the data should only be modified by the client application as doing otherwise might
+prevent the client application from accessing Parsec functionality.</p>
+<h3><a class="header" href="#clients-cryptographic-keys---as4" id="clients-cryptographic-keys---as4">Client’s cryptographic keys - AS4</a></h3>
+<p>Keys provisioned by the client within the service.</p>
+<p><strong>Confidentiality</strong> : (private) key material is sensitive data and should not be exposed.</p>
+<p><strong>Integrity</strong> : neither public nor private key data should be modifiable by attackers.</p>
+<p><strong>Availability</strong> : the client must always be able to use their cryptographic material.</p>
+<h3><a class="header" href="#system-and-client-application-stability---as5" id="system-and-client-application-stability---as5">System and client application stability - AS5</a></h3>
+<p>The application which is using the Parsec client library and the sytem as a whole must be kept
+stable and responsive.</p>
+<p><strong>Availability</strong> : the client application must not be crashed by the library in any way.</p>
+<h2><a class="header" href="#attackers" id="attackers">Attackers</a></h2>
+<p>Each dataflow is analysed from an attacker’s perspective using STRIDE method. Nothing is supposed
+on the different components.</p>
+<p>In the following tables are present the type of each possible threat, its description, its
+mitigation status and the assets impacted. A threat can be unmitigated (U), mitigated (M) or
+operational (O). The assumptions context applies for all threats but when one of them is
+particularly relevant, it will be noted with ASUM.</p>
+<h3><a class="header" href="#attacker-request-to-service---a1" id="attacker-request-to-service---a1">Attacker “Request to Service” - A1</a></h3>
+<p>This attacker uses the inter-process endpoint, presumably created by the service, to interfere with
+the communication between client and service.</p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>An attacker impersonates the service by establishing an IPC endpoint that spoofs the one used by Parsec to exfiltrate any data found in requests.</td><td>O-0, O-1</td><td>AS1, AS2, AS4</td></tr>
+<tr><td>S</td><td>An attacker impersonates the service and responds to requests using bogus or malicious data.</td><td>O-0, O-1</td><td>AS2</td></tr>
+<tr><td>T</td><td>The attacker modifies the data sent or received by the client while it is in transit through the IPC.</td><td>M-0</td><td>AS2, AS4</td></tr>
+<tr><td>R</td><td>The service denies having sent responses to or received some requests from the client.</td><td>U-1, O-3</td><td></td></tr>
+<tr><td>I</td><td>An attacker obtains requests sent by the client by sniffing the IPC traffic or spoofing the endpoint.</td><td>M-0, O-1</td><td>AS2, AS4</td></tr>
+<tr><td>D</td><td>An attacker could remove the IPC endpoint or block traffic through it.</td><td>O-1</td><td>AS4</td></tr>
+<tr><td>D</td><td>An attacker could swamp the service with requests so that the client's requests take a long time to service.</td><td>O-2</td><td>AS2</td></tr>
+<tr><td>D</td><td>An attacker could tamper with incoming responses to exploit vulnerabilities in the client library and crash the client.</td><td>M-0, M-1, U-0</td><td>AS5</td></tr>
+<tr><td>E</td><td>An attacker could tamper with incoming responses to exploit vulnerabilities in the client library and run code in the same user as the client.</td><td>M-0, M-1, U-0</td><td>AS5</td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-library-memory---a2" id="attacker-library-memory---a2">Attacker “Library Memory” - A2</a></h3>
+<p>This attacker gains access to memory released by the client library, containing potentially
+sensitive information.</p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>I</td><td>An attacker reads requests and responses from memory.</td><td>U-2</td><td>AS2, AS4</td></tr>
+<tr><td>I</td><td>An attacker reads out the application identity from memory.</td><td>U-2</td><td>AS1</td></tr>
+</tbody></table>
+<h2><a class="header" href="#unmitigations" id="unmitigations">Unmitigations</a></h2>
+<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
+<tr><td>0</td><td>Client library dependencies are not checked for Security Vulnerabilities.</td></tr>
+<tr><td>1</td><td>Authenticity of responses is not ensured through a MAC or asymmetric signature – it relies on trust in the platform administrator.</td></tr>
+<tr><td>2</td><td>Parsec does not currently clear sensitive data in memory after use. <a href="https://github.com/parallaxsecond/parsec-client-rust/issues/9">This is looked at here</a>.</td></tr>
+</tbody></table>
+<h2><a class="header" href="#mitigations" id="mitigations">Mitigations</a></h2>
+<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
+<tr><td>0</td><td>Parsec interface uses an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made). - Unix Domain Socket Listener: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
+<tr><td>1</td><td>The Parsec client is coded with safety in mind and is tested extensively (TODO: add a link of test document describing the tests that we do in high-level terms on what platform).</td></tr>
+</tbody></table>
+<h2><a class="header" href="#operational-mitigations" id="operational-mitigations">Operational mitigations</a></h2>
+<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
+<tr><td>0</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the IPC endpoint.</td></tr>
+<tr><td>1</td><td>The IPC endpoint should be secured so that only privileged users can remove or alter it.</td></tr>
+<tr><td>2</td><td>A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.</td></tr>
+<tr><td>3</td><td>The Parsec service is configured to display detailed logs about all requests made by clients.</td></tr>
+</tbody></table>
+<p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../threat_model/threat_model.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../parsec_users.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../threat_model/threat_model.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../parsec_users.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+        
+        
+        <script type="text/javascript">
+            window.playpen_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
