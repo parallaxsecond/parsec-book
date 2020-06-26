@@ -759,15 +759,15 @@ sensitive information.</p>
 <tr><td>I</td><td>An attacker reads out the application identity from memory.</td><td>U-2</td><td>AS1</td></tr>
 </tbody></table>
 <h2><a class="header" href="#unmitigations-1" id="unmitigations-1">Unmitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
-<tr><td>0</td><td>Client library dependencies are not checked for Security Vulnerabilities.</td></tr>
-<tr><td>1</td><td>Authenticity of responses is not ensured through a MAC or asymmetric signature – it relies on trust in the platform administrator.</td></tr>
-<tr><td>2</td><td>Parsec does not currently clear sensitive data in memory after use. <a href="https://github.com/parallaxsecond/parsec-client-rust/issues/9">This is looked at here</a>.</td></tr>
+<table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
+<tr><td>0</td><td>Client library dependencies are not checked for Security Vulnerabilities.</td><td>A vulnerability in one of the Parsec client dependencies will also impact the client application and the data it shares with the Parsec library.</td></tr>
+<tr><td>1</td><td>Authenticity of responses is not ensured through a MAC or asymmetric signature – it relies on trust in the platform administrator.</td><td>Any response from the service could have been spoofed or altered by any entity with sufficient capabilities.</td></tr>
+<tr><td>2</td><td>Parsec does not currently clear sensitive data in memory after use. <a href="https://github.com/parallaxsecond/parsec-client-rust/issues/9">This is looked at here</a>.</td><td>Any data that passes through the client library could be read after the memory is released.</td></tr>
 </tbody></table>
 <h2><a class="header" href="#mitigations-1" id="mitigations-1">Mitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
-<tr><td>0</td><td>Parsec interface uses an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made). - Unix Domain Socket Listener: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
-<tr><td>1</td><td>The Parsec client is coded with safety in mind and is tested extensively (TODO: add a link of test document describing the tests that we do in high-level terms on what platform).</td></tr>
+<table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
+<tr><td>0</td><td>Parsec interface uses an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made).</td><td>Unix Domain Socket: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
+<tr><td>1</td><td>The Parsec client is coded with safety in mind and is tested extensively.</td><td><a href="https://github.com/parallaxsecond/parsec-book/issues/35">Open</a></td></tr>
 </tbody></table>
 <h2><a class="header" href="#operational-mitigations-1" id="operational-mitigations-1">Operational mitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
