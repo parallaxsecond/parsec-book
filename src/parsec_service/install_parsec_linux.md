@@ -1,8 +1,14 @@
-# How to install Parsec on Linux
+# How to securely install Parsec on Linux
 
-Parsec can be built and installed as a Linux daemon using systemd. The Parsec daemon uses socket
-activation which means that the daemon will be automatically started when a client request is made
-on the socket. The daemon is a systemd user daemon run by the `parsec` user.
+Parsec can be built and installed as a Linux daemon using systemd. The daemon is a systemd user
+daemon run by the `parsec` user. Some manual steps are needed to make sure that permissions are set
+up correctly so that Parsec is installed respecting the operational mitigations of our [threat
+model](../threat_model/threat_model.md). Similarly to the threat model, this guide proposes
+different alternatives in case an Identity Provider is available or not. The role and description of
+an Identity Provider in Parsec is described in the [System
+Architecture](https://parallaxsecond.github.io/parsec-book/parsec_service/system_architecture.html)
+page. Currently, Parsec does not support integration with any Identity Provider. To securely install
+Parsec, please follow the steps of deployment **without an Identity Provider**.
 
 If your Linux system uses systemd to manage daemons, you can follow these steps. `$DESIRED_FEATURES`
 can be a space or comma-separated subset of: `mbed-crypto-provider`, `pkcs11-provider`, and
@@ -24,23 +30,46 @@ git clone https://github.com/parallaxsecond/parsec.git
 cargo install --features $DESIRED_FEATURES --path parsec
 ```
 
-Copy and adapt the [configuration](configuration.md) you want to use.
+Copy and adapt the [configuration](configuration.md) you want to use. For a secure deployment, make
+sure to activate the `log_error_details` option and to use a `trace` log level.
 
 ```
 cp parsec/config.toml config.toml
+```
+
+Create the Parsec socket directory.
+
+```
+mkdir /tmp/parsec
+```
+
+In a deployment **without an Identity Provider**, create the `parsec-clients` group and set the
+correct permissions on the socket folder. Mutually trusted Parsec Clients will need to be in that
+group.
+
+```
+sudo groupadd parsec-clients
+sudo chown :parsec-clients /tmp/parsec
+sudo chmod 750 /tmp/parsec
+```
+
+In a deployment **with an Identity Provider**, set the correct permissions on the socket folder.
+
+```
+sudo chmod 755 /tmp/parsec
 ```
 
 Install the systemd unit files and activate the Parsec socket.
 
 ```
 mkdir -p ~/.config/systemd/user
-cp -r parsec/systemd-daemon/parsec.service parsec/systemd-daemon/parsec.socket ~/.config/systemd/user
-systemctl --user enable parsec.socket
-systemctl --user start parsec.socket
+cp -r parsec/systemd-daemon/parsec.service ~/.config/systemd/user
+systemctl --user enable parsec
+systemctl --user start parsec
 ```
 
-Every user on the system can now use Parsec! You can test it going inside the `parsec/e2e_tests`
-directory and:
+`parsec-clients` users (with no IP) or every one (with IP) can now use Parsec! You can test it going
+inside the `parsec/e2e_tests` directory and:
 
 ```
 cargo test normal_tests
@@ -50,6 +79,12 @@ Check the Parsec logs with:
 
 ```
 journalclt --user -u parsec
+```
+
+Reload the service:
+
+```
+systemctl --user kill -s HUP parsec
 ```
 
 *Copyright 2019 Contributors to the Parsec project.*
