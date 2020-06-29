@@ -12,8 +12,8 @@ that are defined in that specification. It covers two different sides of the iss
 - Coverage of the operations and key attributes implemented for each provider (that is offered as
    part of the Parsec service).
 
-**NOTE:** This does not guarantee or imply the same amount of support within client libraries. We
-encourage each library to publish its own coverage figures in their format of choice.
+**NOTE:** This is not a representation of the coverage available to clients using any particular
+programming language. In that regard see the [clients API coverage page](clients_api_coverage.md).
 
 ## IPC operations coverage
 
@@ -87,7 +87,6 @@ option marked as supported is necessarily supported for all operations on which 
 | SHA3-256    | ❌                  | ❌              | ✅              |
 | SHA3-384    | ❌                  | ❌              | ✅              |
 | SHA3-512    | ❌                  | ❌              | ✅              |
-| Any hash    | ❌                  | ❌              | ❌              |
 
 #### Asymmetric signing algorithms
 
