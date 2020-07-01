@@ -119,18 +119,18 @@ sensitive information.
 
 ## Unmitigations
 
-| ID | Justification                                                                                                                                                |
-|----|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 0  | Client library dependencies are not checked for Security Vulnerabilities.                                                                                    |
-| 1  | Authenticity of responses is not ensured through a MAC or asymmetric signature – it relies on trust in the platform administrator.                         |
-| 2  | Parsec does not currently clear sensitive data in memory after use. [This is looked at here](https://github.com/parallaxsecond/parsec-client-rust/issues/9). |
+| ID | Justification                                                                                                                                                | Consequences                                                                                                                                     |
+|----|--------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| 0  | Client library dependencies are not checked for Security Vulnerabilities.                                                                                    | A vulnerability in one of the Parsec client dependencies will also impact the client application and the data it shares with the Parsec library. |
+| 1  | Authenticity of responses is not ensured through a MAC or asymmetric signature – it relies on trust in the platform administrator.                         | Any response from the service could have been spoofed or altered by any entity with sufficient capabilities.                                     |
+| 2  | Parsec does not currently clear sensitive data in memory after use. [This is looked at here](https://github.com/parallaxsecond/parsec-client-rust/issues/9). | Any data that passes through the client library could be read after the memory is released.                                                      |
 
 ## Mitigations
 
-| ID | Justification                                                                                                                                                                                                                                                                                                                                                                  |
-|----|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 0  | Parsec interface uses an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made). - Unix Domain Socket Listener: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes. |
-| 1  | The Parsec client is coded with safety in mind and is tested extensively (TODO: add a link of test document describing the tests that we do in high-level terms on what platform).                                                                                                                                                                                             |
+| ID | Justification                                                                                                                                                                            | Details                                                                                                                                                                    |
+|----|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 0  | Parsec interface uses an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made). | Unix Domain Socket: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes. |
+| 1  | The Parsec client is coded with safety in mind and is tested extensively.                                                                                                                | [Open](https://github.com/parallaxsecond/parsec-book/issues/35)                                                                                                            |
 
 ## Operational mitigations
 

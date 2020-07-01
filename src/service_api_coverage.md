@@ -12,8 +12,8 @@ that are defined in that specification. It covers two different sides of the iss
 - Coverage of the operations and key attributes implemented for each provider (that is offered as
    part of the Parsec service).
 
-**NOTE:** This does not guarantee or imply the same amount of support within client libraries. We
-encourage each library to publish its own coverage figures in their format of choice.
+**NOTE:** This is not a representation of the coverage available to clients using any particular
+programming language. In that regard see the [clients API coverage page](clients_api_coverage.md).
 
 ## IPC operations coverage
 
@@ -22,32 +22,32 @@ in the future and will be organized by operation type.
 
 ### Single part operations
 
-| Operation name                     | Protobuf contract exists                                                                                    |
-|------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| `psa_import_key`                   | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto)        |
-| `psa_generate_key`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto)      |
-| `psa_key_derivation_output_key`    | ❌                                                                                                         |
-| `psa_copy_key`                     | ❌                                                                                                         |
-| `psa_export_public_key`            | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto) |
-| `psa_export_key`                   | ❌                                                                                                         |
-| `psa_purge_key`                    | ❌                                                                                                         |
-| `psa_destroy_key`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)       |
-| `psa_hash_compute`                 | ❌                                                                                                         |
-| `psa_hash_compare`                 | ❌                                                                                                         |
-| `psa_mac_compute`                  | ❌                                                                                                         |
-| `psa_mac_verify`                   | ❌                                                                                                         |
-| `psa_cipher_encrypt`               | ❌                                                                                                         |
-| `psa_cipher_decrypt`               | ❌                                                                                                         |
-| `psa_aead_encrypt`                 | ❌                                                                                                         |
-| `psa_aead_decrypt`                 | ❌                                                                                                         |
-| `psa_asymmetric_encrypt`           | ❌                                                                                                         |
-| `psa_asymmetric_decrypt`           | ❌                                                                                                         |
-| `psa_sign_message`                 | ❌                                                                                                         |
-| `psa_verify_message`               | ❌                                                                                                         |
-| `psa_sign_hash`                    | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto)         |
-| `psa_verify_hash`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto)       |
-| `psa_key_derivation_key_agreement` | ❌                                                                                                         |
-| `psa_raw_key_agreement`            | ❌                                                                                                         |
+| Operation name                     | Protobuf contract exists                                                                                     |
+|------------------------------------|--------------------------------------------------------------------------------------------------------------|
+| `psa_import_key`                   | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto)         |
+| `psa_generate_key`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto)       |
+| `psa_key_derivation_output_key`    | ❌                                                                                                          |
+| `psa_copy_key`                     | ❌                                                                                                          |
+| `psa_export_public_key`            | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto)  |
+| `psa_export_key`                   | ❌                                                                                                          |
+| `psa_purge_key`                    | ❌                                                                                                          |
+| `psa_destroy_key`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)        |
+| `psa_hash_compute`                 | ❌                                                                                                          |
+| `psa_hash_compare`                 | ❌                                                                                                          |
+| `psa_mac_compute`                  | ❌                                                                                                          |
+| `psa_mac_verify`                   | ❌                                                                                                          |
+| `psa_cipher_encrypt`               | ❌                                                                                                          |
+| `psa_cipher_decrypt`               | ❌                                                                                                          |
+| `psa_aead_encrypt`                 | ❌                                                                                                          |
+| `psa_aead_decrypt`                 | ❌                                                                                                          |
+| `psa_asymmetric_encrypt`           | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_encrypt.proto) |
+| `psa_asymmetric_decrypt`           | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_decrypt.proto) |
+| `psa_sign_message`                 | ❌                                                                                                          |
+| `psa_verify_message`               | ❌                                                                                                          |
+| `psa_sign_hash`                    | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto)          |
+| `psa_verify_hash`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto)        |
+| `psa_key_derivation_key_agreement` | ❌                                                                                                          |
+| `psa_raw_key_agreement`            | ❌                                                                                                          |
 
 ## API support per-provider
 
@@ -87,7 +87,6 @@ option marked as supported is necessarily supported for all operations on which 
 | SHA3-256    | ❌                  | ❌              | ✅              |
 | SHA3-384    | ❌                  | ❌              | ✅              |
 | SHA3-512    | ❌                  | ❌              | ✅              |
-| Any hash    | ❌                  | ❌              | ❌              |
 
 #### Asymmetric signing algorithms
 

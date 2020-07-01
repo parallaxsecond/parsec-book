@@ -2,7 +2,8 @@
 
 - [Introduction](README.md)
 - [Overview](overview.md)
-- [API coverage](api_coverage.md)
+- [Service API coverage](service_api_coverage.md)
+- [Clients API coverage](clients_api_coverage.md)
 - [Parsec Threat Model](threat_model/threat_model.md)
    - [Recommendations for Secure Deployment](threat_model/secure_deployment.md)
 - [Parsec Rust Client Threat Model](threat_model/rust_client_threat_model.md)
