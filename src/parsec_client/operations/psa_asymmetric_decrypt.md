@@ -1,6 +1,6 @@
 # PsaAsymmetricDecrypt
 
-Decrypt a short message with a private key. Opcode: 9 (`0x0009`)
+Decrypt a short message with a private key. Opcode: 11 (`0x0011`)
 
 ## Parameters
 
