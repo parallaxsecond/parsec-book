@@ -99,4 +99,11 @@ option marked as supported is necessarily supported for all operations on which 
 | ECDSA with any hash    | ❌                  | ❌              | ❌              |
 | Deterministic ECDSA    | ❌                  | ❌              | ❌              |
 
+#### Asymmetric encryption algorithms
+
+| Algorithm    | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|--------------|----------------------|------------------|------------------|
+| RSA PKCS 1v5 | ✅                  | ❌              | ❌              |
+| Raw OAEP     | ✅                  | ❌              | ❌              |
+
 *Copyright 2020 Contributors to the Parsec project.*

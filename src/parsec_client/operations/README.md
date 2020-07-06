@@ -131,8 +131,8 @@ Most of the documentation in this book directly come from the specification.
 
 ### Asymmetric Encryption
 
-- PsaAsymmetricEncrypt
-- PsaAsymmetricDecrypt
+- [PsaAsymmetricEncrypt](psa_asymmetric_encrypt.md)
+- [PsaAsymmetricDecrypt](psa_asymmetric_decrypt.md)
 
 ### Key Agreement
 
