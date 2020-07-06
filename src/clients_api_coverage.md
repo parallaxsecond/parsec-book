@@ -25,14 +25,16 @@ will be added here for any other such coverage report.
 
 ## Operation support
 
-| Operation         | Rust client |
-|-------------------|-------------|
-| Import key        | ✅         |
-| Generate key      | ✅         |
-| Export public key | ✅         |
-| Destroy key       | ✅         |
-| Sign hash         | ✅         |
-| Verify hash       | ✅         |
+| Operation          | Rust client |
+|--------------------|-------------|
+| Import key         | ✅         |
+| Generate key       | ✅         |
+| Export public key  | ✅         |
+| Destroy key        | ✅         |
+| Sign hash          | ✅         |
+| Verify hash        | ✅         |
+| Asymmetric encrypt | ✅         |
+| Asymmetric decrypt | ✅         |
 
 ## Algorithm support
 
@@ -66,5 +68,12 @@ will be added here for any other such coverage report.
 | ECDSA                  | ✅         |
 | ECDSA with any hash    | ✅         |
 | Deterministic ECDSA    | ✅         |
+
+### Asymmetric encryption algorithms
+
+| Algorithm          | Rust client |
+|--------------------|-------------|
+| RSA PKCS 1v5       | ✅         |
+| RSA OAEP with hash | ✅         |
 
 *Copyright 2020 Contributors to the Parsec project.*
