@@ -49,6 +49,9 @@ in the future and will be organized by operation type.
 | `psa_key_derivation_key_agreement` | ❌                                                                                                          |
 | `psa_raw_key_agreement`            | ❌                                                                                                          |
 
+You can help increase Parsec's API coverage! Take a look at our
+[how-to](contributing/adding_new_operation_how_to.md) to get started.
+
 ## API support per-provider
 
 This section gives information on the operations and attributes currently supported by each
@@ -57,15 +60,17 @@ option marked as supported is necessarily supported for all operations on which 
 
 ### Operation support
 
-| Operation         | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
-|-------------------|----------------------|------------------|------------------|
-| Import key        | ✅                  | ✅              | ✅              |
-| Generate key      | ✅                  | ✅              | ✅              |
-| Export public key | ✅                  | ✅              | ✅              |
-| Export key        | ✅                  | ❌              | ❌              |
-| Destroy key       | ✅                  | ✅              | ✅              |
-| Sign hash         | ✅                  | ✅              | ✅              |
-| Verify hash       | ✅                  | ✅              | ✅              |
+| Operation          | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|--------------------|----------------------|------------------|------------------|
+| Import key         | ✅                  | ✅              | ✅              |
+| Generate key       | ✅                  | ✅              | ✅              |
+| Export public key  | ✅                  | ✅              | ✅              |
+| Export key         | ✅                  | ❌              | ❌              |
+| Destroy key        | ✅                  | ✅              | ✅              |
+| Sign hash          | ✅                  | ✅              | ✅              |
+| Verify hash        | ✅                  | ✅              | ✅              |
+| Asymmetric encrypt | ✅                  | ❌              | ❌              |
+| Asymmetric decrypt | ✅                  | ❌              | ❌              |
 
 ### Algorithm support
 
