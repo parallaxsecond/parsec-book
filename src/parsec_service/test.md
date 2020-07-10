@@ -108,7 +108,8 @@ IBM Software TPM. You will need to follow these steps:
 - install the TSS libraries ([installation
    guide](https://github.com/tpm2-software/tpm2-tss/blob/master/INSTALL.md)). Parsec has been tested
    with version 2.3.3.
-- install the [TPM tools](https://github.com/tpm2-software/tpm2-tools)
+- install the [TPM tools](https://github.com/tpm2-software/tpm2-tools). Parsec has been tested with
+   version 4.1.
 - install the [Software TPM](https://sourceforge.net/projects/ibmswtpm2/), run `make` in the `src`
    directory. It will build the `tpm_server` executable.
 - install Parsec with the `tpm-provider` feature: `cargo build --features tpm-provider`.
