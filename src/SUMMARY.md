@@ -17,6 +17,7 @@
       - [ProveClient](parsec_client/operations/prove_client.md)
       - [PsaDestroyKey](parsec_client/operations/psa_destroy_key.md)
       - [PsaExportPublicKey](parsec_client/operations/psa_export_public_key.md)
+      - [PsaExportKey](parsec_client/operations/psa_export_key.md)
       - [PsaGenerateKey](parsec_client/operations/psa_generate_key.md)
       - [PsaImportKey](parsec_client/operations/psa_import_key.md)
       - [PsaSignHash](parsec_client/operations/psa_sign_hash.md)
