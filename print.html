@@ -358,7 +358,7 @@ in the future and will be organized by operation type.</p>
 <tr><td><code>psa_key_derivation_output_key</code></td><td>❌</td></tr>
 <tr><td><code>psa_copy_key</code></td><td>❌</td></tr>
 <tr><td><code>psa_export_public_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto">✅</a></td></tr>
-<tr><td><code>psa_export_key</code></td><td>❌</td></tr>
+<tr><td><code>psa_export_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_key.proto">✅</a></td></tr>
 <tr><td><code>psa_purge_key</code></td><td>❌</td></tr>
 <tr><td><code>psa_destroy_key</code></td><td><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto">✅</a></td></tr>
 <tr><td><code>psa_hash_compute</code></td><td>❌</td></tr>
@@ -387,6 +387,7 @@ option marked as supported is necessarily supported for all operations on which 
 <tr><td>Import key</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>Generate key</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>Export public key</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>Export key</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>Destroy key</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>Sign hash</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>Verify hash</td><td>✅</td><td>✅</td><td>✅</td></tr>
@@ -449,6 +450,7 @@ will be added here for any other such coverage report.</p>
 <tr><td>Import key</td><td>✅</td></tr>
 <tr><td>Generate key</td><td>✅</td></tr>
 <tr><td>Export public key</td><td>✅</td></tr>
+<tr><td>Export key</td><td>✅</td></tr>
 <tr><td>Destroy key</td><td>✅</td></tr>
 <tr><td>Sign hash</td><td>✅</td></tr>
 <tr><td>Verify hash</td><td>✅</td></tr>
@@ -951,7 +953,7 @@ Most of the documentation in this book directly come from the specification.</p>
 <li><a href="parsec_client/operations/psa_generate_key.html">PsaGenerateKey</a></li>
 <li>PsaCopyKey</li>
 <li><a href="parsec_client/operations/psa_destroy_key.html">PsaDestroyKey</a></li>
-<li>PsaExportKey</li>
+<li><a href="parsec_client/operations/psa_export_key.html">PsaExportKey</a></li>
 <li><a href="parsec_client/operations/psa_export_public_key.html">PsaExportPublicKey</a></li>
 </ul>
 <h3><a class="header" href="#message-digests" id="message-digests">Message Digests</a></h3>
@@ -1680,7 +1682,7 @@ signature in a single call, you could use PsaVerifyMessage (not yet implemented)
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto">Protobuf</a></p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#psaasymmetricencrypt" id="psaasymmetricencrypt">PsaAsymmetricEncrypt</a></h1>
-<p>Encrypt a short message with a public key. Opcode: 10 (<code>0x0010</code>)</p>
+<p>Encrypt a short message with a public key. Opcode: 10 (<code>0x000A</code>)</p>
 <h2><a class="header" href="#parameters-9" id="parameters-9">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
@@ -1711,7 +1713,7 @@ pair.</p>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_encrypt.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#psaasymmetricdecrypt" id="psaasymmetricdecrypt">PsaAsymmetricDecrypt</a></h1>
-<p>Decrypt a short message with a private key. Opcode: 11 (<code>0x0011</code>)</p>
+<p>Decrypt a short message with a private key. Opcode: 11 (<code>0x000B</code>)</p>
 <h2><a class="header" href="#parameters-10" id="parameters-10">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
