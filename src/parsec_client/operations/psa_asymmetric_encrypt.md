@@ -1,6 +1,6 @@
 # PsaAsymmetricEncrypt
 
-Encrypt a short message with a public key. Opcode: 10 (`0x0010`)
+Encrypt a short message with a public key. Opcode: 10 (`0x000A`)
 
 ## Parameters
 

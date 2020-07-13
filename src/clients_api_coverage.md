@@ -30,6 +30,7 @@ will be added here for any other such coverage report.
 | Import key         | ✅         |
 | Generate key       | ✅         |
 | Export public key  | ✅         |
+| Export key         | ✅         |
 | Destroy key        | ✅         |
 | Sign hash          | ✅         |
 | Verify hash        | ✅         |

@@ -52,7 +52,7 @@ Most of the documentation in this book directly come from the specification.
 - [PsaGenerateKey](psa_generate_key.md)
 - PsaCopyKey
 - [PsaDestroyKey](psa_destroy_key.md)
-- PsaExportKey
+- [PsaExportKey](psa_export_key.md)
 - [PsaExportPublicKey](psa_export_public_key.md)
 
 ### Message Digests
