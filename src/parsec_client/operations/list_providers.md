@@ -1,6 +1,6 @@
 # ListProviders
 
-Gets a list of available Parsec providers to be used by clients. Opcode: 8 (`0x0008`)
+Gets a prioritised list of available Parsec providers to be used by clients. Opcode: 8 (`0x0008`)
 
 ## Parameters
 
@@ -35,6 +35,11 @@ No specific response status codes returned.
 The version triplet returned by this operation (`version_maj`, `version_min` and `version_rev`) is
 the implementation version of the specific Parsec provider. For the Core Provider, this version is
 the implementation version of the whole Parsec service.
+
+The `providers` vector returned is in order of provider priority: the highest priority providers
+come first. The core provider will always come last. The provider at position zero, if not the core
+provider, can be treated as default provider by the client. Clients should still check the supported
+opcodes of the provider, even the default one, as it might not implement the operations they want.
 
 ## Contract
 
