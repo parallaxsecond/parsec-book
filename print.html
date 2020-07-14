@@ -1066,7 +1066,7 @@ Most of the documentation in this book directly come from the specification.</p>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_opcodes.proto">Protobuf</a></p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#listproviders" id="listproviders">ListProviders</a></h1>
-<p>Gets a list of available Parsec providers to be used by clients. Opcode: 8 (<code>0x0008</code>)</p>
+<p>Gets a prioritised list of available Parsec providers to be used by clients. Opcode: 8 (<code>0x0008</code>)</p>
 <h2><a class="header" href="#parameters-1" id="parameters-1">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
 <h2><a class="header" href="#results-1" id="results-1">Results</a></h2>
@@ -1090,6 +1090,10 @@ Most of the documentation in this book directly come from the specification.</p>
 <p>The version triplet returned by this operation (<code>version_maj</code>, <code>version_min</code> and <code>version_rev</code>) is
 the implementation version of the specific Parsec provider. For the Core Provider, this version is
 the implementation version of the whole Parsec service.</p>
+<p>The <code>providers</code> vector returned is in order of provider priority: the highest priority providers
+come first. The core provider will always come last. The provider at position zero, if not the core
+provider, can be treated as default provider by the client. Clients should still check the supported
+opcodes of the provider, even the default one, as it might not implement the operations they want.</p>
 <h2><a class="header" href="#contract-1" id="contract-1">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_providers.proto">Protobuf</a></p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
@@ -3328,7 +3332,8 @@ IBM Software TPM. You will need to follow these steps:</p>
 <li>install the TSS libraries (<a href="https://github.com/tpm2-software/tpm2-tss/blob/master/INSTALL.md">installation
 guide</a>). Parsec has been tested
 with version 2.3.3.</li>
-<li>install the <a href="https://github.com/tpm2-software/tpm2-tools">TPM tools</a></li>
+<li>install the <a href="https://github.com/tpm2-software/tpm2-tools">TPM tools</a>. Parsec has been tested with
+version 4.1.</li>
 <li>install the <a href="https://sourceforge.net/projects/ibmswtpm2/">Software TPM</a>, run <code>make</code> in the <code>src</code>
 directory. It will build the <code>tpm_server</code> executable.</li>
 <li>install Parsec with the <code>tpm-provider</code> feature: <code>cargo build --features tpm-provider</code>.</li>

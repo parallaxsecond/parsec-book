@@ -156,7 +156,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#listproviders" id="listproviders">ListProviders</a></h1>
-<p>Gets a list of available Parsec providers to be used by clients. Opcode: 8 (<code>0x0008</code>)</p>
+<p>Gets a prioritised list of available Parsec providers to be used by clients. Opcode: 8 (<code>0x0008</code>)</p>
 <h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
 <h2><a class="header" href="#results" id="results">Results</a></h2>
@@ -180,6 +180,10 @@
 <p>The version triplet returned by this operation (<code>version_maj</code>, <code>version_min</code> and <code>version_rev</code>) is
 the implementation version of the specific Parsec provider. For the Core Provider, this version is
 the implementation version of the whole Parsec service.</p>
+<p>The <code>providers</code> vector returned is in order of provider priority: the highest priority providers
+come first. The core provider will always come last. The provider at position zero, if not the core
+provider, can be treated as default provider by the client. Clients should still check the supported
+opcodes of the provider, even the default one, as it might not implement the operations they want.</p>
 <h2><a class="header" href="#contract" id="contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_providers.proto">Protobuf</a></p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
