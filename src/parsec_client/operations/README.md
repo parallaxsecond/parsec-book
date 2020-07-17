@@ -143,4 +143,9 @@ Most of the documentation in this book directly come from the specification.
 
 - PsaGenerateRandom
 
+## Increasing PSA API coverage
+
+You can help increase the coverage of the PSA Crypto API! See
+[here](../../contributing/adding_new_operation_how_to.md) on how you can contribute.
+
 *Copyright 2019 Contributors to the Parsec project.*

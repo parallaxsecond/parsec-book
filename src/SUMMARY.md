@@ -45,6 +45,7 @@
    - [How to securely install Parsec on Linux](parsec_service/install_parsec_linux.md)
    - [Parsec Configuration](parsec_service/configuration.md)
    - [How to test Parsec](parsec_service/test.md)
-- [Contributing](contributing.md)
+- [Contributing](contributing/README.md)
+   - [How to add operations to Parsec](contributing/adding_new_operation_how_to.md)
 
 *Copyright 2019 Contributors to the Parsec project.*
