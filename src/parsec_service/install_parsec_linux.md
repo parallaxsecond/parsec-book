@@ -62,8 +62,7 @@ widely on the system, it will need to be [installed](https://www.rust-lang.org/t
 that specific user.
 
 ```
-git clone https://github.com/parallaxsecond/parsec.git
-cargo install --features $DESIRED_FEATURES --path parsec
+cargo install parsec-service --features $DESIRED_FEATURES
 ```
 
 Copy and adapt the [configuration](configuration.md) you want to use. For a secure deployment, make
