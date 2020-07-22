@@ -3221,19 +3221,6 @@ Parsec, please follow the steps of deployment <strong>without an Identity Provid
 can be a space or comma-separated subset of: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and
 <code>tpm-provider</code>. Choose the providers you want to install depending on what is available on the
 platform.</p>
-<p>Create and log in to a new user named <code>parsec</code>.</p>
-<pre><code>sudo useradd -m parsec
-sudo passwd parsec
-su --login parsec
-</code></pre>
-<p>In its home directory, pull and install Parsec as a daemon.</p>
-<pre><code>git clone https://github.com/parallaxsecond/parsec.git
-cargo install --features $DESIRED_FEATURES --path parsec
-</code></pre>
-<p>Copy and adapt the <a href="parsec_service/configuration.html">configuration</a> you want to use. For a secure deployment, make
-sure to activate the <code>log_error_details</code> option and to use a <code>trace</code> log level.</p>
-<pre><code>cp parsec/config.toml config.toml
-</code></pre>
 <p>Create the Parsec socket directory.</p>
 <pre><code>mkdir /tmp/parsec
 </code></pre>
@@ -3244,8 +3231,30 @@ group.</p>
 sudo chown :parsec-clients /tmp/parsec
 sudo chmod 750 /tmp/parsec
 </code></pre>
+<p>For example, adding the imaginary <code>parsec-client-1</code> user to the <code>parsec-clients</code> group:</p>
+<pre><code>sudo usermod -a -G parsec-clients parsec-client-1
+</code></pre>
+<p>Users just added to that group might need to log-out and log-in again to make sure the change apply.</p>
 <p>In a deployment <strong>with an Identity Provider</strong>, set the correct permissions on the socket folder.</p>
 <pre><code>sudo chmod 755 /tmp/parsec
+</code></pre>
+<p>Create and log in to a new user named <code>parsec</code>.</p>
+<pre><code>sudo useradd -m parsec
+sudo passwd parsec
+su --login parsec
+</code></pre>
+<p>Depending on which features of Parsec the <code>parsec</code> user is going to use, it might need to be given
+more privileges in order to access some resources on the system. Refer to the
+<a href="parsec_service/providers.html">Providers</a> page for more information.</p>
+<p>In its home directory, pull and install Parsec as a daemon. If a Rust toolchain is not available
+widely on the system, it will need to be <a href="https://www.rust-lang.org/tools/install">installed</a> for
+that specific user.</p>
+<pre><code>git clone https://github.com/parallaxsecond/parsec.git
+cargo install --features $DESIRED_FEATURES --path parsec
+</code></pre>
+<p>Copy and adapt the <a href="parsec_service/configuration.html">configuration</a> you want to use. For a secure deployment, make
+sure to activate the <code>log_error_details</code> option and to use a <code>trace</code> log level.</p>
+<pre><code>cp parsec/config.toml config.toml
 </code></pre>
 <p>Install the systemd unit files and activate the Parsec socket.</p>
 <pre><code>mkdir -p ~/.config/systemd/user
@@ -3253,10 +3262,13 @@ cp -r parsec/systemd-daemon/parsec.service ~/.config/systemd/user
 systemctl --user enable parsec
 systemctl --user start parsec
 </code></pre>
-<p><code>parsec-clients</code> users (with no IP) or every one (with IP) can now use Parsec! You can test it going
-inside the <code>parsec/e2e_tests</code> directory and:</p>
+<p><code>parsec-clients</code> users (with no IP) or every one (with IP) can now use Parsec! You can test it
+(having logged in a <code>parsec-clients</code> user) going inside the <code>parsec/e2e_tests</code> directory and:</p>
 <pre><code>cargo test normal_tests
 </code></pre>
+<p><em>Note:</em> if you encounter a &quot;Permission Denied&quot; error while executing the end-to-end tests, make sure
+that the group change has taken effect. You can check it by calling <code>groups</code> with no arguments. If
+you do not see <code>parsec-clients</code>, please try logging the user out and in again to apply the change.</p>
 <p>Check the Parsec logs with:</p>
 <pre><code>journalclt --user -u parsec
 </code></pre>
