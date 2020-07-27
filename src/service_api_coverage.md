@@ -48,6 +48,7 @@ in the future and will be organized by operation type.
 | `psa_verify_hash`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto)        |
 | `psa_key_derivation_key_agreement` | ❌                                                                                                          |
 | `psa_raw_key_agreement`            | ❌                                                                                                          |
+| `psa_generate_random`              | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_random.proto)    |
 
 You can help increase Parsec's API coverage! Take a look at our
 [how-to](contributing/adding_new_operation_how_to.md) to get started.

@@ -141,7 +141,7 @@ Most of the documentation in this book directly come from the specification.
 
 ### Random Number Generation
 
-- PsaGenerateRandom
+- [PsaGenerateRandom](psa_generate_random.md)
 
 ## Increasing PSA API coverage
 

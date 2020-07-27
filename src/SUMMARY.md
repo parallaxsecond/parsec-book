@@ -27,6 +27,7 @@
       - [PsaAsymmetricEncrypt](parsec_client/operations/psa_asymmetric_encrypt.md)
       - [PsaAsymmetricDecrypt](parsec_client/operations/psa_asymmetric_decrypt.md)
       - [ShareTrustBundle](parsec_client/operations/share_trust_bundle.md)
+      - [PsaGenerateRandom](parsec_client/operations/psa_generate_random.md)
    - [API Overview](parsec_client/api_overview.md)
    - [Status Codes](parsec_client/status_codes.md)
    - [Wire Protocol](parsec_client/wire_protocol.md)
