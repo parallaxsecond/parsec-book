@@ -197,8 +197,7 @@ more privileges in order to access some resources on the system. Refer to the
 <p>In its home directory, pull and install Parsec as a daemon. If a Rust toolchain is not available
 widely on the system, it will need to be <a href="https://www.rust-lang.org/tools/install">installed</a> for
 that specific user.</p>
-<pre><code>git clone https://github.com/parallaxsecond/parsec.git
-cargo install --features $DESIRED_FEATURES --path parsec
+<pre><code>cargo install parsec-service --features $DESIRED_FEATURES
 </code></pre>
 <p>Copy and adapt the <a href="configuration.html">configuration</a> you want to use. For a secure deployment, make
 sure to activate the <code>log_error_details</code> option and to use a <code>trace</code> log level.</p>
