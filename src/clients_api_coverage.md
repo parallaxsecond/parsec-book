@@ -34,6 +34,8 @@ will be added here for any other such coverage report.
 | Destroy key        | ✅         |
 | Sign hash          | ✅         |
 | Verify hash        | ✅         |
+| Hash compute       | ✅         |
+| Hash compare       | ✅         |
 | Asymmetric encrypt | ✅         |
 | Asymmetric decrypt | ✅         |
 

@@ -24,6 +24,8 @@
       - [PSA Key Attributes](parsec_client/operations/psa_key_attributes.md)
       - [PSA Algorithm](parsec_client/operations/psa_algorithm.md)
       - [PsaVerifyHash](parsec_client/operations/psa_verify_hash.md)
+      - [PsaHashCompute](parsec_client/operations/psa_hash_compute.md)
+      - [PsaHashCompare](parsec_client/operations/psa_hash_compare.md)
       - [PsaAsymmetricEncrypt](parsec_client/operations/psa_asymmetric_encrypt.md)
       - [PsaAsymmetricDecrypt](parsec_client/operations/psa_asymmetric_decrypt.md)
       - [ShareTrustBundle](parsec_client/operations/share_trust_bundle.md)
