@@ -27,7 +27,7 @@ in the future and will be organized by operation type.
 | `psa_import_key`                   | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto)         |
 | `psa_generate_key`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto)       |
 | `psa_key_derivation_output_key`    | ❌                                                                                                          |
-| `psa_copy_key`                     | ❌                                                                                                          |
+| `psa_copy_key`                     | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_copy_key.proto)           |
 | `psa_export_public_key`            | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto)  |
 | `psa_export_key`                   | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_key.proto)         |
 | `psa_purge_key`                    | ❌                                                                                                          |
@@ -65,6 +65,7 @@ option marked as supported is necessarily supported for all operations on which 
 |--------------------|----------------------|------------------|------------------|
 | Import key         | ✅                  | ✅              | ✅              |
 | Generate key       | ✅                  | ✅              | ✅              |
+| Copy key           | ✅                  | ❌              | ❌              |
 | Export public key  | ✅                  | ✅              | ✅              |
 | Export key         | ✅                  | ❌              | ❌              |
 | Destroy key        | ✅                  | ✅              | ✅              |

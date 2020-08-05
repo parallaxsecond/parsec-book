@@ -15,6 +15,7 @@
       - [ListProviders](parsec_client/operations/list_providers.md)
       - [Ping](parsec_client/operations/ping.md)
       - [ProveClient](parsec_client/operations/prove_client.md)
+      - [PsaCopyKey](parsec_client/operations/psa_copy_key.md)
       - [PsaDestroyKey](parsec_client/operations/psa_destroy_key.md)
       - [PsaExportPublicKey](parsec_client/operations/psa_export_public_key.md)
       - [PsaExportKey](parsec_client/operations/psa_export_key.md)
