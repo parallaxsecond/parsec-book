@@ -38,8 +38,8 @@ in the future and will be organized by operation type.
 | `psa_mac_verify`                   | ❌                                                                                                          |
 | `psa_cipher_encrypt`               | ❌                                                                                                          |
 | `psa_cipher_decrypt`               | ❌                                                                                                          |
-| `psa_aead_encrypt`                 | ❌                                                                                                          |
-| `psa_aead_decrypt`                 | ❌                                                                                                          |
+| `psa_aead_encrypt`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_encrypt.proto)       |
+| `psa_aead_decrypt`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_decrypt.proto)       |
 | `psa_asymmetric_encrypt`           | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_encrypt.proto) |
 | `psa_asymmetric_decrypt`           | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_decrypt.proto) |
 | `psa_sign_message`                 | ❌                                                                                                          |
@@ -74,6 +74,8 @@ option marked as supported is necessarily supported for all operations on which 
 | Hash compare       | ✅                  | ❌              | ❌              |
 | Asymmetric encrypt | ✅                  | ❌              | ❌              |
 | Asymmetric decrypt | ✅                  | ❌              | ❌              |
+| AEAD encrypt       | ✅                  | ❌              | ❌              |
+| AEAD decrypt       | ✅                  | ❌              | ❌              |
 
 ### Algorithm support
 
@@ -114,5 +116,13 @@ option marked as supported is necessarily supported for all operations on which 
 |--------------|----------------------|------------------|------------------|
 | RSA PKCS 1v5 | ✅                  | ❌              | ❌              |
 | Raw OAEP     | ✅                  | ❌              | ❌              |
+
+#### AEAD encryption algorithms
+
+| Algorithm         | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|-------------------|----------------------|------------------|------------------|
+| CCM               | ✅                  | ❌              | ❌              |
+| GCM               | ✅                  | ❌              | ❌              |
+| ChaCha20_Poly1305 | ✅                  | ❌              | ❌              |
 
 *Copyright 2020 Contributors to the Parsec project.*

@@ -38,6 +38,8 @@ will be added here for any other such coverage report.
 | Hash compare       | ✅         |
 | Asymmetric encrypt | ✅         |
 | Asymmetric decrypt | ✅         |
+| Aead encrypt       | ✅         |
+| Aead decrypt       | ✅         |
 
 ## Algorithm support
 
@@ -78,5 +80,13 @@ will be added here for any other such coverage report.
 |--------------------|-------------|
 | RSA PKCS 1v5       | ✅         |
 | RSA OAEP with hash | ✅         |
+
+### Aead encryption algorithms
+
+| Algorithm         | Rust client |
+|-------------------|-------------|
+| CCM               | ✅         |
+| GCM               | ✅         |
+| ChaCha20_Poly1305 | ✅         |
 
 *Copyright 2020 Contributors to the Parsec project.*
