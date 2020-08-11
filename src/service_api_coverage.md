@@ -32,8 +32,8 @@ in the future and will be organized by operation type.
 | `psa_export_key`                   | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_key.proto)         |
 | `psa_purge_key`                    | ❌                                                                                                          |
 | `psa_destroy_key`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)        |
-| `psa_hash_compute`                 | ❌                                                                                                          |
-| `psa_hash_compare`                 | ❌                                                                                                          |
+| `psa_hash_compute`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compute.proto)       |
+| `psa_hash_compare`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compare.proto)       |
 | `psa_mac_compute`                  | ❌                                                                                                          |
 | `psa_mac_verify`                   | ❌                                                                                                          |
 | `psa_cipher_encrypt`               | ❌                                                                                                          |
@@ -70,6 +70,8 @@ option marked as supported is necessarily supported for all operations on which 
 | Destroy key        | ✅                  | ✅              | ✅              |
 | Sign hash          | ✅                  | ✅              | ✅              |
 | Verify hash        | ✅                  | ✅              | ✅              |
+| Hash compute       | ✅                  | ❌              | ❌              |
+| Hash compare       | ✅                  | ❌              | ❌              |
 | Asymmetric encrypt | ✅                  | ❌              | ❌              |
 | Asymmetric decrypt | ✅                  | ❌              | ❌              |
 | AEAD encrypt       | ✅                  | ❌              | ❌              |
@@ -81,21 +83,21 @@ option marked as supported is necessarily supported for all operations on which 
 
 | Algorithm   | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
 |-------------|----------------------|------------------|------------------|
-| MD2         | ❌                  | ❌              | ❌              |
-| MD4         | ❌                  | ❌              | ❌              |
-| MD5         | ❌                  | ❌              | ❌              |
-| RIPEMD160   | ❌                  | ❌              | ❌              |
-| SHA-1       | ❌                  | ❌              | ✅              |
-| SHA-224     | ❌                  | ❌              | ❌              |
+| MD2         | ✅                  | ❌              | ❌              |
+| MD4         | ✅                  | ❌              | ❌              |
+| MD5         | ✅                  | ❌              | ❌              |
+| RIPEMD160   | ✅                  | ❌              | ❌              |
+| SHA-1       | ✅                  | ❌              | ✅              |
+| SHA-224     | ✅                  | ❌              | ❌              |
 | SHA-256     | ✅                  | ✅              | ✅              |
-| SHA-384     | ❌                  | ❌              | ✅              |
-| SHA-512     | ❌                  | ❌              | ✅              |
-| SHA-512-224 | ❌                  | ❌              | ❌              |
-| SHA-512-256 | ❌                  | ❌              | ❌              |
-| SHA3-224    | ❌                  | ❌              | ❌              |
-| SHA3-256    | ❌                  | ❌              | ✅              |
-| SHA3-384    | ❌                  | ❌              | ✅              |
-| SHA3-512    | ❌                  | ❌              | ✅              |
+| SHA-384     | ✅                  | ❌              | ✅              |
+| SHA-512     | ✅                  | ❌              | ✅              |
+| SHA-512-224 | ✅                  | ❌              | ❌              |
+| SHA-512-256 | ✅                  | ❌              | ❌              |
+| SHA3-224    | ✅                  | ❌              | ❌              |
+| SHA3-256    | ✅                  | ❌              | ✅              |
+| SHA3-384    | ✅                  | ❌              | ✅              |
+| SHA3-512    | ✅                  | ❌              | ✅              |
 
 #### Asymmetric signing algorithms
 
