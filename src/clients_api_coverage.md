@@ -81,7 +81,7 @@ will be added here for any other such coverage report.
 | RSA PKCS 1v5       | ✅         |
 | RSA OAEP with hash | ✅         |
 
-### Aead encryption algorithms
+### AEAD encryption algorithms
 
 | Algorithm         | Rust client |
 |-------------------|-------------|

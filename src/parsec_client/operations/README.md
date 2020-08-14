@@ -57,8 +57,8 @@ Most of the documentation in this book directly come from the specification.
 
 ### Message Digests
 
-- PsaHashCompute
-- PsaHashCompare
+- [PsaHashCompute](psa_hash_compute.md)
+- [PsaHashCompare](psa_hash_compare.md)
 - PsaHashOperationInit
 - PsaHashSetup
 - PsaHashUpdate
@@ -96,8 +96,8 @@ Most of the documentation in this book directly come from the specification.
 
 ### Authenticated Encryption with Associated Data (AEAD)
 
-- PsaAeadEncrypt
-- PsaAeadDecrypt
+- [PsaAeadEncrypt](psa_aead_encrypt.md)
+- [PsaAeadDecrypt](psa_aead_decrypt.md)
 - PsaAeadOperationInit
 - PsaAeadEncryptSetup
 - PsaAeadDecryptSetup
