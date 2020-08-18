@@ -13,6 +13,7 @@
       - [AddClient](parsec_client/operations/add_client.md)
       - [ListOpcodes](parsec_client/operations/list_opcodes.md)
       - [ListProviders](parsec_client/operations/list_providers.md)
+      - [ListAuthenticators](parsec_client/operations/list_authenticators.md)
       - [Ping](parsec_client/operations/ping.md)
       - [ProveClient](parsec_client/operations/prove_client.md)
       - [PsaDestroyKey](parsec_client/operations/psa_destroy_key.md)
