@@ -47,7 +47,7 @@ in the future and will be organized by operation type.
 | `psa_sign_hash`                    | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto)          |
 | `psa_verify_hash`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto)        |
 | `psa_key_derivation_key_agreement` | ❌                                                                                                          |
-| `psa_raw_key_agreement`            | ❌                                                                                                          |
+| `psa_raw_key_agreement`            | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_raw_key_agreement.proto)  |
 | `psa_generate_random`              | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_random.proto)    |
 
 You can help increase Parsec's API coverage! Take a look at our
@@ -76,6 +76,7 @@ option marked as supported is necessarily supported for all operations on which 
 | Asymmetric decrypt | ✅                  | ❌              | ❌              |
 | AEAD encrypt       | ✅                  | ❌              | ❌              |
 | AEAD decrypt       | ✅                  | ❌              | ❌              |
+| Raw key agreement  | ✅                  | ❌              | ❌              |
 
 ### Algorithm support
 
@@ -124,5 +125,12 @@ option marked as supported is necessarily supported for all operations on which 
 | CCM               | ✅                  | ❌              | ❌              |
 | GCM               | ✅                  | ❌              | ❌              |
 | ChaCha20_Poly1305 | ✅                  | ❌              | ❌              |
+
+#### Raw key agreement algorithms
+
+| Algorithm | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|-----------|----------------------|------------------|------------------|
+| FFDH      | ✅                  | ❌              | ❌              |
+| ECDH      | ✅                  | ❌              | ❌              |
 
 *Copyright 2020 Contributors to the Parsec project.*

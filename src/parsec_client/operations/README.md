@@ -136,7 +136,7 @@ Most of the documentation in this book directly come from the specification.
 
 ### Key Agreement
 
-- PsaRawKeyAgreement
+- [PsaRawKeyAgreement](psa_raw_key_agreement.md)
 - PsaKeyDerivationKeyAgreement
 
 ### Random Number Generation

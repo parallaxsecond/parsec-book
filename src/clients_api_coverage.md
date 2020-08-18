@@ -40,6 +40,7 @@ will be added here for any other such coverage report.
 | Asymmetric decrypt | ✅         |
 | Aead encrypt       | ✅         |
 | Aead decrypt       | ✅         |
+| RawKeyAgreement    | ✅         |
 
 ## Algorithm support
 
@@ -88,5 +89,12 @@ will be added here for any other such coverage report.
 | CCM               | ✅         |
 | GCM               | ✅         |
 | ChaCha20_Poly1305 | ✅         |
+
+### Raw key agreement algorithms
+
+| Algorithm | Rust client |
+|-----------|-------------|
+| FFDH      | ✅         |
+| ECDH      | ✅         |
 
 *Copyright 2020 Contributors to the Parsec project.*
