@@ -20,6 +20,7 @@
       - [PsaExportKey](parsec_client/operations/psa_export_key.md)
       - [PsaGenerateKey](parsec_client/operations/psa_generate_key.md)
       - [PsaImportKey](parsec_client/operations/psa_import_key.md)
+      - [PsaRawKeyAgreement](parsec_client/operations/psa_raw_key_agreement.md)
       - [PsaSignHash](parsec_client/operations/psa_sign_hash.md)
       - [PSA Key Attributes](parsec_client/operations/psa_key_attributes.md)
       - [PSA Algorithm](parsec_client/operations/psa_algorithm.md)
