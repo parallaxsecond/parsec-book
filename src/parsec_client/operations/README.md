@@ -35,6 +35,7 @@ Core operations are non-cryptographic operations supported by the core provider.
 
 - [ListProviders](list_providers.md)
 - [ListOpcodes](list_opcodes.md)
+- [ListAuthenticators](list_authenticators.md)
 
 ### Trust
 
