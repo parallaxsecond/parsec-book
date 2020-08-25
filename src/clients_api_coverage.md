@@ -90,6 +90,19 @@ will be added here for any other such coverage report.
 | GCM               | ✅         |
 | ChaCha20_Poly1305 | ✅         |
 
+### Cipher algorithms
+
+| Algorithm    | Rust client |
+|--------------|-------------|
+| StreamCipher | ❌         |
+| Crt          | ❌         |
+| Cfb          | ❌         |
+| Ofb          | ❌         |
+| Xts          | ❌         |
+| EbcNoPadding | ❌         |
+| CbcNoPadding | ❌         |
+| CbcPkcs7     | ❌         |
+
 ### Raw key agreement algorithms
 
 | Algorithm | Rust client |

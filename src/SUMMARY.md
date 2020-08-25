@@ -32,6 +32,8 @@
       - [PsaAsymmetricDecrypt](parsec_client/operations/psa_asymmetric_decrypt.md)
       - [PsaAeadEncrypt](parsec_client/operations/psa_aead_encrypt.md)
       - [PsaAeadDecrypt](parsec_client/operations/psa_aead_decrypt.md)
+      - [PsaCipherEncrypt](parsec_client/operations/psa_cipher_encrypt.md)
+      - [PsaCipherDecrypt](parsec_client/operations/psa_cipher_decrypt.md)
       - [ShareTrustBundle](parsec_client/operations/share_trust_bundle.md)
       - [PsaGenerateRandom](parsec_client/operations/psa_generate_random.md)
    - [API Overview](parsec_client/api_overview.md)

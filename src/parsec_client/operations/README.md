@@ -84,8 +84,8 @@ Most of the documentation in this book directly come from the specification.
 
 ### Unauthenticated Ciphers
 
-- PsaCipherEncrypt
-- PsaCipherDecrypt
+- [PsaCipherEncrypt](psa_cipher_encrypt.md)
+- [PsaCipherDecrypt](psa_cipher_decrypt.md)
 - PsaCipherOperationInit
 - PsaCipherEncryptSetup
 - PsaCipherDecryptSetup
