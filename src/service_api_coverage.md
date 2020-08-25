@@ -33,10 +33,10 @@ in the future and will be organized by operation type.
 | `psa_destroy_key`        | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)        |
 | `psa_hash_compute`       | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compute.proto)       |
 | `psa_hash_compare`       | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compare.proto)       |
-| `psa_mac_compute`        | ❌                                                                                                          |
-| `psa_mac_verify`         | ❌                                                                                                          |
-| `psa_cipher_encrypt`     | ❌                                                                                                          |
-| `psa_cipher_decrypt`     | ❌                                                                                                          |
+| `psa_mac_compute`        | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_mac_compute.proto)                                                                                                        |
+| `psa_mac_verify`         | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_mac_verify.proto)                                                                                                          |
+| `psa_cipher_encrypt`     | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_cipher_encrypt.proto)                                                                                                          |
+| `psa_cipher_decrypt`     | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_cipher_decrypt.proto)                                                                                                          |
 | `psa_aead_encrypt`       | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_encrypt.proto)       |
 | `psa_aead_decrypt`       | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_decrypt.proto)       |
 | `psa_asymmetric_encrypt` | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_encrypt.proto) |
@@ -74,6 +74,10 @@ option marked as supported is necessarily supported for all operations on which 
 | Asymmetric decrypt | ✅                  | ❌              | ❌              |
 | AEAD encrypt       | ✅                  | ❌              | ❌              |
 | AEAD decrypt       | ✅                  | ❌              | ❌              |
+| Cipher encrypt       | ❌                  | ❌              | ❌              |
+| Cipher decrypt       | ❌                  | ❌              | ❌              |
+| MAC compute       | ❌                  | ❌              | ❌              |
+| MAC verify       | ❌                  | ❌              | ❌              |
 | Raw key agreement  | ✅                  | ❌              | ❌              |
 
 ### Algorithm support
@@ -136,6 +140,14 @@ option marked as supported is necessarily supported for all operations on which 
 | EbcNoPadding | ❌                  | ❌              | ❌              |
 | CbcNoPadding | ❌                  | ❌              | ❌              |
 | CbcPkcs7     | ❌                  | ❌              | ❌              |
+
+### MAC algorithms
+
+| Algorithm    | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|--------------|----------------------|------------------|------------------|
+| Hmac | ❌                  | ❌              | ❌              |
+| CbcMac          | ❌                  | ❌              | ❌              |
+| Cmac          | ❌                  | ❌              | ❌              |
 
 #### Raw key agreement algorithms
 

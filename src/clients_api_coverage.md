@@ -103,6 +103,14 @@ will be added here for any other such coverage report.
 | CbcNoPadding | ❌         |
 | CbcPkcs7     | ❌         |
 
+### MAC algorithms
+
+| Algorithm    | Rust client |
+|--------------|-------------|
+| Hmac | ❌         |
+| CbcMac          | ❌         |
+| Cmac          | ❌         |
+
 ### Raw key agreement algorithms
 
 | Algorithm | Rust client |

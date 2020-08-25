@@ -18,7 +18,7 @@ Verify the signature of a hash or short message using a public key. Opcode: 5 (`
 
 ## Results
 
-No values are returned by this operation. If `Sucess` is returned the signature is valid.
+No values are returned by this operation. If `Success` is returned the signature is valid.
 
 ## Specific response status codes
 

@@ -72,8 +72,8 @@ Most of the documentation in this book directly come from the specification.
 
 ### Message Authentication Codes (MAC)
 
-- PsaMacCompute
-- PsaMacVerify
+- [PsaMacCompute](psa_mac_compute.md)
+- [PsaMacVerify](psa_mac_verify.md)
 - PsaMacOperationInit
 - PsaMacSignSetup
 - PsaMacVerifySetup
