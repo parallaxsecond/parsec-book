@@ -53,6 +53,7 @@ Most of the documentation in this book directly come from the specification.
 - [PsaGenerateKey](psa_generate_key.md)
 - PsaCopyKey
 - [PsaDestroyKey](psa_destroy_key.md)
+- PsaPurgeKey
 - [PsaExportKey](psa_export_key.md)
 - [PsaExportPublicKey](psa_export_public_key.md)
 
@@ -125,8 +126,8 @@ Most of the documentation in this book directly come from the specification.
 
 ### Asymmetric Signature
 
-- PsaSignMessage
-- PsaVerifyMessage
+- [PsaSignMessage](psa_sign_message.md)
+- [PsaVerifyMessage](psa_verify_message.md)
 - [PsaSignHash](psa_sign_hash.md)
 - [PsaVerifyHash](psa_verify_hash.md)
 

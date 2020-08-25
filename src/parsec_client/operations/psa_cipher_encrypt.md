@@ -25,8 +25,7 @@ Encrypt a short message with a symmetric cipher. Opcode: 20 (`0x0014`)
 
 ## Description
 
-This function will encrypt a short message with a random initialisation vector (IV). The output is
-the IV followed by the ciphertext.
+This function will encrypt a short message with a random initialisation vector (IV).
 
 ## Contract
 

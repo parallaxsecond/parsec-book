@@ -4,11 +4,11 @@ Calculate the MAC of a message. Opcode: 22 (`0x0016`)
 
 ## Parameters
 
-| Name       | Type                                          | Description                              |
-|------------|-----------------------------------------------|------------------------------------------|
-| `key_name` | String                                        | Name of the key to use for the operation |
-| `alg`      | [`Cipher`](psa_algorithm.md#cipher-algorithm) | Mac algorithm to compute                 |
-| `input`    | Vector of bytes                               | Buffer containing the input message      |
+| Name       | Type                                    | Description                              |
+|------------|-----------------------------------------|------------------------------------------|
+| `key_name` | String                                  | Name of the key to use for the operation |
+| `alg`      | [`Mac`](psa_algorithm.md#mac-algorithm) | Mac algorithm to compute                 |
+| `input`    | Vector of bytes                         | Buffer containing the input message      |
 
 - `key_name` must allow the [usage flag](psa_key_attributes.md#usageflags-type) `sign_message`.
 

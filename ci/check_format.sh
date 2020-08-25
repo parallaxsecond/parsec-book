@@ -17,7 +17,6 @@ do
 	echo "Checking file \"$f\""
 	vmdfmt -cols 100 $f > $OUT_DIR/$(basename $f)
 	git diff --exit-code $f $OUT_DIR/$(basename $f)
-	markdown-link-check -q $f
 done
 
 rm -rf $OUT_DIR

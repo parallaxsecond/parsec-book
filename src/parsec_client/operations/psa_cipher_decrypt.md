@@ -11,6 +11,7 @@ Decrypt a short message with a symmetric cipher. Opcode: 21 (`0x0015`)
 | `ciphertext` | Vector of bytes                               | IV followed by the ciphertext                              |
 
 - `key_name` must allow the [usage flag](psa_key_attributes.md#usageflags-type) `decrypt`.
+- `ciphertext` must be the IV followed by the ciphertext.
 
 ## Results
 
@@ -25,8 +26,7 @@ Decrypt a short message with a symmetric cipher. Opcode: 21 (`0x0015`)
 
 ## Description
 
-This function will decrypt a short message using the provided initialisation vector (IV). The input
-must be the IV followed by the ciphertext.
+This function will decrypt a short message using the provided initialisation vector (IV).
 
 ## Contract
 

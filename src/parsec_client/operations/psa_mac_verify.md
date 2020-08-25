@@ -1,15 +1,15 @@
-# PsaMacCompute
+# PsaMacVerify
 
-Calculate the MAC of a message. Opcode: 22 (`0x0016`)
+Calculate the MAC of a message and compare it to an expected value. Opcode: 23 (`0x0017`)
 
 ## Parameters
 
-| Name       | Type                                          | Description                              |
-|------------|-----------------------------------------------|------------------------------------------|
-| `key_name` | String                                        | Name of the key to use for the operation |
-| `alg`      | [`Cipher`](psa_algorithm.md#cipher-algorithm) | Mac algorithm to compute                 |
-| `input`    | Vector of bytes                               | Buffer containing the input message      |
-| `mac`      | Vector of bytes                               | Buffer containing the expected MAC value |
+| Name       | Type                                    | Description                              |
+|------------|-----------------------------------------|------------------------------------------|
+| `key_name` | String                                  | Name of the key to use for the operation |
+| `alg`      | [`Mac`](psa_algorithm.md#mac-algorithm) | Mac algorithm to compute                 |
+| `input`    | Vector of bytes                         | Buffer containing the input message      |
+| `mac`      | Vector of bytes                         | Buffer containing the expected MAC value |
 
 - `key_name` must allow the [usage flag](psa_key_attributes.md#usageflags-type) `verify_message`.
 
