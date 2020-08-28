@@ -53,6 +53,7 @@ Most of the documentation in this book directly come from the specification.
 - [PsaGenerateKey](psa_generate_key.md)
 - PsaCopyKey
 - [PsaDestroyKey](psa_destroy_key.md)
+- PsaPurgeKey
 - [PsaExportKey](psa_export_key.md)
 - [PsaExportPublicKey](psa_export_public_key.md)
 
@@ -72,8 +73,8 @@ Most of the documentation in this book directly come from the specification.
 
 ### Message Authentication Codes (MAC)
 
-- PsaMacCompute
-- PsaMacVerify
+- [PsaMacCompute](psa_mac_compute.md)
+- [PsaMacVerify](psa_mac_verify.md)
 - PsaMacOperationInit
 - PsaMacSignSetup
 - PsaMacVerifySetup
@@ -84,8 +85,8 @@ Most of the documentation in this book directly come from the specification.
 
 ### Unauthenticated Ciphers
 
-- PsaCipherEncrypt
-- PsaCipherDecrypt
+- [PsaCipherEncrypt](psa_cipher_encrypt.md)
+- [PsaCipherDecrypt](psa_cipher_decrypt.md)
 - PsaCipherOperationInit
 - PsaCipherEncryptSetup
 - PsaCipherDecryptSetup
@@ -125,8 +126,8 @@ Most of the documentation in this book directly come from the specification.
 
 ### Asymmetric Signature
 
-- PsaSignMessage
-- PsaVerifyMessage
+- [PsaSignMessage](psa_sign_message.md)
+- [PsaVerifyMessage](psa_verify_message.md)
 - [PsaSignHash](psa_sign_hash.md)
 - [PsaVerifyHash](psa_verify_hash.md)
 

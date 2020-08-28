@@ -22,33 +22,31 @@ in the future and will be organized by operation type.
 
 ### Single part operations
 
-| Operation name                     | Protobuf contract exists                                                                                     |
-|------------------------------------|--------------------------------------------------------------------------------------------------------------|
-| `psa_import_key`                   | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto)         |
-| `psa_generate_key`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto)       |
-| `psa_key_derivation_output_key`    | ❌                                                                                                          |
-| `psa_copy_key`                     | ❌                                                                                                          |
-| `psa_export_public_key`            | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto)  |
-| `psa_export_key`                   | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_key.proto)         |
-| `psa_purge_key`                    | ❌                                                                                                          |
-| `psa_destroy_key`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)        |
-| `psa_hash_compute`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compute.proto)       |
-| `psa_hash_compare`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compare.proto)       |
-| `psa_mac_compute`                  | ❌                                                                                                          |
-| `psa_mac_verify`                   | ❌                                                                                                          |
-| `psa_cipher_encrypt`               | ❌                                                                                                          |
-| `psa_cipher_decrypt`               | ❌                                                                                                          |
-| `psa_aead_encrypt`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_encrypt.proto)       |
-| `psa_aead_decrypt`                 | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_decrypt.proto)       |
-| `psa_asymmetric_encrypt`           | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_encrypt.proto) |
-| `psa_asymmetric_decrypt`           | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_decrypt.proto) |
-| `psa_sign_message`                 | ❌                                                                                                          |
-| `psa_verify_message`               | ❌                                                                                                          |
-| `psa_sign_hash`                    | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto)          |
-| `psa_verify_hash`                  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto)        |
-| `psa_key_derivation_key_agreement` | ❌                                                                                                          |
-| `psa_raw_key_agreement`            | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_raw_key_agreement.proto)  |
-| `psa_generate_random`              | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_random.proto)    |
+| Operation name           | Protobuf contract exists                                                                                     |
+|--------------------------|--------------------------------------------------------------------------------------------------------------|
+| `psa_import_key`         | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_import_key.proto)         |
+| `psa_generate_key`       | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto)       |
+| `psa_copy_key`           | ❌                                                                                                          |
+| `psa_export_public_key`  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto)  |
+| `psa_export_key`         | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_key.proto)         |
+| `psa_purge_key`          | ❌                                                                                                          |
+| `psa_destroy_key`        | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_destroy_key.proto)        |
+| `psa_hash_compute`       | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compute.proto)       |
+| `psa_hash_compare`       | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compare.proto)       |
+| `psa_mac_compute`        | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_mac_compute.proto)        |
+| `psa_mac_verify`         | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_mac_verify.proto)         |
+| `psa_cipher_encrypt`     | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_cipher_encrypt.proto)     |
+| `psa_cipher_decrypt`     | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_cipher_decrypt.proto)     |
+| `psa_aead_encrypt`       | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_encrypt.proto)       |
+| `psa_aead_decrypt`       | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_decrypt.proto)       |
+| `psa_asymmetric_encrypt` | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_encrypt.proto) |
+| `psa_asymmetric_decrypt` | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_decrypt.proto) |
+| `psa_sign_message`       | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_message.proto)       |
+| `psa_verify_message`     | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_message.proto)     |
+| `psa_sign_hash`          | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_sign_hash.proto)          |
+| `psa_verify_hash`        | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_hash.proto)        |
+| `psa_raw_key_agreement`  | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_raw_key_agreement.proto)  |
+| `psa_generate_random`    | [✅](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_random.proto)    |
 
 You can help increase Parsec's API coverage! Take a look at our
 [how-to](contributing/adding_new_operation_how_to.md) to get started.
@@ -68,6 +66,9 @@ option marked as supported is necessarily supported for all operations on which 
 | Export public key  | ✅                  | ✅              | ✅              |
 | Export key         | ✅                  | ❌              | ❌              |
 | Destroy key        | ✅                  | ✅              | ✅              |
+| Purge key          | ❌                  | ❌              | ❌              |
+| Sign message       | ❌                  | ❌              | ❌              |
+| Verify message     | ❌                  | ❌              | ❌              |
 | Sign hash          | ✅                  | ✅              | ✅              |
 | Verify hash        | ✅                  | ✅              | ✅              |
 | Hash compute       | ✅                  | ❌              | ❌              |
@@ -76,6 +77,10 @@ option marked as supported is necessarily supported for all operations on which 
 | Asymmetric decrypt | ✅                  | ❌              | ❌              |
 | AEAD encrypt       | ✅                  | ❌              | ❌              |
 | AEAD decrypt       | ✅                  | ❌              | ❌              |
+| Cipher encrypt     | ❌                  | ❌              | ❌              |
+| Cipher decrypt     | ❌                  | ❌              | ❌              |
+| MAC compute        | ❌                  | ❌              | ❌              |
+| MAC verify         | ❌                  | ❌              | ❌              |
 | Raw key agreement  | ✅                  | ❌              | ❌              |
 
 ### Algorithm support
@@ -125,6 +130,27 @@ option marked as supported is necessarily supported for all operations on which 
 | CCM               | ✅                  | ❌              | ❌              |
 | GCM               | ✅                  | ❌              | ❌              |
 | ChaCha20_Poly1305 | ✅                  | ❌              | ❌              |
+
+### Cipher algorithms
+
+| Algorithm    | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|--------------|----------------------|------------------|------------------|
+| StreamCipher | ❌                  | ❌              | ❌              |
+| Ctr          | ❌                  | ❌              | ❌              |
+| Cfb          | ❌                  | ❌              | ❌              |
+| Ofb          | ❌                  | ❌              | ❌              |
+| Xts          | ❌                  | ❌              | ❌              |
+| EcbNoPadding | ❌                  | ❌              | ❌              |
+| CbcNoPadding | ❌                  | ❌              | ❌              |
+| CbcPkcs7     | ❌                  | ❌              | ❌              |
+
+### MAC algorithms
+
+| Algorithm | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|-----------|----------------------|------------------|------------------|
+| Hmac      | ❌                  | ❌              | ❌              |
+| CbcMac    | ❌                  | ❌              | ❌              |
+| Cmac      | ❌                  | ❌              | ❌              |
 
 #### Raw key agreement algorithms
 

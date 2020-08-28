@@ -18,7 +18,7 @@ Verify the signature of a hash or short message using a public key. Opcode: 5 (`
 
 ## Results
 
-No values are returned by this operation. If `Sucess` is returned the signature is valid.
+No values are returned by this operation. If `Success` is returned the signature is valid.
 
 ## Specific response status codes
 
@@ -38,7 +38,7 @@ such signature algorithm: Raw PKCS#1 v1.5 signature.
 **Note:** To perform a hash-and-sign algorithm, the hash must be calculated before passing it to
 this function. This could be done with the operation PsaHashCompute or with a multi-part hash
 operation. Those operations are not yet implemented. Alternatively, to hash and verify a message
-signature in a single call, you could use PsaVerifyMessage (not yet implemented).
+signature in a single call, you could use PsaVerifyMessage.
 
 ## Contract
 

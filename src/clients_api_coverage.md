@@ -32,6 +32,8 @@ will be added here for any other such coverage report.
 | Export public key  | ✅         |
 | Export key         | ✅         |
 | Destroy key        | ✅         |
+| Sign message       | ❌         |
+| Verify message     | ❌         |
 | Sign hash          | ✅         |
 | Verify hash        | ✅         |
 | Hash compute       | ✅         |
@@ -40,6 +42,8 @@ will be added here for any other such coverage report.
 | Asymmetric decrypt | ✅         |
 | Aead encrypt       | ✅         |
 | Aead decrypt       | ✅         |
+| Cipher encrypt     | ❌         |
+| Cipher decrypt     | ❌         |
 | RawKeyAgreement    | ✅         |
 
 ## Algorithm support
@@ -89,6 +93,27 @@ will be added here for any other such coverage report.
 | CCM               | ✅         |
 | GCM               | ✅         |
 | ChaCha20_Poly1305 | ✅         |
+
+### Cipher algorithms
+
+| Algorithm    | Rust client |
+|--------------|-------------|
+| StreamCipher | ❌         |
+| Ctr          | ❌         |
+| Cfb          | ❌         |
+| Ofb          | ❌         |
+| Xts          | ❌         |
+| EcbNoPadding | ❌         |
+| CbcNoPadding | ❌         |
+| CbcPkcs7     | ❌         |
+
+### MAC algorithms
+
+| Algorithm | Rust client |
+|-----------|-------------|
+| Hmac      | ❌         |
+| CbcMac    | ❌         |
+| Cmac      | ❌         |
 
 ### Raw key agreement algorithms
 
