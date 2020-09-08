@@ -324,18 +324,21 @@ cleared.
 
 ## Operational mitigations
 
-| ID   | Justification                                                                                                                                                      |
-|------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 0    | A trusted administrator should start the service in such a way that un-privileged processes cannot send signals to the service.                                    |
-| 1    | A trusted administrator should check the validity of the providers and hardware modules written in the service's configuration before starting/reloading it.       |
-| 2    | Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.                 |
-| 3    | Mappings should be put in a location that only the Parsec service and the trusted administrator can access.                                                        |
-| 4    | The trusted administrator needs to be notified when any kind of resource is running out.                                                                           |
-| 5    | Parsec logs coming from the service binary should be redirected to a file that is only writable by the service and readable by the trusted administrator.          |
-| 6    | Parsec configuration file should be only writable by the trusted administrator and readable by the service.                                                        |
-| 7    | The trusted administrator needs to check that during the boot process the trusted identity provider has successfully given the root trust bundle to the service.   |
-| 8    | The hardware descriptors should only be accessible by trusted privileged processes.                                                                                |
-| 9    | The Listener endpoint should be contained in a location that only the Parsec service and the trusted administrator can access (only they can create the endpoint). |
-| *10* | *A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.*                                                                  |
+Most of these operational mitigations are implemented when following the [Recommendations on a
+Secure Parsec Deployment guide](secure_deployment.md).
+
+| ID   | Justification                                                                                                                                                      | Details                                                                                                                                                  |
+|------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 0    | A trusted administrator should start the service in such a way that un-privileged processes cannot send signals to the service.                                    | In a Unix OS, using the separate `parsec` user to run the service prevents that.                                                                         |
+| 1    | A trusted administrator should check the validity of the providers and hardware modules written in the service's configuration before starting/reloading it.       | This is a manual step that has to be done as part of configuring the service.                                                                            |
+| 2    | Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.                 | The endpoint folder is owned by the `parsec` user, which must have been created by the trusted privileged administrator. This can be checked by clients. |
+| 3    | Mappings should be put in a location that only the Parsec service and the trusted administrator can access.                                                        | The mappings are inside the `parsec` user home folder.                                                                                                   |
+| 4    | The trusted administrator needs to be notified when any kind of resource is running out.                                                                           | Currently only the logs can be used as a way of knowing that the system is failing because a resource is running out.                                    |
+| 5    | Parsec logs coming from the service binary should be redirected to a file that is only writable by the service and readable by the trusted administrator.          | Using systemd, the logs can only be written by the service and read by the `parsec` user. Otherwise, they can be stored in the `parsec` home folder.     |
+| 6    | Parsec configuration file should be only writable by the trusted administrator and readable by the service.                                                        | The configuration is in the `parsec` home folder.                                                                                                        |
+| 7    | The trusted administrator needs to check that during the boot process the trusted identity provider has successfully given the root trust bundle to the service.   | This is a manual check. It is possible that Parsec would not initialize correctly if the root trust bundle has not been given to it.                     |
+| 8    | The hardware descriptors should only be accessible by trusted privileged processes.                                                                                | Manual check but this should be the default on most systems.                                                                                             |
+| 9    | The Listener endpoint should be contained in a location that only the Parsec service and the trusted administrator can access (only they can create the endpoint). | The endpoint folder is owned by the `parsec` user and only writable by it.                                                                               |
+| *10* | *A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.*                                                                  | *The parsec-clients group only has read-access on the socket.*                                                                                           |
 
 *Copyright 2020 Contributors to the Parsec project.*
