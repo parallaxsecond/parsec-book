@@ -279,8 +279,13 @@ string for each API call, it does not matter how they are structured and deploye
 <p>Clients present their identity strings to the service on each API call. As set out in the <a href="wire_protocol.html"><strong>wire
 protocol specification</strong></a>, they do this using the <strong>authentication</strong> field of the
 API request.</p>
-<p>There are two ways in which the client can use the authentication field to share its identity with
-the service: <strong>direct authentication</strong> and <strong>authentication tokens</strong>.</p>
+<p>There are currently three ways in which the client can use the authentication field to share its
+identity with the service:</p>
+<ul>
+<li><strong>direct authentication</strong>.</li>
+<li><strong>authentication tokens</strong>.</li>
+<li><strong>Unix peer credentials</strong>.</li>
+</ul>
 <p>With <strong>direct authentication</strong>, the client authenticates the request by directly copying the
 application identity string into the <strong>authentication</strong> field of the request.</p>
 <p>With <strong>authentication tokens</strong>, the client obtains a token from an identity provider and sends it as
@@ -289,6 +294,10 @@ after which a new one must be issued. The application identity is contained in t
 extracted by the service after verifying the authenticity of the token. A more detailed description
 of authentication tokens and their lifecycle is present in the <a href="../parsec_service/system_architecture.html"><strong>sytem architecture
 specification</strong></a>.</p>
+<p>With <strong>Unix peer credentials</strong>, the client authenticates by self-declaring its Unix user identifier
+(UID) inside the <strong>authentication</strong> field of the request. The Parsec service verifies that this
+self-declared UID matches the actual UID of the connecting process via the Unix peer credentials
+mechanism.</p>
 <p>When it makes an API request, the client needs to tell the server which kind of authentication is
 being used. This is so that the server knows how to interepret the bytes in the <strong>authentication</strong>
 field of the request. As described in the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a>, the
@@ -307,6 +316,11 @@ unauthenticated operations.</li>
 <li>A value of 2 (<code>0x02</code>) indicates authentication tokens. The service will expect the
 <strong>authentication</strong> field to contain a JWT token. Tokens must be signed with the private key of
 the identity provider and their validity period must cover the moment when the check is done.</li>
+<li>A value of 3 (<code>0x03</code>) indicates Unix peer credentials authentication. The service expects the
+<strong>authentication</strong> field to contain the Unix user identifier (UID, <strong>not</strong> username) of the
+connecting process as a zero-padded little-endian 32-bit unsigned integer. The Parsec service
+will verify that this self-declared UID is consistent with the UID from the Unix peer
+credentials.</li>
 </ul>
 <p>Other values are unsupported and will be rejected by the service.</p>
 <h2><a class="header" href="#unauthenticated-operations" id="unauthenticated-operations">Unauthenticated Operations</a></h2>

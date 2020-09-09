@@ -814,18 +814,20 @@ cleared.</p>
 <tr><td>7</td><td>Logging is configured to include the software component from where logs are generated.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/aafd176b49dd01c3f08866d564f2fff092d1305e">Done</a></td></tr>
 </tbody></table>
 <h2><a class="header" href="#operational-mitigations" id="operational-mitigations">Operational mitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
-<tr><td>0</td><td>A trusted administrator should start the service in such a way that un-privileged processes cannot send signals to the service.</td></tr>
-<tr><td>1</td><td>A trusted administrator should check the validity of the providers and hardware modules written in the service's configuration before starting/reloading it.</td></tr>
-<tr><td>2</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.</td></tr>
-<tr><td>3</td><td>Mappings should be put in a location that only the Parsec service and the trusted administrator can access.</td></tr>
-<tr><td>4</td><td>The trusted administrator needs to be notified when any kind of resource is running out.</td></tr>
-<tr><td>5</td><td>Parsec logs coming from the service binary should be redirected to a file that is only writable by the service and readable by the trusted administrator.</td></tr>
-<tr><td>6</td><td>Parsec configuration file should be only writable by the trusted administrator and readable by the service.</td></tr>
-<tr><td>7</td><td>The trusted administrator needs to check that during the boot process the trusted identity provider has successfully given the root trust bundle to the service.</td></tr>
-<tr><td>8</td><td>The hardware descriptors should only be accessible by trusted privileged processes.</td></tr>
-<tr><td>9</td><td>The Listener endpoint should be contained in a location that only the Parsec service and the trusted administrator can access (only they can create the endpoint).</td></tr>
-<tr><td><em>10</em></td><td><em>A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.</em></td></tr>
+<p>Most of these operational mitigations are implemented when following the <a href="threat_model/secure_deployment.html">Recommendations on a
+Secure Parsec Deployment guide</a>.</p>
+<table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
+<tr><td>0</td><td>A trusted administrator should start the service in such a way that un-privileged processes cannot send signals to the service.</td><td>In a Unix OS, using the separate <code>parsec</code> user to run the service prevents that.</td></tr>
+<tr><td>1</td><td>A trusted administrator should check the validity of the providers and hardware modules written in the service's configuration before starting/reloading it.</td><td>This is a manual step that has to be done as part of configuring the service.</td></tr>
+<tr><td>2</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.</td><td>The endpoint folder is owned by the <code>parsec</code> user, which must have been created by the trusted privileged administrator. This can be checked by clients.</td></tr>
+<tr><td>3</td><td>Mappings should be put in a location that only the Parsec service and the trusted administrator can access.</td><td>The mappings are inside the <code>parsec</code> user home folder.</td></tr>
+<tr><td>4</td><td>The trusted administrator needs to be notified when any kind of resource is running out.</td><td>Currently only the logs can be used as a way of knowing that the system is failing because a resource is running out.</td></tr>
+<tr><td>5</td><td>Parsec logs coming from the service binary should be redirected to a file that is only writable by the service and readable by the trusted administrator.</td><td>Using systemd, the logs can only be written by the service and read by the <code>parsec</code> user. Otherwise, they can be stored in the <code>parsec</code> home folder.</td></tr>
+<tr><td>6</td><td>Parsec configuration file should be only writable by the trusted administrator and readable by the service.</td><td>The configuration is in the <code>parsec</code> home folder.</td></tr>
+<tr><td>7</td><td>The trusted administrator needs to check that during the boot process the trusted identity provider has successfully given the root trust bundle to the service.</td><td>This is a manual check. It is possible that Parsec would not initialize correctly if the root trust bundle has not been given to it.</td></tr>
+<tr><td>8</td><td>The hardware descriptors should only be accessible by trusted privileged processes.</td><td>Manual check but this should be the default on most systems.</td></tr>
+<tr><td>9</td><td>The Listener endpoint should be contained in a location that only the Parsec service and the trusted administrator can access (only they can create the endpoint).</td><td>The endpoint folder is owned by the <code>parsec</code> user and only writable by it.</td></tr>
+<tr><td><em>10</em></td><td><em>A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.</em></td><td><em>The parsec-clients group only has read-access on the socket.</em></td></tr>
 </tbody></table>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#recommendations-on-a-secure-parsec-deployment" id="recommendations-on-a-secure-parsec-deployment">Recommendations on a Secure Parsec Deployment</a></h1>
@@ -2376,8 +2378,13 @@ string for each API call, it does not matter how they are structured and deploye
 <p>Clients present their identity strings to the service on each API call. As set out in the <a href="parsec_client/wire_protocol.html"><strong>wire
 protocol specification</strong></a>, they do this using the <strong>authentication</strong> field of the
 API request.</p>
-<p>There are two ways in which the client can use the authentication field to share its identity with
-the service: <strong>direct authentication</strong> and <strong>authentication tokens</strong>.</p>
+<p>There are currently three ways in which the client can use the authentication field to share its
+identity with the service:</p>
+<ul>
+<li><strong>direct authentication</strong>.</li>
+<li><strong>authentication tokens</strong>.</li>
+<li><strong>Unix peer credentials</strong>.</li>
+</ul>
 <p>With <strong>direct authentication</strong>, the client authenticates the request by directly copying the
 application identity string into the <strong>authentication</strong> field of the request.</p>
 <p>With <strong>authentication tokens</strong>, the client obtains a token from an identity provider and sends it as
@@ -2386,6 +2393,10 @@ after which a new one must be issued. The application identity is contained in t
 extracted by the service after verifying the authenticity of the token. A more detailed description
 of authentication tokens and their lifecycle is present in the <a href="parsec_client/../parsec_service/system_architecture.html"><strong>sytem architecture
 specification</strong></a>.</p>
+<p>With <strong>Unix peer credentials</strong>, the client authenticates by self-declaring its Unix user identifier
+(UID) inside the <strong>authentication</strong> field of the request. The Parsec service verifies that this
+self-declared UID matches the actual UID of the connecting process via the Unix peer credentials
+mechanism.</p>
 <p>When it makes an API request, the client needs to tell the server which kind of authentication is
 being used. This is so that the server knows how to interepret the bytes in the <strong>authentication</strong>
 field of the request. As described in the <a href="parsec_client/wire_protocol.html"><strong>wire protocol specification</strong></a>, the
@@ -2404,6 +2415,11 @@ unauthenticated operations.</li>
 <li>A value of 2 (<code>0x02</code>) indicates authentication tokens. The service will expect the
 <strong>authentication</strong> field to contain a JWT token. Tokens must be signed with the private key of
 the identity provider and their validity period must cover the moment when the check is done.</li>
+<li>A value of 3 (<code>0x03</code>) indicates Unix peer credentials authentication. The service expects the
+<strong>authentication</strong> field to contain the Unix user identifier (UID, <strong>not</strong> username) of the
+connecting process as a zero-padded little-endian 32-bit unsigned integer. The Parsec service
+will verify that this self-declared UID is consistent with the UID from the Unix peer
+credentials.</li>
 </ul>
 <p>Other values are unsupported and will be rejected by the service.</p>
 <h2><a class="header" href="#unauthenticated-operations" id="unauthenticated-operations">Unauthenticated Operations</a></h2>
@@ -3061,7 +3077,8 @@ application-specific key pairs.</li>
 receipt by the identity provider. The orchestrator will use its own private key for signing, and
 verification will be via the shared public key. See the section above on trust relationships for
 details of how these keys are generated and shared.</p>
-<h3><a class="header" href="#authentication-tokens" id="authentication-tokens">Authentication Tokens</a></h3>
+<h3><a class="header" href="#authentication-1" id="authentication-1">Authentication</a></h3>
+<h4><a class="header" href="#authentication-tokens" id="authentication-tokens">Authentication Tokens</a></h4>
 <p>When client applications invoke API operations in the security service, they must include their
 application identity string somehow. This allows the security service to provide the required level
 of isolation amongst the multiple clients that might exist. Not only must the identity string be
@@ -3075,7 +3092,7 @@ support this (and it offers an authentication style known as <strong>direct auth
 purpose). This is simple, and works well in a demo or proof-of-concept environment. But it is not
 suitable for a deployed system architecture, because it does not fulfil the stated design goal of
 secretless communication.</p>
-<p>The solution to this problem is for the authentication header to contain a payload that not only
+<p>One solution to this problem is for the authentication header to contain a payload that not only
 includes the application identity, but also proves cryptographically that it is from a valid client.
 This payload takes the form of a <a href="https://tools.ietf.org/html/rfc7519"><strong>signed JSON Web Token
 (JWT)</strong></a>.</p>
@@ -3089,6 +3106,16 @@ eventually be forwarded to (and verified by) the security service. The identity 
 private key to sign the JWT. The security service has the public part of this key, and is hence able
 to perform the verification. The identity provider and the security service share one of the trust
 relationships that were defined above.</p>
+<h4><a class="header" href="#unix-peer-credentials" id="unix-peer-credentials">Unix Peer Credentials</a></h4>
+<p>Another solution to the authentication problem is to use Unix peer credentials with the <a href="parsec_service/authenticators.html">Unix peer
+credentials authenticator</a>. Unix peer credentials are connection metadata which
+specify the effective Unix user ID (UID) and group ID (GID) of the connecting process. When using a
+Unix domain sockets tranport, the endpoints can get each other's UID and GID via the operating
+system.</p>
+<p>In Unix peer credential authentication, the connecting process self-declares its UID inside the
+authentication header of the request. The Parsec service validates that the self-declared UID
+matches the actual UID from the peer credentials. If they match, authentication was successful, and
+the application identity is set to the stringified UID.</p>
 <h2><a class="header" href="#block-architecture-summary" id="block-architecture-summary">Block Architecture Summary</a></h2>
 <p>Refer to the figure below for a block representation of the key architectural components.</p>
 <p><img src="parsec_service/diagrams/system_architecture.png" alt="System Architecture Diagram" /></p>
@@ -3512,7 +3539,21 @@ currently used in the Parsec service.</p>
 <p>The direct authenticator, <a href="https://github.com/parallaxsecond/parsec-interface-rs/issues/22">currently
 named</a> &quot;simple authenticator&quot; in
 the code, directly parse the authentication field as a UTF-8 string and uses that as application
-identity. The direct authenticator is the one currently used by the Parsec service.</p>
+identity.</p>
+<h2><a class="header" href="#unix-peer-credentials-authenticator" id="unix-peer-credentials-authenticator">Unix Peer Credentials Authenticator</a></h2>
+<p>The Unix peer credentials authenticator uses Unix peer credentials to authenticate the client. Here
+'Unix peer credentials' refers to metadata about the connection between client and server that
+contains the effective Unix user identifier (UID) and Unix group identifier (GID) of the connecting
+process.</p>
+<p>To use this authenticator, the application must self-declare its UID (<strong>not</strong> username) in the
+authentication field of the request as a zero-padded little-endian 32-bit unsigned integer. This
+authenticator will then verify that the UID sourced from the peer credentials matches the one
+self-declared in the request. If they match up, authentication is successful and the application
+identity is set to the UID.</p>
+<p>Note that a Unix domain socket transport is not limited to the Unix peer credentials authenticator;
+this transport can be used with a different authenticator if required.</p>
+<p>The GID and PID components of the Unix peer credentials are currently unused by the peer credentials
+authenticator.</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#listeners" id="listeners">Listeners</a></h1>
 <h2><a class="header" href="#domain-socket-listener" id="domain-socket-listener">Domain Socket Listener</a></h2>
