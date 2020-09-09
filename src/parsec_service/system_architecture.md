@@ -284,7 +284,9 @@ receipt by the identity provider. The orchestrator will use its own private key 
 verification will be via the shared public key. See the section above on trust relationships for
 details of how these keys are generated and shared.
 
-### Authentication Tokens
+### Authentication
+
+#### Authentication Tokens
 
 When client applications invoke API operations in the security service, they must include their
 application identity string somehow. This allows the security service to provide the required level
@@ -301,7 +303,7 @@ purpose). This is simple, and works well in a demo or proof-of-concept environme
 suitable for a deployed system architecture, because it does not fulfil the stated design goal of
 secretless communication.
 
-The solution to this problem is for the authentication header to contain a payload that not only
+One solution to this problem is for the authentication header to contain a payload that not only
 includes the application identity, but also proves cryptographically that it is from a valid client.
 This payload takes the form of a [**signed JSON Web Token
 (JWT)**](https://tools.ietf.org/html/rfc7519).
@@ -317,6 +319,19 @@ eventually be forwarded to (and verified by) the security service. The identity 
 private key to sign the JWT. The security service has the public part of this key, and is hence able
 to perform the verification. The identity provider and the security service share one of the trust
 relationships that were defined above.
+
+#### Unix Peer Credentials
+
+Another solution to the authentication problem is to use Unix peer credentials with the [Unix peer
+credentials authenticator](authenticators.md). Unix peer credentials are connection metadata which
+specify the effective Unix user ID (UID) and group ID (GID) of the connecting process. When using a
+Unix domain sockets tranport, the endpoints can get each other's UID and GID via the operating
+system.
+
+In Unix peer credential authentication, the connecting process self-declares its UID inside the
+authentication header of the request. The Parsec service validates that the self-declared UID
+matches the actual UID from the peer credentials. If they match, authentication was successful, and
+the application identity is set to the stringified UID.
 
 ## Block Architecture Summary
 

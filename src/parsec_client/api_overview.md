@@ -146,8 +146,12 @@ Clients present their identity strings to the service on each API call. As set o
 protocol specification**](wire_protocol.md), they do this using the **authentication** field of the
 API request.
 
-There are two ways in which the client can use the authentication field to share its identity with
-the service: **direct authentication** and **authentication tokens**.
+There are currently three ways in which the client can use the authentication field to share its
+identity with the service:
+
+- **direct authentication**.
+- **authentication tokens**.
+- **Unix peer credentials**.
 
 With **direct authentication**, the client authenticates the request by directly copying the
 application identity string into the **authentication** field of the request.
@@ -158,6 +162,11 @@ after which a new one must be issued. The application identity is contained in t
 extracted by the service after verifying the authenticity of the token. A more detailed description
 of authentication tokens and their lifecycle is present in the [**sytem architecture
 specification**](../parsec_service/system_architecture.md).
+
+With **Unix peer credentials**, the client authenticates by self-declaring its Unix user identifier
+(UID) inside the **authentication** field of the request. The Parsec service verifies that this
+self-declared UID matches the actual UID of the connecting process via the Unix peer credentials
+mechanism.
 
 When it makes an API request, the client needs to tell the server which kind of authentication is
 being used. This is so that the server knows how to interepret the bytes in the **authentication**
@@ -177,6 +186,11 @@ permitted numerical values for this field are given as follows:-
 - A value of 2 (`0x02`) indicates authentication tokens. The service will expect the
    **authentication** field to contain a JWT token. Tokens must be signed with the private key of
    the identity provider and their validity period must cover the moment when the check is done.
+- A value of 3 (`0x03`) indicates Unix peer credentials authentication. The service expects the
+   **authentication** field to contain the Unix user identifier (UID, **not** username) of the
+   connecting process as a zero-padded little-endian 32-bit unsigned integer. The Parsec service
+   will verify that this self-declared UID is consistent with the UID from the Unix peer
+   credentials.
 
 Other values are unsupported and will be rejected by the service.
 
