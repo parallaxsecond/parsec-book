@@ -1,11 +1,5 @@
 # List of existing tests
 
-## Integration tests on providers
-
-| Name                                                                                          | Description                                                                                                                                                                                                                                                                             |
-|-----------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [TPM integration tests](https://github.com/parallaxsecond/parsec/tree/master/tests/providers) | These tests initialize a provider structure and perform operation using the `Provide` trait. A software crypto library, like `ring`, can be used to verify the behaviour. [Example with the TPM provider](https://github.com/parallaxsecond/parsec/blob/master/tests/providers/tpm.rs). |
-
 ## End-to-end testing
 
 These tests are meant to be executed on a running Parsec service and using a Parsec client to
@@ -26,13 +20,14 @@ The
 folder contain the `Dockerfile` and Parsec configuration needed to run Parsec for the corresponding
 tests.
 
-| Name                                                                                                                                     | Description                                                                                                       |
-|------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| [All providers e2e tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers)                            | End-to-end tests on a service with all providers. Mostly to test core operations.                                 |
-| [Configuration e2e tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/config)                                   | These check if the behaviour of the service is correct before and after reloading with a different configuration. |
-| [Per provider normal tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/normal_tests)              | E2E tests checking most cryptographic operations on a single provider.                                            |
-| [Per provider persistence tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/persistent_before.rs) | E2E tests checking correct behaviour of the service around persistence of keys in the Key Info Manager.           |
-| [Per provider stress tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/stress_test.rs)            | Stress tests executing a large number of canonical operations at high frequency on a single provider.             |
+| Name                                                                                                                                     | Description                                                                                                                                                                             |
+|------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [All providers e2e tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers)                            | End-to-end tests on a service with all providers. Mostly to test core operations.                                                                                                       |
+| [Cross-providers e2e tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/cross.rs)                 | Test that the output of various operations from different providers is accepted by the other providers.                                                                                 |
+| [Configuration e2e tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/config)                                   | These check if the behaviour of the service is correct before and after reloading with a different configuration.                                                                       |
+| [Per provider normal tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/normal_tests)              | E2E tests checking most cryptographic operations on a single provider. Parsec results are also verified with third party software crypto implementations (ring, the rsa crate, etc...). |
+| [Per provider persistence tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/persistent_before.rs) | E2E tests checking correct behaviour of the service around persistence of keys in the Key Info Manager.                                                                                 |
+| [Per provider stress tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/stress_test.rs)            | Stress tests executing a large number of canonical operations at high frequency on a single provider.                                                                                   |
 
 ## Fuzz testing
 
