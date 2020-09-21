@@ -112,16 +112,4 @@ The TPM provider will try to build the `tss-esapi` crate which needs built TSS 2
 libraries. It will use `pkg-config` to find them using the names `tss2-esys` and `tss2-tctildr`.
 Make sure you also follow the requirements of the [tss-esapi crate](https://docs.rs/tss-esapi).
 
-## Cross-compiling for Arm64
-
-To cross-compile the service for the Linux on Arm64 target, you will need to install the appropriate
-toolchain for this target. By default the Arm GNU toolchain is used to compile Mbed Crypto and link
-everything together. The `aarch64-linux-gnu-*` tools will be needed. Change `build-conf.toml` and
-`.cargo/config` files to change the cross-compiling toolchain used. Just execute the following
-command to cross-compile for the Linux on Arm64 target:
-
-```````
-cargo build --target aarch64-unknown-linux-gnu
-```````
-
 *Copyright 2019 Contributors to the Parsec project.*

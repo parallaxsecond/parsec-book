@@ -36,22 +36,20 @@ that are designed to help clients consume it more easily.
 
 The source code is organised into three main components: the
 [**service**](https://github.com/parallaxsecond/parsec), the
-[**client**](https://github.com/parallaxsecond/parsec-client-go) and the
+[**client**](https://github.com/parallaxsecond/parsec-client-rust) and the
 [**interface**](https://github.com/parallaxsecond/parsec-interface-rs). Each of these components is
 distributed as a GitHub repository.
 
-Other items are the **docs**, found in the service and which contains all of the documentation for
-the project (some of which you are reading now), the
-[**test**](https://github.com/parallaxsecond/parsec-client-test) repository, which contains
-integration tests for the end-to-end system, and the
-[**operations**](https://github.com/parallaxsecond/parsec-operations) repository which contains the
-language-agnostic contracts for communicating with the service.
+Other items are the [**book**](https://github.com/parallaxsecond/parsec-book) which contains all of
+the documentation for the project (some of which you are reading now) and the
+[**parsec-operations**](https://github.com/parallaxsecond/parsec-operations) repository which
+contains the language-agnostic contracts for communicating with the service.
 
 The remainder of the document will examine the contents of these repositories.
 
-## The Service Repository
+## The Parsec Repository
 
-The `service` repository contains the code for the service. The service is written in
+The `parsec` repository contains the code for the service. The service is written in
 [**Rust**](https://www.rust-lang.org). Rust projects are organised into modular units known as
 [**crates**](https://doc.rust-lang.org/beta/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html),
 each of which is formed of one or more
@@ -93,6 +91,9 @@ requirements for key handles (e.g. Mbed Crypto uses a 32 bit value for handles o
 Using a key info manager is only required for persistent keys and the only current implementation
 stores the mappings on disk.
 
+The `utils` module contain various components like the service builder and the global configuration
+mechanism.
+
 Building the service will combine the frontend and backend components mentioned above into one
 executable. It also links additional Rust crates that contain the providers, as well as crates to
 support the IPC interface. On Linux systems, this binary runs as a daemon. While it is running,
@@ -100,7 +101,7 @@ client applications (on the same host) can locate the endpoint and make API call
 
 ### The Providers Sub-Folder
 
-The `provider` folder contains the provider modules, which connect the service back-end with the
+The `providers` folder contains the provider modules, which connect the service back-end with the
 hardware or software security facilities of supported target platforms.
 
 Currently each provider sits in its own module implementing all the functionality needed to mediate
@@ -119,9 +120,9 @@ mediation:
 [Providers](providers.md) can be conditionally linked into the service as described in the [Parsec
 build](build_run.md) documentation.
 
-Like the `client` folder, the `provider` folder is also a key extension point for partner
-contributors. This project eagerly welcomes contributions of new providers in order to connect the
-service with the security facilities of host platforms and extend the ecosystem.
+The `providers` folder is also a key extension point for partner contributors. This project eagerly
+welcomes contributions of new providers in order to connect the service with the security facilities
+of host platforms and extend the ecosystem.
 
 It is not necessary for providers to be written in Rust. A provider must be written in Rust in order
 to be statically linked into the core service and hence to reside within the same running process.
@@ -132,9 +133,9 @@ Currently the service implementation does not offer this functionality.
 
 ## The Interface Repository
 
-The `interface` crate contains the Rust code that is needed to allow the service to conform to the
-interface and wire protocol. It is also used by the Rust client library, but it is not used by other
-client libraries (since those are written in other languages).
+The `parsec-interface` crate contains the Rust code that is needed to allow the service to conform
+to the interface and wire protocol. It is also used by the Rust client library, but it is not used
+by other client libraries (since those are written in other languages).
 
 The crate contains three Rust modules: `requests`, `operations` and `operations_protobuf`.
 
@@ -149,7 +150,9 @@ supporting schemes other than protobuf in the future.
 The `operations` module defines model objects for each of the operations in the API. Again, these
 definitions are independent of protobuf so that encoding schemes other than protobuf can be adopted
 if needed. The Rust structs in the operations module capture the specific inputs and outputs for
-each API operation.
+each API operation. Those operations being based on the PSA Crypto API, a lot of types used in the
+`operations` module are directly taken from the
+[`psa-crypto`](https://github.com/parallaxsecond/rust-psa-crypto) crate.
 
 The `operations_protobuf` module provides compatibility between the protobuf contracts and the
 equivalent model objects in the `operations` module. Auto-generated code is generated from the
@@ -162,8 +165,8 @@ results.
 
 ## The Operations Repository
 
-The `protobuf` folder in the `operations` repository contains the language-neutral input and output
-contracts of all of the operations that are supported in the API. This includes all of the
+The `protobuf` folder in the `parsec-operations` repository contains the language-neutral input and
+output contracts of all of the operations that are supported in the API. This includes all of the
 operations derived from the PSA Crypto API Specification, as well as additional operations that are
 specific to this service. All of these contracts are defined using [**protocol
 buffers**](https://developers.google.com/protocol-buffers/), also known as **protobuf**. Refer to
@@ -183,15 +186,14 @@ language binding for the API.
 ## The Client Repositories
 
 Client libraries are expected to reside in independent repositories, most likely inheriting the
-**protobuf** contracts from the `operations` repository. Each client library is subject to its own
-sub-structure, build system and documentation system underneath that. The structures and build
-systems will naturally vary from one language to another, and these are not governed by the project
-overall.
+**protobuf** contracts from the `parsec-operations` repository. Each client library is subject to
+its own sub-structure, build system and documentation system underneath that. The structures and
+build systems will naturally vary from one language to another, and these are not governed by the
+project overall.
 
-The `client` folder is a key extension point for partner contributors. This project eagerly welcomes
-contributions of new client libraries in different programming languages in order to enhance the
-ecosystem and increase adoption. The [`Parsec for users`](../parsec_users.md) page contains a list
-of currently available client libraries.
+This project eagerly welcomes contributions of new client libraries in different programming
+languages in order to enhance the ecosystem and increase adoption. The [`Parsec for
+users`](../parsec_users.md) page contains a list of currently available client libraries.
 
 ## Repository Map
 

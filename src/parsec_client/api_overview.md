@@ -59,9 +59,9 @@ configuration that is applied at service-deployment time.
 While the service can be composed from multiple providers, any given API operation needs to be
 implemented by a single provider. This means that client code needs to specify the target provider
 when it makes an operation request. To achieve this, the service assigns an 8-bit integer value
-(from 0 to 255) to each available provider. In practice, the numer of providers would be very small:
-probably just two or three. This integer value is the **provider identifier**. Client code must set
-a single provider identifier in each API request. The [**wire protocol
+(from 0 to 255) to each available provider. In practice, the number of providers would be very
+small: probably just two or three. This integer value is the **provider identifier**. Client code
+must set a single provider identifier in each API request. The [**wire protocol
 specification**](wire_protocol.md) explains how a request header field is used to route the request
 to the correct provider.
 
@@ -69,7 +69,7 @@ In order to set a provider identifier in an API request, the client must first b
 what providers are available, what their identifiers are, and what their characteristics are (such
 as whether they are hardware-backed or software-backed). This is done by first referencing the
 **core provider**. The core provider is the only provider that is guaranteed to be available in any
-deployment of the service. It has a provider identifier of zero (the only reserved value for
+deployment of the service. It has a provider identifier of zero (`0x00`, the only reserved value for
 provider identifiers). The core provider is special in that it doesn't implement any security or
 cryptographic operations. The core provider is used to represent the service as a whole. The
 operations of the core provider can be used to gather information about the health and configuration
@@ -182,7 +182,8 @@ permitted numerical values for this field are given as follows:-
    it indicates improper coding or a possible defect on the client side). See the section below on
    unauthenticated operations.
 - A value of 1 (`0x01`) indicates direct authentication. The service will expect the
-   **authentication** field to contain a cleartext copy of the application identity.
+   **authentication** field to contain a cleartext copy of the application identity, encoded as a
+   UTF-8 string.
 - A value of 2 (`0x02`) indicates authentication tokens. The service will expect the
    **authentication** field to contain a JWT token. Tokens must be signed with the private key of
    the identity provider and their validity period must cover the moment when the check is done.
@@ -207,7 +208,7 @@ set to 0 (`0x00`).
 
 As per the [**wire protocol specification**](wire_protocol.md), API request headers contain fields
 for **content type** and **accept type**, which respectively indicate how the request body and
-response body are encoded. Currently, the only supported value for these fields is 1 (`0x01`),
+response body are encoded. Currently, the only supported value for these fields is one (`0x01`),
 meaning that all request and response bodies contain serialized protobuf messages. All other values
 are unsupported and will be rejected by the service.
 
@@ -232,20 +233,15 @@ While this API is closely aligned with the PSA Crypto API, there are some differ
 difference is in the conventions used to name and reference cryptographic keys.
 
 In the PSA Crypto API, every key has a 32-bit numerical identifier. This identifier is set by the
-caller when the key is created. Client code then uses this 32-bit identifier to **open** the key. A
-key must be opened before it can be used in any cryptographic operations. An open key is referenced
-using a **handle** (which is distinct from the identifier). The handle is the only way that the
-client code can involve the key in cryptographic functions. Once the client has finished using the
-key, it **closes** the handle.
+caller when the persistent key is created. Client code then uses this 32-bit identifier to refer to
+the key for use in any cryptographic operation.
 
-This API differs in two ways. Firstly, the key names are not 32-bit numerical values: they are
-**strings**. Secondly, there is no notion of key handles. Keys are always referenced by name. There
-is no operation to open or close a key. Cryptographic operations are all specified in terms of the
-key name string. However, while the notion of a key handle is absent, it is important to understand
-that the opacity of keys - one of the critical design characteristics of the PSA Crypto API - is
-preserved here. Key names are used to reference keys for cryptographic operations, but the actual
-key material is *never* exposed to the caller of the API unless an explicit operation is invoked to
-export the key (and the key's usage policy permits for such an export to occur).
+This API is different: the key names are not 32-bit numerical values, they are **UTF-8 strings**.
+Cryptographic operations are all specified in terms of the key name string. It is important to
+understand that the opacity of keys - one of the critical design characteristics of the PSA Crypto
+API - is preserved here. Key names are used to reference keys for cryptographic operations, but the
+actual key material is *never* exposed to the caller of the API unless an explicit operation is
+invoked to export the key (and the key's usage policy permits for such an export to occur).
 
 The use of string names offers greater flexibility in how names can be chosen and structured. It
 allows for names to be readable and meaningful. It also allows for names to follow a structured

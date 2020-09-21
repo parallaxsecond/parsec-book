@@ -1,7 +1,7 @@
 # ListAuthenticators
 
 Gets a list of Parsec authenticators available for use at the listener endpoint. Opcode: 14
-(`0x0014`)
+(`0x000E`)
 
 ## Parameters
 
