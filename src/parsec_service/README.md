@@ -20,7 +20,7 @@ They cover the following concepts:
    and running the service
 - [Installation](install_parsec_linux.md) - installing Parsec as a systemd daemon
 - [Configuration](configuration.md) - how to configure Parsec
-- [Testing](test.md) - details about the kinds of tests we employ and how to set up your environment
+- [Testing](tests) - details about the kinds of tests we employ and how to set up your environment
    in preparation for running them
 
 *Copyright 2019 Contributors to the Parsec project.*

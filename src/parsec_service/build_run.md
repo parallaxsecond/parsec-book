@@ -18,7 +18,7 @@ one](https://github.com/parallaxsecond/parsec/blob/master/e2e_tests/provider_cfg
 The `mbed-crypto-provider` feature is going to be used as an example in this guide. This can be
 replaced by a subset of the features mentioned above, space or comma separated. If you would like to
 test the TPM or PKCS check the [related
-guides](test.md#testing-the-tpm-provider-using-the-software-tpm).
+guides](tests#testing-the-tpm-provider-using-the-software-tpm).
 
 For the `DomainSocket` listener, the socket folder needs to be created:
 
@@ -51,8 +51,8 @@ via a command-line argument:
 cargo run --features mbed-crypto-provider -- --config e2e_tests/provider_cfg/mbed-crypto/config.toml
 ```````
 
-From another terminal, it is now possible to execute the [end-to-end
-tests](test.md#end-to-end-tests) on Parsec!
+From another terminal, it is now possible to execute the [end-to-end tests](tests#end-to-end-tests)
+on Parsec!
 
 ```````
 cd e2e_tests

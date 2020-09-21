@@ -38,7 +38,7 @@ will check if your files are formatted correctly.
 
 ## Contributing
 
-Please check the [**Contribution Guidelines**](https://parallaxsecond.github.io/parsec-book/contributing.html)
+Please check the [**Contribution Guidelines**](https://parallaxsecond.github.io/parsec-book/contributing/index.html)
 to know more about the contribution process.
 
 ## License
