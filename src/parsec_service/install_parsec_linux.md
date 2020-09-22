@@ -3,9 +3,9 @@
 Parsec can be built and installed as a Linux daemon using systemd. The daemon is a systemd user
 daemon run by the `parsec` user. Some manual steps are needed to make sure that permissions are set
 up correctly so that Parsec is installed respecting the operational mitigations of our [threat
-model](../threat_model/threat_model.md). Similarly to the threat model, this guide proposes
-different alternatives in case an Identity Provider is available or not. The role and description of
-an Identity Provider in Parsec is described in the [System
+model](../parsec_security/parsec_threat_model/threat_model.md). Similarly to the threat model, this
+guide proposes different alternatives in case an Identity Provider is available or not. The role and
+description of an Identity Provider in Parsec is described in the [System
 Architecture](https://parallaxsecond.github.io/parsec-book/parsec_service/system_architecture.html)
 page. Currently, Parsec does not support integration with any Identity Provider. To securely install
 Parsec, please follow the steps of deployment **without an Identity Provider**.

@@ -7,8 +7,8 @@ Some of the algorithms defined here are deprecated and should not be used withou
 is at the discretion of the system administrator whether those algorithms are permitted or not.
 
 **Notice:** not all possible algorithms are currently supported by Parsec. Please see the [API
-coverage](../../service_api_coverage.md) for an overview of what Parsec currently supports. Some of
-the attributes might not be supported by some providers as it is not in their interface.
+coverage](service_api_coverage.md) for an overview of what Parsec currently supports. Some of the
+attributes might not be supported by some providers as it is not in their interface.
 
 ## Algorithm type
 

@@ -15,8 +15,8 @@ Create the specification page for the Parsec Book, under
 also be found in the menu on the left of all pages). Include operation details such as parameters,
 results, errors specific to the operation, a description, and a link to the
 [protobuf](#parsec-operations) contract (which will be created further on). Also update all API
-tables on the [Service API](../service_api_coverage.md) and [Client API](../clients_api_coverage.md)
-pages to reflect the new addition (create any API tables if they are missing).
+tables on the [Parsec Operations Coverage](../parsec_client/operations/service_api_coverage.md) page
+to reflect the new addition (create any API tables if they are missing).
 
 The opcode used should be the next available one. To find this, go to
 [`parsec-interface-rs/src/requests/mod.rs`](https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations/mod.rs)

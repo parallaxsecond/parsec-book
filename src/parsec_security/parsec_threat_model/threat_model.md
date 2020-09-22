@@ -325,7 +325,7 @@ cleared.
 ## Operational mitigations
 
 Most of these operational mitigations are implemented when following the [Recommendations on a
-Secure Parsec Deployment guide](secure_deployment.md).
+Secure Parsec Deployment guide](../secure_deployment.md).
 
 | ID   | Justification                                                                                                                                                      | Details                                                                                                                                                  |
 |------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|

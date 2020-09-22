@@ -3,7 +3,7 @@
 The following recommendations should be applied in order for Parsec to respect some of the
 operational mitigations. These recommendations have been thought of for a Linux system and should be
 modified/ported for other operating systems. The linked [operational
-mitigations](parsec_thread_model/threat_model.md#operational-mitigations) are noted with `O-n`.
+mitigations](parsec_threat_model/threat_model.md#operational-mitigations) are noted with `O-n`.
 
 - The service must be running as the `parsec` user (O-0).
 - Key mappings must only be read/write by the `parsec` user (O-3).
