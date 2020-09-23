@@ -5,6 +5,11 @@ provide a common API to secure services in a platform-agnostic way.
 
 Find here all the technical documentation of Parsec, alongside user and developer guides.
 
+Go straight to the [overview](overview.md) to learn more about the project! Then, depending on what
+you want to know, you can go to the [users](parsec_users.md), [client
+developers](parsec_client/README.md), [service developers](parsec_service/README.md) or
+[security](parsec_security/README.md) sections.
+
 # Disclaimer
 
 Parsec is a new open source project and is under development. This code repository is being made

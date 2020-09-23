@@ -59,13 +59,12 @@ protocol itself is neither of these things: it is an entirely bespoke protocol.
 
 ### Synchronous Operation
 
-The wire protocol operation is synchronous: the client initiates a connection and transmits a
-request. It then blocks while the service performs the request and transmits the response on the
-return stream. The protocol therefore only supports short-lived operations (meaning that the
-fulfillment time must be well within any timeout limitations that the transport might impose). The
-protocol can support longer-lived operations, but it is the responsibility of the service API to
-define how these are managed. There could, for example, be a pattern whereby there are separate
-initiation and status polling operations.
+The wire protocol is based on requests and responses, and therefore models synchronous patterns of
+interaction. There is nothing in current versions of the protocol to assist with asynchronous
+patterns of interaction between the client and the service. Future versions of the protocol may
+introduce such concepts. In the meantime, depending on the type of transport used, it may be
+possible for the service or the clients to take advantage of asynchronous features of the transport
+(such as the non-blocking mode of a socket) to provide certain levels of asynchronous control.
 
 ### Separation of Protocol and Transport
 
@@ -115,10 +114,9 @@ encoding is defined for use in the message bodies, and this encoding is based on
 buffers**](https://developers.google.com/protocol-buffers/), also known as **protobuf**.
 
 For each operation in the API, two separate protobuf message definitions will exist: one for that
-operation's inputs, and another for its outputs. The content bytes in a request message can be
-converted through protobuf-generated code into a model object for the inputs. Likewise, the content
-bytes in a response message can be converted through protobuf-generated code into a model object for
-the outputs.
+operation's inputs, and another for its outputs. The body in a request message can be converted
+through protobuf-generated code into a model object for the inputs. Likewise, the body in a response
+message can be converted through protobuf-generated code into a model object for the outputs.
 
 Processing any message is, therefore, a two-phase process: firstly, the header must be processed by
 writing code that is conformant with this specification; and secondly, the content must be processed
@@ -151,8 +149,8 @@ cleanly separated from those of another. But while this identifier string is the
 authentication, there are different ways that it can be used, and consequently there are different
 ways for the authentication field to be populated. One simple method is for the client identifier to
 be passed directly. But it is also possible to use the identifier as input to an HMAC algorithm over
-the content bytes, in which case the authentication field would contain the computed HMAC, rather
-than the identifier itself.
+the body, in which case the authentication field would contain the computed HMAC, rather than the
+identifier itself.
 
 ### Sessions
 
@@ -176,8 +174,8 @@ wire protocol version not supported by the service will be sent back a
 Responses will be sent using the same wire protocol version than the requests they originate from.
 
 Please note that the wire protocol version is **not** the mean of finding out the level of support
-for specific operations in the API. The ListOpcodes operation should be used, per provider basis, to
-determine if an operation is supported by the provider.
+for specific operations in the API. The [ListOpcodes](operations/list_opcodes.md) operation should
+be used, per provider basis, to determine if an operation is supported by the provider.
 
 ### Opcodes
 
@@ -186,27 +184,18 @@ that determines which API operation is being invoked by the requests. Recall tha
 request/response pair corresponds to the invocation of exactly one API operation, and each of these
 operations is assigned an integer opcode.
 
-The opcode zero is not used and is not valid. The lowest valid opcode is 1, and the highest valid
-opcode is (2^32-1). Within this overall numerical range, certain partitions and conventions are
-established. Ranges of opcodes must be carefully observed and not abused. Contributing developers
-will have the opportunity to claim parts of the numerical range for their own unique features and
-operations.
+The opcode zero is not used and is not valid. The lowest valid opcode is `0x0001`, and the highest
+valid opcode is `0xFFFF`.
 
-Currently, opcodes 1-999 are reserved for internal service housekeeping operations, and opcodes
-1000-1999 are reserved for key management and cryptographic operations corresponding to those of the
-Platform Security Architecture (PSA) Cryptography API.
-
-Opcodes from 2000 onwards are currently unused and unreserved. No service or client code may be
-contributed that uses such opcodes. Please see the contribution guidelines for further information.
-
-All opcodes are defined within the API specification.
+All [opcodes](operations#overview) are defined within the API specification.
 
 ### Status
 
 All responses contain an unsigned 2-byte integer field called the **status**, which is defined to
 indicate the overall success or failure of the operation.
 
-The status value of zero is used universally to mean that the operation completed successfully.
+The status value of zero (`0x0000`) is used universally to mean that the operation completed
+successfully.
 
 With the exception of zero as a special case, other status values are partitioned according to the
 same strategy as the opcodes. Status values from 1-999 are reserved for internal service
@@ -223,7 +212,8 @@ This section provides a complete specification for the interpretation of message
 specification, service and client code can be created to both consume and produce conformant
 messages on any suitable transport medium.
 
-All multi-byte numerical fields are transported in **little-endian** format.
+All multi-byte numerical fields are transported in **little-endian** format: the least significant
+byte is sent first.
 
 ### The Fixed Common Header
 
@@ -235,58 +225,33 @@ service back to the client). However, most fields are relevant and common to bot
 
 Each field is annotated according to the following scheme:
 
-- The annotation *common* indicates that the field is common to both request messages and response
-   messages.
-- The annotation *requests only* indicates that the field is only used in requests and may be
-   ignored in responses.
-- The annotation *responses only* indicates that the field is only used in responses and may be
-   ignored in requests.
+- "Common" indicates that the field is common to both request messages and response messages.
+- "Requests only" indicates that the field is only used in requests and may be ignored in responses.
+- "Responses only" indicates that the field is only used in responses and may be ignored in
+   requests.
 
-Fields occur in contiguous memory and there must be no additional padding between them.
+Fields occur in contiguous memory and there must be no additional padding between them. On the
+following diagram, the bytes go left to right from least significant to most significant.
 
 ![Header Structure](diagrams/wire_header.png)
 
-Field descriptions:
-
-- Magic number (*common*): a 32-bit unsigned integer whose value must be 0x5EC0A710 (selected to be
-   an approximate transcoding of SECurity API). This field can be used as an initial validity check
-   for incoming messages. This field **must** be populated in all messages. This field will remain
-   the same across different wire protocol versions.
-- Header size (*common*): a 16-bit unsigned integer whose value is the size of the **remainder** of
-   the header in bytes (once the magic number and header size fields have been consumed). Consumers
-   **must** use this field to consume the correct number of bytes of header from the input stream,
-   rather than use this specification to deduce the header size. This field's position and width
-   will remain the same across different wire protocol versions. Only the value of this field may
-   change between versions.
-- Major version number (*common*): an 8-bit versioning field. Currently the only supported and valid
-   value for this field is 1. This field's position and width will remain the same across different
-   wire protocol versions. Only the value of this field may change between versions.
-- Minor version number (*common*): an 8-bit versioning sub-field. Currently the only supported and
-   valid value for this field is 0. This field's position and width will remain the same across
-   different wire protocol versions. Only the value of this field may change between versions.
-- Flags (*common*): a 16-bit field that is currently unused and should be set to zero.
-- Provider (*common*): an 8-bit field identifying the back-end service provider for which the
-   request is intended. A value of zero indicates that the request is intended for a special
-   provider, which always exists, and is used for service discovery and communication bootstrapping.
-- Session handle (*common*): a 64-bit session identifier.
-- Content type (*common*): an 8-bit field that defines how the request body should be processed. The
-   only currently-supported value is 1, which indicates that the request body should be treated as a
-   serialized protobuf message.
-- Accept type (*requests only*): an 8-bit field that defines how the service should provide its
-   response. The only currently-supported value is 1, which indicates that the service should
-   provide a response whose body is a serialized protobuf message.
-- Auth type (*requests only*): an 8-bit field that defines how the authentication bytes should be
-   interpreted.
-- Content length (*common*): a 32-bit unsigned integer field providing the exact number of bytes of
-   content.
-- Auth length (*requests only*): a 16-bit unsigned integer field providing the exact number of bytes
-   of authentication.
-- OPCODE (*common*): the 32-bit unsigned integer opcode, indicating the operation being performed by
-   this request. See the section above on opcodes.
-- STATUS (*responses only*): the 16-bit unsigned integer status, indicating the overall success or
-   failure of the operation. A value of zero is used universally to mean success. Other values
-   should be interpreted according to the API specification.
-- RESERVED (*common*): a 16-bit field that is currently unused and must be set to zero.
+| Name                 | Scheme         | Size (in bytes) | Description                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|----------------------|----------------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Magic number         | Common         | 4               | Must be `0x5EC0A710` (selected to be an approximate transcoding of SECurity API). This field can be used as an initial validity check for incoming messages. This field **must** be populated in all messages. This field will remain the same across different wire protocol versions.                                                                                                                                                             |
+| Header size          | Common         | 2               | Size of the **remainder** of the header in bytes (once the magic number and header size fields have been consumed). Consumers **must** use this field to consume the correct number of bytes of header from the input stream, rather than use this specification to deduce the header size. This field's position and width will remain the same across different wire protocol versions. Only the value of this field may change between versions. |
+| Major version number | Common         | 1               | Versioning field. Currently the only supported and valid value for this field is `0x01`. This field's position and width will remain the same across different wire protocol versions. Only the value of this field may change between versions.                                                                                                                                                                                                    |
+| Minor version number | Common         | 1               | Versioning sub-field. Currently the only supported and valid value for this field is `0x00`. This field's position and width will remain the same across different wire protocol versions. Only the value of this field may change between versions.                                                                                                                                                                                                |
+| Flags                | Common         | 2               | Currently unused and should be set to `0x0000`.                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Provider             | Common         | 1               | Identify the back-end service provider for which the request is intended. A value of zero indicates that the request is intended for a special provider, which always exists, and is used for service discovery and communication bootstrapping.                                                                                                                                                                                                    |
+| Session handle       | Common         | 8               | Session identifier.                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Content type         | Common         | 1               | Defines how the message body should be processed. The only currently-supported value is `0x01`, which indicates that the message body should be treated as a serialized protobuf message.                                                                                                                                                                                                                                                           |
+| Accept type          | Requests only  | 1               | Defines how the service should provide its response. The only currently-supported value is `0x01`, which indicates that the service should provide a response whose body is a serialized protobuf message.                                                                                                                                                                                                                                          |
+| Auth type            | Requests only  | 1               | Defines how the authentication bytes should be interpreted.                                                                                                                                                                                                                                                                                                                                                                                         |
+| Content length       | Common         | 4               | Provides the exact number of bytes of body.                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Auth length          | Requests only  | 2               | Provides the exact number of bytes of authentication.                                                                                                                                                                                                                                                                                                                                                                                               |
+| Opcode               | Common         | 4               | Indicates the operation being performed by this request. See the [section](#opcodes) above on opcodes.                                                                                                                                                                                                                                                                                                                                              |
+| Status               | Responses only | 2               | Indicates the overall success or failure of the operation. A value of zero is used universally to mean success. Other values should be interpreted according to the [API specification](status_codes.md).                                                                                                                                                                                                                                           |
+| Reserved             | Common         | 2               | Currently unused and must be set to zero.                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 ### Requests
 

@@ -117,8 +117,9 @@ implementations.
 
 Assuming that the provider is an in-process Rust `Provider` object, the `BackEndHandler` will
 fully-decode the request in order to turn it into a model object from the `operations` module. These
-model objects have names beginning with the prefix `Op`, such as `OpKeyCreate` or `OpKeyList`. Once
-the operation model has been constructed, it is executed on the `Provider`.
+model objects are named `Operation` and are namespaced with the operation name module such as
+`operations::list_opcodes::Operation`. Once the operation model has been constructed, it is executed
+on the `Provider`.
 
 ### The Converter
 
@@ -136,10 +137,10 @@ The `Provider` is where the request is fulfilled using whatever combined softwar
 it has been coded for. The service can support any number of providers to interact with platform
 facilities such as TPM, HSM or TA. The provider does whatever is necessary to implement the
 operation. It then returns a result. Results are also communicated using model objects from the
-`operations` module. These have names with the prefix `Result`, such as `ResultKeyCreate` or
-`ResultKeyList`. This is where the data flow changes direction and begins its return journey to the
-client application. For a more detailed description of the current providers, see the
-[**Providers**](providers.md) page.
+`operations` module. These are named `Result`, namespaced with the operation name module such as
+`operations::psa_import_key::Result`. This is where the data flow changes direction and begins its
+return journey to the client application. For a more detailed description of the current providers,
+see the [**Providers**](providers.md) page.
 
 The `Provider` implements the `Provide` trait.
 

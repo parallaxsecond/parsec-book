@@ -14,19 +14,21 @@ The core provider is a non-cryptographic provider, tasked with storing and distr
 and dynamic information about the service. It is the base for service discovery, helping clients
 identify what functionality is available.
 
-One instance of the core provider must always be running with a provider ID of 0.
+One instance of the core provider must always be running with a provider ID of zero (`0x00`).
 
-## Mbed Provider
+## Mbed Crypto Provider
 
 **Provider UUID: 1c1139dc-ad7c-47dc-ad6b-db6fdb466552**
 
-The Mbed provider is a software-based provider built on top of Mbed Crypto - the reference
-implementation of the PSA cryptography specification. Mbed Crypto is loaded as a static library and
-executes with the rest of the service in user-space.
+The [Mbed Crypto](https://os.mbed.com/docs/mbed-os/v6.3/apis/mbed-crypto.html) provider is a
+software-based provider built on top of Mbed Crypto - the reference implementation of the PSA
+cryptography specification. Mbed Crypto is loaded as a static library and executes with the rest of
+the service in user-space.
 
-The software version of the Mbed provider is meant as a proof-of-concept and should not be used in
-real-world environments. Future improvements will expand the security guarantee of Mbed Crypto-based
-providers.
+As a software provider, Mbed Crypto does not offer the same security guarantees as other
+hardware-based providers and does not store its keys in a secure location in hardware, but directly
+on disk. Because of that, the Mbed Crypto provider should not be used securely for private key
+operations but can be used to simplify proof of concept projects.
 
 ## TPM Provider
 

@@ -50,23 +50,17 @@ cargo test --doc --all-features
 cargo test --lib --all-features
 ```
 
-### Integration tests
-
-Executing doc, unit and integration tests (it is currently not possible to isolate only the
-integration tests):
-
-```
-cargo test --all-features
-```
-
 ### End-to-end tests
 
-They need to be executed from the `e2e_tests` folder.
+They need to be executed from the `e2e_tests` folder with a specific set of features describing for
+which providers the tests should be run against. You can choose from the following list:
+`mbed-crypto-provider`, `pkcs11-provider` and `tpm-provider`. `all-providers` selects them all. In
+the following sections, the `mbed-crypto-provider` will be assumed.
 
 #### Normal tests
 
 ```
-cargo test normal_tests
+cargo test --features mbed-crypto-provider normal_tests
 ```
 
 #### Persistence integration tests
@@ -77,7 +71,7 @@ of commands to execute).
 #### Stress tests
 
 ```
-cargo test stress_test
+cargo test --features mbed-crypto-provider stress_test
 ```
 
 #### All providers end-to-end tests.
@@ -85,7 +79,13 @@ cargo test stress_test
 This expects the Parsec service to include all providers.
 
 ```
-cargo test all_providers
+cargo test --features all-providers all_providers
+```
+
+Configuration tests, using all providers (must be run single-threaded):
+
+```
+cargo test --features all-providers config -- --test-threads=1
 ```
 
 ## Fuzz testing
@@ -149,17 +149,19 @@ Software HSM. You will need to follow these steps:
    Parsec.
 - install Parsec with the `pkcs11-provider` feature: `cargo build --features pkcs11-provider`.
 
-Create a new token in a new slot. The slot number assigned will be random and is found with the
-`find_slot_number` script.
+Create a new token in a new slot.
 
 ```
 softhsm2-util --init-token --slot 0 --label "Parsec Tests" --pin 123456 --so-pin 123456
 ```
 
-Find and append the slot number at the end of the configuration file:
+The slot number assigned will be random and can be found and appended at the end of the
+configuration file with the following commands:
 
 ```
-./e2e_tests/provider_cfg/pkcs11/find_slot_number.sh e2e_tests/provider_cfg/pkcs11/config.toml
+SLOT_NUMBER=`softhsm2-util --show-slots | head -n2 | tail -n1 | cut -d " " -f 2`
+# Find all TOML files in the directory (except Cargo.toml) and replace the commented slot number with the valid one
+find . -name "*toml" -not -name "Cargo.toml" -exec sed -i "s/^# slot_number.*$/slot_number = $SLOT_NUMBER/" {} \;
 ```
 
 Start Parsec with the PKCS11 configuration:
