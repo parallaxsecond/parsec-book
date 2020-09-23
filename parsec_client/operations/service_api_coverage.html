@@ -1,0 +1,349 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Parsec Operations Coverage - The Parsec Book</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../../favicon.png">
+        
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../../overview.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="chapter-item expanded "><a href="../../parsec_users.html"><strong aria-hidden="true">3.</strong> Parsec for users</a></li><li class="chapter-item expanded "><a href="../../parsec_client/index.html"><strong aria-hidden="true">4.</strong> Parsec for client developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../parsec_client/api_overview.html"><strong aria-hidden="true">4.1.</strong> API Overview</a></li><li class="chapter-item expanded "><a href="../../parsec_client/wire_protocol.html"><strong aria-hidden="true">4.2.</strong> Wire Protocol</a></li><li class="chapter-item expanded "><a href="../../parsec_client/status_codes.html"><strong aria-hidden="true">4.3.</strong> Status Codes</a></li><li class="chapter-item expanded "><a href="../../parsec_client/writing_library.html"><strong aria-hidden="true">4.4.</strong> Writing a new Parsec Client Library</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/index.html"><strong aria-hidden="true">4.5.</strong> Operations</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../parsec_client/operations/service_api_coverage.html" class="active"><strong aria-hidden="true">4.5.1.</strong> Parsec Operations Coverage</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_key_attributes.html"><strong aria-hidden="true">4.5.2.</strong> PSA Key Attributes</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_algorithm.html"><strong aria-hidden="true">4.5.3.</strong> PSA Algorithm</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/ping.html"><strong aria-hidden="true">4.5.4.</strong> Ping</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_generate_key.html"><strong aria-hidden="true">4.5.5.</strong> PsaGenerateKey</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_destroy_key.html"><strong aria-hidden="true">4.5.6.</strong> PsaDestroyKey</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_sign_hash.html"><strong aria-hidden="true">4.5.7.</strong> PsaSignHash</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_verify_hash.html"><strong aria-hidden="true">4.5.8.</strong> PsaVerifyHash</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_import_key.html"><strong aria-hidden="true">4.5.9.</strong> PsaImportKey</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_export_public_key.html"><strong aria-hidden="true">4.5.10.</strong> PsaExportPublicKey</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/list_providers.html"><strong aria-hidden="true">4.5.11.</strong> ListProviders</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/list_opcodes.html"><strong aria-hidden="true">4.5.12.</strong> ListOpcodes</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_asymmetric_encrypt.html"><strong aria-hidden="true">4.5.13.</strong> PsaAsymmetricEncrypt</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_asymmetric_decrypt.html"><strong aria-hidden="true">4.5.14.</strong> PsaAsymmetricDecrypt</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_export_key.html"><strong aria-hidden="true">4.5.15.</strong> PsaExportKey</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_generate_random.html"><strong aria-hidden="true">4.5.16.</strong> PsaGenerateRandom</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/list_authenticators.html"><strong aria-hidden="true">4.5.17.</strong> ListAuthenticators</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_hash_compute.html"><strong aria-hidden="true">4.5.18.</strong> PsaHashCompute</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_hash_compare.html"><strong aria-hidden="true">4.5.19.</strong> PsaHashCompare</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_aead_encrypt.html"><strong aria-hidden="true">4.5.20.</strong> PsaAeadEncrypt</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_aead_decrypt.html"><strong aria-hidden="true">4.5.21.</strong> PsaAeadDecrypt</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_raw_key_agreement.html"><strong aria-hidden="true">4.5.22.</strong> PsaRawKeyAgreement</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_cipher_encrypt.html"><strong aria-hidden="true">4.5.23.</strong> PsaCipherEncrypt</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_cipher_decrypt.html"><strong aria-hidden="true">4.5.24.</strong> PsaCipherDecrypt</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_mac_compute.html"><strong aria-hidden="true">4.5.25.</strong> PsaMacCompute</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_mac_verify.html"><strong aria-hidden="true">4.5.26.</strong> PsaMacVerify</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_sign_message.html"><strong aria-hidden="true">4.5.27.</strong> PsaSignMessage</a></li><li class="chapter-item expanded "><a href="../../parsec_client/operations/psa_verify_message.html"><strong aria-hidden="true">4.5.28.</strong> PsaVerifyMessage</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../parsec_service/index.html"><strong aria-hidden="true">5.</strong> Parsec for service developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../parsec_service/system_architecture.html"><strong aria-hidden="true">5.1.</strong> System Architecture</a></li><li class="chapter-item expanded "><a href="../../parsec_service/interfaces_and_dataflow.html"><strong aria-hidden="true">5.2.</strong> Interfaces and Dataflow</a></li><li class="chapter-item expanded "><a href="../../parsec_service/source_code_structure.html"><strong aria-hidden="true">5.3.</strong> Source Code Structure</a></li><li class="chapter-item expanded "><a href="../../parsec_service/listeners.html"><strong aria-hidden="true">5.4.</strong> Listeners</a></li><li class="chapter-item expanded "><a href="../../parsec_service/authenticators.html"><strong aria-hidden="true">5.5.</strong> Authenticators</a></li><li class="chapter-item expanded "><a href="../../parsec_service/converters.html"><strong aria-hidden="true">5.6.</strong> Converters</a></li><li class="chapter-item expanded "><a href="../../parsec_service/providers.html"><strong aria-hidden="true">5.7.</strong> Providers</a></li><li class="chapter-item expanded "><a href="../../parsec_service/key_info_managers.html"><strong aria-hidden="true">5.8.</strong> Key Info Managers</a></li><li class="chapter-item expanded "><a href="../../parsec_service/adding_provider.html"><strong aria-hidden="true">5.9.</strong> Adding a new Parsec Provider</a></li><li class="chapter-item expanded "><a href="../../parsec_service/build_run.html"><strong aria-hidden="true">5.10.</strong> How to build and run Parsec</a></li><li class="chapter-item expanded "><a href="../../parsec_service/install_parsec_linux.html"><strong aria-hidden="true">5.11.</strong> How to securely install Parsec on Linux</a></li><li class="chapter-item expanded "><a href="../../parsec_service/configuration.html"><strong aria-hidden="true">5.12.</strong> Parsec Configuration</a></li><li class="chapter-item expanded "><a href="../../parsec_service/tests/index.html"><strong aria-hidden="true">5.13.</strong> How to test Parsec</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../parsec_service/tests/existing_tests.html"><strong aria-hidden="true">5.13.1.</strong> List of existing tests</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../../parsec_security/index.html"><strong aria-hidden="true">6.</strong> Parsec Security</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../parsec_security/parsec_threat_model/threat_model.html"><strong aria-hidden="true">6.1.</strong> Parsec Threat Model</a></li><li class="chapter-item expanded "><a href="../../parsec_security/secure_deployment.html"><strong aria-hidden="true">6.2.</strong> Recommendations for Secure Deployment</a></li><li class="chapter-item expanded "><a href="../../parsec_security/rust_client_threat_model/threat_model.html"><strong aria-hidden="true">6.3.</strong> Parsec Rust Client Threat Model</a></li></ol></li><li class="chapter-item expanded "><a href="../../contributing/index.html"><strong aria-hidden="true">7.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../contributing/adding_new_operation_how_to.html"><strong aria-hidden="true">7.1.</strong> How to add operations to Parsec</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The Parsec Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#parsec-operations-coverage" id="parsec-operations-coverage">Parsec Operations Coverage</a></h1>
+<p>These tables define the current level of coverage in Parsec for the operations and their parameters.
+Only the operations <a href="README.html">specified</a> and that have a dedicated page are put in the following
+table.</p>
+<p>Not all parameters (key types, algorithms) of the operation might be supported. See the following
+sections for details.</p>
+<table><thead><tr><th>Operation</th><th>Core provider</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
+<tr><td><a href="ping.html">Ping</a></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="list_providers.html">ListProviders</a></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="list_opcodes.html">ListOpcodes</a></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="list_authenticators.html">ListAuthenticators</a></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_import_key.html">PsaImportKey</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td><a href="psa_generate_key.html">PsaGenerateKey</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td><a href="psa_destroy_key.html">PsaDestroyKey</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td><a href="psa_export_key.html">PsaExportKey</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_export_public_key.html">PsaExportPublicKey</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td><a href="psa_hash_compute.html">PsaHashCompute</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_hash_compare.html">PsaHashCompare</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_mac_compute.html">PsaMacCompute</a></td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_mac_verify.html">PsaMacVerify</a></td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_cipher_encrypt.html">PsaCipherEncrypt</a></td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_cipher_decrypt.html">PsaCipherDecrypt</a></td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_aead_encrypt.html">PsaAeadEncrypt</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_aead_decrypt.html">PsaAeadDecrypt</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_sign_message.html">PsaSignMessage</a></td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_verify_message.html">PsaVerifyMessage</a></td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_sign_hash.html">PsaSignHash</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td><a href="psa_verify_hash.html">PsaVerifyHash</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td><a href="psa_asymmetric_encrypt.html">PsaAsymmetricEncrypt</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_asymmetric_decrypt.html">PsaAsymmetricDecrypt</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_raw_key_agreement.html">PsaRawKeyAgreement</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_generate_random.html">PsaGenerateRandom</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+</tbody></table>
+<h3><a class="header" href="#key-types-support" id="key-types-support">Key types support</a></h3>
+<p>This table describe if the following <a href="psa_key_attributes.html#keytype-type">key types</a> are supported
+for key management operations.</p>
+<table><thead><tr><th>Key type</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
+<tr><td>RawData</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>Hmac</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>Derive</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>Aes</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>Des</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>Camellia</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>Arc4</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>Chacha20</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>RsaPublicKey</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>RsaKeyPair</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>EccKeyPair</td><td>✅</td><td>❌</td><td>✅</td></tr>
+<tr><td>EccPublicKey</td><td>✅</td><td>❌</td><td>✅</td></tr>
+<tr><td>DhKeyPair</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>DhPublicKey</td><td>✅</td><td>❌</td><td>❌</td></tr>
+</tbody></table>
+<h3><a class="header" href="#algorithm-support" id="algorithm-support">Algorithm support</a></h3>
+<p>These tables describe if the following <a href="psa_algorithm.html">algorithms</a> are supported in all
+cryptographic operations they could be used in.</p>
+<h4><a class="header" href="#hash-algorithms" id="hash-algorithms">Hash algorithms</a></h4>
+<table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
+<tr><td>MD2</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>MD4</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>MD5</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>RIPEMD-160</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>SHA-1</td><td>✅</td><td>❌</td><td>✅</td></tr>
+<tr><td>SHA-224</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>SHA-256</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>SHA-384</td><td>✅</td><td>❌</td><td>✅</td></tr>
+<tr><td>SHA-512</td><td>✅</td><td>❌</td><td>✅</td></tr>
+<tr><td>SHA-512/224</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>SHA-512/256</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>SHA3-224</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>SHA3-256</td><td>✅</td><td>❌</td><td>✅</td></tr>
+<tr><td>SHA3-384</td><td>✅</td><td>❌</td><td>✅</td></tr>
+<tr><td>SHA3-512</td><td>✅</td><td>❌</td><td>✅</td></tr>
+</tbody></table>
+<h3><a class="header" href="#mac-algorithms" id="mac-algorithms">MAC algorithms</a></h3>
+<table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
+<tr><td>HMAC</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>CBC-MAC</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>CMAC</td><td>❌</td><td>❌</td><td>❌</td></tr>
+</tbody></table>
+<h3><a class="header" href="#cipher-algorithms" id="cipher-algorithms">Cipher algorithms</a></h3>
+<table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
+<tr><td>Stream Cipher</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>CTR</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>CFB</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>OFB</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>XTS</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>ECB with no padding</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>CBC with no padding</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>CBCP with PKCS#7 padding</td><td>❌</td><td>❌</td><td>❌</td></tr>
+</tbody></table>
+<h4><a class="header" href="#aead-algorithms" id="aead-algorithms">AEAD algorithms</a></h4>
+<table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
+<tr><td>CCM</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>GCM</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>ChaCha20-Poly1305</td><td>✅</td><td>❌</td><td>❌</td></tr>
+</tbody></table>
+<h4><a class="header" href="#asymmetric-signature-algorithms" id="asymmetric-signature-algorithms">Asymmetric signature algorithms</a></h4>
+<table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
+<tr><td>RSA PKCS#1 v1.5 signature with hashing</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>Raw PKCS#1 v1.5 signature</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>RSA PSS signature with hashing</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>ECDSA signature with hashing</td><td>❌</td><td>❌</td><td>✅</td></tr>
+<tr><td>ECDSA signature without hashing</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>Deterministic ECDSA signature with hashing</td><td>❌</td><td>❌</td><td>❌</td></tr>
+</tbody></table>
+<h4><a class="header" href="#asymmetric-encryption-algorithms" id="asymmetric-encryption-algorithms">Asymmetric encryption algorithms</a></h4>
+<table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
+<tr><td>RSA PKCS#1 v1.5 encryption</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>RSA OAEP encryption</td><td>✅</td><td>❌</td><td>❌</td></tr>
+</tbody></table>
+<h4><a class="header" href="#key-agreement-algorithms" id="key-agreement-algorithms">Key agreement algorithms</a></h4>
+<table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
+<tr><td>FFDH</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>ECDH</td><td>✅</td><td>❌</td><td>❌</td></tr>
+</tbody></table>
+<h2><a class="header" href="#increasing-psa-api-coverage" id="increasing-psa-api-coverage">Increasing PSA API coverage</a></h2>
+<p>You can help increase the coverage of the PSA Crypto API! See
+<a href="../../contributing/adding_new_operation_how_to.html">here</a> on how you can contribute.</p>
+<p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../../parsec_client/operations/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../../parsec_client/operations/psa_key_attributes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../../parsec_client/operations/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../../parsec_client/operations/psa_key_attributes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
