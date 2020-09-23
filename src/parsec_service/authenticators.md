@@ -2,7 +2,7 @@
 
 ## Direct Authenticator
 
-The direct authenticator directly parse the authentication field as a UTF-8 string and uses that as
+The direct authenticator directly parses the authentication field as a UTF-8 string and uses that as
 application identity.
 
 ## Unix Peer Credentials Authenticator

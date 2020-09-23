@@ -7,7 +7,7 @@ Find here all the technical documentation of Parsec, alongside user and develope
 
 Go straight to the [overview](overview.md) to learn more about the project! Then, depending on what
 you want to know, you can go to the [users](parsec_users.md), [client
-developpers](parsec_client/README.md), [service developpers](parsec_service/README.md) or
+developers](parsec_client/README.md), [service developers](parsec_service/README.md) or
 [security](parsec_security/README.md) sections.
 
 # Disclaimer

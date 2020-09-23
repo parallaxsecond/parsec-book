@@ -175,9 +175,8 @@ component can verify it.
    certificate. This is done by making an API call according to the conventions of the [**wire
    protocol specification**](../parsec_client/wire_protocol.md). This is strictly a one-time
    operation, and this must be enforced by the trusting component. Any attempt to send revised root
-   keys must be rejected. For more information, refer to the
-   [**ShareTrustBundle**](../parsec_client/operations/share_trust_bundle.md) operation in the API
-   reference.
+   keys must be rejected. For more information, refer to the **ShareTrustBundle** operation in the
+   API reference.
 - On a periodic basis, the trusted component generates a new **intermediate key pair**, and once
    again keeps the private key in process-local memory only.
 - On each periodic refresh, the trusted component sends a new **intermediate public key** to the
@@ -216,15 +215,12 @@ operations are for key storage and cryptography, and are based on the PSA Crypto
 the identity provider, a much smaller set of operations are needed, and these enable the sharing of
 client definitions and proofs.
 
-The only part of the API that is common between the two components is the
-[**ShareTrustBundle**](../parsec_client/operations/share_trust_bundle.md) operation, which is used
-to establish and maintain trust relationships.
+The only part of the API that is common between the two components is the **ShareTrustBundle**
+operation, which is used to establish and maintain trust relationships.
 
-The identity provider additionally offers the
-[**AddClient**](../parsec_client/operations/add_client.md) and
-[**ProveClient**](../parsec_client/operations/prove_client.md) operations, which allow the
-orchestrator to inform the identity provider about the lifecycle of client applications. This small
-operation set represents the entirety of the identity provider's API.
+The identity provider additionally offers the **AddClient** and **ProveClient** operations, which
+allow the orchestrator to inform the identity provider about the lifecycle of client applications.
+This small operation set represents the entirety of the identity provider's API.
 
 By contrast, the security service exposes the full capabilities of the PSA Crypto API.
 
@@ -350,15 +346,13 @@ bootstrapping flows require each component to generate a root key pair, to store
 part in process-local memory, and to share the public part (as an X509 certificate) with the
 trusting component.
 
-Public root certificates are shared using the
-[**ShareTrustBundle**](../parsec_client/operations/share_trust_bundle.md) API operation, with a flag
-to indicate that this is a root certificate as opposed to an intermediate. Both the security service
+Public root certificates are shared using the **ShareTrustBundle** API operation, with a flag to
+indicate that this is a root certificate as opposed to an intermediate. Both the security service
 and the identity provider support this operation via the respective (separate) wire protocol
 endpoints.
 
-Root certificates may be shared only once. The
-[**ShareTrustBundle**](../parsec_client/operations/share_trust_bundle.md) operation is defined to
-fail if it is called more than once with the root flag set.
+Root certificates may be shared only once. The **ShareTrustBundle** operation is defined to fail if
+it is called more than once with the root flag set.
 
 ### System Lifecycle: Refresh
 
@@ -376,10 +370,9 @@ bootstrapping flows, the orchestrator shares its public key with the identity pr
 identity provider shares its public key with the security service. There is a common API in the wire
 protocol to support this operation.
 
-Public intermediate certificates are shared using the
-[**ShareTrustBundle**](../parsec_client/operations/share_trust_bundle.md) API operation, with a flag
-to indicate that this is an intermediate certificate as opposed to a root. Both the security service
-and the identity provider support this operation via the respective (separate) wire protocol
+Public intermediate certificates are shared using the **ShareTrustBundle** API operation, with a
+flag to indicate that this is an intermediate certificate as opposed to a root. Both the security
+service and the identity provider support this operation via the respective (separate) wire protocol
 endpoints.
 
 Intermediate public certificates may be shared any number of times. Any previous intermediate
@@ -392,14 +385,13 @@ starting and stopping the client application containers or processes. It is also
 notifying these events to the identity provider, and for sending the client definitions and client
 proofs.
 
-To add a new client definition to the identity provider, the orchestrator calls the
-[**AddClient**](../parsec_client/operations/add_client.md) operation with a signed data payload
-containing the client definition properties (typically a JSON document).
+To add a new client definition to the identity provider, the orchestrator calls the **AddClient**
+operation with a signed data payload containing the client definition properties (typically a JSON
+document).
 
 Having informed the identity provider of a new client definition, the next role of the orchestrator
 is to run an attestation process to prove its validity. The results of the attestation process are
-then sent to the identity provider using the
-[**ProveClient**](../parsec_client/operations/prove_client.md) operation, again with a signed data
+then sent to the identity provider using the **ProveClient** operation, again with a signed data
 payload containing the proofs.
 
 ### General Usage Flows

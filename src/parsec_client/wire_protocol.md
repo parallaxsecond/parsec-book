@@ -59,13 +59,12 @@ protocol itself is neither of these things: it is an entirely bespoke protocol.
 
 ### Synchronous Operation
 
-The wire protocol operation is synchronous: the client initiates a connection and transmits a
-request. It then blocks while the service performs the request and transmits the response on the
-return stream. The protocol therefore only supports short-lived operations (meaning that the
-fulfillment time must be well within any timeout limitations that the transport might impose). The
-protocol can support longer-lived operations, but it is the responsibility of the service API to
-define how these are managed. There could, for example, be a pattern whereby there are separate
-initiation and status polling operations.
+The wire protocol is based on requests and responses, and therefore models synchronous patterns of
+interaction. There is nothing in current versions of the protocol to assist with asynchronous
+patterns of interaction between the client and the service. Future versions of the protocol may
+introduce such concepts. In the meantime, depending on the type of transport used, it may be
+possible for the service or the clients to take advantage of asynchronous features of the transport
+(such as the non-blocking mode of a socket) to provide certain levels of asynchronous control.
 
 ### Separation of Protocol and Transport
 
@@ -115,10 +114,9 @@ encoding is defined for use in the message bodies, and this encoding is based on
 buffers**](https://developers.google.com/protocol-buffers/), also known as **protobuf**.
 
 For each operation in the API, two separate protobuf message definitions will exist: one for that
-operation's inputs, and another for its outputs. The content bytes in a request message can be
-converted through protobuf-generated code into a model object for the inputs. Likewise, the content
-bytes in a response message can be converted through protobuf-generated code into a model object for
-the outputs.
+operation's inputs, and another for its outputs. The body in a request message can be converted
+through protobuf-generated code into a model object for the inputs. Likewise, the body in a response
+message can be converted through protobuf-generated code into a model object for the outputs.
 
 Processing any message is, therefore, a two-phase process: firstly, the header must be processed by
 writing code that is conformant with this specification; and secondly, the content must be processed
@@ -151,8 +149,8 @@ cleanly separated from those of another. But while this identifier string is the
 authentication, there are different ways that it can be used, and consequently there are different
 ways for the authentication field to be populated. One simple method is for the client identifier to
 be passed directly. But it is also possible to use the identifier as input to an HMAC algorithm over
-the content bytes, in which case the authentication field would contain the computed HMAC, rather
-than the identifier itself.
+the body, in which case the authentication field would contain the computed HMAC, rather than the
+identifier itself.
 
 ### Sessions
 
@@ -249,7 +247,7 @@ following diagram, the bytes go left to right from least significant to most sig
 | Content type         | Common         | 1               | Defines how the message body should be processed. The only currently-supported value is `0x01`, which indicates that the message body should be treated as a serialized protobuf message.                                                                                                                                                                                                                                                           |
 | Accept type          | Requests only  | 1               | Defines how the service should provide its response. The only currently-supported value is `0x01`, which indicates that the service should provide a response whose body is a serialized protobuf message.                                                                                                                                                                                                                                          |
 | Auth type            | Requests only  | 1               | Defines how the authentication bytes should be interpreted.                                                                                                                                                                                                                                                                                                                                                                                         |
-| Content length       | Common         | 4               | Provides the exact number of bytes of content.                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Content length       | Common         | 4               | Provides the exact number of bytes of body.                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Auth length          | Requests only  | 2               | Provides the exact number of bytes of authentication.                                                                                                                                                                                                                                                                                                                                                                                               |
 | Opcode               | Common         | 4               | Indicates the operation being performed by this request. See the [section](#opcodes) above on opcodes.                                                                                                                                                                                                                                                                                                                                              |
 | Status               | Responses only | 2               | Indicates the overall success or failure of the operation. A value of zero is used universally to mean success. Other values should be interpreted according to the [API specification](status_codes.md).                                                                                                                                                                                                                                           |

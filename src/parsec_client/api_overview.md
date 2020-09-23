@@ -184,9 +184,10 @@ permitted numerical values for this field are given as follows:-
 - A value of 1 (`0x01`) indicates direct authentication. The service will expect the
    **authentication** field to contain a cleartext copy of the application identity, encoded as a
    UTF-8 string.
-- A value of 2 (`0x02`) indicates authentication tokens. The service will expect the
-   **authentication** field to contain a JWT token. Tokens must be signed with the private key of
-   the identity provider and their validity period must cover the moment when the check is done.
+- A value of 2 (`0x02`) indicates authentication tokens. This authentication type is not currently
+   supported. The service will expect the **authentication** field to contain a JWT token. Tokens
+   must be signed with the private key of the identity provider and their validity period must cover
+   the moment when the check is done.
 - A value of 3 (`0x03`) indicates Unix peer credentials authentication. The service expects the
    **authentication** field to contain the Unix user identifier (UID, **not** username) of the
    connecting process as a zero-padded little-endian 32-bit unsigned integer. The Parsec service

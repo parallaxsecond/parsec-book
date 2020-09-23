@@ -3,12 +3,9 @@
 Parsec can be built and installed as a Linux daemon using systemd. The daemon is a systemd user
 daemon run by the `parsec` user. Some manual steps are needed to make sure that permissions are set
 up correctly so that Parsec is installed respecting the operational mitigations of our [threat
-model](../parsec_security/parsec_threat_model/threat_model.md). Similarly to the threat model, this
-guide proposes different alternatives in case an Identity Provider is available or not. The role and
-description of an Identity Provider in Parsec is described in the [System
-Architecture](https://parallaxsecond.github.io/parsec-book/parsec_service/system_architecture.html)
-page. Currently, Parsec does not support integration with any Identity Provider. To securely install
-Parsec, please follow the steps of deployment **without an Identity Provider**.
+model](../parsec_security/parsec_threat_model/threat_model.md). Currently, Parsec does not support
+integration with any Identity Provider. More installation methods will be added in the future when
+new identity providers/authenticators are supported.
 
 If your Linux system uses systemd to manage daemons, you can follow these steps. `$DESIRED_FEATURES`
 can be a space or comma-separated subset of: `mbed-crypto-provider`, `pkcs11-provider`, and
@@ -21,9 +18,8 @@ Create the Parsec socket directory.
 mkdir /tmp/parsec
 ```
 
-In a deployment **without an Identity Provider**, create the `parsec-clients` group and set the
-correct permissions on the socket folder. Mutually trusted Parsec Clients will need to be in that
-group.
+Create the `parsec-clients` group and set the correct permissions on the socket folder. Mutually
+trusted Parsec Clients will need to be in that group.
 
 ```
 sudo groupadd parsec-clients
@@ -38,12 +34,6 @@ sudo usermod -a -G parsec-clients parsec-client-1
 ```
 
 Users just added to that group might need to log-out and log-in again to make sure the change apply.
-
-In a deployment **with an Identity Provider**, set the correct permissions on the socket folder.
-
-```
-sudo chmod 755 /tmp/parsec
-```
 
 Create and log in to a new user named `parsec`.
 
@@ -81,8 +71,8 @@ systemctl --user enable parsec
 systemctl --user start parsec
 ```
 
-`parsec-clients` users (with no IP) or every one (with IP) can now use Parsec! You can test it
-(having logged in a `parsec-clients` user) going inside the `parsec/e2e_tests` directory and:
+`parsec-clients` users can now use Parsec! You can test it (having logged in a `parsec-clients`
+user) going inside the `parsec/e2e_tests` directory and:
 
 ```
 cargo test normal_tests
