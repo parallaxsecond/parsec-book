@@ -20,16 +20,16 @@ replaced by a subset of the features mentioned above, space or comma separated. 
 test the TPM or PKCS check the [related
 guides](tests#testing-the-tpm-provider-using-the-software-tpm).
 
-For the `DomainSocket` listener, the socket folder needs to be created:
-
-```````
-mkdir /tmp/parsec
-```````
-
 On a real deployment (as explained in our [installation guide](install_parsec_linux.md)) specific
-owners and permissions need to be set up on this folder. Those security settings will be checked by
-the clients for them to make sure they are communicating with a trusted Parsec service. For testing
-only, it is fine to keep the folder as it is.
+owners and permissions need to be set up on multiple folders. Those security settings will be
+checked by the clients for them to make sure they are communicating with a trusted Parsec service.
+For testing only, it is fine to keep the folder as it is. Make sure however to disable the
+`security_check` configuration option in `config.toml`:
+
+```
+-#security_checks=true
++security_checks=false
+```
 
 To build and run Parsec from source:
 
