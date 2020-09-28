@@ -23,40 +23,38 @@ guides](tests#testing-the-tpm-provider-using-the-software-tpm).
 On a real deployment (as explained in our [installation guide](install_parsec_linux.md)) specific
 owners and permissions need to be set up on multiple folders. Those security settings will be
 checked by the clients for them to make sure they are communicating with a trusted Parsec service.
-For testing only, it is fine to keep the folder as it is. Make sure however to disable the
-`security_check` configuration option in `config.toml`:
+For testing only, it is fine to run Parsec from the current directory, have the key information
+mappings in `./mappings` and the socket at `/tmp/parsec.sock`. The test configuration will make
+those choices.
 
-```
--#security_checks=true
-+security_checks=false
-```
-
-To build and run Parsec from source:
+Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
+the test configuration:
 
 ```````
-RUST_LOG=info cargo run --features mbed-crypto-provider
+RUST_LOG=info cargo run --features mbed-crypto-provider -- -c e2e_tests/provider_cfg/mbed-crypto/config.toml
 ```````
 
 `parsec` will then construct the service based on the configuration file and wait for clients.
-Setting `RUST_LOG=info` on the command line is not needed if the log level was modified via the
-configuration file.
 
 At the end of initialization, it should print `Parsec is ready` which means that it is ready to take
-requests from clients.
+requests from clients:
 
-If the configuration file is not in the directory from which Parsec is run, its path must be passed
-via a command-line argument:
+```
+[INFO  parsec] Parsec started. Configuring the service...
+[INFO  parsec_service::utils::service_builder] Creating a Mbed Crypto Provider.
+[WARN  parsec_service::front::domain_socket] Incorrect user. Parsec should be run as user parsec. Follow recommendations to install Parsec securely or clients might not be able to connect.
+[INFO  parsec] Parsec is ready.
+```
 
-```````
-cargo run --features mbed-crypto-provider -- --config e2e_tests/provider_cfg/mbed-crypto/config.toml
-```````
+The `WARN` log warns us that we are not following the secure installation practices which is fine as
+this is for testing.
 
 From another terminal, it is now possible to execute the [end-to-end tests](tests#end-to-end-tests)
 on Parsec!
 
 ```````
 cd e2e_tests
-cargo test normal_tests
+cargo test --features mbed-crypto-provider normal_tests
 ```````
 
 ## Killing Parsec
