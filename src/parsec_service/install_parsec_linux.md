@@ -21,37 +21,26 @@ sudo useradd -m parsec
 sudo passwd parsec
 ```
 
-Create the following Parsec directories, with good permissions.
+Create the following Parsec directories, with good permissions:
 
-`/var/lib/parsec` for storing persistent data like the `mappings` folder. The service will run from
-here.
+- `/var/lib/parsec` for storing persistent data like the `mappings` folder.
+- `/etc/parsec` to contain the configuration file.
+- `/usr/libexec/parsec` to contain the `parsec` executable binary file.
+- `/run/parsec` to contain the socket file. The `parsec-clients` group needs to be created. Mutually
+   trusted Parsec Clients will need to be in that group.
+
+Commands:
 
 ```
 sudo mkdir /var/lib/parsec
 sudo chown parsec /var/lib/parsec
 sudo chmod 700 /var/lib/parsec
-```
-
-`/etc/parsec` to contain the configuration file.
-
-```
 sudo mkdir /etc/parsec
 sudo chown parsec /etc/parsec
 sudo chmod 700 /etc/parsec
-```
-
-`/usr/libexec/parsec` to contain the `parsec` executable binary file.
-
-```
 sudo mkdir /usr/libexec/parsec
 sudo chown parsec /usr/libexec/parsec
 sudo chmod 700 /usr/libexec/parsec
-```
-
-`/run/parsec` to contain the socket file. The `parsec-clients` group needs to be created. Mutually
-trusted Parsec Clients will need to be in that group.
-
-```
 sudo groupadd parsec-clients
 sudo mkdir /run/parsec
 sudo chown parsec:parsec-clients /run/parsec
@@ -87,7 +76,7 @@ Below is an example with Parsec 0.5.0, update with the version you want!
 
 ```
 git clone --branch 0.5.0 https://github.com/parallaxsecond/parsec
-cargo build --manifest-path parsec --features $DESIRED_FEATURES --release
+cargo build --manifest-path parsec/Cargo.toml --features $DESIRED_FEATURES --release
 cp parsec/target/release/parsec /usr/libexec/parsec
 ```
 
