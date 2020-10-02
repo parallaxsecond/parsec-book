@@ -7,10 +7,6 @@ clients. It explains the general principles of how the protocol is structured, a
 provide a full specification that can be used as the basis of both client-side and service-side
 code.
 
-## Status Note
-
-This is preliminary documentation. It may be incomplete, and is subject to change without notice.
-
 ## Scope
 
 This document describes the principles, patterns and low-level details of the wire protocol. This

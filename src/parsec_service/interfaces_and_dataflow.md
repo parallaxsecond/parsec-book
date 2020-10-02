@@ -7,10 +7,6 @@ combination with the [**source code structure**](source_code_structure.md) and [
 protocol**](../parsec_client/wire_protocol.md) documents to gain an understanding of how API
 requests are received by the service and ultimately fulfilled by providers.
 
-## Status Note
-
-This is preliminary documentation. It may be incomplete, and is subject to change without notice.
-
 ## Data Flow Diagram
 
 The sections within this documentation are best understood with reference to the following data flow

@@ -7,10 +7,6 @@ its general principles and organisation. Use this document in combination with t
 specification**](wire_protocol.md) and the [**operation directory**](operations) as a reference
 guide for the development of client libraries.
 
-## Status Note
-
-This is preliminary documentation. It may be incomplete, and is subject to change without notice.
-
 ## Audience
 
 This document details the API that is exposed directly by the service to its clients. This is the
