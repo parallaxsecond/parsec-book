@@ -24,4 +24,7 @@ Author: Full Name <email address>
 Signed-off-by: Full Name <email address>
 ```
 
+If you'd like to get a feel for what we're looking for in contributions, we also have a checklist
+for PR reviewers [here](pr_checklist.md).
+
 *Copyright 2019 Contributors to the Parsec project.*

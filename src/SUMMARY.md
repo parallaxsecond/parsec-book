@@ -57,6 +57,7 @@
    - [Recommendations for Secure Deployment](parsec_security/secure_deployment.md)
    - [Parsec Rust Client Threat Model](parsec_security/rust_client_threat_model/threat_model.md)
 - [Contributing](contributing/README.md)
+   - [Pull request checklist](contributing/pr_checklist.md)
    - [How to add operations to Parsec](contributing/adding_new_operation_how_to.md)
 
 *Copyright 2019 Contributors to the Parsec project.*
