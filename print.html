@@ -169,16 +169,6 @@ provide a common API to secure services in a platform-agnostic way.</p>
 you want to know, you can go to the <a href="parsec_users.html">users</a>, <a href="parsec_client/README.html">client
 developers</a>, <a href="parsec_service/README.html">service developers</a> or
 <a href="parsec_security/README.html">security</a> sections.</p>
-<h1><a class="header" href="#disclaimer" id="disclaimer">Disclaimer</a></h1>
-<p>Parsec is a new open source project and is under development. This code repository is being made
-available so that the developer community can learn and give feedback about the new interfaces and
-the concepts of platform-agnostic security. The implementation that is provided is suitable for
-exploratory testing and experimentation only. This test implementation does not offer any tangible
-security benefits and therefore is not suitable for use in production. Documentation pages may be
-incomplete and are subject to change without notice. Interfaces may change in such a way as to break
-compatibility with client code. Contributions from the developer community are welcome. Please refer
-to the contribution guidelines.</p>
-<h1><a class="header" href="#license" id="license">License</a></h1>
 <p>Parsec and all the repositories under the <code>parallaxsecond</code> organization are provided under
 Apache-2.0. Contributions to this project are accepted under the same license.</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
@@ -386,8 +376,6 @@ provides the official documentation for the API</li>
 its general principles and organisation. Use this document in combination with the <a href="parsec_client/wire_protocol.html"><strong>wire protocol
 specification</strong></a> and the <a href="parsec_client/operations"><strong>operation directory</strong></a> as a reference
 guide for the development of client libraries.</p>
-<h2><a class="header" href="#status-note" id="status-note">Status Note</a></h2>
-<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
 <h2><a class="header" href="#audience" id="audience">Audience</a></h2>
 <p>This document details the API that is exposed directly by the service to its clients. This is the
 API that is invoked over the IPC transport between the client process and the service. Client
@@ -608,8 +596,6 @@ directory</strong></a>.</p>
 clients. It explains the general principles of how the protocol is structured, and goes on to
 provide a full specification that can be used as the basis of both client-side and service-side
 code.</p>
-<h2><a class="header" href="#status-note-1" id="status-note-1">Status Note</a></h2>
-<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
 <h2><a class="header" href="#scope" id="scope">Scope</a></h2>
 <p>This document describes the principles, patterns and low-level details of the wire protocol. This
 covers the details that are common to all messages that pass between the service and its clients.
@@ -916,11 +902,6 @@ translated to the specific operation implementation language used.</p>
 <tr><td><a href="parsec_client/operations/psa_verify_message.html">PsaVerifyMessage</a></td><td><code>0x0019</code></td></tr>
 </tbody></table>
 <p>Find <a href="parsec_client/operations/service_api_coverage.html">here</a> the current level of support of those operations in Parsec.</p>
-<h2><a class="header" href="#status-note-2" id="status-note-2">Status Note</a></h2>
-<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.
-Some operations are listed without being linked to documentation pages. These operations are not
-currently supported, but are intended for future roadmap. Only a small number of the PSA Crypto
-operations are supported in the current version.</p>
 <h2><a class="header" href="#core-operations" id="core-operations">Core Operations</a></h2>
 <p>Core operations are non-cryptographic operations supported by the core provider. Set the
 <strong>provider</strong> field of the request header to 0 (<code>0x00</code>) to invoke these operations.</p>
@@ -2251,8 +2232,6 @@ complete system where it can be used by client applications. This system archite
 around an example deployment where the applications are running in containers within a shared
 operating system kernel (without full virtualisation). This is not the only possible deployment
 pattern, and many of the concepts in this document could be adapted to suit other deployments.</p>
-<h2><a class="header" href="#status-note-3" id="status-note-3">Status Note</a></h2>
-<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
 <h2><a class="header" href="#overview-1" id="overview-1">Overview</a></h2>
 <p>The security service provides an API to key storage and cryptographic operations. This API is based
 on the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API
@@ -2618,8 +2597,6 @@ in response to errors or failed verifications are not captured here.</p>
 combination with the <a href="parsec_service/source_code_structure.html"><strong>source code structure</strong></a> and <a href="parsec_service/../parsec_client/wire_protocol.html"><strong>wire
 protocol</strong></a> documents to gain an understanding of how API
 requests are received by the service and ultimately fulfilled by providers.</p>
-<h2><a class="header" href="#status-note-4" id="status-note-4">Status Note</a></h2>
-<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
 <h2><a class="header" href="#data-flow-diagram" id="data-flow-diagram">Data Flow Diagram</a></h2>
 <p>The sections within this documentation are best understood with reference to the following data flow
 diagram. The shaded areas below can also be used to cross-reference the data flow with the <a href="parsec_service/source_code_structure.html"><strong>source
@@ -2744,8 +2721,6 @@ transport endpoint by the <code>FrontEndHandler</code>, thus completing the cycl
 <h2><a class="header" href="#introduction-5" id="introduction-5">Introduction</a></h2>
 <p>This document presents the overall organisation of the source code repository, and provides pointers
 to key definitions and implementations.</p>
-<h2><a class="header" href="#status-1" id="status-1">Status</a></h2>
-<p>This is preliminary documentation. It may be incomplete, and is subject to change without notice.</p>
 <h2><a class="header" href="#audience-2" id="audience-2">Audience</a></h2>
 <p>An understanding of the source code repository structure is essential for developers who are
 contributing functionality to the service or any of its client libraries.</p>
