@@ -38,13 +38,6 @@ translated to the specific operation implementation language used.
 
 Find [here](service_api_coverage.md) the current level of support of those operations in Parsec.
 
-## Status Note
-
-This is preliminary documentation. It may be incomplete, and is subject to change without notice.
-Some operations are listed without being linked to documentation pages. These operations are not
-currently supported, but are intended for future roadmap. Only a small number of the PSA Crypto
-operations are supported in the current version.
-
 ## Core Operations
 
 Core operations are non-cryptographic operations supported by the core provider. Set the

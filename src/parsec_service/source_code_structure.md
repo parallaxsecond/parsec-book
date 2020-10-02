@@ -5,10 +5,6 @@
 This document presents the overall organisation of the source code repository, and provides pointers
 to key definitions and implementations.
 
-## Status
-
-This is preliminary documentation. It may be incomplete, and is subject to change without notice.
-
 ## Audience
 
 An understanding of the source code repository structure is essential for developers who are

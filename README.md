@@ -5,15 +5,9 @@
 
 # The Parsec Book 📖
 
-![](https://github.com/parallaxsecond/parsec-book/workflows/Continuous%20Integration/badge.svg)
-![](https://github.com/parallaxsecond/parsec-book/workflows/Deploy/badge.svg)
-
-Official Parsec documentation source. User, Client and Service developer guides
-of the Parsec project.
+This repository is the source code of https://parallaxsecond.github.io/parsec-book
 
 ## Using
-
-Access it online by visiting https://parallaxsecond.github.io/parsec-book
 
 You can also build the book and read it locally with the following steps:
 

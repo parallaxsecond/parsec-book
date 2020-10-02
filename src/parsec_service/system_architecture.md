@@ -8,10 +8,6 @@ around an example deployment where the applications are running in containers wi
 operating system kernel (without full virtualisation). This is not the only possible deployment
 pattern, and many of the concepts in this document could be adapted to suit other deployments.
 
-## Status Note
-
-This is preliminary documentation. It may be incomplete, and is subject to change without notice.
-
 ## Overview
 
 The security service provides an API to key storage and cryptographic operations. This API is based

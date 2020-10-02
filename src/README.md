@@ -10,19 +10,6 @@ you want to know, you can go to the [users](parsec_users.md), [client
 developers](parsec_client/README.md), [service developers](parsec_service/README.md) or
 [security](parsec_security/README.md) sections.
 
-# Disclaimer
-
-Parsec is a new open source project and is under development. This code repository is being made
-available so that the developer community can learn and give feedback about the new interfaces and
-the concepts of platform-agnostic security. The implementation that is provided is suitable for
-exploratory testing and experimentation only. This test implementation does not offer any tangible
-security benefits and therefore is not suitable for use in production. Documentation pages may be
-incomplete and are subject to change without notice. Interfaces may change in such a way as to break
-compatibility with client code. Contributions from the developer community are welcome. Please refer
-to the contribution guidelines.
-
-# License
-
 Parsec and all the repositories under the `parallaxsecond` organization are provided under
 Apache-2.0. Contributions to this project are accepted under the same license.
 
