@@ -176,29 +176,30 @@ one</a>.</p>
 replaced by a subset of the features mentioned above, space or comma separated. If you would like to
 test the TPM or PKCS check the <a href="tests#testing-the-tpm-provider-using-the-software-tpm">related
 guides</a>.</p>
-<p>For the <code>DomainSocket</code> listener, the socket folder needs to be created:</p>
-<pre><code>mkdir /tmp/parsec
-</code></pre>
 <p>On a real deployment (as explained in our <a href="install_parsec_linux.html">installation guide</a>) specific
-owners and permissions need to be set up on this folder. Those security settings will be checked by
-the clients for them to make sure they are communicating with a trusted Parsec service. For testing
-only, it is fine to keep the folder as it is.</p>
-<p>To build and run Parsec from source:</p>
-<pre><code>RUST_LOG=info cargo run --features mbed-crypto-provider
+owners and permissions need to be set up on multiple folders. Those security settings will be
+checked by the clients for them to make sure they are communicating with a trusted Parsec service.
+For testing only, it is fine to run Parsec from the current directory, have the key information
+mappings in <code>./mappings</code> and the socket at <code>/tmp/parsec.sock</code>. The test configuration will make
+those choices.</p>
+<p>Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
+the test configuration:</p>
+<pre><code>RUST_LOG=info cargo run --features mbed-crypto-provider -- -c e2e_tests/provider_cfg/mbed-crypto/config.toml
 </code></pre>
-<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients.
-Setting <code>RUST_LOG=info</code> on the command line is not needed if the log level was modified via the
-configuration file.</p>
+<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients.</p>
 <p>At the end of initialization, it should print <code>Parsec is ready</code> which means that it is ready to take
-requests from clients.</p>
-<p>If the configuration file is not in the directory from which Parsec is run, its path must be passed
-via a command-line argument:</p>
-<pre><code>cargo run --features mbed-crypto-provider -- --config e2e_tests/provider_cfg/mbed-crypto/config.toml
+requests from clients:</p>
+<pre><code>[INFO  parsec] Parsec started. Configuring the service...
+[INFO  parsec_service::utils::service_builder] Creating a Mbed Crypto Provider.
+[WARN  parsec_service::front::domain_socket] Incorrect user. Parsec should be run as user parsec. Follow recommendations to install Parsec securely or clients might not be able to connect.
+[INFO  parsec] Parsec is ready.
 </code></pre>
+<p>The <code>WARN</code> log warns us that we are not following the secure installation practices which is fine as
+this is for testing.</p>
 <p>From another terminal, it is now possible to execute the <a href="tests#end-to-end-tests">end-to-end tests</a>
 on Parsec!</p>
 <pre><code>cd e2e_tests
-cargo test normal_tests
+cargo test --features mbed-crypto-provider normal_tests
 </code></pre>
 <h2><a class="header" href="#killing-parsec" id="killing-parsec">Killing Parsec</a></h2>
 <p>On Linux, sending <code>SIGTERM</code> will gracefully terminate Parsec, waiting all of its threads to finish.</p>

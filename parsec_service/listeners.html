@@ -163,7 +163,10 @@
 <h2><a class="header" href="#domain-socket-listener" id="domain-socket-listener">Domain Socket Listener</a></h2>
 <p>This listener communicates with its client using a <a href="https://en.wikipedia.org/wiki/Unix_domain_socket">Unix domain
 socket</a>.</p>
-<p>The socket path is: <code>/tmp/parsec/parsec.sock</code>.</p>
+<p>The socket path is: <code>/run/parsec/parsec.sock</code>.</p>
+<p>The <code>socket_path</code> option can be used to modify the socket path, for example for testing. Clients
+will expect the socket to be at the default path and hence this option should not be modified for
+deployment.</p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 
                     </main>

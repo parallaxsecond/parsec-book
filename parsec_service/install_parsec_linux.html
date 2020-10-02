@@ -170,35 +170,56 @@ new identity providers/authenticators are supported.</p>
 can be a space or comma-separated subset of: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and
 <code>tpm-provider</code>. Choose the providers you want to install depending on what is available on the
 platform.</p>
-<p>Create the Parsec socket directory.</p>
-<pre><code>mkdir /tmp/parsec
+<h2><a class="header" href="#from-an-admin-user-with-privileges" id="from-an-admin-user-with-privileges">From an admin user with privileges</a></h2>
+<p>Create the <code>parsec</code> user.</p>
+<pre><code>sudo useradd -m parsec
+sudo passwd parsec
 </code></pre>
-<p>Create the <code>parsec-clients</code> group and set the correct permissions on the socket folder. Mutually
-trusted Parsec Clients will need to be in that group.</p>
-<pre><code>sudo groupadd parsec-clients
-sudo chown :parsec-clients /tmp/parsec
-sudo chmod 750 /tmp/parsec
+<p>Create the following Parsec directories, with good permissions:</p>
+<ul>
+<li><code>/var/lib/parsec</code> for storing persistent data like the <code>mappings</code> folder.</li>
+<li><code>/etc/parsec</code> to contain the configuration file.</li>
+<li><code>/usr/libexec/parsec</code> to contain the <code>parsec</code> executable binary file.</li>
+<li><code>/run/parsec</code> to contain the socket file. The <code>parsec-clients</code> group needs to be created. Mutually
+trusted Parsec Clients will need to be in that group.</li>
+</ul>
+<p>Commands:</p>
+<pre><code>sudo mkdir /var/lib/parsec
+sudo chown parsec /var/lib/parsec
+sudo chmod 700 /var/lib/parsec
+sudo mkdir /etc/parsec
+sudo chown parsec /etc/parsec
+sudo chmod 700 /etc/parsec
+sudo mkdir /usr/libexec/parsec
+sudo chown parsec /usr/libexec/parsec
+sudo chmod 700 /usr/libexec/parsec
+sudo groupadd parsec-clients
+sudo mkdir /run/parsec
+sudo chown parsec:parsec-clients /run/parsec
+sudo chmod 750 /run/parsec
 </code></pre>
 <p>For example, adding the imaginary <code>parsec-client-1</code> user to the <code>parsec-clients</code> group:</p>
 <pre><code>sudo usermod -a -G parsec-clients parsec-client-1
 </code></pre>
-<p>Users just added to that group might need to log-out and log-in again to make sure the change apply.</p>
-<p>Create and log in to a new user named <code>parsec</code>.</p>
-<pre><code>sudo useradd -m parsec
-sudo passwd parsec
-su --login parsec
+<p>Users just added to that group might need to log-out and log-in again to make sure the change apply.
+They can also try the <code>newgrp</code> command with no parameters to re-initialize their environment.</p>
+<h2><a class="header" href="#from-the-parsec-user" id="from-the-parsec-user">From the parsec user</a></h2>
+<p>Log in to <code>parsec</code>.</p>
+<pre><code>su --login parsec
 </code></pre>
 <p>Depending on which features of Parsec the <code>parsec</code> user is going to use, it might need to be given
 more privileges in order to access some resources on the system. Refer to the
 <a href="providers.html">Providers</a> page for more information.</p>
-<p>In its home directory, pull and install Parsec as a daemon. If a Rust toolchain is not available
-widely on the system, it will need to be <a href="https://www.rust-lang.org/tools/install">installed</a> for
-that specific user.</p>
-<pre><code>cargo install parsec-service --features $DESIRED_FEATURES
+<p>In its home directory, clone and compile Parsec. If a Rust toolchain is not available widely on the
+system, it will need to be <a href="https://www.rust-lang.org/tools/install">installed</a> for that specific
+user.</p>
+<p>Below is an example with Parsec 0.5.0, update with the version you want!</p>
+<pre><code>git clone --branch 0.5.0 https://github.com/parallaxsecond/parsec
+cargo build --manifest-path parsec/Cargo.toml --features $DESIRED_FEATURES --release
+cp parsec/target/release/parsec /usr/libexec/parsec
 </code></pre>
-<p>Copy and adapt the <a href="configuration.html">configuration</a> you want to use. For a secure deployment, make
-sure to activate the <code>log_error_details</code> option and to use a <code>trace</code> log level.</p>
-<pre><code>cp parsec/config.toml config.toml
+<p>Adapt and copy the <a href="configuration.html">configuration</a> you want to use.</p>
+<pre><code>cp parsec/config.toml /etc/parsec/config.toml
 </code></pre>
 <p>Install the systemd unit files and activate the Parsec socket.</p>
 <pre><code>mkdir -p ~/.config/systemd/user
@@ -206,19 +227,22 @@ cp -r parsec/systemd-daemon/parsec.service ~/.config/systemd/user
 systemctl --user enable parsec
 systemctl --user start parsec
 </code></pre>
+<p>Check the Parsec logs with:</p>
+<pre><code>journalctl --user -u parsec
+</code></pre>
+<p>Also reload the service with:</p>
+<pre><code>systemctl --user kill -s HUP parsec
+</code></pre>
+<h2><a class="header" href="#from-a-parsec-clients-user" id="from-a-parsec-clients-user">From a parsec-clients user</a></h2>
 <p><code>parsec-clients</code> users can now use Parsec! You can test it (having logged in a <code>parsec-clients</code>
-user) going inside the <code>parsec/e2e_tests</code> directory and:</p>
-<pre><code>cargo test normal_tests
+user) by installing the <a href="https://github.com/parallaxsecond/parsec-tool"><code>parsec-tool</code></a>:</p>
+<pre><code>$ parsec-tool ping
+[INFO] Pinging Parsec service...
+[SUCCESS] Service wire protocol version is 1.0.
 </code></pre>
 <p><em>Note:</em> if you encounter a &quot;Permission Denied&quot; error while executing the end-to-end tests, make sure
 that the group change has taken effect. You can check it by calling <code>groups</code> with no arguments. If
 you do not see <code>parsec-clients</code>, please try logging the user out and in again to apply the change.</p>
-<p>Check the Parsec logs with:</p>
-<pre><code>journalclt --user -u parsec
-</code></pre>
-<p>Reload the service:</p>
-<pre><code>systemctl --user kill -s HUP parsec
-</code></pre>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 
                     </main>

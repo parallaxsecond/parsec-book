@@ -2906,7 +2906,10 @@ arcs between the modules.</p>
 <h2><a class="header" href="#domain-socket-listener" id="domain-socket-listener">Domain Socket Listener</a></h2>
 <p>This listener communicates with its client using a <a href="https://en.wikipedia.org/wiki/Unix_domain_socket">Unix domain
 socket</a>.</p>
-<p>The socket path is: <code>/tmp/parsec/parsec.sock</code>.</p>
+<p>The socket path is: <code>/run/parsec/parsec.sock</code>.</p>
+<p>The <code>socket_path</code> option can be used to modify the socket path, for example for testing. Clients
+will expect the socket to be at the default path and hence this option should not be modified for
+deployment.</p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#authenticators" id="authenticators">Authenticators</a></h1>
 <h2><a class="header" href="#direct-authenticator" id="direct-authenticator">Direct Authenticator</a></h2>
@@ -3031,29 +3034,30 @@ one</a>.</p>
 replaced by a subset of the features mentioned above, space or comma separated. If you would like to
 test the TPM or PKCS check the <a href="parsec_service/tests#testing-the-tpm-provider-using-the-software-tpm">related
 guides</a>.</p>
-<p>For the <code>DomainSocket</code> listener, the socket folder needs to be created:</p>
-<pre><code>mkdir /tmp/parsec
-</code></pre>
 <p>On a real deployment (as explained in our <a href="parsec_service/install_parsec_linux.html">installation guide</a>) specific
-owners and permissions need to be set up on this folder. Those security settings will be checked by
-the clients for them to make sure they are communicating with a trusted Parsec service. For testing
-only, it is fine to keep the folder as it is.</p>
-<p>To build and run Parsec from source:</p>
-<pre><code>RUST_LOG=info cargo run --features mbed-crypto-provider
+owners and permissions need to be set up on multiple folders. Those security settings will be
+checked by the clients for them to make sure they are communicating with a trusted Parsec service.
+For testing only, it is fine to run Parsec from the current directory, have the key information
+mappings in <code>./mappings</code> and the socket at <code>/tmp/parsec.sock</code>. The test configuration will make
+those choices.</p>
+<p>Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
+the test configuration:</p>
+<pre><code>RUST_LOG=info cargo run --features mbed-crypto-provider -- -c e2e_tests/provider_cfg/mbed-crypto/config.toml
 </code></pre>
-<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients.
-Setting <code>RUST_LOG=info</code> on the command line is not needed if the log level was modified via the
-configuration file.</p>
+<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients.</p>
 <p>At the end of initialization, it should print <code>Parsec is ready</code> which means that it is ready to take
-requests from clients.</p>
-<p>If the configuration file is not in the directory from which Parsec is run, its path must be passed
-via a command-line argument:</p>
-<pre><code>cargo run --features mbed-crypto-provider -- --config e2e_tests/provider_cfg/mbed-crypto/config.toml
+requests from clients:</p>
+<pre><code>[INFO  parsec] Parsec started. Configuring the service...
+[INFO  parsec_service::utils::service_builder] Creating a Mbed Crypto Provider.
+[WARN  parsec_service::front::domain_socket] Incorrect user. Parsec should be run as user parsec. Follow recommendations to install Parsec securely or clients might not be able to connect.
+[INFO  parsec] Parsec is ready.
 </code></pre>
+<p>The <code>WARN</code> log warns us that we are not following the secure installation practices which is fine as
+this is for testing.</p>
 <p>From another terminal, it is now possible to execute the <a href="parsec_service/tests#end-to-end-tests">end-to-end tests</a>
 on Parsec!</p>
 <pre><code>cd e2e_tests
-cargo test normal_tests
+cargo test --features mbed-crypto-provider normal_tests
 </code></pre>
 <h2><a class="header" href="#killing-parsec" id="killing-parsec">Killing Parsec</a></h2>
 <p>On Linux, sending <code>SIGTERM</code> will gracefully terminate Parsec, waiting all of its threads to finish.</p>
@@ -3098,35 +3102,56 @@ new identity providers/authenticators are supported.</p>
 can be a space or comma-separated subset of: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and
 <code>tpm-provider</code>. Choose the providers you want to install depending on what is available on the
 platform.</p>
-<p>Create the Parsec socket directory.</p>
-<pre><code>mkdir /tmp/parsec
+<h2><a class="header" href="#from-an-admin-user-with-privileges" id="from-an-admin-user-with-privileges">From an admin user with privileges</a></h2>
+<p>Create the <code>parsec</code> user.</p>
+<pre><code>sudo useradd -m parsec
+sudo passwd parsec
 </code></pre>
-<p>Create the <code>parsec-clients</code> group and set the correct permissions on the socket folder. Mutually
-trusted Parsec Clients will need to be in that group.</p>
-<pre><code>sudo groupadd parsec-clients
-sudo chown :parsec-clients /tmp/parsec
-sudo chmod 750 /tmp/parsec
+<p>Create the following Parsec directories, with good permissions:</p>
+<ul>
+<li><code>/var/lib/parsec</code> for storing persistent data like the <code>mappings</code> folder.</li>
+<li><code>/etc/parsec</code> to contain the configuration file.</li>
+<li><code>/usr/libexec/parsec</code> to contain the <code>parsec</code> executable binary file.</li>
+<li><code>/run/parsec</code> to contain the socket file. The <code>parsec-clients</code> group needs to be created. Mutually
+trusted Parsec Clients will need to be in that group.</li>
+</ul>
+<p>Commands:</p>
+<pre><code>sudo mkdir /var/lib/parsec
+sudo chown parsec /var/lib/parsec
+sudo chmod 700 /var/lib/parsec
+sudo mkdir /etc/parsec
+sudo chown parsec /etc/parsec
+sudo chmod 700 /etc/parsec
+sudo mkdir /usr/libexec/parsec
+sudo chown parsec /usr/libexec/parsec
+sudo chmod 700 /usr/libexec/parsec
+sudo groupadd parsec-clients
+sudo mkdir /run/parsec
+sudo chown parsec:parsec-clients /run/parsec
+sudo chmod 750 /run/parsec
 </code></pre>
 <p>For example, adding the imaginary <code>parsec-client-1</code> user to the <code>parsec-clients</code> group:</p>
 <pre><code>sudo usermod -a -G parsec-clients parsec-client-1
 </code></pre>
-<p>Users just added to that group might need to log-out and log-in again to make sure the change apply.</p>
-<p>Create and log in to a new user named <code>parsec</code>.</p>
-<pre><code>sudo useradd -m parsec
-sudo passwd parsec
-su --login parsec
+<p>Users just added to that group might need to log-out and log-in again to make sure the change apply.
+They can also try the <code>newgrp</code> command with no parameters to re-initialize their environment.</p>
+<h2><a class="header" href="#from-the-parsec-user" id="from-the-parsec-user">From the parsec user</a></h2>
+<p>Log in to <code>parsec</code>.</p>
+<pre><code>su --login parsec
 </code></pre>
 <p>Depending on which features of Parsec the <code>parsec</code> user is going to use, it might need to be given
 more privileges in order to access some resources on the system. Refer to the
 <a href="parsec_service/providers.html">Providers</a> page for more information.</p>
-<p>In its home directory, pull and install Parsec as a daemon. If a Rust toolchain is not available
-widely on the system, it will need to be <a href="https://www.rust-lang.org/tools/install">installed</a> for
-that specific user.</p>
-<pre><code>cargo install parsec-service --features $DESIRED_FEATURES
+<p>In its home directory, clone and compile Parsec. If a Rust toolchain is not available widely on the
+system, it will need to be <a href="https://www.rust-lang.org/tools/install">installed</a> for that specific
+user.</p>
+<p>Below is an example with Parsec 0.5.0, update with the version you want!</p>
+<pre><code>git clone --branch 0.5.0 https://github.com/parallaxsecond/parsec
+cargo build --manifest-path parsec/Cargo.toml --features $DESIRED_FEATURES --release
+cp parsec/target/release/parsec /usr/libexec/parsec
 </code></pre>
-<p>Copy and adapt the <a href="parsec_service/configuration.html">configuration</a> you want to use. For a secure deployment, make
-sure to activate the <code>log_error_details</code> option and to use a <code>trace</code> log level.</p>
-<pre><code>cp parsec/config.toml config.toml
+<p>Adapt and copy the <a href="parsec_service/configuration.html">configuration</a> you want to use.</p>
+<pre><code>cp parsec/config.toml /etc/parsec/config.toml
 </code></pre>
 <p>Install the systemd unit files and activate the Parsec socket.</p>
 <pre><code>mkdir -p ~/.config/systemd/user
@@ -3134,19 +3159,22 @@ cp -r parsec/systemd-daemon/parsec.service ~/.config/systemd/user
 systemctl --user enable parsec
 systemctl --user start parsec
 </code></pre>
+<p>Check the Parsec logs with:</p>
+<pre><code>journalctl --user -u parsec
+</code></pre>
+<p>Also reload the service with:</p>
+<pre><code>systemctl --user kill -s HUP parsec
+</code></pre>
+<h2><a class="header" href="#from-a-parsec-clients-user" id="from-a-parsec-clients-user">From a parsec-clients user</a></h2>
 <p><code>parsec-clients</code> users can now use Parsec! You can test it (having logged in a <code>parsec-clients</code>
-user) going inside the <code>parsec/e2e_tests</code> directory and:</p>
-<pre><code>cargo test normal_tests
+user) by installing the <a href="https://github.com/parallaxsecond/parsec-tool"><code>parsec-tool</code></a>:</p>
+<pre><code>$ parsec-tool ping
+[INFO] Pinging Parsec service...
+[SUCCESS] Service wire protocol version is 1.0.
 </code></pre>
 <p><em>Note:</em> if you encounter a &quot;Permission Denied&quot; error while executing the end-to-end tests, make sure
 that the group change has taken effect. You can check it by calling <code>groups</code> with no arguments. If
 you do not see <code>parsec-clients</code>, please try logging the user out and in again to apply the change.</p>
-<p>Check the Parsec logs with:</p>
-<pre><code>journalclt --user -u parsec
-</code></pre>
-<p>Reload the service:</p>
-<pre><code>systemctl --user kill -s HUP parsec
-</code></pre>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#parsec-configuration" id="parsec-configuration">Parsec Configuration</a></h1>
 <p>All Parsec configuration is done at startup with a configuration file. The <code>config.toml</code> file needs
