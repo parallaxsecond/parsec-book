@@ -13,6 +13,7 @@ sections for details.
 | [ListProviders](list_providers.md)                | ✅           | ❌                  | ❌              | ❌              |
 | [ListOpcodes](list_opcodes.md)                    | ✅           | ❌                  | ❌              | ❌              |
 | [ListAuthenticators](list_authenticators.md)      | ✅           | ❌                  | ❌              | ❌              |
+| [ListKeys](list_keys.md)                          | ❌           | ❌                  | ❌              | ❌              |
 | [PsaImportKey](psa_import_key.md)                 | ❌           | ✅                  | ✅              | ✅              |
 | [PsaGenerateKey](psa_generate_key.md)             | ❌           | ✅                  | ✅              | ✅              |
 | [PsaDestroyKey](psa_destroy_key.md)               | ❌           | ✅                  | ✅              | ✅              |

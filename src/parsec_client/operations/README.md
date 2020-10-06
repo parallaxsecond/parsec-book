@@ -35,6 +35,7 @@ translated to the specific operation implementation language used.
 | [PsaMacVerify](psa_mac_verify.md)                 | `0x0017` |
 | [PsaSignMessage](psa_sign_message.md)             | `0x0018` |
 | [PsaVerifyMessage](psa_verify_message.md)         | `0x0019` |
+| [ListKeys](list_keys.md)                          | `0x001A` |
 
 Find [here](service_api_coverage.md) the current level of support of those operations in Parsec.
 
@@ -52,6 +53,7 @@ Core operations are non-cryptographic operations supported by the core provider.
 - [ListProviders](list_providers.md)
 - [ListOpcodes](list_opcodes.md)
 - [ListAuthenticators](list_authenticators.md)
+- [ListKeys](list_keys.md)
 
 ## PSA Crypto Operations
 
