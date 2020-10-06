@@ -37,6 +37,7 @@
       - [PsaMacVerify](parsec_client/operations/psa_mac_verify.md)
       - [PsaSignMessage](parsec_client/operations/psa_sign_message.md)
       - [PsaVerifyMessage](parsec_client/operations/psa_verify_message.md)
+      - [ListKeys](parsec_client/operations/list_keys.md)
 - [Parsec for service developers](parsec_service/README.md)
    - [System Architecture](parsec_service/system_architecture.md)
    - [Interfaces and Dataflow](parsec_service/interfaces_and_dataflow.md)
