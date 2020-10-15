@@ -153,11 +153,11 @@ At this point, you will now have a safe Rust interface for the PSA operation you
 
 Add the new operation to the correct
 [provider](https://github.com/parallaxsecond/parsec/tree/master/src/providers) (in this case, [Mbed
-Crypto](https://github.com/parallaxsecond/parsec/tree/master/src/providers/mbed_crypto_provider)) as
-a `psa_xxx_internal` method. The operation method should take the user inputs, arrange them in a way
+Crypto](https://github.com/parallaxsecond/parsec/tree/master/src/providers/mbed_crypto)) as a
+`psa_xxx_internal` method. The operation method should take the user inputs, arrange them in a way
 that [`psa-crypto`](#psa-crypto) accepts, and provide any extra logic or storage if required (e.g.
 an output buffer). The external implementation is to be added to the provider’s
-[`mod.rs`](https://github.com/parallaxsecond/parsec/blob/master/src/providers/mbed_crypto_provider/mod.rs)
+[`mod.rs`](https://github.com/parallaxsecond/parsec/blob/master/src/providers/mbed_crypto/mod.rs)
 file, which outputs a trace entry and passes the call back to the internal implementation.
 
 A default implementation is added to

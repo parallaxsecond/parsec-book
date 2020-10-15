@@ -7,24 +7,24 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install mdbook
-      run: cargo install mdbook
-    - name: Build book
-      run: mdbook build
+      - uses: actions/checkout@v2
+      - name: Install mdbook
+        run: cargo install mdbook
+      - name: Build book
+        run: mdbook build
 
   format:
     name: Check formatting
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Create a Go workspace and install vmdfmt
-      run: |
+      - uses: actions/checkout@v2
+      - name: Create a Go workspace and install vmdfmt
+        run: |
           mkdir /tmp/go
           export GOPATH=/tmp/go
           go get github.com/bobertlo/vmd/cmd/vmdfmt
-    - name: Check formatting
-      run: |
+      - name: Check formatting
+        run: |
           export PATH="$PATH:/tmp/go/bin:$(pwd)/node_modules/.bin"
           ./ci/check_format.sh
 
@@ -32,9 +32,11 @@ jobs:
     name: Check links
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Link Checker
-      id: lc
-      uses: peter-evans/link-checker@v1
-    - name: Fail if there were link errors
-      run: exit ${{ steps.lc.outputs.exit_code }}
+      - uses: actions/checkout@v2
+      - name: Link Checker
+        id: lc
+        uses: peter-evans/link-checker@v1
+        with:
+          args: -v -r -c 30 *
+      - name: Fail if there were link errors
+        run: exit ${{ steps.lc.outputs.exit_code }}
