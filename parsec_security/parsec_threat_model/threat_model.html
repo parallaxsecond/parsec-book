@@ -160,10 +160,27 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#parsec-threat-model" id="parsec-threat-model">Parsec Threat Model</a></h1>
-<p>This document presents the generic Parsec Threat Model in a multi-tenant environment.</p>
-<p>Parsec could also be deployed in an environment where all clients trust each other and there is no
-Identity Provider present, and this would lead to some changes to the Threat Model. <em>These changes
-will be written in italic.</em></p>
+<p>This document presents the generic Parsec Threat Model in a multi-tenant environment with an
+Identity Provider, as envisaged in the <a href="https://parallaxsecond.github.io/parsec-book/parsec_service/system_architecture.html#participating-components-and-their-roles">System
+Architecture</a>
+page.</p>
+<p>Parsec could also be deployed in different configurations with other types of authentication in
+place and thus with other requirements for the host environment. The other configurations that have
+been considered by the Parsec team are listed below.</p>
+<ul>
+<li>(GNRC) Generic deployment model with Identity Provider</li>
+<li>(DSPC) Unix Domain Socket Peer Credential authentication model - the operating system acts as a
+substitute identity provider</li>
+<li>(DRCT) Direct authentication with mutually trusted clients - no identity provider</li>
+</ul>
+<p>Items in the following sections may be marked as &quot;applicable to a subset of configurations&quot;. Such
+markings will <strong>always</strong> be written in <em>italic</em> and can take two forms:</p>
+<ul>
+<li>Short form - e.g. <em>(GNRC,DSPC)</em> , meaning the item at hand is only applicable to the (GNRC) and
+(DSPC) deployment models. Can also be reductive - <em>(not GNRC)</em>, meaning the item does not apply
+to the (GNRC) deployment model.</li>
+<li>Long form - e.g. <em>Not applicable for deployment (GNRC)</em></li>
+</ul>
 <h2><a class="header" href="#dataflow-diagram" id="dataflow-diagram">Dataflow Diagram</a></h2>
 <p><img src="diagrams/dataflow_diagram.png" alt="Dataflow Diagram" /></p>
 <h2><a class="header" href="#assumptions" id="assumptions">Assumptions</a></h2>
@@ -175,10 +192,11 @@ of the service cannot be guaranteed.</p>
 access the system.</li>
 <li>The service is configured and started by a trusted administrator.</li>
 <li>The OS can be trusted to enforce access-control over critical resources (configuration file, key
-info mappings, communication socket, etc.) and inter-process communication mechanisms.</li>
+info mappings, communication socket, etc.) and inter-process communication mechanisms. System
+calls are also trusted to execute correctly.</li>
 <li>Users with privilege rights are trusted to exercise them in a non-malicious way.</li>
-<li>The authentication tokens are stored with confidentiality by the clients. <em>(N/A)</em></li>
-<li>There is a trusted Identity Provider available. <em>(N/A)</em></li>
+<li>The authentication tokens are stored with confidentiality by the clients. <em>(GNRC)</em></li>
+<li>There is a trusted Identity Provider available. <em>(GNRC)</em></li>
 </ol>
 <h2><a class="header" href="#assets" id="assets">Assets</a></h2>
 <p>What we want to protect. Each one of these has a combination of security properties:
@@ -190,10 +208,12 @@ IP's private key and sent by the Client Library on each request. Parsec verifies
 Token using the IP's public key.</p>
 <p><strong>Confidentiality</strong> : if known (the authentication token), an attacker could impersonate a specific
 application and execute operations in their name.</p>
-<p><em>Not applicable for deployments with no Identity Provider. In a deployment without an Identity
-Provider tenants will still have an identity in the form of an application name, but all entities in
-the system are trusted not to use identities of other tenants and so confidentiality is not
-critical.</em></p>
+<p><em>Not applicable for deployment (DSPC). The OS is trusted to enforce separation between users and to
+provide correct peer credential information that the service will then rely upon for access
+control.</em></p>
+<p><em>Not applicable for deployment (DRCT). Clients are assumed to be mutually trusted and given that we
+trust the OS to enforce access control on the service endpoint, there's no concern around the
+confidentiality of client identity tokens.</em></p>
 <h3><a class="header" href="#identity-provider-public-key--as2" id="identity-provider-public-key--as2">Identity Provider Public Key- AS2</a></h3>
 <p>The IP's public certificate is sent to the service periodically. It is used by the service to verify
 the authentication tokens.</p>
@@ -201,7 +221,7 @@ the authentication tokens.</p>
 identities and Parsec will verify them successfully. If they know the Authentication Token of
 clients, they can impersonate them.</p>
 <p><strong>Availability</strong> : Parsec needs it in order to execute a request.</p>
-<p><em>Not applicable for deployments with no Identity Provider.</em></p>
+<p><em>Not applicable for deployments (DSPC) and (DRCT).</em></p>
 <h3><a class="header" href="#private-keys--as3" id="private-keys--as3">Private Keys- AS3</a></h3>
 <p>Private keys created by Parsec on behalf of its clients. They should be stored on hardware and never
 be extractable.</p>
@@ -248,7 +268,7 @@ all threats but when one of them is particularly relevant, it will be noted with
 scope, dependent on the O-10 mitigation being deployed.</em></p>
 <h3><a class="header" href="#attacker-client-request---a1" id="attacker-client-request---a1">Attacker &quot;Client Request&quot; - A1</a></h3>
 <p>This attacker uses the existing Listener endpoint, created by the service, to communicate with it.</p>
-<p><em>Not applicable for deployments with no Identity Provider.</em></p>
+<p><em>Not applicable for deployment (DRCT).</em></p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker uses another client's authentication token. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-2</td><td>AS3</td></tr>
 <tr><td>S</td><td>An attacker uses brute-force on the AUTH field of the request until he does not have an AuthenticationError response status to then deduce a valid authentication token.</td><td>M-2</td><td>AS1</td></tr>
@@ -265,7 +285,7 @@ scope, dependent on the O-10 mitigation being deployed.</em></p>
 <p>This attacker uses the existing Listener endpoint, created by the service, to communicate with the
 client. It can also create a spoofed endpoint, mimicking the service's one.</p>
 <p>For protection of the clients' assets, please check the Parsec Clients Threat Models.</p>
-<p><em>Not applicable for deployments with no Identity Provider.</em></p>
+<p><em>Not applicable for deployment (DRCT).</em></p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates the Parsec service: clients share their data with a malicious entity.</td><td>O-2, O-9</td><td>AS3, AS4, AS6</td></tr>
 <tr><td>T</td><td>An attacker modifies the response of another client to change its body or its header and thus alter the type, content or status of the response.</td><td>M-3</td><td>AS4</td></tr>
@@ -361,7 +381,8 @@ mechanism for reading it.</p>
 </tbody></table>
 <h3><a class="header" href="#attacker-identity-provider---a10" id="attacker-identity-provider---a10">Attacker &quot;Identity Provider&quot; - A10</a></h3>
 <p>Attacker with access to the communication running from the Identity Provider to the Parsec service.</p>
-<p><em>Not applicable for deployments with no Identity Provider.</em></p>
+<p><em>Not applicable for deployment (DRCT). For deployment (DSPC) the operating system is considered
+sufficiently secure, as described in assumption 3.</em></p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>The initial trust bundle can be spoofed, and an attacker can thus gain complete control over the service.</td><td>O-7</td><td>AS2 and then all</td></tr>
 <tr><td>T</td><td>The trust bundle shared by the identity provider can be modified in transit to disrupt the operation of the service or take control of it.</td><td>M-3</td><td>AS2 and then all</td></tr>
@@ -376,7 +397,7 @@ mechanism for reading it.</p>
 process scheduled by the OS in the same timeframe than Parsec and reading the memory which was not
 cleared.</p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
-<tr><td>I</td><td>The attacker can read all the confidential assets placed in local memory by the service.</td><td>U-5</td><td>AS1, AS2, AS4 and AS5</td></tr>
+<tr><td>I</td><td>The attacker can read all the confidential assets placed in local memory by the service.</td><td>M-8</td><td>AS1, AS2, AS4 and AS5</td></tr>
 </tbody></table>
 <h2><a class="header" href="#unmitigations" id="unmitigations">Unmitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
@@ -384,18 +405,18 @@ cleared.</p>
 <tr><td>2</td><td>The authentication token is stored with confidentiality by the clients. If it is stolen, the service cannot prevent access with it unless the token is revoked.</td><td>All the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
 <tr><td>3</td><td>Parsec dependencies are not checked for Security Vulnerabilities.</td><td>A vulnerability in one of Parsec dependency will also impact Parsec and the data Parsec shares with that dependency.</td></tr>
 <tr><td>4</td><td>While Parsec is authenticated on the device, anyone can brute force a key ID to execute operations with the key. Unmitigated for the PKCS 11 Provider: all sessions share the login state; if one session logs in then all other opened sessions will also be logged in. Other sessions only need a valid key ID to execute operations with private keys. Mitigated for the TPM Provider: each key is protected by a long, random authentication value, generated by the TPM</td><td>All the client's PKCS 11 keys can be used with PKCS 11 operations.</td></tr>
-<tr><td>5</td><td>Parsec does not currently clear sensitive data in memory after use. <a href="https://github.com/parallaxsecond/parsec/issues/122">This is looked at here</a>.</td><td>The assets in local memory are exposed.</td></tr>
 </tbody></table>
 <h2><a class="header" href="#mitigations" id="mitigations">Mitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>Parsec uses a thread pool with a configurable amount of threads to limit the number of concurrent operations it can support so that the machine is not overloaded.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/e87984c4d3eaafa1a1cb977dceadf773aca1f7db">Done</a></td></tr>
 <tr><td>1</td><td>Response statuses are audited to not give too much information to the client.</td><td><a href="https://github.com/parallaxsecond/parsec-interface-rs/issues/59">Done</a></td></tr>
-<tr><td>2</td><td>The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible.</td><td>Parsec does not use an authenticator in a deployment without an Identity Provider.</td></tr>
+<tr><td>2</td><td>The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible. <em>(not DRCT)</em></td><td>Parsec does not use an authenticator in a deployment without an Identity Provider.</td></tr>
 <tr><td>3</td><td>Listener implementations use an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made).</td><td>Unix Domain Socket Listener: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
 <tr><td>4</td><td>The following events are logged by the service with information containing the application identity, time and date: &quot;new request received&quot;, &quot;response sent back&quot;, &quot;new mapping created&quot;, &quot;mapping is read from the persistent store&quot;, &quot;a hardware command is issued&quot; and &quot;a hardware command is received&quot;.</td><td><a href="https://github.com/parallaxsecond/parsec/pull/189">Done for Parsec</a> and <a href="https://github.com/parallaxsecond/rust-tss-esapi/issues/86">open for TPM</a></td></tr>
 <tr><td>5</td><td>Parsec is coded with safety in mind and is tested extensively.</td><td><a href="https://github.com/parallaxsecond/parsec-book/issues/35">Done</a></td></tr>
 <tr><td>6</td><td>The <code>ManageKeyInfo</code> implementations communicate with its persistence storage backend through a mechanism respecting confidentiality, integrity and availability.</td><td>On-Disk Key Info Manager: the mappings are stored on-disk using the filesystem provided by the OS. OS file permissions are used.</td></tr>
 <tr><td>7</td><td>Logging is configured to include the software component from where logs are generated.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/aafd176b49dd01c3f08866d564f2fff092d1305e">Done</a></td></tr>
+<tr><td>8</td><td>Sensitive data that was found in the Parsec service memory is cleared once the buffer holding it is no longer used.</td><td><a href="https://github.com/parallaxsecond/parsec/pull/239">Done</a></td></tr>
 </tbody></table>
 <h2><a class="header" href="#operational-mitigations" id="operational-mitigations">Operational mitigations</a></h2>
 <p>Most of these operational mitigations are implemented when following the <a href="../secure_deployment.html">Recommendations on a
@@ -403,15 +424,15 @@ Secure Parsec Deployment guide</a>.</p>
 <table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>A trusted administrator should start the service in such a way that un-privileged processes cannot send signals to the service.</td><td>In a Unix OS, using the separate <code>parsec</code> user to run the service prevents that.</td></tr>
 <tr><td>1</td><td>A trusted administrator should check the validity of the providers and hardware modules written in the service's configuration before starting/reloading it.</td><td>This is a manual step that has to be done as part of configuring the service.</td></tr>
-<tr><td>2</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.</td><td>The endpoint folder is owned by the <code>parsec</code> user, which must have been created by the trusted privileged administrator. This can be checked by clients.</td></tr>
-<tr><td>3</td><td>Mappings should be put in a location that only the Parsec service and the trusted administrator can access.</td><td>The mappings are inside the <code>parsec</code> user home folder.</td></tr>
+<tr><td>2</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.</td><td>The endpoint folder (<code>/run/parsec</code>) must have been created by the trusted privileged administrator so clients can trust the existance of a Parsec service.</td></tr>
+<tr><td>3</td><td>Mappings should be put in a location that only the Parsec service and the trusted administrator can access.</td><td>The mappings are inside the <code>/var/lib/parsec</code> folder for which the <code>parsec</code> user should have exclusive access.</td></tr>
 <tr><td>4</td><td>The trusted administrator needs to be notified when any kind of resource is running out.</td><td>Currently only the logs can be used as a way of knowing that the system is failing because a resource is running out.</td></tr>
 <tr><td>5</td><td>Parsec logs coming from the service binary should be redirected to a file that is only writable by the service and readable by the trusted administrator.</td><td>Using systemd, the logs can only be written by the service and read by the <code>parsec</code> user. Otherwise, they can be stored in the <code>parsec</code> home folder.</td></tr>
-<tr><td>6</td><td>Parsec configuration file should be only writable by the trusted administrator and readable by the service.</td><td>The configuration is in the <code>parsec</code> home folder.</td></tr>
-<tr><td>7</td><td>The trusted administrator needs to check that during the boot process the trusted identity provider has successfully given the root trust bundle to the service.</td><td>This is a manual check. It is possible that Parsec would not initialize correctly if the root trust bundle has not been given to it.</td></tr>
+<tr><td>6</td><td>Parsec configuration file should be only writable by the trusted administrator and readable by the service.</td><td>The configuration is in the <code>/etc/parsec</code> folder and must be configured to be readable only by the <code>parsec</code> user.</td></tr>
+<tr><td>7</td><td>The trusted administrator needs to check that during the boot process the trusted identity provider has successfully given the root trust bundle to the service. <em>(GNRC)</em></td><td>This is a manual check. It is possible that Parsec would not initialize correctly if the root trust bundle has not been given to it.</td></tr>
 <tr><td>8</td><td>The hardware descriptors should only be accessible by trusted privileged processes.</td><td>Manual check but this should be the default on most systems.</td></tr>
-<tr><td>9</td><td>The Listener endpoint should be contained in a location that only the Parsec service and the trusted administrator can access (only they can create the endpoint).</td><td>The endpoint folder is owned by the <code>parsec</code> user and only writable by it.</td></tr>
-<tr><td><em>10</em></td><td><em>A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.</em></td><td><em>The parsec-clients group only has read-access on the socket.</em></td></tr>
+<tr><td>9</td><td>The Listener endpoint is contained in a location that only the Parsec service and the trusted administrator can access (only they can create the endpoint).</td><td>The endpoint folder (<code>/run/parsec</code>) is owned by the <code>parsec</code> user and only writable by it.</td></tr>
+<tr><td>10</td><td>A set of mutually trusted clients has restricted read-write access to the service IPC endpoint. <em>(DRCT)</em></td><td>The <code>parsec-clients</code> group only has read-access on the socket.</td></tr>
 </tbody></table>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 

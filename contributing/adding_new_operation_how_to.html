@@ -282,12 +282,12 @@ interface to the operation.</p>
 <p>At this point, you will now have a safe Rust interface for the PSA operation you added.</p>
 <h3><a class="header" href="#parsec-1" id="parsec-1">parsec</a></h3>
 <p>Add the new operation to the correct
-<a href="https://github.com/parallaxsecond/parsec/tree/master/src/providers">provider</a> (in this case, <a href="https://github.com/parallaxsecond/parsec/tree/master/src/providers/mbed_crypto_provider">Mbed
-Crypto</a>) as
-a <code>psa_xxx_internal</code> method. The operation method should take the user inputs, arrange them in a way
+<a href="https://github.com/parallaxsecond/parsec/tree/master/src/providers">provider</a> (in this case, <a href="https://github.com/parallaxsecond/parsec/tree/master/src/providers/mbed_crypto">Mbed
+Crypto</a>) as a
+<code>psa_xxx_internal</code> method. The operation method should take the user inputs, arrange them in a way
 that <a href="#psa-crypto"><code>psa-crypto</code></a> accepts, and provide any extra logic or storage if required (e.g.
 an output buffer). The external implementation is to be added to the provider’s
-<a href="https://github.com/parallaxsecond/parsec/blob/master/src/providers/mbed_crypto_provider/mod.rs"><code>mod.rs</code></a>
+<a href="https://github.com/parallaxsecond/parsec/blob/master/src/providers/mbed_crypto/mod.rs"><code>mod.rs</code></a>
 file, which outputs a trace entry and passes the call back to the internal implementation.</p>
 <p>A default implementation is added to
 <a href="https://github.com/parallaxsecond/parsec/blob/master/src/providers/mod.rs"><code>src/providers/mod.rs</code></a>
