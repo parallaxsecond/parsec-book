@@ -24,9 +24,14 @@ are noted with `O-n`.
 - In a deployment using **Unix Peer Credentials authentication**, everyone else can have read and
    execute permission on the socket folder.
 - In a deployment using **Unix Peer Credentials authentication**, when a Unix account is deleted,
-   all of its Parsec keys must also be deleted (O-11).
-- The Parsec configuration must not be reloaded with a different authenticator is Parsec is
-   currently storing keys (O-12).
+   all of its Parsec keys must also be deleted (O-11). This can be done using a [Parsec Client
+   library](../parsec_users.md) or the
+   [`parsec-tool`](https://github.com/parallaxsecond/parsec-tool). **Warning:** delete keys with
+   caution and with the knowledge that they will never be needed again, as after this you will not
+   be able to use them ever again.
+- The Parsec configuration must not be reloaded with a different authenticator if Parsec is
+   currently storing keys (O-12). To use a different authenticator the `mappings` folder should
+   point to a new, unused, location. Alternatively, all keys should be deleted.
 
 # Using systemd
 
