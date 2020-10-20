@@ -15,6 +15,9 @@ Parsec Client Libraries are available in the following languages:
 - [Go](https://github.com/parallaxsecond/parsec-client-go) (not currently working but contributions
    are welcome!)
 
+Also have a look at [`parsec-tool`](https://github.com/parallaxsecond/parsec-tool), a command-line
+client to access Parsec from the terminal.
+
 Please [contribute](parsec_client/writing_library.md) to add more Parsec Client Libraries in the
 languages that you want!
 

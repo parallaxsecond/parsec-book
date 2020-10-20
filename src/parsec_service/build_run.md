@@ -3,17 +3,11 @@
 This project is coded in the Rust Programming Language. To build it, you first need to [install
 Rust](https://www.rust-lang.org/tools/install).
 
-Because the providers supported by Parsec are dependent on libraries and/or hardware features
-present on the platform, the build is fragmented through Rust features so that the resulting binary
-only contains the desired providers. Currently the service provides the following features:
-`mbed-crypto-provider`, `pkcs11-provider`, and `tpm-provider`. Please check the
+Because the [providers](providers.md) supported by Parsec are dependent on libraries and/or hardware
+features present on the platform, the build is fragmented through Rust features so that the
+resulting binary only contains the desired providers. Currently the service provides the following
+features: `mbed-crypto-provider`, `pkcs11-provider`, and `tpm-provider`. Please check the
 [dependencies](#dependencies) for what is needed to build each provider.
-
-In order for the service to be spun up, a number of parameters are required in a TOML file. The
-repository contains an [example](https://github.com/parallaxsecond/parsec/blob/master/config.toml)
-of such a configuration file which shows all the options and their default values. You can also take
-example of the ones used for testing, for example [the TPM provider
-one](https://github.com/parallaxsecond/parsec/blob/master/e2e_tests/provider_cfg/tpm/config.toml).
 
 The `mbed-crypto-provider` feature is going to be used as an example in this guide. This can be
 replaced by a subset of the features mentioned above, space or comma separated. If you would like to
@@ -21,33 +15,23 @@ test the TPM or PKCS check the [related
 guides](tests#testing-the-tpm-provider-using-the-software-tpm).
 
 On a real deployment (as explained in our [installation guide](install_parsec_linux.md)) specific
-owners and permissions need to be set up on multiple folders. Those security settings will be
-checked by the clients for them to make sure they are communicating with a trusted Parsec service.
-For testing only, it is fine to run Parsec from the current directory, have the key information
-mappings in `./mappings` and the socket at `/tmp/parsec.sock`. The test configuration will make
-those choices.
+owners and permissions need to be set up on multiple folders. For testing only, it is fine to run
+Parsec from the current directory, have the key information mappings in `./mappings` and the socket
+at `/tmp/parsec.sock`. The test configuration will make those choices.
 
 Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
 the test configuration:
 
 ```````
-RUST_LOG=info cargo run --features mbed-crypto-provider -- -c e2e_tests/provider_cfg/mbed-crypto/config.toml
+cargo build --features mbed-crypto-provider
+RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/mbed-crypto/config.toml
 ```````
 
-`parsec` will then construct the service based on the configuration file and wait for clients.
+`parsec` will then construct the service based on the [configuration](configuration.md) file and
+wait for clients.
 
 At the end of initialization, it should print `Parsec is ready` which means that it is ready to take
-requests from clients:
-
-```
-[INFO  parsec] Parsec started. Configuring the service...
-[INFO  parsec_service::utils::service_builder] Creating a Mbed Crypto Provider.
-[WARN  parsec_service::front::domain_socket] Incorrect user. Parsec should be run as user parsec. Follow recommendations to install Parsec securely or clients might not be able to connect.
-[INFO  parsec] Parsec is ready.
-```
-
-The `WARN` log warns us that we are not following the secure installation practices which is fine as
-this is for testing.
+requests from clients.
 
 From another terminal, it is now possible to execute the [end-to-end tests](tests#end-to-end-tests)
 on Parsec!
