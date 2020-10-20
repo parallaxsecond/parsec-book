@@ -163,15 +163,16 @@
 <p>Parsec can be built and installed as a Linux daemon using systemd. The daemon is a systemd user
 daemon run by the <code>parsec</code> user. Some manual steps are needed to make sure that permissions are set
 up correctly so that Parsec is installed respecting the operational mitigations of our <a href="../parsec_security/parsec_threat_model/threat_model.html">threat
-model</a>. Currently, Parsec does not support
-integration with any Identity Provider. More installation methods will be added in the future when
-new identity providers/authenticators are supported.</p>
+model</a>.</p>
 <p>If your Linux system uses systemd to manage daemons, you can follow these steps. <code>$DESIRED_FEATURES</code>
 can be a space or comma-separated subset of: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and
 <code>tpm-provider</code>. Choose the providers you want to install depending on what is available on the
 platform.</p>
+<p>This guide will assume that an authenticator is used. If you wish to install Parsec with Direct
+Authentication and mutually trusted clients, please follow this guide first and then go to the
+<a href="#using-direct-authentication">dedicated section</a> for the subsequent steps.</p>
 <h2><a class="header" href="#from-an-admin-user-with-privileges" id="from-an-admin-user-with-privileges">From an admin user with privileges</a></h2>
-<p>Create the <code>parsec</code> user.</p>
+<p>Create the <code>parsec</code> user with a strong password.</p>
 <pre><code>sudo useradd -m parsec
 sudo passwd parsec
 </code></pre>
@@ -180,8 +181,7 @@ sudo passwd parsec
 <li><code>/var/lib/parsec</code> for storing persistent data like the <code>mappings</code> folder.</li>
 <li><code>/etc/parsec</code> to contain the configuration file.</li>
 <li><code>/usr/libexec/parsec</code> to contain the <code>parsec</code> executable binary file.</li>
-<li><code>/run/parsec</code> to contain the socket file. The <code>parsec-clients</code> group needs to be created. Mutually
-trusted Parsec Clients will need to be in that group.</li>
+<li><code>/run/parsec</code> to contain the socket file.</li>
 </ul>
 <p>Commands:</p>
 <pre><code>sudo mkdir /var/lib/parsec
@@ -193,16 +193,10 @@ sudo chmod 700 /etc/parsec
 sudo mkdir /usr/libexec/parsec
 sudo chown parsec /usr/libexec/parsec
 sudo chmod 700 /usr/libexec/parsec
-sudo groupadd parsec-clients
 sudo mkdir /run/parsec
-sudo chown parsec:parsec-clients /run/parsec
-sudo chmod 750 /run/parsec
+sudo chown parsec /run/parsec
+sudo chmod 755 /run/parsec
 </code></pre>
-<p>For example, adding the imaginary <code>parsec-client-1</code> user to the <code>parsec-clients</code> group:</p>
-<pre><code>sudo usermod -a -G parsec-clients parsec-client-1
-</code></pre>
-<p>Users just added to that group might need to log-out and log-in again to make sure the change apply.
-They can also try the <code>newgrp</code> command with no parameters to re-initialize their environment.</p>
 <h2><a class="header" href="#from-the-parsec-user" id="from-the-parsec-user">From the parsec user</a></h2>
 <p>Log in to <code>parsec</code>.</p>
 <pre><code>su --login parsec
@@ -214,13 +208,17 @@ more privileges in order to access some resources on the system. Refer to the
 system, it will need to be <a href="https://www.rust-lang.org/tools/install">installed</a> for that specific
 user.</p>
 <p>Below is an example with Parsec 0.5.0, update with the version you want!</p>
-<pre><code>git clone --branch 0.5.0 https://github.com/parallaxsecond/parsec
+<pre><code>git clone --branch 0.6.0 https://github.com/parallaxsecond/parsec
 cargo build --manifest-path parsec/Cargo.toml --features $DESIRED_FEATURES --release
 cp parsec/target/release/parsec /usr/libexec/parsec
 </code></pre>
-<p>Adapt and copy the <a href="configuration.html">configuration</a> you want to use.</p>
+<p>Adapt and copy the <a href="configuration.html">configuration</a> you want to use. Particulary, add and configure
+the providers you set in the <code>$DESIRED_FEATURES</code>.</p>
 <pre><code>cp parsec/config.toml /etc/parsec/config.toml
 </code></pre>
+<p><strong>Warning:</strong> do not set <code>&quot;Direct&quot;</code> for <code>auth_type</code> as this will make Parsec insecure. If you would
+like to use Direct Authentication with mutually trusted clients, please continue the steps described
+below and then go to the <a href="#using-direct-authentication">dedicated section</a>.</p>
 <p>Install the systemd unit files and activate the Parsec socket.</p>
 <pre><code>mkdir -p ~/.config/systemd/user
 cp -r parsec/systemd-daemon/parsec.service ~/.config/systemd/user
@@ -230,10 +228,44 @@ systemctl --user start parsec
 <p>Check the Parsec logs with:</p>
 <pre><code>journalctl --user -u parsec
 </code></pre>
-<p>Also reload the service with:</p>
+<p>If later you change the configuration file, you can reload the service with:</p>
 <pre><code>systemctl --user kill -s HUP parsec
 </code></pre>
-<h2><a class="header" href="#from-a-parsec-clients-user" id="from-a-parsec-clients-user">From a parsec-clients user</a></h2>
+<h2><a class="header" href="#from-a-parsec-client" id="from-a-parsec-client">From a Parsec client</a></h2>
+<p>The definition of a client will depend on the <a href="authenticators.html">authenticator</a> that you configured
+Parsec with.</p>
+<p>Clients can now use Parsec! They can test it by installing the
+<a href="https://github.com/parallaxsecond/parsec-tool"><code>parsec-tool</code></a>:</p>
+<pre><code>$ parsec-tool ping
+[INFO] Pinging Parsec service...
+[SUCCESS] Service wire protocol version is 1.0.
+</code></pre>
+<h2><a class="header" href="#using-direct-authentication" id="using-direct-authentication">Using Direct Authentication</a></h2>
+<p>Using this authentication method, clients will be able to declare their own identity. Clients using
+Parsec with this authentication need to be mutually trusted and part of the <code>parsec-clients</code> group.</p>
+<p><strong>Warning:</strong> you must only follow those steps if Parsec is not currently storing any keys.</p>
+<p>As the <code>parsec</code> user, stop the service.</p>
+<pre><code>systemctl --user stop parsec
+</code></pre>
+<p>As the admin, add the <code>parsec-clients</code> group and restrict the visibility of the socket folder to
+that group.</p>
+<pre><code>sudo groupadd parsec-clients
+sudo chown parsec:parsec-clients /run/parsec
+sudo chmod 750 /run/parsec
+</code></pre>
+<p>Add mutually trusted clients to the <code>parsec-clients</code> group. For example, adding the imaginary
+<code>parsec-client-1</code> user to the <code>parsec-clients</code> group:</p>
+<pre><code>sudo usermod -a -G parsec-clients parsec-client-1
+</code></pre>
+<p>Users just added to that group might need to log-out and log-in again to make sure the change apply.
+They can also try the <code>newgrp</code> command with no parameters to re-initialize their environment.</p>
+<p>Modify the <code>auth_type</code> in <code>/etc/parsec</code> to <code>&quot;Direct&quot;</code>.</p>
+<pre><code>[authenticator]
+auth_type = &quot;Direct&quot;
+</code></pre>
+<p>As the <code>parsec</code> user, start the service again.</p>
+<pre><code>systemctl --user start parsec
+</code></pre>
 <p><code>parsec-clients</code> users can now use Parsec! You can test it (having logged in a <code>parsec-clients</code>
 user) by installing the <a href="https://github.com/parallaxsecond/parsec-tool"><code>parsec-tool</code></a>:</p>
 <pre><code>$ parsec-tool ping

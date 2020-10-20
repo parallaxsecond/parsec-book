@@ -345,6 +345,8 @@ Parsec through the PSA Crypto API</li>
 <li><a href="https://github.com/parallaxsecond/parsec-client-go">Go</a> (not currently working but contributions
 are welcome!)</li>
 </ul>
+<p>Also have a look at <a href="https://github.com/parallaxsecond/parsec-tool"><code>parsec-tool</code></a>, a command-line
+client to access Parsec from the terminal.</p>
 <p>Please <a href="parsec_client/writing_library.html">contribute</a> to add more Parsec Client Libraries in the
 languages that you want!</p>
 <h2><a class="header" href="#building-running-and-installing-parsec" id="building-running-and-installing-parsec">Building, running and installing Parsec</a></h2>
@@ -2912,14 +2914,23 @@ will expect the socket to be at the default path and hence this option should no
 deployment.</p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#authenticators" id="authenticators">Authenticators</a></h1>
+<p>The <code>auth_type</code> field in the configuration allows to change the authenticator currently used by
+Parsec. Because keys are not namespaced with the authentication method, the authenticator <strong>must
+not</strong> be changed while there are keys stored in Parsec. In a future version, Parsec might support
+multiple concurrent authenticators, see <a href="https://github.com/parallaxsecond/parsec/issues/271">this
+issue</a> for details.</p>
 <h2><a class="header" href="#direct-authenticator" id="direct-authenticator">Direct Authenticator</a></h2>
 <p>The direct authenticator directly parses the authentication field as a UTF-8 string and uses that as
 application identity.</p>
+<p><strong>Warning notice</strong>: The Direct Authenticator is only secure under specific requirements. Please make
+sure to read the <a href="parsec_service/../parsec_security/secure_deployment.html">Recommendations on a Secure Parsec
+Deployment</a>. Please only use it for testing or if you are
+really sure what you are doing.</p>
 <h2><a class="header" href="#unix-peer-credentials-authenticator" id="unix-peer-credentials-authenticator">Unix Peer Credentials Authenticator</a></h2>
-<p>The Unix peer credentials authenticator uses Unix peer credentials to authenticate the client. Here
-'Unix peer credentials' refers to metadata about the connection between client and server that
-contains the effective Unix user identifier (UID) and Unix group identifier (GID) of the connecting
-process.</p>
+<p>The Unix peer credentials authenticator uses Unix peer credentials to authenticate the clients as
+different Unix users. Here 'Unix peer credentials' refers to metadata about the connection between
+client and server that contains the effective Unix user identifier (UID) and Unix group identifier
+(GID) of the connecting process.</p>
 <p>To use this authenticator, the application must self-declare its UID (<strong>not</strong> username) in the
 authentication field of the request as a zero-padded little-endian 32-bit unsigned integer. This
 authenticator will then verify that the UID sourced from the peer credentials matches the one
@@ -3020,40 +3031,28 @@ generally needed since providers are expected to support UTF-8 encoded strings a
 <h1><a class="header" href="#how-to-build-and-run-parsec" id="how-to-build-and-run-parsec">How to build and run Parsec</a></h1>
 <p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install
 Rust</a>.</p>
-<p>Because the providers supported by Parsec are dependent on libraries and/or hardware features
-present on the platform, the build is fragmented through Rust features so that the resulting binary
-only contains the desired providers. Currently the service provides the following features:
-<code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>. Please check the
+<p>Because the <a href="parsec_service/providers.html">providers</a> supported by Parsec are dependent on libraries and/or hardware
+features present on the platform, the build is fragmented through Rust features so that the
+resulting binary only contains the desired providers. Currently the service provides the following
+features: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>. Please check the
 <a href="parsec_service/build_run.html#dependencies">dependencies</a> for what is needed to build each provider.</p>
-<p>In order for the service to be spun up, a number of parameters are required in a TOML file. The
-repository contains an <a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">example</a>
-of such a configuration file which shows all the options and their default values. You can also take
-example of the ones used for testing, for example <a href="https://github.com/parallaxsecond/parsec/blob/master/e2e_tests/provider_cfg/tpm/config.toml">the TPM provider
-one</a>.</p>
 <p>The <code>mbed-crypto-provider</code> feature is going to be used as an example in this guide. This can be
 replaced by a subset of the features mentioned above, space or comma separated. If you would like to
 test the TPM or PKCS check the <a href="parsec_service/tests#testing-the-tpm-provider-using-the-software-tpm">related
 guides</a>.</p>
 <p>On a real deployment (as explained in our <a href="parsec_service/install_parsec_linux.html">installation guide</a>) specific
-owners and permissions need to be set up on multiple folders. Those security settings will be
-checked by the clients for them to make sure they are communicating with a trusted Parsec service.
-For testing only, it is fine to run Parsec from the current directory, have the key information
-mappings in <code>./mappings</code> and the socket at <code>/tmp/parsec.sock</code>. The test configuration will make
-those choices.</p>
+owners and permissions need to be set up on multiple folders. For testing only, it is fine to run
+Parsec from the current directory, have the key information mappings in <code>./mappings</code> and the socket
+at <code>/tmp/parsec.sock</code>. The test configuration will make those choices.</p>
 <p>Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
 the test configuration:</p>
-<pre><code>RUST_LOG=info cargo run --features mbed-crypto-provider -- -c e2e_tests/provider_cfg/mbed-crypto/config.toml
+<pre><code>cargo build --features mbed-crypto-provider
+RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/mbed-crypto/config.toml
 </code></pre>
-<p><code>parsec</code> will then construct the service based on the configuration file and wait for clients.</p>
+<p><code>parsec</code> will then construct the service based on the <a href="parsec_service/configuration.html">configuration</a> file and
+wait for clients.</p>
 <p>At the end of initialization, it should print <code>Parsec is ready</code> which means that it is ready to take
-requests from clients:</p>
-<pre><code>[INFO  parsec] Parsec started. Configuring the service...
-[INFO  parsec_service::utils::service_builder] Creating a Mbed Crypto Provider.
-[WARN  parsec_service::front::domain_socket] Incorrect user. Parsec should be run as user parsec. Follow recommendations to install Parsec securely or clients might not be able to connect.
-[INFO  parsec] Parsec is ready.
-</code></pre>
-<p>The <code>WARN</code> log warns us that we are not following the secure installation practices which is fine as
-this is for testing.</p>
+requests from clients.</p>
 <p>From another terminal, it is now possible to execute the <a href="parsec_service/tests#end-to-end-tests">end-to-end tests</a>
 on Parsec!</p>
 <pre><code>cd e2e_tests
@@ -3095,15 +3094,16 @@ Make sure you also follow the requirements of the <a href="https://docs.rs/tss-e
 <p>Parsec can be built and installed as a Linux daemon using systemd. The daemon is a systemd user
 daemon run by the <code>parsec</code> user. Some manual steps are needed to make sure that permissions are set
 up correctly so that Parsec is installed respecting the operational mitigations of our <a href="parsec_service/../parsec_security/parsec_threat_model/threat_model.html">threat
-model</a>. Currently, Parsec does not support
-integration with any Identity Provider. More installation methods will be added in the future when
-new identity providers/authenticators are supported.</p>
+model</a>.</p>
 <p>If your Linux system uses systemd to manage daemons, you can follow these steps. <code>$DESIRED_FEATURES</code>
 can be a space or comma-separated subset of: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and
 <code>tpm-provider</code>. Choose the providers you want to install depending on what is available on the
 platform.</p>
+<p>This guide will assume that an authenticator is used. If you wish to install Parsec with Direct
+Authentication and mutually trusted clients, please follow this guide first and then go to the
+<a href="parsec_service/install_parsec_linux.html#using-direct-authentication">dedicated section</a> for the subsequent steps.</p>
 <h2><a class="header" href="#from-an-admin-user-with-privileges" id="from-an-admin-user-with-privileges">From an admin user with privileges</a></h2>
-<p>Create the <code>parsec</code> user.</p>
+<p>Create the <code>parsec</code> user with a strong password.</p>
 <pre><code>sudo useradd -m parsec
 sudo passwd parsec
 </code></pre>
@@ -3112,8 +3112,7 @@ sudo passwd parsec
 <li><code>/var/lib/parsec</code> for storing persistent data like the <code>mappings</code> folder.</li>
 <li><code>/etc/parsec</code> to contain the configuration file.</li>
 <li><code>/usr/libexec/parsec</code> to contain the <code>parsec</code> executable binary file.</li>
-<li><code>/run/parsec</code> to contain the socket file. The <code>parsec-clients</code> group needs to be created. Mutually
-trusted Parsec Clients will need to be in that group.</li>
+<li><code>/run/parsec</code> to contain the socket file.</li>
 </ul>
 <p>Commands:</p>
 <pre><code>sudo mkdir /var/lib/parsec
@@ -3125,16 +3124,10 @@ sudo chmod 700 /etc/parsec
 sudo mkdir /usr/libexec/parsec
 sudo chown parsec /usr/libexec/parsec
 sudo chmod 700 /usr/libexec/parsec
-sudo groupadd parsec-clients
 sudo mkdir /run/parsec
-sudo chown parsec:parsec-clients /run/parsec
-sudo chmod 750 /run/parsec
+sudo chown parsec /run/parsec
+sudo chmod 755 /run/parsec
 </code></pre>
-<p>For example, adding the imaginary <code>parsec-client-1</code> user to the <code>parsec-clients</code> group:</p>
-<pre><code>sudo usermod -a -G parsec-clients parsec-client-1
-</code></pre>
-<p>Users just added to that group might need to log-out and log-in again to make sure the change apply.
-They can also try the <code>newgrp</code> command with no parameters to re-initialize their environment.</p>
 <h2><a class="header" href="#from-the-parsec-user" id="from-the-parsec-user">From the parsec user</a></h2>
 <p>Log in to <code>parsec</code>.</p>
 <pre><code>su --login parsec
@@ -3146,13 +3139,17 @@ more privileges in order to access some resources on the system. Refer to the
 system, it will need to be <a href="https://www.rust-lang.org/tools/install">installed</a> for that specific
 user.</p>
 <p>Below is an example with Parsec 0.5.0, update with the version you want!</p>
-<pre><code>git clone --branch 0.5.0 https://github.com/parallaxsecond/parsec
+<pre><code>git clone --branch 0.6.0 https://github.com/parallaxsecond/parsec
 cargo build --manifest-path parsec/Cargo.toml --features $DESIRED_FEATURES --release
 cp parsec/target/release/parsec /usr/libexec/parsec
 </code></pre>
-<p>Adapt and copy the <a href="parsec_service/configuration.html">configuration</a> you want to use.</p>
+<p>Adapt and copy the <a href="parsec_service/configuration.html">configuration</a> you want to use. Particulary, add and configure
+the providers you set in the <code>$DESIRED_FEATURES</code>.</p>
 <pre><code>cp parsec/config.toml /etc/parsec/config.toml
 </code></pre>
+<p><strong>Warning:</strong> do not set <code>&quot;Direct&quot;</code> for <code>auth_type</code> as this will make Parsec insecure. If you would
+like to use Direct Authentication with mutually trusted clients, please continue the steps described
+below and then go to the <a href="parsec_service/install_parsec_linux.html#using-direct-authentication">dedicated section</a>.</p>
 <p>Install the systemd unit files and activate the Parsec socket.</p>
 <pre><code>mkdir -p ~/.config/systemd/user
 cp -r parsec/systemd-daemon/parsec.service ~/.config/systemd/user
@@ -3162,10 +3159,44 @@ systemctl --user start parsec
 <p>Check the Parsec logs with:</p>
 <pre><code>journalctl --user -u parsec
 </code></pre>
-<p>Also reload the service with:</p>
+<p>If later you change the configuration file, you can reload the service with:</p>
 <pre><code>systemctl --user kill -s HUP parsec
 </code></pre>
-<h2><a class="header" href="#from-a-parsec-clients-user" id="from-a-parsec-clients-user">From a parsec-clients user</a></h2>
+<h2><a class="header" href="#from-a-parsec-client" id="from-a-parsec-client">From a Parsec client</a></h2>
+<p>The definition of a client will depend on the <a href="parsec_service/authenticators.html">authenticator</a> that you configured
+Parsec with.</p>
+<p>Clients can now use Parsec! They can test it by installing the
+<a href="https://github.com/parallaxsecond/parsec-tool"><code>parsec-tool</code></a>:</p>
+<pre><code>$ parsec-tool ping
+[INFO] Pinging Parsec service...
+[SUCCESS] Service wire protocol version is 1.0.
+</code></pre>
+<h2><a class="header" href="#using-direct-authentication" id="using-direct-authentication">Using Direct Authentication</a></h2>
+<p>Using this authentication method, clients will be able to declare their own identity. Clients using
+Parsec with this authentication need to be mutually trusted and part of the <code>parsec-clients</code> group.</p>
+<p><strong>Warning:</strong> you must only follow those steps if Parsec is not currently storing any keys.</p>
+<p>As the <code>parsec</code> user, stop the service.</p>
+<pre><code>systemctl --user stop parsec
+</code></pre>
+<p>As the admin, add the <code>parsec-clients</code> group and restrict the visibility of the socket folder to
+that group.</p>
+<pre><code>sudo groupadd parsec-clients
+sudo chown parsec:parsec-clients /run/parsec
+sudo chmod 750 /run/parsec
+</code></pre>
+<p>Add mutually trusted clients to the <code>parsec-clients</code> group. For example, adding the imaginary
+<code>parsec-client-1</code> user to the <code>parsec-clients</code> group:</p>
+<pre><code>sudo usermod -a -G parsec-clients parsec-client-1
+</code></pre>
+<p>Users just added to that group might need to log-out and log-in again to make sure the change apply.
+They can also try the <code>newgrp</code> command with no parameters to re-initialize their environment.</p>
+<p>Modify the <code>auth_type</code> in <code>/etc/parsec</code> to <code>&quot;Direct&quot;</code>.</p>
+<pre><code>[authenticator]
+auth_type = &quot;Direct&quot;
+</code></pre>
+<p>As the <code>parsec</code> user, start the service again.</p>
+<pre><code>systemctl --user start parsec
+</code></pre>
 <p><code>parsec-clients</code> users can now use Parsec! You can test it (having logged in a <code>parsec-clients</code>
 user) by installing the <a href="https://github.com/parallaxsecond/parsec-tool"><code>parsec-tool</code></a>:</p>
 <pre><code>$ parsec-tool ping
@@ -3303,20 +3334,23 @@ communicate to it. The
 <a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests"><code>parsec/e2e_tests</code></a> crate contains
 a test client based on the Rust client that is used inside the tests written in
 <a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests"><code>parsec/e2e_tests/tests</code></a>.</p>
-<p>The end-to-end tests contain tests to be executed: * with a Parsec service containing a single
-provider:
+<p>The end-to-end tests contain tests to be executed:</p>
+<ul>
+<li>with a Parsec service containing a single provider:
 <a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider"><code>per_provider</code></a>
-tests * with a Parsec service containing all providers:
-<a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers"><code>all_providers</code></a>
-and <a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/config"><code>config</code></a> tests</p>
+tests</li>
+<li>with a Parsec service containing all providers:
+<a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers"><code>all_providers</code></a></li>
+</ul>
 <p>The
 <a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/provider_cfg"><code>parsec/e2e_tests/provider_cfg</code></a>
 folder contain the <code>Dockerfile</code> and Parsec configuration needed to run Parsec for the corresponding
 tests.</p>
 <table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
-<tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers">All providers e2e tests</a></td><td>End-to-end tests on a service with all providers. Mostly to test core operations.</td></tr>
-<tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/cross.rs">Cross-providers e2e tests</a></td><td>Test that the output of various operations from different providers is accepted by the other providers.</td></tr>
-<tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/config">Configuration e2e tests</a></td><td>These check if the behaviour of the service is correct before and after reloading with a different configuration.</td></tr>
+<tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/normal.rs">All providers normal e2e tests</a></td><td>End-to-end tests on a service with all providers. Mostly to test core operations.</td></tr>
+<tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/cross.rs">All providers cross-providers e2e tests</a></td><td>Test that the output of various operations from different providers is accepted by the other providers.</td></tr>
+<tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/config">All providers configuration e2e tests</a></td><td>These check if the behaviour of the service is correct before and after reloading with a different configuration.</td></tr>
+<tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/multitenancy.rs">All providers multitenancy e2e tests</a></td><td>Test that multiple tenants of Parsec using different authentication methods can not access each other's keys.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/normal_tests">Per provider normal tests</a></td><td>E2E tests checking most cryptographic operations on a single provider. Parsec results are also verified with third party software crypto implementations (ring, the rsa crate, etc...).</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/persistent_before.rs">Per provider persistence tests</a></td><td>E2E tests checking correct behaviour of the service around persistence of keys in the Key Info Manager.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/stress_test.rs">Per provider stress tests</a></td><td>Stress tests executing a large number of canonical operations at high frequency on a single provider.</td></tr>
@@ -3379,8 +3413,8 @@ access the system.</li>
 info mappings, communication socket, etc.) and inter-process communication mechanisms. System
 calls are also trusted to execute correctly.</li>
 <li>Users with privilege rights are trusted to exercise them in a non-malicious way.</li>
-<li>The authentication tokens are stored with confidentiality by the clients. <em>(GNRC)</em></li>
-<li>There is a trusted Identity Provider available. <em>(GNRC)</em></li>
+<li><em>(GNRC)</em> The authentication tokens are stored with confidentiality by the clients.</li>
+<li><em>(GNRC)</em> There is a trusted Identity Provider available.</li>
 </ol>
 <h2><a class="header" href="#assets" id="assets">Assets</a></h2>
 <p>What we want to protect. Each one of these has a combination of security properties:
@@ -3448,18 +3482,19 @@ the different components.</p>
 mitigation status and the assets impacted. A threat can be unmitigated (U), mitigated within the
 service (M) or mitigated through operational requirements (O). The assumptions context applies for
 all threats but when one of them is particularly relevant, it will be noted with ASUM.</p>
-<p><em>In deployments without an Identity Provider, the A1, A2 and A10 attackers are not considered in
-scope, dependent on the O-10 mitigation being deployed.</em></p>
 <h3><a class="header" href="#attacker-client-request---a1" id="attacker-client-request---a1">Attacker &quot;Client Request&quot; - A1</a></h3>
 <p>This attacker uses the existing Listener endpoint, created by the service, to communicate with it.</p>
 <p><em>Not applicable for deployment (DRCT).</em></p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
-<tr><td>S</td><td>An attacker uses another client's authentication token. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-2</td><td>AS3</td></tr>
-<tr><td>S</td><td>An attacker uses brute-force on the AUTH field of the request until he does not have an AuthenticationError response status to then deduce a valid authentication token.</td><td>M-2</td><td>AS1</td></tr>
+<tr><td>S</td><td><em>(GNRC)</em> An attacker uses another client's authentication token. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-2</td><td>AS3</td></tr>
+<tr><td>S</td><td><em>(GNRC)</em> An attacker uses brute-force on the AUTH field of the request until he does not have an AuthenticationError response status to then deduce a valid authentication token.</td><td>M-2</td><td>AS1</td></tr>
+<tr><td>S</td><td><em>(DSPC)</em> An attacker uses another client's Unix account. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-5</td><td>AS3</td></tr>
+<tr><td>S</td><td><em>(DSPC)</em> An attacker uses a Unix account with the same UID as a client. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>O-11, ASUM-3</td><td>AS3</td></tr>
+<tr><td>S</td><td>An attacker uses a weakness or a bug of the current authenticator to access all keys created with past and present authentication methods.</td><td>O-12, U-6</td><td>AS3</td></tr>
 <tr><td>T</td><td>An attacker modifies the valid request of another client to modify the operation and make it non-secure.</td><td>M-3</td><td>AS4</td></tr>
 <tr><td>R</td><td>A client denies the authorship of a request.</td><td>M-4</td><td></td></tr>
 <tr><td>I</td><td>An attacker can read the confidential information of a request from another client.</td><td>M-3</td><td>AS1, AS4</td></tr>
-<tr><td>I</td><td>An attacker steals the authentication token from a client's request to then execute any operation in their name.</td><td>M-3</td><td>AS4, AS3</td></tr>
+<tr><td>I</td><td><em>(GNRC)</em> An attacker steals the authentication token from a client's request to then execute any operation in their name.</td><td>M-3</td><td>AS4, AS3</td></tr>
 <tr><td>D</td><td>An attacker modifies the valid request of another client to modify the operation and make it fail.</td><td>M-3</td><td>AS6</td></tr>
 <tr><td>D</td><td>An attacker overloads/crashes the system and thus prevents any other user from making use of the service.</td><td>Crashes: M-0, M-5 Overloads: U-0</td><td>AS6</td></tr>
 <tr><td>E</td><td>A malicious request, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-5</td><td>All</td></tr>
@@ -3589,12 +3624,14 @@ cleared.</p>
 <tr><td>2</td><td>The authentication token is stored with confidentiality by the clients. If it is stolen, the service cannot prevent access with it unless the token is revoked.</td><td>All the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
 <tr><td>3</td><td>Parsec dependencies are not checked for Security Vulnerabilities.</td><td>A vulnerability in one of Parsec dependency will also impact Parsec and the data Parsec shares with that dependency.</td></tr>
 <tr><td>4</td><td>While Parsec is authenticated on the device, anyone can brute force a key ID to execute operations with the key. Unmitigated for the PKCS 11 Provider: all sessions share the login state; if one session logs in then all other opened sessions will also be logged in. Other sessions only need a valid key ID to execute operations with private keys. Mitigated for the TPM Provider: each key is protected by a long, random authentication value, generated by the TPM</td><td>All the client's PKCS 11 keys can be used with PKCS 11 operations.</td></tr>
+<tr><td>5</td><td><em>(DSPC)</em> Parsec does not know about the security quality of a client's Unix password.</td><td>All the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
+<tr><td>6</td><td>Parsec does not support using multiple authenticators concurrently (<a href="https://github.com/parallaxsecond/parsec/issues/272">open issue</a>).</td><td>If there is weakness in one authenticator, all the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
 </tbody></table>
 <h2><a class="header" href="#mitigations" id="mitigations">Mitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>Parsec uses a thread pool with a configurable amount of threads to limit the number of concurrent operations it can support so that the machine is not overloaded.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/e87984c4d3eaafa1a1cb977dceadf773aca1f7db">Done</a></td></tr>
 <tr><td>1</td><td>Response statuses are audited to not give too much information to the client.</td><td><a href="https://github.com/parallaxsecond/parsec-interface-rs/issues/59">Done</a></td></tr>
-<tr><td>2</td><td>The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible. <em>(not DRCT)</em></td><td>Parsec does not use an authenticator in a deployment without an Identity Provider.</td></tr>
+<tr><td>2</td><td><em>(not DRCT)</em> The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible.</td><td>Not applicable currently as Parsec does not implement the GNRC case.</td></tr>
 <tr><td>3</td><td>Listener implementations use an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made).</td><td>Unix Domain Socket Listener: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
 <tr><td>4</td><td>The following events are logged by the service with information containing the application identity, time and date: &quot;new request received&quot;, &quot;response sent back&quot;, &quot;new mapping created&quot;, &quot;mapping is read from the persistent store&quot;, &quot;a hardware command is issued&quot; and &quot;a hardware command is received&quot;.</td><td><a href="https://github.com/parallaxsecond/parsec/pull/189">Done for Parsec</a> and <a href="https://github.com/parallaxsecond/rust-tss-esapi/issues/86">open for TPM</a></td></tr>
 <tr><td>5</td><td>Parsec is coded with safety in mind and is tested extensively.</td><td><a href="https://github.com/parallaxsecond/parsec-book/issues/35">Done</a></td></tr>
@@ -3606,44 +3643,53 @@ cleared.</p>
 <p>Most of these operational mitigations are implemented when following the <a href="parsec_security/parsec_threat_model/../secure_deployment.html">Recommendations on a
 Secure Parsec Deployment guide</a>.</p>
 <table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
-<tr><td>0</td><td>A trusted administrator should start the service in such a way that un-privileged processes cannot send signals to the service.</td><td>In a Unix OS, using the separate <code>parsec</code> user to run the service prevents that.</td></tr>
+<tr><td>0</td><td>A trusted administrator should start the service in such a way that un-privileged processes cannot send signals to the service.</td><td>In a Unix OS, using a separate user to run the service prevents that.</td></tr>
 <tr><td>1</td><td>A trusted administrator should check the validity of the providers and hardware modules written in the service's configuration before starting/reloading it.</td><td>This is a manual step that has to be done as part of configuring the service.</td></tr>
-<tr><td>2</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.</td><td>The endpoint folder (<code>/run/parsec</code>) must have been created by the trusted privileged administrator so clients can trust the existance of a Parsec service.</td></tr>
-<tr><td>3</td><td>Mappings should be put in a location that only the Parsec service and the trusted administrator can access.</td><td>The mappings are inside the <code>/var/lib/parsec</code> folder for which the <code>parsec</code> user should have exclusive access.</td></tr>
+<tr><td>2</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.</td><td>The endpoint folder is in a location that only the trusted privileged administrator could have created so clients can trust the existance of a Parsec service.</td></tr>
+<tr><td>3</td><td>Mappings should be put in a location that only the Parsec service and the trusted administrator can access.</td><td>The mappings are inside a folder for which the Parsec user should have exclusive access.</td></tr>
 <tr><td>4</td><td>The trusted administrator needs to be notified when any kind of resource is running out.</td><td>Currently only the logs can be used as a way of knowing that the system is failing because a resource is running out.</td></tr>
-<tr><td>5</td><td>Parsec logs coming from the service binary should be redirected to a file that is only writable by the service and readable by the trusted administrator.</td><td>Using systemd, the logs can only be written by the service and read by the <code>parsec</code> user. Otherwise, they can be stored in the <code>parsec</code> home folder.</td></tr>
-<tr><td>6</td><td>Parsec configuration file should be only writable by the trusted administrator and readable by the service.</td><td>The configuration is in the <code>/etc/parsec</code> folder and must be configured to be readable only by the <code>parsec</code> user.</td></tr>
-<tr><td>7</td><td>The trusted administrator needs to check that during the boot process the trusted identity provider has successfully given the root trust bundle to the service. <em>(GNRC)</em></td><td>This is a manual check. It is possible that Parsec would not initialize correctly if the root trust bundle has not been given to it.</td></tr>
+<tr><td>5</td><td>Parsec logs coming from the service binary should be redirected to a file that is only writable by the service and readable by the trusted administrator.</td><td>Using systemd, the logs can only be written by the service and read by the Parsec user. Otherwise, they can be stored in the Parsec user home folder.</td></tr>
+<tr><td>6</td><td>Parsec configuration file should be only writable by the trusted administrator and readable by the service.</td><td>The configuration is in a folder configured to be readable only by the Parsec user.</td></tr>
+<tr><td>7</td><td><em>(GNRC)</em> The trusted administrator needs to check that during the boot process the trusted identity provider has successfully given the root trust bundle to the service.</td><td>This is a manual check. It is possible that Parsec would not initialize correctly if the root trust bundle has not been given to it.</td></tr>
 <tr><td>8</td><td>The hardware descriptors should only be accessible by trusted privileged processes.</td><td>Manual check but this should be the default on most systems.</td></tr>
-<tr><td>9</td><td>The Listener endpoint is contained in a location that only the Parsec service and the trusted administrator can access (only they can create the endpoint).</td><td>The endpoint folder (<code>/run/parsec</code>) is owned by the <code>parsec</code> user and only writable by it.</td></tr>
-<tr><td>10</td><td>A set of mutually trusted clients has restricted read-write access to the service IPC endpoint. <em>(DRCT)</em></td><td>The <code>parsec-clients</code> group only has read-access on the socket.</td></tr>
+<tr><td>9</td><td>The Listener endpoint is contained in a location that only the Parsec service and the trusted administrator can access (only they can create the endpoint).</td><td>The endpoint folder is owned by the Parsec user and only writable by them.</td></tr>
+<tr><td>10</td><td><em>(DRCT)</em> A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.</td><td>A Parsec Clients Unix group needs to be created for it to exclusively have read-access on the socket.</td></tr>
+<tr><td>11</td><td><em>(DSPC)</em> Before a client's Unix account is deleted, all of its Parsec keys must be deleted as well.</td><td>The OS might recycle the same UID previously used by a deleted user and give it to an attacker's account.</td></tr>
+<tr><td>12</td><td>The administrator should not change Parsec authentication method while it is currently storing keys.</td><td>The keys are not namespaced with authentication type which means the authentication is as strong as the weakest used.</td></tr>
 </tbody></table>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 <h1><a class="header" href="#recommendations-on-a-secure-parsec-deployment" id="recommendations-on-a-secure-parsec-deployment">Recommendations on a Secure Parsec Deployment</a></h1>
 <p>The following recommendations should be applied in order for Parsec to respect some of the
 operational mitigations. These recommendations have been thought of for a Linux system and should be
-modified/ported for other operating systems. The linked <a href="parsec_security/parsec_threat_model/threat_model.html#operational-mitigations">operational
-mitigations</a> are noted with <code>O-n</code>.</p>
+modified/ported for other operating systems. The Domain Socket Listener and the On-Disk Key Info
+manager are assumed to be used.</p>
+<p>The linked <a href="parsec_security/parsec_threat_model/threat_model.html#operational-mitigations">operational mitigations</a>
+are noted with <code>O-n</code>.</p>
 <ul>
 <li>The service must be running as the <code>parsec</code> user (O-0).</li>
-<li>Key mappings must only be read/write by the <code>parsec</code> user (O-3).</li>
+<li>Key mappings must be located at <code>/var/lib/parsec/mappings</code> and must only be read/write by the
+<code>parsec</code> user (O-3).</li>
 <li>The logs must be redirected to a file only readable by the <code>parsec</code> user (O-5).</li>
-<li>The configuration file must only be read/write by the <code>parsec</code> user (O-6).</li>
-<li>For the Domain Socket Listener, the socket must be in a folder with specific permissions (O-9).
-The folder must be owned by the <code>parsec</code> user which must have read, write and execute rights on
-it.
-<ul>
-<li>In a deployment <strong>without Identity Provider</strong>, the folder must be group owned by the
-<code>parsec-clients</code> group which has only read and execute permission on it (O-10). Everyone else
-must have no permission on the folder. The <code>parsec-clients</code> group is composed of mutually
-trusted clients only.</li>
-<li>In a deployment <strong>with Identity Provider</strong>, everyone else can have read and execute permission
-on the folder.</li>
-</ul>
-</li>
-<li>Before accessing the service, clients must check the permissions of the folder containing the
-socket (O-2). The owner, group owner and permissions must be the same as the previous point,
-depending on an Identity Provider is available or not.</li>
+<li>The configuration file must be located at <code>/etc/parsec/config.toml</code> and must only be read/write by
+the <code>parsec</code> user (O-6).</li>
+<li>The socket folder must be located at <code>/run/parsec/</code> (O-2) and must only be writable by the
+<code>parsec</code> user (O-9).</li>
+<li>In a deployment using <strong>Direct authentication with mutually trusted clients</strong>, the socket folder
+must be group owned by the <code>parsec-clients</code> group which has only read and execute permission on
+it (O-10). Everyone else must have no permission on the folder. The <code>parsec-clients</code> group is
+composed of mutually trusted clients only. This group must be continuously maintained to contain
+the mutually trusted clients.</li>
+<li>In a deployment using <strong>Unix Peer Credentials authentication</strong>, everyone else can have read and
+execute permission on the socket folder.</li>
+<li>In a deployment using <strong>Unix Peer Credentials authentication</strong>, when a Unix account is deleted,
+all of its Parsec keys must also be deleted (O-11). This can be done using a <a href="parsec_security/../parsec_users.html">Parsec Client
+library</a> or the
+<a href="https://github.com/parallaxsecond/parsec-tool"><code>parsec-tool</code></a>. <strong>Warning:</strong> delete keys with
+caution and with the knowledge that they will never be needed again, as after this you will not
+be able to use them ever again.</li>
+<li>The Parsec configuration must not be reloaded with a different authenticator if Parsec is
+currently storing keys (O-12). To use a different authenticator the <code>mappings</code> folder should
+point to a new, unused, location. Alternatively, all keys should be deleted.</li>
 </ul>
 <h1><a class="header" href="#using-systemd" id="using-systemd">Using systemd</a></h1>
 <p>Installing Parsec using systemd with the unit files provided and <a href="parsec_security/../parsec_service/install_parsec_linux.html">following the

@@ -162,28 +162,35 @@
                         <h1><a class="header" href="#recommendations-on-a-secure-parsec-deployment" id="recommendations-on-a-secure-parsec-deployment">Recommendations on a Secure Parsec Deployment</a></h1>
 <p>The following recommendations should be applied in order for Parsec to respect some of the
 operational mitigations. These recommendations have been thought of for a Linux system and should be
-modified/ported for other operating systems. The linked <a href="parsec_threat_model/threat_model.html#operational-mitigations">operational
-mitigations</a> are noted with <code>O-n</code>.</p>
+modified/ported for other operating systems. The Domain Socket Listener and the On-Disk Key Info
+manager are assumed to be used.</p>
+<p>The linked <a href="parsec_threat_model/threat_model.html#operational-mitigations">operational mitigations</a>
+are noted with <code>O-n</code>.</p>
 <ul>
 <li>The service must be running as the <code>parsec</code> user (O-0).</li>
-<li>Key mappings must only be read/write by the <code>parsec</code> user (O-3).</li>
+<li>Key mappings must be located at <code>/var/lib/parsec/mappings</code> and must only be read/write by the
+<code>parsec</code> user (O-3).</li>
 <li>The logs must be redirected to a file only readable by the <code>parsec</code> user (O-5).</li>
-<li>The configuration file must only be read/write by the <code>parsec</code> user (O-6).</li>
-<li>For the Domain Socket Listener, the socket must be in a folder with specific permissions (O-9).
-The folder must be owned by the <code>parsec</code> user which must have read, write and execute rights on
-it.
-<ul>
-<li>In a deployment <strong>without Identity Provider</strong>, the folder must be group owned by the
-<code>parsec-clients</code> group which has only read and execute permission on it (O-10). Everyone else
-must have no permission on the folder. The <code>parsec-clients</code> group is composed of mutually
-trusted clients only.</li>
-<li>In a deployment <strong>with Identity Provider</strong>, everyone else can have read and execute permission
-on the folder.</li>
-</ul>
-</li>
-<li>Before accessing the service, clients must check the permissions of the folder containing the
-socket (O-2). The owner, group owner and permissions must be the same as the previous point,
-depending on an Identity Provider is available or not.</li>
+<li>The configuration file must be located at <code>/etc/parsec/config.toml</code> and must only be read/write by
+the <code>parsec</code> user (O-6).</li>
+<li>The socket folder must be located at <code>/run/parsec/</code> (O-2) and must only be writable by the
+<code>parsec</code> user (O-9).</li>
+<li>In a deployment using <strong>Direct authentication with mutually trusted clients</strong>, the socket folder
+must be group owned by the <code>parsec-clients</code> group which has only read and execute permission on
+it (O-10). Everyone else must have no permission on the folder. The <code>parsec-clients</code> group is
+composed of mutually trusted clients only. This group must be continuously maintained to contain
+the mutually trusted clients.</li>
+<li>In a deployment using <strong>Unix Peer Credentials authentication</strong>, everyone else can have read and
+execute permission on the socket folder.</li>
+<li>In a deployment using <strong>Unix Peer Credentials authentication</strong>, when a Unix account is deleted,
+all of its Parsec keys must also be deleted (O-11). This can be done using a <a href="../parsec_users.html">Parsec Client
+library</a> or the
+<a href="https://github.com/parallaxsecond/parsec-tool"><code>parsec-tool</code></a>. <strong>Warning:</strong> delete keys with
+caution and with the knowledge that they will never be needed again, as after this you will not
+be able to use them ever again.</li>
+<li>The Parsec configuration must not be reloaded with a different authenticator if Parsec is
+currently storing keys (O-12). To use a different authenticator the <code>mappings</code> folder should
+point to a new, unused, location. Alternatively, all keys should be deleted.</li>
 </ul>
 <h1><a class="header" href="#using-systemd" id="using-systemd">Using systemd</a></h1>
 <p>Installing Parsec using systemd with the unit files provided and <a href="../parsec_service/install_parsec_linux.html">following the
