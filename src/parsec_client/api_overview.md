@@ -189,8 +189,14 @@ permitted numerical values for this field are given as follows:-
    connecting process as a zero-padded little-endian 32-bit unsigned integer. The Parsec service
    will verify that this self-declared UID is consistent with the UID from the Unix peer
    credentials.
+- A value of 4 (`0x04`) indicates authentication through JWT SPIFFE Verifiable Identity Document.
+   The service expects the **authentication** field to contain a JWT-SVID token as described in the
+   [SPIFFE standard](https://github.com/spiffe/spiffe/blob/master/standards/JWT-SVID.md). The token
+   must be encoded using the JWS Compact Serialization. The service will use the SPIFFE ID validated
+   from the SVID as application identity.
 
-Other values are unsupported and will be rejected by the service.
+Other values are unsupported and will be rejected by the service. See the
+[authenticators](../parsec_service/authenticators.md) page for more details.
 
 ## Unauthenticated Operations
 

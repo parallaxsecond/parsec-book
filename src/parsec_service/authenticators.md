@@ -35,4 +35,19 @@ this transport can be used with a different authenticator if required.
 The GID and PID components of the Unix peer credentials are currently unused by the peer credentials
 authenticator.
 
+## JWT SPIFFE Verifiable Identity Document Authenticator
+
+The JWT-SVID authenticator uses the JWT-SVID token to authenticate clients. The SPIFFE ID contained
+and verified in the JWT-SVID is used as application identity for each client.
+
+Please see the [JWT SPIFFE Verifiable Identity
+Document](https://github.com/spiffe/spiffe/blob/master/standards/JWT-SVID.md) for more information
+about the structure of the JWT-SVID token.
+
+The token is passed in the authentication field using the JWS Compact Serialization.
+
+The SPIFFE Workload API is used by clients to fetch their JWT-SVID token and by the service to
+verify it. Its `aud` claim (audience) must be set to `parsec`. A low expiration time is recommended
+through the `exp` claim.
+
 *Copyright 2019 Contributors to the Parsec project.*

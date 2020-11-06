@@ -10,6 +10,9 @@ you want to know, you can go to the [users](parsec_users.md), [client
 developers](parsec_client/README.md), [service developers](parsec_service/README.md) or
 [security](parsec_security/README.md) sections.
 
+Don't hesitate to ask any question you would have when reading on our [Community Slack
+Channel](https://github.com/parallaxsecond/community#community-channel)!
+
 Parsec and all the repositories under the `parallaxsecond` organization are provided under
 Apache-2.0. Contributions to this project are accepted under the same license.
 
