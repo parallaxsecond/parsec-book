@@ -26,7 +26,9 @@
         <link rel="stylesheet" href="../../css/variables.css">
         <link rel="stylesheet" href="../../css/general.css">
         <link rel="stylesheet" href="../../css/chrome.css">
+        
         <link rel="stylesheet" href="../../css/print.css" media="print">
+        
 
         <!-- Fonts -->
         <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
@@ -128,9 +130,11 @@
                     <h1 class="menu-title">The Parsec Book</h1>
 
                     <div class="right-buttons">
+                        
                         <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
+                        
                         
                     </div>
                 </div>
@@ -172,11 +176,14 @@ been considered by the Parsec team are listed below.</p>
 <li>(DSPC) Unix Domain Socket Peer Credential authentication model - the operating system acts as a
 substitute identity provider</li>
 <li>(DRCT) Direct authentication with mutually trusted clients - no identity provider</li>
+<li>(JWTS) JWT SPIFFE Verifiable Identity Document authentication - the SPIFFE implementation acts as
+an identity provider for clients but it also used by the service to verify the identities (the
+JWT-SVID tokens)</li>
 </ul>
 <p>Items in the following sections may be marked as &quot;applicable to a subset of configurations&quot;. Such
 markings will <strong>always</strong> be written in <em>italic</em> and can take two forms:</p>
 <ul>
-<li>Short form - e.g. <em>(GNRC,DSPC)</em> , meaning the item at hand is only applicable to the (GNRC) and
+<li>Short form - e.g. <em>(GNRC, DSPC)</em> , meaning the item at hand is only applicable to the (GNRC) and
 (DSPC) deployment models. Can also be reductive - <em>(not GNRC)</em>, meaning the item does not apply
 to the (GNRC) deployment model.</li>
 <li>Long form - e.g. <em>Not applicable for deployment (GNRC)</em></li>
@@ -195,7 +202,7 @@ access the system.</li>
 info mappings, communication socket, etc.) and inter-process communication mechanisms. System
 calls are also trusted to execute correctly.</li>
 <li>Users with privilege rights are trusted to exercise them in a non-malicious way.</li>
-<li><em>(GNRC)</em> The authentication tokens are stored with confidentiality by the clients.</li>
+<li><em>(GNRC, JWTS)</em> The authentication tokens are stored with confidentiality by the clients.</li>
 <li><em>(GNRC)</em> There is a trusted Identity Provider available.</li>
 </ol>
 <h2><a class="header" href="#assets" id="assets">Assets</a></h2>
@@ -208,6 +215,8 @@ IP's private key and sent by the Client Library on each request. Parsec verifies
 Token using the IP's public key.</p>
 <p><strong>Confidentiality</strong> : if known (the authentication token), an attacker could impersonate a specific
 application and execute operations in their name.</p>
+<p><em>(JWTS)</em>: the JWT-SVID tokens share the same Confidentiality property although the verification
+happens remotely in the SPIFFE implementation.</p>
 <p><em>Not applicable for deployment (DSPC). The OS is trusted to enforce separation between users and to
 provide correct peer credential information that the service will then rely upon for access
 control.</em></p>
@@ -221,7 +230,7 @@ the authentication tokens.</p>
 identities and Parsec will verify them successfully. If they know the Authentication Token of
 clients, they can impersonate them.</p>
 <p><strong>Availability</strong> : Parsec needs it in order to execute a request.</p>
-<p><em>Not applicable for deployments (DSPC) and (DRCT).</em></p>
+<p><em>Not applicable for deployments (DSPC, DRCT, JWTS).</em></p>
 <h3><a class="header" href="#private-keys--as3" id="private-keys--as3">Private Keys- AS3</a></h3>
 <p>Private keys created by Parsec on behalf of its clients. They should be stored on hardware and never
 be extractable.</p>
@@ -268,15 +277,15 @@ all threats but when one of them is particularly relevant, it will be noted with
 <p>This attacker uses the existing Listener endpoint, created by the service, to communicate with it.</p>
 <p><em>Not applicable for deployment (DRCT).</em></p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
-<tr><td>S</td><td><em>(GNRC)</em> An attacker uses another client's authentication token. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-2</td><td>AS3</td></tr>
-<tr><td>S</td><td><em>(GNRC)</em> An attacker uses brute-force on the AUTH field of the request until he does not have an AuthenticationError response status to then deduce a valid authentication token.</td><td>M-2</td><td>AS1</td></tr>
+<tr><td>S</td><td><em>(GNRC, JWTS)</em> An attacker uses another client's authentication token. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-2, O-15</td><td>AS3</td></tr>
+<tr><td>S</td><td><em>(GNRC, JWTS)</em> An attacker uses brute-force on the AUTH field of the request until he does not have an AuthenticationError response status to then deduce a valid authentication token.</td><td>M-2</td><td>AS1</td></tr>
 <tr><td>S</td><td><em>(DSPC)</em> An attacker uses another client's Unix account. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-5</td><td>AS3</td></tr>
 <tr><td>S</td><td><em>(DSPC)</em> An attacker uses a Unix account with the same UID as a client. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>O-11, ASUM-3</td><td>AS3</td></tr>
 <tr><td>S</td><td>An attacker uses a weakness or a bug of the current authenticator to access all keys created with past and present authentication methods.</td><td>O-12, U-6</td><td>AS3</td></tr>
 <tr><td>T</td><td>An attacker modifies the valid request of another client to modify the operation and make it non-secure.</td><td>M-3</td><td>AS4</td></tr>
 <tr><td>R</td><td>A client denies the authorship of a request.</td><td>M-4</td><td></td></tr>
 <tr><td>I</td><td>An attacker can read the confidential information of a request from another client.</td><td>M-3</td><td>AS1, AS4</td></tr>
-<tr><td>I</td><td><em>(GNRC)</em> An attacker steals the authentication token from a client's request to then execute any operation in their name.</td><td>M-3</td><td>AS4, AS3</td></tr>
+<tr><td>I</td><td><em>(GNRC, JWTS)</em> An attacker steals the authentication token from a client's request to then execute any operation in their name.</td><td>M-3</td><td>AS4, AS3</td></tr>
 <tr><td>D</td><td>An attacker modifies the valid request of another client to modify the operation and make it fail.</td><td>M-3</td><td>AS6</td></tr>
 <tr><td>D</td><td>An attacker overloads/crashes the system and thus prevents any other user from making use of the service.</td><td>Crashes: M-0, M-5 Overloads: U-0</td><td>AS6</td></tr>
 <tr><td>E</td><td>A malicious request, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-5</td><td>All</td></tr>
@@ -400,6 +409,27 @@ cleared.</p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>I</td><td>The attacker can read all the confidential assets placed in local memory by the service.</td><td>M-8</td><td>AS1, AS2, AS4 and AS5</td></tr>
 </tbody></table>
+<h3><a class="header" href="#attacker-spiffe-validation-request---a12" id="attacker-spiffe-validation-request---a12">Attacker &quot;SPIFFE Validation Request&quot; - A12</a></h3>
+<p>This attacker uses the SPIFFE Workload API endpoint created by the SPIFFE implementation to
+interfere with the validation of the JWT-SVID token sent by the client.</p>
+<p><em>Only applicable for deployment (JWTS).</em></p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>I</td><td>An attacker steals the authentication token from a client's request to then execute any operation in their name.</td><td>M-9</td><td>AS4, AS3</td></tr>
+<tr><td>D</td><td>An attacker modifies the validation request to make it fail.</td><td>M-9</td><td>AS6</td></tr>
+<tr><td>D</td><td>An attacker overloads/crashes the SPIFFE implementation and thus prevents the service from making use of it.</td><td>SPIFFE implementation specific. An <a href="https://github.com/spiffe/spiffe/blob/master/standards/SPIFFE_Workload_Endpoint.md#6-error-codes">&quot;Unavailable&quot; error</a> can be used for implementations to perform load-shedding.</td><td>AS6</td></tr>
+</tbody></table>
+<h3><a class="header" href="#attacker-spiffe-validation-response---a13" id="attacker-spiffe-validation-response---a13">Attacker &quot;SPIFFE Validation Response&quot; - A13</a></h3>
+<p>This attacker uses the SPIFFE Workload API endpoint created by the SPIFFE implementation to
+interfere with the validation of the JWT-SVID token sent by the client. It can also create a spoofed
+endpoint, mimicking the SPIFFE implementation's one.</p>
+<p><em>Only applicable for deployment (JWTS).</em></p>
+<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<tr><td>S</td><td>An attacker impersonates the SPIFFE implementation: Parsec sends the authentication data of clients to malicious entity.</td><td>O-14</td><td>AS1</td></tr>
+<tr><td>T</td><td>An attacker modifies the validation response of the SPIFFE implementation to yield the application identity of its choice.</td><td>O-14</td><td>AS1</td></tr>
+<tr><td>D</td><td>An attacker modifies the validation response to pretend it failed or succeeded.</td><td>M-9</td><td>AS6</td></tr>
+<tr><td>D</td><td>An attacker modifies the validation response in such a way that it leads the service to crash.</td><td>M-9</td><td>AS6</td></tr>
+<tr><td>E</td><td>An attacker modifies the validation response in such a way that it leads to code execution at the service privilege level.</td><td>M-9</td><td>AS4, AS5, AS6, AS7, AS8</td></tr>
+</tbody></table>
 <h2><a class="header" href="#unmitigations" id="unmitigations">Unmitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
 <tr><td>0</td><td>An attacker can use all the threads of the service's thread pool, requesting for a time-consuming operation on each one of them, to leave the less amount of free time possible to other clients.</td><td>The requests take more time to execute.</td></tr>
@@ -413,13 +443,14 @@ cleared.</p>
 <table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>Parsec uses a thread pool with a configurable amount of threads to limit the number of concurrent operations it can support so that the machine is not overloaded.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/e87984c4d3eaafa1a1cb977dceadf773aca1f7db">Done</a></td></tr>
 <tr><td>1</td><td>Response statuses are audited to not give too much information to the client.</td><td><a href="https://github.com/parallaxsecond/parsec-interface-rs/issues/59">Done</a></td></tr>
-<tr><td>2</td><td><em>(not DRCT)</em> The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible.</td><td>Not applicable currently as Parsec does not implement the GNRC case.</td></tr>
+<tr><td>2</td><td><em>(not DRCT)</em> The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible.</td><td><em>(JWTS)</em> The <a href="https://github.com/spiffe/spiffe/blob/master/standards/JWT-SVID.md#21-algorithm">algorithms</a> prescribed by the JWT-SVID standard are secure enough to prevent brute-force attacks in most cases.</td></tr>
 <tr><td>3</td><td>Listener implementations use an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made).</td><td>Unix Domain Socket Listener: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
 <tr><td>4</td><td>The following events are logged by the service with information containing the application identity, time and date: &quot;new request received&quot;, &quot;response sent back&quot;, &quot;new mapping created&quot;, &quot;mapping is read from the persistent store&quot;, &quot;a hardware command is issued&quot; and &quot;a hardware command is received&quot;.</td><td><a href="https://github.com/parallaxsecond/parsec/pull/189">Done for Parsec</a> and <a href="https://github.com/parallaxsecond/rust-tss-esapi/issues/86">open for TPM</a></td></tr>
 <tr><td>5</td><td>Parsec is coded with safety in mind and is tested extensively.</td><td><a href="https://github.com/parallaxsecond/parsec-book/issues/35">Done</a></td></tr>
 <tr><td>6</td><td>The <code>ManageKeyInfo</code> implementations communicate with its persistence storage backend through a mechanism respecting confidentiality, integrity and availability.</td><td>On-Disk Key Info Manager: the mappings are stored on-disk using the filesystem provided by the OS. OS file permissions are used.</td></tr>
 <tr><td>7</td><td>Logging is configured to include the software component from where logs are generated.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/aafd176b49dd01c3f08866d564f2fff092d1305e">Done</a></td></tr>
 <tr><td>8</td><td>Sensitive data that was found in the Parsec service memory is cleared once the buffer holding it is no longer used.</td><td><a href="https://github.com/parallaxsecond/parsec/pull/239">Done</a></td></tr>
+<tr><td>9</td><td><em>(JWTS)</em> The SPIFFE Workload API endpoint is accessed through an IPC mechanism respecting confidentiality and integrity of messages transmitted between the workloads and the SPIFFE implementation.</td><td>The <a href="https://github.com/spiffe/spiffe/blob/master/standards/SPIFFE_Workload_Endpoint.md#3-transport">SPIFFE Workload Endpoint document</a> prescribes the use of Unix Domain Socket or TCP with strong authentication.</td></tr>
 </tbody></table>
 <h2><a class="header" href="#operational-mitigations" id="operational-mitigations">Operational mitigations</a></h2>
 <p>Most of these operational mitigations are implemented when following the <a href="../secure_deployment.html">Recommendations on a
@@ -438,6 +469,9 @@ Secure Parsec Deployment guide</a>.</p>
 <tr><td>10</td><td><em>(DRCT)</em> A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.</td><td>A Parsec Clients Unix group needs to be created for it to exclusively have read-access on the socket.</td></tr>
 <tr><td>11</td><td><em>(DSPC)</em> Before a client's Unix account is deleted, all of its Parsec keys must be deleted as well.</td><td>The OS might recycle the same UID previously used by a deleted user and give it to an attacker's account.</td></tr>
 <tr><td>12</td><td>The administrator should not change Parsec authentication method while it is currently storing keys.</td><td>The keys are not namespaced with authentication type which means the authentication is as strong as the weakest used.</td></tr>
+<tr><td>13</td><td><em>(JWTS)</em> A short expiration time should be set on the JWT-SVID token so that if it is stolen, it can only be used temporarily by attackers.</td><td>The way to set the expiration time of JWT-SVID tokens is implementation-specific. The administrator should ensure it is not too long.</td></tr>
+<tr><td>14</td><td><em>(JWTS)</em> The SPIFFE Workload API endpoint must exist before Parsec is started and owned by an independant user. It must not be deleted while Parsec is running.</td><td>It must not be possible for an attacker to put their own socket where the Parsec service and clients expect it. Doing a local validation of the JWT-SVID would remove the need for this mitigation. See <a href="https://github.com/parallaxsecond/parsec/issues/289">here</a> for details.</td></tr>
+<tr><td>15</td><td><em>(JWTS)</em> The Parsec clients must be registered as SPIFFE workloads with unique SPIFFE ID.</td><td>Two Parsec clients should not be assigned the same SPIFFE ID.</td></tr>
 </tbody></table>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 
