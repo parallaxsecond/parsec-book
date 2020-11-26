@@ -29,6 +29,9 @@ are noted with `O-n`.
    [`parsec-tool`](https://github.com/parallaxsecond/parsec-tool). **Warning:** delete keys with
    caution and with the knowledge that they will never be needed again, as after this you will not
    be able to use them ever again.
+- In a deployment using **JWT-SVID authentication**, the the Workload API Endpoint location must
+   exist before the Parsec service is started and originate from a genuine SPIFFE implementation. It
+   must exist as long as the Parsec service is running using this location.
 - The Parsec configuration must not be reloaded with a different authenticator if Parsec is
    currently storing keys (O-12). To use a different authenticator the `mappings` folder should
    point to a new, unused, location. Alternatively, all keys should be deleted.
