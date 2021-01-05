@@ -27,4 +27,7 @@ Signed-off-by: Full Name <email address>
 If you'd like to get a feel for what we're looking for in contributions, we also have a checklist
 for PR reviewers [here](pr_checklist.md).
 
+When planning to publish code to a package manager, make sure to read our [package management and
+versioning guide](package_management.md).
+
 *Copyright 2019 Contributors to the Parsec project.*

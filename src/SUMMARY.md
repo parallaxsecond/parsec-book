@@ -60,5 +60,6 @@
 - [Contributing](contributing/README.md)
    - [Pull request checklist](contributing/pr_checklist.md)
    - [How to add operations to Parsec](contributing/adding_new_operation_how_to.md)
+   - [Package management and versioning guide](contributing/package_management.md)
 
 *Copyright 2019 Contributors to the Parsec project.*
