@@ -847,6 +847,7 @@ the providers.</p>
 <tr><td><code>WrongProviderUuid</code></td><td>18</td><td>The UUID vector needs to only contain 16 bytes</td></tr>
 <tr><td><code>NotAuthenticated</code></td><td>19</td><td>Request did not provide a required authentication</td></tr>
 <tr><td><code>BodySizeExceedsLimit</code></td><td>20</td><td>Request length specified in the header is above defined limit</td></tr>
+<tr><td><code>AdminOperation</code></td><td>21</td><td>The operation requires admin privilege</td></tr>
 </tbody></table>
 <h2><a class="header" href="#psa-response-status-codes" id="psa-response-status-codes">PSA Response Status Codes</a></h2>
 <p>These codes originate from within the <code>Provide</code> trait implementation.</p>
@@ -917,11 +918,17 @@ translated to the specific operation implementation language used.</p>
 <tr><td><a href="parsec_client/operations/psa_sign_message.html">PsaSignMessage</a></td><td><code>0x0018</code></td></tr>
 <tr><td><a href="parsec_client/operations/psa_verify_message.html">PsaVerifyMessage</a></td><td><code>0x0019</code></td></tr>
 <tr><td><a href="parsec_client/operations/list_keys.html">ListKeys</a></td><td><code>0x001A</code></td></tr>
+<tr><td><a href="parsec_client/operations/list_clients.html">ListClients</a></td><td><code>0x001B</code></td></tr>
+<tr><td><a href="parsec_client/operations/delete_client.html">DeleteClient</a></td><td><code>0x001C</code></td></tr>
 </tbody></table>
 <p>Find <a href="parsec_client/operations/service_api_coverage.html">here</a> the current level of support of those operations in Parsec.</p>
 <h2><a class="header" href="#core-operations" id="core-operations">Core Operations</a></h2>
 <p>Core operations are non-cryptographic operations supported by the core provider. Set the
 <strong>provider</strong> field of the request header to 0 (<code>0x00</code>) to invoke these operations.</p>
+<p>Some operations are reserved for <strong>administrators</strong>. They are marked below with &quot;<strong>(admin)</strong>&quot;. These
+operations can only be executed by a set of application names chosen by the Parsec administrator. If
+user applications try to execute those operations, a <code>AdminOperation</code> response status error code
+will be returned.</p>
 <h3><a class="header" href="#service-health" id="service-health">Service Health</a></h3>
 <ul>
 <li><a href="parsec_client/operations/ping.html">Ping</a></li>
@@ -932,6 +939,8 @@ translated to the specific operation implementation language used.</p>
 <li><a href="parsec_client/operations/list_opcodes.html">ListOpcodes</a></li>
 <li><a href="parsec_client/operations/list_authenticators.html">ListAuthenticators</a></li>
 <li><a href="parsec_client/operations/list_keys.html">ListKeys</a></li>
+<li><a href="parsec_client/operations/list_clients.html">ListClients</a> <strong>(admin)</strong></li>
+<li><a href="parsec_client/operations/delete_client.html">DeleteClient</a> <strong>(admin)</strong></li>
 </ul>
 <h2><a class="header" href="#psa-crypto-operations-1" id="psa-crypto-operations-1">PSA Crypto Operations</a></h2>
 <p>These operations are all derived from equivalent function definitions in the <a href="https://developer.arm.com/architectures/security-architectures/platform-security-architecture/documentation"><strong>PSA Crypto API
@@ -3452,7 +3461,9 @@ threat tables below which ones are impacted by each threat.</p>
 IP's private key and sent by the Client Library on each request. Parsec verifies the Authentication
 Token using the IP's public key.</p>
 <p><strong>Confidentiality</strong> : if known (the authentication token), an attacker could impersonate a specific
-application and execute operations in their name.</p>
+application and execute operations in their name. The admin application authentication token is
+especially sensitive as if it is stolen by an attacker, they can then have access to operations
+impacting all clients such as <code>DeleteClient</code>.</p>
 <p><em>(JWTS)</em>: the JWT-SVID tokens share the same Confidentiality property although the verification
 happens remotely in the SPIFFE implementation.</p>
 <p><em>Not applicable for deployment (DSPC). The OS is trusted to enforce separation between users and to
@@ -3619,8 +3630,8 @@ persistent storage.</p>
 <p>Attacker with access to the configuration file for the Parsec service or to the OS-provided
 mechanism for reading it.</p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
-<tr><td>S</td><td>An adversary can spoof a configuration file, leading to the service operating in an ineffective state or not starting at all.</td><td>O-6</td><td>AS5, AS6</td></tr>
-<tr><td>T</td><td>The configuration file set up by the administrator might be modified, leading to the service being ineffective or broken.</td><td>O-6</td><td>AS5, AS6</td></tr>
+<tr><td>S</td><td>An adversary can spoof a configuration file, leading to the service operating in an unsecure state, ineffective state or not starting at all.</td><td>O-6</td><td>AS3, AS5, AS6</td></tr>
+<tr><td>T</td><td>The configuration file set up by the administrator might be modified, leading to the service being unsecure, ineffective or broken.</td><td>O-6</td><td>AS3, AS5, AS6</td></tr>
 <tr><td>R</td><td>There are no guarantees that the person setting up the configuration file was authorised to do so.</td><td>O-6</td><td></td></tr>
 <tr><td>I</td><td>The configuration file might, if read by an adversary, provide information that opens different attack avenues.</td><td>O-6</td><td>AS5</td></tr>
 <tr><td>I</td><td>If the configuration file is tampered, information about the existing keys can be extracted through rogue providers.</td><td>O-6</td><td>AS5</td></tr>
