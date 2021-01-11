@@ -36,6 +36,8 @@ translated to the specific operation implementation language used.
 | [PsaSignMessage](psa_sign_message.md)             | `0x0018` |
 | [PsaVerifyMessage](psa_verify_message.md)         | `0x0019` |
 | [ListKeys](list_keys.md)                          | `0x001A` |
+| [ListClients](list_clients.md)                    | `0x001B` |
+| [DeleteClient](delete_client.md)                  | `0x001C` |
 
 Find [here](service_api_coverage.md) the current level of support of those operations in Parsec.
 
@@ -43,6 +45,11 @@ Find [here](service_api_coverage.md) the current level of support of those opera
 
 Core operations are non-cryptographic operations supported by the core provider. Set the
 **provider** field of the request header to 0 (`0x00`) to invoke these operations.
+
+Some operations are reserved for **administrators**. They are marked below with "**(admin)**". These
+operations can only be executed by a set of application names chosen by the Parsec administrator. If
+user applications try to execute those operations, a `AdminOperation` response status error code
+will be returned.
 
 ### Service Health
 
@@ -54,6 +61,8 @@ Core operations are non-cryptographic operations supported by the core provider.
 - [ListOpcodes](list_opcodes.md)
 - [ListAuthenticators](list_authenticators.md)
 - [ListKeys](list_keys.md)
+- [ListClients](list_clients.md) **(admin)**
+- [DeleteClient](delete_client.md) **(admin)**
 
 ## PSA Crypto Operations
 

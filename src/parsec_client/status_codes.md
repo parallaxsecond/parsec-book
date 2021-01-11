@@ -29,6 +29,7 @@ the providers.
 | `WrongProviderUuid`               | 18    | The UUID vector needs to only contain 16 bytes                |
 | `NotAuthenticated`                | 19    | Request did not provide a required authentication             |
 | `BodySizeExceedsLimit`            | 20    | Request length specified in the header is above defined limit |
+| `AdminOperation`                  | 21    | The operation requires admin privilege                        |
 
 ## PSA Response Status Codes
 
