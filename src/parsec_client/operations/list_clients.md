@@ -34,6 +34,6 @@ this new client might not show in the output.
 
 ## Contract
 
-No contract yet.
+[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_clients.proto)
 
 *Copyright 2021 Contributors to the Parsec project.*
