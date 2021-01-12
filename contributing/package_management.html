@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Package management and versioning guide - The Parsec Book</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="../favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="../overview.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="chapter-item expanded "><a href="../parsec_users.html"><strong aria-hidden="true">3.</strong> Parsec for users</a></li><li class="chapter-item expanded "><a href="../parsec_client/index.html"><strong aria-hidden="true">4.</strong> Parsec for client developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../parsec_client/api_overview.html"><strong aria-hidden="true">4.1.</strong> API Overview</a></li><li class="chapter-item expanded "><a href="../parsec_client/wire_protocol.html"><strong aria-hidden="true">4.2.</strong> Wire Protocol</a></li><li class="chapter-item expanded "><a href="../parsec_client/status_codes.html"><strong aria-hidden="true">4.3.</strong> Status Codes</a></li><li class="chapter-item expanded "><a href="../parsec_client/writing_library.html"><strong aria-hidden="true">4.4.</strong> Writing a new Parsec Client Library</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/index.html"><strong aria-hidden="true">4.5.</strong> Operations</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../parsec_client/operations/service_api_coverage.html"><strong aria-hidden="true">4.5.1.</strong> Parsec Operations Coverage</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_key_attributes.html"><strong aria-hidden="true">4.5.2.</strong> PSA Key Attributes</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_algorithm.html"><strong aria-hidden="true">4.5.3.</strong> PSA Algorithm</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/ping.html"><strong aria-hidden="true">4.5.4.</strong> Ping</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_generate_key.html"><strong aria-hidden="true">4.5.5.</strong> PsaGenerateKey</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_destroy_key.html"><strong aria-hidden="true">4.5.6.</strong> PsaDestroyKey</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_sign_hash.html"><strong aria-hidden="true">4.5.7.</strong> PsaSignHash</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_verify_hash.html"><strong aria-hidden="true">4.5.8.</strong> PsaVerifyHash</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_import_key.html"><strong aria-hidden="true">4.5.9.</strong> PsaImportKey</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_export_public_key.html"><strong aria-hidden="true">4.5.10.</strong> PsaExportPublicKey</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/list_providers.html"><strong aria-hidden="true">4.5.11.</strong> ListProviders</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/list_opcodes.html"><strong aria-hidden="true">4.5.12.</strong> ListOpcodes</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_asymmetric_encrypt.html"><strong aria-hidden="true">4.5.13.</strong> PsaAsymmetricEncrypt</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_asymmetric_decrypt.html"><strong aria-hidden="true">4.5.14.</strong> PsaAsymmetricDecrypt</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_export_key.html"><strong aria-hidden="true">4.5.15.</strong> PsaExportKey</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_generate_random.html"><strong aria-hidden="true">4.5.16.</strong> PsaGenerateRandom</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/list_authenticators.html"><strong aria-hidden="true">4.5.17.</strong> ListAuthenticators</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_hash_compute.html"><strong aria-hidden="true">4.5.18.</strong> PsaHashCompute</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_hash_compare.html"><strong aria-hidden="true">4.5.19.</strong> PsaHashCompare</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_aead_encrypt.html"><strong aria-hidden="true">4.5.20.</strong> PsaAeadEncrypt</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_aead_decrypt.html"><strong aria-hidden="true">4.5.21.</strong> PsaAeadDecrypt</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_raw_key_agreement.html"><strong aria-hidden="true">4.5.22.</strong> PsaRawKeyAgreement</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_cipher_encrypt.html"><strong aria-hidden="true">4.5.23.</strong> PsaCipherEncrypt</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_cipher_decrypt.html"><strong aria-hidden="true">4.5.24.</strong> PsaCipherDecrypt</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_mac_compute.html"><strong aria-hidden="true">4.5.25.</strong> PsaMacCompute</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_mac_verify.html"><strong aria-hidden="true">4.5.26.</strong> PsaMacVerify</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_sign_message.html"><strong aria-hidden="true">4.5.27.</strong> PsaSignMessage</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/psa_verify_message.html"><strong aria-hidden="true">4.5.28.</strong> PsaVerifyMessage</a></li><li class="chapter-item expanded "><a href="../parsec_client/operations/list_keys.html"><strong aria-hidden="true">4.5.29.</strong> ListKeys</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../parsec_service/index.html"><strong aria-hidden="true">5.</strong> Parsec for service developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../parsec_service/system_architecture.html"><strong aria-hidden="true">5.1.</strong> System Architecture</a></li><li class="chapter-item expanded "><a href="../parsec_service/interfaces_and_dataflow.html"><strong aria-hidden="true">5.2.</strong> Interfaces and Dataflow</a></li><li class="chapter-item expanded "><a href="../parsec_service/source_code_structure.html"><strong aria-hidden="true">5.3.</strong> Source Code Structure</a></li><li class="chapter-item expanded "><a href="../parsec_service/listeners.html"><strong aria-hidden="true">5.4.</strong> Listeners</a></li><li class="chapter-item expanded "><a href="../parsec_service/authenticators.html"><strong aria-hidden="true">5.5.</strong> Authenticators</a></li><li class="chapter-item expanded "><a href="../parsec_service/converters.html"><strong aria-hidden="true">5.6.</strong> Converters</a></li><li class="chapter-item expanded "><a href="../parsec_service/providers.html"><strong aria-hidden="true">5.7.</strong> Providers</a></li><li class="chapter-item expanded "><a href="../parsec_service/key_info_managers.html"><strong aria-hidden="true">5.8.</strong> Key Info Managers</a></li><li class="chapter-item expanded "><a href="../parsec_service/adding_provider.html"><strong aria-hidden="true">5.9.</strong> Adding a new Parsec Provider</a></li><li class="chapter-item expanded "><a href="../parsec_service/build_run.html"><strong aria-hidden="true">5.10.</strong> How to build and run Parsec</a></li><li class="chapter-item expanded "><a href="../parsec_service/install_parsec_linux.html"><strong aria-hidden="true">5.11.</strong> How to securely install Parsec on Linux</a></li><li class="chapter-item expanded "><a href="../parsec_service/configuration.html"><strong aria-hidden="true">5.12.</strong> Parsec Configuration</a></li><li class="chapter-item expanded "><a href="../parsec_service/tests/index.html"><strong aria-hidden="true">5.13.</strong> How to test Parsec</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../parsec_service/tests/existing_tests.html"><strong aria-hidden="true">5.13.1.</strong> List of existing tests</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../parsec_security/index.html"><strong aria-hidden="true">6.</strong> Parsec Security</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../parsec_security/parsec_threat_model/threat_model.html"><strong aria-hidden="true">6.1.</strong> Parsec Threat Model</a></li><li class="chapter-item expanded "><a href="../parsec_security/secure_deployment.html"><strong aria-hidden="true">6.2.</strong> Recommendations for Secure Deployment</a></li><li class="chapter-item expanded "><a href="../parsec_security/rust_client_threat_model/threat_model.html"><strong aria-hidden="true">6.3.</strong> Parsec Rust Client Threat Model</a></li></ol></li><li class="chapter-item expanded "><a href="../contributing/index.html"><strong aria-hidden="true">7.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../contributing/pr_checklist.html"><strong aria-hidden="true">7.1.</strong> Pull request checklist</a></li><li class="chapter-item expanded "><a href="../contributing/adding_new_operation_how_to.html"><strong aria-hidden="true">7.2.</strong> How to add operations to Parsec</a></li><li class="chapter-item expanded "><a href="../contributing/package_management.html" class="active"><strong aria-hidden="true">7.3.</strong> Package management and versioning guide</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">The Parsec Book</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#package-management-and-versioning-guide" id="package-management-and-versioning-guide">Package management and versioning guide</a></h1>
+<p>This page presents the details around packaging management and versioning for Parsec-related
+repositories. Currently our repos are mainly Rust crates, so this guide is accordingly geared
+towards them - when other guidelines become relevant, e.g. specific to Go libraries, new sections
+should be added below.</p>
+<p>The following points are relevant to all software we publish to package management repositories:</p>
+<ul>
+<li>For published versions of a project a tag carrying the version number should be upstreamed to
+GitHub, e.g. if version 2.3.1 was published, a tag named &quot;2.3.1&quot; must be added to the commit in
+GitHub.</li>
+<li>If multiple projects that end up in a package manager reside in the same repo, the tags should
+reflect both the project and the version number, e.g. if version 2.3.1 of project X was
+published, a tag named &quot;X-2.3.1&quot; or similar must be used.</li>
+<li>Projects should follow <a href="https://semver.org/">Semantic Versioning</a> rules.</li>
+<li>Following the release of a new version of publicly-facing projects, update the <code>CHANGELOG.md</code>
+file. For some projects it's also advised to create a GitHub Release from the tag mentioned
+above.</li>
+</ul>
+<h2><a class="header" href="#rust-crates" id="rust-crates">Rust crates</a></h2>
+<p>The process around publishing Rust crates is tightly linked with crates.io. In order to publish or
+have control over crates, you must own an account on the website. Before you decide whether you want
+to publish a crate, check out the <a href="#dependency-management">Dependency management</a> section below.</p>
+<ul>
+<li>Follow the instructions <a href="https://doc.rust-lang.org/cargo/reference/publishing.html">here</a> to
+create your account and to set your workspace up.</li>
+<li>If you'd like to publish a new version of an existing crate using the ownership granted to the
+Parallaxsecond Admin group, you need to enable crates.io to access that organisation. You can do
+so from the <a href="https://github.com/settings/applications">applications page</a> in your account
+settings - in the <a href="https://github.com/settings/connections/applications/9fe8110dfe185fe90b5c">crates.io
+application</a> settings
+you must request permission for the parallaxsecond org to be linked. One of the org owners must
+approve that request.</li>
+<li>Alternatively, if you'd like to publish a new version but are not part of the Admin group, you can
+request to become an owner of the crate from one of the admins.</li>
+</ul>
+<p>Once you are able to publish crates you can start doing so, but being aware of the following facts
+is helpful.</p>
+<ul>
+<li>If the crate you are publishing is new or has major changes in its build steps, its documentation
+might not be built properly by docs.rs. This is because docs.rs has its own build system where
+crates are built in complete isolation from the internet and with a set of dependencies that
+might not cover the ones you require. As an example, for the
+<a href="https://github.com/parallaxsecond/rust-tss-esapi"><code>tss-esapi</code></a> crate we had to hardcode the
+<a href="https://github.com/parallaxsecond/rust-tss-esapi/blob/master/doc_bindings.rs">bindgen'ed FFI
+file</a> in the repo
+to have the docs built. Check out their documentation <a href="https://docs.rs/about/builds">here</a>.</li>
+<li>Once you have settled on a crate to upstream, make sure you are on the most recent version of the
+main branch (e.g. <code>master</code>) - you should have no uncommited changes lingering.</li>
+<li>Run a <code>cargo publish --dry-run</code> - this ensures that the publishing process is possible with the
+current state of the repo.</li>
+<li>Change the version number of the crate in <code>Cargo.toml</code> following semantic versioning rules.</li>
+<li>If any other (small) changes must be made, such as updating a dependency, you can also add them in
+this commit. No specific limit is given to &quot;small&quot;, but if the dependency update includes changes
+to an API or to how some internal components work, then a separate pull request is needed.</li>
+<li>Commit the previous changes and either upstream them directly to the main branch or create a pull
+request.</li>
+<li>Once the version change is on the main branch, run another dry-run publishing, followed by the
+real operation. Once that is complete, tag the latest commit and upstream the tag.</li>
+<li>Repeat these steps for every crate along the way in the dependency tree.</li>
+</ul>
+<h3><a class="header" href="#dependency-management" id="dependency-management">Dependency management</a></h3>
+<p>Producing a release of the Parsec service requires some understanding of the way in which all the
+components, and especially the various crates found under the Parallaxsecond organization, relate to
+each other. You can find some details of the code structure
+<a href="../parsec_service/source_code_structure.html">here</a>. A detailed list of direct dependencies to
+Parallaxsecond crates that can be found on crates.io is given below.</p>
+<p><code>parsec-service</code> dependencies:</p>
+<ul>
+<li><code>parsec-interface</code>: used for managing IPC communication</li>
+<li><code>psa-crypto</code>: used in the Mbed Crypto provider as the interface to a PSA Crypto implementation</li>
+<li><code>tss-esapi</code>: used in the TPM provider as the interface to the TSS stack</li>
+<li><code>parsec-client</code>: <strong>NOT</strong> used in the service, but as a dependency for the test client</li>
+</ul>
+<p><code>parsec-interface</code> dependencies:</p>
+<ul>
+<li><code>psa-crypto</code>: used to represent the Rust-native PSA Crypto data types</li>
+</ul>
+<p><code>parsec-client</code> dependencies:</p>
+<ul>
+<li><code>parsec-interface</code>: used for managing IPC communication</li>
+</ul>
+<p><code>parsec-tool</code> dependencies:</p>
+<ul>
+<li><code>parsec-client</code>: used to handle all communication with the service</li>
+</ul>
+<p>Publishing new versions of dependencies is not always required. If you're not planning to
+immediately publish some crate, then you don't <em>need</em> to publish any of its dependencies, you can
+simply import updates, using the
+<a href="https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#specifying-dependencies-from-git-repositories"><code>git</code></a>
+syntax, as transient dependencies in <code>Cargo.toml</code>. By doing so, however, you're removing the option
+of publishing to crates.io until all those <code>git</code> dependencies are removed. Because of this issue we
+suggest adding transient dependencies to crates not residing under the Parallaxsecond organization
+only when a published version of the third party crate is due soon. This is to limit the likelihood
+of an urgent release of Parsec being stalled behind a third-party release cycle. If you're unsure
+about or would want to discuss such an approach, we welcome discussions and proposals in our
+community channels!</p>
+<p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../contributing/adding_new_operation_how_to.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../contributing/adding_new_operation_how_to.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
