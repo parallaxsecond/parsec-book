@@ -34,6 +34,6 @@ performed, this key might not be deleted.
 
 ## Contract
 
-No contract yet.
+[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/delete_client.proto)
 
 *Copyright 2021 Contributors to the Parsec project.*

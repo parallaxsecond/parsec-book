@@ -32,6 +32,6 @@ This operation lists all the keys that an application created in all providers.
 
 ## Contract
 
-No contract yet.
+[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_keys.proto)
 
 *Copyright 2020 Contributors to the Parsec project.*
