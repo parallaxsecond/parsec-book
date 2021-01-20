@@ -1006,7 +1006,9 @@ sections for details.</p>
 <tr><td><a href="parsec_client/operations/list_providers.html">ListProviders</a></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td><a href="parsec_client/operations/list_opcodes.html">ListOpcodes</a></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td><a href="parsec_client/operations/list_authenticators.html">ListAuthenticators</a></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="parsec_client/operations/list_keys.html">ListKeys</a></td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="parsec_client/operations/list_keys.html">ListKeys</a></td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="parsec_client/operations/delete_client.html">DeleteClient</a>*</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="parsec_client/operations/list_clients.html">ListClients</a>*</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td><a href="parsec_client/operations/psa_import_key.html">PsaImportKey</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td><a href="parsec_client/operations/psa_generate_key.html">PsaGenerateKey</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td><a href="parsec_client/operations/psa_destroy_key.html">PsaDestroyKey</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
@@ -1024,11 +1026,12 @@ sections for details.</p>
 <tr><td><a href="parsec_client/operations/psa_verify_message.html">PsaVerifyMessage</a></td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td><a href="parsec_client/operations/psa_sign_hash.html">PsaSignHash</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td><a href="parsec_client/operations/psa_verify_hash.html">PsaVerifyHash</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
-<tr><td><a href="parsec_client/operations/psa_asymmetric_encrypt.html">PsaAsymmetricEncrypt</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="parsec_client/operations/psa_asymmetric_decrypt.html">PsaAsymmetricDecrypt</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="parsec_client/operations/psa_asymmetric_encrypt.html">PsaAsymmetricEncrypt</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td><a href="parsec_client/operations/psa_asymmetric_decrypt.html">PsaAsymmetricDecrypt</a></td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td><a href="parsec_client/operations/psa_raw_key_agreement.html">PsaRawKeyAgreement</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td><a href="parsec_client/operations/psa_generate_random.html">PsaGenerateRandom</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+<p>* Admin operation</p>
 <h3><a class="header" href="#key-types-support" id="key-types-support">Key types support</a></h3>
 <p>This table describe if the following <a href="parsec_client/operations/psa_key_attributes.html#keytype-type">key types</a> are supported
 for key management operations.</p>
@@ -1048,6 +1051,20 @@ for key management operations.</p>
 <tr><td>DhKeyPair</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>DhPublicKey</td><td>✅</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+<h3><a class="header" href="#elliptic-curve-families" id="elliptic-curve-families">Elliptic curve families</a></h3>
+<p>This table describes if the following <a href="parsec_client/operations/psa_key_attributes.html#supported-ecc-curve-families">elliptic curve
+families</a> are supported.</p>
+<table><thead><tr><th>ECC Curve Family</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
+<tr><td>SECP-K1</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>SECP-R1</td><td>✅</td><td>❌</td><td>✅</td></tr>
+<tr><td>SECP-R2</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>SECT-K1</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>SECT-R1</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>SECT-R2</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>Brainpool P R1</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>FRP</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>Montgomery</td><td>✅</td><td>❌</td><td>❌</td></tr>
+</tbody></table>
 <h3><a class="header" href="#algorithm-support" id="algorithm-support">Algorithm support</a></h3>
 <p>These tables describe if the following <a href="parsec_client/operations/psa_algorithm.html">algorithms</a> are supported in all
 cryptographic operations they could be used in.</p>
@@ -1057,11 +1074,11 @@ cryptographic operations they could be used in.</p>
 <tr><td>MD4</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>MD5</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>RIPEMD-160</td><td>✅</td><td>❌</td><td>❌</td></tr>
-<tr><td>SHA-1</td><td>✅</td><td>❌</td><td>✅</td></tr>
+<tr><td>SHA-1</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>SHA-224</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>SHA-256</td><td>✅</td><td>✅</td><td>✅</td></tr>
-<tr><td>SHA-384</td><td>✅</td><td>❌</td><td>✅</td></tr>
-<tr><td>SHA-512</td><td>✅</td><td>❌</td><td>✅</td></tr>
+<tr><td>SHA-384</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>SHA-512</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>SHA-512/224</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>SHA-512/256</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>SHA3-224</td><td>✅</td><td>❌</td><td>❌</td></tr>
@@ -1069,13 +1086,13 @@ cryptographic operations they could be used in.</p>
 <tr><td>SHA3-384</td><td>✅</td><td>❌</td><td>✅</td></tr>
 <tr><td>SHA3-512</td><td>✅</td><td>❌</td><td>✅</td></tr>
 </tbody></table>
-<h3><a class="header" href="#mac-algorithms" id="mac-algorithms">MAC algorithms</a></h3>
+<h4><a class="header" href="#mac-algorithms" id="mac-algorithms">MAC algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
 <tr><td>HMAC</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CBC-MAC</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CMAC</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
-<h3><a class="header" href="#cipher-algorithms" id="cipher-algorithms">Cipher algorithms</a></h3>
+<h4><a class="header" href="#cipher-algorithms" id="cipher-algorithms">Cipher algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
 <tr><td>Stream Cipher</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CTR</td><td>❌</td><td>❌</td><td>❌</td></tr>
@@ -1096,15 +1113,15 @@ cryptographic operations they could be used in.</p>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
 <tr><td>RSA PKCS#1 v1.5 signature with hashing</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>Raw PKCS#1 v1.5 signature</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td>RSA PSS signature with hashing</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>RSA PSS signature with hashing</td><td>❌</td><td>✅</td><td>❌</td></tr>
 <tr><td>ECDSA signature with hashing</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>ECDSA signature without hashing</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>Deterministic ECDSA signature with hashing</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
 <h4><a class="header" href="#asymmetric-encryption-algorithms" id="asymmetric-encryption-algorithms">Asymmetric encryption algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
-<tr><td>RSA PKCS#1 v1.5 encryption</td><td>✅</td><td>❌</td><td>❌</td></tr>
-<tr><td>RSA OAEP encryption</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td>RSA PKCS#1 v1.5 encryption</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>RSA OAEP encryption</td><td>✅</td><td>✅</td><td>✅</td></tr>
 </tbody></table>
 <h4><a class="header" href="#key-agreement-algorithms" id="key-agreement-algorithms">Key agreement algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
