@@ -13,7 +13,9 @@ sections for details.
 | [ListProviders](list_providers.md)                | ✅           | ❌                  | ❌              | ❌              |
 | [ListOpcodes](list_opcodes.md)                    | ✅           | ❌                  | ❌              | ❌              |
 | [ListAuthenticators](list_authenticators.md)      | ✅           | ❌                  | ❌              | ❌              |
-| [ListKeys](list_keys.md)                          | ❌           | ❌                  | ❌              | ❌              |
+| [ListKeys](list_keys.md)                          | ✅           | ❌                  | ❌              | ❌              |
+| [DeleteClient](delete_client.md)*                 | ✅           | ❌                  | ❌              | ❌              |
+| [ListClients](list_clients.md)*                   | ✅           | ❌                  | ❌              | ❌              |
 | [PsaImportKey](psa_import_key.md)                 | ❌           | ✅                  | ✅              | ✅              |
 | [PsaGenerateKey](psa_generate_key.md)             | ❌           | ✅                  | ✅              | ✅              |
 | [PsaDestroyKey](psa_destroy_key.md)               | ❌           | ✅                  | ✅              | ✅              |
@@ -31,10 +33,12 @@ sections for details.
 | [PsaVerifyMessage](psa_verify_message.md)         | ❌           | ❌                  | ❌              | ❌              |
 | [PsaSignHash](psa_sign_hash.md)                   | ❌           | ✅                  | ✅              | ✅              |
 | [PsaVerifyHash](psa_verify_hash.md)               | ❌           | ✅                  | ✅              | ✅              |
-| [PsaAsymmetricEncrypt](psa_asymmetric_encrypt.md) | ❌           | ✅                  | ❌              | ❌              |
-| [PsaAsymmetricDecrypt](psa_asymmetric_decrypt.md) | ❌           | ✅                  | ❌              | ❌              |
+| [PsaAsymmetricEncrypt](psa_asymmetric_encrypt.md) | ❌           | ✅                  | ✅              | ✅              |
+| [PsaAsymmetricDecrypt](psa_asymmetric_decrypt.md) | ❌           | ✅                  | ✅              | ✅              |
 | [PsaRawKeyAgreement](psa_raw_key_agreement.md)    | ❌           | ✅                  | ❌              | ❌              |
 | [PsaGenerateRandom](psa_generate_random.md)       | ❌           | ✅                  | ❌              | ❌              |
+
+&#42; Admin operation
 
 ### Key types support
 
@@ -58,6 +62,23 @@ for key management operations.
 | DhKeyPair    | ✅                  | ❌              | ❌              |
 | DhPublicKey  | ✅                  | ❌              | ❌              |
 
+### Elliptic curve families
+
+This table describes if the following [elliptic curve
+families](psa_key_attributes.md#supported-ecc-curve-families) are supported.
+
+| ECC Curve Family | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
+|------------------|----------------------|------------------|------------------|
+| SECP-K1          | ✅                  | ❌              | ❌              |
+| SECP-R1          | ✅                  | ❌              | ✅              |
+| SECP-R2          | ✅                  | ❌              | ❌              |
+| SECT-K1          | ✅                  | ❌              | ❌              |
+| SECT-R1          | ✅                  | ❌              | ❌              |
+| SECT-R2          | ✅                  | ❌              | ❌              |
+| Brainpool P R1   | ✅                  | ❌              | ❌              |
+| FRP              | ✅                  | ❌              | ❌              |
+| Montgomery       | ✅                  | ❌              | ❌              |
+
 ### Algorithm support
 
 These tables describe if the following [algorithms](psa_algorithm.md) are supported in all
@@ -71,11 +92,11 @@ cryptographic operations they could be used in.
 | MD4         | ✅                  | ❌              | ❌              |
 | MD5         | ✅                  | ❌              | ❌              |
 | RIPEMD-160  | ✅                  | ❌              | ❌              |
-| SHA-1       | ✅                  | ❌              | ✅              |
+| SHA-1       | ✅                  | ✅              | ✅              |
 | SHA-224     | ✅                  | ❌              | ❌              |
 | SHA-256     | ✅                  | ✅              | ✅              |
-| SHA-384     | ✅                  | ❌              | ✅              |
-| SHA-512     | ✅                  | ❌              | ✅              |
+| SHA-384     | ✅                  | ✅              | ✅              |
+| SHA-512     | ✅                  | ✅              | ✅              |
 | SHA-512/224 | ✅                  | ❌              | ❌              |
 | SHA-512/256 | ✅                  | ❌              | ❌              |
 | SHA3-224    | ✅                  | ❌              | ❌              |
@@ -83,7 +104,7 @@ cryptographic operations they could be used in.
 | SHA3-384    | ✅                  | ❌              | ✅              |
 | SHA3-512    | ✅                  | ❌              | ✅              |
 
-### MAC algorithms
+#### MAC algorithms
 
 | Algorithm | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
 |-----------|----------------------|------------------|------------------|
@@ -91,7 +112,7 @@ cryptographic operations they could be used in.
 | CBC-MAC   | ❌                  | ❌              | ❌              |
 | CMAC      | ❌                  | ❌              | ❌              |
 
-### Cipher algorithms
+#### Cipher algorithms
 
 | Algorithm                | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
 |--------------------------|----------------------|------------------|------------------|
@@ -118,7 +139,7 @@ cryptographic operations they could be used in.
 |--------------------------------------------|----------------------|------------------|------------------|
 | RSA PKCS#1 v1.5 signature with hashing     | ✅                  | ✅              | ✅              |
 | Raw PKCS#1 v1.5 signature                  | ❌                  | ❌              | ❌              |
-| RSA PSS signature with hashing             | ❌                  | ❌              | ❌              |
+| RSA PSS signature with hashing             | ❌                  | ✅              | ❌              |
 | ECDSA signature with hashing               | ❌                  | ❌              | ✅              |
 | ECDSA signature without hashing            | ❌                  | ❌              | ❌              |
 | Deterministic ECDSA signature with hashing | ❌                  | ❌              | ❌              |
@@ -127,8 +148,8 @@ cryptographic operations they could be used in.
 
 | Algorithm                  | Mbed Crypto provider | PKCS 11 provider | TPM 2.0 provider |
 |----------------------------|----------------------|------------------|------------------|
-| RSA PKCS#1 v1.5 encryption | ✅                  | ❌              | ❌              |
-| RSA OAEP encryption        | ✅                  | ❌              | ❌              |
+| RSA PKCS#1 v1.5 encryption | ✅                  | ✅              | ✅              |
+| RSA OAEP encryption        | ✅                  | ✅              | ✅              |
 
 #### Key agreement algorithms
 
