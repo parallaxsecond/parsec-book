@@ -225,10 +225,10 @@ service back to the client). However, most fields are relevant and common to bot
 Each field is annotated according to the following scheme:
 
 - "Common" indicates that the field is common to both request messages and response messages.
-- "Requests only" indicates that the field is only used in requests and must be ignored in responses.  
-  In a response, these fields should be set to a value of zero.
-- "Responses only" indicates that the field is only used in responses and must be ignored in
-  requests.  In a request, these fields should be set to a value of zero.
+- "Requests only" indicates that the field is only used in requests and **must** be ignored in
+   responses. In a response, these fields should be set to a value of zero.
+- "Responses only" indicates that the field is only used in responses and **must** be ignored in
+   requests. In a request, these fields should be set to a value of zero.
 
 Fields occur in contiguous memory and there must be no additional padding between them. On the
 following diagram, the bytes go left to right from least significant to most significant.
