@@ -42,11 +42,8 @@ is helpful.
 - If the crate you are publishing is new or has major changes in its build steps, its documentation
    might not be built properly by docs.rs. This is because docs.rs has its own build system where
    crates are built in complete isolation from the internet and with a set of dependencies that
-   might not cover the ones you require. As an example, for the
-   [`tss-esapi`](https://github.com/parallaxsecond/rust-tss-esapi) crate we had to hardcode the
-   [bindgen'ed FFI
-   file](https://github.com/parallaxsecond/rust-tss-esapi/blob/master/doc_bindings.rs) in the repo
-   to have the docs built. Check out their documentation [here](https://docs.rs/about/builds).
+   might not cover the ones you require. Check out their documentation
+   [here](https://docs.rs/about/builds).
 - Once you have settled on a crate to upstream, make sure you are on the most recent version of the
    main branch (e.g. `master`) - you should have no uncommited changes lingering.
 - Run a `cargo publish --dry-run` - this ensures that the publishing process is possible with the
