@@ -775,9 +775,10 @@ service back to the client). However, most fields are relevant and common to bot
 <p>Each field is annotated according to the following scheme:</p>
 <ul>
 <li>&quot;Common&quot; indicates that the field is common to both request messages and response messages.</li>
-<li>&quot;Requests only&quot; indicates that the field is only used in requests and may be ignored in responses.</li>
-<li>&quot;Responses only&quot; indicates that the field is only used in responses and may be ignored in
-requests.</li>
+<li>&quot;Requests only&quot; indicates that the field is only used in requests and <strong>must</strong> be ignored in
+responses. In a response, these fields should be set to a value of zero.</li>
+<li>&quot;Responses only&quot; indicates that the field is only used in responses and <strong>must</strong> be ignored in
+requests. In a request, these fields should be set to a value of zero.</li>
 </ul>
 <p>Fields occur in contiguous memory and there must be no additional padding between them. On the
 following diagram, the bytes go left to right from least significant to most significant.</p>
@@ -790,8 +791,8 @@ following diagram, the bytes go left to right from least significant to most sig
 <tr><td>Flags</td><td>Common</td><td>2</td><td>Currently unused and should be set to <code>0x0000</code>.</td></tr>
 <tr><td>Provider</td><td>Common</td><td>1</td><td>Identify the back-end service provider for which the request is intended. A value of zero indicates that the request is intended for a special provider, which always exists, and is used for service discovery and communication bootstrapping.</td></tr>
 <tr><td>Session handle</td><td>Common</td><td>8</td><td>Session identifier.</td></tr>
-<tr><td>Content type</td><td>Common</td><td>1</td><td>Defines how the message body should be processed. The only currently-supported value is <code>0x01</code>, which indicates that the message body should be treated as a serialized protobuf message.</td></tr>
-<tr><td>Accept type</td><td>Requests only</td><td>1</td><td>Defines how the service should provide its response. The only currently-supported value is <code>0x01</code>, which indicates that the service should provide a response whose body is a serialized protobuf message.</td></tr>
+<tr><td>Content type</td><td>Common</td><td>1</td><td>Defines how the message body should be processed. The only currently-supported value is <code>0x00</code>, which indicates that the message body should be treated as a serialized protobuf message.</td></tr>
+<tr><td>Accept type</td><td>Requests only</td><td>1</td><td>Defines how the service should provide its response. The only currently-supported value is <code>0x00</code>, which indicates that the service should provide a response whose body is a serialized protobuf message.</td></tr>
 <tr><td>Auth type</td><td>Requests only</td><td>1</td><td>Defines how the authentication bytes should be interpreted. See the <a href="parsec_client/wire_protocol.html#authentication">authentication section</a> above.</td></tr>
 <tr><td>Content length</td><td>Common</td><td>4</td><td>Provides the exact number of bytes of body.</td></tr>
 <tr><td>Auth length</td><td>Requests only</td><td>2</td><td>Provides the exact number of bytes of authentication.</td></tr>
