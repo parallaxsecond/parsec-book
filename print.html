@@ -3149,7 +3149,7 @@ Parsec from the current directory, have the key information mappings in <code>./
 at <code>/tmp/parsec.sock</code>. The test configuration will make those choices.</p>
 <p>Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
 the test configuration:</p>
-<pre><code>cargo build --features mbed-crypto-provider
+<pre><code>cargo build --features &quot;mbed-crypto-provider,direct-authenticator&quot;
 RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/mbed-crypto/config.toml
 </code></pre>
 <p><code>parsec</code> will then construct the service based on the <a href="parsec_service/configuration.html">configuration</a> file and
