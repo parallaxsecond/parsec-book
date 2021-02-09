@@ -23,7 +23,7 @@ Having cloned the Parsec repository, to build and run from source using the Mbed
 the test configuration:
 
 ```````
-cargo build --features mbed-crypto-provider
+cargo build --features "mbed-crypto-provider,direct-authenticator"
 RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/mbed-crypto/config.toml
 ```````
 
