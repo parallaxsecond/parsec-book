@@ -385,6 +385,19 @@ application.</p>
 <p>Providers can impose length restrictions on key names to help with internal storage and argument
 validation. This API reference does not define any single fixed maximum length. Clients must
 determine the maximum length at runtime using the capability checking mechanism.</p>
+<h2><a class="header" href="#service-discovery" id="service-discovery">Service discovery</a></h2>
+<p>Establishing a connection between the client and the service requires common understanding of the
+communication mechanism and the address at which the service can be found. While the default
+mechanism is through a Unix domain socket found at <code>/run/parsec/parsec.sock</code>, that can be easily
+changed by an admin for various reasons. Clients must therefore be made aware of such changes and
+the defined mechanism for this uses environment variables.</p>
+<p>The <code>PARSEC_SERVICE_ENDPOINT</code> environment variable is the preferred method of indicating to a
+process where to find the communication channel for the Parsec service. The variable should contain
+a URI as defined in <a href="https://www.ietf.org/rfc/rfc3986.txt">RFC3986</a> - for example, for the default
+domain socket location, the URI would be <code>unix:/run/parsec/parsec.sock</code>. Client libraries must be
+capable of scanning for the environment variable, parsing it, and bootstrapping communication using
+the URI, with no input from the client application. The libraries must also allow the application to
+override these settings.</p>
 <h2><a class="header" href="#full-api-reference" id="full-api-reference">Full API Reference</a></h2>
 <p>For the full reference guide to individual API operations, please refer to the <a href="operations"><strong>operation
 directory</strong></a>.</p>
