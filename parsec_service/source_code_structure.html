@@ -163,14 +163,14 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#source-code-structure" id="source-code-structure">Source Code Structure</a></h1>
-<h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
+                        <h1 id="source-code-structure"><a class="header" href="#source-code-structure">Source Code Structure</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>This document presents the overall organisation of the source code repository, and provides pointers
 to key definitions and implementations.</p>
-<h2><a class="header" href="#audience" id="audience">Audience</a></h2>
+<h2 id="audience"><a class="header" href="#audience">Audience</a></h2>
 <p>An understanding of the source code repository structure is essential for developers who are
 contributing functionality to the service or any of its client libraries.</p>
-<h2><a class="header" href="#overview" id="overview">Overview</a></h2>
+<h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
 <p>This project is a client-server system. It is composed of a service which exposes an API to clients
 that reside in separate processes on the same host. An IPC mechanism is defined to allow these
 external client processes to call the API in any programming language. This project maintains client
@@ -197,7 +197,7 @@ the documentation for the project (some of which you are reading now) and the
 <a href="https://github.com/parallaxsecond/parsec-operations"><strong>parsec-operations</strong></a> repository which
 contains the language-agnostic contracts for communicating with the service.</p>
 <p>The remainder of the document will examine the contents of these repositories.</p>
-<h2><a class="header" href="#the-parsec-repository" id="the-parsec-repository">The Parsec Repository</a></h2>
+<h2 id="the-parsec-repository"><a class="header" href="#the-parsec-repository">The Parsec Repository</a></h2>
 <p>The <code>parsec</code> repository contains the code for the service. The service is written in
 <a href="https://www.rust-lang.org"><strong>Rust</strong></a>. Rust projects are organised into modular units known as
 <a href="https://doc.rust-lang.org/beta/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong>crates</strong></a>,
@@ -240,7 +240,7 @@ mechanism.</p>
 executable. It also links additional Rust crates that contain the providers, as well as crates to
 support the IPC interface. On Linux systems, this binary runs as a daemon. While it is running,
 client applications (on the same host) can locate the endpoint and make API calls.</p>
-<h3><a class="header" href="#the-providers-sub-folder" id="the-providers-sub-folder">The Providers Sub-Folder</a></h3>
+<h3 id="the-providers-sub-folder"><a class="header" href="#the-providers-sub-folder">The Providers Sub-Folder</a></h3>
 <p>The <code>providers</code> folder contains the provider modules, which connect the service back-end with the
 hardware or software security facilities of supported target platforms.</p>
 <p>Currently each provider sits in its own module implementing all the functionality needed to mediate
@@ -267,7 +267,7 @@ But the architecture also supports providers running as separate processes. Thes
 written in any suitable programming language. This will be an option to consider if you wish to
 contribute a new back-end provider, but you wish to use a programming language other than Rust.
 Currently the service implementation does not offer this functionality.</p>
-<h2><a class="header" href="#the-interface-repository" id="the-interface-repository">The Interface Repository</a></h2>
+<h2 id="the-interface-repository"><a class="header" href="#the-interface-repository">The Interface Repository</a></h2>
 <p>The <code>parsec-interface</code> crate contains the Rust code that is needed to allow the service to conform
 to the interface and wire protocol. It is also used by the Rust client library, but it is not used
 by other client libraries (since those are written in other languages).</p>
@@ -293,7 +293,7 @@ seem cumbersome, but it is important in order to isolate the use of protobuf fro
 system, so that a different encoding scheme could be adopted in the future without affecting
 anything else. Most of the service uses the <code>operations</code> module to model API operations and their
 results.</p>
-<h2><a class="header" href="#the-operations-repository" id="the-operations-repository">The Operations Repository</a></h2>
+<h2 id="the-operations-repository"><a class="header" href="#the-operations-repository">The Operations Repository</a></h2>
 <p>The <code>protobuf</code> folder in the <code>parsec-operations</code> repository contains the language-neutral input and
 output contracts of all of the operations that are supported in the API. This includes all of the
 operations derived from the PSA Crypto API Specification, as well as additional operations that are
@@ -310,7 +310,7 @@ compiler</strong></a> tool to generate language bindings for
 these inputs and outputs. A client library uses these bindings alongside code derived from the
 <a href="../parsec_client/wire_protocol.html"><strong>wire protocol specification</strong></a> in order to create a complete
 language binding for the API.</p>
-<h2><a class="header" href="#the-client-repositories" id="the-client-repositories">The Client Repositories</a></h2>
+<h2 id="the-client-repositories"><a class="header" href="#the-client-repositories">The Client Repositories</a></h2>
 <p>Client libraries are expected to reside in independent repositories, most likely inheriting the
 <strong>protobuf</strong> contracts from the <code>parsec-operations</code> repository. Each client library is subject to
 its own sub-structure, build system and documentation system underneath that. The structures and
@@ -318,7 +318,7 @@ build systems will naturally vary from one language to another, and these are no
 project overall.</p>
 <p>This project eagerly welcomes contributions of new client libraries in different programming
 languages in order to enhance the ecosystem and increase adoption. The <a href="../parsec_users.html"><code>Parsec for users</code></a> page contains a list of currently available client libraries.</p>
-<h2><a class="header" href="#repository-map" id="repository-map">Repository Map</a></h2>
+<h2 id="repository-map"><a class="header" href="#repository-map">Repository Map</a></h2>
 <p>Please refer to the following diagram to understand the overall code structure and the dependency
 arcs between the modules.</p>
 <p><img src="diagrams/source_code_structure.png" alt="Repository Map" /></p>

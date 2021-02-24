@@ -163,9 +163,9 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#psaaeadencrypt" id="psaaeadencrypt">PsaAeadEncrypt</a></h1>
+                        <h1 id="psaaeadencrypt"><a class="header" href="#psaaeadencrypt">PsaAeadEncrypt</a></h1>
 <p>Process and authenticated encryption operation. Opcode: 17 (<code>0x0011</code>)</p>
-<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="psa_algorithm.html#aead-algorithm"><code>Aead</code></a></td><td>The AEAD algorithm to compute</td></tr>
@@ -177,7 +177,7 @@
 <li><code>key_name</code> must allow the <a href="psa_key_attributes.html#usageflags-type">usage flag</a> <code>encrypt</code>.</li>
 <li><code>nonce</code> must be appropriate for the selected algorithm.</li>
 </ul>
-<h2><a class="header" href="#results" id="results">Results</a></h2>
+<h2 id="results"><a class="header" href="#results">Results</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>ciphertext</code></td><td>Vector of unsigned bytes</td><td>Buffer containing the authenticated and encrypted data</td></tr>
 </tbody></table>
@@ -186,16 +186,16 @@
 authentication tag are defined as separate outputs, the authentication tag is appended to the
 encrypted data.</li>
 </ul>
-<h2><a class="header" href="#specific-response-status-codes" id="specific-response-status-codes">Specific response status codes</a></h2>
+<h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>encrypt</code> flag, or it does not permit the
 requested algorithm.</li>
 <li><code>PsaErrorInvalidArgument</code>: The <code>key</code> is not compatible with <code>alg</code>.</li>
 <li><code>PsaErrorNotSupported</code>: <code>alg</code> is not supported.</li>
 </ul>
-<h2><a class="header" href="#description" id="description">Description</a></h2>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
 <p>Authenticates and encrypts the given data using the given AEAD algorithm.</p>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_encrypt.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 

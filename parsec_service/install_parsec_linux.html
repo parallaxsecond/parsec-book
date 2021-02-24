@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#how-to-securely-install-parsec-on-linux" id="how-to-securely-install-parsec-on-linux">How to securely install Parsec on Linux</a></h1>
+                        <h1 id="how-to-securely-install-parsec-on-linux"><a class="header" href="#how-to-securely-install-parsec-on-linux">How to securely install Parsec on Linux</a></h1>
 <p>Parsec can be built and installed as a Linux daemon using systemd. The daemon is a systemd user
 daemon run by the <code>parsec</code> user. Some manual steps are needed to make sure that permissions are set
 up correctly so that Parsec is installed respecting the operational mitigations of our <a href="../parsec_security/parsec_threat_model/threat_model.html">threat
@@ -175,7 +175,7 @@ platform.</p>
 <p>This guide will assume that an authenticator is used. If you wish to install Parsec with Direct
 Authentication and mutually trusted clients, please follow this guide first and then go to the
 <a href="#using-direct-authentication">dedicated section</a> for the subsequent steps.</p>
-<h2><a class="header" href="#from-an-admin-user-with-privileges" id="from-an-admin-user-with-privileges">From an admin user with privileges</a></h2>
+<h2 id="from-an-admin-user-with-privileges"><a class="header" href="#from-an-admin-user-with-privileges">From an admin user with privileges</a></h2>
 <p>Create the <code>parsec</code> user with a strong password.</p>
 <pre><code>sudo useradd -m parsec
 sudo passwd parsec
@@ -201,7 +201,7 @@ sudo mkdir /run/parsec
 sudo chown parsec /run/parsec
 sudo chmod 755 /run/parsec
 </code></pre>
-<h2><a class="header" href="#from-the-parsec-user" id="from-the-parsec-user">From the parsec user</a></h2>
+<h2 id="from-the-parsec-user"><a class="header" href="#from-the-parsec-user">From the parsec user</a></h2>
 <p>Log in to <code>parsec</code>.</p>
 <pre><code>su --login parsec
 </code></pre>
@@ -235,7 +235,7 @@ systemctl --user start parsec
 <p>If later you change the configuration file, you can reload the service with:</p>
 <pre><code>systemctl --user kill -s HUP parsec
 </code></pre>
-<h2><a class="header" href="#from-a-parsec-client" id="from-a-parsec-client">From a Parsec client</a></h2>
+<h2 id="from-a-parsec-client"><a class="header" href="#from-a-parsec-client">From a Parsec client</a></h2>
 <p>The definition of a client will depend on the <a href="authenticators.html">authenticator</a> that you configured
 Parsec with.</p>
 <p>Clients can now use Parsec! They can test it by installing the
@@ -244,7 +244,7 @@ Parsec with.</p>
 [INFO] Pinging Parsec service...
 [SUCCESS] Service wire protocol version is 1.0.
 </code></pre>
-<h2><a class="header" href="#using-direct-authentication" id="using-direct-authentication">Using Direct Authentication</a></h2>
+<h2 id="using-direct-authentication"><a class="header" href="#using-direct-authentication">Using Direct Authentication</a></h2>
 <p>Using this authentication method, clients will be able to declare their own identity. Clients using
 Parsec with this authentication need to be mutually trusted and part of the <code>parsec-clients</code> group.</p>
 <p><strong>Warning:</strong> you must only follow those steps if Parsec is not currently storing any keys.</p>

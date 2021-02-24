@@ -163,8 +163,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#list-of-existing-tests" id="list-of-existing-tests">List of existing tests</a></h1>
-<h2><a class="header" href="#end-to-end-testing" id="end-to-end-testing">End-to-end testing</a></h2>
+                        <h1 id="list-of-existing-tests"><a class="header" href="#list-of-existing-tests">List of existing tests</a></h1>
+<h2 id="end-to-end-testing"><a class="header" href="#end-to-end-testing">End-to-end testing</a></h2>
 <p>These tests are meant to be executed on a running Parsec service and using a Parsec client to
 communicate to it. The
 <a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests"><code>parsec/e2e_tests</code></a> crate contains
@@ -191,16 +191,16 @@ tests.</p>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/persistent_before.rs">Per provider persistence tests</a></td><td>E2E tests checking correct behaviour of the service around persistence of keys in the Key Info Manager.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/stress_test.rs">Per provider stress tests</a></td><td>Stress tests executing a large number of canonical operations at high frequency on a single provider.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#fuzz-testing" id="fuzz-testing">Fuzz testing</a></h2>
+<h2 id="fuzz-testing"><a class="header" href="#fuzz-testing">Fuzz testing</a></h2>
 <table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/fuzz">Fuzz testing</a></td><td>Tests sending random requests to the service and waiting it to crash/timeout.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#unit-testing" id="unit-testing">Unit testing</a></h2>
+<h2 id="unit-testing"><a class="header" href="#unit-testing">Unit testing</a></h2>
 <table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/blob/master/src/authenticators/direct_authenticator/mod.rs">Direct authenticator tests</a></td><td>Testing the <code>Authenticate</code> trait with this authenticator.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/blob/master/src/key_info_managers/on_disk_manager/mod.rs">On-disk key info manager tests</a></td><td>Testing the <code>ManageKeyInfo</code> trait with various strings for application and key names. The persistence is tested in the end-to-end tests.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#in-dependencies" id="in-dependencies">In dependencies</a></h2>
+<h2 id="in-dependencies"><a class="header" href="#in-dependencies">In dependencies</a></h2>
 <p>The dependencies that we maintain in the <code>parallaxsecond</code> organisation also contain their own set of
 integration and unit tests: <code>parsec-interface-rs</code>, <code>rust-psa-crypto</code> and <code>rust-tss-esapi</code>.</p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>

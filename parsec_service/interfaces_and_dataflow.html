@@ -163,19 +163,19 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#interfaces-and-dataflow" id="interfaces-and-dataflow">Interfaces and Dataflow</a></h1>
-<h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
+                        <h1 id="interfaces-and-dataflow"><a class="header" href="#interfaces-and-dataflow">Interfaces and Dataflow</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>This document describes the key interfaces and data flows within the service. It can be used in
 combination with the <a href="source_code_structure.html"><strong>source code structure</strong></a> and <a href="../parsec_client/wire_protocol.html"><strong>wire
 protocol</strong></a> documents to gain an understanding of how API
 requests are received by the service and ultimately fulfilled by providers.</p>
-<h2><a class="header" href="#data-flow-diagram" id="data-flow-diagram">Data Flow Diagram</a></h2>
+<h2 id="data-flow-diagram"><a class="header" href="#data-flow-diagram">Data Flow Diagram</a></h2>
 <p>The sections within this documentation are best understood with reference to the following data flow
 diagram. The shaded areas below can also be used to cross-reference the data flow with the <a href="source_code_structure.html"><strong>source
 code structure</strong></a> document, which can help with finding the relevant
 definitions and implementations.</p>
 <p><img src="diagrams/interfaces_and_dataflow.png" alt="Data Flow Diagram" /></p>
-<h2><a class="header" href="#the-data-flow-backbone" id="the-data-flow-backbone">The Data Flow Backbone</a></h2>
+<h2 id="the-data-flow-backbone"><a class="header" href="#the-data-flow-backbone">The Data Flow Backbone</a></h2>
 <p>The <strong>data flow backbone</strong> refers to the overall flow of a single API request from a client
 application, via the client library, through the IPC transport, through the service to a provider,
 and then back again. It is captured by the bold red boxes in the flow diagram above. This
@@ -196,7 +196,7 @@ developed in programming languages other than Rust.</p>
 <p>This document concentrates on the data flows within the service. It does so by examining the role of
 the key Rust objects, modules and interfaces, and the stages by which they process the request and
 return the result.</p>
-<h2><a class="header" href="#the-listener" id="the-listener">The Listener</a></h2>
+<h2 id="the-listener"><a class="header" href="#the-listener">The Listener</a></h2>
 <p>The <code>Listener</code> is responsible for accepting incoming connections from clients on the transport
 endpoint. This could take the form of a Unix domain socket listener. It is the only part of the
 system that understands the form of transport being used. Its responsibility is to accept
@@ -204,7 +204,7 @@ connections and to produce streams capable of reading from and writing to the un
 The <code>Listener</code> does not perform any serialization or deserialization (marshalling) functions. It
 deals only in connections and streams.</p>
 <p>The <code>Listener</code> implements the <code>Listen</code> trait. Possible listeners are listed <a href="listeners.html">here</a>.</p>
-<h2><a class="header" href="#the-front-end-handler" id="the-front-end-handler">The Front-End Handler</a></h2>
+<h2 id="the-front-end-handler"><a class="header" href="#the-front-end-handler">The Front-End Handler</a></h2>
 <p>Once an incoming byte stream has been obtained by the <code>Listener</code>, the stream is passed to the
 <code>FrontEndHandler</code>, which is where the first phase of wire protocol interpretation is performed. The
 <code>FrontEndHandler</code> is responsible for de-serializating the request header using the rules set out in
@@ -217,7 +217,7 @@ understand protobuf or any other encoding scheme that might be employed for the 
 to create a structured data model for the request. In this structured model, the request header
 fields are all fully parsed, but the request body and authentication fields are still just arrays of
 bytes.</p>
-<h3><a class="header" href="#the-authenticator" id="the-authenticator">The Authenticator</a></h3>
+<h3 id="the-authenticator"><a class="header" href="#the-authenticator">The Authenticator</a></h3>
 <p>Before the request is sent forward it must be authenticated. This involves the <code>FrontEndHandler</code>
 choosing an appropriate <code>Authenticator</code> object from the set created at system startup, based on the
 <code>AuthType</code> field in the request header. The <code>Authenticator</code> either returns an application name if
@@ -225,7 +225,7 @@ the authentication was successful, or an error value which is then returned to t
 <p>The <code>Authenticator</code> implements the <code>Authenticate</code> trait. Possible authenticators are listed
 <a href="authenticators.html">here</a>.</p>
 <p>The partially-decoded request and application name are now sent to the <code>Dispatcher</code>.</p>
-<h2><a class="header" href="#the-dispatcher" id="the-dispatcher">The Dispatcher</a></h2>
+<h2 id="the-dispatcher"><a class="header" href="#the-dispatcher">The Dispatcher</a></h2>
 <p>The <code>Dispatcher</code> processes the <code>requests::Request</code> object, which represents a request with a
 fully-parsed header, but an unparsed byte array for the body. Since the header is parsed, the
 <code>Dispatcher</code> has access to all of the information that is needed to dispatch a request to the
@@ -240,7 +240,7 @@ processing of the request. It is passed to the next stage still in the form of t
 <p>The next stage of processing is a branch point. The service contains only a single <code>Dispatcher</code>, but
 there are multiple <code>BackEndHandler</code>s. The <code>Dispatcher</code> is informed about the available handlers via
 a registration mechanism that executes at service start-up.</p>
-<h2><a class="header" href="#the-back-end-handler" id="the-back-end-handler">The Back-End Handler</a></h2>
+<h2 id="the-back-end-handler"><a class="header" href="#the-back-end-handler">The Back-End Handler</a></h2>
 <p>The <code>BackEndHandler</code> accepts the request in order to route it to its associated provider. The flow
 differs here depending on whether the provider is an in-process Rust <code>Provider</code> object, or a
 provider residing in an out-of-process co-server. If the provider is in a co-server, the
@@ -253,14 +253,14 @@ fully-decode the request in order to turn it into a model object from the <code>
 model objects are named <code>Operation</code> and are namespaced with the operation name module such as
 <code>operations::list_opcodes::Operation</code>. Once the operation model has been constructed, it is executed
 on the <code>Provider</code>.</p>
-<h3><a class="header" href="#the-converter" id="the-converter">The Converter</a></h3>
+<h3 id="the-converter"><a class="header" href="#the-converter">The Converter</a></h3>
 <p>The <code>Converter</code> in the interface crate is responsible to deserialize the body of the request to an
 operation from the <code>operations</code> module or to serialize a result to a response body. There is one
 <code>Converter</code> per format of operation contracts. <code>protobuf</code> converter is currently implemented in the
 interface.</p>
 <p>The <code>Converter</code> implements the <code>Convert</code> trait. Possible converters are listed
 <a href="converters.html">here</a>.</p>
-<h2><a class="header" href="#the-provider" id="the-provider">The Provider</a></h2>
+<h2 id="the-provider"><a class="header" href="#the-provider">The Provider</a></h2>
 <p>The <code>Provider</code> is where the request is fulfilled using whatever combined software and hardware stack
 it has been coded for. The service can support any number of providers to interact with platform
 facilities such as TPM, HSM or TA. The provider does whatever is necessary to implement the
@@ -270,13 +270,13 @@ operation. It then returns a result. Results are also communicated using model o
 return journey to the client application. For a more detailed description of the current providers,
 see the <a href="providers.html"><strong>Providers</strong></a> page.</p>
 <p>The <code>Provider</code> implements the <code>Provide</code> trait.</p>
-<h3><a class="header" href="#the-key-info-manager" id="the-key-info-manager">The Key Info Manager</a></h3>
+<h3 id="the-key-info-manager"><a class="header" href="#the-key-info-manager">The Key Info Manager</a></h3>
 <p>Providers may make use of Key Info Managers to persistently and safely store key information
 material, and thus another step for conversion from key name to provider-specific identifier is
 needed.</p>
 <p>The <code>KeyInfoManager</code> implements the <code>ManageKeyInfo</code> trait. Possible key info managers are listed
 <a href="key_info_managers.html">here</a>.</p>
-<h2><a class="header" href="#return-journey" id="return-journey">Return Journey</a></h2>
+<h2 id="return-journey"><a class="header" href="#return-journey">Return Journey</a></h2>
 <p>The return journey is a mirror-image of what has been described above, except that there is no
 dispatch phase (because the provider has already been chosen). The result is handled by the
 <code>BackEndHandler</code>, which uses the correct encoding scheme (currently always protobuf) to serialize

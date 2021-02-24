@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#how-to-build-and-run-parsec" id="how-to-build-and-run-parsec">How to build and run Parsec</a></h1>
+                        <h1 id="how-to-build-and-run-parsec"><a class="header" href="#how-to-build-and-run-parsec">How to build and run Parsec</a></h1>
 <p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install
 Rust</a>.</p>
 <p>Because the <a href="providers.html">providers</a> supported by Parsec are dependent on libraries and/or hardware
@@ -193,17 +193,17 @@ on Parsec!</p>
 <pre><code>cd e2e_tests
 cargo test --features mbed-crypto-provider normal_tests
 </code></pre>
-<h2><a class="header" href="#killing-parsec" id="killing-parsec">Killing Parsec</a></h2>
+<h2 id="killing-parsec"><a class="header" href="#killing-parsec">Killing Parsec</a></h2>
 <p>On Linux, sending <code>SIGTERM</code> will gracefully terminate Parsec, waiting all of its threads to finish.</p>
 <pre><code>pkill parsec
 </code></pre>
-<h2><a class="header" href="#reloading-parsec" id="reloading-parsec">Reloading Parsec</a></h2>
+<h2 id="reloading-parsec"><a class="header" href="#reloading-parsec">Reloading Parsec</a></h2>
 <p>On Linux, sending <code>SIGHUP</code> will reload Parsec: it will wait for its threads to finish, drop all of
 its components, read the configuration and instantiate all the components again. It is usefull to
 change the Parsec configuration without having to kill the service.</p>
 <pre><code>pkill -SIGHUP parsec
 </code></pre>
-<h2><a class="header" href="#dependencies" id="dependencies">Dependencies</a></h2>
+<h2 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h2>
 <p>The Parsec Interface needs the <code>protoc</code> command to be available on the <code>PATH</code> in order to use the
 Protobuf contracts. On Ubuntu-like distributions, it can be installed via the package manager under
 the name <code>protobuf-compiler</code>:</p>
@@ -213,14 +213,14 @@ the name <code>protobuf-compiler</code>:</p>
 <pre><code>sudo apt install llvm-dev libclang-dev clang
 </code></pre>
 <p>Each provider has external dependencies that are needed to compile.</p>
-<h3><a class="header" href="#mbed-crypto" id="mbed-crypto">Mbed Crypto</a></h3>
+<h3 id="mbed-crypto"><a class="header" href="#mbed-crypto">Mbed Crypto</a></h3>
 <p>The Mbed Crypto provider is built on top of the reference implementation of the PSA Cryptography
 API. You can find a list of dependencies
 <a href="https://github.com/parallaxsecond/rust-psa-crypto/tree/master/psa-crypto-sys">here</a>.</p>
-<h3><a class="header" href="#pkcs-11-crypto" id="pkcs-11-crypto">PKCS 11 Crypto</a></h3>
+<h3 id="pkcs-11-crypto"><a class="header" href="#pkcs-11-crypto">PKCS 11 Crypto</a></h3>
 <p>The PKCS 11 provider will try to dynamically load the library indicated in the configuration file,
 hence a library implementing the PKCS 11 API is needed.</p>
-<h3><a class="header" href="#tpm-crypto" id="tpm-crypto">TPM Crypto</a></h3>
+<h3 id="tpm-crypto"><a class="header" href="#tpm-crypto">TPM Crypto</a></h3>
 <p>The TPM provider will try to build the <code>tss-esapi</code> crate which needs built TSS 2.0 esys and tctildr
 libraries. It will use <code>pkg-config</code> to find them using the names <code>tss2-esys</code> and <code>tss2-tctildr</code>.
 Make sure you also follow the requirements of the <a href="https://docs.rs/tss-esapi">tss-esapi crate</a>.</p>

@@ -163,16 +163,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#parsec-rust-client-threat-model" id="parsec-rust-client-threat-model">Parsec Rust Client Threat Model</a></h1>
+                        <h1 id="parsec-rust-client-threat-model"><a class="header" href="#parsec-rust-client-threat-model">Parsec Rust Client Threat Model</a></h1>
 <p>This document presents the Threat Model for the Parsec Rust client crate. The interactions between
 the Parsec client library and any external software components is assessed. Currently the presence
 of an Identity Provider is not considered as part of the scheme due to uncertainty as to how the
 dataflow would look in such a case and what security issues might arise. The threat model indirectly
 covers a secondary use pattern, namely via a Secure Element Driver (SE Driver) that bridges between
 Mbed Crypto and the Parsec client, allowing usage of the Rust stack from a C-language environment.</p>
-<h2><a class="header" href="#dataflow-diagram" id="dataflow-diagram">Dataflow Diagram</a></h2>
+<h2 id="dataflow-diagram"><a class="header" href="#dataflow-diagram">Dataflow Diagram</a></h2>
 <p><img src="diagrams/rust_client_diagram.png" alt="Dataflow Diagram" /></p>
-<h2><a class="header" href="#assumptions" id="assumptions">Assumptions</a></h2>
+<h2 id="assumptions"><a class="header" href="#assumptions">Assumptions</a></h2>
 <p>Basic requirements based on which the client can be used securely. Mitigations can be implemented to
 make the system more resilient, but if some of these assumptions are not met, the security implied
 by Parsec cannot be guaranteed.</p>
@@ -185,24 +185,24 @@ application.</li>
 <li>The client application obtains or generates a persistent name that it uses consistently for
 accessing its service-side assets.</li>
 </ol>
-<h2><a class="header" href="#assets" id="assets">Assets</a></h2>
+<h2 id="assets"><a class="header" href="#assets">Assets</a></h2>
 <p>What we want to protect. Each one of these has a combination of Security Property: Confidentiality,
 Integrity and Availability. The assets are labelled so that it can be seen in the threat tables
 below which ones are impacted by each threat.</p>
-<h3><a class="header" href="#application-identity---as1" id="application-identity---as1">Application Identity - AS1</a></h3>
+<h3 id="application-identity---as1"><a class="header" href="#application-identity---as1">Application Identity - AS1</a></h3>
 <p>Ideally, the Client Library gets its Application Identity from the Identity Provider. However,
 without an Identity Provider in the system applications are expected to handle their identities on
 their own. The identity will be used by the service to partition the assets it stores for clients
 into a namespace for each one.</p>
 <p><strong>Confidentiality</strong> : if known (the authentication token), an attacker could impersonate a specific
 application and execute operations in their name.</p>
-<h3><a class="header" href="#clients-data--as2" id="clients-data--as2">Client’s data- AS2</a></h3>
+<h3 id="clients-data--as2"><a class="header" href="#clients-data--as2">Client’s data- AS2</a></h3>
 <p>Data sent through the client as part of a request to the service.</p>
 <p><strong>Confidentiality</strong> : some of the client’s data could be confidential (example: a buffer to
 encrypt).</p>
 <p><strong>Integrity</strong> : the data should not be modifiable by attackers. The client should be certain that it
 is interacting with the legitimate Parsec service.</p>
-<h3><a class="header" href="#configuration-data--as3" id="configuration-data--as3">Configuration data- AS3</a></h3>
+<h3 id="configuration-data--as3"><a class="header" href="#configuration-data--as3">Configuration data- AS3</a></h3>
 <p>Configuration data passed by the client application to the library. There is some overlap between
 the configuration data and the application identity, as the identity is stored within the client
 library and could thus be considered part of its configuration data.</p>
@@ -210,23 +210,23 @@ library and could thus be considered part of its configuration data.</p>
 application and execute operations in their name.</p>
 <p><strong>Integrity</strong> : the data should only be modified by the client application as doing otherwise might
 prevent the client application from accessing Parsec functionality.</p>
-<h3><a class="header" href="#clients-cryptographic-keys---as4" id="clients-cryptographic-keys---as4">Client’s cryptographic keys - AS4</a></h3>
+<h3 id="clients-cryptographic-keys---as4"><a class="header" href="#clients-cryptographic-keys---as4">Client’s cryptographic keys - AS4</a></h3>
 <p>Keys provisioned by the client within the service.</p>
 <p><strong>Confidentiality</strong> : (private) key material is sensitive data and should not be exposed.</p>
 <p><strong>Integrity</strong> : neither public nor private key data should be modifiable by attackers.</p>
 <p><strong>Availability</strong> : the client must always be able to use their cryptographic material.</p>
-<h3><a class="header" href="#system-and-client-application-stability---as5" id="system-and-client-application-stability---as5">System and client application stability - AS5</a></h3>
+<h3 id="system-and-client-application-stability---as5"><a class="header" href="#system-and-client-application-stability---as5">System and client application stability - AS5</a></h3>
 <p>The application which is using the Parsec client library and the sytem as a whole must be kept
 stable and responsive.</p>
 <p><strong>Availability</strong> : the client application must not be crashed by the library in any way.</p>
-<h2><a class="header" href="#attackers" id="attackers">Attackers</a></h2>
+<h2 id="attackers"><a class="header" href="#attackers">Attackers</a></h2>
 <p>Each dataflow is analysed from an attacker’s perspective using STRIDE method. Nothing is supposed
 on the different components.</p>
 <p>In the following tables are present the type of each possible threat, its description, its
 mitigation status and the assets impacted. A threat can be unmitigated (U), mitigated (M) or
 operational (O). The assumptions context applies for all threats but when one of them is
 particularly relevant, it will be noted with ASUM.</p>
-<h3><a class="header" href="#attacker-request-to-service---a1" id="attacker-request-to-service---a1">Attacker “Request to Service” - A1</a></h3>
+<h3 id="attacker-request-to-service---a1"><a class="header" href="#attacker-request-to-service---a1">Attacker “Request to Service” - A1</a></h3>
 <p>This attacker uses the inter-process endpoint, presumably created by the service, to interfere with
 the communication between client and service.</p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
@@ -240,25 +240,25 @@ the communication between client and service.</p>
 <tr><td>D</td><td>An attacker could tamper with incoming responses to exploit vulnerabilities in the client library and crash the client.</td><td>M-0, M-1, U-0</td><td>AS5</td></tr>
 <tr><td>E</td><td>An attacker could tamper with incoming responses to exploit vulnerabilities in the client library and run code in the same user as the client.</td><td>M-0, M-1, U-0</td><td>AS5</td></tr>
 </tbody></table>
-<h3><a class="header" href="#attacker-library-memory---a2" id="attacker-library-memory---a2">Attacker “Library Memory” - A2</a></h3>
+<h3 id="attacker-library-memory---a2"><a class="header" href="#attacker-library-memory---a2">Attacker “Library Memory” - A2</a></h3>
 <p>This attacker gains access to memory released by the client library, containing potentially
 sensitive information.</p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>I</td><td>An attacker reads requests and responses from memory.</td><td>U-2</td><td>AS2, AS4</td></tr>
 <tr><td>I</td><td>An attacker reads out the application identity from memory.</td><td>U-2</td><td>AS1</td></tr>
 </tbody></table>
-<h2><a class="header" href="#unmitigations" id="unmitigations">Unmitigations</a></h2>
+<h2 id="unmitigations"><a class="header" href="#unmitigations">Unmitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
 <tr><td>0</td><td>Client library dependencies are not checked for Security Vulnerabilities.</td><td>A vulnerability in one of the Parsec client dependencies will also impact the client application and the data it shares with the Parsec library.</td></tr>
 <tr><td>1</td><td>Authenticity of responses is not ensured through a MAC or asymmetric signature – it relies on trust in the platform administrator.</td><td>Any response from the service could have been spoofed or altered by any entity with sufficient capabilities.</td></tr>
 <tr><td>2</td><td>Parsec does not currently clear sensitive data in memory after use. <a href="https://github.com/parallaxsecond/parsec-client-rust/issues/9">This is looked at here</a>.</td><td>Any data that passes through the client library could be read after the memory is released.</td></tr>
 </tbody></table>
-<h2><a class="header" href="#mitigations" id="mitigations">Mitigations</a></h2>
+<h2 id="mitigations"><a class="header" href="#mitigations">Mitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>Parsec interface uses an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made).</td><td>Unix Domain Socket: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
 <tr><td>1</td><td>The Parsec client is coded with safety in mind and is tested extensively.</td><td><a href="https://github.com/parallaxsecond/parsec-client-rust/issues/49">Open</a></td></tr>
 </tbody></table>
-<h2><a class="header" href="#operational-mitigations" id="operational-mitigations">Operational mitigations</a></h2>
+<h2 id="operational-mitigations"><a class="header" href="#operational-mitigations">Operational mitigations</a></h2>
 <table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
 <tr><td>0</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the IPC endpoint.</td></tr>
 <tr><td>1</td><td>The IPC endpoint should be secured so that only privileged users can remove or alter it.</td></tr>

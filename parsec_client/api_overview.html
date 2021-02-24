@@ -163,13 +163,13 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#api-overview" id="api-overview">API Overview</a></h1>
-<h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
+                        <h1 id="api-overview"><a class="header" href="#api-overview">API Overview</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>This document introduces the API contract that exists between the client and the service, covering
 its general principles and organisation. Use this document in combination with the <a href="wire_protocol.html"><strong>wire protocol
 specification</strong></a> and the <a href="operations"><strong>operation directory</strong></a> as a reference
 guide for the development of client libraries.</p>
-<h2><a class="header" href="#audience" id="audience">Audience</a></h2>
+<h2 id="audience"><a class="header" href="#audience">Audience</a></h2>
 <p>This document details the API that is exposed directly by the service to its clients. This is the
 API that is invoked over the IPC transport between the client process and the service. Client
 applications do not consume this API directly. Instead, they consume a client library in their
@@ -179,7 +179,7 @@ complexity of invoking cryptographic operations. Client libraries should present
 that is &quot;easy to use and hard to get wrong&quot;. The audience for this document is the client library
 developer, <em>not</em> the application developer. Application developers should consult the client library
 documentation package instead.</p>
-<h2><a class="header" href="#opcodes-and-contracts" id="opcodes-and-contracts">Opcodes and Contracts</a></h2>
+<h2 id="opcodes-and-contracts"><a class="header" href="#opcodes-and-contracts">Opcodes and Contracts</a></h2>
 <p>The API is expressed as a set of individual and distinct <strong>operations</strong>. Each operation has a unique
 numerical <strong>opcode</strong> to set it apart from other operations, and to allow for it to be unambiguously
 selected for in a client request. (See the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a> for
@@ -198,7 +198,7 @@ contain the opcode of the operation being performed, and the request body must c
 data bytes conforming to that operation's input contract. The service will execute the operation,
 and form a response according to the wire protocol. The response will contain serialized data bytes
 conforming to the operation's output contract.</p>
-<h2><a class="header" href="#selecting-providers" id="selecting-providers">Selecting Providers</a></h2>
+<h2 id="selecting-providers"><a class="header" href="#selecting-providers">Selecting Providers</a></h2>
 <p>All of the operations in the API are implemented by back-end modules known as <strong>providers</strong>. A
 provider is a module that is capable of implementing operations by making use of available platform
 hardware or services. For example, if cryptographic services are supplied by a hardware secure
@@ -234,13 +234,13 @@ different providers for different operations if it so desires. In many deploymen
 that only a single cryptographic provider would be available anyway. To determine the best available
 or most suitable provider, a client application can use the capability check mechanism, described
 below.</p>
-<h2><a class="header" href="#open-closed-principle" id="open-closed-principle">Open-Closed Principle</a></h2>
+<h2 id="open-closed-principle"><a class="header" href="#open-closed-principle">Open-Closed Principle</a></h2>
 <p>The API is designed to evolve over time. This evolution will be governed by the <em>open-closed
 principle</em>. In practice, this means that each operation in the API, once introduced, will not be
 contractually modified. The API can only change by introducing new operations. This preserves
 backwards compatability with client code. Any client code that makes use of any given operation will
 continue to work, even if new operations are introduced.</p>
-<h2><a class="header" href="#deprecation" id="deprecation">Deprecation</a></h2>
+<h2 id="deprecation"><a class="header" href="#deprecation">Deprecation</a></h2>
 <p>While the open-closed principle dictates that operations will not be contractually changed once they
 have been introduced, it may sometimes be necessary to deprecate specific operations. This will
 often be to encourage the use of a new operation with an improved feature set and a different
@@ -248,7 +248,7 @@ contract. Deprecation is largely a documentation exercise: the <a href="operatio
 will indicate when an operation has been deprecated. This does not mean that the operation will no
 longer work. It simply means that any new use of the operation is strongly discouraged in favour of
 a better alternative.</p>
-<h2><a class="header" href="#capability-checks" id="capability-checks">Capability Checks</a></h2>
+<h2 id="capability-checks"><a class="header" href="#capability-checks">Capability Checks</a></h2>
 <p>The API includes a capability check operation, which allows the client to determine the set of
 operations that are available. There are two reasons why the client needs this capability check:</p>
 <ul>
@@ -260,7 +260,7 @@ one provider might not be supported in another.</li>
 </ul>
 <p>Refer to the <a href="operations"><strong>operation directory</strong></a> for information on how to perform a capability
 check.</p>
-<h2><a class="header" href="#application-identity" id="application-identity">Application Identity</a></h2>
+<h2 id="application-identity"><a class="header" href="#application-identity">Application Identity</a></h2>
 <p>Every client application that uses the API must present an <strong>application identity</strong>. Application
 identities are arbitrary byte strings, which are used by the service to isolate the activities of
 one client from those of another. The storage of secure assets such as keys is segregated on a
@@ -277,7 +277,7 @@ might be composed of multiple processes. Conversely, a single process might cont
 distinct client applications. Client applications might also be organised into isolated environments
 such as containers. Provided that client application is able to present a unique and stable identity
 string for each API call, it does not matter how they are structured and deployed.</p>
-<h2><a class="header" href="#authentication-and-sessions" id="authentication-and-sessions">Authentication and Sessions</a></h2>
+<h2 id="authentication-and-sessions"><a class="header" href="#authentication-and-sessions">Authentication and Sessions</a></h2>
 <p>Clients present their identity strings to the service on each API call. As set out in the <a href="wire_protocol.html"><strong>wire
 protocol specification</strong></a>, they do this using the <strong>authentication</strong> field of the
 API request.</p>
@@ -333,20 +333,20 @@ from the SVID as application identity.</li>
 </ul>
 <p>Other values are unsupported and will be rejected by the service. See the
 <a href="../parsec_service/authenticators.html">authenticators</a> page for more details.</p>
-<h2><a class="header" href="#unauthenticated-operations" id="unauthenticated-operations">Unauthenticated Operations</a></h2>
+<h2 id="unauthenticated-operations"><a class="header" href="#unauthenticated-operations">Unauthenticated Operations</a></h2>
 <p>Authentication via the application identity is only needed for cryptographic operations. Core
 provider operations do not require authentication. Core provider operations include those that are
 used to ping the service and gather information about its capabilities. These operations neither
 require nor support any notion of per-client isolation. Consequently, they can be called without any
 authentication. For requests to the core provider, the <strong>auth type</strong> header field should always be
 set to 0 (<code>0x00</code>).</p>
-<h2><a class="header" href="#content-type-and-accept-type" id="content-type-and-accept-type">Content Type and Accept Type</a></h2>
+<h2 id="content-type-and-accept-type"><a class="header" href="#content-type-and-accept-type">Content Type and Accept Type</a></h2>
 <p>As per the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a>, API request headers contain fields
 for <strong>content type</strong> and <strong>accept type</strong>, which respectively indicate how the request body and
 response body are encoded. Currently, the only supported value for these fields is one (<code>0x01</code>),
 meaning that all request and response bodies contain serialized protobuf messages. All other values
 are unsupported and will be rejected by the service.</p>
-<h2><a class="header" href="#psa-crypto-operations" id="psa-crypto-operations">PSA Crypto Operations</a></h2>
+<h2 id="psa-crypto-operations"><a class="header" href="#psa-crypto-operations">PSA Crypto Operations</a></h2>
 <p>The majority of the operations in this API are derived from the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API
 Specification</strong></a>.
 There is a near one-to-one correspondence of functional operations between the two APIs. The main
@@ -358,7 +358,7 @@ symbolic names that start with the <strong>Psa</strong> prefix, and their numeri
 1,000-1,999 (decimal) range. Opcode ranges are an important aspect of the API design because they
 form the basis of an extensibility mechanism. In the future, it will be possible for contributors to
 partition the numerical opcode space with ranges for custom operations.</p>
-<h2><a class="header" href="#key-names-enumerating-and-referencing" id="key-names-enumerating-and-referencing">Key Names, Enumerating and Referencing</a></h2>
+<h2 id="key-names-enumerating-and-referencing"><a class="header" href="#key-names-enumerating-and-referencing">Key Names, Enumerating and Referencing</a></h2>
 <p>While this API is closely aligned with the PSA Crypto API, there are some differences. One important
 difference is in the conventions used to name and reference cryptographic keys.</p>
 <p>In the PSA Crypto API, every key has a 32-bit numerical identifier. This identifier is set by the
@@ -385,7 +385,7 @@ application.</p>
 <p>Providers can impose length restrictions on key names to help with internal storage and argument
 validation. This API reference does not define any single fixed maximum length. Clients must
 determine the maximum length at runtime using the capability checking mechanism.</p>
-<h2><a class="header" href="#service-discovery" id="service-discovery">Service discovery</a></h2>
+<h2 id="service-discovery"><a class="header" href="#service-discovery">Service discovery</a></h2>
 <p>Establishing a connection between the client and the service requires common understanding of the
 communication mechanism and the address at which the service can be found. While the default
 mechanism is through a Unix domain socket found at <code>/run/parsec/parsec.sock</code>, that can be easily
@@ -398,7 +398,7 @@ domain socket location, the URI would be <code>unix:/run/parsec/parsec.sock</cod
 capable of scanning for the environment variable, parsing it, and bootstrapping communication using
 the URI, with no input from the client application. The libraries must also allow the application to
 override these settings.</p>
-<h2><a class="header" href="#full-api-reference" id="full-api-reference">Full API Reference</a></h2>
+<h2 id="full-api-reference"><a class="header" href="#full-api-reference">Full API Reference</a></h2>
 <p>For the full reference guide to individual API operations, please refer to the <a href="operations"><strong>operation
 directory</strong></a>.</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>

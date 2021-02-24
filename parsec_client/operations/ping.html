@@ -163,19 +163,19 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#ping" id="ping">Ping</a></h1>
+                        <h1 id="ping"><a class="header" href="#ping">Ping</a></h1>
 <p>Determines whether the service is present and responsive on the expected endpoint. Opcode: 1
 (<code>0x0001</code>)</p>
-<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
-<h2><a class="header" href="#results" id="results">Results</a></h2>
+<h2 id="results"><a class="header" href="#results">Results</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>wire_protocol_version_maj</code></td><td>Unsigned integer</td><td>Wire protocol version major</td></tr>
 <tr><td><code>wire_protocol_version_min</code></td><td>Unsigned integer</td><td>Wire protocol version minor</td></tr>
 </tbody></table>
-<h2><a class="header" href="#specific-response-status-codes" id="specific-response-status-codes">Specific response status codes</a></h2>
+<h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <p>No specific response status codes returned.</p>
-<h2><a class="header" href="#description" id="description">Description</a></h2>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
 <p>Clients should follow the following bootstrapping sequence if they want to switch to the highest
 wire protocol version that the service support:</p>
 <ol>
@@ -183,7 +183,7 @@ wire protocol version that the service support:</p>
 <li>Service responds with the highest wire protocol version supported <code>x.y</code>.</li>
 <li>Client can now use any wire protocol version up to and including <code>x.y</code> for further requests.</li>
 </ol>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/ping.proto">Protobuf</a></p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 

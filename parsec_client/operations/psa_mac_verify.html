@@ -163,9 +163,9 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#psamacverify" id="psamacverify">PsaMacVerify</a></h1>
+                        <h1 id="psamacverify"><a class="header" href="#psamacverify">PsaMacVerify</a></h1>
 <p>Calculate the MAC of a message and compare it to an expected value. Opcode: 23 (<code>0x0017</code>)</p>
-<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="psa_algorithm.html#mac-algorithm"><code>Mac</code></a></td><td>Mac algorithm to compute</td></tr>
@@ -175,19 +175,19 @@
 <ul>
 <li><code>key_name</code> must allow the <a href="psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_message</code>.</li>
 </ul>
-<h2><a class="header" href="#results" id="results">Results</a></h2>
+<h2 id="results"><a class="header" href="#results">Results</a></h2>
 <p>No values are returned by this operation. If <code>Success</code> is returned the MAC is valid.</p>
-<h2><a class="header" href="#specific-response-status-codes" id="specific-response-status-codes">Specific response status codes</a></h2>
+<h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>verify_message</code> flag, or it does not permit the
 requested algorithm.</li>
 <li><code>PsaErrorInvalidSignature</code>: The MAC of the message was calculated successfully, but it differs
 from the expected value.</li>
 </ul>
-<h2><a class="header" href="#description" id="description">Description</a></h2>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
 <p>This function will calculate the message authentication code (MAC) of a message and compare it to an
 expected value.</p>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_mac_verify.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 

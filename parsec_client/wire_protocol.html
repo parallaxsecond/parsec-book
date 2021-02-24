@@ -163,28 +163,28 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#wire-protocol" id="wire-protocol">Wire Protocol</a></h1>
-<h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
+                        <h1 id="wire-protocol"><a class="header" href="#wire-protocol">Wire Protocol</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>This document describes and specifies the wire protocol that exists between the service and its
 clients. It explains the general principles of how the protocol is structured, and goes on to
 provide a full specification that can be used as the basis of both client-side and service-side
 code.</p>
-<h2><a class="header" href="#scope" id="scope">Scope</a></h2>
+<h2 id="scope"><a class="header" href="#scope">Scope</a></h2>
 <p>This document describes the principles, patterns and low-level details of the wire protocol. This
 covers the details that are common to all messages that pass between the service and its clients.
 This document is <em>not</em> an API specification for the service. Individual API operations, along with
 their behaviours, inputs and outputs are described separately in the API specification. The wire
 protocol is the underlying message-passing mechanism that enables the API.</p>
-<h2><a class="header" href="#audience" id="audience">Audience</a></h2>
+<h2 id="audience"><a class="header" href="#audience">Audience</a></h2>
 <p>A thorough understanding of the wire protocol is necessary if you are developing new capabilities
 within certain parts of the service, or if you are developing or extending one of its client
 libraries. However, it is not necessary to understand the wire protocol in order to consume the
 client API into an application.</p>
-<h2><a class="header" href="#general-principles" id="general-principles">General Principles</a></h2>
-<h3><a class="header" href="#binary-protocol" id="binary-protocol">Binary Protocol</a></h3>
+<h2 id="general-principles"><a class="header" href="#general-principles">General Principles</a></h2>
+<h3 id="binary-protocol"><a class="header" href="#binary-protocol">Binary Protocol</a></h3>
 <p>The wire protocol is a <a href="https://en.wikipedia.org/wiki/Binary_protocol"><strong>binary</strong></a> and
 <strong>stream-oriented</strong> protocol. It is designed for speed and compactness of transmission.</p>
-<h3><a class="header" href="#requests-and-responses" id="requests-and-responses">Requests and Responses</a></h3>
+<h3 id="requests-and-responses"><a class="header" href="#requests-and-responses">Requests and Responses</a></h3>
 <p>The wire protocol is principally structured around the notion of a <strong>request</strong> and a <strong>response</strong>.
 Requests and responses are self-contained pairs of entities, where each request is answered by
 exactly one response. Requests always travel from the client to the service, and responses always
@@ -194,7 +194,7 @@ requests and transmitting them to the service. Service code is concerned with pr
 forming responses, and transmitting those responses back to the client. The term <strong>message</strong> is used
 to refer generically to requests and responses in contexts where there is no need to draw a
 distinction between them.</p>
-<h3><a class="header" href="#analogy-with-http-and-rest" id="analogy-with-http-and-rest">Analogy With HTTP and REST</a></h3>
+<h3 id="analogy-with-http-and-rest"><a class="header" href="#analogy-with-http-and-rest">Analogy With HTTP and REST</a></h3>
 <p>The request-response pattern of the wire protocol is intentionally modelled on the familiar notion
 of calling a REST API over HTTP. In fact, one of the guiding principles of the wire protocol design
 has been to create something that might loosely be called a &quot;lightweight REST&quot;. This term must be
@@ -204,14 +204,14 @@ protocol as being like a web service protocol, only without any dependency on HT
 stacks, can be a good way to gain an initial understanding. Some patterns of the wire protocol
 design have their foundation in a mixture of concepts taken from HTTP and REST, but the wire
 protocol itself is neither of these things: it is an entirely bespoke protocol.</p>
-<h3><a class="header" href="#synchronous-operation" id="synchronous-operation">Synchronous Operation</a></h3>
+<h3 id="synchronous-operation"><a class="header" href="#synchronous-operation">Synchronous Operation</a></h3>
 <p>The wire protocol is based on requests and responses, and therefore models synchronous patterns of
 interaction. There is nothing in current versions of the protocol to assist with asynchronous
 patterns of interaction between the client and the service. Future versions of the protocol may
 introduce such concepts. In the meantime, depending on the type of transport used, it may be
 possible for the service or the clients to take advantage of asynchronous features of the transport
 (such as the non-blocking mode of a socket) to provide certain levels of asynchronous control.</p>
-<h3><a class="header" href="#separation-of-protocol-and-transport" id="separation-of-protocol-and-transport">Separation of Protocol and Transport</a></h3>
+<h3 id="separation-of-protocol-and-transport"><a class="header" href="#separation-of-protocol-and-transport">Separation of Protocol and Transport</a></h3>
 <p>The wire protocol defines the format of messages, and some key characteristics and invariants
 concerning their transmission between the service and its clients. It does not mandate a specific
 transport stack. The wire protocol is a binary, stream-oriented protocol. As such, it can be carried
@@ -219,7 +219,7 @@ by any transport medium that supports the reliable transmission of binary octet 
 Unix domain sockets (connected in streaming mode) or TCP sockets. Datagram-oriented transports are
 <strong>not</strong> supported, because the protocol depends on the reliable transmission of entire messages in
 the proper sequence.</p>
-<h3><a class="header" href="#separation-of-header-and-body" id="separation-of-header-and-body">Separation of Header and Body</a></h3>
+<h3 id="separation-of-header-and-body"><a class="header" href="#separation-of-header-and-body">Separation of Header and Body</a></h3>
 <p>Every message (whether request or response) has a <strong>header</strong> and a <strong>body</strong>. Again, this is
 conceptually similar to the separation of header and body in HTTP. And, like HTTP, this protocol
 allows some flexibility in how the body content is encoded. The wire protocol borrows HTTP's notion
@@ -244,7 +244,7 @@ document, including information about how and when they should be populated or i
 carry any inputs to or outputs from specific API operations. API inputs and outputs are always
 carried in the body. Unlike the header, which is always fixed-length and fixed-format, the body can
 be both variable-length and variable-format.</p>
-<h3><a class="header" href="#protobuf-body" id="protobuf-body">Protobuf Body</a></h3>
+<h3 id="protobuf-body"><a class="header" href="#protobuf-body">Protobuf Body</a></h3>
 <p>As described above, the wire protocol design allows for the message body to be structured and
 encoded in a variety of formats. However, in current manifestations of the protocol, only a single
 encoding is defined for use in the message bodies, and this encoding is based on <a href="https://developers.google.com/protocol-buffers/"><strong>protocol
@@ -264,7 +264,7 @@ headers. As explained above, headers employ a bespoke binary encoding that is fu
 this specification alone. There is no use of protobuf within the header. Headers can be parsed and
 generated only by writing code that conforms to this specification document. Again, this permits for
 the possibility that a future manifesation might support different encoding schemes.</p>
-<h3><a class="header" href="#authentication" id="authentication">Authentication</a></h3>
+<h3 id="authentication"><a class="header" href="#authentication">Authentication</a></h3>
 <p>As described above, all messages in this protocol have a header and a body. If a message is a
 request (as opposed to a response), then it will additionally carry a third component: its
 <strong>authentication</strong> field.</p>
@@ -282,12 +282,12 @@ the body, in which case the authentication field would contain the computed HMAC
 identifier itself.</p>
 <p>See the <a href="api_overview.html#authentication-and-sessions">API Overview section</a> for a description of
 possible authentication type values for the authentication field.</p>
-<h3><a class="header" href="#sessions" id="sessions">Sessions</a></h3>
+<h3 id="sessions"><a class="header" href="#sessions">Sessions</a></h3>
 <p>The wire protocol supports the notion of sessions, which can be used to allow the client and the
 service to track state across multiple API calls. The protocol allocates space within the request
 header and the response header for an 8-byte session identifier. Details of how to create and manage
 sessions are given in the API specification.</p>
-<h3><a class="header" href="#wire-protocol-versions" id="wire-protocol-versions">Wire Protocol Versions</a></h3>
+<h3 id="wire-protocol-versions"><a class="header" href="#wire-protocol-versions">Wire Protocol Versions</a></h3>
 <p>The wire protocol is versioned. It caters for situations where the service and its clients may be
 operating at different versions. All messages (requests and responses) carry a major and minor
 version number field. Although the design supports having different wire protocol versions, changes
@@ -300,7 +300,7 @@ wire protocol version not supported by the service will be sent back a
 <p>Please note that the wire protocol version is <strong>not</strong> the mean of finding out the level of support
 for specific operations in the API. The <a href="operations/list_opcodes.html">ListOpcodes</a> operation should
 be used, per provider basis, to determine if an operation is supported by the provider.</p>
-<h3><a class="header" href="#opcodes" id="opcodes">Opcodes</a></h3>
+<h3 id="opcodes"><a class="header" href="#opcodes">Opcodes</a></h3>
 <p>All requests contain an unsigned 4-byte integer field called the <strong>opcode</strong>. The opcode is the value
 that determines which API operation is being invoked by the requests. Recall that each
 request/response pair corresponds to the invocation of exactly one API operation, and each of these
@@ -308,7 +308,7 @@ operations is assigned an integer opcode.</p>
 <p>The opcode zero is not used and is not valid. The lowest valid opcode is <code>0x0001</code>, and the highest
 valid opcode is <code>0xFFFF</code>.</p>
 <p>All <a href="operations#overview">opcodes</a> are defined within the API specification.</p>
-<h3><a class="header" href="#status" id="status">Status</a></h3>
+<h3 id="status"><a class="header" href="#status">Status</a></h3>
 <p>All responses contain an unsigned 2-byte integer field called the <strong>status</strong>, which is defined to
 indicate the overall success or failure of the operation.</p>
 <p>The status value of zero (<code>0x0000</code>) is used universally to mean that the operation completed
@@ -318,14 +318,14 @@ same strategy as the opcodes. Status values from 1-999 are reserved for internal
 housekeeping operations, and status values from 1000-1999 are reserved for status codes
 corresponding to the Platform Security Architecture (PSA) Cryptography API.</p>
 <p>All status values and their definition can be found on the <a href="status_codes.html"><strong>Status Codes</strong></a> page.</p>
-<h2><a class="header" href="#message-structure-specifications" id="message-structure-specifications">Message Structure Specifications</a></h2>
-<h3><a class="header" href="#general-rules" id="general-rules">General Rules</a></h3>
+<h2 id="message-structure-specifications"><a class="header" href="#message-structure-specifications">Message Structure Specifications</a></h2>
+<h3 id="general-rules"><a class="header" href="#general-rules">General Rules</a></h3>
 <p>This section provides a complete specification for the interpretation of messages. Based on this
 specification, service and client code can be created to both consume and produce conformant
 messages on any suitable transport medium.</p>
 <p>All multi-byte numerical fields are transported in <strong>little-endian</strong> format: the least significant
 byte is sent first.</p>
-<h3><a class="header" href="#the-fixed-common-header" id="the-fixed-common-header">The Fixed Common Header</a></h3>
+<h3 id="the-fixed-common-header"><a class="header" href="#the-fixed-common-header">The Fixed Common Header</a></h3>
 <p>Requests and responses share a common fixed-format header whose specification is given below.
 Because the header format is the same for requests and responses, it means that some of the data
 fields in the header are unused/ignored depending on whether the header is an outgoing request
@@ -359,7 +359,7 @@ following diagram, the bytes go left to right from least significant to most sig
 <tr><td>Status</td><td>Responses only</td><td>2</td><td>Indicates the overall success or failure of the operation. A value of zero is used universally to mean success. Other values should be interpreted according to the <a href="status_codes.html">API specification</a>.</td></tr>
 <tr><td>Reserved</td><td>Common</td><td>2</td><td>Currently unused and must be set to zero.</td></tr>
 </tbody></table>
-<h3><a class="header" href="#requests" id="requests">Requests</a></h3>
+<h3 id="requests"><a class="header" href="#requests">Requests</a></h3>
 <p>A request message begins with the fixed-format header as specified above, followed contiguously by a
 variable-length field of zero or more <strong>message body</strong> bytes, which is in turn followed contiguously
 in memory by a variable-length field of zero or more <strong>authentication</strong> bytes.</p>
@@ -372,7 +372,7 @@ alignment.</p>
 authentication field must precisely match the Auth Length field of the header with no additional
 padding or alignment.</p>
 <p><img src="diagrams/wire_request.png" alt="Wire Request" /></p>
-<h3><a class="header" href="#responses" id="responses">Responses</a></h3>
+<h3 id="responses"><a class="header" href="#responses">Responses</a></h3>
 <p>A response message begins with the fixed-format header as specified above, followed contiguously by
 a variable-length field of zero or more <strong>message body</strong> bytes.</p>
 <p>The interpretation of the body is specified by the relevant fields in the fixed-format header.</p>

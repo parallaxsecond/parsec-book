@@ -163,14 +163,14 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#system-architecture" id="system-architecture">System Architecture</a></h1>
-<h2><a class="header" href="#introduction" id="introduction">Introduction</a></h2>
+                        <h1 id="system-architecture"><a class="header" href="#system-architecture">System Architecture</a></h1>
+<h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>This document sets out a system architecture for a deployment of the security service as part of a
 complete system where it can be used by client applications. This system architecture is constructed
 around an example deployment where the applications are running in containers within a shared
 operating system kernel (without full virtualisation). This is not the only possible deployment
 pattern, and many of the concepts in this document could be adapted to suit other deployments.</p>
-<h2><a class="header" href="#overview" id="overview">Overview</a></h2>
+<h2 id="overview"><a class="header" href="#overview">Overview</a></h2>
 <p>The security service provides an API to key storage and cryptographic operations. This API is based
 on the <a href="https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf"><strong>PSA Crypto API
 Specification</strong></a>.
@@ -216,7 +216,7 @@ cryptographic signing and verification according to the defined trust relationsh
 <li>Finally, the <strong>flows</strong> of data between components are captured in a sequence diagram, which shows
 how the system is bootstrapped and then used on an ongoing basis.</li>
 </ul>
-<h2><a class="header" href="#design-goals" id="design-goals">Design Goals</a></h2>
+<h2 id="design-goals"><a class="header" href="#design-goals">Design Goals</a></h2>
 <p>The system architecture aims to address the following design goals and constraints:</p>
 <ul>
 <li>The system should be <strong>fault tolerant</strong> in general, but specifically with respect to any transient
@@ -243,7 +243,7 @@ exist in the communication channels between components.</li>
 <li>Cryptographic security should be established on a <strong>short-lived</strong> basis. Trust between components
 must be refreshed periodically.</li>
 </ul>
-<h2><a class="header" href="#participating-components-and-their-roles" id="participating-components-and-their-roles">Participating Components and their Roles</a></h2>
+<h2 id="participating-components-and-their-roles"><a class="header" href="#participating-components-and-their-roles">Participating Components and their Roles</a></h2>
 <p>The system architecture defines the following participating components, all of which are assumed to
 co-reside on the same physical host:</p>
 <ul>
@@ -306,7 +306,7 @@ platforms, and these details are largely irrelevant to the system architecture. 
 here largely for completeness, since they are the ultimate provider of the cryptographic services
 being consumed by the client applications.</li>
 </ul>
-<h2><a class="header" href="#trust-relationships" id="trust-relationships">Trust Relationships</a></h2>
+<h2 id="trust-relationships"><a class="header" href="#trust-relationships">Trust Relationships</a></h2>
 <p>This section outlines the trust relationships that exist between components, how they are
 established, and how they are maintained over the component lifetimes. This section covers only
 those trust relationships that are material to the system architecture: other trust relationships
@@ -352,7 +352,7 @@ for this trust relationship is to allow the identity provider to sign authentica
 behalf of each client, such that the security service can verify those tokens and permit an API
 call to proceed.</li>
 </ul>
-<h2><a class="header" href="#wire-protocols" id="wire-protocols">Wire Protocols</a></h2>
+<h2 id="wire-protocols"><a class="header" href="#wire-protocols">Wire Protocols</a></h2>
 <p>Both the identity provider and the security service expose an API endpoint based on the common
 <a href="../parsec_client/wire_protocol.html"><strong>wire protocol specification</strong></a>. However, the roles of these
 two components are very different, and it follows that the set of API operations offered by each
@@ -366,14 +366,14 @@ operation, which is used to establish and maintain trust relationships.</p>
 allow the orchestrator to inform the identity provider about the lifecycle of client applications.
 This small operation set represents the entirety of the identity provider's API.</p>
 <p>By contrast, the security service exposes the full capabilities of the PSA Crypto API.</p>
-<h2><a class="header" href="#trusted-data-payloads" id="trusted-data-payloads">Trusted Data Payloads</a></h2>
+<h2 id="trusted-data-payloads"><a class="header" href="#trusted-data-payloads">Trusted Data Payloads</a></h2>
 <p>A trusted data payload is any data payload that is signed and verified according to one of the
 defined trust relationships. Since two trust relationships are defined in this system architecture,
 it follows that a trusted data payload is either a payload that is signed by the orchestrator and
 verified by the identity provider, or it is a payload that is signed by the identity provider and
 verified by the security service. This section outlines the trusted data payloads that are subject
 to such sign-and-verify procedures.</p>
-<h3><a class="header" href="#client-definitions" id="client-definitions">Client Definitions</a></h3>
+<h3 id="client-definitions"><a class="header" href="#client-definitions">Client Definitions</a></h3>
 <p>The system architecture requires each client application to have an identity that is unique and
 stable. This requirement for stability is especially important given that many low-level
 characteristics of a client application may change over time. Process identifiers, for example, can
@@ -395,7 +395,7 @@ or shut-down. (More details are given in the section on dataflows below).</p>
 orchestrator and verified upon receipt by the identity provider. The orchestrator will use its own
 private key for signing, and verification will be via the shared public key. See the section above
 on trust relationships for details of how these keys are generated and shared.</p>
-<h3><a class="header" href="#client-proofs" id="client-proofs">Client Proofs</a></h3>
+<h3 id="client-proofs"><a class="header" href="#client-proofs">Client Proofs</a></h3>
 <p>A client definition is essentially a set of claims. By presenting a client definition, the client
 application is asserting its worthiness to be assigned a particular identity string by the identity
 provider. In order for these claims to be made valid inputs to the mapping process, the identity
@@ -412,8 +412,8 @@ application-specific key pairs.</li>
 receipt by the identity provider. The orchestrator will use its own private key for signing, and
 verification will be via the shared public key. See the section above on trust relationships for
 details of how these keys are generated and shared.</p>
-<h3><a class="header" href="#authentication" id="authentication">Authentication</a></h3>
-<h4><a class="header" href="#authentication-tokens" id="authentication-tokens">Authentication Tokens</a></h4>
+<h3 id="authentication"><a class="header" href="#authentication">Authentication</a></h3>
+<h4 id="authentication-tokens"><a class="header" href="#authentication-tokens">Authentication Tokens</a></h4>
 <p>When client applications invoke API operations in the security service, they must include their
 application identity string somehow. This allows the security service to provide the required level
 of isolation amongst the multiple clients that might exist. Not only must the identity string be
@@ -441,7 +441,7 @@ eventually be forwarded to (and verified by) the security service. The identity 
 private key to sign the JWT. The security service has the public part of this key, and is hence able
 to perform the verification. The identity provider and the security service share one of the trust
 relationships that were defined above.</p>
-<h4><a class="header" href="#unix-peer-credentials" id="unix-peer-credentials">Unix Peer Credentials</a></h4>
+<h4 id="unix-peer-credentials"><a class="header" href="#unix-peer-credentials">Unix Peer Credentials</a></h4>
 <p>Another solution to the authentication problem is to use Unix peer credentials with the <a href="authenticators.html">Unix peer
 credentials authenticator</a>. Unix peer credentials are connection metadata which
 specify the effective Unix user ID (UID) and group ID (GID) of the connecting process. When using a
@@ -451,11 +451,11 @@ system.</p>
 authentication header of the request. The Parsec service validates that the self-declared UID
 matches the actual UID from the peer credentials. If they match, authentication was successful, and
 the application identity is set to the stringified UID.</p>
-<h2><a class="header" href="#block-architecture-summary" id="block-architecture-summary">Block Architecture Summary</a></h2>
+<h2 id="block-architecture-summary"><a class="header" href="#block-architecture-summary">Block Architecture Summary</a></h2>
 <p>Refer to the figure below for a block representation of the key architectural components.</p>
 <p><img src="diagrams/system_architecture.png" alt="System Architecture Diagram" /></p>
-<h2><a class="header" href="#flows" id="flows">Flows</a></h2>
-<h3><a class="header" href="#system-lifecycle-boot" id="system-lifecycle-boot">System Lifecycle: Boot</a></h3>
+<h2 id="flows"><a class="header" href="#flows">Flows</a></h2>
+<h3 id="system-lifecycle-boot"><a class="header" href="#system-lifecycle-boot">System Lifecycle: Boot</a></h3>
 <p>The following bootstrapping actions are needed in order to establish the trust relationships that
 exist between the orchestrator and the identity provider, and between the identity provider and the
 security service respectively. For more details, see the section above on trust relationships. The
@@ -468,7 +468,7 @@ and the identity provider support this operation via the respective (separate) w
 endpoints.</p>
 <p>Root certificates may be shared only once. The <strong>ShareTrustBundle</strong> operation is defined to fail if
 it is called more than once with the root flag set.</p>
-<h3><a class="header" href="#system-lifecycle-refresh" id="system-lifecycle-refresh">System Lifecycle: Refresh</a></h3>
+<h3 id="system-lifecycle-refresh"><a class="header" href="#system-lifecycle-refresh">System Lifecycle: Refresh</a></h3>
 <p>Background flows occur on a periodic cadence while the system is active, and they are aimed at
 maintaining the trust relationships between the orchestrator, identity provider and security
 service.</p>
@@ -486,7 +486,7 @@ service and the identity provider support this operation via the respective (sep
 endpoints.</p>
 <p>Intermediate public certificates may be shared any number of times. Any previous intermediate
 certificate is immediately invalidated upon the event of a new intermediate being shared.</p>
-<h3><a class="header" href="#application-lifecycle" id="application-lifecycle">Application Lifecycle</a></h3>
+<h3 id="application-lifecycle"><a class="header" href="#application-lifecycle">Application Lifecycle</a></h3>
 <p>Client application lifecycles are governed by the orchestrator. The orchestrator is responsible for
 starting and stopping the client application containers or processes. It is also responsible for
 notifying these events to the identity provider, and for sending the client definitions and client
@@ -498,7 +498,7 @@ document).</p>
 is to run an attestation process to prove its validity. The results of the attestation process are
 then sent to the identity provider using the <strong>ProveClient</strong> operation, again with a signed data
 payload containing the proofs.</p>
-<h3><a class="header" href="#general-usage-flows" id="general-usage-flows">General Usage Flows</a></h3>
+<h3 id="general-usage-flows"><a class="header" href="#general-usage-flows">General Usage Flows</a></h3>
 <p>The final flow to consider is the general use case of the client application making a call to the
 security service to perform a cryptographic operation with isolation. This is obviously the most
 commonly-occurring flow, and everything else in the system is geared towards enabling this
@@ -521,7 +521,7 @@ responsibility of the back-end cryptographic provider to actually implement the 
 software or hardware. Once the operation has been executed, the results can be marshalled back to
 the client library, which can once again implement whatever simplifications or interpretations are
 required to make them suitable for the application developer.</p>
-<h3><a class="header" href="#sequence-diagram" id="sequence-diagram">Sequence Diagram</a></h3>
+<h3 id="sequence-diagram"><a class="header" href="#sequence-diagram">Sequence Diagram</a></h3>
 <p>All flows are summarised and captured in the sequence diagram below. The diagram attempts to collect
 together and summarise all of the flows that are needed for bootstrapping, background operations and
 also general usage as described above. In order to strike the right balance between completeness and

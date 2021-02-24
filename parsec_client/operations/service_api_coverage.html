@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#parsec-operations-coverage" id="parsec-operations-coverage">Parsec Operations Coverage</a></h1>
+                        <h1 id="parsec-operations-coverage"><a class="header" href="#parsec-operations-coverage">Parsec Operations Coverage</a></h1>
 <p>These tables define the current level of coverage in Parsec for the operations and their parameters.
 Only the operations <a href="README.html">specified</a> and that have a dedicated page are put in the following
 table.</p>
@@ -200,7 +200,7 @@ sections for details.</p>
 <tr><td><a href="psa_generate_random.html">PsaGenerateRandom</a></td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
 <p>* Admin operation</p>
-<h3><a class="header" href="#key-types-support" id="key-types-support">Key types support</a></h3>
+<h3 id="key-types-support"><a class="header" href="#key-types-support">Key types support</a></h3>
 <p>This table describe if the following <a href="psa_key_attributes.html#keytype-type">key types</a> are supported
 for key management operations.</p>
 <table><thead><tr><th>Key type</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
@@ -219,7 +219,7 @@ for key management operations.</p>
 <tr><td>DhKeyPair</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>DhPublicKey</td><td>✅</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
-<h3><a class="header" href="#elliptic-curve-families" id="elliptic-curve-families">Elliptic curve families</a></h3>
+<h3 id="elliptic-curve-families"><a class="header" href="#elliptic-curve-families">Elliptic curve families</a></h3>
 <p>This table describes if the following <a href="psa_key_attributes.html#supported-ecc-curve-families">elliptic curve
 families</a> are supported.</p>
 <table><thead><tr><th>ECC Curve Family</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
@@ -233,10 +233,10 @@ families</a> are supported.</p>
 <tr><td>FRP</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>Montgomery</td><td>✅</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
-<h3><a class="header" href="#algorithm-support" id="algorithm-support">Algorithm support</a></h3>
+<h3 id="algorithm-support"><a class="header" href="#algorithm-support">Algorithm support</a></h3>
 <p>These tables describe if the following <a href="psa_algorithm.html">algorithms</a> are supported in all
 cryptographic operations they could be used in.</p>
-<h4><a class="header" href="#hash-algorithms" id="hash-algorithms">Hash algorithms</a></h4>
+<h4 id="hash-algorithms"><a class="header" href="#hash-algorithms">Hash algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
 <tr><td>MD2</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>MD4</td><td>✅</td><td>❌</td><td>❌</td></tr>
@@ -254,13 +254,13 @@ cryptographic operations they could be used in.</p>
 <tr><td>SHA3-384</td><td>✅</td><td>❌</td><td>✅</td></tr>
 <tr><td>SHA3-512</td><td>✅</td><td>❌</td><td>✅</td></tr>
 </tbody></table>
-<h4><a class="header" href="#mac-algorithms" id="mac-algorithms">MAC algorithms</a></h4>
+<h4 id="mac-algorithms"><a class="header" href="#mac-algorithms">MAC algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
 <tr><td>HMAC</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CBC-MAC</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CMAC</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
-<h4><a class="header" href="#cipher-algorithms" id="cipher-algorithms">Cipher algorithms</a></h4>
+<h4 id="cipher-algorithms"><a class="header" href="#cipher-algorithms">Cipher algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
 <tr><td>Stream Cipher</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CTR</td><td>❌</td><td>❌</td><td>❌</td></tr>
@@ -271,13 +271,13 @@ cryptographic operations they could be used in.</p>
 <tr><td>CBC with no padding</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CBCP with PKCS#7 padding</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
-<h4><a class="header" href="#aead-algorithms" id="aead-algorithms">AEAD algorithms</a></h4>
+<h4 id="aead-algorithms"><a class="header" href="#aead-algorithms">AEAD algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
 <tr><td>CCM</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>GCM</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>ChaCha20-Poly1305</td><td>✅</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
-<h4><a class="header" href="#asymmetric-signature-algorithms" id="asymmetric-signature-algorithms">Asymmetric signature algorithms</a></h4>
+<h4 id="asymmetric-signature-algorithms"><a class="header" href="#asymmetric-signature-algorithms">Asymmetric signature algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
 <tr><td>RSA PKCS#1 v1.5 signature with hashing</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>Raw PKCS#1 v1.5 signature</td><td>❌</td><td>❌</td><td>❌</td></tr>
@@ -286,17 +286,17 @@ cryptographic operations they could be used in.</p>
 <tr><td>ECDSA signature without hashing</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>Deterministic ECDSA signature with hashing</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
-<h4><a class="header" href="#asymmetric-encryption-algorithms" id="asymmetric-encryption-algorithms">Asymmetric encryption algorithms</a></h4>
+<h4 id="asymmetric-encryption-algorithms"><a class="header" href="#asymmetric-encryption-algorithms">Asymmetric encryption algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
 <tr><td>RSA PKCS#1 v1.5 encryption</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>RSA OAEP encryption</td><td>✅</td><td>✅</td><td>✅</td></tr>
 </tbody></table>
-<h4><a class="header" href="#key-agreement-algorithms" id="key-agreement-algorithms">Key agreement algorithms</a></h4>
+<h4 id="key-agreement-algorithms"><a class="header" href="#key-agreement-algorithms">Key agreement algorithms</a></h4>
 <table><thead><tr><th>Algorithm</th><th>Mbed Crypto provider</th><th>PKCS 11 provider</th><th>TPM 2.0 provider</th></tr></thead><tbody>
 <tr><td>FFDH</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>ECDH</td><td>✅</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
-<h2><a class="header" href="#increasing-psa-api-coverage" id="increasing-psa-api-coverage">Increasing PSA API coverage</a></h2>
+<h2 id="increasing-psa-api-coverage"><a class="header" href="#increasing-psa-api-coverage">Increasing PSA API coverage</a></h2>
 <p>You can help increase the coverage of the PSA Crypto API! See
 <a href="../../contributing/adding_new_operation_how_to.html">here</a> on how you can contribute.</p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>

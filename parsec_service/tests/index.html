@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#how-to-test-parsec" id="how-to-test-parsec">How to test Parsec</a></h1>
+                        <h1 id="how-to-test-parsec"><a class="header" href="#how-to-test-parsec">How to test Parsec</a></h1>
 <p>Parsec relies on a mix of unit, end-to-end, integration, stress and fuzz tests. Unit tests are
 usually found in the same module as the code they verify. End-to-end and stress tests can be found
 in the <code>e2e_tests</code> directory (along with the code framework required for running them), and come in
@@ -180,43 +180,43 @@ still up and working correctly.</p>
 <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a> and
 <a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed for code formatting and static
 checks.</p>
-<h2><a class="header" href="#executing-tests-manually" id="executing-tests-manually">Executing tests manually</a></h2>
-<h3><a class="header" href="#static-tests" id="static-tests">Static tests</a></h3>
-<h4><a class="header" href="#checking-code-formatting" id="checking-code-formatting">Checking code formatting</a></h4>
+<h2 id="executing-tests-manually"><a class="header" href="#executing-tests-manually">Executing tests manually</a></h2>
+<h3 id="static-tests"><a class="header" href="#static-tests">Static tests</a></h3>
+<h4 id="checking-code-formatting"><a class="header" href="#checking-code-formatting">Checking code formatting</a></h4>
 <pre><code>cargo fmt --all -- --check
 </code></pre>
-<h4><a class="header" href="#checking-lints" id="checking-lints">Checking lints</a></h4>
+<h4 id="checking-lints"><a class="header" href="#checking-lints">Checking lints</a></h4>
 <pre><code>cargo clippy --all-targets --all-features -- -D clippy::all -D clippy::cargo
 </code></pre>
-<h3><a class="header" href="#unit-tests" id="unit-tests">Unit tests</a></h3>
-<h4><a class="header" href="#doc-tests" id="doc-tests">Doc tests</a></h4>
+<h3 id="unit-tests"><a class="header" href="#unit-tests">Unit tests</a></h3>
+<h4 id="doc-tests"><a class="header" href="#doc-tests">Doc tests</a></h4>
 <pre><code>cargo test --doc --all-features
 </code></pre>
-<h4><a class="header" href="#unit-tests-1" id="unit-tests-1">Unit tests</a></h4>
+<h4 id="unit-tests-1"><a class="header" href="#unit-tests-1">Unit tests</a></h4>
 <pre><code>cargo test --lib --all-features
 </code></pre>
-<h3><a class="header" href="#end-to-end-tests" id="end-to-end-tests">End-to-end tests</a></h3>
+<h3 id="end-to-end-tests"><a class="header" href="#end-to-end-tests">End-to-end tests</a></h3>
 <p>They need to be executed from the <code>e2e_tests</code> folder with a specific set of features describing for
 which providers the tests should be run against. You can choose from the following list:
 <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code> and <code>tpm-provider</code>. <code>all-providers</code> selects them all. In
 the following sections, the <code>mbed-crypto-provider</code> will be assumed.</p>
-<h4><a class="header" href="#normal-tests" id="normal-tests">Normal tests</a></h4>
+<h4 id="normal-tests"><a class="header" href="#normal-tests">Normal tests</a></h4>
 <pre><code>cargo test --features mbed-crypto-provider normal_tests
 </code></pre>
-<h4><a class="header" href="#persistence-integration-tests" id="persistence-integration-tests">Persistence integration tests</a></h4>
+<h4 id="persistence-integration-tests"><a class="header" href="#persistence-integration-tests">Persistence integration tests</a></h4>
 <p>Those check if the Key Info mapping persist after a shutdown (check the <code>ci.sh</code> script for details
 of commands to execute).</p>
-<h4><a class="header" href="#stress-tests" id="stress-tests">Stress tests</a></h4>
+<h4 id="stress-tests"><a class="header" href="#stress-tests">Stress tests</a></h4>
 <pre><code>cargo test --features mbed-crypto-provider stress_test
 </code></pre>
-<h4><a class="header" href="#all-providers-end-to-end-tests" id="all-providers-end-to-end-tests">All providers end-to-end tests.</a></h4>
+<h4 id="all-providers-end-to-end-tests"><a class="header" href="#all-providers-end-to-end-tests">All providers end-to-end tests.</a></h4>
 <p>This expects the Parsec service to include all providers.</p>
 <pre><code>cargo test --features all-providers all_providers
 </code></pre>
 <p>Configuration tests, using all providers (must be run single-threaded):</p>
 <pre><code>cargo test --features all-providers config -- --test-threads=1
 </code></pre>
-<h2><a class="header" href="#fuzz-testing" id="fuzz-testing">Fuzz testing</a></h2>
+<h2 id="fuzz-testing"><a class="header" href="#fuzz-testing">Fuzz testing</a></h2>
 <p>Fuzz testing works, at the moment, on a service level, generating random requests and sending them
 to be processed. Running the fuzz tests can be done through the <code>fuzz.sh</code> script in the root of the
 repository. <code>./fuzz.sh run</code> builds a Docker image where the fuzz tests will run. It then sets up the
@@ -226,7 +226,7 @@ target and then observing the code segments reached using said input. To stop th
 <code>./fuzz.sh stop</code>. To view the logs of a currently executing fuzzer, run <code>./fuzz.sh follow</code>. Any
 crashes or slow tests, as well as tests that lead to a timeout, are stored in
 <code>./fuzz/artifacts/fuzz_service/</code>.</p>
-<h2><a class="header" href="#testing-the-tpm-provider-using-the-software-tpm" id="testing-the-tpm-provider-using-the-software-tpm">Testing the TPM provider using the Software TPM</a></h2>
+<h2 id="testing-the-tpm-provider-using-the-software-tpm"><a class="header" href="#testing-the-tpm-provider-using-the-software-tpm">Testing the TPM provider using the Software TPM</a></h2>
 <p>If you do not have a hardware TPM, or you do not want to use it for tests, you might want to use the
 IBM Software TPM. You will need to follow these steps:</p>
 <ul>
@@ -254,7 +254,7 @@ $ tpm2_changeauth -c owner tpm_pass -T mssim
 </code></pre>
 <p>Which should print a <code>[INFO parsec] Parsec is ready.</code> You can now execute the end-to-end tests using
 that provider!</p>
-<h2><a class="header" href="#testing-the-pkcs11-provider-using-the-software-hsm" id="testing-the-pkcs11-provider-using-the-software-hsm">Testing the PKCS11 provider using the Software HSM</a></h2>
+<h2 id="testing-the-pkcs11-provider-using-the-software-hsm"><a class="header" href="#testing-the-pkcs11-provider-using-the-software-hsm">Testing the PKCS11 provider using the Software HSM</a></h2>
 <p>If you do not have a hardware HSM, or you do not want to use it for tests, you might want to use the
 Software HSM. You will need to follow these steps:</p>
 <ul>

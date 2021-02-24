@@ -163,29 +163,29 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#psahashcompare" id="psahashcompare">PsaHashCompare</a></h1>
+                        <h1 id="psahashcompare"><a class="header" href="#psahashcompare">PsaHashCompare</a></h1>
 <p>Calculate the hash (digest) of a message and compare it with a reference value. Opcode: 16
 (<code>0x0010</code>)</p>
-<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>alg</code></td><td><a href="psa_algorithm.html#hash-algorithm"><code>Hash</code></a></td><td>The hash algorithm to compute</td></tr>
 <tr><td><code>input</code></td><td>Vector of unsigned bytes</td><td>Buffer containing message to hash</td></tr>
 <tr><td><code>hash</code></td><td>Vector of unsigned bytes</td><td>Buffer containing expected hash value</td></tr>
 </tbody></table>
-<h2><a class="header" href="#results" id="results">Results</a></h2>
+<h2 id="results"><a class="header" href="#results">Results</a></h2>
 <p>No values are returned by this operation.</p>
 <p>If no error occurs, the computed hash matches the expected hash value.</p>
-<h2><a class="header" href="#specific-response-status-codes" id="specific-response-status-codes">Specific response status codes</a></h2>
+<h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorInvalidSignature</code>: The hash of the message was calculated successfully, but it differs
 from the expected hash.</li>
 <li><code>PsaErrorNotSupported</code>: <code>alg</code> is not supported.</li>
 <li><code>PsaErrorInvalidArgument</code>: The length of <code>input</code> or <code>hash</code> does not match the hash size for <code>alg</code>.</li>
 </ul>
-<h2><a class="header" href="#description" id="description">Description</a></h2>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
 <p>Calculates the hash of the given message, using the specified algorithm, and compares the result
 with an expected hash value.</p>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compare.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 

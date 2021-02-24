@@ -163,18 +163,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#providers" id="providers">Providers</a></h1>
+                        <h1 id="providers"><a class="header" href="#providers">Providers</a></h1>
 <p>This document offers details on the currently supported providers.</p>
 <p>For information regarding the function providers play in the Parsec service, read the <a href="interfaces_and_dataflow.html"><em>Interfaces
 and Dataflow</em></a> doc. For details on how the service code is structured
 around providers, read the <a href="source_code_structure.html"><em>Source Code Structure</em></a> doc.</p>
-<h2><a class="header" href="#core-provider" id="core-provider">Core Provider</a></h2>
+<h2 id="core-provider"><a class="header" href="#core-provider">Core Provider</a></h2>
 <p><strong>Provider UUID: 47049873-2a43-4845-9d72-831eab668784</strong></p>
 <p>The core provider is a non-cryptographic provider, tasked with storing and distributing both static
 and dynamic information about the service. It is the base for service discovery, helping clients
 identify what functionality is available.</p>
 <p>One instance of the core provider must always be running with a provider ID of zero (<code>0x00</code>).</p>
-<h2><a class="header" href="#mbed-crypto-provider" id="mbed-crypto-provider">Mbed Crypto Provider</a></h2>
+<h2 id="mbed-crypto-provider"><a class="header" href="#mbed-crypto-provider">Mbed Crypto Provider</a></h2>
 <p><strong>Provider UUID: 1c1139dc-ad7c-47dc-ad6b-db6fdb466552</strong></p>
 <p>The <a href="https://os.mbed.com/docs/mbed-os/v6.3/apis/mbed-crypto.html">Mbed Crypto</a> provider is a
 software-based provider built on top of Mbed Crypto - the reference implementation of the PSA
@@ -184,7 +184,7 @@ the service in user-space.</p>
 hardware-based providers and does not store its keys in a secure location in hardware, but directly
 on disk. Because of that, the Mbed Crypto provider should not be used securely for private key
 operations but can be used to simplify proof of concept projects.</p>
-<h2><a class="header" href="#tpm-provider" id="tpm-provider">TPM Provider</a></h2>
+<h2 id="tpm-provider"><a class="header" href="#tpm-provider">TPM Provider</a></h2>
 <p><strong>Provider UUID: 1e4954a4-ff21-46d3-ab0c-661eeb667e1d</strong></p>
 <p>The TPM provider offers an abstraction over hardware (or software) Trusted Platform Modules (TPM)
 version 2. It uses the TPM2 Software Stack <a href="https://trustedcomputinggroup.org/resource/tcg-tss-2-0-enhanced-system-api-esapi-specification/">Enhanced System
@@ -198,7 +198,7 @@ and the user running Parsec will need to be in the <code>tss</code> group.</p>
 authenticate with the TPM and to create a primary key and children keys derived from the primary.
 Given current constraints, only one request at a time can be serviced by this provider - the rest
 being blocked, waiting their turn.</p>
-<h2><a class="header" href="#pkcs-11-provider" id="pkcs-11-provider">PKCS 11 Provider</a></h2>
+<h2 id="pkcs-11-provider"><a class="header" href="#pkcs-11-provider">PKCS 11 Provider</a></h2>
 <p><strong>Provider UUID: 30e39502-eba6-4d60-a4af-c518b7f5e38f</strong></p>
 <p>The PKCS11 provider is a wrapper around the PKCS 11 standard interface, capable of working with
 software or hardware modules that expose this API. Linking is done dynamically, and requires a

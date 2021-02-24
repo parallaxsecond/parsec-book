@@ -163,21 +163,21 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#psaexportpublickey" id="psaexportpublickey">PsaExportPublicKey</a></h1>
+                        <h1 id="psaexportpublickey"><a class="header" href="#psaexportpublickey">PsaExportPublicKey</a></h1>
 <p>Export a public key or the public part of a key pair in binary format. Opcode: 7 (<code>0x0007</code>)</p>
-<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the public key to export</td></tr>
 </tbody></table>
-<h2><a class="header" href="#results" id="results">Results</a></h2>
+<h2 id="results"><a class="header" href="#results">Results</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>data</code></td><td>Vector of bytes</td><td>Buffer containing the key data</td></tr>
 </tbody></table>
-<h2><a class="header" href="#specific-response-status-codes" id="specific-response-status-codes">Specific response status codes</a></h2>
+<h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorInvalidArgument</code>: The key is neither a public key nor a key pair.</li>
 </ul>
-<h2><a class="header" href="#description" id="description">Description</a></h2>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
 <p>The output of this function can be passed to <a href="psa_import_key.html">PsaImportKey</a> to create an object
 that is equivalent to the public key.</p>
 <p>For standard key types, the output format is as follows:</p>
@@ -216,7 +216,7 @@ the key’s usage flags.</p>
     publicExponent INTEGER -- e
 }
 </code></pre>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto">Protobuf</a></p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 

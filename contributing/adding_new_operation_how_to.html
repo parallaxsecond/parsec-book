@@ -163,14 +163,14 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#adding-operations-to-parsec" id="adding-operations-to-parsec">Adding operations to Parsec</a></h1>
+                        <h1 id="adding-operations-to-parsec"><a class="header" href="#adding-operations-to-parsec">Adding operations to Parsec</a></h1>
 <p>This mini how-to will cover how to add operations to the Parsec service and Rust client. The steps
 for adding a new provider operation will differ between providers, this guide will cover Mbed
 Crypto. The steps for adding operations to <a href="#parsec">Parsec</a>, <a href="#parsec-interface-rs">Rust
 interface</a>, and <a href="#parsec-client-rust">Rust client</a> should be the same for all
 backend providers.</p>
-<h2><a class="header" href="#operation-specification" id="operation-specification">Operation specification</a></h2>
-<h3><a class="header" href="#parsec-book" id="parsec-book">parsec-book</a></h3>
+<h2 id="operation-specification"><a class="header" href="#operation-specification">Operation specification</a></h2>
+<h3 id="parsec-book"><a class="header" href="#parsec-book">parsec-book</a></h3>
 <p>Create the specification page for the Parsec Book, under
 <a href="https://parallaxsecond.github.io/parsec-book/parsec_client/operations/index.html">Operations</a> (can
 also be found in the menu on the left of all pages). Include operation details such as parameters,
@@ -181,12 +181,12 @@ to reflect the new addition (create any API tables if they are missing).</p>
 <p>The opcode used should be the next available one. To find this, go to
 <a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations/mod.rs"><code>parsec-interface-rs/src/requests/mod.rs</code></a>
 and find the largest in-use opcode.</p>
-<h3><a class="header" href="#parsec-operations" id="parsec-operations">parsec-operations</a></h3>
+<h3 id="parsec-operations"><a class="header" href="#parsec-operations">parsec-operations</a></h3>
 <p>Create the <code>protobuf</code> contracts in
 <a href="https://github.com/parallaxsecond/parsec-operations/tree/master/protobuf"><code>parsec-operations</code></a>.
 These are the contracts that client libraries use to communicate with the Parsec service.</p>
-<h2><a class="header" href="#rust-interface" id="rust-interface">Rust Interface</a></h2>
-<h3><a class="header" href="#parsec-interface-rs" id="parsec-interface-rs">parsec-interface-rs</a></h3>
+<h2 id="rust-interface"><a class="header" href="#rust-interface">Rust Interface</a></h2>
+<h3 id="parsec-interface-rs"><a class="header" href="#parsec-interface-rs">parsec-interface-rs</a></h3>
 <p>Create the Rust interfaces for the operation. These interfaces go between
 <a href="#parsec-operations"><code>protobuf</code></a> and the <a href="#parsec">Parsec service</a> on the service side, and the Rust
 client library and protobuf on the client side. Take care when deciding on datatypes. Sensitive data
@@ -236,8 +236,8 @@ to the Opcode. Then, add <code>From</code> implementations to <code>NativeOperat
 <a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations_protobuf/mod.rs"><code>src/operations_protobuf/mod.rs</code></a>,
 along with the entries in <code>body_to_operation</code>, <code>operation_to_body</code>, <code>body_to_result</code> and
 <code>result_to_body</code>.</p>
-<h2><a class="header" href="#parsec-rust-client" id="parsec-rust-client">Parsec Rust client</a></h2>
-<h3><a class="header" href="#parsec-client-rust" id="parsec-client-rust">parsec-client-rust</a></h3>
+<h2 id="parsec-rust-client"><a class="header" href="#parsec-rust-client">Parsec Rust client</a></h2>
+<h3 id="parsec-client-rust"><a class="header" href="#parsec-client-rust">parsec-client-rust</a></h3>
 <p>Add the user facing methods to
 <a href="https://github.com/parallaxsecond/parsec-client-rust/blob/master/src/core/basic_client.rs"><code>src/core/basic_client.rs</code></a>.
 These are what users interacting with Parsec using Rust will use as the entrypoint. They are also
@@ -245,11 +245,11 @@ what <a href="https://github.com/parallaxsecond/parsec/blob/master/e2e_tests/src
 suit</a> uses to test
 Parsec, which is why this step comes before extending Parsec. Add the relevant tests to
 <a href="https://github.com/parallaxsecond/parsec-client-rust/blob/master/src/core/testing/core_tests.rs"><code>src/core/testing/core_tests.rs</code></a>.</p>
-<h3><a class="header" href="#other-clients-eg-go" id="other-clients-eg-go">Other clients (e.g. Go)</a></h3>
+<h3 id="other-clients-eg-go"><a class="header" href="#other-clients-eg-go">Other clients (e.g. Go)</a></h3>
 <p>The procedure for adding operations to another client library should be similar. We encourage that
 all clients should be updated to allow the new operation is as many languages as possible.</p>
-<h2><a class="header" href="#parsec" id="parsec">Parsec</a></h2>
-<h3><a class="header" href="#psa-crypto-sys" id="psa-crypto-sys">psa-crypto-sys</a></h3>
+<h2 id="parsec"><a class="header" href="#parsec">Parsec</a></h2>
+<h3 id="psa-crypto-sys"><a class="header" href="#psa-crypto-sys">psa-crypto-sys</a></h3>
 <p>Locate the parts of the <a href="https://armmbed.github.io/mbed-crypto/html/index.html">PSA API</a> in Mbed
 Crypto that will need to be used during the operation you are adding. This includes all constants,
 datatypes, macros and functions. Note: Mbed Crypto does not yet fully conform to the PSA API 1.0
@@ -272,7 +272,7 @@ If the <a href="https://armmbed.github.io/mbed-crypto/html/index.html">PSA API</
 under any circumstance, an unspecified result can be returned, then mark the entire <code>fn</code> definition
 as <code>unsafe</code>. Otherwise, if the return values are always specified, wrap the call to the shim method
 as <code>unsafe</code>. Regular functions are added to <a href="https://github.com/parallaxsecond/rust-psa-crypto/blob/master/psa-crypto-sys/src/lib.rs"><code>pub use psa_crypto_binding::{ … }</code></a>.</p>
-<h3><a class="header" href="#psa-crypto" id="psa-crypto">psa-crypto</a></h3>
+<h3 id="psa-crypto"><a class="header" href="#psa-crypto">psa-crypto</a></h3>
 <p>Define a Rust native interface for the operation you are adding in
 <a href="https://github.com/parallaxsecond/rust-psa-crypto/tree/master/psa-crypto/src/operations"><code>src/operations</code></a>,
 along with any Rust native types you need in
@@ -284,7 +284,7 @@ are for.</p>
 possible situations (e.g. closing a key-handle on an error) to ensure it is a safe Rust native
 interface to the operation.</p>
 <p>At this point, you will now have a safe Rust interface for the PSA operation you added.</p>
-<h3><a class="header" href="#parsec-1" id="parsec-1">parsec</a></h3>
+<h3 id="parsec-1"><a class="header" href="#parsec-1">parsec</a></h3>
 <p>Add the new operation to the correct
 <a href="https://github.com/parallaxsecond/parsec/tree/master/src/providers">provider</a> (in this case, <a href="https://github.com/parallaxsecond/parsec/tree/master/src/providers/mbed_crypto">Mbed
 Crypto</a>) as a

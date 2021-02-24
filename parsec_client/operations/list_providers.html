@@ -163,15 +163,15 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#listproviders" id="listproviders">ListProviders</a></h1>
+                        <h1 id="listproviders"><a class="header" href="#listproviders">ListProviders</a></h1>
 <p>Gets a prioritised list of available Parsec providers to be used by clients. Opcode: 8 (<code>0x0008</code>)</p>
-<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
-<h2><a class="header" href="#results" id="results">Results</a></h2>
+<h2 id="results"><a class="header" href="#results">Results</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>providers</code></td><td>Vector of <a href="#providerinfo-type"><code>ProviderInfo</code></a></td><td>List of provider information</td></tr>
 </tbody></table>
-<h3><a class="header" href="#providerinfo-type" id="providerinfo-type">ProviderInfo type</a></h3>
+<h3 id="providerinfo-type"><a class="header" href="#providerinfo-type">ProviderInfo type</a></h3>
 <p>A <code>ProviderInfo</code> type contains the following members:</p>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>uuid</code></td><td>String</td><td>Unique, permanent, identifier of the provider (version 4 UUID)</td></tr>
@@ -182,9 +182,9 @@
 <tr><td><code>version_rev</code></td><td>Unsigned integer</td><td>Provider implementation version revision number</td></tr>
 <tr><td><code>id</code></td><td>Unsigned integer</td><td>Provider ID to use on the wire protocol to communicate with this provider</td></tr>
 </tbody></table>
-<h2><a class="header" href="#specific-response-status-codes" id="specific-response-status-codes">Specific response status codes</a></h2>
+<h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <p>No specific response status codes returned.</p>
-<h2><a class="header" href="#description" id="description">Description</a></h2>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
 <p>The version triplet returned by this operation (<code>version_maj</code>, <code>version_min</code> and <code>version_rev</code>) is
 the implementation version of the specific Parsec provider. For the Core Provider, this version is
 the implementation version of the whole Parsec service.</p>
@@ -192,7 +192,7 @@ the implementation version of the whole Parsec service.</p>
 come first. The core provider will always come last. The provider at position zero, if not the core
 provider, can be treated as default provider by the client. Clients should still check the supported
 opcodes of the provider, even the default one, as it might not implement the operations they want.</p>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_providers.proto">Protobuf</a></p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 

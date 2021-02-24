@@ -163,9 +163,9 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#psaverifymessage" id="psaverifymessage">PsaVerifyMessage</a></h1>
+                        <h1 id="psaverifymessage"><a class="header" href="#psaverifymessage">PsaVerifyMessage</a></h1>
 <p>Verify the signature of a message using a public key. Opcode: 25 (<code>0x0019</code>)</p>
-<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="psa_algorithm.html#asymmetricsignature-algorithm"><code>AsymmetricSignature</code></a></td><td>An asymmetric signature algorithm that separates the message and sign operations that is compatible with the type of key</td></tr>
@@ -177,17 +177,17 @@
 <a href="psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_hash</code>.</li>
 </ul>
 <p>No values are returned by this operation. If <code>Success</code> is returned the signature is valid.</p>
-<h2><a class="header" href="#specific-response-status-codes" id="specific-response-status-codes">Specific response status codes</a></h2>
+<h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>verify_hash</code> flag, or it does not permit the
 requested algorithm.</li>
 <li><code>PsaErrorInvalidSignature</code>: The calculation was performed successfully, but the passed signature
 is not a valid signature.</li>
 </ul>
-<h2><a class="header" href="#description" id="description">Description</a></h2>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
 <p>This function will verify the signature of a message with a public key, using a hash-and-sign
 verification algorithm.</p>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_verify_message.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 

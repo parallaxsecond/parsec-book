@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#psa-algorithm" id="psa-algorithm">PSA Algorithm</a></h1>
+                        <h1 id="psa-algorithm"><a class="header" href="#psa-algorithm">PSA Algorithm</a></h1>
 <p>The algorithm is used to select the specific cryptographic operation and to set a policy on a new
 key.</p>
 <p>Some of the algorithms defined here are deprecated and should not be used without a valid reason. It
@@ -171,7 +171,7 @@ is at the discretion of the system administrator whether those algorithms are pe
 <p><strong>Notice:</strong> not all possible algorithms are currently supported by Parsec. Please see the <a href="service_api_coverage.html">API
 coverage</a> for an overview of what Parsec currently supports. Some of the
 attributes might not be supported by some providers as it is not in their interface.</p>
-<h2><a class="header" href="#algorithm-type" id="algorithm-type">Algorithm type</a></h2>
+<h2 id="algorithm-type"><a class="header" href="#algorithm-type">Algorithm type</a></h2>
 <p>An <code>Algorithm</code> type can contain one of the following algorithm types:</p>
 <ul>
 <li><a href="#none-algorithm"><code>None</code></a></li>
@@ -184,11 +184,11 @@ attributes might not be supported by some providers as it is not in their interf
 <li><a href="#keyagreement-algorithm"><code>KeyAgreement</code></a></li>
 <li><a href="#keyderivation-algorithm"><code>KeyDerivation</code></a></li>
 </ul>
-<h3><a class="header" href="#none-algorithm" id="none-algorithm">None algorithm</a></h3>
+<h3 id="none-algorithm"><a class="header" href="#none-algorithm">None algorithm</a></h3>
 <p>An invalid algorithm identifier value. None does not allow any cryptographic operation with the key.
 The key can still be used for non-cryptographic actions such as exporting, if permitted by the usage
 flags.</p>
-<h3><a class="header" href="#hash-algorithm" id="hash-algorithm">Hash algorithm</a></h3>
+<h3 id="hash-algorithm"><a class="header" href="#hash-algorithm">Hash algorithm</a></h3>
 <p>Possible hash algorithms are:</p>
 <ul>
 <li><strong>MD2.</strong> DEPRECATED: the MD2 hash is weak and deprecated and is only recommended for use in legacy
@@ -210,7 +210,7 @@ protocols.</li>
 <li><strong>SHA3-384.</strong></li>
 <li><strong>SHA3-512.</strong></li>
 </ul>
-<h3><a class="header" href="#mac-algorithm" id="mac-algorithm">Mac algorithm</a></h3>
+<h3 id="mac-algorithm"><a class="header" href="#mac-algorithm">Mac algorithm</a></h3>
 <p>The Message Authentication Code algorithms supported are:</p>
 <ul>
 <li><strong>HMAC.</strong> Uses one of the hash algorithm supported.</li>
@@ -221,7 +221,7 @@ more secure mode, such as CMAC, is recommended.</li>
 <p>Truncated MAC algorithms are also supported. A truncated MAC algorithm is identical to the
 corresponding MAC algorithm except that the MAC value for the truncated algorithm consists of only
 the first wanted bytes of the MAC value for the untruncated algorithm.</p>
-<h3><a class="header" href="#cipher-algorithm" id="cipher-algorithm">Cipher algorithm</a></h3>
+<h3 id="cipher-algorithm"><a class="header" href="#cipher-algorithm">Cipher algorithm</a></h3>
 <p>Unauthenticated cipher alhorithms.</p>
 <p><strong>Warning:</strong> The unauthenticated cipher API is provided to implement legacy protocols and for use
 cases where the data integrity and authenticity is guaranteed by non-cryptographic means. It is
@@ -256,7 +256,7 @@ The underlying block cipher is determined by the key type.</li>
 <li><strong>CBC with PKCS#7 padding</strong>: The Cipher Block Chaining (CBC) mode of a block cipher, with PKCS#7
 padding. The underlying block cipher is determined by the key type.</li>
 </ul>
-<h3><a class="header" href="#aead-algorithm" id="aead-algorithm">Aead algorithm</a></h3>
+<h3 id="aead-algorithm"><a class="header" href="#aead-algorithm">Aead algorithm</a></h3>
 <p>Authenticated encryption with associated data (AEAD). The supported algorithms are:</p>
 <ul>
 <li><strong>CCM</strong>: the CCM authenticated encryption algorithm. The underlying block cipher is determined by
@@ -269,7 +269,7 @@ defined in <a href="https://tools.ietf.org/html/rfc7539.html">RFC 7539</a>.</li>
 <p>AEAD algorithms with a shortened tag are also supported. An AEAD algorithm with a shortened tag is
 similar to the corresponding AEAD algorithm, but has an authentication tag that consists of fewer
 bytes. Depending on the algorithm, the tag length might affect the calculation of the ciphertext.</p>
-<h3><a class="header" href="#asymmetricsignature-algorithm" id="asymmetricsignature-algorithm">AsymmetricSignature algorithm</a></h3>
+<h3 id="asymmetricsignature-algorithm"><a class="header" href="#asymmetricsignature-algorithm">AsymmetricSignature algorithm</a></h3>
 <p>Asymmetric signature algorithms. Supported algorithms:</p>
 <ul>
 <li><strong>RSA PKCS#1 v1.5 signature with hashing.</strong> This is the signature scheme defined by <a href="https://tools.ietf.org/html/rfc8017.html">RFC
@@ -301,7 +301,7 @@ supported.</li>
 the value <strong>Any Hash</strong> for their hash algorithm, meaning that it will allow any hash algorithm. This
 value must not be used to build an algorithm specification to perform an operation. It is only valid
 to build policies.</p>
-<h3><a class="header" href="#asymmetricencryption-algorithm" id="asymmetricencryption-algorithm">AsymmetricEncryption algorithm</a></h3>
+<h3 id="asymmetricencryption-algorithm"><a class="header" href="#asymmetricencryption-algorithm">AsymmetricEncryption algorithm</a></h3>
 <p>Asymmetric encryption algorithms. Supported algorithms:</p>
 <ul>
 <li><strong>RSA PKCS#1 v1.5 encryption.</strong></li>
@@ -310,14 +310,14 @@ to build policies.</p>
 the name RSAES-OAEP, with the message generation function MGF1. Uses one of the supported hash
 algorithms.</li>
 </ul>
-<h3><a class="header" href="#keyagreement-algorithm" id="keyagreement-algorithm">KeyAgreement algorithm</a></h3>
+<h3 id="keyagreement-algorithm"><a class="header" href="#keyagreement-algorithm">KeyAgreement algorithm</a></h3>
 <p>Key agreement algorithms.</p>
 <ul>
 <li><strong>FFDH</strong>: the finite-field Diffie-Hellman (DH) key agreement algorithm.</li>
 <li><strong>ECDH</strong>: the elliptic curve Diffie-Hellman (ECDH) key agreement algorithm.</li>
 </ul>
 <p>A combined algorithm that chains a key agreement with a key derivation is also supported.</p>
-<h3><a class="header" href="#keyderivation-algorithm" id="keyderivation-algorithm">KeyDerivation algorithm</a></h3>
+<h3 id="keyderivation-algorithm"><a class="header" href="#keyderivation-algorithm">KeyDerivation algorithm</a></h3>
 <p>Key derivation algorithms.</p>
 <ul>
 <li><strong>HKDF algorithm.</strong> Uses of the hash algorithms supported.</li>

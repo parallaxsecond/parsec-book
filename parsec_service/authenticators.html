@@ -163,20 +163,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#authenticators" id="authenticators">Authenticators</a></h1>
+                        <h1 id="authenticators"><a class="header" href="#authenticators">Authenticators</a></h1>
 <p>The <code>auth_type</code> field in the configuration allows to change the authenticator currently used by
 Parsec. Because keys are not namespaced with the authentication method, the authenticator <strong>must
 not</strong> be changed while there are keys stored in Parsec. In a future version, Parsec might support
 multiple concurrent authenticators, see <a href="https://github.com/parallaxsecond/parsec/issues/271">this
 issue</a> for details.</p>
-<h2><a class="header" href="#direct-authenticator" id="direct-authenticator">Direct Authenticator</a></h2>
+<h2 id="direct-authenticator"><a class="header" href="#direct-authenticator">Direct Authenticator</a></h2>
 <p>The direct authenticator directly parses the authentication field as a UTF-8 string and uses that as
 application identity.</p>
 <p><strong>Warning notice</strong>: The Direct Authenticator is only secure under specific requirements. Please make
 sure to read the <a href="../parsec_security/secure_deployment.html">Recommendations on a Secure Parsec
 Deployment</a>. Please only use it for testing or if you are
 really sure what you are doing.</p>
-<h2><a class="header" href="#unix-peer-credentials-authenticator" id="unix-peer-credentials-authenticator">Unix Peer Credentials Authenticator</a></h2>
+<h2 id="unix-peer-credentials-authenticator"><a class="header" href="#unix-peer-credentials-authenticator">Unix Peer Credentials Authenticator</a></h2>
 <p>The Unix peer credentials authenticator uses Unix peer credentials to authenticate the clients as
 different Unix users. Here 'Unix peer credentials' refers to metadata about the connection between
 client and server that contains the effective Unix user identifier (UID) and Unix group identifier
@@ -190,7 +190,7 @@ identity is set to the UID.</p>
 this transport can be used with a different authenticator if required.</p>
 <p>The GID and PID components of the Unix peer credentials are currently unused by the peer credentials
 authenticator.</p>
-<h2><a class="header" href="#jwt-spiffe-verifiable-identity-document-authenticator" id="jwt-spiffe-verifiable-identity-document-authenticator">JWT SPIFFE Verifiable Identity Document Authenticator</a></h2>
+<h2 id="jwt-spiffe-verifiable-identity-document-authenticator"><a class="header" href="#jwt-spiffe-verifiable-identity-document-authenticator">JWT SPIFFE Verifiable Identity Document Authenticator</a></h2>
 <p>The JWT-SVID authenticator uses the JWT-SVID token to authenticate clients. The SPIFFE ID contained
 and verified in the JWT-SVID is used as application identity for each client.</p>
 <p>Please see the <a href="https://github.com/spiffe/spiffe/blob/master/standards/JWT-SVID.md">JWT SPIFFE Verifiable Identity

@@ -163,10 +163,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#pull-request-reviewer-checklist" id="pull-request-reviewer-checklist">Pull request reviewer checklist</a></h1>
+                        <h1 id="pull-request-reviewer-checklist"><a class="header" href="#pull-request-reviewer-checklist">Pull request reviewer checklist</a></h1>
 <p>The following checklist is intended for reviewers of pull requests to Parsec-related repositories.
 It is only intended for guidance and not for strict enforcing.</p>
-<h2><a class="header" href="#code-wise" id="code-wise">Code-wise</a></h2>
+<h2 id="code-wise"><a class="header" href="#code-wise">Code-wise</a></h2>
 <p>Follow <a href="https://rust-lang.github.io/api-guidelines/about.html">Rust API guidelines</a></p>
 <p>Usage of <code>unsafe</code> blocks, <code>.unwrap()</code>, <code>.expect(...)</code>, <code>panic!(...)</code> etc. should be strictly limited
 to well understood and controlled cases and documented properly.</p>
@@ -176,7 +176,7 @@ algorithms as a bitfield like in the spec, a rich Rust-native type was used.</p>
 <p>Logs should not contain sensitive data, and should only present detailed data and error information
 (such as stack traces) if configured so.</p>
 <p>New functionality is properly tested.</p>
-<h2><a class="header" href="#threat-model" id="threat-model">Threat model</a></h2>
+<h2 id="threat-model"><a class="header" href="#threat-model">Threat model</a></h2>
 <p>The <a href="https://parallaxsecond.github.io/parsec-book/parsec_security/parsec_threat_model/threat_model.html">threat
 model</a>
 should be reviewed if:</p>
@@ -186,7 +186,7 @@ should be reviewed if:</p>
 <li>Key namespacing is altered in any way</li>
 </ul>
 <p>Special care should also be taken around the bits of code that enforce key policies.</p>
-<h2><a class="header" href="#documentation" id="documentation">Documentation</a></h2>
+<h2 id="documentation"><a class="header" href="#documentation">Documentation</a></h2>
 <p>If changes are made to the authentication process, <a href="https://parallaxsecond.github.io/parsec-book/parsec_client/api_overview.html#authentication-and-sessions">the API
 overview</a>,
 <a href="https://parallaxsecond.github.io/parsec-book/parsec_service/system_architecture.html#authentication">system

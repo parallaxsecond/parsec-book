@@ -163,26 +163,26 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#psahashcompute" id="psahashcompute">PsaHashCompute</a></h1>
+                        <h1 id="psahashcompute"><a class="header" href="#psahashcompute">PsaHashCompute</a></h1>
 <p>Calculate the hash (digest) of a message. Opcode: 15 (<code>0x000F</code>)</p>
-<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>alg</code></td><td><a href="psa_algorithm.html#hash-algorithm"><code>Hash</code></a></td><td>The hash algorithm to compute</td></tr>
 <tr><td><code>input</code></td><td>Vector of unsigned bytes</td><td>Buffer containing message to hash</td></tr>
 </tbody></table>
-<h2><a class="header" href="#results" id="results">Results</a></h2>
+<h2 id="results"><a class="header" href="#results">Results</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>hash</code></td><td>Vector of unsigned bytes</td><td>Buffer containing hash of message</td></tr>
 </tbody></table>
-<h2><a class="header" href="#specific-response-status-codes" id="specific-response-status-codes">Specific response status codes</a></h2>
+<h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotSupported</code>: <code>alg</code> is not supported.</li>
 </ul>
-<h2><a class="header" href="#description" id="description">Description</a></h2>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
 <p>Calculates the hash of the given message, using the specified algorithm.</p>
 <p>Note: To verify the hash of a message against an expected value, use
 <a href="psa_hash_compare.html">PsaHashCompare</a>.</p>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compute.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 

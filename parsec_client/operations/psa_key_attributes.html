@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#psa-key-attributes" id="psa-key-attributes">PSA Key Attributes</a></h1>
+                        <h1 id="psa-key-attributes"><a class="header" href="#psa-key-attributes">PSA Key Attributes</a></h1>
 <p>The attributes are used to fully describe a cryptographic key: its type, size and what is permitted
 to do with that key.</p>
 <p>Some of the algorithms defined here are deprecated and should not be used without a valid reason. It
@@ -171,14 +171,14 @@ is at the discretion of the system administrator whether those algorithms are pe
 <p><strong>Notice:</strong> not all possible attributes are currently supported by Parsec. Please see the
 <a href="service_api_coverage.html">Operations Coverage</a> for an overview of what Parsec currently supports.
 Some of the attributes might not be supported by some providers as it is not in their interface.</p>
-<h2><a class="header" href="#keyattributes-type" id="keyattributes-type">KeyAttributes type</a></h2>
+<h2 id="keyattributes-type"><a class="header" href="#keyattributes-type">KeyAttributes type</a></h2>
 <p>A <code>KeyAttributes</code> type contains the following members:</p>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_type</code></td><td><a href="#keytype-type"><code>KeyType</code></a></td><td>Intrinsic category and type of a key</td></tr>
 <tr><td><code>key_bits</code></td><td>Unsigned integer</td><td>Size of a key in bits</td></tr>
 <tr><td><code>key_policy</code></td><td><a href="#keypolicy-type"><code>KeyPolicy</code></a></td><td>Policy restricting the permitted usage of the key</td></tr>
 </tbody></table>
-<h2><a class="header" href="#keytype-type" id="keytype-type">KeyType type</a></h2>
+<h2 id="keytype-type"><a class="header" href="#keytype-type">KeyType type</a></h2>
 <p>A <code>KeyType</code> type can contain one of the following key types:</p>
 <ul>
 <li><a href="#rawdata-type"><code>RawData</code></a></li>
@@ -196,31 +196,31 @@ Some of the attributes might not be supported by some providers as it is not in 
 <li><a href="#dhkeypair-type"><code>DhKeyPair</code></a></li>
 <li><a href="#dhpublickey-type"><code>DhPublicKey</code></a></li>
 </ul>
-<h3><a class="header" href="#rawdata-type" id="rawdata-type">RawData type</a></h3>
+<h3 id="rawdata-type"><a class="header" href="#rawdata-type">RawData type</a></h3>
 <p>Not a valid key type for any cryptographic operation but can be used to store arbitrary data in the
 key store.</p>
-<h3><a class="header" href="#hmac-type" id="hmac-type">Hmac type</a></h3>
+<h3 id="hmac-type"><a class="header" href="#hmac-type">Hmac type</a></h3>
 <p>HMAC key. The key policy determines which underlying hash algorithm the key can be used for.</p>
-<h3><a class="header" href="#derive-type" id="derive-type">Derive type</a></h3>
+<h3 id="derive-type"><a class="header" href="#derive-type">Derive type</a></h3>
 <p>A secret key for derivation. The key policy determines which key derivation algorithm the key can be
 used for.</p>
-<h3><a class="header" href="#aes-type" id="aes-type">Aes type</a></h3>
+<h3 id="aes-type"><a class="header" href="#aes-type">Aes type</a></h3>
 <p>Key for a cipher, AEAD or MAC algorithm based on the AES block cipher. The size of the key can be 16
 bytes (AES-128), 24 bytes (AES-192) or 32 bytes (AES-256).</p>
-<h3><a class="header" href="#des-type" id="des-type">Des type</a></h3>
+<h3 id="des-type"><a class="header" href="#des-type">Des type</a></h3>
 <p>Key for a cipher or MAC algorithm based on DES or 3DES (Triple-DES). The size of the key can be 8
 bytes (single DES), 16 bytes (2-key 3DES) or 24 bytes (3-key 3DES).</p>
 <p><strong>Warning</strong>: Single DES and 2-key 3DES are weak and strongly deprecated and are only recommended for
 decrypting legacy data. 3-key 3DES is weak and deprecated and is only recommended for use in legacy
 protocols.</p>
-<h3><a class="header" href="#camellia-type" id="camellia-type">Camellia type</a></h3>
+<h3 id="camellia-type"><a class="header" href="#camellia-type">Camellia type</a></h3>
 <p>Key for a cipher, AEAD or MAC algorithm based on the Camellia block cipher.</p>
-<h3><a class="header" href="#arc4-type" id="arc4-type">Arc4 type</a></h3>
+<h3 id="arc4-type"><a class="header" href="#arc4-type">Arc4 type</a></h3>
 <p>Key for the RC4 stream cipher. Use a <a href="psa_algorithm.html#cipher-algorithm"><code>Cipher</code></a> algorithm with
 Stream Cipher variant to use this key with the ARC4 cipher.</p>
 <p><strong>Warning</strong>: The RC4 cipher is weak and deprecated and is only recommended for use in legacy
 protocols.</p>
-<h3><a class="header" href="#chacha20-type" id="chacha20-type">Chacha20 type</a></h3>
+<h3 id="chacha20-type"><a class="header" href="#chacha20-type">Chacha20 type</a></h3>
 <p>Key for the ChaCha20 stream cipher or the Chacha20-Poly1305 AEAD algorithm. ChaCha20 and the
 ChaCha20_Poly1305 construction are defined in <a href="https://tools.ietf.org/html/rfc7539.html">RFC 7539</a>.
 Variants of these algorithms are defined by the length of the nonce:</p>
@@ -232,23 +232,23 @@ Variants of these algorithms are defined by the length of the nonce:</p>
 </ul>
 <p>Use <a href="psa_algorithm.html#cipher-algorithm"><code>Cipher</code></a> algorithm with Stream Cipher variant to use this
 key with the ChaCha20 cipher for unauthenticated encryption.</p>
-<h3><a class="header" href="#rsapublickey-type" id="rsapublickey-type">RsaPublicKey type</a></h3>
+<h3 id="rsapublickey-type"><a class="header" href="#rsapublickey-type">RsaPublicKey type</a></h3>
 <p>RSA public key.</p>
-<h3><a class="header" href="#rsakeypair-type" id="rsakeypair-type">RsaKeyPair type</a></h3>
+<h3 id="rsakeypair-type"><a class="header" href="#rsakeypair-type">RsaKeyPair type</a></h3>
 <p>RSA key pair: both the private and public key.</p>
-<h3><a class="header" href="#ecckeypair-type" id="ecckeypair-type">EccKeyPair type</a></h3>
+<h3 id="ecckeypair-type"><a class="header" href="#ecckeypair-type">EccKeyPair type</a></h3>
 <p>Elliptic curve key pair: both the private and public key. Uses one of the <a href="#supported-ecc-curve-families">ECC curve family
 supported</a>.</p>
-<h3><a class="header" href="#eccpublickey-type" id="eccpublickey-type">EccPublicKey type</a></h3>
+<h3 id="eccpublickey-type"><a class="header" href="#eccpublickey-type">EccPublicKey type</a></h3>
 <p>Elliptic curve public key. Uses one of the <a href="#supported-ecc-curve-families">ECC curve family
 supported</a>.</p>
-<h3><a class="header" href="#dhkeypair-type" id="dhkeypair-type">DhKeyPair type</a></h3>
+<h3 id="dhkeypair-type"><a class="header" href="#dhkeypair-type">DhKeyPair type</a></h3>
 <p>Diffie-Hellman key pair: both the private key and public key. Uses one of the <a href="#supported-dh-group-families">Diffie-Hellman group
 family supported</a>.</p>
-<h3><a class="header" href="#dhpublickey-type" id="dhpublickey-type">DhPublicKey type</a></h3>
+<h3 id="dhpublickey-type"><a class="header" href="#dhpublickey-type">DhPublicKey type</a></h3>
 <p>Diffie-Hellman public key. Uses one of the <a href="#supported-dh-group-families">Diffie-Hellman group family
 supported</a>.</p>
-<h3><a class="header" href="#supported-ecc-curve-families" id="supported-ecc-curve-families">Supported ECC curve families</a></h3>
+<h3 id="supported-ecc-curve-families"><a class="header" href="#supported-ecc-curve-families">Supported ECC curve families</a></h3>
 <p>Enumeration of elliptic curve families supported. They are needed to create an ECC key. The specific
 curve used for each family is given by the <code>key_bits</code> field of the key attributes.</p>
 <ul>
@@ -321,17 +321,17 @@ curve:
 </ul>
 </li>
 </ul>
-<h3><a class="header" href="#supported-dh-group-families" id="supported-dh-group-families">Supported DH group families</a></h3>
+<h3 id="supported-dh-group-families"><a class="header" href="#supported-dh-group-families">Supported DH group families</a></h3>
 <p>Enumeration of Diffie Hellman group families supported. They are needed to create a DH key. The
 specific group used for each family is given by the <code>key_bits</code> field of the key attributes.</p>
-<h2><a class="header" href="#keypolicy-type" id="keypolicy-type">KeyPolicy type</a></h2>
+<h2 id="keypolicy-type"><a class="header" href="#keypolicy-type">KeyPolicy type</a></h2>
 <p>Definition of the key policy, what is permitted to do with the key. A <code>KeyPolicy</code> type contains the
 following members:</p>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_usage_flags</code></td><td><a href="#usageflags-type"><code>UsageFlags</code></a></td><td>Usage flags for the key</td></tr>
 <tr><td><code>key_algorithm</code></td><td><a href="psa_algorithm.html#algorithm-type"><code>Algorithm</code></a></td><td>Permitted algorithms to be used with the key</td></tr>
 </tbody></table>
-<h2><a class="header" href="#usageflags-type" id="usageflags-type">UsageFlags type</a></h2>
+<h2 id="usageflags-type"><a class="header" href="#usageflags-type">UsageFlags type</a></h2>
 <p>Definition of the usage flags. They encode what kind of operations are permitted on the key. A
 <code>UsageFlags</code> type contains the following members:</p>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>

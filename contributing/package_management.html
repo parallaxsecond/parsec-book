@@ -163,7 +163,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#package-management-and-versioning-guide" id="package-management-and-versioning-guide">Package management and versioning guide</a></h1>
+                        <h1 id="package-management-and-versioning-guide"><a class="header" href="#package-management-and-versioning-guide">Package management and versioning guide</a></h1>
 <p>This page presents the details around packaging management and versioning for Parsec-related
 repositories. Currently our repos are mainly Rust crates, so this guide is accordingly geared
 towards them - when other guidelines become relevant, e.g. specific to Go libraries, new sections
@@ -181,7 +181,7 @@ published, a tag named &quot;X-2.3.1&quot; or similar must be used.</li>
 file. For some projects it's also advised to create a GitHub Release from the tag mentioned
 above.</li>
 </ul>
-<h2><a class="header" href="#rust-crates" id="rust-crates">Rust crates</a></h2>
+<h2 id="rust-crates"><a class="header" href="#rust-crates">Rust crates</a></h2>
 <p>The process around publishing Rust crates is tightly linked with crates.io. In order to publish or
 have control over crates, you must own an account on the website. Before you decide whether you want
 to publish a crate, check out the <a href="#dependency-management">Dependency management</a> section below.</p>
@@ -220,7 +220,7 @@ request.</li>
 real operation. Once that is complete, tag the latest commit and upstream the tag.</li>
 <li>Repeat these steps for every crate along the way in the dependency tree.</li>
 </ul>
-<h3><a class="header" href="#dependency-management" id="dependency-management">Dependency management</a></h3>
+<h3 id="dependency-management"><a class="header" href="#dependency-management">Dependency management</a></h3>
 <p>Producing a release of the Parsec service requires some understanding of the way in which all the
 components, and especially the various crates found under the Parallaxsecond organization, relate to
 each other. You can find some details of the code structure

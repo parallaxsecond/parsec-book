@@ -163,20 +163,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#listclients" id="listclients">ListClients</a></h1>
+                        <h1 id="listclients"><a class="header" href="#listclients">ListClients</a></h1>
 <p>Lists all clients currently having keys in the service. Opcode: 27 (<code>0x001B</code>)</p>
-<h2><a class="header" href="#parameters" id="parameters">Parameters</a></h2>
+<h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
-<h2><a class="header" href="#results" id="results">Results</a></h2>
+<h2 id="results"><a class="header" href="#results">Results</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>clients</code></td><td>Vector of String</td><td>List of clients</td></tr>
 </tbody></table>
-<h2><a class="header" href="#specific-response-status-codes" id="specific-response-status-codes">Specific response status codes</a></h2>
+<h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
 <li><code>AdminOperation</code>: this operation is an admin operation and cannot be requested by a user
 application.</li>
 </ul>
-<h2><a class="header" href="#description" id="description">Description</a></h2>
+<h2 id="description"><a class="header" href="#description">Description</a></h2>
 <p>This operation lists all clients that are currently storing data in the Parsec service. The
 <code>clients</code> field contain a vector of the application names used by clients.</p>
 <p>This operation necessitates <strong>admin</strong> privilege.</p>
@@ -186,7 +186,7 @@ service supports multiple.</p>
 <p><strong>Note:</strong> this operation might return wrong results if clients' data is being modified while it
 executes. For example, if a new client is creating keys while this operation is being performed,
 this new client might not show in the output.</p>
-<h2><a class="header" href="#contract" id="contract">Contract</a></h2>
+<h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/list_clients.proto">Protobuf</a></p>
 <p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
 
