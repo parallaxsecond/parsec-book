@@ -169,26 +169,62 @@ of the project. As such, the interface that must be implemented by each provider
 modularity in mind, allowing developers to choose which operations they implement and when. This
 interface is represented by a Rust <a href="https://doc.rust-lang.org/book/ch10-02-traits.html"><code>trait</code></a> -
 more precisely, the
-<a href="https://github.com/parallaxsecond/parsec/blob/master/src/providers/mod.rs"><code>Provide</code></a> trait.</p>
+<a href="https://docs.rs/parsec-service/latest/parsec_service/providers/trait.Provide.html"><code>Provide</code></a>
+trait.</p>
 <p>The full list of operations that can be implemented can be found in the link above and will be
 expanded as the project progresses towards supporting more use cases.</p>
-<p>Apart from <code>list_opcodes</code> and <code>describe</code>, no method is mandatory and client libraries are expected
-to use these two operations to bootstrap their usage of the service. Thus, once an operation is
-correctly supported, its opcode can be added to those returned by <code>list_opcodes</code>. Any operation that
-is not implemented will return a response code of <code>UnsupportedOperation</code> by default.</p>
-<p>Each provider must offer a description of itself in the shape of a
-<a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations/list_providers.rs"><code>ProviderInfo</code></a>
+<h2 id="mandatory-methods"><a class="header" href="#mandatory-methods">Mandatory methods</a></h2>
+<p>Some <code>Provide</code> trait methods are mandatory for the service to behave normally. They are used on a
+service-level by the core provider and so must be supported by all providers.</p>
+<ul>
+<li><code>describe</code>: Each provider must offer a description of itself in the shape of a
+<a href="https://docs.rs/parsec-interface/latest/parsec_interface/operations/list_providers/struct.ProviderInfo.html"><code>ProviderInfo</code></a>
 value, by implementing the <code>describe</code> method. The UUID identifying the provider is
-developer-generated and should not clash with existing providers. This process also requires the new
-provider to be added to the
-<a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/requests/mod.rs"><code>ProviderID</code></a>
-enum.</p>
+developer-generated and should not clash with existing providers. This process also requires the
+new provider to be added to the
+<a href="https://docs.rs/parsec-interface/latest/parsec_interface/requests/enum.ProviderID.html"><code>ProviderID</code></a>
+enum. The <code>describe</code> method is also used to return the supported opcodes by the provider.</li>
+<li><code>list_keys</code>: the provider must implement this method to return all the keys stored within the
+provider for a particular application name.</li>
+<li><code>list_clients</code>: the provider must implement this method to return the application names that have
+data stored within the provider.</li>
+</ul>
+<p><code>list_keys</code> and <code>list_clients</code> can often be implemented by directly using the
+<code>KeyInfoManagerClient</code>.</p>
+<h2 id="data-format"><a class="header" href="#data-format">Data format</a></h2>
 <p>Lots of care must be taken when implementing operations that the inputs and outputs are in the
 correct format, especially in the case of byte arrays. Detailed description of all input and output
-can be found in the <a href="../parsec_client/operations/README.html">operations documentation</a>.</p>
+can be found in the <a href="../parsec_client/operations">operations documentation</a>.</p>
+<h2 id="key-management"><a class="header" href="#key-management">Key management</a></h2>
 <p>A helpful utility that the Parsec service offers to providers is the use of key info managers. These
 allow the provider to persist mappings between key names and key information material and is
-generally needed since providers are expected to support UTF-8 encoded strings as key names.</p>
+generally needed since providers are expected to support UTF-8 encoded strings as key names. To use
+the KeyInfoManager in a thread-safe and convenient way, the KeyInfoManagerClient structure can be
+used. The key ID type used will have to implement <code>serde</code> <code>Serialize</code> and <code>DeserializedOwned</code>
+traits.</p>
+<h3 id="dealing-with-key-triple-mappings-coherency"><a class="header" href="#dealing-with-key-triple-mappings-coherency">Dealing with key triple mappings coherency</a></h3>
+<p>During the lifetime of the Parsec service, it might happen that the mappings do not correctly
+reflect the state of the actual key store: a key stored in the KeyInfoManager does not map to any
+key in the keystore backend. Providers should implement the following policies to prevent that.</p>
+<ul>
+<li>During the provider construction, fetch all key infos linked to that provider. For each one of
+them, get the associated ID and issue one command to the backend to check if a key with that ID
+exists. If it does not, add the key to a <code>to_delete</code> list and then delete all the mappings in the
+<code>to_delete</code> list. Check the existing providers' constructors for an example.</li>
+<li>Follow the algorithm described in the documentation of <code>psa_generate_key</code>, <code>psa_import_key</code> and
+<code>psa_destroy_key</code> when implementing those <code>Provide</code> methods.</li>
+</ul>
+<p>The goal of those policies is to make sure, in a best-effort way, that key management operations
+have the behaviour wanted: it is possible to create a key with the same name if the key
+creation/deletion operation failed and that at any given time only valid keys can be used.</p>
+<p>Because of those policies focused on clients' convenience, it might be possible that some keys
+become &quot;zombies&quot; in the keystore: they can no longer be accessed via Parsec but still exist.</p>
+<p>Please also note that those policies do not protect against hardware attacks. In our threat model is
+documented as an assumption (ASUM-1):</p>
+<blockquote>
+<p>The hardware modules are physically and functionally secure. Only trusted agents can physically
+access the system.</p>
+</blockquote>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 
                     </main>
