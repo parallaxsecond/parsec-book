@@ -1182,39 +1182,82 @@ Some of the attributes might not be supported by some providers as it is not in 
 <h3 id="rawdata-type"><a class="header" href="#rawdata-type">RawData type</a></h3>
 <p>Not a valid key type for any cryptographic operation but can be used to store arbitrary data in the
 key store.</p>
+<p>The bit size of a raw key must be a non-zero multiple of 8.</p>
 <h3 id="hmac-type"><a class="header" href="#hmac-type">Hmac type</a></h3>
 <p>HMAC key. The key policy determines which underlying hash algorithm the key can be used for.</p>
+<p>The bit size of an HMAC key must be a non-zero multiple of 8. An HMAC key is typically the same size
+as the output of the underlying hash algorithm. An HMAC key that is longer than the block size of
+the underlying hash algorithm will be hashed before use.</p>
 <h3 id="derive-type"><a class="header" href="#derive-type">Derive type</a></h3>
 <p>A secret key for derivation. The key policy determines which key derivation algorithm the key can be
 used for.</p>
+<p>The bit size of a secret for key derivation must be a non-zero multiple of 8.</p>
 <h3 id="aes-type"><a class="header" href="#aes-type">Aes type</a></h3>
-<p>Key for a cipher, AEAD or MAC algorithm based on the AES block cipher. The size of the key can be 16
-bytes (AES-128), 24 bytes (AES-192) or 32 bytes (AES-256).</p>
+<p>Key for a cipher, AEAD or MAC algorithm based on the AES block cipher.</p>
+<p>The size of the key is related to the AES algorithm variant. For algorithms except the XTS block
+cipher mode, the following key sizes are used:</p>
+<ul>
+<li>AES-128 uses a 16-byte key: <code>key_bits</code> = 128</li>
+<li>AES-192 uses a 24-byte key: <code>key_bits</code> = 192</li>
+<li>AES-256 uses a 32-byte key: <code>key_bits</code> = 256</li>
+</ul>
+<p>For the XTS block cipher mode, the following key sizes are used:</p>
+<ul>
+<li>AES-128-XTS uses two 16-byte keys: <code>key_bits</code> = 256</li>
+<li>AES-192-XTS uses two 24-byte keys: <code>key_bits</code> = 384</li>
+<li>AES-256-XTS uses two 32-byte keys: <code>key_bits</code> = 512</li>
+</ul>
+<p>The AES block cipher is defined in <code>FIPS Publication 197: Advanced Encryption Standard (AES)</code>
+<a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf">FIPS197</a>.</p>
 <h3 id="des-type"><a class="header" href="#des-type">Des type</a></h3>
-<p>Key for a cipher or MAC algorithm based on DES or 3DES (Triple-DES). The size of the key can be 8
-bytes (single DES), 16 bytes (2-key 3DES) or 24 bytes (3-key 3DES).</p>
+<p>Key for a cipher or MAC algorithm based on DES or 3DES (Triple-DES).</p>
+<p>The size of the key determines which DES algorithm is used:</p>
+<ul>
+<li>Single DES uses an 8-byte key: <code>key_bits</code> = 64</li>
+<li>2-key 3DES uses a 16-byte key: <code>key_bits</code> = 128</li>
+<li>3-key 3DES uses a 24-byte key: <code>key_bits</code> = 192</li>
+</ul>
 <p><strong>Warning</strong>: Single DES and 2-key 3DES are weak and strongly deprecated and are only recommended for
 decrypting legacy data. 3-key 3DES is weak and deprecated and is only recommended for use in legacy
 protocols.</p>
+<p>The DES and 3DES block ciphers are defined in <em>NIST Special Publication 800-67: Recommendation for
+the Triple Data Encryption Algorithm (TDEA) Block Cipher</em>
+<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-67r2.pdf">SP800-67</a>.</p>
 <h3 id="camellia-type"><a class="header" href="#camellia-type">Camellia type</a></h3>
 <p>Key for a cipher, AEAD or MAC algorithm based on the Camellia block cipher.</p>
+<p>The size of the key is related to the Camellia algorithm variant. For algorithms except the XTS
+block cipher mode, the following key sizes are used:</p>
+<ul>
+<li>Camellia-128 uses a 16-byte key: <code>key_bits</code> = 128</li>
+<li>Camellia-192 uses a 24-byte key: <code>key_bits</code> = 192</li>
+<li>Camellia-256 uses a 32-byte key: <code>key_bits</code> = 256</li>
+</ul>
+<p>For the XTS block cipher mode, the following key sizes are used:</p>
+<ul>
+<li>Camellia-128-XTS uses two 16-byte keys: <code>key_bits</code> = 256</li>
+<li>Camellia-192-XTS uses two 24-byte keys: <code>key_bits</code> = 384</li>
+<li>Camellia-256-XTS uses two 32-byte keys: <code>key_bits</code> = 512</li>
+</ul>
+<p>The Camellia block cipher is defined in <em>Specification of Camellia — a 128-bit Block Cipher</em>
+<a href="https://info.isl.ntt.co.jp/crypt/eng/camellia/specifications">NTT-CAM</a> and also described in <em>A
+Description of the Camellia Encryption Algorithm</em> <a href="https://tools.ietf.org/html/rfc3713">RFC3713</a>.</p>
 <h3 id="arc4-type"><a class="header" href="#arc4-type">Arc4 type</a></h3>
-<p>Key for the RC4 stream cipher. Use a <a href="parsec_client/operations/psa_algorithm.html#cipher-algorithm"><code>Cipher</code></a> algorithm with
-Stream Cipher variant to use this key with the ARC4 cipher.</p>
+<p>Key for the RC4 stream cipher.</p>
+<p>The ARC4 cipher supports key sizes between 40 and 2048 bits, that are multiples of 8 (5 to 256
+bytes).</p>
+<p>Use a <a href="parsec_client/operations/psa_algorithm.html#cipher-algorithm"><code>Cipher</code></a> algorithm with Stream Cipher variant to use this
+key with the ARC4 cipher.</p>
 <p><strong>Warning</strong>: The RC4 cipher is weak and deprecated and is only recommended for use in legacy
 protocols.</p>
 <h3 id="chacha20-type"><a class="header" href="#chacha20-type">Chacha20 type</a></h3>
-<p>Key for the ChaCha20 stream cipher or the Chacha20-Poly1305 AEAD algorithm. ChaCha20 and the
-ChaCha20_Poly1305 construction are defined in <a href="https://tools.ietf.org/html/rfc7539.html">RFC 7539</a>.
-Variants of these algorithms are defined by the length of the nonce:</p>
+<p>Key for the ChaCha20 stream cipher or the Chacha20-Poly1305 AEAD algorithm.</p>
+<p>The ChaCha20 key size is 256 bits (32 bytes).</p>
 <ul>
-<li>Implementations must support a 12-byte nonce, as defined in <a href="https://tools.ietf.org/html/rfc7539.html">RFC
-7539</a>.</li>
-<li>Implementations can optionally support an 8-byte nonce, the original variant.</li>
-<li>It is recommended that implementations do not support other sizes of nonce.</li>
+<li>Use Cipher algorithm with Stream Cipher variant to use this key with the ChaCha20 cipher for
+unauthenticated encryption.</li>
+<li>Use Aead algorithm with ChaCha20-Poly1305 variant to use this key with the ChaCha20 cipher and
+Poly1305 authenticator for AEAD.</li>
 </ul>
-<p>Use <a href="parsec_client/operations/psa_algorithm.html#cipher-algorithm"><code>Cipher</code></a> algorithm with Stream Cipher variant to use this
-key with the ChaCha20 cipher for unauthenticated encryption.</p>
 <h3 id="rsapublickey-type"><a class="header" href="#rsapublickey-type">RsaPublicKey type</a></h3>
 <p>RSA public key.</p>
 <h3 id="rsakeypair-type"><a class="header" href="#rsakeypair-type">RsaKeyPair type</a></h3>
@@ -1307,6 +1350,11 @@ curve:
 <h3 id="supported-dh-group-families"><a class="header" href="#supported-dh-group-families">Supported DH group families</a></h3>
 <p>Enumeration of Diffie Hellman group families supported. They are needed to create a DH key. The
 specific group used for each family is given by the <code>key_bits</code> field of the key attributes.</p>
+<ul>
+<li><strong>RFC7919.</strong> Finite-field Diffie-Hellman groups defined for TLS in RFC 7919. This family includes
+groups with the following key sizes (in bits): 2048, 3072, 4096, 6144, 8192. Keys is this group
+can only be used with the FFDH key agreement algorithm.</li>
+</ul>
 <h2 id="keypolicy-type"><a class="header" href="#keypolicy-type">KeyPolicy type</a></h2>
 <p>Definition of the key policy, what is permitted to do with the key. A <code>KeyPolicy</code> type contains the
 following members:</p>
@@ -1441,7 +1489,7 @@ bytes. Depending on the algorithm, the tag length might affect the calculation o
 <ul>
 <li><strong>RSA PKCS#1 v1.5 signature with hashing.</strong> This is the signature scheme defined by <a href="https://tools.ietf.org/html/rfc8017.html">RFC
 8017</a> (PKCS#1: RSA Cryptography Specifications) under
-the name RSASSA-PKCS1-v1_5. Uses one of the hash algorithm supported.</li>
+the name <code>RSASSA-PKCS1-v1_5</code>. Uses one of the hash algorithm supported.</li>
 <li><strong>Raw PKCS#1 v1.5 signature.</strong> The input to this algorithm is the DigestInfo structure used by
 <a href="https://tools.ietf.org/html/rfc8017.html">RFC 8017</a> §9.2 (PKCS#1: RSA Cryptography
 Specifications), in steps 3–6.</li>
@@ -1522,19 +1570,24 @@ wire protocol version that the service support:</p>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to generate</td></tr>
 <tr><td><code>attributes</code></td><td><a href="parsec_client/operations/psa_key_attributes.html#keyattributes-type"><code>KeyAttributes</code></a></td><td>The attributes of the new key</td></tr>
 </tbody></table>
+<ul>
+<li>The <code>key_type</code> field of <code>attributes</code> can not be an asymmetric public key.</li>
+</ul>
 <h2 id="results-1"><a class="header" href="#results-1">Results</a></h2>
 <p>No values are returned by this operation.</p>
 <h2 id="specific-response-status-codes-1"><a class="header" href="#specific-response-status-codes-1">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorAlreadyExists</code>: There is already a key with the given name.</li>
+<li><code>PsaErrorNotSupported</code>: The key type or key size is not supported.</li>
+<li><code>PsaErrorInvalidArgument</code>: The key attributes, as a whole, are invalid.</li>
 </ul>
 <h2 id="description-1"><a class="header" href="#description-1">Description</a></h2>
 <p>The key is generated randomly. Its location, policy, type and size are taken from <code>attributes</code>.</p>
 <p>The following type-specific considerations apply:</p>
 <ul>
 <li>For RSA keys (key type is <a href="parsec_client/operations/psa_key_attributes.html#rsakeypair-type"><code>RsaKeyPair</code></a>), the public
-exponent is 65537. The modulus is a product of two probabilistic primes between 2^{n-1} and 2^n
-where n is the bit size specified in the attributes.</li>
+exponent is <code>65537</code>. The modulus is a product of two probabilistic primes between <code>2^{n-1}</code> and
+<code>2^n</code> where <code>n</code> is the bit size specified in the attributes.</li>
 </ul>
 <h2 id="contract-1"><a class="header" href="#contract-1">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto">Protobuf</a></p>
@@ -1695,24 +1748,33 @@ that is equivalent to the public key.</p>
 <p>For standard key types, the output format is as follows:</p>
 <ul>
 <li>For RSA public keys, with key type <a href="parsec_client/operations/psa_key_attributes.html#rsapublickey-type"><code>RsaPublicKey</code></a>, the
-DER encoding of the representation defined by <a href="https://tools.ietf.org/html/rfc3279.html#section-2.3.1">RFC 3279
+DER encoding of the representation defined by <em>Algorithms and Identifiers for the Internet X.509
+Public Key Infrastructure Certifiate and Certificate Revocation List (CRL) Profile</em> <a href="https://tools.ietf.org/html/rfc3279.html#section-2.3.1">RFC 3279
 §2.3.1</a> as <code>RSAPublicKey</code> (<code>[1]</code>).</li>
 <li>For elliptic curve public keys, with key type
 <a href="parsec_client/operations/psa_key_attributes.html#eccpublickey-type"><code>EccPublicKey</code></a>, the format depends on the <a href="parsec_client/operations/psa_key_attributes.html#supported-ecc-curve-families">curve
 family</a>:
 <ul>
 <li>For Weierstrass curve families sectXX, secpXX, FRP and Brainpool, the uncompressed
-representation defined by <em>Standards for Efficient Cryptography, SEC 1: Elliptic Curve
-Cryptography</em> §2.3.3 as the content of an <code>ECPoint</code>. If <code>m</code> is the bit size associated with
-the curve, i.e. the bit size of <code>q</code> for a curve over <code>F_q</code>. The representation consists of:</li>
+representation of an elliptic curve point as an octet string defined in <em>SEC 1: Elliptic Curve
+Cryptography</em> <a href="https://www.secg.org/sec1-v2.pdf">SEC1</a> §2.3.3. If <code>m</code> is the bit size
+associated with the curve, i.e. the bit size of <code>q</code> for a curve over <code>F_q</code>. The representation
+consists of:
+<ul>
 <li>The byte <code>0x04</code>;</li>
 <li><code>x_P</code> as a <code>ceiling(m/8)</code>-byte string, big-endian;</li>
 <li><code>y_P</code> as a <code>ceiling(m/8)</code>-byte string, big-endian.</li>
+</ul>
+</li>
 <li>For Montgomery curve family, the scalar value of the ‘public key’ in little-endian order as
-defined by <a href="https://tools.ietf.org/html/rfc7748.html#section-6">RFC 7748 §6</a>. This is a
-<code>ceiling(m/8)</code>-byte string where <code>m</code> is the key size in bits.</li>
+defined by <em>Elliptic Curves for Security</em> <a href="https://tools.ietf.org/html/rfc7748.html#section-6">RFC 7748
+§6</a>. This is a <code>ceiling(m/8)</code>-byte string
+where <code>m</code> is the key size in bits.
+<ul>
 <li>This is 32 bytes for Curve25519, computed as <code>X25519(private_key, 9)</code>.</li>
 <li>This is 56 bytes for Curve448, computed as <code>X448(private_key, 5)</code>.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>For Diffie-Hellman key exchange public keys, with key types
@@ -1863,27 +1925,28 @@ requested algorithm.</li>
 that is equivalent to key.</p>
 <p>For standard key types, the output format is as follows:</p>
 <ul>
-<li>For symmetric keys, including MAC keys, the format is the raw bytes of the key.</li>
+<li>For symmetric keys, including HMAC keys, the format is the raw bytes of the key.</li>
 <li>For <a href="parsec_client/operations/psa_key_attributes.html#des-type"><code>DES</code></a>, the key data consists of 8 bytes. The parity bits
 must be correct.</li>
 <li>For <a href="parsec_client/operations/psa_key_attributes.html#des-type"><code>Triple-DES</code></a>, the format is the concatenation of the two or
 three DES keys.</li>
 <li>For RSA key pairs, with key type <a href="parsec_client/operations/psa_key_attributes.html#rsakeypair-type"><code>RsaKeyPair</code></a>, the format
-is the non-encrypted DER encoding of the representation defined by PKCS#1 in <a href="https://tools.ietf.org/html/rfc8017.html"><code>RFC 8017</code></a> as RSAPrivateKey, version 0 (<code>[1]</code>).</li>
+is the non-encrypted DER encoding of the representation defined in <em>PKCS #1: RSA Cryptography
+Specifications Version 2.2</em> <a href="https://tools.ietf.org/html/rfc8017.html"><code>RFC 8017</code></a> as
+<code>RSAPrivateKey</code>, version 0 (<code>[1]</code>).</li>
 <li>For elliptic curve key pairs, with key type <a href="parsec_client/operations/psa_key_attributes.html#ecckeypair-type"><code>EccKeyPair</code></a>,
 the format is a representation of the private value.
 <ul>
 <li>For Weierstrass curve families <code>sectXX</code>, <code>secpXX</code>, <code>FRP</code> and <code>Brainpool</code>, the content of the
-privateKey field of the ECPrivateKey format defined by <a href="https://tools.ietf.org/html/rfc5915.html"><code>RFC 5915</code></a>. This is a ceiling(m/8)-byte string in
-big-endian order where m is the key size in bits.</li>
+<code>privateKey</code> field of the <code>ECPrivateKey</code> format defined by <em>Elliptic Curve Private Key
+Structure</em> <a href="https://tools.ietf.org/html/rfc5915.html"><code>RFC 5915</code></a>. This is a
+<code>ceiling(m/8)</code>-byte string in big-endian order where <code>m</code> is the key size in bits.</li>
 <li>For Montgomery curve family, the scalar value of the ‘private key’ in little-endian order
-as defined by <a href="https://tools.ietf.org/html/rfc7748.html#section-6">RFC 7748 §6</a>. This is a
-<code>ceiling(m/8)</code>-byte string where <code>m</code> is the key size in bits.
-<ul>
-<li>This is 32 bytes for Curve25519, computed as <code>X25519(private_key, 9)</code>.</li>
-<li>This is 56 bytes for Curve448, computed as <code>X448(private_key, 5)</code>.</li>
-</ul>
-</li>
+as defined by <em>Elliptic Curves for Security</em> <a href="https://tools.ietf.org/html/rfc7748.html#section-6">RFC 7748
+§6</a>. The value must have the forced bits
+set to zero or one as specified by <code>decodeScalar25519()</code> and <code>decodeScalar448()</code> in <a href="https://tools.ietf.org/html/rfc7748.html#section-5">RFC7748
+§5</a>. This is a <code>ceiling(m/8)</code>-byte string
+where <code>m</code> is the key size in bits. This is 32 bytes for Curve25519, and 56 bytes for Curve448.</li>
 </ul>
 </li>
 <li>For Diffie-Hellman key exchange key pairs, with key types
@@ -1894,17 +1957,16 @@ size in bytes, and leading zeroes are not stripped.</li>
 </ul>
 <p><code>[1]</code>: The <code>RSAPrivateKey</code> representation is:</p>
 <pre><code>RSAPrivateKey ::= SEQUENCE {
-             version           Version,
-             modulus           INTEGER,  -- n
-             publicExponent    INTEGER,  -- e
-             privateExponent   INTEGER,  -- d
-             prime1            INTEGER,  -- p
-             prime2            INTEGER,  -- q
-             exponent1         INTEGER,  -- d mod (p-1)
-             exponent2         INTEGER,  -- d mod (q-1)
-             coefficient       INTEGER,  -- (inverse of q) mod p
-             otherPrimeInfos   OtherPrimeInfos OPTIONAL
-         }
+    version           INTEGER,  -- must be 0
+    modulus           INTEGER,  -- n
+    publicExponent    INTEGER,  -- e
+    privateExponent   INTEGER,  -- d
+    prime1            INTEGER,  -- p
+    prime2            INTEGER,  -- q
+    exponent1         INTEGER,  -- d mod (p-1)
+    exponent2         INTEGER,  -- d mod (q-1)
+    coefficient       INTEGER,  -- (inverse of q) mod p
+}
 </code></pre>
 <h2 id="contract-11"><a class="header" href="#contract-11">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_key.proto">Protobuf</a></p>
@@ -2002,7 +2064,7 @@ with an expected hash value.</p>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_hash_compare.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 <h1 id="psaaeadencrypt"><a class="header" href="#psaaeadencrypt">PsaAeadEncrypt</a></h1>
-<p>Process and authenticated encryption operation. Opcode: 17 (<code>0x0011</code>)</p>
+<p>Process an authenticated encryption operation. Opcode: 17 (<code>0x0011</code>)</p>
 <h2 id="parameters-16"><a class="header" href="#parameters-16">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
@@ -2037,7 +2099,7 @@ requested algorithm.</li>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_encrypt.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 <h1 id="psaaeaddecrypt"><a class="header" href="#psaaeaddecrypt">PsaAeadDecrypt</a></h1>
-<p>Process and authenticated decryption operation. Opcode: 18 (<code>0x0012</code>)</p>
+<p>Process an authenticated decryption operation. Opcode: 18 (<code>0x0012</code>)</p>
 <h2 id="parameters-17"><a class="header" href="#parameters-17">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
@@ -2065,7 +2127,8 @@ requested algorithm.</li>
 <li><code>PsaErrorNotSupported</code>: <code>alg</code> is not supported.</li>
 </ul>
 <h2 id="description-17"><a class="header" href="#description-17">Description</a></h2>
-<p>Authenticates and decrypts the given data using the given AEAD algorithm.</p>
+<p>Authenticates and decrypts the given data using the given AEAD algorithm. Process an authenticated
+decryption operation.</p>
 <h2 id="contract-17"><a class="header" href="#contract-17">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_decrypt.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>

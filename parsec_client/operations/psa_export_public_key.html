@@ -183,24 +183,33 @@ that is equivalent to the public key.</p>
 <p>For standard key types, the output format is as follows:</p>
 <ul>
 <li>For RSA public keys, with key type <a href="psa_key_attributes.html#rsapublickey-type"><code>RsaPublicKey</code></a>, the
-DER encoding of the representation defined by <a href="https://tools.ietf.org/html/rfc3279.html#section-2.3.1">RFC 3279
+DER encoding of the representation defined by <em>Algorithms and Identifiers for the Internet X.509
+Public Key Infrastructure Certifiate and Certificate Revocation List (CRL) Profile</em> <a href="https://tools.ietf.org/html/rfc3279.html#section-2.3.1">RFC 3279
 §2.3.1</a> as <code>RSAPublicKey</code> (<code>[1]</code>).</li>
 <li>For elliptic curve public keys, with key type
 <a href="psa_key_attributes.html#eccpublickey-type"><code>EccPublicKey</code></a>, the format depends on the <a href="psa_key_attributes.html#supported-ecc-curve-families">curve
 family</a>:
 <ul>
 <li>For Weierstrass curve families sectXX, secpXX, FRP and Brainpool, the uncompressed
-representation defined by <em>Standards for Efficient Cryptography, SEC 1: Elliptic Curve
-Cryptography</em> §2.3.3 as the content of an <code>ECPoint</code>. If <code>m</code> is the bit size associated with
-the curve, i.e. the bit size of <code>q</code> for a curve over <code>F_q</code>. The representation consists of:</li>
+representation of an elliptic curve point as an octet string defined in <em>SEC 1: Elliptic Curve
+Cryptography</em> <a href="https://www.secg.org/sec1-v2.pdf">SEC1</a> §2.3.3. If <code>m</code> is the bit size
+associated with the curve, i.e. the bit size of <code>q</code> for a curve over <code>F_q</code>. The representation
+consists of:
+<ul>
 <li>The byte <code>0x04</code>;</li>
 <li><code>x_P</code> as a <code>ceiling(m/8)</code>-byte string, big-endian;</li>
 <li><code>y_P</code> as a <code>ceiling(m/8)</code>-byte string, big-endian.</li>
+</ul>
+</li>
 <li>For Montgomery curve family, the scalar value of the ‘public key’ in little-endian order as
-defined by <a href="https://tools.ietf.org/html/rfc7748.html#section-6">RFC 7748 §6</a>. This is a
-<code>ceiling(m/8)</code>-byte string where <code>m</code> is the key size in bits.</li>
+defined by <em>Elliptic Curves for Security</em> <a href="https://tools.ietf.org/html/rfc7748.html#section-6">RFC 7748
+§6</a>. This is a <code>ceiling(m/8)</code>-byte string
+where <code>m</code> is the key size in bits.
+<ul>
 <li>This is 32 bytes for Curve25519, computed as <code>X25519(private_key, 9)</code>.</li>
 <li>This is 56 bytes for Curve448, computed as <code>X448(private_key, 5)</code>.</li>
+</ul>
+</li>
 </ul>
 </li>
 <li>For Diffie-Hellman key exchange public keys, with key types

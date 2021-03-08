@@ -170,19 +170,24 @@
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to generate</td></tr>
 <tr><td><code>attributes</code></td><td><a href="psa_key_attributes.html#keyattributes-type"><code>KeyAttributes</code></a></td><td>The attributes of the new key</td></tr>
 </tbody></table>
+<ul>
+<li>The <code>key_type</code> field of <code>attributes</code> can not be an asymmetric public key.</li>
+</ul>
 <h2 id="results"><a class="header" href="#results">Results</a></h2>
 <p>No values are returned by this operation.</p>
 <h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorAlreadyExists</code>: There is already a key with the given name.</li>
+<li><code>PsaErrorNotSupported</code>: The key type or key size is not supported.</li>
+<li><code>PsaErrorInvalidArgument</code>: The key attributes, as a whole, are invalid.</li>
 </ul>
 <h2 id="description"><a class="header" href="#description">Description</a></h2>
 <p>The key is generated randomly. Its location, policy, type and size are taken from <code>attributes</code>.</p>
 <p>The following type-specific considerations apply:</p>
 <ul>
 <li>For RSA keys (key type is <a href="psa_key_attributes.html#rsakeypair-type"><code>RsaKeyPair</code></a>), the public
-exponent is 65537. The modulus is a product of two probabilistic primes between 2^{n-1} and 2^n
-where n is the bit size specified in the attributes.</li>
+exponent is <code>65537</code>. The modulus is a product of two probabilistic primes between <code>2^{n-1}</code> and
+<code>2^n</code> where <code>n</code> is the bit size specified in the attributes.</li>
 </ul>
 <h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_generate_key.proto">Protobuf</a></p>

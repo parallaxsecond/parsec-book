@@ -185,27 +185,28 @@
 that is equivalent to key.</p>
 <p>For standard key types, the output format is as follows:</p>
 <ul>
-<li>For symmetric keys, including MAC keys, the format is the raw bytes of the key.</li>
+<li>For symmetric keys, including HMAC keys, the format is the raw bytes of the key.</li>
 <li>For <a href="psa_key_attributes.html#des-type"><code>DES</code></a>, the key data consists of 8 bytes. The parity bits
 must be correct.</li>
 <li>For <a href="psa_key_attributes.html#des-type"><code>Triple-DES</code></a>, the format is the concatenation of the two or
 three DES keys.</li>
 <li>For RSA key pairs, with key type <a href="psa_key_attributes.html#rsakeypair-type"><code>RsaKeyPair</code></a>, the format
-is the non-encrypted DER encoding of the representation defined by PKCS#1 in <a href="https://tools.ietf.org/html/rfc8017.html"><code>RFC 8017</code></a> as RSAPrivateKey, version 0 (<code>[1]</code>).</li>
+is the non-encrypted DER encoding of the representation defined in <em>PKCS #1: RSA Cryptography
+Specifications Version 2.2</em> <a href="https://tools.ietf.org/html/rfc8017.html"><code>RFC 8017</code></a> as
+<code>RSAPrivateKey</code>, version 0 (<code>[1]</code>).</li>
 <li>For elliptic curve key pairs, with key type <a href="psa_key_attributes.html#ecckeypair-type"><code>EccKeyPair</code></a>,
 the format is a representation of the private value.
 <ul>
 <li>For Weierstrass curve families <code>sectXX</code>, <code>secpXX</code>, <code>FRP</code> and <code>Brainpool</code>, the content of the
-privateKey field of the ECPrivateKey format defined by <a href="https://tools.ietf.org/html/rfc5915.html"><code>RFC 5915</code></a>. This is a ceiling(m/8)-byte string in
-big-endian order where m is the key size in bits.</li>
+<code>privateKey</code> field of the <code>ECPrivateKey</code> format defined by <em>Elliptic Curve Private Key
+Structure</em> <a href="https://tools.ietf.org/html/rfc5915.html"><code>RFC 5915</code></a>. This is a
+<code>ceiling(m/8)</code>-byte string in big-endian order where <code>m</code> is the key size in bits.</li>
 <li>For Montgomery curve family, the scalar value of the ‘private key’ in little-endian order
-as defined by <a href="https://tools.ietf.org/html/rfc7748.html#section-6">RFC 7748 §6</a>. This is a
-<code>ceiling(m/8)</code>-byte string where <code>m</code> is the key size in bits.
-<ul>
-<li>This is 32 bytes for Curve25519, computed as <code>X25519(private_key, 9)</code>.</li>
-<li>This is 56 bytes for Curve448, computed as <code>X448(private_key, 5)</code>.</li>
-</ul>
-</li>
+as defined by <em>Elliptic Curves for Security</em> <a href="https://tools.ietf.org/html/rfc7748.html#section-6">RFC 7748
+§6</a>. The value must have the forced bits
+set to zero or one as specified by <code>decodeScalar25519()</code> and <code>decodeScalar448()</code> in <a href="https://tools.ietf.org/html/rfc7748.html#section-5">RFC7748
+§5</a>. This is a <code>ceiling(m/8)</code>-byte string
+where <code>m</code> is the key size in bits. This is 32 bytes for Curve25519, and 56 bytes for Curve448.</li>
 </ul>
 </li>
 <li>For Diffie-Hellman key exchange key pairs, with key types
@@ -216,17 +217,16 @@ size in bytes, and leading zeroes are not stripped.</li>
 </ul>
 <p><code>[1]</code>: The <code>RSAPrivateKey</code> representation is:</p>
 <pre><code>RSAPrivateKey ::= SEQUENCE {
-             version           Version,
-             modulus           INTEGER,  -- n
-             publicExponent    INTEGER,  -- e
-             privateExponent   INTEGER,  -- d
-             prime1            INTEGER,  -- p
-             prime2            INTEGER,  -- q
-             exponent1         INTEGER,  -- d mod (p-1)
-             exponent2         INTEGER,  -- d mod (q-1)
-             coefficient       INTEGER,  -- (inverse of q) mod p
-             otherPrimeInfos   OtherPrimeInfos OPTIONAL
-         }
+    version           INTEGER,  -- must be 0
+    modulus           INTEGER,  -- n
+    publicExponent    INTEGER,  -- e
+    privateExponent   INTEGER,  -- d
+    prime1            INTEGER,  -- p
+    prime2            INTEGER,  -- q
+    exponent1         INTEGER,  -- d mod (p-1)
+    exponent2         INTEGER,  -- d mod (q-1)
+    coefficient       INTEGER,  -- (inverse of q) mod p
+}
 </code></pre>
 <h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_key.proto">Protobuf</a></p>

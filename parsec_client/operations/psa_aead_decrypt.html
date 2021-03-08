@@ -164,7 +164,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="psaaeaddecrypt"><a class="header" href="#psaaeaddecrypt">PsaAeadDecrypt</a></h1>
-<p>Process and authenticated decryption operation. Opcode: 18 (<code>0x0012</code>)</p>
+<p>Process an authenticated decryption operation. Opcode: 18 (<code>0x0012</code>)</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
@@ -192,7 +192,8 @@ requested algorithm.</li>
 <li><code>PsaErrorNotSupported</code>: <code>alg</code> is not supported.</li>
 </ul>
 <h2 id="description"><a class="header" href="#description">Description</a></h2>
-<p>Authenticates and decrypts the given data using the given AEAD algorithm.</p>
+<p>Authenticates and decrypts the given data using the given AEAD algorithm. Process an authenticated
+decryption operation.</p>
 <h2 id="contract"><a class="header" href="#contract">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_aead_decrypt.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
