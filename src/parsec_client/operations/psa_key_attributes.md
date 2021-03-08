@@ -44,54 +44,105 @@ A `KeyType` type can contain one of the following key types:
 Not a valid key type for any cryptographic operation but can be used to store arbitrary data in the
 key store.
 
+The bit size of a raw key must be a non-zero multiple of 8.
+
 ### Hmac type
 
 HMAC key. The key policy determines which underlying hash algorithm the key can be used for.
+
+The bit size of an HMAC key must be a non-zero multiple of 8. An HMAC key is typically the same size
+as the output of the underlying hash algorithm. An HMAC key that is longer than the block size of
+the underlying hash algorithm will be hashed before use.
 
 ### Derive type
 
 A secret key for derivation. The key policy determines which key derivation algorithm the key can be
 used for.
 
+The bit size of a secret for key derivation must be a non-zero multiple of 8.
+
 ### Aes type
 
-Key for a cipher, AEAD or MAC algorithm based on the AES block cipher. The size of the key can be 16
-bytes (AES-128), 24 bytes (AES-192) or 32 bytes (AES-256).
+Key for a cipher, AEAD or MAC algorithm based on the AES block cipher.
+
+The size of the key is related to the AES algorithm variant. For algorithms except the XTS block
+cipher mode, the following key sizes are used:
+
+- AES-128 uses a 16-byte key: `key_bits` = 128
+- AES-192 uses a 24-byte key: `key_bits` = 192
+- AES-256 uses a 32-byte key: `key_bits` = 256
+
+For the XTS block cipher mode, the following key sizes are used:
+
+- AES-128-XTS uses two 16-byte keys: `key_bits` = 256
+- AES-192-XTS uses two 24-byte keys: `key_bits` = 384
+- AES-256-XTS uses two 32-byte keys: `key_bits` = 512
+
+The AES block cipher is defined in `FIPS Publication 197: Advanced Encryption Standard (AES)`
+[FIPS197](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf).
 
 ### Des type
 
-Key for a cipher or MAC algorithm based on DES or 3DES (Triple-DES). The size of the key can be 8
-bytes (single DES), 16 bytes (2-key 3DES) or 24 bytes (3-key 3DES).
+Key for a cipher or MAC algorithm based on DES or 3DES (Triple-DES).
+
+The size of the key determines which DES algorithm is used:
+
+- Single DES uses an 8-byte key: `key_bits` = 64
+- 2-key 3DES uses a 16-byte key: `key_bits` = 128
+- 3-key 3DES uses a 24-byte key: `key_bits` = 192
 
 **Warning**: Single DES and 2-key 3DES are weak and strongly deprecated and are only recommended for
 decrypting legacy data. 3-key 3DES is weak and deprecated and is only recommended for use in legacy
 protocols.
 
+The DES and 3DES block ciphers are defined in *NIST Special Publication 800-67: Recommendation for
+the Triple Data Encryption Algorithm (TDEA) Block Cipher*
+[SP800-67](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-67r2.pdf).
+
 ### Camellia type
 
 Key for a cipher, AEAD or MAC algorithm based on the Camellia block cipher.
 
+The size of the key is related to the Camellia algorithm variant. For algorithms except the XTS
+block cipher mode, the following key sizes are used:
+
+- Camellia-128 uses a 16-byte key: `key_bits` = 128
+- Camellia-192 uses a 24-byte key: `key_bits` = 192
+- Camellia-256 uses a 32-byte key: `key_bits` = 256
+
+For the XTS block cipher mode, the following key sizes are used:
+
+- Camellia-128-XTS uses two 16-byte keys: `key_bits` = 256
+- Camellia-192-XTS uses two 24-byte keys: `key_bits` = 384
+- Camellia-256-XTS uses two 32-byte keys: `key_bits` = 512
+
+The Camellia block cipher is defined in *Specification of Camellia — a 128-bit Block Cipher*
+[NTT-CAM](https://info.isl.ntt.co.jp/crypt/eng/camellia/specifications) and also described in *A
+Description of the Camellia Encryption Algorithm* [RFC3713](https://tools.ietf.org/html/rfc3713).
+
 ### Arc4 type
 
-Key for the RC4 stream cipher. Use a [`Cipher`](psa_algorithm.md#cipher-algorithm) algorithm with
-Stream Cipher variant to use this key with the ARC4 cipher.
+Key for the RC4 stream cipher.
+
+The ARC4 cipher supports key sizes between 40 and 2048 bits, that are multiples of 8 (5 to 256
+bytes).
+
+Use a [`Cipher`](psa_algorithm.md#cipher-algorithm) algorithm with Stream Cipher variant to use this
+key with the ARC4 cipher.
 
 **Warning**: The RC4 cipher is weak and deprecated and is only recommended for use in legacy
 protocols.
 
 ### Chacha20 type
 
-Key for the ChaCha20 stream cipher or the Chacha20-Poly1305 AEAD algorithm. ChaCha20 and the
-ChaCha20_Poly1305 construction are defined in [RFC 7539](https://tools.ietf.org/html/rfc7539.html).
-Variants of these algorithms are defined by the length of the nonce:
+Key for the ChaCha20 stream cipher or the Chacha20-Poly1305 AEAD algorithm.
 
-- Implementations must support a 12-byte nonce, as defined in [RFC
-   7539](https://tools.ietf.org/html/rfc7539.html).
-- Implementations can optionally support an 8-byte nonce, the original variant.
-- It is recommended that implementations do not support other sizes of nonce.
+The ChaCha20 key size is 256 bits (32 bytes).
 
-Use [`Cipher`](psa_algorithm.md#cipher-algorithm) algorithm with Stream Cipher variant to use this
-key with the ChaCha20 cipher for unauthenticated encryption.
+- Use Cipher algorithm with Stream Cipher variant to use this key with the ChaCha20 cipher for
+   unauthenticated encryption.
+- Use Aead algorithm with ChaCha20-Poly1305 variant to use this key with the ChaCha20 cipher and
+   Poly1305 authenticator for AEAD.
 
 ### RsaPublicKey type
 
@@ -172,6 +223,10 @@ curve used for each family is given by the `key_bits` field of the key attribute
 
 Enumeration of Diffie Hellman group families supported. They are needed to create a DH key. The
 specific group used for each family is given by the `key_bits` field of the key attributes.
+
+- **RFC7919.** Finite-field Diffie-Hellman groups defined for TLS in RFC 7919. This family includes
+   groups with the following key sizes (in bits): 2048, 3072, 4096, 6144, 8192. Keys is this group
+   can only be used with the FFDH key agreement algorithm.
 
 ## KeyPolicy type
 

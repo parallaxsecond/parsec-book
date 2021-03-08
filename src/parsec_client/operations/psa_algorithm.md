@@ -121,7 +121,7 @@ Asymmetric signature algorithms. Supported algorithms:
 
 - **RSA PKCS#1 v1.5 signature with hashing.** This is the signature scheme defined by [RFC
    8017](https://tools.ietf.org/html/rfc8017.html) (PKCS#1: RSA Cryptography Specifications) under
-   the name RSASSA-PKCS1-v1_5. Uses one of the hash algorithm supported.
+   the name `RSASSA-PKCS1-v1_5`. Uses one of the hash algorithm supported.
 - **Raw PKCS#1 v1.5 signature.** The input to this algorithm is the DigestInfo structure used by
    [RFC 8017](https://tools.ietf.org/html/rfc8017.html) §9.2 (PKCS#1: RSA Cryptography
    Specifications), in steps 3–6.

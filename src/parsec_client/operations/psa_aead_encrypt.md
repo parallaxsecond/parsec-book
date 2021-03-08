@@ -1,6 +1,6 @@
 # PsaAeadEncrypt
 
-Process and authenticated encryption operation. Opcode: 17 (`0x0011`)
+Process an authenticated encryption operation. Opcode: 17 (`0x0011`)
 
 ## Parameters
 

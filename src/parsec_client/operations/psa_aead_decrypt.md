@@ -1,6 +1,6 @@
 # PsaAeadDecrypt
 
-Process and authenticated decryption operation. Opcode: 18 (`0x0012`)
+Process an authenticated decryption operation. Opcode: 18 (`0x0012`)
 
 ## Parameters
 
@@ -33,7 +33,8 @@ Process and authenticated decryption operation. Opcode: 18 (`0x0012`)
 
 ## Description
 
-Authenticates and decrypts the given data using the given AEAD algorithm.
+Authenticates and decrypts the given data using the given AEAD algorithm. Process an authenticated
+decryption operation.
 
 ## Contract
 
