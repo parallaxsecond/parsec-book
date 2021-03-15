@@ -41,7 +41,6 @@
       - [ListClients](parsec_client/operations/list_clients.md)
       - [DeleteClient](parsec_client/operations/delete_client.md)
 - [Parsec for service developers](parsec_service/README.md)
-   - [System Architecture](parsec_service/system_architecture.md)
    - [Interfaces and Dataflow](parsec_service/interfaces_and_dataflow.md)
    - [Source Code Structure](parsec_service/source_code_structure.md)
    - [Listeners](parsec_service/listeners.md)
@@ -63,5 +62,7 @@
    - [Pull request checklist](contributing/pr_checklist.md)
    - [How to add operations to Parsec](contributing/adding_new_operation_how_to.md)
    - [Package management and versioning guide](contributing/package_management.md)
+- [Archive](archive/README.md)
+   - [System Architecture](archive/system_architecture.md)
 
 *Copyright 2019 Contributors to the Parsec project.*

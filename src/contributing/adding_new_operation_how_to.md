@@ -122,9 +122,9 @@ Inline functions and macros require a shim. Add the inline function and macro de
 [`shim.h`](https://github.com/parallaxsecond/rust-psa-crypto/blob/master/psa-crypto-sys/src/c/shim.h),
 [`shim.c`](https://github.com/parallaxsecond/rust-psa-crypto/blob/master/psa-crypto-sys/src/c/shim.c)
 and
-[`shim_methods.rs`](https://github.com/parallaxsecond/rust-psa-crypto/blob/master/psa-crypto-sys/src/shim_methods.rs).
+[`shim.rs`](https://github.com/parallaxsecond/rust-psa-crypto/blob/master/psa-crypto-sys/src/shim.rs).
 When adding entries to
-[`shim_methods.rs`](https://github.com/parallaxsecond/rust-psa-crypto/blob/master/psa-crypto-sys/src/shim_methods.rs),
+[`shim.rs`](https://github.com/parallaxsecond/rust-psa-crypto/blob/master/psa-crypto-sys/src/shim.rs),
 take note of where you place
 [`unsafe`](https://doc.rust-lang.org/book/ch19-01-unsafe-rust.html#using-extern-functions-to-call-external-code).
 If the [PSA API](https://armmbed.github.io/mbed-crypto/html/index.html) specification states that

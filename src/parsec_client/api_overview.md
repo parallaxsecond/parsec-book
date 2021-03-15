@@ -157,7 +157,7 @@ the **authentication** field of the request. The token is reusable for a specifi
 after which a new one must be issued. The application identity is contained in the token and can be
 extracted by the service after verifying the authenticity of the token. A more detailed description
 of authentication tokens and their lifecycle is present in the [**sytem architecture
-specification**](../parsec_service/system_architecture.md).
+specification**](../archive/system_architecture.md).
 
 With **Unix peer credentials**, the client authenticates by self-declaring its Unix user identifier
 (UID) inside the **authentication** field of the request. The Parsec service verifies that this

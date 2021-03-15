@@ -3,8 +3,6 @@
 Find in this sections guides for those looking to work hands-on with the Parsec service source code.
 They cover the following concepts:
 
-- [System Architecture](system_architecture.md) - overview of the Parsec system architecture,
-   including all external components needed for correct operation
 - [Interfaces and Dataflow](interfaces_and_dataflow.md) - description of all the components forming
    the Parsec service and their interactions
 - [Source Code Structure](source_code_structure.md) - overview of Parsec service source code
