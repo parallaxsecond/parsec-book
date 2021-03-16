@@ -142,7 +142,7 @@ separate **identity provider** service. A Parsec-enabled host must contain an id
 service in addition to the Parsec service itself.
 
 For more information about application identities and the identity provider, please refer to the
-[**system architecture**](parsec_service/system_architecture.md) document.
+[**system architecture**](archive/system_architecture.md) document.
 
 # Pluggable Back-End Modules
 

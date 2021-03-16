@@ -5,8 +5,8 @@ Rust](https://www.rust-lang.org/tools/install).
 
 Because the [providers](providers.md) supported by Parsec are dependent on libraries and/or hardware
 features present on the platform, the build is fragmented through Rust features so that the
-resulting binary only contains the desired providers. Currently the service provides the following
-features: `mbed-crypto-provider`, `pkcs11-provider`, and `tpm-provider`. Please check the
+resulting binary only contains the desired providers. Currently the service provides some of the
+following features: `mbed-crypto-provider`, `pkcs11-provider`, and `tpm-provider`. Please check the
 [dependencies](#dependencies) for what is needed to build each provider.
 
 The `mbed-crypto-provider` feature is going to be used as an example in this guide. This can be
@@ -93,5 +93,19 @@ hence a library implementing the PKCS 11 API is needed.
 The TPM provider will try to build the `tss-esapi` crate which needs built TSS 2.0 esys and tctildr
 libraries. It will use `pkg-config` to find them using the names `tss2-esys` and `tss2-tctildr`.
 Make sure you also follow the requirements of the [tss-esapi crate](https://docs.rs/tss-esapi).
+
+### CryptoAuth Library
+
+TODO
+
+### Trusted Service
+
+TODO
+
+## Cross-compilation
+
+The Parsec service can be cross-compiled to other target triplets. You might need to install a
+cross-compilation C toolchain for the target you want to compile for. The default ones are indicated
+in the `.cargo/config` file.
 
 *Copyright 2019 Contributors to the Parsec project.*

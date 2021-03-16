@@ -30,18 +30,8 @@ intentionally a very close correpondence between the two APIs, and the contracts
 are identical in the majority of cases. However, the service also exposes a number of new operations
 that are designed to help clients consume it more easily.
 
-The source code is organised into three main components: the
-[**service**](https://github.com/parallaxsecond/parsec), the
-[**client**](https://github.com/parallaxsecond/parsec-client-rust) and the
-[**interface**](https://github.com/parallaxsecond/parsec-interface-rs). Each of these components is
-distributed as a GitHub repository.
-
-Other items are the [**book**](https://github.com/parallaxsecond/parsec-book) which contains all of
-the documentation for the project (some of which you are reading now) and the
-[**parsec-operations**](https://github.com/parallaxsecond/parsec-operations) repository which
-contains the language-agnostic contracts for communicating with the service.
-
-The remainder of the document will examine the contents of these repositories.
+The Parsec project is organised over [multiple repositories](https://github.com/parallaxsecond). The
+remainder of the document will examine the contents of some of these.
 
 ## The Parsec Repository
 
@@ -55,8 +45,8 @@ build system. A Rust crate can be compiled into either a library or an executabl
 composed of a series of modules - represented by folders - defining the major components of the
 system.
 
-The `bin` directory defines the executable which links all the components together and runs the main
-loop of the service.
+The `src/bin` directory defines the executable which links all the components together and runs the
+main loop of the service.
 
 The `front` module houses the code for the front-end functionality of the service. The front-end is
 responsible for listening on the endpoint, such as a domain socket, and using the [wire
@@ -97,8 +87,8 @@ client applications (on the same host) can locate the endpoint and make API call
 
 ### The Providers Sub-Folder
 
-The `providers` folder contains the provider modules, which connect the service back-end with the
-hardware or software security facilities of supported target platforms.
+The `src/providers` folder contains the provider modules, which connect the service back-end with
+the hardware or software security facilities of supported target platforms.
 
 Currently each provider sits in its own module implementing all the functionality needed to mediate
 between the PSA interface and the platform it supports. This generally involves two types of
@@ -196,6 +186,6 @@ users`](../parsec_users.md) page contains a list of currently available client l
 Please refer to the following diagram to understand the overall code structure and the dependency
 arcs between the modules.
 
-![Repository Map](diagrams/source_code_structure.png)
+![Repository Map](diagrams/source_code_structure.svg)
 
 *Copyright 2019 Contributors to the Parsec project.*

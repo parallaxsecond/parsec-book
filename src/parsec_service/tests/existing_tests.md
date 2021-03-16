@@ -1,5 +1,8 @@
 # List of existing tests
 
+The code coverage information of some of Parsec repositories can be found
+[here](https://codecov.io/gh/parallaxsecond).
+
 ## End-to-end testing
 
 These tests are meant to be executed on a running Parsec service and using a Parsec client to

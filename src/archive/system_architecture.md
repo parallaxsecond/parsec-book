@@ -315,10 +315,10 @@ relationships that were defined above.
 #### Unix Peer Credentials
 
 Another solution to the authentication problem is to use Unix peer credentials with the [Unix peer
-credentials authenticator](authenticators.md). Unix peer credentials are connection metadata which
-specify the effective Unix user ID (UID) and group ID (GID) of the connecting process. When using a
-Unix domain sockets tranport, the endpoints can get each other's UID and GID via the operating
-system.
+credentials authenticator](../parsec_service/authenticators.md). Unix peer credentials are
+connection metadata which specify the effective Unix user ID (UID) and group ID (GID) of the
+connecting process. When using a Unix domain sockets tranport, the endpoints can get each other's
+UID and GID via the operating system.
 
 In Unix peer credential authentication, the connecting process self-declares its UID inside the
 authentication header of the request. The Parsec service validates that the self-declared UID

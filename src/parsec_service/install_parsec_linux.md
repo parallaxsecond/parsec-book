@@ -6,13 +6,14 @@ up correctly so that Parsec is installed respecting the operational mitigations 
 model](../parsec_security/parsec_threat_model/threat_model.md).
 
 If your Linux system uses systemd to manage daemons, you can follow these steps. `$DESIRED_FEATURES`
-can be a space or comma-separated subset of: `mbed-crypto-provider`, `pkcs11-provider`, and
-`tpm-provider`. Choose the providers you want to install depending on what is available on the
-platform.
+can be a space or comma-separated subset of `*-provider` and `*-authenticator` features. Choose the
+providers you want to install depending on what is available on the platform. Only one authenticator
+can be chosen at runtime, the Unix Peer Credentials one is compiled in by default.
 
 This guide will assume that an authenticator is used. If you wish to install Parsec with Direct
 Authentication and mutually trusted clients, please follow this guide first and then go to the
-[dedicated section](#using-direct-authentication) for the subsequent steps.
+[dedicated section](#using-direct-authentication) for the subsequent steps. You will need to add the
+`direct-authenticator` feature to your `$DESIRED_FEATURES` variable.
 
 ## From an admin user with privileges
 
@@ -63,7 +64,7 @@ In its home directory, clone and compile Parsec. If a Rust toolchain is not avai
 system, it will need to be [installed](https://www.rust-lang.org/tools/install) for that specific
 user.
 
-Below is an example with Parsec 0.5.0, update with the version you want!
+Below is an example with Parsec 0.6.0, update with the version you want!
 
 ```
 git clone --branch 0.6.0 https://github.com/parallaxsecond/parsec

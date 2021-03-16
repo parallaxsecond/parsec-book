@@ -14,7 +14,7 @@ diagram. The shaded areas below can also be used to cross-reference the data flo
 code structure**](source_code_structure.md) document, which can help with finding the relevant
 definitions and implementations.
 
-![Data Flow Diagram](diagrams/interfaces_and_dataflow.png)
+![Data Flow Diagram](diagrams/interfaces_and_dataflow.svg)
 
 ## The Data Flow Backbone
 

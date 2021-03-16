@@ -12,8 +12,7 @@ Parsec Client Libraries are available in the following languages:
    [`BasicClient`](https://docs.rs/parsec-client/*/parsec_client/core/basic_client/struct.BasicClient.html).
 - [C](https://github.com/parallaxsecond/parsec-se-driver): support is currently being built to use
    Parsec through the PSA Crypto API
-- [Go](https://github.com/parallaxsecond/parsec-client-go) (not currently working but contributions
-   are welcome!)
+- [Go](https://github.com/parallaxsecond/parsec-client-go) (work in progress!)
 
 Also have a look at [`parsec-tool`](https://github.com/parallaxsecond/parsec-tool), a command-line
 client to access Parsec from the terminal.

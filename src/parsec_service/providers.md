@@ -60,4 +60,18 @@ library that can drive the crypto engine.
 Connecting to the PKCS11 module requires a slot number and, ideally, a PIN number that secures the
 slot.
 
+## Microchip CryptoAuthentication Library Provider
+
+**Provider UUID: b8ba81e2-e9f7-4bdd-b096-a29d0019960c**
+
+This provider allows to use the ATECCx08 cryptographic chip using a wrapper around the
+CryptoAuthentication Library.
+
+## Trusted Service Provider
+
+**Provider UUID: 71129441-508a-4da6-b6e8-7b98a777e4c0**
+
+This provider exposes functionaility provided by the Crypto Trusted Service running in a Trusted
+Execution Environment.
+
 *Copyright 2019 Contributors to the Parsec project.*
