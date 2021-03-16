@@ -14,8 +14,8 @@ sections for details.
 | [ListOpcodes](list_opcodes.md)                    | ✅  | ❎         | ❎     | ❎     | ❎             | ❎                |
 | [ListAuthenticators](list_authenticators.md)      | ✅  | ❎         | ❎     | ❎     | ❎             | ❎                |
 | [ListKeys](list_keys.md)                          | ✅  | ❎         | ❎     | ❎     | ❎             | ❎                |
-| [DeleteClient](delete_client.md)*                 | ✅  | ❎         | ❎     | ❎     | ❎             | ❎                |
-| [ListClients](list_clients.md)*                   | ✅  | ❎         | ❎     | ❎     | ❎             | ❎                |
+| [DeleteClient](delete_client.md)                  | ✅  | ❎         | ❎     | ❎     | ❎             | ❎                |
+| [ListClients](list_clients.md)                    | ✅  | ❎         | ❎     | ❎     | ❎             | ❎                |
 | [PsaImportKey](psa_import_key.md)                 | ❎  | ✅         | ✅     | ✅     | ✅             | ❌                |
 | [PsaGenerateKey](psa_generate_key.md)             | ❎  | ✅         | ✅     | ✅     | ✅             | ✅                |
 | [PsaDestroyKey](psa_destroy_key.md)               | ❎  | ✅         | ✅     | ✅     | ✅             | ✅                |
@@ -42,7 +42,6 @@ sections for details.
 - ❎: The operation is not meant to be implemented on this provider (core operation on a crypto
    provider or opposite).
 - ❌: The provider does not currently support the operation.
-- *: Admin operation.
 
 ### Key types support
 
@@ -51,20 +50,20 @@ for key management operations.
 
 | Key type \ Provider | Mbed Crypto | PKCS 11 | TPM 2.0 | Trusted Service | CryptoAuth library |
 |---------------------|-------------|---------|---------|-----------------|--------------------|
-| RawData             | ✅         | ❌     | ❌     | ✅             | ✅                |
+| RawData             | ✅         | ❌     | ❌     | ❌             | ✅                |
 | Hmac                | ❌         | ❌     | ❌     | ❌             | ❌                |
 | Derive              | ❌         | ❌     | ❌     | ❌             | ❌                |
-| Aes                 | ✅         | ❌     | ❌     | ✅             | ✅                |
+| Aes                 | ✅         | ❌     | ❌     | ❌             | ✅                |
 | Des                 | ❌         | ❌     | ❌     | ❌             | ❌                |
-| Camellia            | ✅         | ❌     | ❌     | ✅             | ❌                |
+| Camellia            | ✅         | ❌     | ❌     | ❌             | ❌                |
 | Arc4                | ❌         | ❌     | ❌     | ❌             | ❌                |
-| Chacha20            | ✅         | ❌     | ❌     | ✅             | ❌                |
+| Chacha20            | ✅         | ❌     | ❌     | ❌             | ❌                |
 | RsaPublicKey        | ✅         | ✅     | ✅     | ✅             | ❌                |
 | RsaKeyPair          | ✅         | ✅     | ✅     | ✅             | ❌                |
 | EccKeyPair          | ✅         | ❌     | ✅     | ✅             | ✅                |
 | EccPublicKey        | ✅         | ❌     | ✅     | ✅             | ✅                |
-| DhKeyPair           | ✅         | ❌     | ❌     | ✅             | ❌                |
-| DhPublicKey         | ✅         | ❌     | ❌     | ✅             | ❌                |
+| DhKeyPair           | ✅         | ❌     | ❌     | ❌             | ❌                |
+| DhPublicKey         | ✅         | ❌     | ❌     | ❌             | ❌                |
 
 ### Elliptic curve families
 
@@ -134,9 +133,9 @@ cryptographic operations they could be used in.
 
 | Algorithm \ Provider | Mbed Crypto | PKCS 11 | TPM 2.0 | Trusted Service | CryptoAuth library |
 |----------------------|-------------|---------|---------|-----------------|--------------------|
-| CCM                  | ✅         | ❌     | ❌     | ✅             | ❌                |
-| GCM                  | ✅         | ❌     | ❌     | ✅             | ❌                |
-| ChaCha20-Poly1305    | ✅         | ❌     | ❌     | ✅             | ❌                |
+| CCM                  | ✅         | ❌     | ❌     | ❌             | ❌                |
+| GCM                  | ✅         | ❌     | ❌     | ❌             | ❌                |
+| ChaCha20-Poly1305    | ✅         | ❌     | ❌     | ❌             | ❌                |
 
 #### Asymmetric signature algorithms
 
@@ -153,15 +152,15 @@ cryptographic operations they could be used in.
 
 | Algorithm \ Provider       | Mbed Crypto | PKCS 11 | TPM 2.0 | Trusted Service | CryptoAuth library |
 |----------------------------|-------------|---------|---------|-----------------|--------------------|
-| RSA PKCS#1 v1.5 encryption | ✅         | ✅     | ✅     | ✅             | ❌                |
-| RSA OAEP encryption        | ✅         | ✅     | ✅     | ✅             | ❌                |
+| RSA PKCS#1 v1.5 encryption | ✅         | ✅     | ✅     | ❌             | ❌                |
+| RSA OAEP encryption        | ✅         | ✅     | ✅     | ❌             | ❌                |
 
 #### Key agreement algorithms
 
 | Algorithm \ Provider | Mbed Crypto | PKCS 11 | TPM 2.0 | Trusted Service | CryptoAuth library |
 |----------------------|-------------|---------|---------|-----------------|--------------------|
-| FFDH                 | ✅         | ❌     | ❌     | ✅             | ❌                |
-| ECDH                 | ✅         | ❌     | ❌     | ✅             | ❌                |
+| FFDH                 | ✅         | ❌     | ❌     | ❌             | ❌                |
+| ECDH                 | ✅         | ❌     | ❌     | ❌             | ❌                |
 
 ## Increasing PSA API coverage
 

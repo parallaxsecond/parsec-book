@@ -6,9 +6,9 @@ up correctly so that Parsec is installed respecting the operational mitigations 
 model](../parsec_security/parsec_threat_model/threat_model.md).
 
 If your Linux system uses systemd to manage daemons, you can follow these steps. `$DESIRED_FEATURES`
-can be a space or comma-separated subset of `XXX-provider` and `XXX-authenticator` features. Choose
-the providers you want to install depending on what is available on the platform. Only one
-authenticator can be chosen at runtime, the Unix Peer Credentials one is compiled in by default.
+can be a space or comma-separated subset of `*-provider` and `*-authenticator` features. Choose the
+providers you want to install depending on what is available on the platform. Only one authenticator
+can be chosen at runtime, the Unix Peer Credentials one is compiled in by default.
 
 This guide will assume that an authenticator is used. If you wish to install Parsec with Direct
 Authentication and mutually trusted clients, please follow this guide first and then go to the
