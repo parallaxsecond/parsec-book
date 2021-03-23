@@ -35,9 +35,7 @@ Special care should also be taken around the bits of code that enforce key polic
 ## Documentation
 
 If changes are made to the authentication process, [the API
-overview](https://parallaxsecond.github.io/parsec-book/parsec_client/api_overview.html#authentication-and-sessions),
-[system
-architecture](https://parallaxsecond.github.io/parsec-book/parsec_service/system_architecture.html#authentication)
+overview](https://parallaxsecond.github.io/parsec-book/parsec_client/api_overview.html#authentication-and-sessions)
 and
 [authenticators](https://parallaxsecond.github.io/parsec-book/parsec_service/authenticators.html)
 pages should be checked.

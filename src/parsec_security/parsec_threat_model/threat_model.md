@@ -2,8 +2,7 @@
 
 This document presents the generic Parsec Threat Model in a multi-tenant environment with an
 Identity Provider, as envisaged in the [System
-Architecture](https://parallaxsecond.github.io/parsec-book/parsec_service/system_architecture.html#participating-components-and-their-roles)
-page.
+Architecture](../../archive/system_architecture.md#participating-components-and-their-roles) page.
 
 Parsec could also be deployed in different configurations with other types of authentication in
 place and thus with other requirements for the host environment. The other configurations that have
