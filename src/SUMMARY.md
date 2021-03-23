@@ -2,6 +2,9 @@
 
 - [Introduction](README.md)
 - [Overview](overview.md)
+- [Getting Started](getting_started/README.md)
+   - [Quickstart for Linux on x86](getting_started/linux_x86.md)
+   - [Quickstart using a Docker container](getting_started/docker.md)
 - [Parsec for users](parsec_users.md)
 - [Parsec for client developers](parsec_client/README.md)
    - [API Overview](parsec_client/api_overview.md)

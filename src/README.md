@@ -5,8 +5,11 @@ provide a common API to secure services in a platform-agnostic way.
 
 Find here all the technical documentation of Parsec, alongside user and developer guides.
 
-Go straight to the [overview](overview.md) to learn more about the project! Then, depending on what
-you want to know, you can go to the [users](parsec_users.md), [client
+Go straight to the [overview](overview.md) to learn more about the project!
+
+Check out the [Getting Started guides](getting_started) to quickly try out Parsec!
+
+Then, depending on what you want to know, you can go to the [users](parsec_users.md), [client
 developers](parsec_client/README.md), [service developers](parsec_service/README.md) or
 [security](parsec_security/README.md) sections.
 
