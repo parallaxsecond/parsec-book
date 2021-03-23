@@ -20,7 +20,7 @@ One instance of the core provider must always be running with a provider ID of z
 
 **Provider UUID: 1c1139dc-ad7c-47dc-ad6b-db6fdb466552**
 
-The [Mbed Crypto](https://os.mbed.com/docs/mbed-os/v6.3/apis/mbed-crypto.html) provider is a
+The [Mbed Crypto](https://os.mbed.com/docs/mbed-os/v6.9/apis/mbed-crypto.html) provider is a
 software-based provider built on top of Mbed Crypto - the reference implementation of the PSA
 cryptography specification. Mbed Crypto is loaded as a static library and executes with the rest of
 the service in user-space.
