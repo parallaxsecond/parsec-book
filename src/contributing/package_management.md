@@ -39,11 +39,6 @@ to publish a crate, check out the [Dependency management](#dependency-management
 Once you are able to publish crates you can start doing so, but being aware of the following facts
 is helpful.
 
-- If the crate you are publishing is new or has major changes in its build steps, its documentation
-   might not be built properly by docs.rs. This is because docs.rs has its own build system where
-   crates are built in complete isolation from the internet and with a set of dependencies that
-   might not cover the ones you require. Check out their documentation
-   [here](https://docs.rs/about/builds).
 - Once you have settled on a crate to upstream, make sure you are on the most recent version of the
    main branch (e.g. `master`) - you should have no uncommited changes lingering.
 - Run a `cargo publish --dry-run` - this ensures that the publishing process is possible with the
@@ -57,6 +52,23 @@ is helpful.
 - Once the version change is on the main branch, run another dry-run publishing, followed by the
    real operation. Once that is complete, tag the latest commit and upstream the tag.
 - Repeat these steps for every crate along the way in the dependency tree.
+- If the crate you are publishing is new or has major changes in its build steps, its documentation
+   might not be built properly by docs.rs. This is because docs.rs has its own build system where
+   crates are built in complete isolation from the internet and with a set of dependencies that
+   might not cover the ones you require. Check out their documentation
+   [here](https://docs.rs/about/builds). If you want to be extra-careful and sure that your
+   documentation will build successfully, you can set up a local `docs.rs` and attempt to build your
+   crate. You can find the instructions
+   [here](https://github.com/rust-lang/docs.rs#getting-started). Follow them up to setting up the
+   external services, then run the command for building a local crate from
+   [here](https://github.com/rust-lang/docs.rs#build-subcommand). Be advised that setting up the
+   docs.rs build locally requires 10 GiB of disk space (or more) and is quite slow the first time
+   around, but caching helps with subsequent builds. It is therefore not recommended for CI runs,
+   though manually triggered builds might be ok. Also be advised that even if the build fails, the
+   command itself will **not** fail - instead, you have to either visually check that the crate was
+   built successfully, or to look for a string marking a successful build, e.g. `cargo run -- build
+   crate tss-esapi-sys 0.1.1 2>&1 >/dev/null | grep "\[INFO\] rustwide::cmd: \[stderr\] Finished
+   dev"`.
 
 ### Dependency management
 
