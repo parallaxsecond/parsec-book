@@ -22,8 +22,9 @@ instead](../parsec_service/install_parsec_linux.md).
 
 ## Downloading Parsec
 
-Run the following command to download and unpack the `linux_x86` folder. It contains the Parsec
-service (`parsec`), its pre-built configuration (`config.toml`) and the Parsec tool (`parsec-tool`).
+Run the following command to download and unpack the `quickstart-0.7.0-linux_x86` folder. It
+contains the Parsec service (`parsec`), its pre-built configuration (`config.toml`) and the Parsec
+tool (`parsec-tool`).
 
 ```
 curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/0.7.0/quickstart-0.7.0-linux_x86.tar.gz | tar xz
