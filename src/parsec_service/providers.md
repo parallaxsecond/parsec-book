@@ -28,7 +28,11 @@ the service in user-space.
 As a software provider, Mbed Crypto does not offer the same security guarantees as other
 hardware-based providers and does not store its keys in a secure location in hardware, but directly
 on disk. Because of that, the Mbed Crypto provider should not be used securely for private key
-operations but can be used to simplify proof of concept projects.
+operations but can be used to simplify proof of concept projects. It is also worth noting that the
+Mbed Crypto library stores persistent keys (i.e. all keys produced via Parsec) in the working
+directory of the service. Thus, take precautions if you would like to provide some level of security
+to the stored keys, or if you wish to ensure they are persisted across reboots - these extra
+considerations should be directed at the working directory of the Parsec service.
 
 ## TPM Provider
 
