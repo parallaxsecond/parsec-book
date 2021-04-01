@@ -20,5 +20,6 @@ They cover the following concepts:
 - [Configuration](configuration.md) - how to configure Parsec
 - [Testing](tests) - details about the kinds of tests we employ and how to set up your environment
    in preparation for running them
+- [Stability](stability.md) - how stability is ensured in the Parsec service
 
 *Copyright 2019 Contributors to the Parsec project.*

@@ -57,6 +57,7 @@
    - [Parsec Configuration](parsec_service/configuration.md)
    - [How to test Parsec](parsec_service/tests/README.md)
       - [List of existing tests](parsec_service/tests/existing_tests.md)
+   - [Parsec Stability](parsec_service/stability.md)
 - [Parsec Security](parsec_security/README.md)
    - [Parsec Threat Model](parsec_security/parsec_threat_model/threat_model.md)
    - [Recommendations for Secure Deployment](parsec_security/secure_deployment.md)
