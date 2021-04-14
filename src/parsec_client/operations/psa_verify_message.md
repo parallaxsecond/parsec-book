@@ -12,13 +12,13 @@ Verify the signature of a message using a public key. Opcode: 25 (`0x0019`)
 | `signature` | Vector of bytes                                                         | Buffer containing the signature to verify                                                                                |
 
 - `key_name` must be the name of a public key or an asymmetric key pair. The key must allow the
-   [usage flag](psa_key_attributes.md#usageflags-type) `verify_hash`.
+   [usage flag](psa_key_attributes.md#usageflags-type) `verify_message`.
 
 No values are returned by this operation. If `Success` is returned the signature is valid.
 
 ## Specific response status codes
 
-- `PsaErrorNotPermitted`: The key does not have the `verify_hash` flag, or it does not permit the
+- `PsaErrorNotPermitted`: The key does not have the `verify_message` flag, or it does not permit the
    requested algorithm.
 - `PsaErrorInvalidSignature`: The calculation was performed successfully, but the passed signature
    is not a valid signature.
