@@ -256,4 +256,55 @@ Definition of the usage flags. They encode what kind of operations are permitted
 | `verify_hash`    | Boolean | Permission to verify a hash with the key           |
 | `derive`         | Boolean | Permission to derive other keys from this key      |
 
+### sign message usage
+
+Permission to sign a message with the key.
+
+This flag allows the key to be used for a MAC calculation operation or for an asymmetric message
+signature operation, if otherwise permitted by the key’s type and policy. The flag must be present
+on keys used with the following APIs:
+
+- PsaMacCompute
+- PsaSignMessage
+
+For a key pair, this concerns the private key.
+
+### verify message usage
+
+Permission to verify a message signature with the key.
+
+This flag allows the key to be used for a MAC verification operation or for an asymmetric message
+signature verification operation, if otherwise permitted by the key’s type and policy. The flag
+must be present on keys used with the following APIs:
+
+- PsaMacVerify
+- PsaVerifyMessage
+
+For a key pair, this concerns the public key.
+
+### sign hash usage
+
+Permission to sign a message hash with the key.
+
+This flag allows the key to be used to sign a message hash as part of an asymmetric signature
+operation, if otherwise permitted by the key’s type and policy. The flag must be present on keys
+used when calling PsaSignHash.
+
+This flag automatically sets `sign_message`: if an application sets the flag `sign_hash` when
+creating a key, then the key always has the permissions conveyed by `sign_message`. For a key pair,
+this concerns the private key.
+
+### verify hash usage
+
+Permission to verify a message hash with the key.
+
+This flag allows the key to be used to verify a message hash as part of an asymmetric signature
+verification operation, if otherwise permitted by the key’s type and policy. The flag must be
+present on keys used when calling PsaVerifyHash.
+
+This flag automatically sets `verify_message`: if an application sets the flag `verify_hash` when
+creating a key, then the key always has the permissions conveyed by `verify_message`.
+
+For a key pair, this concerns the public key.
+
 *Copyright 2019 Contributors to the Parsec project.*

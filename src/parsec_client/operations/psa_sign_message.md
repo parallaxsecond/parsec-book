@@ -11,7 +11,7 @@ Sign a message with a private key. Opcode: 24 (`0x0018`)
 | `message`  | Vector of bytes                                                         | The message to sign                                                                                                      |
 
 - `key_name` must be the name of an asymmetric key pair. The key must allow the [usage
-   flag](psa_key_attributes.md#usageflags-type) `sign_hash`.
+   flag](psa_key_attributes.md#usageflags-type) `sign_message`.
 
 ## Results
 
@@ -21,7 +21,7 @@ Sign a message with a private key. Opcode: 24 (`0x0018`)
 
 ## Specific response status codes
 
-- `PsaErrorNotPermitted`: The key does not have the `sign_hash` flag, or it does not permit the
+- `PsaErrorNotPermitted`: The key does not have the `sign_message` flag, or it does not permit the
    requested algorithm.
 
 ## Description
