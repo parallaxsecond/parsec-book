@@ -174,12 +174,12 @@
 </tbody></table>
 <ul>
 <li><code>key_name</code> must be the name of a public key or an asymmetric key pair. The key must allow the
-<a href="psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_hash</code>.</li>
+<a href="psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_message</code>.</li>
 </ul>
 <p>No values are returned by this operation. If <code>Success</code> is returned the signature is valid.</p>
 <h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
-<li><code>PsaErrorNotPermitted</code>: The key does not have the <code>verify_hash</code> flag, or it does not permit the
+<li><code>PsaErrorNotPermitted</code>: The key does not have the <code>verify_message</code> flag, or it does not permit the
 requested algorithm.</li>
 <li><code>PsaErrorInvalidSignature</code>: The calculation was performed successfully, but the passed signature
 is not a valid signature.</li>

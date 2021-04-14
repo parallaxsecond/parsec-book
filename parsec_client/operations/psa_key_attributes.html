@@ -394,6 +394,42 @@ following members:</p>
 <tr><td><code>verify_hash</code></td><td>Boolean</td><td>Permission to verify a hash with the key</td></tr>
 <tr><td><code>derive</code></td><td>Boolean</td><td>Permission to derive other keys from this key</td></tr>
 </tbody></table>
+<h3 id="sign-message-usage"><a class="header" href="#sign-message-usage">sign message usage</a></h3>
+<p>Permission to sign a message with the key.</p>
+<p>This flag allows the key to be used for a MAC calculation operation or for an asymmetric message
+signature operation, if otherwise permitted by the key’s type and policy. The flag must be present
+on keys used with the following APIs:</p>
+<ul>
+<li>PsaMacCompute</li>
+<li>PsaSignMessage</li>
+</ul>
+<p>For a key pair, this concerns the private key.</p>
+<h3 id="verify-message-usage"><a class="header" href="#verify-message-usage">verify message usage</a></h3>
+<p>Permission to verify a message signature with the key.</p>
+<p>This flag allows the key to be used for a MAC verification operation or for an asymmetric message
+signature verification operation, if otherwise permitted by the key’s type and policy. The flag
+must be present on keys used with the following APIs:</p>
+<ul>
+<li>PsaMacVerify</li>
+<li>PsaVerifyMessage</li>
+</ul>
+<p>For a key pair, this concerns the public key.</p>
+<h3 id="sign-hash-usage"><a class="header" href="#sign-hash-usage">sign hash usage</a></h3>
+<p>Permission to sign a message hash with the key.</p>
+<p>This flag allows the key to be used to sign a message hash as part of an asymmetric signature
+operation, if otherwise permitted by the key’s type and policy. The flag must be present on keys
+used when calling PsaSignHash.</p>
+<p>This flag automatically sets <code>sign_message</code>: if an application sets the flag <code>sign_hash</code> when
+creating a key, then the key always has the permissions conveyed by <code>sign_message</code>. For a key pair,
+this concerns the private key.</p>
+<h3 id="verify-hash-usage"><a class="header" href="#verify-hash-usage">verify hash usage</a></h3>
+<p>Permission to verify a message hash with the key.</p>
+<p>This flag allows the key to be used to verify a message hash as part of an asymmetric signature
+verification operation, if otherwise permitted by the key’s type and policy. The flag must be
+present on keys used when calling PsaVerifyHash.</p>
+<p>This flag automatically sets <code>verify_message</code>: if an application sets the flag <code>verify_hash</code> when
+creating a key, then the key always has the permissions conveyed by <code>verify_message</code>.</p>
+<p>For a key pair, this concerns the public key.</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 
                     </main>

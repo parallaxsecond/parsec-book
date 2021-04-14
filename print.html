@@ -1468,6 +1468,42 @@ following members:</p>
 <tr><td><code>verify_hash</code></td><td>Boolean</td><td>Permission to verify a hash with the key</td></tr>
 <tr><td><code>derive</code></td><td>Boolean</td><td>Permission to derive other keys from this key</td></tr>
 </tbody></table>
+<h3 id="sign-message-usage"><a class="header" href="#sign-message-usage">sign message usage</a></h3>
+<p>Permission to sign a message with the key.</p>
+<p>This flag allows the key to be used for a MAC calculation operation or for an asymmetric message
+signature operation, if otherwise permitted by the key’s type and policy. The flag must be present
+on keys used with the following APIs:</p>
+<ul>
+<li>PsaMacCompute</li>
+<li>PsaSignMessage</li>
+</ul>
+<p>For a key pair, this concerns the private key.</p>
+<h3 id="verify-message-usage"><a class="header" href="#verify-message-usage">verify message usage</a></h3>
+<p>Permission to verify a message signature with the key.</p>
+<p>This flag allows the key to be used for a MAC verification operation or for an asymmetric message
+signature verification operation, if otherwise permitted by the key’s type and policy. The flag
+must be present on keys used with the following APIs:</p>
+<ul>
+<li>PsaMacVerify</li>
+<li>PsaVerifyMessage</li>
+</ul>
+<p>For a key pair, this concerns the public key.</p>
+<h3 id="sign-hash-usage"><a class="header" href="#sign-hash-usage">sign hash usage</a></h3>
+<p>Permission to sign a message hash with the key.</p>
+<p>This flag allows the key to be used to sign a message hash as part of an asymmetric signature
+operation, if otherwise permitted by the key’s type and policy. The flag must be present on keys
+used when calling PsaSignHash.</p>
+<p>This flag automatically sets <code>sign_message</code>: if an application sets the flag <code>sign_hash</code> when
+creating a key, then the key always has the permissions conveyed by <code>sign_message</code>. For a key pair,
+this concerns the private key.</p>
+<h3 id="verify-hash-usage"><a class="header" href="#verify-hash-usage">verify hash usage</a></h3>
+<p>Permission to verify a message hash with the key.</p>
+<p>This flag allows the key to be used to verify a message hash as part of an asymmetric signature
+verification operation, if otherwise permitted by the key’s type and policy. The flag must be
+present on keys used when calling PsaVerifyHash.</p>
+<p>This flag automatically sets <code>verify_message</code>: if an application sets the flag <code>verify_hash</code> when
+creating a key, then the key always has the permissions conveyed by <code>verify_message</code>.</p>
+<p>For a key pair, this concerns the public key.</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <h1 id="psa-algorithm"><a class="header" href="#psa-algorithm">PSA Algorithm</a></h1>
 <p>The algorithm is used to select the specific cryptographic operation and to set a policy on a new
@@ -2369,7 +2405,7 @@ expected value.</p>
 </tbody></table>
 <ul>
 <li><code>key_name</code> must be the name of an asymmetric key pair. The key must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage
-flag</a> <code>sign_hash</code>.</li>
+flag</a> <code>sign_message</code>.</li>
 </ul>
 <h2 id="results-23"><a class="header" href="#results-23">Results</a></h2>
 <table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -2377,7 +2413,7 @@ flag</a> <code>sign_hash</code>.</li>
 </tbody></table>
 <h2 id="specific-response-status-codes-23"><a class="header" href="#specific-response-status-codes-23">Specific response status codes</a></h2>
 <ul>
-<li><code>PsaErrorNotPermitted</code>: The key does not have the <code>sign_hash</code> flag, or it does not permit the
+<li><code>PsaErrorNotPermitted</code>: The key does not have the <code>sign_message</code> flag, or it does not permit the
 requested algorithm.</li>
 </ul>
 <h2 id="description-23"><a class="header" href="#description-23">Description</a></h2>
@@ -2397,12 +2433,12 @@ the hashing step.</p>
 </tbody></table>
 <ul>
 <li><code>key_name</code> must be the name of a public key or an asymmetric key pair. The key must allow the
-<a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_hash</code>.</li>
+<a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_message</code>.</li>
 </ul>
 <p>No values are returned by this operation. If <code>Success</code> is returned the signature is valid.</p>
 <h2 id="specific-response-status-codes-24"><a class="header" href="#specific-response-status-codes-24">Specific response status codes</a></h2>
 <ul>
-<li><code>PsaErrorNotPermitted</code>: The key does not have the <code>verify_hash</code> flag, or it does not permit the
+<li><code>PsaErrorNotPermitted</code>: The key does not have the <code>verify_message</code> flag, or it does not permit the
 requested algorithm.</li>
 <li><code>PsaErrorInvalidSignature</code>: The calculation was performed successfully, but the passed signature
 is not a valid signature.</li>
