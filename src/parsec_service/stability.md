@@ -48,6 +48,7 @@ The communication channels that need to be stable are (some of them are not in t
 6. OS signals
 7. systemd communication
 8. Dynamic libraries dependencies
+9. Environment variables
 
 Those will be described as "stability requirement" in the remainder of this document. As new
 features are added to the codebase, new stability requirements might appear. Those should be added
@@ -73,5 +74,6 @@ Let's look at each of the points above and check:
 | OS signals                                       | OS signals should still have the same behaviour in future stable Parsec versions.                                                                      | Signal handlers must not be removed in Parsec.                                                                                                                                                                                                                      | [Open](https://github.com/parallaxsecond/parsec/issues/395) |
 | systemd communication                            | systemd should receive the same status information from Parsec in future stable versions.                                                              | Status notifications must not be removed.                                                                                                                                                                                                                           | [Open](https://github.com/parallaxsecond/parsec/issues/396) |
 | Dynamic libraries dependencies                   | Linking and loading the same versions of libraries should still work in future stable versions of Parsec.                                              | Stable versions of Parsec should not require newer dependencies.                                                                                                                                                                                                    | [Open](https://github.com/parallaxsecond/parsec/issues/397) |
+| Environment variables                            | Environment variables should still have the same behaviour in future stable Parsec versions.                                                           | Environment variable behaviours must not be removed in Parsec.                                                                                                                                                                                                      | [Open](https://github.com/parallaxsecond/parsec/issues/405) |
 
 *Copyright 2021 Contributors to the Parsec project.*
