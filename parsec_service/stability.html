@@ -209,6 +209,7 @@ model.</p>
 <li>OS signals</li>
 <li>systemd communication</li>
 <li>Dynamic libraries dependencies</li>
+<li>Environment variables</li>
 </ol>
 <p>Those will be described as &quot;stability requirement&quot; in the remainder of this document. As new
 features are added to the codebase, new stability requirements might appear. Those should be added
@@ -231,6 +232,7 @@ to the list above and looked in detail below.</p>
 <tr><td>OS signals</td><td>OS signals should still have the same behaviour in future stable Parsec versions.</td><td>Signal handlers must not be removed in Parsec.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/395">Open</a></td></tr>
 <tr><td>systemd communication</td><td>systemd should receive the same status information from Parsec in future stable versions.</td><td>Status notifications must not be removed.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/396">Open</a></td></tr>
 <tr><td>Dynamic libraries dependencies</td><td>Linking and loading the same versions of libraries should still work in future stable versions of Parsec.</td><td>Stable versions of Parsec should not require newer dependencies.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/397">Open</a></td></tr>
+<tr><td>Environment variables</td><td>Environment variables should still have the same behaviour in future stable Parsec versions.</td><td>Environment variable behaviours must not be removed in Parsec.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/405">Open</a></td></tr>
 </tbody></table>
 <p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
 
