@@ -10,6 +10,12 @@ Precise dates are agreed by the maintainers and the project community on each cy
 cadence helps with the process of packaging Parsec releases into Operating System distributions and
 other downstream consumers.
 
+This page focuses on the process for twice-yearly major releases. Naturally, it is expected that
+minor point releases will also take place to address defects or to add other improvements that are
+needed urgently and cannot wait for the next major cycle. A fixed process for such point releases
+has not yet been established, but this will be determined according to which practices appear to
+work well within the project community.
+
 ## Responsibility for Releases
 
 It is the collective responsibility of the [Parsec project
@@ -47,6 +53,12 @@ Both of these components are included because they are both built from Rust and 
 of dependencies. A coordinated release allows for the versions of the shared Rust crates to be kept
 synchronized. These two components are also both commonly packaged for Operating System
 distributions.
+
+Additionally, each release includes a convenient
+[quickstart](https://parallaxsecond.github.io/parsec-book/getting_started/linux_x86.html) package,
+which contains the binaries for just the Parsec service and the Parsec tool, along with a basic
+configuration file and a README document with a link to the quickstart guide. This is to help new
+users gain some early familiarity with the system.
 
 Other components of the Parsec project, such as documentation and client libraries in languages
 other than Rust, are currently not included in the scheduled release cadence. These components are
@@ -153,12 +165,14 @@ weekly meetings. Please see the [community](https://github.com/parallaxsecond/co
 for more details. The project maintainers will be available to advise you on whether to use a
 feature branch.
 
-When using feature branches, please ensure that commits are reviewed by project maintainers at the
-time of submission to the feature branch. Do not wait until the entire feature is ready to be
-promoted into the main branch before requesting code reviews, since large and bulky code reviews are
-generally not well received by the maintainers, and this might delay the promotion of the changes.
+When using feature branches, please ensure that commits are reviewed by the project maintainers
+through the pull request process at suitable intervals, so that reviews can be kept small and
+manageable. Do not wait until the entire feature is complete before requesting code reviews, since
+large and bulky code reviews are generally not well received by the maintainers, and this might
+delay the approval of changes.
 
-To keep the repositories tidy, please delete feature branches or other temporary branches as soon as
-they are no longer needed.
+To keep the repositories tidy, the maintainers will aim to delete feature branches as soon as
+possible after the code changes have been promoted into the mainline. Please contact the maintainers
+through the community channels to request the deletion of a feature branch.
 
 *Copyright 2021 Contributors to the Parsec project.*
