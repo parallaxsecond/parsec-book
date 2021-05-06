@@ -266,6 +266,41 @@ only when a published version of the third party crate is due soon. This is to l
 of an urgent release of Parsec being stalled behind a third-party release cycle. If you're unsure
 about or would want to discuss such an approach, we welcome discussions and proposals in our
 community channels!</p>
+<h3 id="docker-images"><a class="header" href="#docker-images">Docker images</a></h3>
+<p>End-to-end testing for the Parsec service (and for some of the other projects under the
+Parallaxsecond organisation) is built on top of Docker images. These images are required because of
+the multitude of dependencies needed, generally for connecting to various backends through 3rd party
+libraries. The Docker images separate the process of setting up this environment from the actual
+running of tests, allowing very short CI runs.</p>
+<p>Our Docker images are stored as <a href="https://github.com/orgs/parallaxsecond/packages">packages</a> within
+the <a href="https://docs.github.com/en/packages/guides/container-guides-for-github-packages">Github Container
+Registry</a>. The ones
+used for the service have <a href="https://github.com/parallaxsecond/parsec/tree/main/e2e_tests/docker_image">their own
+folder</a>.</p>
+<p>The process for updating an existing image (or indeed creating a new one) goes as follows:</p>
+<ul>
+<li>Figure out if what you need should be included in a Docker image. Anything that is sure to be
+common between builds should be included: compilers, toolchains, libraries...</li>
+<li>Modify or create a new Docker image. This involves not just the development side, but also
+building the image and testing locally that your expected flow works correctly.</li>
+<li>Modify any CI-related files to set up workflows to build the image and to perform any new actions
+with it (if necessary). You should also include changes to the rest of the code-base that
+produced the need for the image change.</li>
+<li>Create a PR with your changes. This allows other reviewers to provide feedback on the image
+definition before it is published. Once the changes are approved you can continue to the next
+step.</li>
+<li>Build the image with the correct tag: for images stored in Github Container Registry, the tag
+should be <code>ghcr.io/parallaxsecond/&lt;your-image-name&gt;:latest</code>.</li>
+<li>Create a Github Personal Access Token for publishing the image, as described
+<a href="https://docs.github.com/en/packages/guides/pushing-and-pulling-docker-images">here</a>. Follow the
+steps on the page to then publish your image.</li>
+<li>If this is a new image being published, after the upload succeeds, follow the steps
+<a href="https://docs.github.com/en/packages/guides/configuring-access-control-and-visibility-for-container-images#configuring-access-to-container-images-for-an-organization">here</a>
+to allow the <code>parallaxsecond/admin</code> group admin access to the image. If you are using the image
+in CI builds, you will also need to <a href="https://docs.github.com/en/packages/guides/configuring-access-control-and-visibility-for-container-images#configuring-visibility-of-container-images-for-an-organization">make it
+public</a>.</li>
+<li>Change the workflows to use the published image and update the PR.</li>
+</ul>
 <p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
 
                     </main>
