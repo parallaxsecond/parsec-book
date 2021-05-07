@@ -3199,10 +3199,12 @@ that the group change has taken effect. You can check it by calling <code>groups
 you do not see <code>parsec-clients</code>, please try logging the user out and in again to apply the change.</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <h1 id="parsec-configuration"><a class="header" href="#parsec-configuration">Parsec Configuration</a></h1>
-<p>All Parsec configuration is done at startup with a configuration file. The <code>config.toml</code> file needs
-to be in the same directory where the <code>parsec</code> command is executed. Please check in the source code
-of Parsec for an <a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">example</a> of a
-configuration file.</p>
+<p>All Parsec configuration is done at startup and reload with a configuration file. By default, the
+<code>config.toml</code> file in the current directory is used, but its path can be changed with the <code>--config</code>
+command-line option.</p>
+<p>Please check <a href="https://github.com/parallaxsecond/parsec/blob/master/config.toml">here</a> the
+fully-defined template and documentation of a configuration file. You can copy it and tailor it to
+your specific deployment.</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <h1 id="how-to-test-parsec"><a class="header" href="#how-to-test-parsec">How to test Parsec</a></h1>
 <p>Parsec relies on a mix of unit, end-to-end, integration, stress and fuzz tests. Unit tests are
