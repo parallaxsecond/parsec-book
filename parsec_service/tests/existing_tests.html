@@ -136,13 +136,15 @@
                         </a>
                         
                         
+                        
+
                     </div>
                 </div>
 
                 
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -190,7 +192,7 @@ tests.</p>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/config">All providers configuration e2e tests</a></td><td>These check if the behaviour of the service is correct before and after reloading with a different configuration.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/multitenancy.rs">All providers multitenancy e2e tests</a></td><td>Test that multiple tenants of Parsec using different authentication methods can not access each other's keys.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/normal_tests">Per provider normal tests</a></td><td>E2E tests checking most cryptographic operations on a single provider. Parsec results are also verified with third party software crypto implementations (ring, the rsa crate, etc...).</td></tr>
-<tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/persistent_before.rs">Per provider persistence tests</a></td><td>E2E tests checking correct behaviour of the service around persistence of keys in the Key Info Manager.</td></tr>
+<tr><td><a href="https://github.com/parallaxsecond/parsec/blob/main/e2e_tests/tests/per_provider/key_mappings.rs">Per provider key mappings tests</a></td><td>E2E tests checking that key created by an older version of Parsec can still be retrieved and used correctly. It also checks that wrong mappings are deleted.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/stress_test.rs">Per provider stress tests</a></td><td>Stress tests executing a large number of canonical operations at high frequency on a single provider.</td></tr>
 </tbody></table>
 <h2 id="fuzz-testing"><a class="header" href="#fuzz-testing">Fuzz testing</a></h2>
