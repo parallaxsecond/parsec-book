@@ -88,8 +88,27 @@ below.
 The API is designed to evolve over time. This evolution will be governed by the *open-closed
 principle*. In practice, this means that each operation in the API, once introduced, will not be
 contractually modified. The API can only change by introducing new operations. This preserves
-backwards compatability with client code. Any client code that makes use of any given operation will
+backwards compatibility with client code. Any client code that makes use of any given operation will
 continue to work, even if new operations are introduced.
+
+### Non-breaking changes
+
+In some cases, it might be helpful to update contracts in a *non-breaking way*. If multiple
+operations share the same parameters (such as the PSA algorithm or key attributes), this avoids
+having to duplicate all of them if an update is done to those parameters. To make sure that backward
+compatibility with client code is always preserved and that the Parsec service remains stable
+through updates, the allowed changes are restricted to the following:
+
+- Adding a new *optional* field to an existing type. If not set, the contract containing the new
+   field should behave exactly the same as the version without it. The new field should be ignored
+   if not recognised by an old version. That means that the functionality brought by a new optional
+   field might not be exercised if the service is older than the client, without an error returned.
+- Adding a new variant to an existing enumerated type. If not recognised during deserialization, the
+   `InvalidEncoding` error should be returned.
+
+In the future, [capabilities discovery](https://github.com/parallaxsecond/parsec/issues/426)
+operations might be added to give a way for clients to check what parameters are supported. See the
+history of this feature [here](https://github.com/parallaxsecond/parsec/issues/388).
 
 ## Deprecation
 
