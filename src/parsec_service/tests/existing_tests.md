@@ -21,8 +21,7 @@ The end-to-end tests contain tests to be executed:
 
 The
 [`parsec/e2e_tests/provider_cfg`](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/provider_cfg)
-folder contain the `Dockerfile` and Parsec configuration needed to run Parsec for the corresponding
-tests.
+folder contain the configuration needed to run Parsec for the corresponding tests.
 
 | Name                                                                                                                                       | Description                                                                                                                                                                             |
 |--------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -33,6 +32,7 @@ tests.
 | [Per provider normal tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/normal_tests)                | E2E tests checking most cryptographic operations on a single provider. Parsec results are also verified with third party software crypto implementations (ring, the rsa crate, etc...). |
 | [Per provider key mappings tests](https://github.com/parallaxsecond/parsec/blob/main/e2e_tests/tests/per_provider/key_mappings.rs)         | E2E tests checking that key created by an older version of Parsec can still be retrieved and used correctly. It also checks that wrong mappings are deleted.                            |
 | [Per provider stress tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/stress_test.rs)              | Stress tests executing a large number of canonical operations at high frequency on a single provider.                                                                                   |
+| [Old e2e tests](https://github.com/parallaxsecond/parsec/blob/main/e2e_tests/docker_image/import-old-e2e-tests.sh)                         | Tests executed from an old version of the Rust client to make sure the operation contracts are stable. The executed tests are the per provider normal tests.                            |
 
 ## Fuzz testing
 
