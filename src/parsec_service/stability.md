@@ -87,6 +87,8 @@ We use the specific versions of those dynamic libraries and test it on CI:
 - PKCS#11 version 2.40
 - libclang version 6.0
 - TSS libraries version 2.3.3
-- Mbed TLS version 2.25.0
+
+Mbed Crypto is currently compiled from scratch. When a new LTS version of Mbed TLS ships a PSA
+Crypto compliant version of Mbed Crypto, stability guarantees will be made on that version.
 
 *Copyright 2021 Contributors to the Parsec project.*
