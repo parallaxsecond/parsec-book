@@ -43,6 +43,11 @@
       - [ListKeys](parsec_client/operations/list_keys.md)
       - [ListClients](parsec_client/operations/list_clients.md)
       - [DeleteClient](parsec_client/operations/delete_client.md)
+      - [Prepare Key Attestation
+         Parameters](parsec_client/operations/prepare_key_attestation_params.md)
+      - [PrepareKeyAttestation](parsec_client/operations/prepare_key_attestation.md)
+      - [AttestKey](parsec_client/operations/attest_key.md)
+      - [Attest Key Parameters](parsec_client/operations/attest_key_params.md)
 - [Parsec for service developers](parsec_service/README.md)
    - [Interfaces and Dataflow](parsec_service/interfaces_and_dataflow.md)
    - [Source Code Structure](parsec_service/source_code_structure.md)
