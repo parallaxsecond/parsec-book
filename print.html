@@ -2537,7 +2537,7 @@ in-depth look at the mechanisms and hardware tokens that we've considered, you c
 <code>PrepareKeyAttestationParams</code> and <code>PrepareKeyAttestationOutput</code>.</p>
 <p><strong>(EXPERIMENTAL) The parameters for key attestation are in an experimental phase. No guarantees are
 offered around the stability of the interface for any key attestation mechanism.</strong></p>
-<h2 id="activatecredential-tpm-provider-activatecredential"><a class="header" href="#activatecredential-tpm-provider-activatecredential">ActivateCredential (TPM provider) {#activatecredential}</a></h2>
+<h2 id="activatecredential-tpm-provider"><a class="header" href="#activatecredential-tpm-provider">ActivateCredential (TPM provider)</a></h2>
 <p>The preparation necessary for <code>ActivateCredential</code> involves retrieving the data necessary for
 performing the <code>TPM2_MakeCredential</code> computations outside of a TPM. The results from
 <code>MakeCredential</code> can then be passed to <code>AttestKey</code>.</p>
@@ -2654,7 +2654,7 @@ the mechanisms and hardware tokens that we've considered, you can read our write
 <code>AttestationOutput</code>.</p>
 <p><strong>(EXPERIMENTAL) The parameters for key attestation are in an experimental phase. No guarantees are
 offered around the stability of the interface for any key attestation mechanism.</strong></p>
-<h2 id="activate-credential-tpm-provider-activatecredential"><a class="header" href="#activate-credential-tpm-provider-activatecredential">Activate Credential (TPM provider) {#activatecredential}</a></h2>
+<h2 id="activatecredential-tpm-provider-1"><a class="header" href="#activatecredential-tpm-provider-1">ActivateCredential (TPM provider)</a></h2>
 <p>The <a href="https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part3_Commands_pub.pdf">TPM 2.0 Commands
 spec</a>
 describes the <code>TPM2_ActivateCredential</code> operation as follows:</p>
@@ -2675,7 +2675,7 @@ received are identical.</p>
 Parsec service. As some of these parameters are strictly TPM-specific, they can be retrieved with
 the <a href="parsec_client/operations/prepare_key_attestation.html"><code>PrepareKeyAttestation</code></a> operation. You can see how to perform the
 preparation step for <code>ActivateCredential</code>
-<a href="parsec_client/operations/prepare_key_attestation_params.html#activatecredential">here</a>.</p>
+<a href="parsec_client/operations/prepare_key_attestation_params.html#activatecredential-tpm-provider">here</a>.</p>
 <p><strong>This mechanisms is thus aimed at attesting keys that are configured for decryption</strong> (as opposed
 to signing) and is of particular interest because the Endorsement Keys for which TPM manufacturers
 produce certificates are overwhelmingly decryption keys.</p>
