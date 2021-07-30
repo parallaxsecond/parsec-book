@@ -10,7 +10,7 @@ Each mechanism that needs preparation comes with its own definitions for
 **(EXPERIMENTAL) The parameters for key attestation are in an experimental phase. No guarantees are
 offered around the stability of the interface for any key attestation mechanism.**
 
-## ActivateCredential (TPM provider) {#activatecredential}
+## ActivateCredential (TPM provider)
 
 The preparation necessary for `ActivateCredential` involves retrieving the data necessary for
 performing the `TPM2_MakeCredential` computations outside of a TPM. The results from
