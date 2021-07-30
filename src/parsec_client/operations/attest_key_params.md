@@ -10,7 +10,7 @@ Each mechanism comes with its own definitions for `AttestationMechanismParams` a
 **(EXPERIMENTAL) The parameters for key attestation are in an experimental phase. No guarantees are
 offered around the stability of the interface for any key attestation mechanism.**
 
-## Activate Credential (TPM provider) {#activatecredential}
+## ActivateCredential (TPM provider)
 
 The [TPM 2.0 Commands
 spec](https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part3_Commands_pub.pdf)
@@ -33,7 +33,7 @@ The computation mentioned previously relies on a number of parameters that must 
 Parsec service. As some of these parameters are strictly TPM-specific, they can be retrieved with
 the [`PrepareKeyAttestation`](prepare_key_attestation.md) operation. You can see how to perform the
 preparation step for `ActivateCredential`
-[here](prepare_key_attestation_params.md#activatecredential).
+[here](prepare_key_attestation_params.md#activatecredential-tpm-provider).
 
 **This mechanisms is thus aimed at attesting keys that are configured for decryption** (as opposed
 to signing) and is of particular interest because the Endorsement Keys for which TPM manufacturers
