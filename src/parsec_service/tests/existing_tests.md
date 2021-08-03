@@ -47,9 +47,24 @@ folder contain the configuration needed to run Parsec for the corresponding test
 | [Direct authenticator tests](https://github.com/parallaxsecond/parsec/blob/master/src/authenticators/direct_authenticator/mod.rs)   | Testing the `Authenticate` trait with this authenticator.                                                                                |
 | [On-disk key info manager tests](https://github.com/parallaxsecond/parsec/blob/master/src/key_info_managers/on_disk_manager/mod.rs) | Testing the `ManageKeyInfo` trait with various strings for application and key names. The persistence is tested in the end-to-end tests. |
 
+## Cross-compilation tests
+
+Given that Parsec is expected to run natively on as many platforms as possible, we have incorporated
+cross-compilation testing in our CI framework. These check that the service can be built for the
+following platform triples:
+
+- `arm-linux-gnueabihf`
+- `aarch64-linux-gnu`
+- `i686-linux-gnu`
+
+Cross-compilation is tested for the PKCS11, Mbed Crypto, and TPM providers. You can see details of
+this test [here](https://github.com/parallaxsecond/parsec/blob/main/test/cross-compile.sh). All
+other CI jobs run in `x86_64-linux-gnu`.
+
 ## In dependencies
 
 The dependencies that we maintain in the `parallaxsecond` organisation also contain their own set of
-integration and unit tests: `parsec-interface-rs`, `rust-psa-crypto` and `rust-tss-esapi`.
+integration and unit tests: `parsec-interface-rs`, `rust-psa-crypto`, `rust-tss-esapi`, and
+`rust-cryptoki`.
 
 *Copyright 2020 Contributors to the Parsec project.*

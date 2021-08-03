@@ -20,6 +20,10 @@ The `ci.sh` script executes all tests and is used on the CI.
 [`clippy`](https://github.com/rust-lang/rust-clippy) are needed for code formatting and static
 checks.
 
+You can see a (partial) code coverage figure [here](https://app.codecov.io/gh/parallaxsecond/parsec)
+- partial because only a subset of the tests can be run with the code coverage instrumentation
+enabled.
+
 ## Executing tests manually
 
 ### Static tests
@@ -54,8 +58,9 @@ cargo test --lib --all-features
 
 They need to be executed from the `e2e_tests` folder with a specific set of features describing for
 which providers the tests should be run against. You can choose from the following list:
-`mbed-crypto-provider`, `pkcs11-provider` and `tpm-provider`. `all-providers` selects them all. In
-the following sections, the `mbed-crypto-provider` will be assumed.
+`mbed-crypto-provider`, `pkcs11-provider`, `tpm-provider`, `cryptoauthlib-provider`, and
+`trusted-service-provider`. `all-providers` selects them all. In the following sections, the
+`mbed-crypto-provider` will be assumed.
 
 #### Normal tests
 
@@ -172,5 +177,30 @@ $ RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/pkcs11/config.to
 
 Which should print a `[INFO parsec] Parsec is ready.` You can now execute the end-to-end tests using
 that provider!
+
+## Testing the Trusted Service provider using the in-process Trusted Services stack
+
+It is possible to test the Crypto Trusted Service integration through the `libts` for `linux-pc`
+[deployment](https://trusted-services.readthedocs.io/en/integration/developer/deployments.html)
+available in the project source code. You can find instructions for building and installing the
+library
+[here](https://trusted-services.readthedocs.io/en/integration/developer/build-instructions.html).
+Once the library is installed, no other steps are needed - the whole stack will be housed within the
+Parsec service process, similarly to the Mbed Crypto provider.
+
+Start Parsec with the Trusted Service configuration:
+
+```
+$ RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/trusted-service/config.toml
+```
+
+Which should print a `[INFO parsec] Parsec is ready.` You can now execute the end-to-end tests using
+that provider!
+
+**NOTE:** The in-process stack uses Mbed Crypto for the crypto implementation, and therefore the
+code will be shared with the backend of the Mbed Crypto provider if both are used. Because Mbed
+Crypto stores keys on disk, by default in the working directory of the process, creating keys in
+both providers in parallel will lead to errors, as one will confuse the keys of the other for its
+own.
 
 *Copyright 2019 Contributors to the Parsec project.*

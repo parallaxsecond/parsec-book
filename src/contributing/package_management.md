@@ -81,7 +81,9 @@ Parallaxsecond crates that can be found on crates.io is given below.
 `parsec-service` dependencies:
 
 - `parsec-interface`: used for managing IPC communication
-- `psa-crypto`: used in the Mbed Crypto provider as the interface to a PSA Crypto implementation
+- `psa-crypto`: used in the Mbed Crypto provider as the interface to a PSA Crypto implementation,
+   and in the Cryptoki crate for conversions between the two standards
+- `cryptoki`: used in the PKCS11 provider as the interface to PKCS11 libraries
 - `tss-esapi`: used in the TPM provider as the interface to the TSS stack
 - `parsec-client`: **NOT** used in the service, but as a dependency for the test client
 

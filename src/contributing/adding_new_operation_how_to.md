@@ -19,7 +19,7 @@ tables on the [Parsec Operations Coverage](../parsec_client/operations/service_a
 to reflect the new addition (create any API tables if they are missing).
 
 The opcode used should be the next available one. To find this, go to
-[`parsec-interface-rs/src/requests/mod.rs`](https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations/mod.rs)
+[`parsec-interface-rs/src/requests/mod.rs`](https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/requests/mod.rs)
 and find the largest in-use opcode.
 
 ### parsec-operations
@@ -56,12 +56,14 @@ This will convert to and from the protobuf contract and the Rust interface. Ther
 methods per operation; two for going to and from the operation struct, and two for going to and from
 the result struct. Again, tests need to be added to ensure all conversions happen correctly.
 
-Add your protobuf contracts to the
-[`include_protobuf_as_module`](https://github.com/parallaxsecond/parsec-interface-rs/blob/f924c0f45695ebd88e34537934c579be8909cced/src/operations_protobuf/generated_ops.rs#L18)
-block in
-[`src/operations_protobuf/generated_ops.rs`](https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations_protobuf/generated_ops.rs).
-If your Rust operation and/or result interfaces do not contain any sensitive information, add them
-to the
+New protobuf operations need to be added to the `parsec-operations` submodule - do this by entering
+the submodule, then fetching and checking out the new contracts. Protobuf-generated code needs to be
+committed in the repository to speed up the builds and remove some of the dependencies. You
+therefore need to run a build using the `regenerate-protobuf` feature enabled and then to identify
+the generated Rust file in the correct directory, e.g.
+`target/debug/build/parsec-interface-fdbf7d7248ab4615/out/`. The file must be copied to
+`src/operations_protobuf/generated_ops/` and enabled as a module in `mod.rs`. If your Rust operation
+and/or result interfaces do not contain any sensitive information, add them to the
 [`empty_clear_message!`](https://github.com/parallaxsecond/parsec-interface-rs/blob/f924c0f45695ebd88e34537934c579be8909cced/src/operations_protobuf/generated_ops.rs#L129)
 block. Otherwise, implement
 [`ClearProtoMessage`](https://github.com/parallaxsecond/parsec-interface-rs/blob/f924c0f45695ebd88e34537934c579be8909cced/src/operations_protobuf/generated_ops.rs#L116)
