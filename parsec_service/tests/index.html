@@ -5,8 +5,6 @@
         <meta charset="UTF-8">
         <title>How to test Parsec - The Parsec Book</title>
         <!-- Custom HTML head -->
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -154,6 +151,11 @@ still up and working correctly.</p>
 <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a> and
 <a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed for code formatting and static
 checks.</p>
+<p>You can see a (partial) code coverage figure <a href="https://app.codecov.io/gh/parallaxsecond/parsec">here</a></p>
+<ul>
+<li>partial because only a subset of the tests can be run with the code coverage instrumentation
+enabled.</li>
+</ul>
 <h2 id="executing-tests-manually"><a class="header" href="#executing-tests-manually">Executing tests manually</a></h2>
 <h3 id="static-tests"><a class="header" href="#static-tests">Static tests</a></h3>
 <h4 id="checking-code-formatting"><a class="header" href="#checking-code-formatting">Checking code formatting</a></h4>
@@ -172,8 +174,9 @@ checks.</p>
 <h3 id="end-to-end-tests"><a class="header" href="#end-to-end-tests">End-to-end tests</a></h3>
 <p>They need to be executed from the <code>e2e_tests</code> folder with a specific set of features describing for
 which providers the tests should be run against. You can choose from the following list:
-<code>mbed-crypto-provider</code>, <code>pkcs11-provider</code> and <code>tpm-provider</code>. <code>all-providers</code> selects them all. In
-the following sections, the <code>mbed-crypto-provider</code> will be assumed.</p>
+<code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, <code>tpm-provider</code>, <code>cryptoauthlib-provider</code>, and
+<code>trusted-service-provider</code>. <code>all-providers</code> selects them all. In the following sections, the
+<code>mbed-crypto-provider</code> will be assumed.</p>
 <h4 id="normal-tests"><a class="header" href="#normal-tests">Normal tests</a></h4>
 <pre><code>cargo test --features mbed-crypto-provider normal_tests
 </code></pre>
@@ -250,6 +253,24 @@ find . -name &quot;*toml&quot; -not -name &quot;Cargo.toml&quot; -exec sed -i &q
 </code></pre>
 <p>Which should print a <code>[INFO parsec] Parsec is ready.</code> You can now execute the end-to-end tests using
 that provider!</p>
+<h2 id="testing-the-trusted-service-provider-using-the-in-process-trusted-services-stack"><a class="header" href="#testing-the-trusted-service-provider-using-the-in-process-trusted-services-stack">Testing the Trusted Service provider using the in-process Trusted Services stack</a></h2>
+<p>It is possible to test the Crypto Trusted Service integration through the <code>libts</code> for <code>linux-pc</code>
+<a href="https://trusted-services.readthedocs.io/en/integration/developer/deployments.html">deployment</a>
+available in the project source code. You can find instructions for building and installing the
+library
+<a href="https://trusted-services.readthedocs.io/en/integration/developer/build-instructions.html">here</a>.
+Once the library is installed, no other steps are needed - the whole stack will be housed within the
+Parsec service process, similarly to the Mbed Crypto provider.</p>
+<p>Start Parsec with the Trusted Service configuration:</p>
+<pre><code>$ RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/trusted-service/config.toml
+</code></pre>
+<p>Which should print a <code>[INFO parsec] Parsec is ready.</code> You can now execute the end-to-end tests using
+that provider!</p>
+<p><strong>NOTE:</strong> The in-process stack uses Mbed Crypto for the crypto implementation, and therefore the
+code will be shared with the backend of the Mbed Crypto provider if both are used. Because Mbed
+Crypto stores keys on disk, by default in the working directory of the process, creating keys in
+both providers in parallel will lead to errors, as one will confuse the keys of the other for its
+own.</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 
                     </main>

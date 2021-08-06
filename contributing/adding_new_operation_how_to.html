@@ -5,8 +5,6 @@
         <meta charset="UTF-8">
         <title>How to add operations to Parsec - The Parsec Book</title>
         <!-- Custom HTML head -->
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -153,7 +150,7 @@ results, errors specific to the operation, a description, and a link to the
 tables on the <a href="../parsec_client/operations/service_api_coverage.html">Parsec Operations Coverage</a> page
 to reflect the new addition (create any API tables if they are missing).</p>
 <p>The opcode used should be the next available one. To find this, go to
-<a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations/mod.rs"><code>parsec-interface-rs/src/requests/mod.rs</code></a>
+<a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/requests/mod.rs"><code>parsec-interface-rs/src/requests/mod.rs</code></a>
 and find the largest in-use opcode.</p>
 <h3 id="parsec-operations"><a class="header" href="#parsec-operations">parsec-operations</a></h3>
 <p>Create the <code>protobuf</code> contracts in
@@ -182,12 +179,14 @@ of operation, and passes valid combinations.</p>
 This will convert to and from the protobuf contract and the Rust interface. There should be four
 methods per operation; two for going to and from the operation struct, and two for going to and from
 the result struct. Again, tests need to be added to ensure all conversions happen correctly.</p>
-<p>Add your protobuf contracts to the
-<a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/f924c0f45695ebd88e34537934c579be8909cced/src/operations_protobuf/generated_ops.rs#L18"><code>include_protobuf_as_module</code></a>
-block in
-<a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/master/src/operations_protobuf/generated_ops.rs"><code>src/operations_protobuf/generated_ops.rs</code></a>.
-If your Rust operation and/or result interfaces do not contain any sensitive information, add them
-to the
+<p>New protobuf operations need to be added to the <code>parsec-operations</code> submodule - do this by entering
+the submodule, then fetching and checking out the new contracts. Protobuf-generated code needs to be
+committed in the repository to speed up the builds and remove some of the dependencies. You
+therefore need to run a build using the <code>regenerate-protobuf</code> feature enabled and then to identify
+the generated Rust file in the correct directory, e.g.
+<code>target/debug/build/parsec-interface-fdbf7d7248ab4615/out/</code>. The file must be copied to
+<code>src/operations_protobuf/generated_ops/</code> and enabled as a module in <code>mod.rs</code>. If your Rust operation
+and/or result interfaces do not contain any sensitive information, add them to the
 <a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/f924c0f45695ebd88e34537934c579be8909cced/src/operations_protobuf/generated_ops.rs#L129"><code>empty_clear_message!</code></a>
 block. Otherwise, implement
 <a href="https://github.com/parallaxsecond/parsec-interface-rs/blob/f924c0f45695ebd88e34537934c579be8909cced/src/operations_protobuf/generated_ops.rs#L116"><code>ClearProtoMessage</code></a>

@@ -5,8 +5,6 @@
         <meta charset="UTF-8">
         <title>Adding a new Parsec Provider - The Parsec Book</title>
         <!-- Custom HTML head -->
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -156,7 +153,7 @@ service-level by the core provider and so must be supported by all providers.</p
 value, by implementing the <code>describe</code> method. The UUID identifying the provider is
 developer-generated and should not clash with existing providers. This process also requires the
 new provider to be added to the
-<a href="https://docs.rs/parsec-interface/latest/parsec_interface/requests/enum.ProviderID.html"><code>ProviderID</code></a>
+<a href="https://docs.rs/parsec-interface/0.25.0/parsec_interface/requests/enum.ProviderId.html"><code>ProviderID</code></a>
 enum. The <code>describe</code> method is also used to return the supported opcodes by the provider.</li>
 <li><code>list_keys</code>: the provider must implement this method to return all the keys stored within the
 provider for a particular application name.</li>

@@ -5,8 +5,6 @@
         <meta charset="UTF-8">
         <title>How to build and run Parsec - The Parsec Book</title>
         <!-- Custom HTML head -->
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -140,11 +137,13 @@
                         <h1 id="how-to-build-and-run-parsec"><a class="header" href="#how-to-build-and-run-parsec">How to build and run Parsec</a></h1>
 <p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install
 Rust</a>.</p>
-<p>Because the <a href="providers.html">providers</a> supported by Parsec are dependent on libraries and/or hardware
-features present on the platform, the build is fragmented through Rust features so that the
-resulting binary only contains the desired providers. Currently the service provides some of the
-following features: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>, and <code>tpm-provider</code>. Please check the
-<a href="#dependencies">dependencies</a> for what is needed to build each provider.</p>
+<p>Because the <a href="providers.html">providers</a> and <a href="authenticators.html">authenticators</a> supported by Parsec
+are dependent on libraries and/or hardware features present on the platform, the build is fragmented
+through Rust features so that the resulting binary only contains the desired providers. Currently
+the service provides some of the following features: <code>mbed-crypto-provider</code>, <code>pkcs11-provider</code>,
+<code>tpm-provider</code>, <code>cryptoauthlib-provider</code>, <code>trusted-service-provider</code>, as well as
+<code>jwt-svid-authenticator</code>. Please check the <a href="#dependencies">dependencies</a> for what is needed to build
+each provider.</p>
 <p>The <code>mbed-crypto-provider</code> feature is going to be used as an example in this guide. This can be
 replaced by a subset of the features mentioned above, space or comma separated. If you would like to
 test the TPM or PKCS check the <a href="tests#testing-the-tpm-provider-using-the-software-tpm">related
@@ -178,15 +177,13 @@ change the Parsec configuration without having to kill the service.</p>
 <pre><code>pkill -SIGHUP parsec
 </code></pre>
 <h2 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h2>
-<p>The Parsec Interface needs the <code>protoc</code> command to be available on the <code>PATH</code> in order to use the
-Protobuf contracts. On Ubuntu-like distributions, it can be installed via the package manager under
-the name <code>protobuf-compiler</code>:</p>
-<pre><code>sudo apt install protobuf-compiler
-</code></pre>
-<p>To use <code>bindgen</code> and generate the Rust to C wrappers, <code>libclang</code> (version at least 3.9) is needed:</p>
+<p>Some Parsec backends require FFI binding code to be generated, to allow us to interface with the
+libraries driving the hardware. For this we use <code>bindgen</code> and generate the Rust to C wrappers, for
+which <code>libclang</code> (version at least 3.9) is needed:</p>
 <pre><code>sudo apt install llvm-dev libclang-dev clang
 </code></pre>
-<p>Each provider has external dependencies that are needed to compile.</p>
+<p>Each provider has external dependencies that are needed to compile. Additionally, the JWT SVID
+authenticator also relies on external dependencies being present.</p>
 <h3 id="mbed-crypto"><a class="header" href="#mbed-crypto">Mbed Crypto</a></h3>
 <p>The Mbed Crypto provider is built on top of the reference implementation of the PSA Cryptography
 API. You can find a list of dependencies
@@ -201,7 +198,16 @@ Make sure you also follow the requirements of the <a href="https://docs.rs/tss-e
 <h3 id="cryptoauth-library"><a class="header" href="#cryptoauth-library">CryptoAuth Library</a></h3>
 <p>TODO</p>
 <h3 id="trusted-service"><a class="header" href="#trusted-service">Trusted Service</a></h3>
-<p>TODO</p>
+<p>The Trusted Service provider connects to its backend through the shared library produced by the
+<a href="https://trusted-services.readthedocs.io/en/integration/developer/deployments.html"><code>libts</code>
+deployment</a>. You
+can find instructions for building the required components
+<a href="https://trusted-services.readthedocs.io/en/integration/developer/build-instructions.html">here</a>.</p>
+<p>The Trusted Service provider also relies on the <code>protoc</code> command to be available on the <code>PATH</code>. This
+is needed as our method of IPC with the TS relies on protobuf. On Ubuntu-like distributions, it can
+be installed via the package manager under the name <code>protobuf-compiler</code>:</p>
+<pre><code>sudo apt install protobuf-compiler
+</code></pre>
 <h2 id="cross-compilation"><a class="header" href="#cross-compilation">Cross-compilation</a></h2>
 <p>The Parsec service can be cross-compiled to other target triplets. You might need to install a
 cross-compilation C toolchain for the target you want to compile for. The default ones are indicated

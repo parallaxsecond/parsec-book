@@ -5,8 +5,6 @@
         <meta charset="UTF-8">
         <title>Package management and versioning guide - The Parsec Book</title>
         <!-- Custom HTML head -->
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -213,7 +210,9 @@ Parallaxsecond crates that can be found on crates.io is given below.</p>
 <p><code>parsec-service</code> dependencies:</p>
 <ul>
 <li><code>parsec-interface</code>: used for managing IPC communication</li>
-<li><code>psa-crypto</code>: used in the Mbed Crypto provider as the interface to a PSA Crypto implementation</li>
+<li><code>psa-crypto</code>: used in the Mbed Crypto provider as the interface to a PSA Crypto implementation,
+and in the Cryptoki crate for conversions between the two standards</li>
+<li><code>cryptoki</code>: used in the PKCS11 provider as the interface to PKCS11 libraries</li>
 <li><code>tss-esapi</code>: used in the TPM provider as the interface to the TSS stack</li>
 <li><code>parsec-client</code>: <strong>NOT</strong> used in the service, but as a dependency for the test client</li>
 </ul>

@@ -5,8 +5,6 @@
         <meta charset="UTF-8">
         <title>List of existing tests - The Parsec Book</title>
         <!-- Custom HTML head -->
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -176,9 +173,22 @@ folder contain the configuration needed to run Parsec for the corresponding test
 <tr><td><a href="https://github.com/parallaxsecond/parsec/blob/master/src/authenticators/direct_authenticator/mod.rs">Direct authenticator tests</a></td><td>Testing the <code>Authenticate</code> trait with this authenticator.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/blob/master/src/key_info_managers/on_disk_manager/mod.rs">On-disk key info manager tests</a></td><td>Testing the <code>ManageKeyInfo</code> trait with various strings for application and key names. The persistence is tested in the end-to-end tests.</td></tr>
 </tbody></table>
+<h2 id="cross-compilation-tests"><a class="header" href="#cross-compilation-tests">Cross-compilation tests</a></h2>
+<p>Given that Parsec is expected to run natively on as many platforms as possible, we have incorporated
+cross-compilation testing in our CI framework. These check that the service can be built for the
+following platform triples:</p>
+<ul>
+<li><code>arm-linux-gnueabihf</code></li>
+<li><code>aarch64-linux-gnu</code></li>
+<li><code>i686-linux-gnu</code></li>
+</ul>
+<p>Cross-compilation is tested for the PKCS11, Mbed Crypto, and TPM providers. You can see details of
+this test <a href="https://github.com/parallaxsecond/parsec/blob/main/test/cross-compile.sh">here</a>. All
+other CI jobs run in <code>x86_64-linux-gnu</code>.</p>
 <h2 id="in-dependencies"><a class="header" href="#in-dependencies">In dependencies</a></h2>
 <p>The dependencies that we maintain in the <code>parallaxsecond</code> organisation also contain their own set of
-integration and unit tests: <code>parsec-interface-rs</code>, <code>rust-psa-crypto</code> and <code>rust-tss-esapi</code>.</p>
+integration and unit tests: <code>parsec-interface-rs</code>, <code>rust-psa-crypto</code>, <code>rust-tss-esapi</code>, and
+<code>rust-cryptoki</code>.</p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 
                     </main>

@@ -5,8 +5,6 @@
         <meta charset="UTF-8">
         <title>Parsec Operations Coverage - The Parsec Book</title>
         <!-- Custom HTML head -->
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -144,40 +141,40 @@ table.</p>
 <p>Not all parameters (key types, algorithms) of the operation might be supported. See the following
 sections for details.</p>
 <table><thead><tr><th>Operation \ Provider</th><th>Core</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
-<tr><td><a href="ping.html">Ping</a></td><td>✅</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td></tr>
-<tr><td><a href="list_providers.html">ListProviders</a></td><td>✅</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td></tr>
-<tr><td><a href="list_opcodes.html">ListOpcodes</a></td><td>✅</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td></tr>
-<tr><td><a href="list_authenticators.html">ListAuthenticators</a></td><td>✅</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td></tr>
-<tr><td><a href="list_keys.html">ListKeys</a></td><td>✅</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td></tr>
-<tr><td><a href="delete_client.html">DeleteClient</a></td><td>✅</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td></tr>
-<tr><td><a href="list_clients.html">ListClients</a></td><td>✅</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td><td>❎</td></tr>
-<tr><td><a href="psa_import_key.html">PsaImportKey</a></td><td>❎</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
-<tr><td><a href="psa_generate_key.html">PsaGenerateKey</a></td><td>❎</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
-<tr><td><a href="psa_destroy_key.html">PsaDestroyKey</a></td><td>❎</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
-<tr><td><a href="psa_export_key.html">PsaExportKey</a></td><td>❎</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_export_public_key.html">PsaExportPublicKey</a></td><td>❎</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
-<tr><td><a href="psa_hash_compute.html">PsaHashCompute</a></td><td>❎</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
-<tr><td><a href="psa_hash_compare.html">PsaHashCompare</a></td><td>❎</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
-<tr><td><a href="psa_mac_compute.html">PsaMacCompute</a></td><td>❎</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_mac_verify.html">PsaMacVerify</a></td><td>❎</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_cipher_encrypt.html">PsaCipherEncrypt</a></td><td>❎</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_cipher_decrypt.html">PsaCipherDecrypt</a></td><td>❎</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_aead_encrypt.html">PsaAeadEncrypt</a></td><td>❎</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_aead_decrypt.html">PsaAeadDecrypt</a></td><td>❎</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_sign_message.html">PsaSignMessage</a></td><td>❎</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_verify_message.html">PsaVerifyMessage</a></td><td>❎</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_sign_hash.html">PsaSignHash</a></td><td>❎</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
-<tr><td><a href="psa_verify_hash.html">PsaVerifyHash</a></td><td>❎</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
-<tr><td><a href="psa_asymmetric_encrypt.html">PsaAsymmetricEncrypt</a></td><td>❎</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_asymmetric_decrypt.html">PsaAsymmetricDecrypt</a></td><td>❎</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_raw_key_agreement.html">PsaRawKeyAgreement</a></td><td>❎</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="psa_generate_random.html">PsaGenerateRandom</a></td><td>❎</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
-<tr><td><a href="attest_key.html">AttestKey</a></td><td>❎</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td><a href="prepare_key_attestation.html">PrepareKeyAttestation</a></td><td>❎</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="ping.html">Ping</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
+<tr><td><a href="list_providers.html">ListProviders</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
+<tr><td><a href="list_opcodes.html">ListOpcodes</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
+<tr><td><a href="list_authenticators.html">ListAuthenticators</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
+<tr><td><a href="list_keys.html">ListKeys</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
+<tr><td><a href="delete_client.html">DeleteClient</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
+<tr><td><a href="list_clients.html">ListClients</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
+<tr><td><a href="psa_import_key.html">PsaImportKey</a></td><td>🚫</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
+<tr><td><a href="psa_generate_key.html">PsaGenerateKey</a></td><td>🚫</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td><a href="psa_destroy_key.html">PsaDestroyKey</a></td><td>🚫</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td><a href="psa_export_key.html">PsaExportKey</a></td><td>🚫</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_export_public_key.html">PsaExportPublicKey</a></td><td>🚫</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
+<tr><td><a href="psa_hash_compute.html">PsaHashCompute</a></td><td>🚫</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
+<tr><td><a href="psa_hash_compare.html">PsaHashCompare</a></td><td>🚫</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
+<tr><td><a href="psa_mac_compute.html">PsaMacCompute</a></td><td>🚫</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_mac_verify.html">PsaMacVerify</a></td><td>🚫</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_cipher_encrypt.html">PsaCipherEncrypt</a></td><td>🚫</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_cipher_decrypt.html">PsaCipherDecrypt</a></td><td>🚫</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_aead_encrypt.html">PsaAeadEncrypt</a></td><td>🚫</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_aead_decrypt.html">PsaAeadDecrypt</a></td><td>🚫</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_sign_message.html">PsaSignMessage</a></td><td>🚫</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_verify_message.html">PsaVerifyMessage</a></td><td>🚫</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_sign_hash.html">PsaSignHash</a></td><td>🚫</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
+<tr><td><a href="psa_verify_hash.html">PsaVerifyHash</a></td><td>🚫</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
+<tr><td><a href="psa_asymmetric_encrypt.html">PsaAsymmetricEncrypt</a></td><td>🚫</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_asymmetric_decrypt.html">PsaAsymmetricDecrypt</a></td><td>🚫</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_raw_key_agreement.html">PsaRawKeyAgreement</a></td><td>🚫</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="psa_generate_random.html">PsaGenerateRandom</a></td><td>🚫</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
+<tr><td><a href="attest_key.html">AttestKey</a></td><td>🚫</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td><a href="prepare_key_attestation.html">PrepareKeyAttestation</a></td><td>🚫</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
 <ul>
 <li>✅: The provider supports the operation (maybe not all of its parameters, check below).</li>
-<li>❎: The operation is not meant to be implemented on this provider (core operation on a crypto
+<li>🚫: The operation is not meant to be implemented on this provider (core operation on a crypto
 provider or opposite).</li>
 <li>❌: The provider does not currently support the operation.</li>
 </ul>
@@ -195,8 +192,8 @@ for key management operations.</p>
 <tr><td>Chacha20</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>RsaPublicKey</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
 <tr><td>RsaKeyPair</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
-<tr><td>EccKeyPair</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
-<tr><td>EccPublicKey</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>EccKeyPair</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>EccPublicKey</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>DhKeyPair</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>DhPublicKey</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
@@ -206,7 +203,7 @@ families</a> are supported. Not all curves from
 those families might be supported.</p>
 <table><thead><tr><th>ECC Curve Family \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>SECP-K1</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
-<tr><td>SECP-R1</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>✅</td></tr>
+<tr><td>SECP-R1</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>SECP-R2</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
 <tr><td>SECT-K1</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
 <tr><td>SECT-R1</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
@@ -262,11 +259,11 @@ cryptographic operations they could be used in.</p>
 <h4 id="asymmetric-signature-algorithms"><a class="header" href="#asymmetric-signature-algorithms">Asymmetric signature algorithms</a></h4>
 <table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>RSA PKCS#1 v1.5 signature with hashing</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
-<tr><td>Raw PKCS#1 v1.5 signature</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td>RSA PSS signature with hashing</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td>ECDSA signature with hashing</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
-<tr><td>ECDSA signature without hashing</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
-<tr><td>Deterministic ECDSA signature with hashing</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>Raw PKCS#1 v1.5 signature</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>RSA PSS signature with hashing</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>ECDSA signature with hashing</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
+<tr><td>ECDSA signature without hashing</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
+<tr><td>Deterministic ECDSA signature with hashing</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
 <h4 id="asymmetric-encryption-algorithms"><a class="header" href="#asymmetric-encryption-algorithms">Asymmetric encryption algorithms</a></h4>
 <table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>

@@ -5,8 +5,6 @@
         <meta charset="UTF-8">
         <title>Providers - The Parsec Book</title>
         <!-- Custom HTML head -->
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -85,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -189,8 +186,14 @@ slot.</p>
 CryptoAuthentication Library.</p>
 <h2 id="trusted-service-provider"><a class="header" href="#trusted-service-provider">Trusted Service Provider</a></h2>
 <p><strong>Provider UUID: 71129441-508a-4da6-b6e8-7b98a777e4c0</strong></p>
-<p>This provider exposes functionaility provided by the Crypto Trusted Service running in a Trusted
-Execution Environment.</p>
+<p>This provider exposes functionality provided by the Crypto Trusted Service running in a Trusted
+Execution Environment. The provider interfaces with the Trusted Services through the <code>libts</code> dynamic
+library which bridges over to Secure World.</p>
+<p>If you would like to try out this provider on a Linux PC, you can build and install an in-process
+version of the Trusted Services following the instructions
+<a href="https://trusted-services.readthedocs.io/en/integration/developer/build-instructions.html">here</a>.</p>
+<p>The code for the Trusted Services project can be found
+<a href="https://git.trustedfirmware.org/TS/trusted-services.git/">here</a>.</p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 
                     </main>
