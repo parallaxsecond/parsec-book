@@ -1,6 +1,7 @@
 # Parsec Stability
 
-Work in progress, see the [related issue](https://github.com/parallaxsecond/parsec-book/issues/83).
+The work for setting up a stability framework for Parsec was done for the 0.8.0 release, see the
+[related issue](https://github.com/parallaxsecond/parsec-book/issues/83) for more details.
 
 ## Why is stability important?
 

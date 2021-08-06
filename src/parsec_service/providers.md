@@ -75,7 +75,15 @@ CryptoAuthentication Library.
 
 **Provider UUID: 71129441-508a-4da6-b6e8-7b98a777e4c0**
 
-This provider exposes functionaility provided by the Crypto Trusted Service running in a Trusted
-Execution Environment.
+This provider exposes functionality provided by the Crypto Trusted Service running in a Trusted
+Execution Environment. The provider interfaces with the Trusted Services through the `libts` dynamic
+library which bridges over to Secure World.
+
+If you would like to try out this provider on a Linux PC, you can build and install an in-process
+version of the Trusted Services following the instructions
+[here](https://trusted-services.readthedocs.io/en/integration/developer/build-instructions.html).
+
+The code for the Trusted Services project can be found
+[here](https://git.trustedfirmware.org/TS/trusted-services.git/).
 
 *Copyright 2019 Contributors to the Parsec project.*

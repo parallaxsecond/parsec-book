@@ -21,7 +21,7 @@ service-level by the core provider and so must be supported by all providers.
    value, by implementing the `describe` method. The UUID identifying the provider is
    developer-generated and should not clash with existing providers. This process also requires the
    new provider to be added to the
-   [`ProviderID`](https://docs.rs/parsec-interface/latest/parsec_interface/requests/enum.ProviderID.html)
+   [`ProviderID`](https://docs.rs/parsec-interface/0.25.0/parsec_interface/requests/enum.ProviderId.html)
    enum. The `describe` method is also used to return the supported opcodes by the provider.
 - `list_keys`: the provider must implement this method to return all the keys stored within the
    provider for a particular application name.
