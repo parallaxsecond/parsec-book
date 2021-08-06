@@ -41,6 +41,8 @@ is helpful.
 
 - Once you have settled on a crate to upstream, make sure you are on the most recent version of the
    main branch (e.g. `master`) - you should have no uncommited changes lingering.
+- Run a `git submodule update --init --recursive` to make sure that any submodules are up to date
+   and checked out locally, as they will be included in the crate.
 - Run a `cargo publish --dry-run` - this ensures that the publishing process is possible with the
    current state of the repo.
 - Change the version number of the crate in `Cargo.toml` following semantic versioning rules.
