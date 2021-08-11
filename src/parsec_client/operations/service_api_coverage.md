@@ -39,6 +39,7 @@ sections for details.
 | [PsaGenerateRandom](psa_generate_random.md)         | 🚫 | ✅         | ❌     | ❌     | ❌             | ✅                |
 | [AttestKey](attest_key.md)                          | 🚫 | ❌         | ❌     | ❌     | ❌             | ❌                |
 | [PrepareKeyAttestation](prepare_key_attestation.md) | 🚫 | ❌         | ❌     | ❌     | ❌             | ❌                |
+| [CanDoCrypto](can_do_crypto.md)                     | 🚫 | ❌         | ❌     | ❌     | ❌             | ❌                |
 
 - ✅: The provider supports the operation (maybe not all of its parameters, check below).
 - 🚫: The operation is not meant to be implemented on this provider (core operation on a crypto
