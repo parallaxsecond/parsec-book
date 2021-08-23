@@ -40,6 +40,7 @@ translated to the specific operation implementation language used.
 | [DeleteClient](delete_client.md)                    | `0x001C` |
 | [AttestKey](attest_key.md)                          | `0x001E` |
 | [PrepareKeyAttestation](prepare_key_attestation.md) | `0x001F` |
+| [CanDoCrypto](can_do_crypto.md)                     | `0x0020` |
 
 Find [here](service_api_coverage.md) the current level of support of those operations in Parsec.
 
@@ -132,5 +133,12 @@ stability of their contracts or abstract interfaces.**
 
 - [PrepareKeyAttestation](prepare_key_attestation.md)
 - [AttestKey](attest_key.md)
+
+### Capability discovery
+
+**(EXPERIMENTAL) These operations are in an experimental phase. No guarantees are offered around the
+stability of their contracts or abstract interfaces.**
+
+- [CanDoCrypto](can_do_crypto.md)
 
 *Copyright 2019 Contributors to the Parsec project.*
