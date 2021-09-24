@@ -5,6 +5,8 @@ prefer:
 
 - [Quickstart for Linux on x86](linux_x86.md): running Parsec with Mbed Crypto natively on your
    machine, the fastest
+- [Quickstart for openSUSE and SUSE](opensuse.md): running Parsec with the package from openSUSE and
+   SUSE distributions
 - [Quickstart using a Docker container](docker.md): running a Docker container with all providers
    included, the most complete
 
