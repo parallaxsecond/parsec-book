@@ -34,8 +34,10 @@ No values are returned by this operation
 
 ## Specific response status codes
 
-- `Success`: the check is successful
-- `PsaErrorNotSupported`: the check failed (not supported)
+- `Success`: the check is successful (supported).
+- `PsaErrorNotPermitted`: the check failed due to a mismatch between the algorithm and the key type
+   (not supported).
+- `PsaErrorNotSupported`: the check failed for any other reason (not supported).
 
 ## Description
 
@@ -53,6 +55,6 @@ The meaning of the operation depends of the value of `check_type`:
 
 ## Contract
 
-Contract currently being written
+[Protobuf](https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/can_do_crypto.proto)
 
 *Copyright 2021 Contributors to the Parsec project.*
