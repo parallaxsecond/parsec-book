@@ -2736,8 +2736,10 @@ the stability of the interface for any capability discovery mechanism.</strong><
 <p>No values are returned by this operation</p>
 <h2 id="specific-response-status-codes-30"><a class="header" href="#specific-response-status-codes-30">Specific response status codes</a></h2>
 <ul>
-<li><code>Success</code>: the check is successful</li>
-<li><code>PsaErrorNotSupported</code>: the check failed (not supported)</li>
+<li><code>Success</code>: the check is successful (supported).</li>
+<li><code>PsaErrorNotPermitted</code>: the check failed due to a mismatch between the algorithm and the key type
+(not supported).</li>
+<li><code>PsaErrorNotSupported</code>: the check failed for any other reason (not supported).</li>
 </ul>
 <h2 id="description-30"><a class="header" href="#description-30">Description</a></h2>
 <p>The meaning of the operation depends of the value of <code>check_type</code>:</p>
@@ -2753,7 +2755,7 @@ is 0, check for a key of any size.</li>
 <code>None</code>, also perform the Use check. If the <code>key_bits</code> is 0, check for a key of any size.</li>
 </ul>
 <h2 id="contract-30"><a class="header" href="#contract-30">Contract</a></h2>
-<p>Contract currently being written</p>
+<p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/can_do_crypto.proto">Protobuf</a></p>
 <p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="parsec-for-service-developers"><a class="header" href="#parsec-for-service-developers">Parsec for service developers</a></h1>
 <p>Find in this sections guides for those looking to work hands-on with the Parsec service source code.
