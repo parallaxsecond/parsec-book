@@ -18,11 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Create a Go workspace and install vmdfmt
-        run: |
-          mkdir /tmp/go
-          export GOPATH=/tmp/go
-          go get github.com/bobertlo/vmd/cmd/vmdfmt
+      - uses: actions/setup-go@v2
+        with:
+          go-version: "1.17.2"
+      - name: Install vmdfmt
+        run: go install github.com/bobertlo/vmd/cmd/vmdfmt@latest
       - name: Check formatting
         run: |
           export PATH="$PATH:/tmp/go/bin:$(pwd)/node_modules/.bin"
