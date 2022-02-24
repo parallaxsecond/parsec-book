@@ -122,11 +122,11 @@ General asset to describe the fact that each client's request should be done in 
 time. The service should be available at any given point from the moment it is started by the
 administrator.
 
-### Key Triple Mappings- AS7
+### Key Identity Mappings- AS7
 
-Data containing the mapping between a Key Triple (application name, provider ID, key name) and the
-key attributes with a provider-specific identifier of the key. For the Mbed Crypto and PKCS11
-providers this is an ID number, for the TPM provider this is the wrapped key.
+Data containing the mapping between a Key Identity (application identity, provider identity, key
+name) and the key attributes with a provider-specific identifier of the key. For the Mbed Crypto and
+PKCS11 providers this is an ID number, for the TPM provider this is the wrapped key.
 
 **Integrity** : Parsec expects this data to be valid.
 
