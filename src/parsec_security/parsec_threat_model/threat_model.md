@@ -173,8 +173,8 @@ This attacker uses the existing Listener endpoint, created by the service, to co
 | I | *(GNRC, JWTS)* An attacker steals the authentication token from a client's request to then execute any operation in their name.                                                               | M-3                              | AS4, AS3 |
 | D | An attacker modifies the valid request of another client to modify the operation and make it fail.                                                                                            | M-3                              | AS6      |
 | D | An attacker overloads/crashes the system and thus prevents any other user from making use of the service.                                                                                     | Crashes: M-0, M-5 Overloads: U-0 | AS6      |
-| E | A malicious request, formatted in a specific way, triggers remote code execution in Parsec privilege level.                                                                                   | U-3, M-5                         | All      |
-| E | A malicious request exploits a vulnerability in the software stack and leads to an attacker having Parsec privilege level on key management in the underlying hardware.                       | U-3, M-5                         | AS3, AS6 |
+| E | A malicious request, formatted in a specific way, triggers remote code execution in Parsec privilege level.                                                                                   | U-3, M-10, M-5                   | All      |
+| E | A malicious request exploits a vulnerability in the software stack and leads to an attacker having Parsec privilege level on key management in the underlying hardware.                       | U-3, M-10, M-5                   | AS3, AS6 |
 
 ### Attacker "Service Response" - A2
 
@@ -215,30 +215,30 @@ machine a `SIGINT` signal.
 This attacker communicates with the security hardware on the platform using the operating system
 interfaces.
 
-|   | Description                                                                                                         | Mitigation    | Assets        |
-|---|---------------------------------------------------------------------------------------------------------------------|---------------|---------------|
-| S | An attacker directly drives the platform hardware to execute commands on it.                                        | O-8           | AS3, AS6      |
-| T | An attacker modifies the commands sent to hardware modules.                                                         | O-8, U-3      | AS3, AS6      |
-| R | Commands cannot be proven to have originated in the service.                                                        | U-7           |               |
-| I | An attacker can read the content of commands to the hardware.                                                       | O-8, U-3      | AS3, AS4, AS5 |
-| D | An attacker modifies the commands sent to the hardware to make them fail.                                           | O-8, U-3      | AS6           |
-| D | Attacker causes the underlying hardware to fail or be generally unusable.                                           | O-8, U-3      | AS6           |
-| D | Attacker disrupts the software stack that drives the hardware (e.g. replaces or removes PKCS 11 dynamic libraries). | O-8, U-3      | AS6           |
-| E | An attacker uses the configured state of a hardware module to make operations with a higher privilege on it.        | O-8, U-3, U-4 | AS3, AS6      |
+|   | Description                                                                                                         | Mitigation          | Assets        |
+|---|---------------------------------------------------------------------------------------------------------------------|---------------------|---------------|
+| S | An attacker directly drives the platform hardware to execute commands on it.                                        | O-8                 | AS3, AS6      |
+| T | An attacker modifies the commands sent to hardware modules.                                                         | O-8, U-3, M-10      | AS3, AS6      |
+| R | Commands cannot be proven to have originated in the service.                                                        | U-7                 |               |
+| I | An attacker can read the content of commands to the hardware.                                                       | O-8, U-3, M-10      | AS3, AS4, AS5 |
+| D | An attacker modifies the commands sent to the hardware to make them fail.                                           | O-8, U-3, M-10      | AS6           |
+| D | Attacker causes the underlying hardware to fail or be generally unusable.                                           | O-8, U-3, M-10      | AS6           |
+| D | Attacker disrupts the software stack that drives the hardware (e.g. replaces or removes PKCS 11 dynamic libraries). | O-8, U-3, M-10      | AS6           |
+| E | An attacker uses the configured state of a hardware module to make operations with a higher privilege on it.        | O-8, U-3, M-10, U-4 | AS3, AS6      |
 
 ### Attacker "Hardware Result" - A5
 
 This attacker communicates with the service using the operating system interfaces for hardware. It
 can also create a spoofed hardware interface.
 
-|   | Description                                                                                                          | Mitigation    | Assets        |
-|---|----------------------------------------------------------------------------------------------------------------------|---------------|---------------|
-| S | An attacker impersonates a hardware module or uses a malicious module plugged to the machine.                        | O-1, ASUM-2   | AS4, AS6      |
-| T | An attacker modifies the response of a hardware command.                                                             | O-8, U-3      | AS4, AS6      |
-| R | Responses cannot be proven to originate from the hardware module.                                                    | U-7           |               |
-| I | An attacker can read the content of a command response.                                                              | U-3, O-8      | AS3, AS4, AS5 |
-| D | An attacker modifies the valid command response to pretend it failed or succeeded.                                   | U-3, O-8      | AS6           |
-| E | A malicious command response, formatted in a specific way, triggers remote code execution in Parsec privilege level. | U-3, M-5, O-8 | All           |
+|   | Description                                                                                                          | Mitigation          | Assets        |
+|---|----------------------------------------------------------------------------------------------------------------------|---------------------|---------------|
+| S | An attacker impersonates a hardware module or uses a malicious module plugged to the machine.                        | O-1, ASUM-2         | AS4, AS6      |
+| T | An attacker modifies the response of a hardware command.                                                             | O-8, U-3, M-10      | AS4, AS6      |
+| R | Responses cannot be proven to originate from the hardware module.                                                    | U-7                 |               |
+| I | An attacker can read the content of a command response.                                                              | U-3, M-10, O-8      | AS3, AS4, AS5 |
+| D | An attacker modifies the valid command response to pretend it failed or succeeded.                                   | U-3, M-10, O-8      | AS6           |
+| E | A malicious command response, formatted in a specific way, triggers remote code execution in Parsec privilege level. | U-3, M-10, M-5, O-8 | All           |
 
 ### Attacker "Key Mapping Storage" - A6
 
@@ -259,16 +259,16 @@ data and to the persistent storage mechanism used for this purpose.
 Attacker with access to the data stream returning to the Key Info Manager from its source of
 persistent storage.
 
-|   | Description                                                                                                                                         | Mitigation    | Assets        |
-|---|-----------------------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------|
-| S | Attacker spoofs the existence of a mapping and makes the service use an incorrect or invalid key (handle).                                          | M-6, O-3      | AS3, AS4, AS6 |
-| T | An attacker alters the retrieval of stored material to change the key that is used for an operation initiated by either himself or some other user. | M-6           | AS3, AS6      |
-| R | There is no way to guarantee that the mapping being retrieved was previously stored by the service.                                                 | U-7           |               |
-| I | An attacker can read the mapping in transit.                                                                                                        | M-6           | AS3           |
-| D | An attacker prevents the value from being read.                                                                                                     | M-6           | AS6           |
-| D | An attacker removes all stored values, preventing users from utilizing their keys.                                                                  | O-3           | AS6           |
-| D | A malicious key handle, formatted in a specific way, leads to a service crash.                                                                      | O-3, M-5, U-3 | AS6           |
-| E | A malicious key handle, formatted in a specific way, triggers remote code execution in Parsec privilege level.                                      | O-3, M-5, U-3 | All           |
+|   | Description                                                                                                                                         | Mitigation          | Assets        |
+|---|-----------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|---------------|
+| S | Attacker spoofs the existence of a mapping and makes the service use an incorrect or invalid key (handle).                                          | M-6, O-3            | AS3, AS4, AS6 |
+| T | An attacker alters the retrieval of stored material to change the key that is used for an operation initiated by either himself or some other user. | M-6                 | AS3, AS6      |
+| R | There is no way to guarantee that the mapping being retrieved was previously stored by the service.                                                 | U-7                 |               |
+| I | An attacker can read the mapping in transit.                                                                                                        | M-6                 | AS3           |
+| D | An attacker prevents the value from being read.                                                                                                     | M-6                 | AS6           |
+| D | An attacker removes all stored values, preventing users from utilizing their keys.                                                                  | O-3                 | AS6           |
+| D | A malicious key handle, formatted in a specific way, leads to a service crash.                                                                      | O-3, M-5, U-3, M-10 | AS6           |
+| E | A malicious key handle, formatted in a specific way, triggers remote code execution in Parsec privilege level.                                      | O-3, M-5, U-3, M-10 | All           |
 
 ### Attacker "Logging" - A8
 
@@ -290,15 +290,15 @@ Attacker with access to the log stream generated by the Parsec service and to th
 Attacker with access to the configuration file for the Parsec service or to the OS-provided
 mechanism for reading it.
 
-|   | Description                                                                                                                                   | Mitigation    | Assets        |
-|---|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|---------------|
-| S | An adversary can spoof a configuration file, leading to the service operating in an unsecure state, ineffective state or not starting at all. | O-6           | AS3, AS5, AS6 |
-| T | The configuration file set up by the administrator might be modified, leading to the service being unsecure, ineffective or broken.           | O-6           | AS3, AS5, AS6 |
-| R | There are no guarantees that the person setting up the configuration file was authorised to do so.                                            | O-6           |               |
-| I | The configuration file might, if read by an adversary, provide information that opens different attack avenues.                               | O-6           | AS5           |
-| I | If the configuration file is tampered, information about the existing keys can be extracted through rogue providers.                          | O-6           | AS5           |
-| D | Removing or altering the configuration file can lead to the Parsec service not starting or working in a broken state.                         | O-6           | AS6           |
-| E | Parsing a malicious configuration file can lead to code execution at the Parsec privilege level.                                              | M-5, U-3, O-6 | All           |
+|   | Description                                                                                                                                   | Mitigation          | Assets        |
+|---|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------------|---------------|
+| S | An adversary can spoof a configuration file, leading to the service operating in an unsecure state, ineffective state or not starting at all. | O-6                 | AS3, AS5, AS6 |
+| T | The configuration file set up by the administrator might be modified, leading to the service being unsecure, ineffective or broken.           | O-6                 | AS3, AS5, AS6 |
+| R | There are no guarantees that the person setting up the configuration file was authorised to do so.                                            | O-6                 |               |
+| I | The configuration file might, if read by an adversary, provide information that opens different attack avenues.                               | O-6                 | AS5           |
+| I | If the configuration file is tampered, information about the existing keys can be extracted through rogue providers.                          | O-6                 | AS5           |
+| D | Removing or altering the configuration file can lead to the Parsec service not starting or working in a broken state.                         | O-6                 | AS6           |
+| E | Parsing a malicious configuration file can lead to code execution at the Parsec privilege level.                                              | M-5, U-3, M-10, O-6 | All           |
 
 ### Attacker "Identity Provider" - A10
 
@@ -307,15 +307,15 @@ Attacker with access to the communication running from the Identity Provider to 
 *Not applicable for deployment (DRCT). For deployment (DSPC) the operating system is considered
 sufficiently secure, as described in assumption 3.*
 
-|   | Description                                                                                                                                                                        | Mitigation | Assets           |
-|---|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|------------------|
-| S | The initial trust bundle can be spoofed, and an attacker can thus gain complete control over the service.                                                                          | O-7        | AS2 and then all |
-| T | The trust bundle shared by the identity provider can be modified in transit to disrupt the operation of the service or take control of it.                                         | M-3        | AS2 and then all |
-| R | The service cannot guarantee that the trust bundle it received comes from the trusted identity provider.                                                                           | O-7        |                  |
-| I | N/A - the trust bundle contains public information                                                                                                                                 |            |                  |
-| D | If the communication path between identity provider and service is disrupted, the service will not be in a fully functional state as it will not be able to authenticate requests. | M-3        | AS2, AS6         |
-| D | A malicious share bundle could trigger a parsing bug and lead the service to crash.                                                                                                | M-5, U-3   | AS2, AS6         |
-| E | A malicious share bundle could trigger a parsing bug and lead to code execution at the Parsec privilege level.                                                                     | M-5, U-3   | All              |
+|   | Description                                                                                                                                                                        | Mitigation     | Assets           |
+|---|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|------------------|
+| S | The initial trust bundle can be spoofed, and an attacker can thus gain complete control over the service.                                                                          | O-7            | AS2 and then all |
+| T | The trust bundle shared by the identity provider can be modified in transit to disrupt the operation of the service or take control of it.                                         | M-3            | AS2 and then all |
+| R | The service cannot guarantee that the trust bundle it received comes from the trusted identity provider.                                                                           | O-7            |                  |
+| I | N/A - the trust bundle contains public information                                                                                                                                 |                |                  |
+| D | If the communication path between identity provider and service is disrupted, the service will not be in a fully functional state as it will not be able to authenticate requests. | M-3            | AS2, AS6         |
+| D | A malicious share bundle could trigger a parsing bug and lead the service to crash.                                                                                                | M-5, U-3, M-10 | AS2, AS6         |
+| E | A malicious share bundle could trigger a parsing bug and lead to code execution at the Parsec privilege level.                                                                     | M-5, U-3, M-10 | All              |
 
 ### Attacker "Local Memory" - A11
 
@@ -362,7 +362,7 @@ endpoint, mimicking the SPIFFE implementation's one.
 |----|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
 | 0  | An attacker can use all the threads of the service's thread pool, requesting for a time-consuming operation on each one of them, to leave the less amount of free time possible to other clients.                                                                                                                                                                                                                                                                            | The requests take more time to execute.                                                                                        |
 | 2  | The authentication token is stored with confidentiality by the clients. If it is stolen, the service cannot prevent access with it unless the token is revoked.                                                                                                                                                                                                                                                                                                              | All the client's keys can be used, and exported if allowed by the key's policy.                                                |
-| 3  | Parsec dependencies are not checked for Security Vulnerabilities.                                                                                                                                                                                                                                                                                                                                                                                                            | A vulnerability in one of Parsec dependency will also impact Parsec and the data Parsec shares with that dependency.           |
+| 3  | Parsec dependencies are not (visually) investigated for Security Vulnerabilities. (See M-10 for our mitigation.)                                                                                                                                                                                                                                                                                                                                                             | A vulnerability in one of Parsec dependency will also impact Parsec and the data Parsec shares with that dependency.           |
 | 4  | While Parsec is authenticated on the device, anyone can brute force a key ID to execute operations with the key. Unmitigated for the PKCS 11 Provider: all sessions share the login state; if one session logs in then all other opened sessions will also be logged in. Other sessions only need a valid key ID to execute operations with private keys. Mitigated for the TPM Provider: each key is protected by a long, random authentication value, generated by the TPM | All the client's PKCS 11 keys can be used with PKCS 11 operations.                                                             |
 | 5  | *(DSPC)* Parsec does not know about the security quality of a client's Unix password.                                                                                                                                                                                                                                                                                                                                                                                        | All the client's keys can be used, and exported if allowed by the key's policy.                                                |
 | 6  | Parsec does not support using multiple authenticators concurrently ([open issue](https://github.com/parallaxsecond/parsec/issues/272)).                                                                                                                                                                                                                                                                                                                                      | If there is weakness in one authenticator, all the client's keys can be used, and exported if allowed by the key's policy.     |
@@ -381,6 +381,7 @@ endpoint, mimicking the SPIFFE implementation's one.
 | 7  | Logging is configured to include the software component from where logs are generated.                                                                                                               | [Done](https://github.com/parallaxsecond/parsec/commit/aafd176b49dd01c3f08866d564f2fff092d1305e)                                                                                                                    |
 | 8  | Sensitive data that was found in the Parsec service memory is cleared once the buffer holding it is no longer used.                                                                                  | [Done](https://github.com/parallaxsecond/parsec/pull/239)                                                                                                                                                           |
 | 9  | *(JWTS)* The SPIFFE Workload API endpoint is accessed through an IPC mechanism respecting confidentiality and integrity of messages transmitted between the workloads and the SPIFFE implementation. | The [SPIFFE Workload Endpoint document](https://github.com/spiffe/spiffe/blob/master/standards/SPIFFE_Workload_Endpoint.md#3-transport) prescribes the use of Unix Domain Socket or TCP with strong authentication. |
+| 10 | Any vulnerabilities relating to our Rust dependencies which get added to the [Rust Security Advisory Database](https://rustsec.org/) get reported on a nightly basis by the CI.                      | The [Parsec Security Policy](https://github.com/parallaxsecond/parsec/blob/main/SECURITY.md) describes the process we follow to identify and report these to users.                                                 |
 
 ## Operational mitigations
 
