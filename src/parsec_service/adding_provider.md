@@ -46,7 +46,7 @@ the KeyInfoManager in a thread-safe and convenient way, the KeyInfoManagerClient
 used. The key ID type used will have to implement `serde` `Serialize` and `DeserializedOwned`
 traits.
 
-### Dealing with key triple mappings coherency
+### Dealing with key identity mappings coherency
 
 During the lifetime of the Parsec service, it might happen that the mappings do not correctly
 reflect the state of the actual key store: a key stored in the KeyInfoManager does not map to any
