@@ -268,8 +268,8 @@ all threats but when one of them is particularly relevant, it will be noted with
 <tr><td>I</td><td><em>(GNRC, JWTS)</em> An attacker steals the authentication token from a client's request to then execute any operation in their name.</td><td>M-3</td><td>AS4, AS3</td></tr>
 <tr><td>D</td><td>An attacker modifies the valid request of another client to modify the operation and make it fail.</td><td>M-3</td><td>AS6</td></tr>
 <tr><td>D</td><td>An attacker overloads/crashes the system and thus prevents any other user from making use of the service.</td><td>Crashes: M-0, M-5 Overloads: U-0</td><td>AS6</td></tr>
-<tr><td>E</td><td>A malicious request, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-5</td><td>All</td></tr>
-<tr><td>E</td><td>A malicious request exploits a vulnerability in the software stack and leads to an attacker having Parsec privilege level on key management in the underlying hardware.</td><td>U-3, M-5</td><td>AS3, AS6</td></tr>
+<tr><td>E</td><td>A malicious request, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-10, M-5</td><td>All</td></tr>
+<tr><td>E</td><td>A malicious request exploits a vulnerability in the software stack and leads to an attacker having Parsec privilege level on key management in the underlying hardware.</td><td>U-3, M-10, M-5</td><td>AS3, AS6</td></tr>
 </tbody></table>
 <h3 id="attacker-service-response---a2"><a class="header" href="#attacker-service-response---a2">Attacker &quot;Service Response&quot; - A2</a></h3>
 <p>This attacker uses the existing Listener endpoint, created by the service, to communicate with the
@@ -302,24 +302,24 @@ machine a <code>SIGINT</code> signal.</p>
 interfaces.</p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker directly drives the platform hardware to execute commands on it.</td><td>O-8</td><td>AS3, AS6</td></tr>
-<tr><td>T</td><td>An attacker modifies the commands sent to hardware modules.</td><td>O-8, U-3</td><td>AS3, AS6</td></tr>
+<tr><td>T</td><td>An attacker modifies the commands sent to hardware modules.</td><td>O-8, U-3, M-10</td><td>AS3, AS6</td></tr>
 <tr><td>R</td><td>Commands cannot be proven to have originated in the service.</td><td>U-7</td><td></td></tr>
-<tr><td>I</td><td>An attacker can read the content of commands to the hardware.</td><td>O-8, U-3</td><td>AS3, AS4, AS5</td></tr>
-<tr><td>D</td><td>An attacker modifies the commands sent to the hardware to make them fail.</td><td>O-8, U-3</td><td>AS6</td></tr>
-<tr><td>D</td><td>Attacker causes the underlying hardware to fail or be generally unusable.</td><td>O-8, U-3</td><td>AS6</td></tr>
-<tr><td>D</td><td>Attacker disrupts the software stack that drives the hardware (e.g. replaces or removes PKCS 11 dynamic libraries).</td><td>O-8, U-3</td><td>AS6</td></tr>
-<tr><td>E</td><td>An attacker uses the configured state of a hardware module to make operations with a higher privilege on it.</td><td>O-8, U-3, U-4</td><td>AS3, AS6</td></tr>
+<tr><td>I</td><td>An attacker can read the content of commands to the hardware.</td><td>O-8, U-3, M-10</td><td>AS3, AS4, AS5</td></tr>
+<tr><td>D</td><td>An attacker modifies the commands sent to the hardware to make them fail.</td><td>O-8, U-3, M-10</td><td>AS6</td></tr>
+<tr><td>D</td><td>Attacker causes the underlying hardware to fail or be generally unusable.</td><td>O-8, U-3, M-10</td><td>AS6</td></tr>
+<tr><td>D</td><td>Attacker disrupts the software stack that drives the hardware (e.g. replaces or removes PKCS 11 dynamic libraries).</td><td>O-8, U-3, M-10</td><td>AS6</td></tr>
+<tr><td>E</td><td>An attacker uses the configured state of a hardware module to make operations with a higher privilege on it.</td><td>O-8, U-3, M-10, U-4</td><td>AS3, AS6</td></tr>
 </tbody></table>
 <h3 id="attacker-hardware-result---a5"><a class="header" href="#attacker-hardware-result---a5">Attacker &quot;Hardware Result&quot; - A5</a></h3>
 <p>This attacker communicates with the service using the operating system interfaces for hardware. It
 can also create a spoofed hardware interface.</p>
 <table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates a hardware module or uses a malicious module plugged to the machine.</td><td>O-1, ASUM-2</td><td>AS4, AS6</td></tr>
-<tr><td>T</td><td>An attacker modifies the response of a hardware command.</td><td>O-8, U-3</td><td>AS4, AS6</td></tr>
+<tr><td>T</td><td>An attacker modifies the response of a hardware command.</td><td>O-8, U-3, M-10</td><td>AS4, AS6</td></tr>
 <tr><td>R</td><td>Responses cannot be proven to originate from the hardware module.</td><td>U-7</td><td></td></tr>
-<tr><td>I</td><td>An attacker can read the content of a command response.</td><td>U-3, O-8</td><td>AS3, AS4, AS5</td></tr>
-<tr><td>D</td><td>An attacker modifies the valid command response to pretend it failed or succeeded.</td><td>U-3, O-8</td><td>AS6</td></tr>
-<tr><td>E</td><td>A malicious command response, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-5, O-8</td><td>All</td></tr>
+<tr><td>I</td><td>An attacker can read the content of a command response.</td><td>U-3, M-10, O-8</td><td>AS3, AS4, AS5</td></tr>
+<tr><td>D</td><td>An attacker modifies the valid command response to pretend it failed or succeeded.</td><td>U-3, M-10, O-8</td><td>AS6</td></tr>
+<tr><td>E</td><td>A malicious command response, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-10, M-5, O-8</td><td>All</td></tr>
 </tbody></table>
 <h3 id="attacker-key-mapping-storage---a6"><a class="header" href="#attacker-key-mapping-storage---a6">Attacker &quot;Key Mapping Storage&quot; - A6</a></h3>
 <p>Attacker with access to the key info mapping stream generated by Key Info Managers when storing its
@@ -342,8 +342,8 @@ persistent storage.</p>
 <tr><td>I</td><td>An attacker can read the mapping in transit.</td><td>M-6</td><td>AS3</td></tr>
 <tr><td>D</td><td>An attacker prevents the value from being read.</td><td>M-6</td><td>AS6</td></tr>
 <tr><td>D</td><td>An attacker removes all stored values, preventing users from utilizing their keys.</td><td>O-3</td><td>AS6</td></tr>
-<tr><td>D</td><td>A malicious key handle, formatted in a specific way, leads to a service crash.</td><td>O-3, M-5, U-3</td><td>AS6</td></tr>
-<tr><td>E</td><td>A malicious key handle, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>O-3, M-5, U-3</td><td>All</td></tr>
+<tr><td>D</td><td>A malicious key handle, formatted in a specific way, leads to a service crash.</td><td>O-3, M-5, U-3, M-10</td><td>AS6</td></tr>
+<tr><td>E</td><td>A malicious key handle, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>O-3, M-5, U-3, M-10</td><td>All</td></tr>
 </tbody></table>
 <h3 id="attacker-logging---a8"><a class="header" href="#attacker-logging---a8">Attacker &quot;Logging&quot; - A8</a></h3>
 <p>Attacker with access to the log stream generated by the Parsec service and to the log file.</p>
@@ -367,7 +367,7 @@ mechanism for reading it.</p>
 <tr><td>I</td><td>The configuration file might, if read by an adversary, provide information that opens different attack avenues.</td><td>O-6</td><td>AS5</td></tr>
 <tr><td>I</td><td>If the configuration file is tampered, information about the existing keys can be extracted through rogue providers.</td><td>O-6</td><td>AS5</td></tr>
 <tr><td>D</td><td>Removing or altering the configuration file can lead to the Parsec service not starting or working in a broken state.</td><td>O-6</td><td>AS6</td></tr>
-<tr><td>E</td><td>Parsing a malicious configuration file can lead to code execution at the Parsec privilege level.</td><td>M-5, U-3, O-6</td><td>All</td></tr>
+<tr><td>E</td><td>Parsing a malicious configuration file can lead to code execution at the Parsec privilege level.</td><td>M-5, U-3, M-10, O-6</td><td>All</td></tr>
 </tbody></table>
 <h3 id="attacker-identity-provider---a10"><a class="header" href="#attacker-identity-provider---a10">Attacker &quot;Identity Provider&quot; - A10</a></h3>
 <p>Attacker with access to the communication running from the Identity Provider to the Parsec service.</p>
@@ -379,8 +379,8 @@ sufficiently secure, as described in assumption 3.</em></p>
 <tr><td>R</td><td>The service cannot guarantee that the trust bundle it received comes from the trusted identity provider.</td><td>O-7</td><td></td></tr>
 <tr><td>I</td><td>N/A - the trust bundle contains public information</td><td></td><td></td></tr>
 <tr><td>D</td><td>If the communication path between identity provider and service is disrupted, the service will not be in a fully functional state as it will not be able to authenticate requests.</td><td>M-3</td><td>AS2, AS6</td></tr>
-<tr><td>D</td><td>A malicious share bundle could trigger a parsing bug and lead the service to crash.</td><td>M-5, U-3</td><td>AS2, AS6</td></tr>
-<tr><td>E</td><td>A malicious share bundle could trigger a parsing bug and lead to code execution at the Parsec privilege level.</td><td>M-5, U-3</td><td>All</td></tr>
+<tr><td>D</td><td>A malicious share bundle could trigger a parsing bug and lead the service to crash.</td><td>M-5, U-3, M-10</td><td>AS2, AS6</td></tr>
+<tr><td>E</td><td>A malicious share bundle could trigger a parsing bug and lead to code execution at the Parsec privilege level.</td><td>M-5, U-3, M-10</td><td>All</td></tr>
 </tbody></table>
 <h3 id="attacker-local-memory---a11"><a class="header" href="#attacker-local-memory---a11">Attacker &quot;Local Memory&quot; - A11</a></h3>
 <p>Attacker with access to the local memory regions used by Parsec. This attacker can be another
@@ -414,7 +414,7 @@ endpoint, mimicking the SPIFFE implementation's one.</p>
 <table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
 <tr><td>0</td><td>An attacker can use all the threads of the service's thread pool, requesting for a time-consuming operation on each one of them, to leave the less amount of free time possible to other clients.</td><td>The requests take more time to execute.</td></tr>
 <tr><td>2</td><td>The authentication token is stored with confidentiality by the clients. If it is stolen, the service cannot prevent access with it unless the token is revoked.</td><td>All the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
-<tr><td>3</td><td>Parsec dependencies are not checked for Security Vulnerabilities.</td><td>A vulnerability in one of Parsec dependency will also impact Parsec and the data Parsec shares with that dependency.</td></tr>
+<tr><td>3</td><td>Parsec dependencies are not (visually) investigated for Security Vulnerabilities. (See M-10 for our mitigation.)</td><td>A vulnerability in one of Parsec dependency will also impact Parsec and the data Parsec shares with that dependency.</td></tr>
 <tr><td>4</td><td>While Parsec is authenticated on the device, anyone can brute force a key ID to execute operations with the key. Unmitigated for the PKCS 11 Provider: all sessions share the login state; if one session logs in then all other opened sessions will also be logged in. Other sessions only need a valid key ID to execute operations with private keys. Mitigated for the TPM Provider: each key is protected by a long, random authentication value, generated by the TPM</td><td>All the client's PKCS 11 keys can be used with PKCS 11 operations.</td></tr>
 <tr><td>5</td><td><em>(DSPC)</em> Parsec does not know about the security quality of a client's Unix password.</td><td>All the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
 <tr><td>6</td><td>Parsec does not support using multiple authenticators concurrently (<a href="https://github.com/parallaxsecond/parsec/issues/272">open issue</a>).</td><td>If there is weakness in one authenticator, all the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
@@ -431,6 +431,7 @@ endpoint, mimicking the SPIFFE implementation's one.</p>
 <tr><td>7</td><td>Logging is configured to include the software component from where logs are generated.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/aafd176b49dd01c3f08866d564f2fff092d1305e">Done</a></td></tr>
 <tr><td>8</td><td>Sensitive data that was found in the Parsec service memory is cleared once the buffer holding it is no longer used.</td><td><a href="https://github.com/parallaxsecond/parsec/pull/239">Done</a></td></tr>
 <tr><td>9</td><td><em>(JWTS)</em> The SPIFFE Workload API endpoint is accessed through an IPC mechanism respecting confidentiality and integrity of messages transmitted between the workloads and the SPIFFE implementation.</td><td>The <a href="https://github.com/spiffe/spiffe/blob/master/standards/SPIFFE_Workload_Endpoint.md#3-transport">SPIFFE Workload Endpoint document</a> prescribes the use of Unix Domain Socket or TCP with strong authentication.</td></tr>
+<tr><td>10</td><td>Any vulnerabilities relating to our Rust dependencies which get added to the <a href="https://rustsec.org/">Rust Security Advisory Database</a> get reported on a nightly basis by the CI.</td><td>The <a href="https://github.com/parallaxsecond/parsec/blob/main/SECURITY.md">Parsec Security Policy</a> describes the process we follow to identify and report these to users.</td></tr>
 </tbody></table>
 <h2 id="operational-mitigations"><a class="header" href="#operational-mitigations">Operational mitigations</a></h2>
 <p>Most of these operational mitigations are implemented when following the <a href="../secure_deployment.html">Recommendations on a

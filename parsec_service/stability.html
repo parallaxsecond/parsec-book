@@ -224,9 +224,14 @@ to the list above and looked in detail below.</p>
 <li>PKCS#11 version 2.40</li>
 <li>libclang version 6.0</li>
 <li>TSS libraries version 2.3.3</li>
+<li>CryptoAuthLib version 3.1.0 (not tested on CI, as there is no software mock available)</li>
 </ul>
 <p>Mbed Crypto is currently compiled from scratch. When a new LTS version of Mbed TLS ships a PSA
 Crypto compliant version of Mbed Crypto, stability guarantees will be made on that version.</p>
+<p>The Trusted Service provider is currently built using a pre-release version of the Trusted Services
+library. We aim to keep the Parsec service aligned with recent revisions of the TS code, however
+since no release has been made, no guarantees can be offered about stability. At the time of
+writing, no platform is officially supported for Trused Services deployments.</p>
 <p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
 
                     </main>
