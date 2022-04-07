@@ -83,7 +83,7 @@ those families might be supported.
 | SECT-R1                     | ✅           | ❌       | ❌       | ✅               | ❌                  |
 | SECT-R2                     | ✅           | ❌       | ❌       | ✅               | ❌                  |
 | Brainpool P R1              | ✅           | ❌       | ❌       | ✅               | ❌                  |
-| FRP                         | ✅           | ❌       | ❌       | ✅               | ❌                  |
+| FRP                         | ❌           | ❌       | ❌       | ❌               | ❌                  |
 | Montgomery                  | ✅           | ❌       | ❌       | ✅               | ❌                  |
 
 ### Algorithm support
@@ -100,7 +100,7 @@ cryptographic operations they could be used in.
 | MD5                  | ✅           | ❌       | ❌       | ✅               | ❌                  |
 | RIPEMD-160           | ✅           | ❌       | ❌       | ✅               | ❌                  |
 | SHA-1                | ✅           | ✅       | ✅       | ✅               | ❌                  |
-| SHA-224              | ✅           | ❌       | ❌       | ✅               | ❌                  |
+| SHA-224              | ✅           | ✅       | ❌       | ✅               | ❌                  |
 | SHA-256              | ✅           | ✅       | ✅       | ✅               | ✅                  |
 | SHA-384              | ✅           | ✅       | ✅       | ✅               | ❌                  |
 | SHA-512              | ✅           | ✅       | ✅       | ✅               | ❌                  |
