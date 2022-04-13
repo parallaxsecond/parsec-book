@@ -16,30 +16,30 @@ sections for details.
 | [ListKeys](list_keys.md)                            | ✅    | 🚫           | 🚫       | 🚫       | 🚫               | 🚫                  |
 | [DeleteClient](delete_client.md)                    | ✅    | 🚫           | 🚫       | 🚫       | 🚫               | 🚫                  |
 | [ListClients](list_clients.md)                      | ✅    | 🚫           | 🚫       | 🚫       | 🚫               | 🚫                  |
-| [PsaImportKey](psa_import_key.md)                   | 🚫    | ✅           | ✅       | ✅       | ✅               | ❌                  |
+| [PsaImportKey](psa_import_key.md)                   | 🚫    | ✅           | ✅       | ✅       | ✅               | ✅                  |
 | [PsaGenerateKey](psa_generate_key.md)               | 🚫    | ✅           | ✅       | ✅       | ✅               | ✅                  |
 | [PsaDestroyKey](psa_destroy_key.md)                 | 🚫    | ✅           | ✅       | ✅       | ✅               | ✅                  |
-| [PsaExportKey](psa_export_key.md)                   | 🚫    | ✅           | ❌       | ❌       | ❌               | ❌                  |
-| [PsaExportPublicKey](psa_export_public_key.md)      | 🚫    | ✅           | ✅       | ✅       | ✅               | ❌                  |
+| [PsaExportKey](psa_export_key.md)                   | 🚫    | ✅           | ❌       | ❌       | ✅               | ✅                  |
+| [PsaExportPublicKey](psa_export_public_key.md)      | 🚫    | ✅           | ✅       | ✅       | ✅               | ✅                  |
 | [PsaHashCompute](psa_hash_compute.md)               | 🚫    | ✅           | ❌       | ❌       | ❌               | ✅                  |
 | [PsaHashCompare](psa_hash_compare.md)               | 🚫    | ✅           | ❌       | ❌       | ❌               | ✅                  |
 | [PsaMacCompute](psa_mac_compute.md)                 | 🚫    | ❌           | ❌       | ❌       | ❌               | ❌                  |
 | [PsaMacVerify](psa_mac_verify.md)                   | 🚫    | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| [PsaCipherEncrypt](psa_cipher_encrypt.md)           | 🚫    | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| [PsaCipherDecrypt](psa_cipher_decrypt.md)           | 🚫    | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| [PsaAeadEncrypt](psa_aead_encrypt.md)               | 🚫    | ✅           | ❌       | ❌       | ❌               | ❌                  |
-| [PsaAeadDecrypt](psa_aead_decrypt.md)               | 🚫    | ✅           | ❌       | ❌       | ❌               | ❌                  |
-| [PsaSignMessage](psa_sign_message.md)               | 🚫    | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| [PsaVerifyMessage](psa_verify_message.md)           | 🚫    | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| [PsaSignHash](psa_sign_hash.md)                     | 🚫    | ✅           | ✅       | ✅       | ✅               | ❌                  |
-| [PsaVerifyHash](psa_verify_hash.md)                 | 🚫    | ✅           | ✅       | ✅       | ✅               | ❌                  |
-| [PsaAsymmetricEncrypt](psa_asymmetric_encrypt.md)   | 🚫    | ✅           | ✅       | ✅       | ❌               | ❌                  |
-| [PsaAsymmetricDecrypt](psa_asymmetric_decrypt.md)   | 🚫    | ✅           | ✅       | ✅       | ❌               | ❌                  |
-| [PsaRawKeyAgreement](psa_raw_key_agreement.md)      | 🚫    | ✅           | ❌       | ❌       | ❌               | ❌                  |
-| [PsaGenerateRandom](psa_generate_random.md)         | 🚫    | ✅           | ❌       | ❌       | ❌               | ✅                  |
-| [AttestKey](attest_key.md)                          | 🚫    | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| [PrepareKeyAttestation](prepare_key_attestation.md) | 🚫    | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| [CanDoCrypto](can_do_crypto.md)                     | 🚫    | ❌           | ❌       | ❌       | ❌               | ❌                  |
+| [PsaCipherEncrypt](psa_cipher_encrypt.md)           | 🚫    | ❌           | ❌       | ❌       | ❌               | ✅                  |
+| [PsaCipherDecrypt](psa_cipher_decrypt.md)           | 🚫    | ❌           | ❌       | ❌       | ❌               | ✅                  |
+| [PsaAeadEncrypt](psa_aead_encrypt.md)               | 🚫    | ✅           | ❌       | ❌       | ❌               | ✅                  |
+| [PsaAeadDecrypt](psa_aead_decrypt.md)               | 🚫    | ✅           | ❌       | ❌       | ❌               | ✅                  |
+| [PsaSignMessage](psa_sign_message.md)               | 🚫    | ❌           | ❌       | ❌       | ❌               | ✅                  |
+| [PsaVerifyMessage](psa_verify_message.md)           | 🚫    | ❌           | ❌       | ❌       | ❌               | ✅                  |
+| [PsaSignHash](psa_sign_hash.md)                     | 🚫    | ✅           | ✅       | ✅       | ✅               | ✅                  |
+| [PsaVerifyHash](psa_verify_hash.md)                 | 🚫    | ✅           | ✅       | ✅       | ✅               | ✅                  |
+| [PsaAsymmetricEncrypt](psa_asymmetric_encrypt.md)   | 🚫    | ✅           | ✅       | ✅       | ✅               | ❌                  |
+| [PsaAsymmetricDecrypt](psa_asymmetric_decrypt.md)   | 🚫    | ✅           | ✅       | ✅       | ✅               | ❌                  |
+| [PsaRawKeyAgreement](psa_raw_key_agreement.md)      | 🚫    | ✅           | ❌       | ❌       | ❌               | ✅                  |
+| [PsaGenerateRandom](psa_generate_random.md)         | 🚫    | ✅           | ❌       | ❌       | ✅               | ✅                  |
+| [AttestKey](attest_key.md)                          | 🚫    | ❌           | ❌       | ✅       | ❌               | ❌                  |
+| [PrepareKeyAttestation](prepare_key_attestation.md) | 🚫    | ❌           | ❌       | ✅       | ❌               | ❌                  |
+| [CanDoCrypto](can_do_crypto.md)                     | 🚫    | ✅           | ✅       | ✅       | ✅               | ❌                  |
 
 - ✅: The provider supports the operation (maybe not all of its parameters, check below).
 - 🚫: The operation is not meant to be implemented on this provider (core operation on a crypto
@@ -83,7 +83,7 @@ those families might be supported.
 | SECT-R1                     | ✅           | ❌       | ❌       | ✅               | ❌                  |
 | SECT-R2                     | ✅           | ❌       | ❌       | ✅               | ❌                  |
 | Brainpool P R1              | ✅           | ❌       | ❌       | ✅               | ❌                  |
-| FRP                         | ✅           | ❌       | ❌       | ✅               | ❌                  |
+| FRP                         | ❌           | ❌       | ❌       | ❌               | ❌                  |
 | Montgomery                  | ✅           | ❌       | ❌       | ✅               | ❌                  |
 
 ### Algorithm support
@@ -100,7 +100,7 @@ cryptographic operations they could be used in.
 | MD5                  | ✅           | ❌       | ❌       | ✅               | ❌                  |
 | RIPEMD-160           | ✅           | ❌       | ❌       | ✅               | ❌                  |
 | SHA-1                | ✅           | ✅       | ✅       | ✅               | ❌                  |
-| SHA-224              | ✅           | ❌       | ❌       | ✅               | ❌                  |
+| SHA-224              | ✅           | ✅       | ❌       | ✅               | ❌                  |
 | SHA-256              | ✅           | ✅       | ✅       | ✅               | ✅                  |
 | SHA-384              | ✅           | ✅       | ✅       | ✅               | ❌                  |
 | SHA-512              | ✅           | ✅       | ✅       | ✅               | ❌                  |
@@ -124,20 +124,20 @@ cryptographic operations they could be used in.
 | Algorithm \ Provider     | Mbed Crypto | PKCS 11 | TPM 2.0 | Trusted Service | CryptoAuth library |
 |--------------------------|-------------|---------|---------|-----------------|--------------------|
 | Stream Cipher            | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| CTR                      | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| CFB                      | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| OFB                      | ❌           | ❌       | ❌       | ❌               | ❌                  |
+| CTR                      | ❌           | ❌       | ❌       | ❌               | ✅                  |
+| CFB                      | ❌           | ❌       | ❌       | ❌               | ✅                  |
+| OFB                      | ❌           | ❌       | ❌       | ❌               | ✅                  |
 | XTS                      | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| ECB with no padding      | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| CBC with no padding      | ❌           | ❌       | ❌       | ❌               | ❌                  |
-| CBCP with PKCS#7 padding | ❌           | ❌       | ❌       | ❌               | ❌                  |
+| ECB with no padding      | ❌           | ❌       | ❌       | ❌               | ✅                  |
+| CBC with no padding      | ❌           | ❌       | ❌       | ❌               | ✅                  |
+| CBCP with PKCS#7 padding | ❌           | ❌       | ❌       | ❌               | ✅                  |
 
 #### AEAD algorithms
 
 | Algorithm \ Provider | Mbed Crypto | PKCS 11 | TPM 2.0 | Trusted Service | CryptoAuth library |
 |----------------------|-------------|---------|---------|-----------------|--------------------|
-| CCM                  | ✅           | ❌       | ❌       | ❌               | ❌                  |
-| GCM                  | ✅           | ❌       | ❌       | ❌               | ❌                  |
+| CCM                  | ✅           | ❌       | ❌       | ❌               | ✅                  |
+| GCM                  | ✅           | ❌       | ❌       | ❌               | ✅                  |
 | ChaCha20-Poly1305    | ✅           | ❌       | ❌       | ❌               | ❌                  |
 
 #### Asymmetric signature algorithms
@@ -147,7 +147,7 @@ cryptographic operations they could be used in.
 | RSA PKCS#1 v1.5 signature with hashing     | ✅           | ✅       | ✅       | ✅               | ❌                  |
 | Raw PKCS#1 v1.5 signature                  | ✅           | ❌       | ❌       | ❌               | ❌                  |
 | RSA PSS signature with hashing             | ✅           | ✅       | ❌       | ❌               | ❌                  |
-| ECDSA signature with hashing               | ✅           | ✅       | ✅       | ✅               | ❌                  |
+| ECDSA signature with hashing               | ✅           | ✅       | ✅       | ✅               | ✅                  |
 | ECDSA signature without hashing            | ✅           | ❌       | ❌       | ❌               | ❌                  |
 | Deterministic ECDSA signature with hashing | ✅           | ❌       | ❌       | ❌               | ❌                  |
 
@@ -163,7 +163,7 @@ cryptographic operations they could be used in.
 | Algorithm \ Provider | Mbed Crypto | PKCS 11 | TPM 2.0 | Trusted Service | CryptoAuth library |
 |----------------------|-------------|---------|---------|-----------------|--------------------|
 | FFDH                 | ✅           | ❌       | ❌       | ❌               | ❌                  |
-| ECDH                 | ✅           | ❌       | ❌       | ❌               | ❌                  |
+| ECDH                 | ✅           | ❌       | ❌       | ❌               | ✅                  |
 
 ## Increasing PSA API coverage
 
