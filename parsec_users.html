@@ -149,11 +149,14 @@ libraries communicate with the Parsec service and integrate with the rest of the
 idiomatically.</p>
 <p>Parsec Client Libraries are available in the following languages:</p>
 <ul>
-<li><a href="https://docs.rs/parsec-client/*/parsec_client/">Rust</a>. See examples on how to use the
+<li><a href="https://docs.rs/parsec-client/*/parsec_client/">Rust</a>: See examples on how to use the
 <a href="https://docs.rs/parsec-client/*/parsec_client/core/basic_client/struct.BasicClient.html"><code>BasicClient</code></a>.</li>
-<li><a href="https://github.com/parallaxsecond/parsec-se-driver">C</a>: support is currently being built to use
-Parsec through the PSA Crypto API</li>
-<li><a href="https://github.com/parallaxsecond/parsec-client-go">Go</a> (work in progress!)</li>
+<li><a href="https://github.com/parallaxsecond/parsec-se-driver">C</a>: support exists for using Parsec through
+the PSA Crypto API for a limited set of primitives. Non-PSA functionality is currently not
+supported.</li>
+<li><a href="https://github.com/parallaxsecond/parsec-client-java">Java</a>: both a native Parsec client, as well
+as a JCA implementation based on that client.</li>
+<li><a href="https://github.com/parallaxsecond/parsec-client-go">Go</a>: work in progress!</li>
 </ul>
 <p>Also have a look at <a href="https://github.com/parallaxsecond/parsec-tool"><code>parsec-tool</code></a>, a command-line
 client to access Parsec from the terminal.</p>
