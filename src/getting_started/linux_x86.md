@@ -75,6 +75,41 @@ MEYCIQCrc9cys35NeXwNAr8lYu8WPu0RiutkoAIWn+jYfYofPwIhAKPlNNsW//ykW8nX11KABNpWWYsN
 
 Execute the tool without any argument to check all the possible commands!
 
+## Running the `parsec-cli-tests.sh` script
+It's a script running simple end-two-end Parsec tests using parsec-tool and openssl
+
+As it uses the `parsec-tool`, `PARSEC_SERVICE_ENDPOINT` environment variable need to be set first.
+```
+export PARSEC_SERVICE_ENDPOINT=unix:$(pwd)/parsec.sock
+```
+
+Also `PARSEC_TOOL` environment variable should point to the parsec tool.
+```
+export PARSEC_TOOL=unix:$(pwd)/parsec-tool
+```
+or the path of the `parsec-tool` is included in the `PATH` environment variable.
+
+To run the script:
+```
+$ ./parsec-cli-tests.sh
+Checking Parsec service...
+[INFO ] Service wire protocol version
+1.0
+
+Testing Mbed Crypto provider
+
+- Test random number generation
+[DEBUG] Parsec BasicClient created with implicit provider "Mbed Crypto provider" and authentication data "UnixPeerCredentials"
+[INFO ] Generating 10 random bytes...
+[DEBUG] Running getuid
+[INFO ] Random bytes:
+A6 F5 90 24 DF FF 50 1F 29 2E
+....
+```
+
+Note: If `openssl` is not installed globaly in the system.
+`OPENSSL` environment variable need to be set first.
+
 ## Killing and reloading Parsec
 
 Kill the Parsec service with:
