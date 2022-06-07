@@ -76,21 +76,24 @@ MEYCIQCrc9cys35NeXwNAr8lYu8WPu0RiutkoAIWn+jYfYofPwIhAKPlNNsW//ykW8nX11KABNpWWYsN
 Execute the tool without any argument to check all the possible commands!
 
 ## Running the parsec-cli-tests.sh script
+
 It's a script running simple end-two-end Parsec tests using parsec-tool and openssl
 
 As it uses the `parsec-tool`, `PARSEC_SERVICE_ENDPOINT` environment variable need to be set first.
+
 ```
 export PARSEC_SERVICE_ENDPOINT="unix:$(pwd)/parsec.sock"
 ```
 
-
-If parsec-tool is not installed into a directory included in `PATH` then you also need to define `PARSEC_TOOL` environment variable with a full path to it:
+If parsec-tool is not installed into a directory included in `PATH` then you also need to define
+`PARSEC_TOOL` environment variable with a full path to it:
 
 ```
 export PARSEC_TOOL="$(pwd)/parsec-tool"
 ```
 
 To run the script:
+
 ```
 $ ./parsec-cli-tests.sh
 Checking Parsec service...
@@ -108,9 +111,11 @@ A6 F5 90 24 DF FF 50 1F 29 2E
 ....
 ```
 
-The `parsec-cli-tests.sh` script also accepts some command-line parameters to adjust its behaviour. You can use the `-h` option to get additional help on these.
+The `parsec-cli-tests.sh` script also accepts some command-line parameters to adjust its behaviour.
+You can use the `-h` option to get additional help on these.
 
-Note: If openssl is not installed into a directory included in `PATH` then you also need to define `OPENSSL` environment variable with a full path to it:
+Note: If openssl is not installed into a directory included in `PATH` then you also need to define
+`OPENSSL` environment variable with a full path to it:
 
 ```
 export OPENSSL="<full path>/openssl"
