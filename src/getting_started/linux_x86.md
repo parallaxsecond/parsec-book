@@ -77,7 +77,7 @@ Execute the tool without any argument to check all the possible commands!
 
 ## Running the parsec-cli-tests.sh script
 
-It's a script running simple end-two-end Parsec tests using parsec-tool and openssl
+It's a script running simple end-to-end Parsec tests using parsec-tool and openssl
 
 As it uses the `parsec-tool`, `PARSEC_SERVICE_ENDPOINT` environment variable need to be set first.
 
