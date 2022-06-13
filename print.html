@@ -383,6 +383,37 @@ $ ./parsec-tool sign -k toto &quot;Hello Parsec!&quot;
 MEYCIQCrc9cys35NeXwNAr8lYu8WPu0RiutkoAIWn+jYfYofPwIhAKPlNNsW//ykW8nX11KABNpWWYsNGNoZXt0yiGyBEtnb
 </code></pre>
 <p>Execute the tool without any argument to check all the possible commands!</p>
+<h2 id="running-the-parsec-cli-testssh-script"><a class="header" href="#running-the-parsec-cli-testssh-script">Running the parsec-cli-tests.sh script</a></h2>
+<p>It's a script running simple end-to-end Parsec tests using parsec-tool and openssl</p>
+<p>As it uses the <code>parsec-tool</code>, <code>PARSEC_SERVICE_ENDPOINT</code> environment variable need to be set first.</p>
+<pre><code>export PARSEC_SERVICE_ENDPOINT=&quot;unix:$(pwd)/parsec.sock&quot;
+</code></pre>
+<p>If parsec-tool is not installed into a directory included in <code>PATH</code> then you also need to define
+<code>PARSEC_TOOL</code> environment variable with a full path to it:</p>
+<pre><code>export PARSEC_TOOL=&quot;$(pwd)/parsec-tool&quot;
+</code></pre>
+<p>To run the script:</p>
+<pre><code>$ ./parsec-cli-tests.sh
+Checking Parsec service...
+[INFO ] Service wire protocol version
+1.0
+
+Testing Mbed Crypto provider
+
+- Test random number generation
+[DEBUG] Parsec BasicClient created with implicit provider &quot;Mbed Crypto provider&quot; and authentication data &quot;UnixPeerCredentials&quot;
+[INFO ] Generating 10 random bytes...
+[DEBUG] Running getuid
+[INFO ] Random bytes:
+A6 F5 90 24 DF FF 50 1F 29 2E
+....
+</code></pre>
+<p>The <code>parsec-cli-tests.sh</code> script also accepts some command-line parameters to adjust its behaviour.
+You can use the <code>-h</code> option to get additional help on these.</p>
+<p>Note: If openssl is not installed into a directory included in <code>PATH</code> then you also need to define
+<code>OPENSSL</code> environment variable with a full path to it:</p>
+<pre><code>export OPENSSL=&quot;&lt;full path&gt;/openssl&quot;
+</code></pre>
 <h2 id="killing-and-reloading-parsec"><a class="header" href="#killing-and-reloading-parsec">Killing and reloading Parsec</a></h2>
 <p>Kill the Parsec service with:</p>
 <pre><code>$ pkill parsec
