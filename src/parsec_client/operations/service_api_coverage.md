@@ -36,7 +36,7 @@ sections for details.
 | [PsaAsymmetricEncrypt](psa_asymmetric_encrypt.md)   | 🚫    | ✅           | ✅       | ✅       | ✅               | ❌                  |
 | [PsaAsymmetricDecrypt](psa_asymmetric_decrypt.md)   | 🚫    | ✅           | ✅       | ✅       | ✅               | ❌                  |
 | [PsaRawKeyAgreement](psa_raw_key_agreement.md)      | 🚫    | ✅           | ❌       | ❌       | ❌               | ✅                  |
-| [PsaGenerateRandom](psa_generate_random.md)         | 🚫    | ✅           | ❌       | ❌       | ✅               | ✅                  |
+| [PsaGenerateRandom](psa_generate_random.md)         | 🚫    | ✅           | ✅       | ✅       | ✅               | ✅                  |
 | [AttestKey](attest_key.md)                          | 🚫    | ❌           | ❌       | ✅       | ❌               | ❌                  |
 | [PrepareKeyAttestation](prepare_key_attestation.md) | 🚫    | ❌           | ❌       | ✅       | ❌               | ❌                  |
 | [CanDoCrypto](can_do_crypto.md)                     | 🚫    | ✅           | ✅       | ✅       | ✅               | ❌                  |
