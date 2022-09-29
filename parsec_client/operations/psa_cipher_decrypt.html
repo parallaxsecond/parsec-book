@@ -145,19 +145,21 @@
                         <h1 id="psacipherdecrypt"><a class="header" href="#psacipherdecrypt">PsaCipherDecrypt</a></h1>
 <p>Decrypt a short message with a symmetric cipher. Opcode: 21 (<code>0x0015</code>)</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="psa_algorithm.html#cipher-algorithm"><code>Cipher</code></a></td><td>A cipher algorithm that is compatible with the type of key</td></tr>
 <tr><td><code>ciphertext</code></td><td>Vector of bytes</td><td>IV followed by the ciphertext</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must allow the <a href="psa_key_attributes.html#usageflags-type">usage flag</a> <code>decrypt</code>.</li>
 <li><code>ciphertext</code> must be the IV followed by the ciphertext.</li>
 </ul>
 <h2 id="results"><a class="header" href="#results">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>plaintext</code></td><td>Vector of bytes</td><td>Buffer containing decrypted message</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>decrypt</code> flag, or it does not permit the

@@ -256,7 +256,7 @@ all threats but when one of them is particularly relevant, it will be noted with
 <h3 id="attacker-client-request---a1"><a class="header" href="#attacker-client-request---a1">Attacker &quot;Client Request&quot; - A1</a></h3>
 <p>This attacker uses the existing Listener endpoint, created by the service, to communicate with it.</p>
 <p><em>Not applicable for deployment (DRCT).</em></p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td><em>(GNRC, JWTS)</em> An attacker uses another client's authentication token. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-2, O-15</td><td>AS3</td></tr>
 <tr><td>S</td><td><em>(GNRC, JWTS)</em> An attacker uses brute-force on the AUTH field of the request until he does not have an AuthenticationError response status to then deduce a valid authentication token.</td><td>M-2</td><td>AS1</td></tr>
 <tr><td>S</td><td><em>(DSPC)</em> An attacker uses another client's Unix account. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-5</td><td>AS3</td></tr>
@@ -271,12 +271,13 @@ all threats but when one of them is particularly relevant, it will be noted with
 <tr><td>E</td><td>A malicious request, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-10, M-5</td><td>All</td></tr>
 <tr><td>E</td><td>A malicious request exploits a vulnerability in the software stack and leads to an attacker having Parsec privilege level on key management in the underlying hardware.</td><td>U-3, M-10, M-5</td><td>AS3, AS6</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-service-response---a2"><a class="header" href="#attacker-service-response---a2">Attacker &quot;Service Response&quot; - A2</a></h3>
 <p>This attacker uses the existing Listener endpoint, created by the service, to communicate with the
 client. It can also create a spoofed endpoint, mimicking the service's one.</p>
 <p>For protection of the clients' assets, please check the Parsec Clients Threat Models.</p>
 <p><em>Not applicable for deployment (DRCT).</em></p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates the Parsec service: clients share their data with a malicious entity.</td><td>O-2, O-9</td><td>AS3, AS4, AS6</td></tr>
 <tr><td>T</td><td>An attacker modifies the response of another client to change its body or its header and thus alter the type, content or status of the response.</td><td>M-3</td><td>AS4</td></tr>
 <tr><td>R</td><td>A client denies that the response was indeed sent by the Parsec service.</td><td>O-2, U-7, O-9</td><td></td></tr>
@@ -286,10 +287,11 @@ client. It can also create a spoofed endpoint, mimicking the service's one.</p>
 <tr><td>D</td><td>An attacker modifies the response in such a way that it leads the client to crash.</td><td>M-3</td><td></td></tr>
 <tr><td>E</td><td>An attacker modifies the response in such a way that it leads to code execution in the client sandbox at the same level as the client.</td><td>M-3</td><td></td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-os-signal---a3"><a class="header" href="#attacker-os-signal---a3">Attacker &quot;OS Signal&quot; - A3</a></h3>
 <p>This attacker has the capability of sending signals to the Parsec process. For example, on a Linux
 machine a <code>SIGINT</code> signal.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>N/A</td><td></td><td></td></tr>
 <tr><td>T</td><td>A <code>SIGHUP</code> is modified by an attacker into <code>SIGTERM</code> or the other way around.</td><td>ASUM-3</td><td>AS6</td></tr>
 <tr><td>R</td><td>N/A</td><td></td><td></td></tr>
@@ -297,10 +299,11 @@ machine a <code>SIGINT</code> signal.</p>
 <tr><td>D</td><td>An attacker can kill the Parsec service, gracefully or not or trigger an infinite loop of configuration reloads.</td><td>O-0</td><td>AS6</td></tr>
 <tr><td>E</td><td>N/A</td><td></td><td></td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-service-operation---a4"><a class="header" href="#attacker-service-operation---a4">Attacker &quot;Service Operation&quot; - A4</a></h3>
 <p>This attacker communicates with the security hardware on the platform using the operating system
 interfaces.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker directly drives the platform hardware to execute commands on it.</td><td>O-8</td><td>AS3, AS6</td></tr>
 <tr><td>T</td><td>An attacker modifies the commands sent to hardware modules.</td><td>O-8, U-3, M-10</td><td>AS3, AS6</td></tr>
 <tr><td>R</td><td>Commands cannot be proven to have originated in the service.</td><td>U-7</td><td></td></tr>
@@ -310,10 +313,11 @@ interfaces.</p>
 <tr><td>D</td><td>Attacker disrupts the software stack that drives the hardware (e.g. replaces or removes PKCS 11 dynamic libraries).</td><td>O-8, U-3, M-10</td><td>AS6</td></tr>
 <tr><td>E</td><td>An attacker uses the configured state of a hardware module to make operations with a higher privilege on it.</td><td>O-8, U-3, M-10, U-4</td><td>AS3, AS6</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-hardware-result---a5"><a class="header" href="#attacker-hardware-result---a5">Attacker &quot;Hardware Result&quot; - A5</a></h3>
 <p>This attacker communicates with the service using the operating system interfaces for hardware. It
 can also create a spoofed hardware interface.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates a hardware module or uses a malicious module plugged to the machine.</td><td>O-1, ASUM-2</td><td>AS4, AS6</td></tr>
 <tr><td>T</td><td>An attacker modifies the response of a hardware command.</td><td>O-8, U-3, M-10</td><td>AS4, AS6</td></tr>
 <tr><td>R</td><td>Responses cannot be proven to originate from the hardware module.</td><td>U-7</td><td></td></tr>
@@ -321,10 +325,11 @@ can also create a spoofed hardware interface.</p>
 <tr><td>D</td><td>An attacker modifies the valid command response to pretend it failed or succeeded.</td><td>U-3, M-10, O-8</td><td>AS6</td></tr>
 <tr><td>E</td><td>A malicious command response, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-10, M-5, O-8</td><td>All</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-key-mapping-storage---a6"><a class="header" href="#attacker-key-mapping-storage---a6">Attacker &quot;Key Mapping Storage&quot; - A6</a></h3>
 <p>Attacker with access to the key info mapping stream generated by Key Info Managers when storing its
 data and to the persistent storage mechanism used for this purpose.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker stores spoofed key handles/material, e.g. allowing themselves to access keys they should not have access to.</td><td>O-3</td><td>AS3, AS6</td></tr>
 <tr><td>T</td><td>An attacker modifies the data stored for a mapping to either divert another user to use a different key, or to allow himself access to some key.</td><td>O-3</td><td>AS3, AS6</td></tr>
 <tr><td>R</td><td>The mappings cannot be proven to have been generated by the service.</td><td>U-7</td><td></td></tr>
@@ -332,10 +337,11 @@ data and to the persistent storage mechanism used for this purpose.</p>
 <tr><td>D</td><td>An attacker could prevent the storage to be completed, e.g. by filling up the disk and running into space-related issues.</td><td>O-4</td><td>AS6</td></tr>
 <tr><td>E</td><td>N/A</td><td></td><td></td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-key-mapping-retrieval---a7"><a class="header" href="#attacker-key-mapping-retrieval---a7">Attacker &quot;Key Mapping Retrieval&quot; - A7</a></h3>
 <p>Attacker with access to the data stream returning to the Key Info Manager from its source of
 persistent storage.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>Attacker spoofs the existence of a mapping and makes the service use an incorrect or invalid key (handle).</td><td>M-6, O-3</td><td>AS3, AS4, AS6</td></tr>
 <tr><td>T</td><td>An attacker alters the retrieval of stored material to change the key that is used for an operation initiated by either himself or some other user.</td><td>M-6</td><td>AS3, AS6</td></tr>
 <tr><td>R</td><td>There is no way to guarantee that the mapping being retrieved was previously stored by the service.</td><td>U-7</td><td></td></tr>
@@ -345,9 +351,10 @@ persistent storage.</p>
 <tr><td>D</td><td>A malicious key handle, formatted in a specific way, leads to a service crash.</td><td>O-3, M-5, U-3, M-10</td><td>AS6</td></tr>
 <tr><td>E</td><td>A malicious key handle, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>O-3, M-5, U-3, M-10</td><td>All</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-logging---a8"><a class="header" href="#attacker-logging---a8">Attacker &quot;Logging&quot; - A8</a></h3>
 <p>Attacker with access to the log stream generated by the Parsec service and to the log file.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker could write to the log file, pretending to be the Parsec service and dilute the true logs, potentially hiding errors or crashes.</td><td>O-5</td><td>AS6</td></tr>
 <tr><td>S</td><td>An attacker uses the same logging façade mechanism to write on the logs from a malicious Parsec dependency.</td><td>M-7</td><td>AS6</td></tr>
 <tr><td>T</td><td>Attacker can modify logs to hide/modify details about crashes, errors or any other suspicious activity.</td><td>O-5</td><td>AS6</td></tr>
@@ -357,10 +364,11 @@ persistent storage.</p>
 <tr><td>D</td><td>An attacker prevents access to the logging system by the service putting it in a stall state or triggering errors/crashes.</td><td>O-5, O-4</td><td>AS6</td></tr>
 <tr><td>E</td><td>N/A</td><td></td><td></td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-configuration---a9"><a class="header" href="#attacker-configuration---a9">Attacker &quot;Configuration&quot; - A9</a></h3>
 <p>Attacker with access to the configuration file for the Parsec service or to the OS-provided
 mechanism for reading it.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An adversary can spoof a configuration file, leading to the service operating in an unsecure state, ineffective state or not starting at all.</td><td>O-6</td><td>AS3, AS5, AS6</td></tr>
 <tr><td>T</td><td>The configuration file set up by the administrator might be modified, leading to the service being unsecure, ineffective or broken.</td><td>O-6</td><td>AS3, AS5, AS6</td></tr>
 <tr><td>R</td><td>There are no guarantees that the person setting up the configuration file was authorised to do so.</td><td>O-6</td><td></td></tr>
@@ -369,11 +377,12 @@ mechanism for reading it.</p>
 <tr><td>D</td><td>Removing or altering the configuration file can lead to the Parsec service not starting or working in a broken state.</td><td>O-6</td><td>AS6</td></tr>
 <tr><td>E</td><td>Parsing a malicious configuration file can lead to code execution at the Parsec privilege level.</td><td>M-5, U-3, M-10, O-6</td><td>All</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-identity-provider---a10"><a class="header" href="#attacker-identity-provider---a10">Attacker &quot;Identity Provider&quot; - A10</a></h3>
 <p>Attacker with access to the communication running from the Identity Provider to the Parsec service.</p>
 <p><em>Not applicable for deployment (DRCT). For deployment (DSPC) the operating system is considered
 sufficiently secure, as described in assumption 3.</em></p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>The initial trust bundle can be spoofed, and an attacker can thus gain complete control over the service.</td><td>O-7</td><td>AS2 and then all</td></tr>
 <tr><td>T</td><td>The trust bundle shared by the identity provider can be modified in transit to disrupt the operation of the service or take control of it.</td><td>M-3</td><td>AS2 and then all</td></tr>
 <tr><td>R</td><td>The service cannot guarantee that the trust bundle it received comes from the trusted identity provider.</td><td>O-7</td><td></td></tr>
@@ -382,36 +391,40 @@ sufficiently secure, as described in assumption 3.</em></p>
 <tr><td>D</td><td>A malicious share bundle could trigger a parsing bug and lead the service to crash.</td><td>M-5, U-3, M-10</td><td>AS2, AS6</td></tr>
 <tr><td>E</td><td>A malicious share bundle could trigger a parsing bug and lead to code execution at the Parsec privilege level.</td><td>M-5, U-3, M-10</td><td>All</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-local-memory---a11"><a class="header" href="#attacker-local-memory---a11">Attacker &quot;Local Memory&quot; - A11</a></h3>
 <p>Attacker with access to the local memory regions used by Parsec. This attacker can be another
 process scheduled by the OS in the same timeframe than Parsec and reading the memory which was not
 cleared.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>I</td><td>The attacker can read all the confidential assets placed in local memory by the service.</td><td>M-8</td><td>AS1, AS2, AS4 and AS5</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-spiffe-validation-request---a12"><a class="header" href="#attacker-spiffe-validation-request---a12">Attacker &quot;SPIFFE Validation Request&quot; - A12</a></h3>
 <p>This attacker uses the SPIFFE Workload API endpoint created by the SPIFFE implementation to
 interfere with the validation of the JWT-SVID token sent by the client.</p>
 <p><em>Only applicable for deployment (JWTS).</em></p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>I</td><td>An attacker steals the authentication token from a client's request to then execute any operation in their name.</td><td>M-9</td><td>AS4, AS3</td></tr>
 <tr><td>D</td><td>An attacker modifies the validation request to make it fail.</td><td>M-9</td><td>AS6</td></tr>
 <tr><td>D</td><td>An attacker overloads/crashes the SPIFFE implementation and thus prevents the service from making use of it.</td><td>SPIFFE implementation specific. An <a href="https://github.com/spiffe/spiffe/blob/master/standards/SPIFFE_Workload_Endpoint.md#6-error-codes">&quot;Unavailable&quot; error</a> can be used for implementations to perform load-shedding.</td><td>AS6</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-spiffe-validation-response---a13"><a class="header" href="#attacker-spiffe-validation-response---a13">Attacker &quot;SPIFFE Validation Response&quot; - A13</a></h3>
 <p>This attacker uses the SPIFFE Workload API endpoint created by the SPIFFE implementation to
 interfere with the validation of the JWT-SVID token sent by the client. It can also create a spoofed
 endpoint, mimicking the SPIFFE implementation's one.</p>
 <p><em>Only applicable for deployment (JWTS).</em></p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates the SPIFFE implementation: Parsec sends the authentication data of clients to malicious entity.</td><td>O-14</td><td>AS1</td></tr>
 <tr><td>T</td><td>An attacker modifies the validation response of the SPIFFE implementation to yield the application identity of its choice.</td><td>O-14</td><td>AS1</td></tr>
 <tr><td>D</td><td>An attacker modifies the validation response to pretend it failed or succeeded.</td><td>M-9</td><td>AS6</td></tr>
 <tr><td>D</td><td>An attacker modifies the validation response in such a way that it leads the service to crash.</td><td>M-9</td><td>AS6</td></tr>
 <tr><td>E</td><td>An attacker modifies the validation response in such a way that it leads to code execution at the service privilege level.</td><td>M-9</td><td>AS4, AS5, AS6, AS7, AS8</td></tr>
 </tbody></table>
+</div>
 <h2 id="unmitigations"><a class="header" href="#unmitigations">Unmitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
 <tr><td>0</td><td>An attacker can use all the threads of the service's thread pool, requesting for a time-consuming operation on each one of them, to leave the less amount of free time possible to other clients.</td><td>The requests take more time to execute.</td></tr>
 <tr><td>2</td><td>The authentication token is stored with confidentiality by the clients. If it is stolen, the service cannot prevent access with it unless the token is revoked.</td><td>All the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
 <tr><td>3</td><td>Parsec dependencies are not (visually) investigated for Security Vulnerabilities. (See M-10 for our mitigation.)</td><td>A vulnerability in one of Parsec dependency will also impact Parsec and the data Parsec shares with that dependency.</td></tr>
@@ -420,8 +433,9 @@ endpoint, mimicking the SPIFFE implementation's one.</p>
 <tr><td>6</td><td>Parsec does not support using multiple authenticators concurrently (<a href="https://github.com/parallaxsecond/parsec/issues/272">open issue</a>).</td><td>If there is weakness in one authenticator, all the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
 <tr><td>7</td><td>Parsec does not protect from some of the repudiation threats. Logging is used as best-effort way throughout the codebase to note the identity, time and date of important events such as: &quot;new request received&quot;, &quot;response sent back&quot;, &quot;new mapping created&quot;, &quot;mapping is read from the persistent store&quot;, &quot;a hardware command is issued&quot; and &quot;a hardware command is received&quot;.</td><td>There might be no proof that some event took place. See <a href="https://github.com/parallaxsecond/parsec-book/issues/84">this issue</a>.</td></tr>
 </tbody></table>
+</div>
 <h2 id="mitigations"><a class="header" href="#mitigations">Mitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>Parsec uses a thread pool with a configurable amount of threads to limit the number of concurrent operations it can support so that the machine is not overloaded.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/e87984c4d3eaafa1a1cb977dceadf773aca1f7db">Done</a></td></tr>
 <tr><td>1</td><td>Response statuses are audited to not give too much information to the client.</td><td><a href="https://github.com/parallaxsecond/parsec-interface-rs/issues/59">Done</a></td></tr>
 <tr><td>2</td><td><em>(not DRCT)</em> The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible.</td><td><em>(JWTS)</em> The <a href="https://github.com/spiffe/spiffe/blob/master/standards/JWT-SVID.md#21-algorithm">algorithms</a> prescribed by the JWT-SVID standard are secure enough to prevent brute-force attacks in most cases.</td></tr>
@@ -433,10 +447,11 @@ endpoint, mimicking the SPIFFE implementation's one.</p>
 <tr><td>9</td><td><em>(JWTS)</em> The SPIFFE Workload API endpoint is accessed through an IPC mechanism respecting confidentiality and integrity of messages transmitted between the workloads and the SPIFFE implementation.</td><td>The <a href="https://github.com/spiffe/spiffe/blob/master/standards/SPIFFE_Workload_Endpoint.md#3-transport">SPIFFE Workload Endpoint document</a> prescribes the use of Unix Domain Socket or TCP with strong authentication.</td></tr>
 <tr><td>10</td><td>Any vulnerabilities relating to our Rust dependencies which get added to the <a href="https://rustsec.org/">Rust Security Advisory Database</a> get reported on a nightly basis by the CI.</td><td>The <a href="https://github.com/parallaxsecond/parsec/blob/main/SECURITY.md">Parsec Security Policy</a> describes the process we follow to identify and report these to users.</td></tr>
 </tbody></table>
+</div>
 <h2 id="operational-mitigations"><a class="header" href="#operational-mitigations">Operational mitigations</a></h2>
 <p>Most of these operational mitigations are implemented when following the <a href="../secure_deployment.html">Recommendations on a
 Secure Parsec Deployment guide</a>.</p>
-<table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>A trusted administrator should start the service in such a way that un-privileged processes cannot send signals to the service.</td><td>In a Unix OS, using a separate user to run the service prevents that.</td></tr>
 <tr><td>1</td><td>A trusted administrator should check the validity of the providers and hardware modules written in the service's configuration before starting/reloading it.</td><td>This is a manual step that has to be done as part of configuring the service.</td></tr>
 <tr><td>2</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.</td><td>The endpoint folder is in a location that only the trusted privileged administrator could have created so clients can trust the existance of a Parsec service.</td></tr>
@@ -454,6 +469,7 @@ Secure Parsec Deployment guide</a>.</p>
 <tr><td>14</td><td><em>(JWTS)</em> The SPIFFE Workload API endpoint must exist before Parsec is started and owned by an independant user. It must not be deleted while Parsec is running.</td><td>It must not be possible for an attacker to put their own socket where the Parsec service and clients expect it. Doing a local validation of the JWT-SVID would remove the need for this mitigation. See <a href="https://github.com/parallaxsecond/parsec/issues/289">here</a> for details.</td></tr>
 <tr><td>15</td><td><em>(JWTS)</em> The Parsec clients must be registered as SPIFFE workloads with unique SPIFFE ID.</td><td>Two Parsec clients should not be assigned the same SPIFFE ID.</td></tr>
 </tbody></table>
+</div>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 
                     </main>

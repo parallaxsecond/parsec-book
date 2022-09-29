@@ -349,13 +349,13 @@ instead</a>.</p>
 <li>GLIBC version 2.27+ (check it with <code>ldd --version</code>)</li>
 </ul>
 <h2 id="downloading-parsec"><a class="header" href="#downloading-parsec">Downloading Parsec</a></h2>
-<p>Run the following command to download and unpack the <code>quickstart-1.0.0-linux_x86</code> folder. It
+<p>Run the following command to download and unpack the <code>quickstart-1.1.0-linux_x86</code> folder. It
 contains the Parsec service (<code>parsec</code>), its pre-built configuration (<code>config.toml</code>) and the Parsec
 tool (<code>parsec-tool</code>).</p>
-<pre><code>curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.0.0/quickstart-1.0.0-linux_x86.tar.gz | tar xz
+<pre><code>curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.1.0/quickstart-1.1.0-linux_x86.tar.gz | tar xz
 </code></pre>
 <h2 id="starting-parsec"><a class="header" href="#starting-parsec">Starting Parsec</a></h2>
-<p>From within the <code>quickstart-1.0.0-linux_x86</code> directory, start the Parsec service:</p>
+<p>From within the <code>quickstart-1.1.0-linux_x86</code> directory, start the Parsec service:</p>
 <pre><code>$ ./parsec &amp;
 [INFO  parsec] Parsec started. Configuring the service...
 [INFO  parsec_service::key_info_managers::on_disk_manager] Found 0 mapping files
@@ -432,7 +432,7 @@ You can use the <code>-h</code> option to get additional help on these.</p>
 <p>TODO</p>
 <h2 id="go-example"><a class="header" href="#go-example">Go example</a></h2>
 <p>TODO</p>
-<p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
+<p><em>Copyright 2022 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="quickstart-for-opensuse-and-suse"><a class="header" href="#quickstart-for-opensuse-and-suse">Quickstart for openSUSE and SUSE</a></h1>
 <p><code>parsec</code> and <code>parsec-tool</code> are built for openSUSE and SUSE distributions and tested in openQA for
 Arm and x86 architectures.</p>
@@ -963,7 +963,7 @@ requests. In a request, these fields should be set to a value of zero.</li>
 <p>Fields occur in contiguous memory and there must be no additional padding between them. On the
 following diagram, the bytes go left to right from least significant to most significant.</p>
 <p><img src="parsec_client/diagrams/wire_header.png" alt="Header Structure" /></p>
-<table><thead><tr><th>Name</th><th>Scheme</th><th>Size (in bytes)</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Scheme</th><th>Size (in bytes)</th><th>Description</th></tr></thead><tbody>
 <tr><td>Magic number</td><td>Common</td><td>4</td><td>Must be <code>0x5EC0A710</code> (selected to be an approximate transcoding of SECurity API). This field can be used as an initial validity check for incoming messages. This field <strong>must</strong> be populated in all messages. This field will remain the same across different wire protocol versions.</td></tr>
 <tr><td>Header size</td><td>Common</td><td>2</td><td>Size of the <strong>remainder</strong> of the header in bytes (once the magic number and header size fields have been consumed). Consumers <strong>must</strong> use this field to consume the correct number of bytes of header from the input stream, rather than use this specification to deduce the header size. This field's position and width will remain the same across different wire protocol versions. Only the value of this field may change between versions.</td></tr>
 <tr><td>Major version number</td><td>Common</td><td>1</td><td>Versioning field. Currently the only supported and valid value for this field is <code>0x01</code>. This field's position and width will remain the same across different wire protocol versions. Only the value of this field may change between versions.</td></tr>
@@ -980,6 +980,7 @@ following diagram, the bytes go left to right from least significant to most sig
 <tr><td>Status</td><td>Responses only</td><td>2</td><td>Indicates the overall success or failure of the operation. A value of zero is used universally to mean success. Other values should be interpreted according to the <a href="parsec_client/status_codes.html">API specification</a>.</td></tr>
 <tr><td>Reserved</td><td>Common</td><td>2</td><td>Currently unused and must be set to zero.</td></tr>
 </tbody></table>
+</div>
 <h3 id="requests"><a class="header" href="#requests">Requests</a></h3>
 <p>A request message begins with the fixed-format header as specified above, followed contiguously by a
 variable-length field of zero or more <strong>message body</strong> bytes, which is in turn followed contiguously
@@ -1007,7 +1008,7 @@ alignment.</p>
 <h2 id="service-internal-response-status-codes"><a class="header" href="#service-internal-response-status-codes">Service Internal Response Status Codes</a></h2>
 <p>These codes originate in components in the service outside of the <code>Provide</code> trait implementation by
 the providers.</p>
-<table><thead><tr><th>Response Status Code</th><th>Value</th><th>Descrption</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Response Status Code</th><th>Value</th><th>Descrption</th></tr></thead><tbody>
 <tr><td><code>WrongProviderID</code></td><td>1</td><td>Requested provider ID does not match that of the backend</td></tr>
 <tr><td><code>ContentTypeNotSupported</code></td><td>2</td><td>Requested content type is not supported by the backend</td></tr>
 <tr><td><code>AcceptTypeNotSupported</code></td><td>3</td><td>Requested accept type is not supported by the backend</td></tr>
@@ -1030,9 +1031,10 @@ the providers.</p>
 <tr><td><code>BodySizeExceedsLimit</code></td><td>20</td><td>Request length specified in the header is above defined limit</td></tr>
 <tr><td><code>AdminOperation</code></td><td>21</td><td>The operation requires admin privilege</td></tr>
 </tbody></table>
+</div>
 <h2 id="psa-response-status-codes"><a class="header" href="#psa-response-status-codes">PSA Response Status Codes</a></h2>
 <p>These codes originate from within the <code>Provide</code> trait implementation.</p>
-<table><thead><tr><th>Response Status Code</th><th>Value</th><th>Descrption</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Response Status Code</th><th>Value</th><th>Descrption</th></tr></thead><tbody>
 <tr><td><code>PsaErrorGenericError</code></td><td>1132</td><td>An error occurred that does not correspond to any defined failure cause</td></tr>
 <tr><td><code>PsaErrorNotPermitted</code></td><td>1133</td><td>The requested action is denied by a policy</td></tr>
 <tr><td><code>PsaErrorNotSupported</code></td><td>1134</td><td>The requested operation or a parameter is not supported by this implementation</td></tr>
@@ -1054,6 +1056,7 @@ the providers.</p>
 <tr><td><code>PsaErrorCorruptionDetected</code></td><td>1151</td><td>A tampering attempt was detected</td></tr>
 <tr><td><code>PsaErrorDataCorrupt</code></td><td>1152</td><td>Stored data has been corrupted</td></tr>
 </tbody></table>
+</div>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="writing-a-new-parsec-client-library"><a class="header" href="#writing-a-new-parsec-client-library">Writing a new Parsec Client Library</a></h1>
 <p>If a client library does not already exist in your preferred programming language, you can create
@@ -1072,7 +1075,7 @@ currently using and how it was configured in order to communicate with it.</p>
 operations are defined in a format-neutral language where types can easily and implicitely be
 translated to the specific operation implementation language used.</p>
 <h2 id="overview-1"><a class="header" href="#overview-1">Overview</a></h2>
-<table><thead><tr><th>Operation</th><th>Opcode</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Operation</th><th>Opcode</th></tr></thead><tbody>
 <tr><td><a href="parsec_client/operations/ping.html">Ping</a></td><td><code>0x0001</code></td></tr>
 <tr><td><a href="parsec_client/operations/psa_generate_key.html">PsaGenerateKey</a></td><td><code>0x0002</code></td></tr>
 <tr><td><a href="parsec_client/operations/psa_destroy_key.html">PsaDestroyKey</a></td><td><code>0x0003</code></td></tr>
@@ -1105,6 +1108,7 @@ translated to the specific operation implementation language used.</p>
 <tr><td><a href="parsec_client/operations/prepare_key_attestation.html">PrepareKeyAttestation</a></td><td><code>0x001F</code></td></tr>
 <tr><td><a href="parsec_client/operations/can_do_crypto.html">CanDoCrypto</a></td><td><code>0x0020</code></td></tr>
 </tbody></table>
+</div>
 <p>Find <a href="parsec_client/operations/service_api_coverage.html">here</a> the current level of support of those operations in Parsec.</p>
 <h2 id="core-operations"><a class="header" href="#core-operations">Core Operations</a></h2>
 <p>Core operations are non-cryptographic operations supported by the core provider. Set the
@@ -1201,7 +1205,7 @@ Only the operations <a href="parsec_client/operations/README.html">specified</a>
 table.</p>
 <p>Not all parameters (key types, algorithms) of the operation might be supported. See the following
 sections for details.</p>
-<table><thead><tr><th>Operation \ Provider</th><th>Core</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Operation \ Provider</th><th>Core</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td><a href="parsec_client/operations/ping.html">Ping</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
 <tr><td><a href="parsec_client/operations/list_providers.html">ListProviders</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
 <tr><td><a href="parsec_client/operations/list_opcodes.html">ListOpcodes</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
@@ -1234,6 +1238,7 @@ sections for details.</p>
 <tr><td><a href="parsec_client/operations/prepare_key_attestation.html">PrepareKeyAttestation</a></td><td>🚫</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td><a href="parsec_client/operations/can_do_crypto.html">CanDoCrypto</a></td><td>🚫</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li>✅: The provider supports the operation (maybe not all of its parameters, check below).</li>
 <li>🚫: The operation is not meant to be implemented on this provider (core operation on a crypto
@@ -1243,7 +1248,7 @@ provider or opposite).</li>
 <h3 id="key-types-support"><a class="header" href="#key-types-support">Key types support</a></h3>
 <p>This table describe if the following <a href="parsec_client/operations/psa_key_attributes.html#keytype-type">key types</a> are supported
 for key management operations.</p>
-<table><thead><tr><th>Key type \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Key type \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>RawData</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>Hmac</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>Derive</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
@@ -1259,11 +1264,12 @@ for key management operations.</p>
 <tr><td>DhKeyPair</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>DhPublicKey</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h3 id="elliptic-curve-families"><a class="header" href="#elliptic-curve-families">Elliptic curve families</a></h3>
 <p>This table describes if the following <a href="parsec_client/operations/psa_key_attributes.html#supported-ecc-curve-families">elliptic curve
 families</a> are supported. Not all curves from
 those families might be supported.</p>
-<table><thead><tr><th>ECC Curve Family \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ECC Curve Family \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>SECP-K1</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
 <tr><td>SECP-R1</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>SECP-R2</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
@@ -1274,11 +1280,12 @@ those families might be supported.</p>
 <tr><td>FRP</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>Montgomery</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h3 id="algorithm-support"><a class="header" href="#algorithm-support">Algorithm support</a></h3>
 <p>These tables describe if the following <a href="parsec_client/operations/psa_algorithm.html">algorithms</a> are supported in all
 cryptographic operations they could be used in.</p>
 <h4 id="hash-algorithms"><a class="header" href="#hash-algorithms">Hash algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>MD2</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
 <tr><td>MD4</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
 <tr><td>MD5</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
@@ -1295,14 +1302,16 @@ cryptographic operations they could be used in.</p>
 <tr><td>SHA3-384</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>❌</td></tr>
 <tr><td>SHA3-512</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h4 id="mac-algorithms"><a class="header" href="#mac-algorithms">MAC algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>HMAC</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CBC-MAC</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CMAC</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h4 id="cipher-algorithms"><a class="header" href="#cipher-algorithms">Cipher algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>Stream Cipher</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CTR</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>CFB</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
@@ -1312,14 +1321,16 @@ cryptographic operations they could be used in.</p>
 <tr><td>CBC with no padding</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>CBCP with PKCS#7 padding</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 </tbody></table>
+</div>
 <h4 id="aead-algorithms"><a class="header" href="#aead-algorithms">AEAD algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>CCM</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>GCM</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>ChaCha20-Poly1305</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h4 id="asymmetric-signature-algorithms"><a class="header" href="#asymmetric-signature-algorithms">Asymmetric signature algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>RSA PKCS#1 v1.5 signature with hashing</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
 <tr><td>Raw PKCS#1 v1.5 signature</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>RSA PSS signature with hashing</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
@@ -1327,16 +1338,19 @@ cryptographic operations they could be used in.</p>
 <tr><td>ECDSA signature without hashing</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>Deterministic ECDSA signature with hashing</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h4 id="asymmetric-encryption-algorithms"><a class="header" href="#asymmetric-encryption-algorithms">Asymmetric encryption algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>RSA PKCS#1 v1.5 encryption</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>RSA OAEP encryption</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h4 id="key-agreement-algorithms"><a class="header" href="#key-agreement-algorithms">Key agreement algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>FFDH</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>ECDH</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 </tbody></table>
+</div>
 <h2 id="increasing-psa-api-coverage"><a class="header" href="#increasing-psa-api-coverage">Increasing PSA API coverage</a></h2>
 <p>You can help increase the coverage of the PSA Crypto API! See
 <a href="parsec_client/operations/../../contributing/adding_new_operation_how_to.html">here</a> on how you can contribute.</p>
@@ -1351,11 +1365,12 @@ is at the discretion of the system administrator whether those algorithms are pe
 Some of the attributes might not be supported by some providers as it is not in their interface.</p>
 <h2 id="keyattributes-type"><a class="header" href="#keyattributes-type">KeyAttributes type</a></h2>
 <p>A <code>KeyAttributes</code> type contains the following members:</p>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_type</code></td><td><a href="parsec_client/operations/psa_key_attributes.html#keytype-type"><code>KeyType</code></a></td><td>Intrinsic category and type of a key</td></tr>
 <tr><td><code>key_bits</code></td><td>Unsigned integer</td><td>Size of a key in bits</td></tr>
 <tr><td><code>key_policy</code></td><td><a href="parsec_client/operations/psa_key_attributes.html#keypolicy-type"><code>KeyPolicy</code></a></td><td>Policy restricting the permitted usage of the key</td></tr>
 </tbody></table>
+</div>
 <h2 id="keytype-type"><a class="header" href="#keytype-type">KeyType type</a></h2>
 <p>A <code>KeyType</code> type can contain one of the following key types:</p>
 <ul>
@@ -1553,14 +1568,15 @@ can only be used with the FFDH key agreement algorithm.</li>
 <h2 id="keypolicy-type"><a class="header" href="#keypolicy-type">KeyPolicy type</a></h2>
 <p>Definition of the key policy, what is permitted to do with the key. A <code>KeyPolicy</code> type contains the
 following members:</p>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_usage_flags</code></td><td><a href="parsec_client/operations/psa_key_attributes.html#usageflags-type"><code>UsageFlags</code></a></td><td>Usage flags for the key</td></tr>
 <tr><td><code>key_algorithm</code></td><td><a href="parsec_client/operations/psa_algorithm.html#algorithm-type"><code>Algorithm</code></a></td><td>Permitted algorithms to be used with the key</td></tr>
 </tbody></table>
+</div>
 <h2 id="usageflags-type"><a class="header" href="#usageflags-type">UsageFlags type</a></h2>
 <p>Definition of the usage flags. They encode what kind of operations are permitted on the key. A
 <code>UsageFlags</code> type contains the following members:</p>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>export</code></td><td>Boolean</td><td>Permission to export the key</td></tr>
 <tr><td><code>copy</code></td><td>Boolean</td><td>Permission to copy the key</td></tr>
 <tr><td><code>cache</code></td><td>Boolean</td><td>Permission for the implementation to cache the key</td></tr>
@@ -1572,6 +1588,7 @@ following members:</p>
 <tr><td><code>verify_hash</code></td><td>Boolean</td><td>Permission to verify a hash with the key</td></tr>
 <tr><td><code>derive</code></td><td>Boolean</td><td>Permission to derive other keys from this key</td></tr>
 </tbody></table>
+</div>
 <h3 id="sign-message-usage"><a class="header" href="#sign-message-usage">sign message usage</a></h3>
 <p>Permission to sign a message with the key.</p>
 <p>This flag allows the key to be used for a MAC calculation operation or for an asymmetric message
@@ -1777,10 +1794,11 @@ algorithms.</li>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
 <h2 id="results"><a class="header" href="#results">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>wire_protocol_version_maj</code></td><td>Unsigned integer</td><td>Wire protocol version major</td></tr>
 <tr><td><code>wire_protocol_version_min</code></td><td>Unsigned integer</td><td>Wire protocol version minor</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <p>No specific response status codes returned.</p>
 <h2 id="description"><a class="header" href="#description">Description</a></h2>
@@ -1797,10 +1815,11 @@ wire protocol version that the service support:</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psageneratekey"><a class="header" href="#psageneratekey">PsaGenerateKey</a></h1>
 <p>Generate a key or key pair. Opcode: 2 (<code>0x0002</code>)</p>
 <h2 id="parameters-1"><a class="header" href="#parameters-1">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to generate</td></tr>
 <tr><td><code>attributes</code></td><td><a href="parsec_client/operations/psa_key_attributes.html#keyattributes-type"><code>KeyAttributes</code></a></td><td>The attributes of the new key</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li>The <code>key_type</code> field of <code>attributes</code> can not be an asymmetric public key.</li>
 </ul>
@@ -1826,9 +1845,10 @@ exponent is <code>65537</code>. The modulus is a product of two probabilistic pr
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psadestroykey"><a class="header" href="#psadestroykey">PsaDestroyKey</a></h1>
 <p>Destroy a key. Opcode: 3 (<code>0x0003</code>)</p>
 <h2 id="parameters-2"><a class="header" href="#parameters-2">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to erase</td></tr>
 </tbody></table>
+</div>
 <h2 id="results-2"><a class="header" href="#results-2">Results</a></h2>
 <p>No values are returned by this operation.</p>
 <h2 id="specific-response-status-codes-2"><a class="header" href="#specific-response-status-codes-2">Specific response status codes</a></h2>
@@ -1856,11 +1876,12 @@ then destroying the key will cause the multi-part operation to fail.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psasignhash"><a class="header" href="#psasignhash">PsaSignHash</a></h1>
 <p>Sign an already-calculated hash with a private key. Opcode: 4 (<code>0x0004</code>)</p>
 <h2 id="parameters-3"><a class="header" href="#parameters-3">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#asymmetricsignature-algorithm"><code>AsymmetricSignature</code></a></td><td>An asymmetric signature algorithm that separates the hash and sign operations that is compatible with the type of key</td></tr>
 <tr><td><code>hash</code></td><td>Vector of bytes</td><td>The input to sign</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must be the name of an asymmetric key pair. The key must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage
 flag</a> <code>sign_hash</code>.</li>
@@ -1868,9 +1889,10 @@ flag</a> <code>sign_hash</code>.</li>
 description of individual signature algorithms for a detailed description of acceptable inputs.</li>
 </ul>
 <h2 id="results-3"><a class="header" href="#results-3">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>signature</code></td><td>Vector of bytes</td><td>Buffer containing the signature</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-3"><a class="header" href="#specific-response-status-codes-3">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>sign_hash</code> flag, or it does not permit the
@@ -1892,12 +1914,13 @@ single call, you could use PsaSignMessage.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psaverifyhash"><a class="header" href="#psaverifyhash">PsaVerifyHash</a></h1>
 <p>Verify the signature of a hash or short message using a public key. Opcode: 5 (<code>0x0005</code>)</p>
 <h2 id="parameters-4"><a class="header" href="#parameters-4">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#asymmetricsignature-algorithm"><code>AsymmetricSignature</code></a></td><td>An asymmetric signature algorithm that separates the hash and sign operations that is compatible with the type of key</td></tr>
 <tr><td><code>hash</code></td><td>Vector of bytes</td><td>The input whose signature is to be verified</td></tr>
 <tr><td><code>signature</code></td><td>Vector of bytes</td><td>Buffer containing the signature to verify</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must be the name of a public key or an asymmetric key pair. The key must allow the
 <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_hash</code>.</li>
@@ -1929,11 +1952,12 @@ signature in a single call, you could use PsaVerifyMessage.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psaimportkey"><a class="header" href="#psaimportkey">PsaImportKey</a></h1>
 <p>Import a key in binary format. Opcode: 6 (<code>0x0006</code>)</p>
 <h2 id="parameters-5"><a class="header" href="#parameters-5">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to import</td></tr>
 <tr><td><code>attributes</code></td><td><a href="parsec_client/operations/psa_key_attributes.html#keyattributes-type"><code>KeyAttributes</code></a></td><td>The attributes of the new key</td></tr>
 <tr><td><code>data</code></td><td>Vector of bytes</td><td>Buffer containing the key data</td></tr>
 </tbody></table>
+</div>
 <p>The content of the <code>data</code> buffer is interpreted according to the type declared in attributes. Parsec
 supports the formats described in the documentation of PsaExportKey or
 <a href="parsec_client/operations/psa_export_public_key.html">PsaExportPublicKey</a> for the chosen type. The key size is always
@@ -1962,13 +1986,15 @@ the future.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psaexportpublickey"><a class="header" href="#psaexportpublickey">PsaExportPublicKey</a></h1>
 <p>Export a public key or the public part of a key pair in binary format. Opcode: 7 (<code>0x0007</code>)</p>
 <h2 id="parameters-6"><a class="header" href="#parameters-6">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the public key to export</td></tr>
 </tbody></table>
+</div>
 <h2 id="results-6"><a class="header" href="#results-6">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>data</code></td><td>Vector of bytes</td><td>Buffer containing the key data</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-6"><a class="header" href="#specific-response-status-codes-6">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorInvalidArgument</code>: The key is neither a public key nor a key pair.</li>
@@ -2029,12 +2055,13 @@ the key’s usage flags.</p>
 <h2 id="parameters-7"><a class="header" href="#parameters-7">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
 <h2 id="results-7"><a class="header" href="#results-7">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>providers</code></td><td>Vector of <a href="parsec_client/operations/list_providers.html#providerinfo-type"><code>ProviderInfo</code></a></td><td>List of provider information</td></tr>
 </tbody></table>
+</div>
 <h3 id="providerinfo-type"><a class="header" href="#providerinfo-type">ProviderInfo type</a></h3>
 <p>A <code>ProviderInfo</code> type contains the following members:</p>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>uuid</code></td><td>String</td><td>Unique, permanent, identifier of the provider (version 4 UUID)</td></tr>
 <tr><td><code>description</code></td><td>String</td><td>Short description of the provider</td></tr>
 <tr><td><code>vendor</code></td><td>String</td><td>Provider vendor</td></tr>
@@ -2043,6 +2070,7 @@ the key’s usage flags.</p>
 <tr><td><code>version_rev</code></td><td>Unsigned integer</td><td>Provider implementation version revision number</td></tr>
 <tr><td><code>id</code></td><td>Unsigned integer</td><td>Provider ID to use on the wire protocol to communicate with this provider</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-7"><a class="header" href="#specific-response-status-codes-7">Specific response status codes</a></h2>
 <p>No specific response status codes returned.</p>
 <h2 id="description-7"><a class="header" href="#description-7">Description</a></h2>
@@ -2059,13 +2087,15 @@ opcodes of the provider, even the default one, as it might not implement the ope
 <div style="break-before: page; page-break-before: always;"></div><h1 id="listopcodes"><a class="header" href="#listopcodes">ListOpcodes</a></h1>
 <p>Gets a list of available opcodes supported by a Parsec provider. Opcode: 9 (<code>0x0009</code>)</p>
 <h2 id="parameters-8"><a class="header" href="#parameters-8">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>provider_id</code></td><td>Unsigned integer</td><td>Provider for which the supported opcodes are requested.</td></tr>
 </tbody></table>
+</div>
 <h2 id="results-8"><a class="header" href="#results-8">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>opcodes</code></td><td>Vector of unsigned integers</td><td>List of supported opcodes</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-8"><a class="header" href="#specific-response-status-codes-8">Specific response status codes</a></h2>
 <p>No specific response status codes returned.</p>
 <h2 id="description-8"><a class="header" href="#description-8">Description</a></h2>
@@ -2076,12 +2106,13 @@ opcodes of the provider, even the default one, as it might not implement the ope
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psaasymmetricencrypt"><a class="header" href="#psaasymmetricencrypt">PsaAsymmetricEncrypt</a></h1>
 <p>Encrypt a short message with a public key. Opcode: 10 (<code>0x000A</code>)</p>
 <h2 id="parameters-9"><a class="header" href="#parameters-9">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#asymmetricencryption-algorithm"><code>AsymmetricEncryption</code></a></td><td>An asymmetric encryption algorithm that is compatible with the type of key</td></tr>
 <tr><td><code>plaintext</code></td><td>Vector of bytes</td><td>Short message to encrypt</td></tr>
 <tr><td><code>salt</code></td><td>Vector of bytes</td><td>Salt to use during encryption, if supported by the algorithm</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must be the name of an RSA asymmetric key pair or public key. The key must allow the
 <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>encrypt</code>.</li>
@@ -2090,9 +2121,10 @@ an empty vector. If the algorithm supports optional salt, pass an empty vector t
 salt. For RSA PKCS#1 v1.5 encryption, no salt is supported.</li>
 </ul>
 <h2 id="results-9"><a class="header" href="#results-9">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>ciphertext</code></td><td>Vector of bytes</td><td>Buffer containing the encrypted message</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-9"><a class="header" href="#specific-response-status-codes-9">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>encrypt</code> flag, or it does not permit the
@@ -2107,12 +2139,13 @@ pair.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psaasymmetricdecrypt"><a class="header" href="#psaasymmetricdecrypt">PsaAsymmetricDecrypt</a></h1>
 <p>Decrypt a short message with a private key. Opcode: 11 (<code>0x000B</code>)</p>
 <h2 id="parameters-10"><a class="header" href="#parameters-10">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#asymmetricencryption-algorithm"><code>AsymmetricEncryption</code></a></td><td>An asymmetric encryption algorithm that is compatible with the type of key</td></tr>
 <tr><td><code>ciphertext</code></td><td>Vector of bytes</td><td>Short message to decrypt</td></tr>
 <tr><td><code>salt</code></td><td>Vector of bytes</td><td>Salt to use during encryption, if supported by the algorithm</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must be the name of an RSA asymmetric key pair. The key must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage
 flag</a> <code>decrypt</code>.</li>
@@ -2121,9 +2154,10 @@ an empty vector. If the algorithm supports optional salt, pass an empty vector t
 salt. For RSA PKCS#1 v1.5 encryption, no salt is supported.</li>
 </ul>
 <h2 id="results-10"><a class="header" href="#results-10">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>plaintext</code></td><td>Vector of bytes</td><td>Buffer containing the decrypted message</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-10"><a class="header" href="#specific-response-status-codes-10">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>decrypt</code> flag, or it does not permit the
@@ -2137,16 +2171,18 @@ requested algorithm.</li>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psaexportkey"><a class="header" href="#psaexportkey">PsaExportKey</a></h1>
 <p>Export a key in binary format. Opcode: 12 (<code>0x000C</code>)</p>
 <h2 id="parameters-11"><a class="header" href="#parameters-11">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to export</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li>The key must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>export</code>.</li>
 </ul>
 <h2 id="results-11"><a class="header" href="#results-11">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>data</code></td><td>Vector of bytes</td><td>Buffer containing the key data</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-11"><a class="header" href="#specific-response-status-codes-11">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key is not have the [<code>export</code>] usage flag.</li>
@@ -2205,13 +2241,15 @@ size in bytes, and leading zeroes are not stripped.</li>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psageneraterandom"><a class="header" href="#psageneraterandom">PsaGenerateRandom</a></h1>
 <p>Generate a vector of random bytes. Opcode: 13 (<code>0x000D</code>)</p>
 <h2 id="parameters-12"><a class="header" href="#parameters-12">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>size</code></td><td>usize</td><td>The number of random bytes to generate</td></tr>
 </tbody></table>
+</div>
 <h2 id="results-12"><a class="header" href="#results-12">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>random_bytes</code></td><td>Vector of unsigned bytes</td><td>The randomly generated bytes</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-12"><a class="header" href="#specific-response-status-codes-12">Specific response status codes</a></h2>
 <p>No specific response status codes returned.</p>
 <h2 id="description-12"><a class="header" href="#description-12">Description</a></h2>
@@ -2225,18 +2263,20 @@ size in bytes, and leading zeroes are not stripped.</li>
 <h2 id="parameters-13"><a class="header" href="#parameters-13">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
 <h2 id="results-13"><a class="header" href="#results-13">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>authenticators</code></td><td>Vector of <a href="parsec_client/operations/list_authenticators.html#authenticatorinfo-type"><code>AuthenticatorInfo</code></a></td><td>List of authenticator information</td></tr>
 </tbody></table>
+</div>
 <h3 id="authenticatorinfo-type"><a class="header" href="#authenticatorinfo-type">AuthenticatorInfo type</a></h3>
 <p>A <code>AuthenticatorInfo</code> type contains the following members:</p>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>description</code></td><td>String</td><td>Short description of the authenticator</td></tr>
 <tr><td><code>version_maj</code></td><td>Unsigned integer</td><td>Authenticator implementation version major</td></tr>
 <tr><td><code>version_min</code></td><td>Unsigned integer</td><td>Authenticator implementation version minor</td></tr>
 <tr><td><code>version_rev</code></td><td>Unsigned integer</td><td>Authenticator implementation version revision number</td></tr>
 <tr><td><code>id</code></td><td>Unsigned integer</td><td>Authenticator ID to use on the wire protocol to communicate with this authenticator</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-13"><a class="header" href="#specific-response-status-codes-13">Specific response status codes</a></h2>
 <p>No specific response status codes returned.</p>
 <h2 id="description-13"><a class="header" href="#description-13">Description</a></h2>
@@ -2250,14 +2290,16 @@ occupy index 0 in the vector.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psahashcompute"><a class="header" href="#psahashcompute">PsaHashCompute</a></h1>
 <p>Calculate the hash (digest) of a message. Opcode: 15 (<code>0x000F</code>)</p>
 <h2 id="parameters-14"><a class="header" href="#parameters-14">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#hash-algorithm"><code>Hash</code></a></td><td>The hash algorithm to compute</td></tr>
 <tr><td><code>input</code></td><td>Vector of unsigned bytes</td><td>Buffer containing message to hash</td></tr>
 </tbody></table>
+</div>
 <h2 id="results-14"><a class="header" href="#results-14">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>hash</code></td><td>Vector of unsigned bytes</td><td>Buffer containing hash of message</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-14"><a class="header" href="#specific-response-status-codes-14">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotSupported</code>: <code>alg</code> is not supported.</li>
@@ -2273,11 +2315,12 @@ occupy index 0 in the vector.</p>
 <p>Calculate the hash (digest) of a message and compare it with a reference value. Opcode: 16
 (<code>0x0010</code>)</p>
 <h2 id="parameters-15"><a class="header" href="#parameters-15">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#hash-algorithm"><code>Hash</code></a></td><td>The hash algorithm to compute</td></tr>
 <tr><td><code>input</code></td><td>Vector of unsigned bytes</td><td>Buffer containing message to hash</td></tr>
 <tr><td><code>hash</code></td><td>Vector of unsigned bytes</td><td>Buffer containing expected hash value</td></tr>
 </tbody></table>
+</div>
 <h2 id="results-15"><a class="header" href="#results-15">Results</a></h2>
 <p>No values are returned by this operation.</p>
 <p>If no error occurs, the computed hash matches the expected hash value.</p>
@@ -2297,21 +2340,23 @@ with an expected hash value.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psaaeadencrypt"><a class="header" href="#psaaeadencrypt">PsaAeadEncrypt</a></h1>
 <p>Process an authenticated encryption operation. Opcode: 17 (<code>0x0011</code>)</p>
 <h2 id="parameters-16"><a class="header" href="#parameters-16">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#aead-algorithm"><code>Aead</code></a></td><td>The AEAD algorithm to compute</td></tr>
 <tr><td><code>nonce</code></td><td>Vector of unsigned bytes</td><td>Nonce or IV to use</td></tr>
 <tr><td><code>additional_data</code></td><td>Vector of unsigned bytes</td><td>Additional data that will be authenticated but not encrypted</td></tr>
 <tr><td><code>plaintext</code></td><td>Vector of unsigned bytes</td><td>Data that will be authenticated and encrypted</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>encrypt</code>.</li>
 <li><code>nonce</code> must be appropriate for the selected algorithm.</li>
 </ul>
 <h2 id="results-16"><a class="header" href="#results-16">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>ciphertext</code></td><td>Vector of unsigned bytes</td><td>Buffer containing the authenticated and encrypted data</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li>The additional data is not part of <code>ciphertext</code>. For algorithms where the encrypted data and the
 authentication tag are defined as separate outputs, the authentication tag is appended to the
@@ -2332,13 +2377,14 @@ requested algorithm.</li>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psaaeaddecrypt"><a class="header" href="#psaaeaddecrypt">PsaAeadDecrypt</a></h1>
 <p>Process an authenticated decryption operation. Opcode: 18 (<code>0x0012</code>)</p>
 <h2 id="parameters-17"><a class="header" href="#parameters-17">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#aead-algorithm"><code>Aead</code></a></td><td>The AEAD algorithm to compute</td></tr>
 <tr><td><code>nonce</code></td><td>Vector of unsigned bytes</td><td>Nonce or IV to use</td></tr>
 <tr><td><code>additional_data</code></td><td>Vector of unsigned bytes</td><td>Additional data that has been authenticated but not encrypted</td></tr>
 <tr><td><code>ciphertext</code></td><td>Vector of unsigned bytes</td><td>Data that has been authenticated and encrypted</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>decrypt</code>.</li>
 <li><code>nonce</code> must be appropriate for the selected algorithm.</li>
@@ -2346,9 +2392,10 @@ requested algorithm.</li>
 <code>ciphertext</code> must contain the encrypted data followed by the authentication tag.</li>
 </ul>
 <h2 id="results-17"><a class="header" href="#results-17">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>plaintext</code></td><td>Vector of unsigned bytes</td><td>Buffer containing the decrypted data</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-17"><a class="header" href="#specific-response-status-codes-17">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorInvalidSignature</code>: The ciphertext is not authentic.</li>
@@ -2366,19 +2413,21 @@ decryption operation.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psarawkeyagreement"><a class="header" href="#psarawkeyagreement">PsaRawKeyAgreement</a></h1>
 <p>Perform a key agreement and return the raw shared secret. Opcode: 19 (<code>0x0013</code>)</p>
 <h2 id="parameters-18"><a class="header" href="#parameters-18">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#keyagreement-algorithm">RawKeyAgreement</a></td><td>The key agreement algorithm to compute</td></tr>
 <tr><td><code>private_key_name</code></td><td>String</td><td>Name of the private key to use</td></tr>
 <tr><td><code>peer_key</code></td><td>Vector of unsigned bytes</td><td>Public key of the peer</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>private_key_name</code> must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>derive</code>.</li>
 <li><code>peer_key</code> must be in the same format that <a href="parsec_client/operations/psa_import_key.html">PsaImportKey</a> accepts.</li>
 </ul>
 <h2 id="results-18"><a class="header" href="#results-18">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>shared_secret</code></td><td>Vector of unsigned bytes</td><td>The raw shared secret</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-18"><a class="header" href="#specific-response-status-codes-18">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>derive</code> <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage
@@ -2399,18 +2448,20 @@ derivation interface.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psacipherencrypt"><a class="header" href="#psacipherencrypt">PsaCipherEncrypt</a></h1>
 <p>Encrypt a short message with a symmetric cipher. Opcode: 20 (<code>0x0014</code>)</p>
 <h2 id="parameters-19"><a class="header" href="#parameters-19">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#cipher-algorithm"><code>Cipher</code></a></td><td>A cipher algorithm that is compatible with the type of key</td></tr>
 <tr><td><code>plaintext</code></td><td>Vector of bytes</td><td>Short message to encrypt</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>encrypt</code>.</li>
 </ul>
 <h2 id="results-19"><a class="header" href="#results-19">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>ciphertext</code></td><td>Vector of bytes</td><td>Buffer containing the random IV followed by the encrypted message</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-19"><a class="header" href="#specific-response-status-codes-19">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>encrypt</code> flag, or it does not permit the
@@ -2424,19 +2475,21 @@ requested algorithm.</li>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psacipherdecrypt"><a class="header" href="#psacipherdecrypt">PsaCipherDecrypt</a></h1>
 <p>Decrypt a short message with a symmetric cipher. Opcode: 21 (<code>0x0015</code>)</p>
 <h2 id="parameters-20"><a class="header" href="#parameters-20">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#cipher-algorithm"><code>Cipher</code></a></td><td>A cipher algorithm that is compatible with the type of key</td></tr>
 <tr><td><code>ciphertext</code></td><td>Vector of bytes</td><td>IV followed by the ciphertext</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>decrypt</code>.</li>
 <li><code>ciphertext</code> must be the IV followed by the ciphertext.</li>
 </ul>
 <h2 id="results-20"><a class="header" href="#results-20">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>plaintext</code></td><td>Vector of bytes</td><td>Buffer containing decrypted message</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-20"><a class="header" href="#specific-response-status-codes-20">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>decrypt</code> flag, or it does not permit the
@@ -2450,18 +2503,20 @@ requested algorithm.</li>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psamaccompute"><a class="header" href="#psamaccompute">PsaMacCompute</a></h1>
 <p>Calculate the MAC of a message. Opcode: 22 (<code>0x0016</code>)</p>
 <h2 id="parameters-21"><a class="header" href="#parameters-21">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#mac-algorithm"><code>Mac</code></a></td><td>Mac algorithm to compute</td></tr>
 <tr><td><code>input</code></td><td>Vector of bytes</td><td>Buffer containing the input message</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>sign_message</code>.</li>
 </ul>
 <h2 id="results-21"><a class="header" href="#results-21">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>mac</code></td><td>Vector of bytes</td><td>Buffer containing the MAC</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-21"><a class="header" href="#specific-response-status-codes-21">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>sign_message</code> flag, or it does not permit the
@@ -2475,12 +2530,13 @@ requested algorithm.</li>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psamacverify"><a class="header" href="#psamacverify">PsaMacVerify</a></h1>
 <p>Calculate the MAC of a message and compare it to an expected value. Opcode: 23 (<code>0x0017</code>)</p>
 <h2 id="parameters-22"><a class="header" href="#parameters-22">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#mac-algorithm"><code>Mac</code></a></td><td>Mac algorithm to compute</td></tr>
 <tr><td><code>input</code></td><td>Vector of bytes</td><td>Buffer containing the input message</td></tr>
 <tr><td><code>mac</code></td><td>Vector of bytes</td><td>Buffer containing the expected MAC value</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_message</code>.</li>
 </ul>
@@ -2502,19 +2558,21 @@ expected value.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psasignmessage"><a class="header" href="#psasignmessage">PsaSignMessage</a></h1>
 <p>Sign a message with a private key. Opcode: 24 (<code>0x0018</code>)</p>
 <h2 id="parameters-23"><a class="header" href="#parameters-23">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#asymmetricsignature-algorithm"><code>AsymmetricSignature</code></a></td><td>An asymmetric signature algorithm that separates the message and sign operations that is compatible with the type of key</td></tr>
 <tr><td><code>message</code></td><td>Vector of bytes</td><td>The message to sign</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must be the name of an asymmetric key pair. The key must allow the <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage
 flag</a> <code>sign_message</code>.</li>
 </ul>
 <h2 id="results-23"><a class="header" href="#results-23">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>signature</code></td><td>Vector of bytes</td><td>Buffer containing the signature</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-23"><a class="header" href="#specific-response-status-codes-23">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>sign_message</code> flag, or it does not permit the
@@ -2529,12 +2587,13 @@ the hashing step.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="psaverifymessage"><a class="header" href="#psaverifymessage">PsaVerifyMessage</a></h1>
 <p>Verify the signature of a message using a public key. Opcode: 25 (<code>0x0019</code>)</p>
 <h2 id="parameters-24"><a class="header" href="#parameters-24">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="parsec_client/operations/psa_algorithm.html#asymmetricsignature-algorithm"><code>AsymmetricSignature</code></a></td><td>An asymmetric signature algorithm that separates the message and sign operations that is compatible with the type of key</td></tr>
 <tr><td><code>message</code></td><td>Vector of bytes</td><td>The message whose signature is to be verified</td></tr>
 <tr><td><code>signature</code></td><td>Vector of bytes</td><td>Buffer containing the signature to verify</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must be the name of a public key or an asymmetric key pair. The key must allow the
 <a href="parsec_client/operations/psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_message</code>.</li>
@@ -2558,16 +2617,18 @@ verification algorithm.</p>
 <h2 id="parameters-25"><a class="header" href="#parameters-25">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
 <h2 id="results-24"><a class="header" href="#results-24">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>keys</code></td><td>Vector of <a href="parsec_client/operations/list_keys.html#keyinfo-type"><code>KeyInfo</code></a></td><td>List of key information</td></tr>
 </tbody></table>
+</div>
 <h3 id="keyinfo-type"><a class="header" href="#keyinfo-type">KeyInfo type</a></h3>
 <p>A <code>KeyInfo</code> type contains the following members:</p>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>provider_id</code></td><td>Unsigned integer</td><td>ID of the provider holding the key</td></tr>
 <tr><td><code>name</code></td><td>String</td><td>Name of the key</td></tr>
 <tr><td><code>attributes</code></td><td><a href="parsec_client/operations/psa_key_attributes.html#keyattributes-type"><code>KeyAttributes</code></a></td><td>Attributes of the key</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-25"><a class="header" href="#specific-response-status-codes-25">Specific response status codes</a></h2>
 <p>No specific response status codes returned.</p>
 <h2 id="description-25"><a class="header" href="#description-25">Description</a></h2>
@@ -2580,9 +2641,10 @@ verification algorithm.</p>
 <h2 id="parameters-26"><a class="header" href="#parameters-26">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
 <h2 id="results-25"><a class="header" href="#results-25">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>clients</code></td><td>Vector of String</td><td>List of clients</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-26"><a class="header" href="#specific-response-status-codes-26">Specific response status codes</a></h2>
 <ul>
 <li><code>AdminOperation</code>: this operation is an admin operation and cannot be requested by a user
@@ -2604,9 +2666,10 @@ this new client might not show in the output.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="deleteclient"><a class="header" href="#deleteclient">DeleteClient</a></h1>
 <p>Delete all keys a client has in the service. Opcode: 28 (<code>0x001C</code>)</p>
 <h2 id="parameters-27"><a class="header" href="#parameters-27">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>client</code></td><td>String</td><td>Client to delete</td></tr>
 </tbody></table>
+</div>
 <h2 id="results-26"><a class="header" href="#results-26">Results</a></h2>
 <p>No values are returned by this operation.</p>
 <h2 id="specific-response-status-codes-27"><a class="header" href="#specific-response-status-codes-27">Specific response status codes</a></h2>
@@ -2652,20 +2715,22 @@ encrypting the credential involves deriving a symmetric key using the TPM-specif
 object to be attested. This name is obtained by performing a hash over the public parameters of the
 object, and can thus be verified by the 3rd party if those parameters are available.</p>
 <h3 id="preparekeyattestationparams"><a class="header" href="#preparekeyattestationparams">PrepareKeyAttestationParams</a></h3>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>attested_key_name</code></td><td>String</td><td>Name of the key to be attested</td></tr>
 <tr><td><code>attesting_key_name</code></td><td>String</td><td>Name of the key to use for attesting</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li>if <code>attesting_key_name</code> is empty, the default key for the <code>ActivateCredential</code> mechanism will be
 used</li>
 </ul>
 <h3 id="preparekeyattestationoutput"><a class="header" href="#preparekeyattestationoutput">PrepareKeyAttestationOutput</a></h3>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>name</code></td><td>Vector of unsigned bytes</td><td>TPM-specific name of the key object to be attested</td></tr>
 <tr><td><code>public</code></td><td>Vector of unsigned bytes</td><td>Public parameters of the key object to be attested</td></tr>
 <tr><td><code>attesting_key_pub</code></td><td>Vector of unsigned bytes</td><td>Buffer containing the public part of the attesting key</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>name</code> represents the contents of the <code>name</code> field within the <code>TPM2B_NAME</code> structure.</li>
 <li><code>public</code> represents the contents of the <code>publicArea</code> field within the <code>TPM2B_PUBLIC</code> structure.</li>
@@ -2679,13 +2744,15 @@ necessary prior to the attestation operation. Opcode: 31 (<code>0x001F</code>)</
 <p><strong>(EXPERIMENTAL) This operation is in an experimental phase. No guarantees are offered around the
 stability of the contracts.</strong></p>
 <h2 id="parameters-28"><a class="header" href="#parameters-28">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>parameters</code></td><td><a href="parsec_client/operations/prepare_key_attestation_params.html"><code>PrepareKeyAttestationParams</code></a></td><td>Attestation mechanism-specific parameters</td></tr>
 </tbody></table>
+</div>
 <h2 id="results-27"><a class="header" href="#results-27">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>output</code></td><td><a href="parsec_client/operations/prepare_key_attestation_params.html"><code>PrepareKeyAttestationOutput</code></a></td><td>Attestation mechanism-specific output</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-28"><a class="header" href="#specific-response-status-codes-28">Specific response status codes</a></h2>
 <p>TBD</p>
 <h2 id="description-28"><a class="header" href="#description-28">Description</a></h2>
@@ -2705,19 +2772,21 @@ page</a>.</p>
 stability of the contracts and abstract definition of the operation, or of any associated key
 attestation mechanism.</strong></p>
 <h2 id="parameters-29"><a class="header" href="#parameters-29">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>attested_key_name</code></td><td>String</td><td>Name of the key to attest</td></tr>
 <tr><td><code>parameters</code></td><td><a href="parsec_client/operations/attest_key_params.html"><code>AttestationMechanismParams</code></a></td><td>Attestation mechanism-specific parameters</td></tr>
 <tr><td><code>attesting_key_name</code></td><td>String</td><td>Name of the key to use for attesting</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li>The exact usage flags required by the attesting key are determined by the mechanism used, also
 described on the <a href="parsec_client/operations/attest_key_params.html">key attestation parameters page</a>.</li>
 </ul>
 <h2 id="results-28"><a class="header" href="#results-28">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>output</code></td><td><a href="parsec_client/operations/attest_key_params.html"><code>AttestationOutput</code></a></td><td>Attestation mechanism-specific output</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes-29"><a class="header" href="#specific-response-status-codes-29">Specific response status codes</a></h2>
 <p>TBD</p>
 <h2 id="description-29"><a class="header" href="#description-29">Description</a></h2>
@@ -2781,10 +2850,11 @@ produce certificates are overwhelmingly decryption keys.</p>
 the <a href="https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part2_Structures_pub.pdf">TPM 2.0 Structures
 spec</a>.</p>
 <h3 id="attestationmechanismparams"><a class="header" href="#attestationmechanismparams">AttestationMechanismParams</a></h3>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>credential_blob</code></td><td>Vector of unsigned bytes</td><td>Protected credential</td></tr>
 <tr><td><code>secret</code></td><td>Vector of unsigned bytes</td><td>Attesting key-encrypted secret</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>credential_blob</code> represents the contents of the <code>credential</code> field within the <code>TPM2B_ID_OBJECT</code>
 structure.</li>
@@ -2792,9 +2862,10 @@ structure.</li>
 structure.</li>
 </ul>
 <h3 id="attestationoutput"><a class="header" href="#attestationoutput">AttestationOutput</a></h3>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>credential</code></td><td>Vector of unsigned bytes</td><td>Credential returned by the TPM</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>credential</code> represents the contents of the <code>buffer</code> field within the <code>TPM2B_DIGEST</code> structure.</li>
 </ul>
@@ -2811,10 +2882,11 @@ structure.</li>
 <p><strong>(EXPERIMENTAL) This operation is still being implemented and so no guarantees are offered around
 the stability of the interface for any capability discovery mechanism.</strong></p>
 <h2 id="parameters-30"><a class="header" href="#parameters-30">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>check_type</code></td><td><a href="parsec_client/operations/can_do_crypto.html#checktype-type"><code>CheckType</code></a></td><td>Type of the check performed</td></tr>
 <tr><td><code>attributes</code></td><td><a href="parsec_client/operations/psa_key_attributes.html#keyattributes-type"><code>KeyAttributes</code></a></td><td>Value to be checked</td></tr>
 </tbody></table>
+</div>
 <h3 id="checktype-type"><a class="header" href="#checktype-type">CheckType type</a></h3>
 <p>A <code>CheckType</code> type can contain one of the following:</p>
 <ul>
@@ -3349,8 +3421,15 @@ access the system.</p>
 </blockquote>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-build-and-run-parsec"><a class="header" href="#how-to-build-and-run-parsec">How to build and run Parsec</a></h1>
+<h2 id="prerequisites-1"><a class="header" href="#prerequisites-1">Prerequisites</a></h2>
 <p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install
 Rust</a>.</p>
+<p>Some Parsec backends require FFI binding code to be generated, to allow us to interface with the
+libraries driving the hardware. For this we use <code>bindgen</code> and generate the Rust to C wrappers, for
+which <code>libclang</code> (version at least 3.9) is needed:</p>
+<pre><code>sudo apt install llvm-dev libclang-dev clang cmake
+</code></pre>
+<h2 id="building-parsec"><a class="header" href="#building-parsec">Building Parsec</a></h2>
 <p>Because the <a href="parsec_service/providers.html">providers</a> and <a href="parsec_service/authenticators.html">authenticators</a> supported by Parsec
 are dependent on libraries and/or hardware features present on the platform, the build is fragmented
 through Rust features so that the resulting binary only contains the desired providers. Currently
@@ -3366,18 +3445,24 @@ guides</a>.</p>
 owners and permissions need to be set up on multiple folders. For testing only, it is fine to run
 Parsec from the current directory, have the key information mappings in <code>./mappings</code> and the socket
 at <code>/tmp/parsec.sock</code>. The test configuration will make those choices.</p>
+<p>Clone the Parsec service repo,</p>
+<pre><code>git clone --branch 1.1.0 https://github.com/parallaxsecond/parsec.git
+</code></pre>
 <p>Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
 the test configuration:</p>
-<pre><code>cargo build --features &quot;mbed-crypto-provider,direct-authenticator&quot;
+<pre><code>cd parsec
+cargo build --features &quot;mbed-crypto-provider,direct-authenticator&quot;
 RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/mbed-crypto/config.toml
 </code></pre>
 <p><code>parsec</code> will then construct the service based on the <a href="parsec_service/configuration.html">configuration</a> file and
 wait for clients.</p>
 <p>At the end of initialization, it should print <code>Parsec is ready</code> which means that it is ready to take
 requests from clients.</p>
+<h2 id="running-parsec-end-to-end-tests"><a class="header" href="#running-parsec-end-to-end-tests">Running Parsec end-to-end-tests</a></h2>
 <p>From another terminal, it is now possible to execute the <a href="parsec_service/tests#end-to-end-tests">end-to-end tests</a>
 on Parsec!</p>
 <pre><code>cd e2e_tests
+export PARSEC_SERVICE_ENDPOINT=&quot;unix:/tmp/parsec.sock&quot;
 cargo test --features mbed-crypto-provider normal_tests
 </code></pre>
 <h2 id="killing-parsec"><a class="header" href="#killing-parsec">Killing Parsec</a></h2>
@@ -3386,16 +3471,11 @@ cargo test --features mbed-crypto-provider normal_tests
 </code></pre>
 <h2 id="reloading-parsec"><a class="header" href="#reloading-parsec">Reloading Parsec</a></h2>
 <p>On Linux, sending <code>SIGHUP</code> will reload Parsec: it will wait for its threads to finish, drop all of
-its components, read the configuration and instantiate all the components again. It is usefull to
+its components, read the configuration and instantiate all the components again. It is useful to
 change the Parsec configuration without having to kill the service.</p>
 <pre><code>pkill -SIGHUP parsec
 </code></pre>
 <h2 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h2>
-<p>Some Parsec backends require FFI binding code to be generated, to allow us to interface with the
-libraries driving the hardware. For this we use <code>bindgen</code> and generate the Rust to C wrappers, for
-which <code>libclang</code> (version at least 3.9) is needed:</p>
-<pre><code>sudo apt install llvm-dev libclang-dev clang
-</code></pre>
 <p>Each provider has external dependencies that are needed to compile. Additionally, the JWT SVID
 authenticator also relies on external dependencies being present.</p>
 <h3 id="mbed-crypto"><a class="header" href="#mbed-crypto">Mbed Crypto</a></h3>
@@ -3426,7 +3506,7 @@ be installed via the package manager under the name <code>protobuf-compiler</cod
 <p>The Parsec service can be cross-compiled to other target triplets. You might need to install a
 cross-compilation C toolchain for the target you want to compile for. The default ones are indicated
 in the <code>.cargo/config</code> file.</p>
-<p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
+<p><em>Copyright 2022 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="how-to-securely-install-parsec-on-linux"><a class="header" href="#how-to-securely-install-parsec-on-linux">How to securely install Parsec on Linux</a></h1>
 <p>Parsec can be built and installed as a Linux daemon using systemd. The daemon is a systemd user
 daemon run by the <code>parsec</code> user. Some manual steps are needed to make sure that permissions are set
@@ -3711,7 +3791,7 @@ tests</li>
 <p>The
 <a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/provider_cfg"><code>parsec/e2e_tests/provider_cfg</code></a>
 folder contain the configuration needed to run Parsec for the corresponding tests.</p>
-<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/normal.rs">All providers normal e2e tests</a></td><td>End-to-end tests on a service with all providers. Mostly to test core operations.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/cross.rs">All providers cross-providers e2e tests</a></td><td>Test that the output of various operations from different providers is accepted by the other providers.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/config">All providers configuration e2e tests</a></td><td>These check if the behaviour of the service is correct before and after reloading with a different configuration.</td></tr>
@@ -3724,16 +3804,19 @@ folder contain the configuration needed to run Parsec for the corresponding test
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/normal.rs">OnDisk KIM tests</a></td><td>Tests the OnDisk KIM with the <code>all-providers</code> end-to-end tests to ensure the correct functioning of the KIM. All other tests are run using the SQLite KIM.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/blob/main/e2e_tests/tests/per_provider/tpm_reset.rs">TPM reset tests</a></td><td>Tests that verify that keys created with the TPM provider can be used following a TPM reset (i.e., simulating a reboot for certain platforms).</td></tr>
 </tbody></table>
+</div>
 <h2 id="fuzz-testing-1"><a class="header" href="#fuzz-testing-1">Fuzz testing</a></h2>
-<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/fuzz">Fuzz testing</a></td><td>Tests sending random requests to the service and waiting it to crash/timeout.</td></tr>
 </tbody></table>
+</div>
 <h2 id="unit-testing"><a class="header" href="#unit-testing">Unit testing</a></h2>
-<table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/blob/master/src/authenticators/direct_authenticator/mod.rs">Direct authenticator tests</a></td><td>Testing the <code>Authenticate</code> trait with this authenticator.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/blob/master/src/key_info_managers/on_disk_manager/mod.rs">On-disk key info manager tests</a></td><td>Testing the <code>ManageKeyInfo</code> trait with various strings for application and key names. The persistence is tested in the end-to-end tests.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/blob/main/src/key_info_managers/sqlite_manager/mod.rs">SQLite key info manager tests</a></td><td>Testing the <code>ManageKeyInfo</code> trait with various strings for application and key names. The persistence is tested in the end-to-end tests.</td></tr>
 </tbody></table>
+</div>
 <h2 id="cross-compilation-tests"><a class="header" href="#cross-compilation-tests">Cross-compilation tests</a></h2>
 <p>Given that Parsec is expected to run natively on as many platforms as possible, we have incorporated
 cross-compilation testing in our CI framework. These check that the service can be built for the
@@ -3770,7 +3853,7 @@ B without breaking anything</em>.</p>
 without breaking anything. The only exception is for the communication channel with clients where
 any version of the client library can successfully communicate with any version of the service.</p>
 <p>The principle of <a href="https://semver.org/">semantic versioning</a> is used to describe the stability of
-Parsec versions and when breaking changes are done. If <code>parsec</code> version is at <code>1.0.0</code> then all
+Parsec versions and when breaking changes are done. If <code>parsec</code> version is at <code>1.1.0</code> then all
 future stable version to that will be <code>1.x.y</code>. Note that, although semver is used to describe Parsec
 stability, it is a strong goal for Parsec to remain stable at a <code>1.x.y</code> version. This document
 introduces the efforts that are made so that a <code>MAJOR</code> version bump should hopefully never happen.</p>
@@ -3813,7 +3896,7 @@ to the list above and looked in detail below.</p>
 <li>how stability is ensured</li>
 <li>how stability is tested</li>
 </ul>
-<table><thead><tr><th>Stability Requirement</th><th>Stability Definition</th><th>Stability Enforcement</th><th>Stability Test</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Stability Requirement</th><th>Stability Definition</th><th>Stability Enforcement</th><th>Stability Test</th></tr></thead><tbody>
 <tr><td>Communication with clients (requests/responses)</td><td>Requests and responses must be understood correctly by different versions of the service/clients.</td><td>The Wire Protocol is <a href="parsec_service/../parsec_client/wire_protocol.html#wire-protocol-versions">stable by design</a>.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/388">Done</a></td></tr>
 <tr><td>Communication with clients (operation contracts)</td><td>The behaviour of operations must remain the same for all versions of the service.</td><td>There is a <a href="https://parallaxsecond.github.io/parsec-book/parsec_client/operations/index.html">defined behaviour</a> for all operations that is respected.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/389">Done</a></td></tr>
 <tr><td>Communication with clients (listeners endpoint)</td><td>Listeners endpoint must be discovered in a stable way.</td><td>A <a href="parsec_service/../parsec_client/api_overview.html#service-discovery">service discovery mechanism</a> exists.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/390">Done</a></td></tr>
@@ -3828,6 +3911,7 @@ to the list above and looked in detail below.</p>
 <tr><td>Hardware backends</td><td>Communication with hardware backends for crypto and key management should still work in future Parsec versions.</td><td>The communication channels with the hardware backends should remain the same.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/412">Done</a></td></tr>
 <tr><td>Build toolchain</td><td>Parsec build should not break for defined versions of the Rust compiler.</td><td>Each commit is tested with specific supported versions of the Rust compiler.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/408">Done</a></td></tr>
 </tbody></table>
+</div>
 <h3 id="dynamic-libraries"><a class="header" href="#dynamic-libraries">Dynamic libraries</a></h3>
 <p>We use the specific versions of those dynamic libraries and test it on CI:</p>
 <ul>
@@ -3966,7 +4050,7 @@ all threats but when one of them is particularly relevant, it will be noted with
 <h3 id="attacker-client-request---a1"><a class="header" href="#attacker-client-request---a1">Attacker &quot;Client Request&quot; - A1</a></h3>
 <p>This attacker uses the existing Listener endpoint, created by the service, to communicate with it.</p>
 <p><em>Not applicable for deployment (DRCT).</em></p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td><em>(GNRC, JWTS)</em> An attacker uses another client's authentication token. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-2, O-15</td><td>AS3</td></tr>
 <tr><td>S</td><td><em>(GNRC, JWTS)</em> An attacker uses brute-force on the AUTH field of the request until he does not have an AuthenticationError response status to then deduce a valid authentication token.</td><td>M-2</td><td>AS1</td></tr>
 <tr><td>S</td><td><em>(DSPC)</em> An attacker uses another client's Unix account. He can then have access (reference) to any of the impersonated client's keys and execute any operation in their name.</td><td>U-5</td><td>AS3</td></tr>
@@ -3981,12 +4065,13 @@ all threats but when one of them is particularly relevant, it will be noted with
 <tr><td>E</td><td>A malicious request, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-10, M-5</td><td>All</td></tr>
 <tr><td>E</td><td>A malicious request exploits a vulnerability in the software stack and leads to an attacker having Parsec privilege level on key management in the underlying hardware.</td><td>U-3, M-10, M-5</td><td>AS3, AS6</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-service-response---a2"><a class="header" href="#attacker-service-response---a2">Attacker &quot;Service Response&quot; - A2</a></h3>
 <p>This attacker uses the existing Listener endpoint, created by the service, to communicate with the
 client. It can also create a spoofed endpoint, mimicking the service's one.</p>
 <p>For protection of the clients' assets, please check the Parsec Clients Threat Models.</p>
 <p><em>Not applicable for deployment (DRCT).</em></p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates the Parsec service: clients share their data with a malicious entity.</td><td>O-2, O-9</td><td>AS3, AS4, AS6</td></tr>
 <tr><td>T</td><td>An attacker modifies the response of another client to change its body or its header and thus alter the type, content or status of the response.</td><td>M-3</td><td>AS4</td></tr>
 <tr><td>R</td><td>A client denies that the response was indeed sent by the Parsec service.</td><td>O-2, U-7, O-9</td><td></td></tr>
@@ -3996,10 +4081,11 @@ client. It can also create a spoofed endpoint, mimicking the service's one.</p>
 <tr><td>D</td><td>An attacker modifies the response in such a way that it leads the client to crash.</td><td>M-3</td><td></td></tr>
 <tr><td>E</td><td>An attacker modifies the response in such a way that it leads to code execution in the client sandbox at the same level as the client.</td><td>M-3</td><td></td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-os-signal---a3"><a class="header" href="#attacker-os-signal---a3">Attacker &quot;OS Signal&quot; - A3</a></h3>
 <p>This attacker has the capability of sending signals to the Parsec process. For example, on a Linux
 machine a <code>SIGINT</code> signal.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>N/A</td><td></td><td></td></tr>
 <tr><td>T</td><td>A <code>SIGHUP</code> is modified by an attacker into <code>SIGTERM</code> or the other way around.</td><td>ASUM-3</td><td>AS6</td></tr>
 <tr><td>R</td><td>N/A</td><td></td><td></td></tr>
@@ -4007,10 +4093,11 @@ machine a <code>SIGINT</code> signal.</p>
 <tr><td>D</td><td>An attacker can kill the Parsec service, gracefully or not or trigger an infinite loop of configuration reloads.</td><td>O-0</td><td>AS6</td></tr>
 <tr><td>E</td><td>N/A</td><td></td><td></td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-service-operation---a4"><a class="header" href="#attacker-service-operation---a4">Attacker &quot;Service Operation&quot; - A4</a></h3>
 <p>This attacker communicates with the security hardware on the platform using the operating system
 interfaces.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker directly drives the platform hardware to execute commands on it.</td><td>O-8</td><td>AS3, AS6</td></tr>
 <tr><td>T</td><td>An attacker modifies the commands sent to hardware modules.</td><td>O-8, U-3, M-10</td><td>AS3, AS6</td></tr>
 <tr><td>R</td><td>Commands cannot be proven to have originated in the service.</td><td>U-7</td><td></td></tr>
@@ -4020,10 +4107,11 @@ interfaces.</p>
 <tr><td>D</td><td>Attacker disrupts the software stack that drives the hardware (e.g. replaces or removes PKCS 11 dynamic libraries).</td><td>O-8, U-3, M-10</td><td>AS6</td></tr>
 <tr><td>E</td><td>An attacker uses the configured state of a hardware module to make operations with a higher privilege on it.</td><td>O-8, U-3, M-10, U-4</td><td>AS3, AS6</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-hardware-result---a5"><a class="header" href="#attacker-hardware-result---a5">Attacker &quot;Hardware Result&quot; - A5</a></h3>
 <p>This attacker communicates with the service using the operating system interfaces for hardware. It
 can also create a spoofed hardware interface.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates a hardware module or uses a malicious module plugged to the machine.</td><td>O-1, ASUM-2</td><td>AS4, AS6</td></tr>
 <tr><td>T</td><td>An attacker modifies the response of a hardware command.</td><td>O-8, U-3, M-10</td><td>AS4, AS6</td></tr>
 <tr><td>R</td><td>Responses cannot be proven to originate from the hardware module.</td><td>U-7</td><td></td></tr>
@@ -4031,10 +4119,11 @@ can also create a spoofed hardware interface.</p>
 <tr><td>D</td><td>An attacker modifies the valid command response to pretend it failed or succeeded.</td><td>U-3, M-10, O-8</td><td>AS6</td></tr>
 <tr><td>E</td><td>A malicious command response, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>U-3, M-10, M-5, O-8</td><td>All</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-key-mapping-storage---a6"><a class="header" href="#attacker-key-mapping-storage---a6">Attacker &quot;Key Mapping Storage&quot; - A6</a></h3>
 <p>Attacker with access to the key info mapping stream generated by Key Info Managers when storing its
 data and to the persistent storage mechanism used for this purpose.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker stores spoofed key handles/material, e.g. allowing themselves to access keys they should not have access to.</td><td>O-3</td><td>AS3, AS6</td></tr>
 <tr><td>T</td><td>An attacker modifies the data stored for a mapping to either divert another user to use a different key, or to allow himself access to some key.</td><td>O-3</td><td>AS3, AS6</td></tr>
 <tr><td>R</td><td>The mappings cannot be proven to have been generated by the service.</td><td>U-7</td><td></td></tr>
@@ -4042,10 +4131,11 @@ data and to the persistent storage mechanism used for this purpose.</p>
 <tr><td>D</td><td>An attacker could prevent the storage to be completed, e.g. by filling up the disk and running into space-related issues.</td><td>O-4</td><td>AS6</td></tr>
 <tr><td>E</td><td>N/A</td><td></td><td></td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-key-mapping-retrieval---a7"><a class="header" href="#attacker-key-mapping-retrieval---a7">Attacker &quot;Key Mapping Retrieval&quot; - A7</a></h3>
 <p>Attacker with access to the data stream returning to the Key Info Manager from its source of
 persistent storage.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>Attacker spoofs the existence of a mapping and makes the service use an incorrect or invalid key (handle).</td><td>M-6, O-3</td><td>AS3, AS4, AS6</td></tr>
 <tr><td>T</td><td>An attacker alters the retrieval of stored material to change the key that is used for an operation initiated by either himself or some other user.</td><td>M-6</td><td>AS3, AS6</td></tr>
 <tr><td>R</td><td>There is no way to guarantee that the mapping being retrieved was previously stored by the service.</td><td>U-7</td><td></td></tr>
@@ -4055,9 +4145,10 @@ persistent storage.</p>
 <tr><td>D</td><td>A malicious key handle, formatted in a specific way, leads to a service crash.</td><td>O-3, M-5, U-3, M-10</td><td>AS6</td></tr>
 <tr><td>E</td><td>A malicious key handle, formatted in a specific way, triggers remote code execution in Parsec privilege level.</td><td>O-3, M-5, U-3, M-10</td><td>All</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-logging---a8"><a class="header" href="#attacker-logging---a8">Attacker &quot;Logging&quot; - A8</a></h3>
 <p>Attacker with access to the log stream generated by the Parsec service and to the log file.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker could write to the log file, pretending to be the Parsec service and dilute the true logs, potentially hiding errors or crashes.</td><td>O-5</td><td>AS6</td></tr>
 <tr><td>S</td><td>An attacker uses the same logging façade mechanism to write on the logs from a malicious Parsec dependency.</td><td>M-7</td><td>AS6</td></tr>
 <tr><td>T</td><td>Attacker can modify logs to hide/modify details about crashes, errors or any other suspicious activity.</td><td>O-5</td><td>AS6</td></tr>
@@ -4067,10 +4158,11 @@ persistent storage.</p>
 <tr><td>D</td><td>An attacker prevents access to the logging system by the service putting it in a stall state or triggering errors/crashes.</td><td>O-5, O-4</td><td>AS6</td></tr>
 <tr><td>E</td><td>N/A</td><td></td><td></td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-configuration---a9"><a class="header" href="#attacker-configuration---a9">Attacker &quot;Configuration&quot; - A9</a></h3>
 <p>Attacker with access to the configuration file for the Parsec service or to the OS-provided
 mechanism for reading it.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An adversary can spoof a configuration file, leading to the service operating in an unsecure state, ineffective state or not starting at all.</td><td>O-6</td><td>AS3, AS5, AS6</td></tr>
 <tr><td>T</td><td>The configuration file set up by the administrator might be modified, leading to the service being unsecure, ineffective or broken.</td><td>O-6</td><td>AS3, AS5, AS6</td></tr>
 <tr><td>R</td><td>There are no guarantees that the person setting up the configuration file was authorised to do so.</td><td>O-6</td><td></td></tr>
@@ -4079,11 +4171,12 @@ mechanism for reading it.</p>
 <tr><td>D</td><td>Removing or altering the configuration file can lead to the Parsec service not starting or working in a broken state.</td><td>O-6</td><td>AS6</td></tr>
 <tr><td>E</td><td>Parsing a malicious configuration file can lead to code execution at the Parsec privilege level.</td><td>M-5, U-3, M-10, O-6</td><td>All</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-identity-provider---a10"><a class="header" href="#attacker-identity-provider---a10">Attacker &quot;Identity Provider&quot; - A10</a></h3>
 <p>Attacker with access to the communication running from the Identity Provider to the Parsec service.</p>
 <p><em>Not applicable for deployment (DRCT). For deployment (DSPC) the operating system is considered
 sufficiently secure, as described in assumption 3.</em></p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>The initial trust bundle can be spoofed, and an attacker can thus gain complete control over the service.</td><td>O-7</td><td>AS2 and then all</td></tr>
 <tr><td>T</td><td>The trust bundle shared by the identity provider can be modified in transit to disrupt the operation of the service or take control of it.</td><td>M-3</td><td>AS2 and then all</td></tr>
 <tr><td>R</td><td>The service cannot guarantee that the trust bundle it received comes from the trusted identity provider.</td><td>O-7</td><td></td></tr>
@@ -4092,36 +4185,40 @@ sufficiently secure, as described in assumption 3.</em></p>
 <tr><td>D</td><td>A malicious share bundle could trigger a parsing bug and lead the service to crash.</td><td>M-5, U-3, M-10</td><td>AS2, AS6</td></tr>
 <tr><td>E</td><td>A malicious share bundle could trigger a parsing bug and lead to code execution at the Parsec privilege level.</td><td>M-5, U-3, M-10</td><td>All</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-local-memory---a11"><a class="header" href="#attacker-local-memory---a11">Attacker &quot;Local Memory&quot; - A11</a></h3>
 <p>Attacker with access to the local memory regions used by Parsec. This attacker can be another
 process scheduled by the OS in the same timeframe than Parsec and reading the memory which was not
 cleared.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>I</td><td>The attacker can read all the confidential assets placed in local memory by the service.</td><td>M-8</td><td>AS1, AS2, AS4 and AS5</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-spiffe-validation-request---a12"><a class="header" href="#attacker-spiffe-validation-request---a12">Attacker &quot;SPIFFE Validation Request&quot; - A12</a></h3>
 <p>This attacker uses the SPIFFE Workload API endpoint created by the SPIFFE implementation to
 interfere with the validation of the JWT-SVID token sent by the client.</p>
 <p><em>Only applicable for deployment (JWTS).</em></p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>I</td><td>An attacker steals the authentication token from a client's request to then execute any operation in their name.</td><td>M-9</td><td>AS4, AS3</td></tr>
 <tr><td>D</td><td>An attacker modifies the validation request to make it fail.</td><td>M-9</td><td>AS6</td></tr>
 <tr><td>D</td><td>An attacker overloads/crashes the SPIFFE implementation and thus prevents the service from making use of it.</td><td>SPIFFE implementation specific. An <a href="https://github.com/spiffe/spiffe/blob/master/standards/SPIFFE_Workload_Endpoint.md#6-error-codes">&quot;Unavailable&quot; error</a> can be used for implementations to perform load-shedding.</td><td>AS6</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-spiffe-validation-response---a13"><a class="header" href="#attacker-spiffe-validation-response---a13">Attacker &quot;SPIFFE Validation Response&quot; - A13</a></h3>
 <p>This attacker uses the SPIFFE Workload API endpoint created by the SPIFFE implementation to
 interfere with the validation of the JWT-SVID token sent by the client. It can also create a spoofed
 endpoint, mimicking the SPIFFE implementation's one.</p>
 <p><em>Only applicable for deployment (JWTS).</em></p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates the SPIFFE implementation: Parsec sends the authentication data of clients to malicious entity.</td><td>O-14</td><td>AS1</td></tr>
 <tr><td>T</td><td>An attacker modifies the validation response of the SPIFFE implementation to yield the application identity of its choice.</td><td>O-14</td><td>AS1</td></tr>
 <tr><td>D</td><td>An attacker modifies the validation response to pretend it failed or succeeded.</td><td>M-9</td><td>AS6</td></tr>
 <tr><td>D</td><td>An attacker modifies the validation response in such a way that it leads the service to crash.</td><td>M-9</td><td>AS6</td></tr>
 <tr><td>E</td><td>An attacker modifies the validation response in such a way that it leads to code execution at the service privilege level.</td><td>M-9</td><td>AS4, AS5, AS6, AS7, AS8</td></tr>
 </tbody></table>
+</div>
 <h2 id="unmitigations"><a class="header" href="#unmitigations">Unmitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
 <tr><td>0</td><td>An attacker can use all the threads of the service's thread pool, requesting for a time-consuming operation on each one of them, to leave the less amount of free time possible to other clients.</td><td>The requests take more time to execute.</td></tr>
 <tr><td>2</td><td>The authentication token is stored with confidentiality by the clients. If it is stolen, the service cannot prevent access with it unless the token is revoked.</td><td>All the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
 <tr><td>3</td><td>Parsec dependencies are not (visually) investigated for Security Vulnerabilities. (See M-10 for our mitigation.)</td><td>A vulnerability in one of Parsec dependency will also impact Parsec and the data Parsec shares with that dependency.</td></tr>
@@ -4130,8 +4227,9 @@ endpoint, mimicking the SPIFFE implementation's one.</p>
 <tr><td>6</td><td>Parsec does not support using multiple authenticators concurrently (<a href="https://github.com/parallaxsecond/parsec/issues/272">open issue</a>).</td><td>If there is weakness in one authenticator, all the client's keys can be used, and exported if allowed by the key's policy.</td></tr>
 <tr><td>7</td><td>Parsec does not protect from some of the repudiation threats. Logging is used as best-effort way throughout the codebase to note the identity, time and date of important events such as: &quot;new request received&quot;, &quot;response sent back&quot;, &quot;new mapping created&quot;, &quot;mapping is read from the persistent store&quot;, &quot;a hardware command is issued&quot; and &quot;a hardware command is received&quot;.</td><td>There might be no proof that some event took place. See <a href="https://github.com/parallaxsecond/parsec-book/issues/84">this issue</a>.</td></tr>
 </tbody></table>
+</div>
 <h2 id="mitigations"><a class="header" href="#mitigations">Mitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>Parsec uses a thread pool with a configurable amount of threads to limit the number of concurrent operations it can support so that the machine is not overloaded.</td><td><a href="https://github.com/parallaxsecond/parsec/commit/e87984c4d3eaafa1a1cb977dceadf773aca1f7db">Done</a></td></tr>
 <tr><td>1</td><td>Response statuses are audited to not give too much information to the client.</td><td><a href="https://github.com/parallaxsecond/parsec-interface-rs/issues/59">Done</a></td></tr>
 <tr><td>2</td><td><em>(not DRCT)</em> The authenticators should only allow authentication tokens that are secure enough that brute-force attacks are not feasible.</td><td><em>(JWTS)</em> The <a href="https://github.com/spiffe/spiffe/blob/master/standards/JWT-SVID.md#21-algorithm">algorithms</a> prescribed by the JWT-SVID standard are secure enough to prevent brute-force attacks in most cases.</td></tr>
@@ -4143,10 +4241,11 @@ endpoint, mimicking the SPIFFE implementation's one.</p>
 <tr><td>9</td><td><em>(JWTS)</em> The SPIFFE Workload API endpoint is accessed through an IPC mechanism respecting confidentiality and integrity of messages transmitted between the workloads and the SPIFFE implementation.</td><td>The <a href="https://github.com/spiffe/spiffe/blob/master/standards/SPIFFE_Workload_Endpoint.md#3-transport">SPIFFE Workload Endpoint document</a> prescribes the use of Unix Domain Socket or TCP with strong authentication.</td></tr>
 <tr><td>10</td><td>Any vulnerabilities relating to our Rust dependencies which get added to the <a href="https://rustsec.org/">Rust Security Advisory Database</a> get reported on a nightly basis by the CI.</td><td>The <a href="https://github.com/parallaxsecond/parsec/blob/main/SECURITY.md">Parsec Security Policy</a> describes the process we follow to identify and report these to users.</td></tr>
 </tbody></table>
+</div>
 <h2 id="operational-mitigations"><a class="header" href="#operational-mitigations">Operational mitigations</a></h2>
 <p>Most of these operational mitigations are implemented when following the <a href="parsec_security/parsec_threat_model/../secure_deployment.html">Recommendations on a
 Secure Parsec Deployment guide</a>.</p>
-<table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>A trusted administrator should start the service in such a way that un-privileged processes cannot send signals to the service.</td><td>In a Unix OS, using a separate user to run the service prevents that.</td></tr>
 <tr><td>1</td><td>A trusted administrator should check the validity of the providers and hardware modules written in the service's configuration before starting/reloading it.</td><td>This is a manual step that has to be done as part of configuring the service.</td></tr>
 <tr><td>2</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the Listener endpoint.</td><td>The endpoint folder is in a location that only the trusted privileged administrator could have created so clients can trust the existance of a Parsec service.</td></tr>
@@ -4164,6 +4263,7 @@ Secure Parsec Deployment guide</a>.</p>
 <tr><td>14</td><td><em>(JWTS)</em> The SPIFFE Workload API endpoint must exist before Parsec is started and owned by an independant user. It must not be deleted while Parsec is running.</td><td>It must not be possible for an attacker to put their own socket where the Parsec service and clients expect it. Doing a local validation of the JWT-SVID would remove the need for this mitigation. See <a href="https://github.com/parallaxsecond/parsec/issues/289">here</a> for details.</td></tr>
 <tr><td>15</td><td><em>(JWTS)</em> The Parsec clients must be registered as SPIFFE workloads with unique SPIFFE ID.</td><td>Two Parsec clients should not be assigned the same SPIFFE ID.</td></tr>
 </tbody></table>
+</div>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="recommendations-on-a-secure-parsec-deployment"><a class="header" href="#recommendations-on-a-secure-parsec-deployment">Recommendations on a Secure Parsec Deployment</a></h1>
 <p>The following recommendations should be applied in order for Parsec to respect some of the
@@ -4272,7 +4372,7 @@ particularly relevant, it will be noted with ASUM.</p>
 <h3 id="attacker-request-to-service---a1"><a class="header" href="#attacker-request-to-service---a1">Attacker “Request to Service” - A1</a></h3>
 <p>This attacker uses the inter-process endpoint, presumably created by the service, to interfere with
 the communication between client and service.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates the service by establishing an IPC endpoint that spoofs the one used by Parsec to exfiltrate any data found in requests.</td><td>O-0, O-1</td><td>AS1, AS2, AS4</td></tr>
 <tr><td>S</td><td>An attacker impersonates the service and responds to requests using bogus or malicious data.</td><td>O-0, O-1</td><td>AS2</td></tr>
 <tr><td>T</td><td>The attacker modifies the data sent or received by the client while it is in transit through the IPC.</td><td>M-0</td><td>AS2, AS4</td></tr>
@@ -4283,31 +4383,36 @@ the communication between client and service.</p>
 <tr><td>D</td><td>An attacker could tamper with incoming responses to exploit vulnerabilities in the client library and crash the client.</td><td>M-0, M-1, U-0</td><td>AS5</td></tr>
 <tr><td>E</td><td>An attacker could tamper with incoming responses to exploit vulnerabilities in the client library and run code in the same user as the client.</td><td>M-0, M-1, U-0</td><td>AS5</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-library-memory---a2"><a class="header" href="#attacker-library-memory---a2">Attacker “Library Memory” - A2</a></h3>
 <p>This attacker gains access to memory released by the client library, containing potentially
 sensitive information.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>I</td><td>An attacker reads requests and responses from memory.</td><td>U-2</td><td>AS2, AS4</td></tr>
 <tr><td>I</td><td>An attacker reads out the application identity from memory.</td><td>U-2</td><td>AS1</td></tr>
 </tbody></table>
+</div>
 <h2 id="unmitigations-1"><a class="header" href="#unmitigations-1">Unmitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
 <tr><td>0</td><td>Client library dependencies are not checked for Security Vulnerabilities.</td><td>A vulnerability in one of the Parsec client dependencies will also impact the client application and the data it shares with the Parsec library.</td></tr>
 <tr><td>1</td><td>Authenticity of responses is not ensured through a MAC or asymmetric signature – it relies on trust in the platform administrator.</td><td>Any response from the service could have been spoofed or altered by any entity with sufficient capabilities.</td></tr>
 <tr><td>2</td><td>Parsec does not currently clear sensitive data in memory after use. <a href="https://github.com/parallaxsecond/parsec-client-rust/issues/9">This is looked at here</a>.</td><td>Any data that passes through the client library could be read after the memory is released.</td></tr>
 </tbody></table>
+</div>
 <h2 id="mitigations-1"><a class="header" href="#mitigations-1">Mitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>Parsec interface uses an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made).</td><td>Unix Domain Socket: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
 <tr><td>1</td><td>The Parsec client is coded with safety in mind and is tested extensively.</td><td><a href="https://github.com/parallaxsecond/parsec-client-rust/issues/49">Open</a></td></tr>
 </tbody></table>
+</div>
 <h2 id="operational-mitigations-1"><a class="header" href="#operational-mitigations-1">Operational mitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
 <tr><td>0</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the IPC endpoint.</td></tr>
 <tr><td>1</td><td>The IPC endpoint should be secured so that only privileged users can remove or alter it.</td></tr>
 <tr><td>2</td><td>A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.</td></tr>
 <tr><td>3</td><td>The Parsec service is configured to display detailed logs about all requests made by clients.</td></tr>
 </tbody></table>
+</div>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="contribution-guidelines"><a class="header" href="#contribution-guidelines">Contribution Guidelines</a></h1>
 <p>Please follow the guidelines below to contribute to any Parsec repository.</p>

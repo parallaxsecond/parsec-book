@@ -179,10 +179,11 @@ produce certificates are overwhelmingly decryption keys.</p>
 the <a href="https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part2_Structures_pub.pdf">TPM 2.0 Structures
 spec</a>.</p>
 <h3 id="attestationmechanismparams"><a class="header" href="#attestationmechanismparams">AttestationMechanismParams</a></h3>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>credential_blob</code></td><td>Vector of unsigned bytes</td><td>Protected credential</td></tr>
 <tr><td><code>secret</code></td><td>Vector of unsigned bytes</td><td>Attesting key-encrypted secret</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>credential_blob</code> represents the contents of the <code>credential</code> field within the <code>TPM2B_ID_OBJECT</code>
 structure.</li>
@@ -190,9 +191,10 @@ structure.</li>
 structure.</li>
 </ul>
 <h3 id="attestationoutput"><a class="header" href="#attestationoutput">AttestationOutput</a></h3>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>credential</code></td><td>Vector of unsigned bytes</td><td>Credential returned by the TPM</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>credential</code> represents the contents of the <code>buffer</code> field within the <code>TPM2B_DIGEST</code> structure.</li>
 </ul>

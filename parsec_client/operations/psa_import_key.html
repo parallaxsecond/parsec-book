@@ -145,11 +145,12 @@
                         <h1 id="psaimportkey"><a class="header" href="#psaimportkey">PsaImportKey</a></h1>
 <p>Import a key in binary format. Opcode: 6 (<code>0x0006</code>)</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to import</td></tr>
 <tr><td><code>attributes</code></td><td><a href="psa_key_attributes.html#keyattributes-type"><code>KeyAttributes</code></a></td><td>The attributes of the new key</td></tr>
 <tr><td><code>data</code></td><td>Vector of bytes</td><td>Buffer containing the key data</td></tr>
 </tbody></table>
+</div>
 <p>The content of the <code>data</code> buffer is interpreted according to the type declared in attributes. Parsec
 supports the formats described in the documentation of PsaExportKey or
 <a href="psa_export_public_key.html">PsaExportPublicKey</a> for the chosen type. The key size is always

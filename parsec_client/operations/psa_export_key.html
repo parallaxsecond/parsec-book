@@ -145,16 +145,18 @@
                         <h1 id="psaexportkey"><a class="header" href="#psaexportkey">PsaExportKey</a></h1>
 <p>Export a key in binary format. Opcode: 12 (<code>0x000C</code>)</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to export</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li>The key must allow the <a href="psa_key_attributes.html#usageflags-type">usage flag</a> <code>export</code>.</li>
 </ul>
 <h2 id="results"><a class="header" href="#results">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>data</code></td><td>Vector of bytes</td><td>Buffer containing the key data</td></tr>
 </tbody></table>
+</div>
 <h2 id="specific-response-status-codes"><a class="header" href="#specific-response-status-codes">Specific response status codes</a></h2>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key is not have the [<code>export</code>] usage flag.</li>

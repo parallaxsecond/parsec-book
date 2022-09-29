@@ -321,7 +321,7 @@ requests. In a request, these fields should be set to a value of zero.</li>
 <p>Fields occur in contiguous memory and there must be no additional padding between them. On the
 following diagram, the bytes go left to right from least significant to most significant.</p>
 <p><img src="diagrams/wire_header.png" alt="Header Structure" /></p>
-<table><thead><tr><th>Name</th><th>Scheme</th><th>Size (in bytes)</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Scheme</th><th>Size (in bytes)</th><th>Description</th></tr></thead><tbody>
 <tr><td>Magic number</td><td>Common</td><td>4</td><td>Must be <code>0x5EC0A710</code> (selected to be an approximate transcoding of SECurity API). This field can be used as an initial validity check for incoming messages. This field <strong>must</strong> be populated in all messages. This field will remain the same across different wire protocol versions.</td></tr>
 <tr><td>Header size</td><td>Common</td><td>2</td><td>Size of the <strong>remainder</strong> of the header in bytes (once the magic number and header size fields have been consumed). Consumers <strong>must</strong> use this field to consume the correct number of bytes of header from the input stream, rather than use this specification to deduce the header size. This field's position and width will remain the same across different wire protocol versions. Only the value of this field may change between versions.</td></tr>
 <tr><td>Major version number</td><td>Common</td><td>1</td><td>Versioning field. Currently the only supported and valid value for this field is <code>0x01</code>. This field's position and width will remain the same across different wire protocol versions. Only the value of this field may change between versions.</td></tr>
@@ -338,6 +338,7 @@ following diagram, the bytes go left to right from least significant to most sig
 <tr><td>Status</td><td>Responses only</td><td>2</td><td>Indicates the overall success or failure of the operation. A value of zero is used universally to mean success. Other values should be interpreted according to the <a href="status_codes.html">API specification</a>.</td></tr>
 <tr><td>Reserved</td><td>Common</td><td>2</td><td>Currently unused and must be set to zero.</td></tr>
 </tbody></table>
+</div>
 <h3 id="requests"><a class="header" href="#requests">Requests</a></h3>
 <p>A request message begins with the fixed-format header as specified above, followed contiguously by a
 variable-length field of zero or more <strong>message body</strong> bytes, which is in turn followed contiguously

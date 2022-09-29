@@ -145,12 +145,13 @@
                         <h1 id="psaverifyhash"><a class="header" href="#psaverifyhash">PsaVerifyHash</a></h1>
 <p>Verify the signature of a hash or short message using a public key. Opcode: 5 (<code>0x0005</code>)</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="psa_algorithm.html#asymmetricsignature-algorithm"><code>AsymmetricSignature</code></a></td><td>An asymmetric signature algorithm that separates the hash and sign operations that is compatible with the type of key</td></tr>
 <tr><td><code>hash</code></td><td>Vector of bytes</td><td>The input whose signature is to be verified</td></tr>
 <tr><td><code>signature</code></td><td>Vector of bytes</td><td>Buffer containing the signature to verify</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must be the name of a public key or an asymmetric key pair. The key must allow the
 <a href="psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_hash</code>.</li>

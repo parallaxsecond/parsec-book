@@ -145,12 +145,13 @@
                         <h1 id="psamacverify"><a class="header" href="#psamacverify">PsaMacVerify</a></h1>
 <p>Calculate the MAC of a message and compare it to an expected value. Opcode: 23 (<code>0x0017</code>)</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="psa_algorithm.html#mac-algorithm"><code>Mac</code></a></td><td>Mac algorithm to compute</td></tr>
 <tr><td><code>input</code></td><td>Vector of bytes</td><td>Buffer containing the input message</td></tr>
 <tr><td><code>mac</code></td><td>Vector of bytes</td><td>Buffer containing the expected MAC value</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must allow the <a href="psa_key_attributes.html#usageflags-type">usage flag</a> <code>verify_message</code>.</li>
 </ul>

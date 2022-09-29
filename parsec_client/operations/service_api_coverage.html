@@ -148,7 +148,7 @@ Only the operations <a href="README.html">specified</a> and that have a dedicate
 table.</p>
 <p>Not all parameters (key types, algorithms) of the operation might be supported. See the following
 sections for details.</p>
-<table><thead><tr><th>Operation \ Provider</th><th>Core</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Operation \ Provider</th><th>Core</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td><a href="ping.html">Ping</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
 <tr><td><a href="list_providers.html">ListProviders</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
 <tr><td><a href="list_opcodes.html">ListOpcodes</a></td><td>✅</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td><td>🚫</td></tr>
@@ -181,6 +181,7 @@ sections for details.</p>
 <tr><td><a href="prepare_key_attestation.html">PrepareKeyAttestation</a></td><td>🚫</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td><a href="can_do_crypto.html">CanDoCrypto</a></td><td>🚫</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li>✅: The provider supports the operation (maybe not all of its parameters, check below).</li>
 <li>🚫: The operation is not meant to be implemented on this provider (core operation on a crypto
@@ -190,7 +191,7 @@ provider or opposite).</li>
 <h3 id="key-types-support"><a class="header" href="#key-types-support">Key types support</a></h3>
 <p>This table describe if the following <a href="psa_key_attributes.html#keytype-type">key types</a> are supported
 for key management operations.</p>
-<table><thead><tr><th>Key type \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Key type \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>RawData</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>Hmac</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>Derive</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
@@ -206,11 +207,12 @@ for key management operations.</p>
 <tr><td>DhKeyPair</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>DhPublicKey</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h3 id="elliptic-curve-families"><a class="header" href="#elliptic-curve-families">Elliptic curve families</a></h3>
 <p>This table describes if the following <a href="psa_key_attributes.html#supported-ecc-curve-families">elliptic curve
 families</a> are supported. Not all curves from
 those families might be supported.</p>
-<table><thead><tr><th>ECC Curve Family \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ECC Curve Family \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>SECP-K1</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
 <tr><td>SECP-R1</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
 <tr><td>SECP-R2</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
@@ -221,11 +223,12 @@ those families might be supported.</p>
 <tr><td>FRP</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>Montgomery</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h3 id="algorithm-support"><a class="header" href="#algorithm-support">Algorithm support</a></h3>
 <p>These tables describe if the following <a href="psa_algorithm.html">algorithms</a> are supported in all
 cryptographic operations they could be used in.</p>
 <h4 id="hash-algorithms"><a class="header" href="#hash-algorithms">Hash algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>MD2</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
 <tr><td>MD4</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
 <tr><td>MD5</td><td>✅</td><td>❌</td><td>❌</td><td>✅</td><td>❌</td></tr>
@@ -242,14 +245,16 @@ cryptographic operations they could be used in.</p>
 <tr><td>SHA3-384</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>❌</td></tr>
 <tr><td>SHA3-512</td><td>✅</td><td>❌</td><td>✅</td><td>✅</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h4 id="mac-algorithms"><a class="header" href="#mac-algorithms">MAC algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>HMAC</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CBC-MAC</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CMAC</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h4 id="cipher-algorithms"><a class="header" href="#cipher-algorithms">Cipher algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>Stream Cipher</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>CTR</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>CFB</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
@@ -259,14 +264,16 @@ cryptographic operations they could be used in.</p>
 <tr><td>CBC with no padding</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>CBCP with PKCS#7 padding</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 </tbody></table>
+</div>
 <h4 id="aead-algorithms"><a class="header" href="#aead-algorithms">AEAD algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>CCM</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>GCM</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 <tr><td>ChaCha20-Poly1305</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h4 id="asymmetric-signature-algorithms"><a class="header" href="#asymmetric-signature-algorithms">Asymmetric signature algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>RSA PKCS#1 v1.5 signature with hashing</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td></tr>
 <tr><td>Raw PKCS#1 v1.5 signature</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>RSA PSS signature with hashing</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
@@ -274,16 +281,19 @@ cryptographic operations they could be used in.</p>
 <tr><td>ECDSA signature without hashing</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>Deterministic ECDSA signature with hashing</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h4 id="asymmetric-encryption-algorithms"><a class="header" href="#asymmetric-encryption-algorithms">Asymmetric encryption algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>RSA PKCS#1 v1.5 encryption</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
 <tr><td>RSA OAEP encryption</td><td>✅</td><td>✅</td><td>✅</td><td>❌</td><td>❌</td></tr>
 </tbody></table>
+</div>
 <h4 id="key-agreement-algorithms"><a class="header" href="#key-agreement-algorithms">Key agreement algorithms</a></h4>
-<table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Algorithm \ Provider</th><th>Mbed Crypto</th><th>PKCS 11</th><th>TPM 2.0</th><th>Trusted Service</th><th>CryptoAuth library</th></tr></thead><tbody>
 <tr><td>FFDH</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>❌</td></tr>
 <tr><td>ECDH</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td><td>✅</td></tr>
 </tbody></table>
+</div>
 <h2 id="increasing-psa-api-coverage"><a class="header" href="#increasing-psa-api-coverage">Increasing PSA API coverage</a></h2>
 <p>You can help increase the coverage of the PSA Crypto API! See
 <a href="../../contributing/adding_new_operation_how_to.html">here</a> on how you can contribute.</p>

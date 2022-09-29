@@ -146,11 +146,12 @@
 <p>Calculate the hash (digest) of a message and compare it with a reference value. Opcode: 16
 (<code>0x0010</code>)</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>alg</code></td><td><a href="psa_algorithm.html#hash-algorithm"><code>Hash</code></a></td><td>The hash algorithm to compute</td></tr>
 <tr><td><code>input</code></td><td>Vector of unsigned bytes</td><td>Buffer containing message to hash</td></tr>
 <tr><td><code>hash</code></td><td>Vector of unsigned bytes</td><td>Buffer containing expected hash value</td></tr>
 </tbody></table>
+</div>
 <h2 id="results"><a class="header" href="#results">Results</a></h2>
 <p>No values are returned by this operation.</p>
 <p>If no error occurs, the computed hash matches the expected hash value.</p>

@@ -160,7 +160,7 @@ B without breaking anything</em>.</p>
 without breaking anything. The only exception is for the communication channel with clients where
 any version of the client library can successfully communicate with any version of the service.</p>
 <p>The principle of <a href="https://semver.org/">semantic versioning</a> is used to describe the stability of
-Parsec versions and when breaking changes are done. If <code>parsec</code> version is at <code>1.0.0</code> then all
+Parsec versions and when breaking changes are done. If <code>parsec</code> version is at <code>1.1.0</code> then all
 future stable version to that will be <code>1.x.y</code>. Note that, although semver is used to describe Parsec
 stability, it is a strong goal for Parsec to remain stable at a <code>1.x.y</code> version. This document
 introduces the efforts that are made so that a <code>MAJOR</code> version bump should hopefully never happen.</p>
@@ -203,7 +203,7 @@ to the list above and looked in detail below.</p>
 <li>how stability is ensured</li>
 <li>how stability is tested</li>
 </ul>
-<table><thead><tr><th>Stability Requirement</th><th>Stability Definition</th><th>Stability Enforcement</th><th>Stability Test</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Stability Requirement</th><th>Stability Definition</th><th>Stability Enforcement</th><th>Stability Test</th></tr></thead><tbody>
 <tr><td>Communication with clients (requests/responses)</td><td>Requests and responses must be understood correctly by different versions of the service/clients.</td><td>The Wire Protocol is <a href="../parsec_client/wire_protocol.html#wire-protocol-versions">stable by design</a>.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/388">Done</a></td></tr>
 <tr><td>Communication with clients (operation contracts)</td><td>The behaviour of operations must remain the same for all versions of the service.</td><td>There is a <a href="https://parallaxsecond.github.io/parsec-book/parsec_client/operations/index.html">defined behaviour</a> for all operations that is respected.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/389">Done</a></td></tr>
 <tr><td>Communication with clients (listeners endpoint)</td><td>Listeners endpoint must be discovered in a stable way.</td><td>A <a href="../parsec_client/api_overview.html#service-discovery">service discovery mechanism</a> exists.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/390">Done</a></td></tr>
@@ -218,6 +218,7 @@ to the list above and looked in detail below.</p>
 <tr><td>Hardware backends</td><td>Communication with hardware backends for crypto and key management should still work in future Parsec versions.</td><td>The communication channels with the hardware backends should remain the same.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/412">Done</a></td></tr>
 <tr><td>Build toolchain</td><td>Parsec build should not break for defined versions of the Rust compiler.</td><td>Each commit is tested with specific supported versions of the Rust compiler.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/408">Done</a></td></tr>
 </tbody></table>
+</div>
 <h3 id="dynamic-libraries"><a class="header" href="#dynamic-libraries">Dynamic libraries</a></h3>
 <p>We use the specific versions of those dynamic libraries and test it on CI:</p>
 <ul>

@@ -147,7 +147,7 @@
 <h2 id="service-internal-response-status-codes"><a class="header" href="#service-internal-response-status-codes">Service Internal Response Status Codes</a></h2>
 <p>These codes originate in components in the service outside of the <code>Provide</code> trait implementation by
 the providers.</p>
-<table><thead><tr><th>Response Status Code</th><th>Value</th><th>Descrption</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Response Status Code</th><th>Value</th><th>Descrption</th></tr></thead><tbody>
 <tr><td><code>WrongProviderID</code></td><td>1</td><td>Requested provider ID does not match that of the backend</td></tr>
 <tr><td><code>ContentTypeNotSupported</code></td><td>2</td><td>Requested content type is not supported by the backend</td></tr>
 <tr><td><code>AcceptTypeNotSupported</code></td><td>3</td><td>Requested accept type is not supported by the backend</td></tr>
@@ -170,9 +170,10 @@ the providers.</p>
 <tr><td><code>BodySizeExceedsLimit</code></td><td>20</td><td>Request length specified in the header is above defined limit</td></tr>
 <tr><td><code>AdminOperation</code></td><td>21</td><td>The operation requires admin privilege</td></tr>
 </tbody></table>
+</div>
 <h2 id="psa-response-status-codes"><a class="header" href="#psa-response-status-codes">PSA Response Status Codes</a></h2>
 <p>These codes originate from within the <code>Provide</code> trait implementation.</p>
-<table><thead><tr><th>Response Status Code</th><th>Value</th><th>Descrption</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Response Status Code</th><th>Value</th><th>Descrption</th></tr></thead><tbody>
 <tr><td><code>PsaErrorGenericError</code></td><td>1132</td><td>An error occurred that does not correspond to any defined failure cause</td></tr>
 <tr><td><code>PsaErrorNotPermitted</code></td><td>1133</td><td>The requested action is denied by a policy</td></tr>
 <tr><td><code>PsaErrorNotSupported</code></td><td>1134</td><td>The requested operation or a parameter is not supported by this implementation</td></tr>
@@ -194,6 +195,7 @@ the providers.</p>
 <tr><td><code>PsaErrorCorruptionDetected</code></td><td>1151</td><td>A tampering attempt was detected</td></tr>
 <tr><td><code>PsaErrorDataCorrupt</code></td><td>1152</td><td>Stored data has been corrupted</td></tr>
 </tbody></table>
+</div>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 
                     </main>

@@ -152,11 +152,12 @@ is at the discretion of the system administrator whether those algorithms are pe
 Some of the attributes might not be supported by some providers as it is not in their interface.</p>
 <h2 id="keyattributes-type"><a class="header" href="#keyattributes-type">KeyAttributes type</a></h2>
 <p>A <code>KeyAttributes</code> type contains the following members:</p>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_type</code></td><td><a href="#keytype-type"><code>KeyType</code></a></td><td>Intrinsic category and type of a key</td></tr>
 <tr><td><code>key_bits</code></td><td>Unsigned integer</td><td>Size of a key in bits</td></tr>
 <tr><td><code>key_policy</code></td><td><a href="#keypolicy-type"><code>KeyPolicy</code></a></td><td>Policy restricting the permitted usage of the key</td></tr>
 </tbody></table>
+</div>
 <h2 id="keytype-type"><a class="header" href="#keytype-type">KeyType type</a></h2>
 <p>A <code>KeyType</code> type can contain one of the following key types:</p>
 <ul>
@@ -354,14 +355,15 @@ can only be used with the FFDH key agreement algorithm.</li>
 <h2 id="keypolicy-type"><a class="header" href="#keypolicy-type">KeyPolicy type</a></h2>
 <p>Definition of the key policy, what is permitted to do with the key. A <code>KeyPolicy</code> type contains the
 following members:</p>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_usage_flags</code></td><td><a href="#usageflags-type"><code>UsageFlags</code></a></td><td>Usage flags for the key</td></tr>
 <tr><td><code>key_algorithm</code></td><td><a href="psa_algorithm.html#algorithm-type"><code>Algorithm</code></a></td><td>Permitted algorithms to be used with the key</td></tr>
 </tbody></table>
+</div>
 <h2 id="usageflags-type"><a class="header" href="#usageflags-type">UsageFlags type</a></h2>
 <p>Definition of the usage flags. They encode what kind of operations are permitted on the key. A
 <code>UsageFlags</code> type contains the following members:</p>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>export</code></td><td>Boolean</td><td>Permission to export the key</td></tr>
 <tr><td><code>copy</code></td><td>Boolean</td><td>Permission to copy the key</td></tr>
 <tr><td><code>cache</code></td><td>Boolean</td><td>Permission for the implementation to cache the key</td></tr>
@@ -373,6 +375,7 @@ following members:</p>
 <tr><td><code>verify_hash</code></td><td>Boolean</td><td>Permission to verify a hash with the key</td></tr>
 <tr><td><code>derive</code></td><td>Boolean</td><td>Permission to derive other keys from this key</td></tr>
 </tbody></table>
+</div>
 <h3 id="sign-message-usage"><a class="header" href="#sign-message-usage">sign message usage</a></h3>
 <p>Permission to sign a message with the key.</p>
 <p>This flag allows the key to be used for a MAC calculation operation or for an asymmetric message

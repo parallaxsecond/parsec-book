@@ -208,7 +208,7 @@ particularly relevant, it will be noted with ASUM.</p>
 <h3 id="attacker-request-to-service---a1"><a class="header" href="#attacker-request-to-service---a1">Attacker “Request to Service” - A1</a></h3>
 <p>This attacker uses the inter-process endpoint, presumably created by the service, to interfere with
 the communication between client and service.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>S</td><td>An attacker impersonates the service by establishing an IPC endpoint that spoofs the one used by Parsec to exfiltrate any data found in requests.</td><td>O-0, O-1</td><td>AS1, AS2, AS4</td></tr>
 <tr><td>S</td><td>An attacker impersonates the service and responds to requests using bogus or malicious data.</td><td>O-0, O-1</td><td>AS2</td></tr>
 <tr><td>T</td><td>The attacker modifies the data sent or received by the client while it is in transit through the IPC.</td><td>M-0</td><td>AS2, AS4</td></tr>
@@ -219,31 +219,36 @@ the communication between client and service.</p>
 <tr><td>D</td><td>An attacker could tamper with incoming responses to exploit vulnerabilities in the client library and crash the client.</td><td>M-0, M-1, U-0</td><td>AS5</td></tr>
 <tr><td>E</td><td>An attacker could tamper with incoming responses to exploit vulnerabilities in the client library and run code in the same user as the client.</td><td>M-0, M-1, U-0</td><td>AS5</td></tr>
 </tbody></table>
+</div>
 <h3 id="attacker-library-memory---a2"><a class="header" href="#attacker-library-memory---a2">Attacker “Library Memory” - A2</a></h3>
 <p>This attacker gains access to memory released by the client library, containing potentially
 sensitive information.</p>
-<table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th></th><th>Description</th><th>Mitigation</th><th>Assets</th></tr></thead><tbody>
 <tr><td>I</td><td>An attacker reads requests and responses from memory.</td><td>U-2</td><td>AS2, AS4</td></tr>
 <tr><td>I</td><td>An attacker reads out the application identity from memory.</td><td>U-2</td><td>AS1</td></tr>
 </tbody></table>
+</div>
 <h2 id="unmitigations"><a class="header" href="#unmitigations">Unmitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th><th>Consequences</th></tr></thead><tbody>
 <tr><td>0</td><td>Client library dependencies are not checked for Security Vulnerabilities.</td><td>A vulnerability in one of the Parsec client dependencies will also impact the client application and the data it shares with the Parsec library.</td></tr>
 <tr><td>1</td><td>Authenticity of responses is not ensured through a MAC or asymmetric signature – it relies on trust in the platform administrator.</td><td>Any response from the service could have been spoofed or altered by any entity with sufficient capabilities.</td></tr>
 <tr><td>2</td><td>Parsec does not currently clear sensitive data in memory after use. <a href="https://github.com/parallaxsecond/parsec-client-rust/issues/9">This is looked at here</a>.</td><td>Any data that passes through the client library could be read after the memory is released.</td></tr>
 </tbody></table>
+</div>
 <h2 id="mitigations"><a class="header" href="#mitigations">Mitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th><th>Details</th></tr></thead><tbody>
 <tr><td>0</td><td>Parsec interface uses an IPC mechanism respecting confidentiality and integrity of messages transmitted between the clients and the service (once the initial connection has been made).</td><td>Unix Domain Socket: the sockets used on the client and service side for the communication are represented by file descriptors that are only accessible by those processes.</td></tr>
 <tr><td>1</td><td>The Parsec client is coded with safety in mind and is tested extensively.</td><td><a href="https://github.com/parallaxsecond/parsec-client-rust/issues/49">Open</a></td></tr>
 </tbody></table>
+</div>
 <h2 id="operational-mitigations"><a class="header" href="#operational-mitigations">Operational mitigations</a></h2>
-<table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>ID</th><th>Justification</th></tr></thead><tbody>
 <tr><td>0</td><td>Clients need to know from a trusted source that a trusted Parsec service is running on their machine so that they can trust the IPC endpoint.</td></tr>
 <tr><td>1</td><td>The IPC endpoint should be secured so that only privileged users can remove or alter it.</td></tr>
 <tr><td>2</td><td>A set of mutually trusted clients has restricted read-write access to the service IPC endpoint.</td></tr>
 <tr><td>3</td><td>The Parsec service is configured to display detailed logs about all requests made by clients.</td></tr>
 </tbody></table>
+</div>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
 
                     </main>

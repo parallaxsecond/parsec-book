@@ -143,8 +143,15 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="how-to-build-and-run-parsec"><a class="header" href="#how-to-build-and-run-parsec">How to build and run Parsec</a></h1>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
 <p>This project is coded in the Rust Programming Language. To build it, you first need to <a href="https://www.rust-lang.org/tools/install">install
 Rust</a>.</p>
+<p>Some Parsec backends require FFI binding code to be generated, to allow us to interface with the
+libraries driving the hardware. For this we use <code>bindgen</code> and generate the Rust to C wrappers, for
+which <code>libclang</code> (version at least 3.9) is needed:</p>
+<pre><code>sudo apt install llvm-dev libclang-dev clang cmake
+</code></pre>
+<h2 id="building-parsec"><a class="header" href="#building-parsec">Building Parsec</a></h2>
 <p>Because the <a href="providers.html">providers</a> and <a href="authenticators.html">authenticators</a> supported by Parsec
 are dependent on libraries and/or hardware features present on the platform, the build is fragmented
 through Rust features so that the resulting binary only contains the desired providers. Currently
@@ -160,18 +167,24 @@ guides</a>.</p>
 owners and permissions need to be set up on multiple folders. For testing only, it is fine to run
 Parsec from the current directory, have the key information mappings in <code>./mappings</code> and the socket
 at <code>/tmp/parsec.sock</code>. The test configuration will make those choices.</p>
+<p>Clone the Parsec service repo,</p>
+<pre><code>git clone --branch 1.1.0 https://github.com/parallaxsecond/parsec.git
+</code></pre>
 <p>Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
 the test configuration:</p>
-<pre><code>cargo build --features &quot;mbed-crypto-provider,direct-authenticator&quot;
+<pre><code>cd parsec
+cargo build --features &quot;mbed-crypto-provider,direct-authenticator&quot;
 RUST_LOG=info ./target/debug/parsec -c e2e_tests/provider_cfg/mbed-crypto/config.toml
 </code></pre>
 <p><code>parsec</code> will then construct the service based on the <a href="configuration.html">configuration</a> file and
 wait for clients.</p>
 <p>At the end of initialization, it should print <code>Parsec is ready</code> which means that it is ready to take
 requests from clients.</p>
+<h2 id="running-parsec-end-to-end-tests"><a class="header" href="#running-parsec-end-to-end-tests">Running Parsec end-to-end-tests</a></h2>
 <p>From another terminal, it is now possible to execute the <a href="tests#end-to-end-tests">end-to-end tests</a>
 on Parsec!</p>
 <pre><code>cd e2e_tests
+export PARSEC_SERVICE_ENDPOINT=&quot;unix:/tmp/parsec.sock&quot;
 cargo test --features mbed-crypto-provider normal_tests
 </code></pre>
 <h2 id="killing-parsec"><a class="header" href="#killing-parsec">Killing Parsec</a></h2>
@@ -180,16 +193,11 @@ cargo test --features mbed-crypto-provider normal_tests
 </code></pre>
 <h2 id="reloading-parsec"><a class="header" href="#reloading-parsec">Reloading Parsec</a></h2>
 <p>On Linux, sending <code>SIGHUP</code> will reload Parsec: it will wait for its threads to finish, drop all of
-its components, read the configuration and instantiate all the components again. It is usefull to
+its components, read the configuration and instantiate all the components again. It is useful to
 change the Parsec configuration without having to kill the service.</p>
 <pre><code>pkill -SIGHUP parsec
 </code></pre>
 <h2 id="dependencies"><a class="header" href="#dependencies">Dependencies</a></h2>
-<p>Some Parsec backends require FFI binding code to be generated, to allow us to interface with the
-libraries driving the hardware. For this we use <code>bindgen</code> and generate the Rust to C wrappers, for
-which <code>libclang</code> (version at least 3.9) is needed:</p>
-<pre><code>sudo apt install llvm-dev libclang-dev clang
-</code></pre>
 <p>Each provider has external dependencies that are needed to compile. Additionally, the JWT SVID
 authenticator also relies on external dependencies being present.</p>
 <h3 id="mbed-crypto"><a class="header" href="#mbed-crypto">Mbed Crypto</a></h3>
@@ -220,7 +228,7 @@ be installed via the package manager under the name <code>protobuf-compiler</cod
 <p>The Parsec service can be cross-compiled to other target triplets. You might need to install a
 cross-compilation C toolchain for the target you want to compile for. The default ones are indicated
 in the <code>.cargo/config</code> file.</p>
-<p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
+<p><em>Copyright 2022 Contributors to the Parsec project.</em></p>
 
                     </main>
 

@@ -145,21 +145,23 @@
                         <h1 id="psaaeadencrypt"><a class="header" href="#psaaeadencrypt">PsaAeadEncrypt</a></h1>
 <p>Process an authenticated encryption operation. Opcode: 17 (<code>0x0011</code>)</p>
 <h2 id="parameters"><a class="header" href="#parameters">Parameters</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>key_name</code></td><td>String</td><td>Name of the key to use for the operation</td></tr>
 <tr><td><code>alg</code></td><td><a href="psa_algorithm.html#aead-algorithm"><code>Aead</code></a></td><td>The AEAD algorithm to compute</td></tr>
 <tr><td><code>nonce</code></td><td>Vector of unsigned bytes</td><td>Nonce or IV to use</td></tr>
 <tr><td><code>additional_data</code></td><td>Vector of unsigned bytes</td><td>Additional data that will be authenticated but not encrypted</td></tr>
 <tr><td><code>plaintext</code></td><td>Vector of unsigned bytes</td><td>Data that will be authenticated and encrypted</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>key_name</code> must allow the <a href="psa_key_attributes.html#usageflags-type">usage flag</a> <code>encrypt</code>.</li>
 <li><code>nonce</code> must be appropriate for the selected algorithm.</li>
 </ul>
 <h2 id="results"><a class="header" href="#results">Results</a></h2>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>ciphertext</code></td><td>Vector of unsigned bytes</td><td>Buffer containing the authenticated and encrypted data</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li>The additional data is not part of <code>ciphertext</code>. For algorithms where the encrypted data and the
 authentication tag are defined as separate outputs, the authentication tag is appended to the

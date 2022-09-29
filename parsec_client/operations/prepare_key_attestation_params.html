@@ -167,20 +167,22 @@ encrypting the credential involves deriving a symmetric key using the TPM-specif
 object to be attested. This name is obtained by performing a hash over the public parameters of the
 object, and can thus be verified by the 3rd party if those parameters are available.</p>
 <h3 id="preparekeyattestationparams"><a class="header" href="#preparekeyattestationparams">PrepareKeyAttestationParams</a></h3>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>attested_key_name</code></td><td>String</td><td>Name of the key to be attested</td></tr>
 <tr><td><code>attesting_key_name</code></td><td>String</td><td>Name of the key to use for attesting</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li>if <code>attesting_key_name</code> is empty, the default key for the <code>ActivateCredential</code> mechanism will be
 used</li>
 </ul>
 <h3 id="preparekeyattestationoutput"><a class="header" href="#preparekeyattestationoutput">PrepareKeyAttestationOutput</a></h3>
-<table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>name</code></td><td>Vector of unsigned bytes</td><td>TPM-specific name of the key object to be attested</td></tr>
 <tr><td><code>public</code></td><td>Vector of unsigned bytes</td><td>Public parameters of the key object to be attested</td></tr>
 <tr><td><code>attesting_key_pub</code></td><td>Vector of unsigned bytes</td><td>Buffer containing the public part of the attesting key</td></tr>
 </tbody></table>
+</div>
 <ul>
 <li><code>name</code> represents the contents of the <code>name</code> field within the <code>TPM2B_NAME</code> structure.</li>
 <li><code>public</code> represents the contents of the <code>publicArea</code> field within the <code>TPM2B_PUBLIC</code> structure.</li>
