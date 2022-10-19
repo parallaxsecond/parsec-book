@@ -6,6 +6,8 @@
    - [Quickstart for Linux on x86](getting_started/linux_x86.md)
    - [Quickstart for openSUSE and SUSE](getting_started/opensuse.md)
    - [Quickstart using a Docker container](getting_started/docker.md)
+   - [Installation Guide](getting_started/installation_options.md)
+   - [Parsec Tool Guide](getting_started/parsec_tool_use.md)
 - [Parsec for users](parsec_users.md)
 - [Parsec for client developers](parsec_client/README.md)
    - [API Overview](parsec_client/api_overview.md)
