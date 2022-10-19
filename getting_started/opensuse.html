@@ -143,53 +143,8 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="quickstart-for-opensuse-and-suse"><a class="header" href="#quickstart-for-opensuse-and-suse">Quickstart for openSUSE and SUSE</a></h1>
-<p><code>parsec</code> and <code>parsec-tool</code> are built for openSUSE and SUSE distributions and tested in openQA for
-Arm and x86 architectures.</p>
-<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
-<p>To install parsec on openSUSE Tumbleweed or openSUSE Leap 15.3 (and later), just install <code>parsec</code>
-and <code>parsec-tool</code> from YaST (graphical UI), or from zypper (command line):</p>
-<pre><code>$ sudo zypper install parsec parsec-tool
-</code></pre>
-<p>Note: If you use SUSE SLE15-SP3 (or later), <code>parsec</code> and <code>parsec-tool</code> are available from
-Package-Hub repository. So, please enable Package-Hub before trying to install those packages.</p>
-<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
-<p>A default config file is installed as <code>/etc/config.toml</code>. Only Mbed TLS (software) backend is
-enabled by default, but you can easily enable other backends, such as Tpm, CryptoAuthLib or Pkcs11.
-A full template is available at <code>/usr/share/doc/packages/config.toml</code>.</p>
-<p>You need to add the current linux user to <code>parsec-clients</code> group from YaST or from command line:</p>
-<pre><code>$ sudo usermod -a -G parsec-clients $USER
-</code></pre>
-<p>To apply the changes, you need to (re)login as <code>$USER</code>, or use <code>newgrp parsec-clients</code> command line</p>
-<h2 id="start-parsec-service"><a class="header" href="#start-parsec-service">Start Parsec service</a></h2>
-<p>To start Parsec service now and also enable auto-start on next boots, you can run:</p>
-<pre><code>$ sudo systemctl enable --now parsec.service
-</code></pre>
-<p>The Parsec service will now wait listening from clients connecting via
-<code>/var/run/parsec/parsec.sock</code>, and you can interact with <code>parsec-tool</code>.</p>
-<h2 id="using-the-parsec-tool"><a class="header" href="#using-the-parsec-tool">Using the Parsec Tool</a></h2>
-<p>A ping should work using <code>parsec-tool</code>:</p>
-<pre><code>$ parsec-tool ping
-[INFO ] Service wire protocol version
-1.0
-</code></pre>
-<p>Generate an ECC key pair and sign with it:</p>
-<pre><code>$ parsec-tool create-ecc-key -k toto
-[INFO ] Creating ECC key...
-[INFO ] Key &quot;toto&quot; created.
-
-$ parsec-tool sign -k toto &quot;Hello Parsec!&quot;
-[INFO ] Hashing data with Sha256...
-[INFO ] Signing data with Ecdsa { hash_alg: Specific(Sha256) }...
-MEYCIQCrc9cys35NeXwNAr8lYu8WPu0RiutkoAIWn+jYfYofPwIhAKPlNNsW//ykW8nX11KABNpWWYsNGNoZXt0yiGyBEtnb
-</code></pre>
-<p>Execute the tool without any argument to check all the possible commands!</p>
-<h2 id="stop-and-reload-parsec"><a class="header" href="#stop-and-reload-parsec">Stop and reload Parsec</a></h2>
-<p>Stop the Parsec service with:</p>
-<pre><code>$ sudo systemctl stop parsec.service
-</code></pre>
-<p>If you make any change to its configuration, reload it with:</p>
-<pre><code>$ sudo systemctl restart parsec.service
-</code></pre>
+<p>This content has moved to the <a href="installation_options.html#option-1-install-parsec-using-the-package-manager">installation
+guide</a>.</p>
 <p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
 
                     </main>
