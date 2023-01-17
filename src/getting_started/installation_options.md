@@ -124,17 +124,53 @@ ldd --version
 
 ### Download the Latest Quick-Start Release Bundle
 
-Run the following command to download and unpack the `quickstart-1.1.0-linux_x86` folder. It
-contains the Parsec service (`parsec`), its pre-built configuration (`config.toml`) and the Parsec
-tool (`parsec-tool`).
+Run the following command to download and unpack the `quickstart-1.1.0-linux_x86_64` folder. 
 
 ```
-curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.1.0/quickstart-1.1.0-linux_x86.tar.gz | tar xz
+curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.1.0/quickstart-1.1.0-linux_x86_64.tar.gz | tar xz
+```
+
+The resulting directory contains the following structure
+
+```
+quickstart-1.1.0-linux_x86_64
+├── bin
+│   ├── parsec                 # The parsec binary
+│   └── parsec-tool            # The parsec client tool
+└── quickstart
+    ├── README.md              # Quickstart README
+    ├── build.txt              # Information about the Parsec build environment
+    ├── config.toml            # The config file used by parsec
+    └── parsec-cli-tests.sh    # Standard parsec-tool tests
+```
+
+The following examples assume you've navigated to the `quickstart-1.1.0-linux_x86_64/quickstart`
+directory so let's do that now.
+
+```
+cd quickstart-1.1.0-linux_x86_64/quickstart
+```
+
+### Configure Your Environment
+
+Calls to the `parsec-tool` assume that the environment variable `PARSEC_SERVICE_ENDPOINT` has been
+set to the path for the socket created by the `parsec` process. By default, that socket is placed in
+the directory where you've executed the `parsec` command, so we can configure that variable as such
+
+```
+export PARSEC_SERVICE_ENDPOINT=unix:$(pwd)/parsec.sock
+```
+
+It may also be helpful to add the `bin` directory to your path. The examples below assume that this
+has been done.
+
+```
+export PATH=${PATH}:$(pwd)/../bin
 ```
 
 ### Start the Parsec Service
 
-From within the `quickstart-1.1.0-linux_x86` directory, start the Parsec service with this command:
+Start the Parsec service with this command:
 
 ```
 ./parsec &
@@ -147,13 +183,6 @@ You should see some lines of console output as the service starts, ending with t
 ```
 
 ### Using the Parsec Tool
-
-As the Parsec socket file is at a non-default location, you will need to set the
-`PARSEC_SERVICE_ENDPOINT` environment variable first.
-
-```
-export PARSEC_SERVICE_ENDPOINT=unix:$(pwd)/parsec.sock
-```
 
 You can now use the `parsec-tool` to check that the service is running:
 
