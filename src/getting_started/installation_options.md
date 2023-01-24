@@ -124,7 +124,7 @@ ldd --version
 
 ### Download the Latest Quick-Start Release Bundle
 
-Run the following command to download and unpack the `quickstart-1.1.0-linux_x86_64` folder. 
+Run the following command to download and unpack the `quickstart-1.1.0-linux_x86_64` folder.
 
 ```
 curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.1.0/quickstart-1.1.0-linux_x86_64.tar.gz | tar xz
@@ -283,9 +283,9 @@ export OPENSSL="<full path>/openssl"
 
 ## Option 3: Use a Quickstart Docker Image
 
-If you'd like to isolate your quickstart experience to a temporary Docker container, you can
-get familiar with Parsec by utilizing a pre-built image available on ghcr.io. This is currently
-supported for any system able to run 64-bit Linux x86 Docker images. 
+If you'd like to isolate your quickstart experience to a temporary Docker container, you can get
+familiar with Parsec by utilizing a pre-built image available on ghcr.io. This is currently
+supported for any system able to run 64-bit Linux x86 Docker images.
 
 **Note:** this method is suitable for familiarisation and experimentation only. **Do not** use this
 method in production environments. To securely install Parsec on Linux for production, check [this
@@ -304,8 +304,7 @@ Run the following command to pull and run the Parsec quickstart image.
 docker run --rm --name parsec -it ghcr.io/parallaxsecond/parsec-quickstart bash
 ```
 
-This will start the `parsec-quickstart` image and place you into the `/parsec/quickstart` 
-directory.
+This will start the `parsec-quickstart` image and place you into the `/parsec/quickstart` directory.
 
 The `/parsec` directory has the following structure
 
@@ -325,7 +324,8 @@ The following examples assume you're running from within the `/parsec/quickstart
 
 ### Configure Your Environment
 
-The container's environment has already been configured for easy usage. You should not need to do anything else to configure the environment.
+The container's environment has already been configured for easy usage. You should not need to do
+anything else to configure the environment.
 
 ```
 PARSEC_SERVICE_ENDPOINT=unix:/parsec/quickstart/parsec.sock
@@ -396,7 +396,7 @@ simple set of tests to ensure that the Parsec service is operating correctly. So
 use the local `openssl` installation as a point of comparison, ensuring that Parsec's results are
 equivalent to those expected by `openssl`. The image has a valid version of `openssl` installed.
 
-To run the script, simply execute it from the `/parsec/quickstart` directory without any arguments 
+To run the script, simply execute it from the `/parsec/quickstart` directory without any arguments
 as follows:
 
 ```
