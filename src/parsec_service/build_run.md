@@ -112,9 +112,8 @@ TODO
 ### Trusted Service
 
 The Trusted Service provider connects to its backend through the shared library produced by the
-[`libts`
-deployment](https://trusted-services.readthedocs.io/en/integration/developer/deployments.html). You
-can find instructions for building the required components
+[`libts` deployment](https://trusted-services.readthedocs.io/en/integration/deployments/index.html).
+You can find instructions for building the required components
 [here](https://trusted-services.readthedocs.io/en/integration/developer/build-instructions.html).
 
 The Trusted Service provider also relies on the `protoc` command to be available on the `PATH`. This

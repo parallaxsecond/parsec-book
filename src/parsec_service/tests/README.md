@@ -181,7 +181,7 @@ that provider!
 ## Testing the Trusted Service provider using the in-process Trusted Services stack
 
 It is possible to test the Crypto Trusted Service integration through the `libts` for `linux-pc`
-[deployment](https://trusted-services.readthedocs.io/en/integration/developer/deployments.html)
+[deployment](https://trusted-services.readthedocs.io/en/integration/deployments/index.html)
 available in the project source code. You can find instructions for building and installing the
 library
 [here](https://trusted-services.readthedocs.io/en/integration/developer/build-instructions.html).
