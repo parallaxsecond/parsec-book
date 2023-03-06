@@ -127,16 +127,28 @@ perform whatever testing is necessary to verify that the new feature has reached
 quality level for the release. Systems integrators and known adopters of Parsec will also be
 notified that a new release is available for integration testing.
 
+As part of the release testing, we run the end-to-end tests on a RaspberryPi for the following
+backends:
+
+- mbed crypto
+- TPM
+- Nitrokey HSM
+
+Further platforms and backends will be added to this in future releases. The results of the release
+testing are critical in determining if the parsec service and the tool are ready for release, and
+whether they meet the requirements and expectations of the end users. Any regressions will result in
+the creation of a new GitHub issue and will be flagged to the community for assessment as to whether
+it is a blocking issue for the release.
+
 ## Release Expectations
 
-There are currently no formal release expectations documented for the Parsec project. Release
-expectations would include information about supported operating system versions or distributions,
-supported hardware or hardware configurations, or non-functional expectations such as performance or
-scalability. Parsec is a public open source project and it can be used in a variety of contexts. It
-is the responsibility of the system integrator or Parsec adopter to ensure its suitability for use
-in any product or other context. Any questions around specific expectations and requirements can be
-raised with the Parsec maintainers through the available [community
-channels](https://github.com/parallaxsecond/community).
+Formal release expectations are still to be determined but all releases should follow the [Parsec
+Release Checklist](https://parallaxsecond.github.io/parsec-book/contributing/release_checklist.html)
+and enure that the new release works on a fixed set of platforms. Parsec is a public open source
+project and it can be used in a variety of contexts. It is the responsibility of the system
+integrator or Parsec adopter to ensure its suitability for use in any product or other context. Any
+questions around specific expectations and requirements can be raised with the Parsec maintainers
+through the available [community channels](https://github.com/parallaxsecond/community).
 
 ## Feature Branches
 
