@@ -11,8 +11,21 @@ cryptogpraohy. Use this short guide to get familiar with basic use of the most c
 
 ## Installing the Parsec Command-Line Tool
 
-To use this guide, you need to have `parsec-tool` installed or built. Use the Parsec [installation
-guide](installation_options.md) to learn how to do this.
+To use this guide, you need to have `parsec-tool` installed or built.
+
+For installing, use the following command:
+
+```
+cargo install parsec-tool
+```
+
+For building it, use the following commands:
+
+```
+git clone git@github.com:parallaxsecond/parsec-tool.git
+cd parsec-tool
+cargo build
+```
 
 To run the example commands in this guide, you will also need to ensure that the `parsec-tool`
 application is available on your `$PATH`. If you installed the tool using a package manager, then
@@ -485,7 +498,7 @@ The output will be similar to the following:
 ```
 [INFO ] Generating 8 random bytes...
 [INFO ] Random bytes:
-4B 9B FB 11 55 D9 7F 41 
+4B 9B FB 11 55 D9 7F 41
 ```
 
 Vary the `--nbytes` argument to generate random sequences of different sizes.
