@@ -173,7 +173,7 @@ export PATH=${PATH}:$(pwd)/../bin
 Start the Parsec service with this command:
 
 ```
-./parsec &
+parsec &
 ```
 
 You should see some lines of console output as the service starts, ending with the following:
@@ -187,7 +187,7 @@ You should see some lines of console output as the service starts, ending with t
 You can now use the `parsec-tool` to check that the service is running:
 
 ```
-./parsec-tool ping
+parsec-tool ping
 ```
 
 If the Parsec components are correctly downloaded and running, you should see output similar to the
