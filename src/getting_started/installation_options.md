@@ -124,16 +124,16 @@ ldd --version
 
 ### Download the Latest Quick-Start Release Bundle
 
-Run the following command to download and unpack the `quickstart-1.1.0-linux_x86_64` folder.
+Run the following command to download and unpack the `quickstart-1.2.0-linux_x86_64` folder.
 
 ```
-curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.1.0/quickstart-1.1.0-linux_x86_64.tar.gz | tar xz
+curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.2.0/quickstart-1.2.0-linux_x86_64.tar.gz | tar xz
 ```
 
 The resulting directory contains the following structure
 
 ```
-quickstart-1.1.0-linux_x86_64
+quickstart-1.2.0-linux_x86_64
 ├── bin
 │   ├── parsec                 # The parsec binary
 │   └── parsec-tool            # The parsec client tool
@@ -144,11 +144,11 @@ quickstart-1.1.0-linux_x86_64
     └── parsec-cli-tests.sh    # Standard parsec-tool tests
 ```
 
-The following examples assume you've navigated to the `quickstart-1.1.0-linux_x86_64/quickstart`
+The following examples assume you've navigated to the `quickstart-1.2.0-linux_x86_64/quickstart`
 directory, so let's do that now.
 
 ```
-cd quickstart-1.1.0-linux_x86_64/quickstart
+cd quickstart-1.2.0-linux_x86_64/quickstart
 ```
 
 ### Configure Your Environment
@@ -173,7 +173,7 @@ export PATH=${PATH}:$(pwd)/../bin
 Start the Parsec service with this command:
 
 ```
-./parsec &
+parsec &
 ```
 
 You should see some lines of console output as the service starts, ending with the following:
@@ -187,7 +187,7 @@ You should see some lines of console output as the service starts, ending with t
 You can now use the `parsec-tool` to check that the service is running:
 
 ```
-./parsec-tool ping
+parsec-tool ping
 ```
 
 If the Parsec components are correctly downloaded and running, you should see output similar to the
