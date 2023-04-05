@@ -23,7 +23,7 @@ without breaking anything. The only exception is for the communication channel w
 any version of the client library can successfully communicate with any version of the service.
 
 The principle of [semantic versioning](https://semver.org/) is used to describe the stability of
-Parsec versions and when breaking changes are done. If `parsec` version is at `1.1.0` then all
+Parsec versions and when breaking changes are done. If `parsec` version is at `1.2.0` then all
 future stable version to that will be `1.x.y`. Note that, although semver is used to describe Parsec
 stability, it is a strong goal for Parsec to remain stable at a `1.x.y` version. This document
 introduces the efforts that are made so that a `MAJOR` version bump should hopefully never happen.
