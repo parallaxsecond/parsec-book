@@ -76,6 +76,7 @@
    - [How to add operations to Parsec](contributing/adding_new_operation_how_to.md)
    - [Package management and versioning guide](contributing/package_management.md)
    - [The Parsec Release Process](contributing/release_process.md)
+   - [The Parsec Release Checklist](contributing/release_checklist.md)
 - [Archive](archive/README.md)
    - [System Architecture](archive/system_architecture.md)
 
