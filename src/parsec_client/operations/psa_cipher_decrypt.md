@@ -29,7 +29,7 @@ Decrypt a short message with a symmetric cipher. Opcode: 21 (`0x0015`)
 
 This function will decrypt a short message using the provided initialisation vector (IV).
 
-**Warning:** In some protocols, when decrypting data, it is essential that the behaviour of the
+**Warning:** In some protocols, when decrypting data, it is essential that the behavior of the
 application does not depend on whether the padding is correct (see [Klíma et
 al](https://eprint.iacr.org/2003/098.pdf)). Protocols that use authenticated encryption are
 recommended for use by applications, rather than plain encryption. If the application must perform a

@@ -33,7 +33,7 @@ Decrypt a short message with a private key. Opcode: 11 (`0x000B`)
 
 This function will decrypt a short message with the private key of the provided key pair.
 
-**WARNING:** In some protocols, when decrypting data, it is essential that the behaviour of the
+**WARNING:** In some protocols, when decrypting data, it is essential that the behavior of the
 application does not depend on whether the padding is correct (see
 [Bleichenbacher](https://link.springer.com/content/pdf/10.1007/bfb0055716.pdf)). If the application
 must perform a decryption of unauthenticated data, the application writer must take care not to

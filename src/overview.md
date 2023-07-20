@@ -54,7 +54,7 @@ The following observations can be made about such applications:
 - They may be written with no explicit knowledge of the hardware capabilities of the target
    platform, such as whether an HSM or TPM is available.
 - They are often sharing the target platform hardware with other applications due to the use of
-   virtualisation or containerization technology.
+   virtualization or containerization technology.
 - The secure assets owned by one application must be isolated from those owned by another. For
    example, private keys provisioned on a hardware device must be isolated such that only the
    provisioning application would be able to perform subsequent operations with those keys.
