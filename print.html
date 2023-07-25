@@ -33,6 +33,7 @@
 
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
@@ -70,10 +71,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -81,16 +84,38 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="chapter-item expanded "><a href="getting_started/index.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/linux_x86.html"><strong aria-hidden="true">3.1.</strong> Quickstart for Linux on x86</a></li><li class="chapter-item expanded "><a href="getting_started/opensuse.html"><strong aria-hidden="true">3.2.</strong> Quickstart for openSUSE and SUSE</a></li><li class="chapter-item expanded "><a href="getting_started/docker.html"><strong aria-hidden="true">3.3.</strong> Quickstart using a Docker container</a></li><li class="chapter-item expanded "><a href="getting_started/installation_options.html"><strong aria-hidden="true">3.4.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="getting_started/parsec_tool_use.html"><strong aria-hidden="true">3.5.</strong> Parsec Tool Guide</a></li></ol></li><li class="chapter-item expanded "><a href="parsec_users.html"><strong aria-hidden="true">4.</strong> Parsec for users</a></li><li class="chapter-item expanded "><a href="parsec_client/index.html"><strong aria-hidden="true">5.</strong> Parsec for client developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="parsec_client/api_overview.html"><strong aria-hidden="true">5.1.</strong> API Overview</a></li><li class="chapter-item expanded "><a href="parsec_client/wire_protocol.html"><strong aria-hidden="true">5.2.</strong> Wire Protocol</a></li><li class="chapter-item expanded "><a href="parsec_client/status_codes.html"><strong aria-hidden="true">5.3.</strong> Status Codes</a></li><li class="chapter-item expanded "><a href="parsec_client/writing_library.html"><strong aria-hidden="true">5.4.</strong> Writing a new Parsec Client Library</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/index.html"><strong aria-hidden="true">5.5.</strong> Operations</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="parsec_client/operations/service_api_coverage.html"><strong aria-hidden="true">5.5.1.</strong> Parsec Operations Coverage</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_key_attributes.html"><strong aria-hidden="true">5.5.2.</strong> PSA Key Attributes</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_algorithm.html"><strong aria-hidden="true">5.5.3.</strong> PSA Algorithm</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/ping.html"><strong aria-hidden="true">5.5.4.</strong> Ping</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_generate_key.html"><strong aria-hidden="true">5.5.5.</strong> PsaGenerateKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_destroy_key.html"><strong aria-hidden="true">5.5.6.</strong> PsaDestroyKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_sign_hash.html"><strong aria-hidden="true">5.5.7.</strong> PsaSignHash</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_verify_hash.html"><strong aria-hidden="true">5.5.8.</strong> PsaVerifyHash</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_import_key.html"><strong aria-hidden="true">5.5.9.</strong> PsaImportKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_export_public_key.html"><strong aria-hidden="true">5.5.10.</strong> PsaExportPublicKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/list_providers.html"><strong aria-hidden="true">5.5.11.</strong> ListProviders</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/list_opcodes.html"><strong aria-hidden="true">5.5.12.</strong> ListOpcodes</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_asymmetric_encrypt.html"><strong aria-hidden="true">5.5.13.</strong> PsaAsymmetricEncrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_asymmetric_decrypt.html"><strong aria-hidden="true">5.5.14.</strong> PsaAsymmetricDecrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_export_key.html"><strong aria-hidden="true">5.5.15.</strong> PsaExportKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_generate_random.html"><strong aria-hidden="true">5.5.16.</strong> PsaGenerateRandom</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/list_authenticators.html"><strong aria-hidden="true">5.5.17.</strong> ListAuthenticators</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_hash_compute.html"><strong aria-hidden="true">5.5.18.</strong> PsaHashCompute</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_hash_compare.html"><strong aria-hidden="true">5.5.19.</strong> PsaHashCompare</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_aead_encrypt.html"><strong aria-hidden="true">5.5.20.</strong> PsaAeadEncrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_aead_decrypt.html"><strong aria-hidden="true">5.5.21.</strong> PsaAeadDecrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_raw_key_agreement.html"><strong aria-hidden="true">5.5.22.</strong> PsaRawKeyAgreement</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_cipher_encrypt.html"><strong aria-hidden="true">5.5.23.</strong> PsaCipherEncrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_cipher_decrypt.html"><strong aria-hidden="true">5.5.24.</strong> PsaCipherDecrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_mac_compute.html"><strong aria-hidden="true">5.5.25.</strong> PsaMacCompute</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_mac_verify.html"><strong aria-hidden="true">5.5.26.</strong> PsaMacVerify</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_sign_message.html"><strong aria-hidden="true">5.5.27.</strong> PsaSignMessage</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_verify_message.html"><strong aria-hidden="true">5.5.28.</strong> PsaVerifyMessage</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/list_keys.html"><strong aria-hidden="true">5.5.29.</strong> ListKeys</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/list_clients.html"><strong aria-hidden="true">5.5.30.</strong> ListClients</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/delete_client.html"><strong aria-hidden="true">5.5.31.</strong> DeleteClient</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/prepare_key_attestation_params.html"><strong aria-hidden="true">5.5.32.</strong> Prepare Key Attestation Parameters</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/prepare_key_attestation.html"><strong aria-hidden="true">5.5.33.</strong> PrepareKeyAttestation</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/attest_key.html"><strong aria-hidden="true">5.5.34.</strong> AttestKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/attest_key_params.html"><strong aria-hidden="true">5.5.35.</strong> Attest Key Parameters</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/can_do_crypto.html"><strong aria-hidden="true">5.5.36.</strong> CanDoCrypto</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="parsec_service/index.html"><strong aria-hidden="true">6.</strong> Parsec for service developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="parsec_service/interfaces_and_dataflow.html"><strong aria-hidden="true">6.1.</strong> Interfaces and Dataflow</a></li><li class="chapter-item expanded "><a href="parsec_service/source_code_structure.html"><strong aria-hidden="true">6.2.</strong> Source Code Structure</a></li><li class="chapter-item expanded "><a href="parsec_service/listeners.html"><strong aria-hidden="true">6.3.</strong> Listeners</a></li><li class="chapter-item expanded "><a href="parsec_service/authenticators.html"><strong aria-hidden="true">6.4.</strong> Authenticators</a></li><li class="chapter-item expanded "><a href="parsec_service/converters.html"><strong aria-hidden="true">6.5.</strong> Converters</a></li><li class="chapter-item expanded "><a href="parsec_service/providers.html"><strong aria-hidden="true">6.6.</strong> Providers</a></li><li class="chapter-item expanded "><a href="parsec_service/key_info_managers.html"><strong aria-hidden="true">6.7.</strong> Key Info Managers</a></li><li class="chapter-item expanded "><a href="parsec_service/adding_provider.html"><strong aria-hidden="true">6.8.</strong> Adding a new Parsec Provider</a></li><li class="chapter-item expanded "><a href="parsec_service/build_run.html"><strong aria-hidden="true">6.9.</strong> How to build and run Parsec</a></li><li class="chapter-item expanded "><a href="parsec_service/install_parsec_linux.html"><strong aria-hidden="true">6.10.</strong> How to securely install Parsec on Linux</a></li><li class="chapter-item expanded "><a href="parsec_service/configuration.html"><strong aria-hidden="true">6.11.</strong> Parsec Configuration</a></li><li class="chapter-item expanded "><a href="parsec_service/tests/index.html"><strong aria-hidden="true">6.12.</strong> How to test Parsec</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="parsec_service/tests/existing_tests.html"><strong aria-hidden="true">6.12.1.</strong> List of existing tests</a></li></ol></li><li class="chapter-item expanded "><a href="parsec_service/stability.html"><strong aria-hidden="true">6.13.</strong> Parsec Stability</a></li></ol></li><li class="chapter-item expanded "><a href="parsec_security/index.html"><strong aria-hidden="true">7.</strong> Parsec Security</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="parsec_security/parsec_threat_model/threat_model.html"><strong aria-hidden="true">7.1.</strong> Parsec Threat Model</a></li><li class="chapter-item expanded "><a href="parsec_security/secure_deployment.html"><strong aria-hidden="true">7.2.</strong> Recommendations for Secure Deployment</a></li><li class="chapter-item expanded "><a href="parsec_security/rust_client_threat_model/threat_model.html"><strong aria-hidden="true">7.3.</strong> Parsec Rust Client Threat Model</a></li></ol></li><li class="chapter-item expanded "><a href="contributing/index.html"><strong aria-hidden="true">8.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contributing/pr_checklist.html"><strong aria-hidden="true">8.1.</strong> Pull request checklist</a></li><li class="chapter-item expanded "><a href="contributing/adding_new_operation_how_to.html"><strong aria-hidden="true">8.2.</strong> How to add operations to Parsec</a></li><li class="chapter-item expanded "><a href="contributing/package_management.html"><strong aria-hidden="true">8.3.</strong> Package management and versioning guide</a></li><li class="chapter-item expanded "><a href="contributing/release_process.html"><strong aria-hidden="true">8.4.</strong> The Parsec Release Process</a></li></ol></li><li class="chapter-item expanded "><a href="archive/index.html"><strong aria-hidden="true">9.</strong> Archive</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="archive/system_architecture.html"><strong aria-hidden="true">9.1.</strong> System Architecture</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="overview.html"><strong aria-hidden="true">2.</strong> Overview</a></li><li class="chapter-item expanded "><a href="getting_started/index.html"><strong aria-hidden="true">3.</strong> Getting Started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting_started/linux_x86.html"><strong aria-hidden="true">3.1.</strong> Quickstart for Linux on x86</a></li><li class="chapter-item expanded "><a href="getting_started/opensuse.html"><strong aria-hidden="true">3.2.</strong> Quickstart for openSUSE and SUSE</a></li><li class="chapter-item expanded "><a href="getting_started/docker.html"><strong aria-hidden="true">3.3.</strong> Quickstart using a Docker container</a></li><li class="chapter-item expanded "><a href="getting_started/installation_options.html"><strong aria-hidden="true">3.4.</strong> Installation Guide</a></li><li class="chapter-item expanded "><a href="getting_started/parsec_tool_use.html"><strong aria-hidden="true">3.5.</strong> Parsec Tool Guide</a></li></ol></li><li class="chapter-item expanded "><a href="parsec_users.html"><strong aria-hidden="true">4.</strong> Parsec for users</a></li><li class="chapter-item expanded "><a href="parsec_client/index.html"><strong aria-hidden="true">5.</strong> Parsec for client developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="parsec_client/api_overview.html"><strong aria-hidden="true">5.1.</strong> API Overview</a></li><li class="chapter-item expanded "><a href="parsec_client/wire_protocol.html"><strong aria-hidden="true">5.2.</strong> Wire Protocol</a></li><li class="chapter-item expanded "><a href="parsec_client/status_codes.html"><strong aria-hidden="true">5.3.</strong> Status Codes</a></li><li class="chapter-item expanded "><a href="parsec_client/writing_library.html"><strong aria-hidden="true">5.4.</strong> Writing a new Parsec Client Library</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/index.html"><strong aria-hidden="true">5.5.</strong> Operations</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="parsec_client/operations/service_api_coverage.html"><strong aria-hidden="true">5.5.1.</strong> Parsec Operations Coverage</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_key_attributes.html"><strong aria-hidden="true">5.5.2.</strong> PSA Key Attributes</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_algorithm.html"><strong aria-hidden="true">5.5.3.</strong> PSA Algorithm</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/ping.html"><strong aria-hidden="true">5.5.4.</strong> Ping</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_generate_key.html"><strong aria-hidden="true">5.5.5.</strong> PsaGenerateKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_destroy_key.html"><strong aria-hidden="true">5.5.6.</strong> PsaDestroyKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_sign_hash.html"><strong aria-hidden="true">5.5.7.</strong> PsaSignHash</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_verify_hash.html"><strong aria-hidden="true">5.5.8.</strong> PsaVerifyHash</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_import_key.html"><strong aria-hidden="true">5.5.9.</strong> PsaImportKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_export_public_key.html"><strong aria-hidden="true">5.5.10.</strong> PsaExportPublicKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/list_providers.html"><strong aria-hidden="true">5.5.11.</strong> ListProviders</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/list_opcodes.html"><strong aria-hidden="true">5.5.12.</strong> ListOpcodes</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_asymmetric_encrypt.html"><strong aria-hidden="true">5.5.13.</strong> PsaAsymmetricEncrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_asymmetric_decrypt.html"><strong aria-hidden="true">5.5.14.</strong> PsaAsymmetricDecrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_export_key.html"><strong aria-hidden="true">5.5.15.</strong> PsaExportKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_generate_random.html"><strong aria-hidden="true">5.5.16.</strong> PsaGenerateRandom</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/list_authenticators.html"><strong aria-hidden="true">5.5.17.</strong> ListAuthenticators</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_hash_compute.html"><strong aria-hidden="true">5.5.18.</strong> PsaHashCompute</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_hash_compare.html"><strong aria-hidden="true">5.5.19.</strong> PsaHashCompare</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_aead_encrypt.html"><strong aria-hidden="true">5.5.20.</strong> PsaAeadEncrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_aead_decrypt.html"><strong aria-hidden="true">5.5.21.</strong> PsaAeadDecrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_raw_key_agreement.html"><strong aria-hidden="true">5.5.22.</strong> PsaRawKeyAgreement</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_cipher_encrypt.html"><strong aria-hidden="true">5.5.23.</strong> PsaCipherEncrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_cipher_decrypt.html"><strong aria-hidden="true">5.5.24.</strong> PsaCipherDecrypt</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_mac_compute.html"><strong aria-hidden="true">5.5.25.</strong> PsaMacCompute</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_mac_verify.html"><strong aria-hidden="true">5.5.26.</strong> PsaMacVerify</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_sign_message.html"><strong aria-hidden="true">5.5.27.</strong> PsaSignMessage</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/psa_verify_message.html"><strong aria-hidden="true">5.5.28.</strong> PsaVerifyMessage</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/list_keys.html"><strong aria-hidden="true">5.5.29.</strong> ListKeys</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/list_clients.html"><strong aria-hidden="true">5.5.30.</strong> ListClients</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/delete_client.html"><strong aria-hidden="true">5.5.31.</strong> DeleteClient</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/prepare_key_attestation_params.html"><strong aria-hidden="true">5.5.32.</strong> Prepare Key Attestation Parameters</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/prepare_key_attestation.html"><strong aria-hidden="true">5.5.33.</strong> PrepareKeyAttestation</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/attest_key.html"><strong aria-hidden="true">5.5.34.</strong> AttestKey</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/attest_key_params.html"><strong aria-hidden="true">5.5.35.</strong> Attest Key Parameters</a></li><li class="chapter-item expanded "><a href="parsec_client/operations/can_do_crypto.html"><strong aria-hidden="true">5.5.36.</strong> CanDoCrypto</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="parsec_service/index.html"><strong aria-hidden="true">6.</strong> Parsec for service developers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="parsec_service/interfaces_and_dataflow.html"><strong aria-hidden="true">6.1.</strong> Interfaces and Dataflow</a></li><li class="chapter-item expanded "><a href="parsec_service/source_code_structure.html"><strong aria-hidden="true">6.2.</strong> Source Code Structure</a></li><li class="chapter-item expanded "><a href="parsec_service/listeners.html"><strong aria-hidden="true">6.3.</strong> Listeners</a></li><li class="chapter-item expanded "><a href="parsec_service/authenticators.html"><strong aria-hidden="true">6.4.</strong> Authenticators</a></li><li class="chapter-item expanded "><a href="parsec_service/converters.html"><strong aria-hidden="true">6.5.</strong> Converters</a></li><li class="chapter-item expanded "><a href="parsec_service/providers.html"><strong aria-hidden="true">6.6.</strong> Providers</a></li><li class="chapter-item expanded "><a href="parsec_service/key_info_managers.html"><strong aria-hidden="true">6.7.</strong> Key Info Managers</a></li><li class="chapter-item expanded "><a href="parsec_service/adding_provider.html"><strong aria-hidden="true">6.8.</strong> Adding a new Parsec Provider</a></li><li class="chapter-item expanded "><a href="parsec_service/build_run.html"><strong aria-hidden="true">6.9.</strong> How to build and run Parsec</a></li><li class="chapter-item expanded "><a href="parsec_service/install_parsec_linux.html"><strong aria-hidden="true">6.10.</strong> How to securely install Parsec on Linux</a></li><li class="chapter-item expanded "><a href="parsec_service/configuration.html"><strong aria-hidden="true">6.11.</strong> Parsec Configuration</a></li><li class="chapter-item expanded "><a href="parsec_service/tests/index.html"><strong aria-hidden="true">6.12.</strong> How to test Parsec</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="parsec_service/tests/existing_tests.html"><strong aria-hidden="true">6.12.1.</strong> List of existing tests</a></li></ol></li><li class="chapter-item expanded "><a href="parsec_service/stability.html"><strong aria-hidden="true">6.13.</strong> Parsec Stability</a></li></ol></li><li class="chapter-item expanded "><a href="parsec_security/index.html"><strong aria-hidden="true">7.</strong> Parsec Security</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="parsec_security/parsec_threat_model/threat_model.html"><strong aria-hidden="true">7.1.</strong> Parsec Threat Model</a></li><li class="chapter-item expanded "><a href="parsec_security/secure_deployment.html"><strong aria-hidden="true">7.2.</strong> Recommendations for Secure Deployment</a></li><li class="chapter-item expanded "><a href="parsec_security/rust_client_threat_model/threat_model.html"><strong aria-hidden="true">7.3.</strong> Parsec Rust Client Threat Model</a></li></ol></li><li class="chapter-item expanded "><a href="contributing/index.html"><strong aria-hidden="true">8.</strong> Contributing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="contributing/pr_checklist.html"><strong aria-hidden="true">8.1.</strong> Pull request checklist</a></li><li class="chapter-item expanded "><a href="contributing/adding_new_operation_how_to.html"><strong aria-hidden="true">8.2.</strong> How to add operations to Parsec</a></li><li class="chapter-item expanded "><a href="contributing/package_management.html"><strong aria-hidden="true">8.3.</strong> Package management and versioning guide</a></li><li class="chapter-item expanded "><a href="contributing/release_process.html"><strong aria-hidden="true">8.4.</strong> The Parsec Release Process</a></li><li class="chapter-item expanded "><a href="contributing/release_checklist.html"><strong aria-hidden="true">8.5.</strong> The Parsec Release Checklist</a></li></ol></li><li class="chapter-item expanded "><a href="archive/index.html"><strong aria-hidden="true">9.</strong> Archive</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="archive/system_architecture.html"><strong aria-hidden="true">9.1.</strong> System Architecture</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
@@ -374,8 +399,9 @@ guide</a>.</p>
 guide</a>.</p>
 <p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="docker"><a class="header" href="#docker">Docker</a></h1>
-<p>TODO</p>
-<p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
+<p>Please refer to the <a href="getting_started/installation_options.html#option-3-use-a-quickstart-docker-image">installation
+guide</a>.</p>
+<p><em>Copyright 2021-2023 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="installation-options"><a class="header" href="#installation-options">Installation Options</a></h1>
 <h2 id="is-parsec-already-running"><a class="header" href="#is-parsec-already-running">Is Parsec Already Running?</a></h2>
 <p>The easiest way to check whether Parsec is already installed and running on your system is to open a
@@ -452,11 +478,11 @@ can check by running the following command:</p>
 <pre><code>ldd --version
 </code></pre>
 <h3 id="download-the-latest-quick-start-release-bundle"><a class="header" href="#download-the-latest-quick-start-release-bundle">Download the Latest Quick-Start Release Bundle</a></h3>
-<p>Run the following command to download and unpack the <code>quickstart-1.1.0-linux_x86_64</code> folder.</p>
-<pre><code>curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.1.0/quickstart-1.1.0-linux_x86_64.tar.gz | tar xz
+<p>Run the following command to download and unpack the <code>quickstart-1.2.0-linux_x86_64</code> folder.</p>
+<pre><code>curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.2.0/quickstart-1.2.0-linux_x86_64.tar.gz | tar xz
 </code></pre>
 <p>The resulting directory contains the following structure</p>
-<pre><code>quickstart-1.1.0-linux_x86_64
+<pre><code>quickstart-1.2.0-linux_x86_64
 ├── bin
 │   ├── parsec                 # The parsec binary
 │   └── parsec-tool            # The parsec client tool
@@ -466,9 +492,9 @@ can check by running the following command:</p>
     ├── config.toml            # The config file used by parsec
     └── parsec-cli-tests.sh    # Standard parsec-tool tests
 </code></pre>
-<p>The following examples assume you've navigated to the <code>quickstart-1.1.0-linux_x86_64/quickstart</code>
+<p>The following examples assume you've navigated to the <code>quickstart-1.2.0-linux_x86_64/quickstart</code>
 directory, so let's do that now.</p>
-<pre><code>cd quickstart-1.1.0-linux_x86_64/quickstart
+<pre><code>cd quickstart-1.2.0-linux_x86_64/quickstart
 </code></pre>
 <h3 id="configure-your-environment"><a class="header" href="#configure-your-environment">Configure Your Environment</a></h3>
 <p>Calls to the <code>parsec-tool</code> assume that the environment variable <code>PARSEC_SERVICE_ENDPOINT</code> has been
@@ -482,14 +508,14 @@ has been done.</p>
 </code></pre>
 <h3 id="start-the-parsec-service"><a class="header" href="#start-the-parsec-service">Start the Parsec Service</a></h3>
 <p>Start the Parsec service with this command:</p>
-<pre><code>./parsec &amp;
+<pre><code>parsec &amp;
 </code></pre>
 <p>You should see some lines of console output as the service starts, ending with the following:</p>
 <pre><code>[INFO  parsec] Parsec is ready.
 </code></pre>
 <h3 id="using-the-parsec-tool"><a class="header" href="#using-the-parsec-tool">Using the Parsec Tool</a></h3>
 <p>You can now use the <code>parsec-tool</code> to check that the service is running:</p>
-<pre><code>./parsec-tool ping
+<pre><code>parsec-tool ping
 </code></pre>
 <p>If the Parsec components are correctly downloaded and running, you should see output similar to the
 following:</p>
@@ -659,8 +685,15 @@ of a key pair or a certificate request, for example. You can also use the <code>
 shell scripts when you need to automate seqeuences of operations for key management and
 cryptogpraohy. Use this short guide to get familiar with basic use of the most common operations.</p>
 <h2 id="installing-the-parsec-command-line-tool"><a class="header" href="#installing-the-parsec-command-line-tool">Installing the Parsec Command-Line Tool</a></h2>
-<p>To use this guide, you need to have <code>parsec-tool</code> installed or built. Use the Parsec <a href="getting_started/installation_options.html">installation
-guide</a> to learn how to do this.</p>
+<p>To use this guide, you need to have <code>parsec-tool</code> installed or built.</p>
+<p>For installing, use the following command:</p>
+<pre><code>cargo install parsec-tool
+</code></pre>
+<p>For building it, use the following commands:</p>
+<pre><code>git clone git@github.com:parallaxsecond/parsec-tool.git
+cd parsec-tool
+cargo build
+</code></pre>
 <p>To run the example commands in this guide, you will also need to ensure that the <code>parsec-tool</code>
 application is available on your <code>$PATH</code>. If you installed the tool using a package manager, then
 this will happen automatically. If you downloaded a binary or built the tool yourself from source
@@ -975,7 +1008,7 @@ provided by the configured back-end provider. Use the following command:</p>
 <p>The output will be similar to the following:</p>
 <pre><code>[INFO ] Generating 8 random bytes...
 [INFO ] Random bytes:
-4B 9B FB 11 55 D9 7F 41 
+4B 9B FB 11 55 D9 7F 41
 </code></pre>
 <p>Vary the <code>--nbytes</code> argument to generate random sequences of different sizes.</p>
 <h2 id="creating-a-certificate-signing-request-csr"><a class="header" href="#creating-a-certificate-signing-request-csr">Creating a Certificate Signing Request (CSR)</a></h2>
@@ -2686,9 +2719,15 @@ salt. For RSA PKCS#1 v1.5 encryption, no salt is supported.</li>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>decrypt</code> flag, or it does not permit the
 requested algorithm.</li>
+<li><code>PsaErrorInvalidPadding</code>: The decrypted padding is incorrect. See Warning below.</li>
 </ul>
 <h2 id="description-10"><a class="header" href="#description-10">Description</a></h2>
 <p>This function will decrypt a short message with the private key of the provided key pair.</p>
+<p><strong>WARNING:</strong> In some protocols, when decrypting data, it is essential that the behavior of the
+application does not depend on whether the padding is correct (see
+<a href="https://link.springer.com/content/pdf/10.1007/bfb0055716.pdf">Bleichenbacher</a>). If the application
+must perform a decryption of unauthenticated data, the application writer must take care not to
+reveal whether the padding is invalid.</p>
 <h2 id="contract-10"><a class="header" href="#contract-10">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_asymmetric_decrypt.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
@@ -3018,9 +3057,16 @@ requested algorithm.</li>
 <ul>
 <li><code>PsaErrorNotPermitted</code>: The key does not have the <code>decrypt</code> flag, or it does not permit the
 requested algorithm.</li>
+<li><code>PsaErrorInvalidPadding</code>: The decrypted padding is incorrect. See Warning below.</li>
 </ul>
 <h2 id="description-20"><a class="header" href="#description-20">Description</a></h2>
 <p>This function will decrypt a short message using the provided initialisation vector (IV).</p>
+<p><strong>Warning:</strong> In some protocols, when decrypting data, it is essential that the behavior of the
+application does not depend on whether the padding is correct (see <a href="https://eprint.iacr.org/2003/098.pdf">Klíma et
+al</a>). Protocols that use authenticated encryption are
+recommended for use by applications, rather than plain encryption. If the application must perform a
+decryption of unauthenticated data, the application writer must take care not to reveal whether the
+padding is invalid.</p>
 <h2 id="contract-20"><a class="header" href="#contract-20">Contract</a></h2>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_cipher_decrypt.proto">Protobuf</a></p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
@@ -3970,7 +4016,7 @@ owners and permissions need to be set up on multiple folders. For testing only, 
 Parsec from the current directory, have the key information mappings in <code>./mappings</code> and the socket
 at <code>/tmp/parsec.sock</code>. The test configuration will make those choices.</p>
 <p>Clone the Parsec service repo,</p>
-<pre><code>git clone --branch 1.1.0 https://github.com/parallaxsecond/parsec.git
+<pre><code>git clone --branch 1.2.0 https://github.com/parallaxsecond/parsec.git
 </code></pre>
 <p>Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
 the test configuration:</p>
@@ -4376,7 +4422,7 @@ B without breaking anything</em>.</p>
 without breaking anything. The only exception is for the communication channel with clients where
 any version of the client library can successfully communicate with any version of the service.</p>
 <p>The principle of <a href="https://semver.org/">semantic versioning</a> is used to describe the stability of
-Parsec versions and when breaking changes are done. If <code>parsec</code> version is at <code>1.1.0</code> then all
+Parsec versions and when breaking changes are done. If <code>parsec</code> version is at <code>1.2.0</code> then all
 future stable version to that will be <code>1.x.y</code>. Note that, although semver is used to describe Parsec
 stability, it is a strong goal for Parsec to remain stable at a <code>1.x.y</code> version. This document
 introduces the efforts that are made so that a <code>MAJOR</code> version bump should hopefully never happen.</p>
@@ -5447,15 +5493,26 @@ requires testing with a specific hardware platform or configuration, then they w
 perform whatever testing is necessary to verify that the new feature has reached a sufficient
 quality level for the release. Systems integrators and known adopters of Parsec will also be
 notified that a new release is available for integration testing.</p>
+<p>As part of the release testing, we run the end-to-end tests on a RaspberryPi for the following
+backends:</p>
+<ul>
+<li>mbed crypto</li>
+<li>TPM</li>
+<li>Nitrokey HSM</li>
+</ul>
+<p>Further platforms and backends will be added to this in future releases. The results of the release
+testing are critical in determining if the parsec service and the tool are ready for release, and
+whether they meet the requirements and expectations of the end users. Any regressions will result in
+the creation of a new GitHub issue and will be flagged to the community for assessment as to whether
+it is a blocking issue for the release.</p>
 <h2 id="release-expectations"><a class="header" href="#release-expectations">Release Expectations</a></h2>
-<p>There are currently no formal release expectations documented for the Parsec project. Release
-expectations would include information about supported operating system versions or distributions,
-supported hardware or hardware configurations, or non-functional expectations such as performance or
-scalability. Parsec is a public open source project and it can be used in a variety of contexts. It
-is the responsibility of the system integrator or Parsec adopter to ensure its suitability for use
-in any product or other context. Any questions around specific expectations and requirements can be
-raised with the Parsec maintainers through the available <a href="https://github.com/parallaxsecond/community">community
-channels</a>.</p>
+<p>Formal release expectations are still to be determined but all releases should follow the <a href="https://parallaxsecond.github.io/parsec-book/contributing/release_checklist.html">Parsec
+Release Checklist</a>
+and enure that the new release works on a fixed set of platforms. Parsec is a public open source
+project and it can be used in a variety of contexts. It is the responsibility of the system
+integrator or Parsec adopter to ensure its suitability for use in any product or other context. Any
+questions around specific expectations and requirements can be raised with the Parsec maintainers
+through the available <a href="https://github.com/parallaxsecond/community">community channels</a>.</p>
 <h2 id="feature-branches"><a class="header" href="#feature-branches">Feature Branches</a></h2>
 <p>For complex features whose development is likely to go beyond the code freeze date for the next
 scheduled release, the use of feature branches may be appropriate, and this can be agreed between
@@ -5490,6 +5547,101 @@ delay the approval of changes.</p>
 possible after the code changes have been promoted into the mainline. Please contact the maintainers
 through the community channels to request the deletion of a feature branch.</p>
 <p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-parsec-release-checklist"><a class="header" href="#the-parsec-release-checklist">The Parsec Release Checklist</a></h1>
+<p>The release process is divided into 4 stages as shown below. Each stage has a discrete set of
+activities to be completed before progressing to the next stage. The list shown below is only a
+template, as there might be additional tasks specific to that release that might be added to
+different stages.</p>
+<p>Stages:</p>
+<ul>
+<li>Prior to Code freeze
+<ul>
+<li><input disabled="" type="checkbox"/>
+ Publish new versions of all managed crates and configure parsec service and tool to use
+them. See
+this <a href="https://parallaxsecond.github.io/parsec-book/contributing/package_management.html">guide</a>.</li>
+<li><input disabled="" type="checkbox"/>
+ Fix any pending issues</li>
+<li><input disabled="" type="checkbox"/>
+ Check common dependency crates versions between the parsec service, parsec tool, and
+other crates</li>
+<li><input disabled="" type="checkbox"/>
+ Review PRs across Parsec repos</li>
+<li><input disabled="" type="checkbox"/>
+ Merge approved PRs</li>
+<li><input disabled="" type="checkbox"/>
+ Check the milestone list</li>
+</ul>
+</li>
+<li>During code freeze
+<ul>
+<li><input disabled="" type="checkbox"/>
+ Issue release candidate tag x.x.x-rc1</li>
+<li><input disabled="" type="checkbox"/>
+ OpenSUSE packaging for the RC</li>
+<li><input disabled="" type="checkbox"/>
+ Pull in the latest git dependencies in the crates to ensure the latest release would
+work.</li>
+<li><input disabled="" type="checkbox"/>
+ Execute the normal e2e tests on Raspberry Pi hardware:
+<ul>
+<li>mbed-crypto</li>
+<li>TPM</li>
+<li>Nitrokey HSM (pluggable USB)</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"/>
+ Execute fuzz testing for a week</li>
+<li><input disabled="" type="checkbox"/>
+ Ask the Linux distributions packagers to try the tagged version</li>
+<li><input disabled="" type="checkbox"/>
+ Ask the Parsec Yocto maintainers to try the tagged version</li>
+<li><input disabled="" type="checkbox"/>
+ Ask any interested people to try the tagged version</li>
+<li><input disabled="" type="checkbox"/>
+ Review the book and make sure all pages are up-to-date. In particular, make sure the
+Threat Model is up to date.</li>
+<li><input disabled="" type="checkbox"/>
+ Make sure all the markdown pages (like the README) look good.</li>
+<li><input disabled="" type="checkbox"/>
+ Make sure the rustdoc pages (on docs.rs) are looking good (before and after the release).</li>
+<li><input disabled="" type="checkbox"/>
+ If any bugs are reported, we fix bugs and then issue another release candidate, x.x.x-rcx</li>
+<li><input disabled="" type="checkbox"/>
+ When All reported issues are addressed, make a GitHub release out of the last tag, which
+includes its changelog, and ask maintainers to release this version of Parsec.</li>
+</ul>
+</li>
+<li>Release
+<ul>
+<li><input disabled="" type="checkbox"/>
+ Push the release tag for the service and the parsec-tool</li>
+<li><input disabled="" type="checkbox"/>
+ Publish the new quickstart bundle and update the quickstart guide with it</li>
+</ul>
+</li>
+<li>Post-release
+<ul>
+<li><input disabled="" type="checkbox"/>
+ Close issues fixed in the release and the past milestone</li>
+<li><input disabled="" type="checkbox"/>
+ Update, test, and upstream Yocto recipes for Parsec and parsec-tool</li>
+<li><input disabled="" type="checkbox"/>
+ Make a new issue milestone for the next release</li>
+<li><input disabled="" type="checkbox"/>
+ Update the <a href="https://github.com/parallaxsecond/community/blob/main/ROADMAP.md">Roadmap</a></li>
+<li><input disabled="" type="checkbox"/>
+ Update the <a href="https://parallaxsecond.github.io/parsec-book/contributing/release_process.html">Parsec Release
+Process</a> 
+with what we learned.</li>
+<li><input disabled="" type="checkbox"/>
+ If any bugs are reported, make new MINOR or PATCH tags</li>
+<li><input disabled="" type="checkbox"/>
+ Update the Parsec Tool demo</li>
+</ul>
+</li>
+</ul>
+<p><em>Copyright 2023 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="archive"><a class="header" href="#archive">Archive</a></h1>
 <p>Documents in this section are out-of-date and only kept for history purposes.</p>
 <p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
@@ -5901,5 +6053,6 @@ in response to errors or failed verifications are not captured here.</p>
         });
         </script>
 
+    </div>
     </body>
 </html>
