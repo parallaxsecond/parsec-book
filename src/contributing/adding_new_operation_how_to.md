@@ -38,7 +38,7 @@ client library and protobuf on the client side. Take care when deciding on datat
 should be wrapped in either
 [`Zeroizing`](https://docs.rs/zeroize/latest/zeroize/struct.Zeroizing.html) or
 [`Secret`](https://docs.rs/secrecy/latest/secrecy/struct.Secret.html) (choose depending on the
-sensitivity of the data. Favour
+sensitivity of the data. Favor
 [`Zeroizing`](https://docs.rs/zeroize/latest/zeroize/struct.Zeroizing.html) unless there is a clear
 requirement for [`Secret`](https://docs.rs/secrecy/latest/secrecy/struct.Secret.html)) to ensure
 they are wiped from memory when dropped and should not have any output for debugging. The operation

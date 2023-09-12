@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This document presents the overall organisation of the source code repository, and provides pointers
+This document presents the overall organization of the source code repository, and provides pointers
 to key definitions and implementations.
 
 ## Audience
@@ -26,17 +26,17 @@ The API is closely aligned with the [Platform Security Architecture (PSA) Crypto
 API](https://github.com/ARMmbed/mbed-crypto/blob/psa-crypto-api/docs/PSA_Cryptography_API_Specification.pdf).
 PSA Crypto is specifically a C interface. This project takes the operations of that C interface and
 wraps each of them in an IPC [wire protocol](../parsec_client/wire_protocol.md). There is
-intentionally a very close correpondence between the two APIs, and the contracts of the operations
+intentionally a very close correspondence between the two APIs, and the contracts of the operations
 are identical in the majority of cases. However, the service also exposes a number of new operations
 that are designed to help clients consume it more easily.
 
-The Parsec project is organised over [multiple repositories](https://github.com/parallaxsecond). The
+The Parsec project is organized over [multiple repositories](https://github.com/parallaxsecond). The
 remainder of the document will examine the contents of some of these.
 
 ## The Parsec Repository
 
 The `parsec` repository contains the code for the service. The service is written in
-[**Rust**](https://www.rust-lang.org). Rust projects are organised into modular units known as
+[**Rust**](https://www.rust-lang.org). Rust projects are organized into modular units known as
 [**crates**](https://doc.rust-lang.org/beta/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html),
 each of which is formed of one or more
 [**modules**](https://doc.rust-lang.org/beta/book/ch07-02-defining-modules-to-control-scope-and-privacy.html),

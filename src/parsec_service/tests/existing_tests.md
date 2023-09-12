@@ -27,7 +27,7 @@ folder contain the configuration needed to run Parsec for the corresponding test
 |--------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [All providers normal e2e tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/normal.rs)             | End-to-end tests on a service with all providers. Mostly to test core operations.                                                                                                         |
 | [All providers cross-providers e2e tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/cross.rs)     | Test that the output of various operations from different providers is accepted by the other providers.                                                                                   |
-| [All providers configuration e2e tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/config)         | These check if the behaviour of the service is correct before and after reloading with a different configuration.                                                                         |
+| [All providers configuration e2e tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/config)         | These check if the behavior of the service is correct before and after reloading with a different configuration.                                                                          |
 | [All providers multitenancy e2e tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/multitenancy.rs) | Test that multiple tenants of Parsec using different authentication methods can not access each other's keys.                                                                             |
 | [Per provider normal tests](https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/normal_tests)                | E2E tests checking most cryptographic operations on a single provider. Parsec results are also verified with third party software crypto implementations (ring, the rsa crate, etc...).   |
 | [Per provider key mappings tests](https://github.com/parallaxsecond/parsec/blob/main/e2e_tests/tests/per_provider/key_mappings.rs)         | E2E tests checking that key created by an older version of Parsec can still be retrieved and used correctly. It also checks that wrong mappings are deleted.                              |
@@ -68,7 +68,7 @@ run in `x86_64-linux-gnu`.
 
 ## In dependencies
 
-The dependencies that we maintain in the `parallaxsecond` organisation also contain their own set of
+The dependencies that we maintain in the `parallaxsecond` organization also contain their own set of
 integration and unit tests: `parsec-interface-rs`, `rust-psa-crypto`, `rust-tss-esapi`, and
 `rust-cryptoki`.
 

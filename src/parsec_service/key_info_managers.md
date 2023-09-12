@@ -18,8 +18,8 @@ the recommended choice for any new deployments.
 
 # On-Disk Key Info Manager
 
-**Warning:** The on-disk KIM will be deprecated in future versions of the Parsec service in favour
-of the SQLite manager described above.
+**Warning:** The on-disk KIM will be deprecated in future versions of the Parsec service in favor of
+the SQLite manager described above.
 
 The on-disk KIM stores the mapping between key identity and key information directly on disk, in a
 folder with a configurable path.

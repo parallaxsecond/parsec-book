@@ -23,7 +23,7 @@ You can consume Parsec API's in several programming languages. You can learn how
 
 ## I Want to Use Parsec from the Command Line
 
-Take your first steps with Parsec using the command-line `parsec-tool`. Follow our [familiarisation
+Take your first steps with Parsec using the command-line `parsec-tool`. Follow our [familiarization
 guide](parsec_tool_use.md) to learn how to use the tool to check the service configuration, create
 key pairs, sign/decrypt messages and create certificate requests.
 

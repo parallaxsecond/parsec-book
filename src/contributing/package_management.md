@@ -27,7 +27,7 @@ to publish a crate, check out the [Dependency management](#dependency-management
 - Follow the instructions [here](https://doc.rust-lang.org/cargo/reference/publishing.html) to
    create your account and to set your workspace up.
 - If you'd like to publish a new version of an existing crate using the ownership granted to the
-   Parallaxsecond Admin group, you need to enable crates.io to access that organisation. You can do
+   Parallaxsecond Admin group, you need to enable crates.io to access that organization. You can do
    so from the [applications page](https://github.com/settings/applications) in your account
    settings - in the [crates.io
    application](https://github.com/settings/connections/applications/9fe8110dfe185fe90b5c) settings
@@ -116,7 +116,7 @@ community channels!
 ### Docker images
 
 End-to-end testing for the Parsec service (and for some of the other projects under the
-Parallaxsecond organisation) is built on top of Docker images. These images are required because of
+Parallaxsecond organization) is built on top of Docker images. These images are required because of
 the multitude of dependencies needed, generally for connecting to various backends through 3rd party
 libraries. The Docker images separate the process of setting up this environment from the actual
 running of tests, allowing very short CI runs.

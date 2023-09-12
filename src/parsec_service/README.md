@@ -6,7 +6,7 @@ They cover the following concepts:
 - [Interfaces and Dataflow](interfaces_and_dataflow.md) - description of all the components forming
    the Parsec service and their interactions
 - [Source Code Structure](source_code_structure.md) - overview of Parsec service source code
-   organisation
+   organization
 - [Parsec Providers](providers.md) - overview of current Parsec providers
 - [Parsec Converters](converters.md) - overview of current Parsec converters
 - [Parsec Authenticators](authenticators.md) - overview of current Parsec authenticators

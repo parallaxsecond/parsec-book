@@ -5,7 +5,7 @@ provide a common [API](parsec_client/api_overview.md) to secure services in a pl
 
 Parsec aims to define a universal software standard for interacting with secure object storage and
 cryptography services, creating a common way to interface with functions that would traditionally
-have been accessed by more specialised APIs. Parsec establishes an ecosystem of developer-friendly
+have been accessed by more specialized APIs. Parsec establishes an ecosystem of developer-friendly
 libraries in a variety of popular programming languages. Each library is designed to be highly
 ergonomic and simple to consume. This growing ecosystem will put secure facilities at the fingertips
 of developers across a broad range of use cases in infrastructure computing, edge computing and the
@@ -183,7 +183,7 @@ But Parsec's focus on developer ergonomics goes further than this. Parsec's clie
 filled with conveniences to eliminate complexity unless complexity is required. The Parsec API is
 functionally equivalent with the PSA Crypto API, and none of this functional completeness is lost in
 the client layer. All possible variants of key type and algorithm type are exposed in case they are
-needed. But the client library offers smart default behaviours so that simple use cases can be
+needed. But the client library offers smart default behaviors so that simple use cases can be
 achieved with very little code. Parsec enables client code to be small and elegant. And even if it
 needs to be less small, it should still be elegant.
 
