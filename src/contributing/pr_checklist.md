@@ -18,6 +18,13 @@ Buffers should be zeroed out after usage if they contain any sensitive data.
 Logs should not contain sensitive data, and should only present detailed data and error information
 (such as stack traces) if configured so.
 
+Parsec should follow the [Rust Style
+Guide](https://doc.rust-lang.org/nightly/style-guide/#rust-style-guide) and [Rust official
+lints](https://rust-lang.github.io/rust-clippy/master/index.html), both of which are enforced by the
+tools mentioned in the [How to test
+Parsec](https://parallaxsecond.github.io/parsec-book/parsec_service/tests/index.html) section, on
+static checks.
+
 New functionality is properly tested.
 
 ## Threat model
