@@ -142,13 +142,16 @@ it is a blocking issue for the release.
 
 ## Release Expectations
 
-Formal release expectations are still to be determined but all releases should follow the [Parsec
-Release Checklist](https://parallaxsecond.github.io/parsec-book/contributing/release_checklist.html)
-and enure that the new release works on a fixed set of platforms. Parsec is a public open source
-project and it can be used in a variety of contexts. It is the responsibility of the system
-integrator or Parsec adopter to ensure its suitability for use in any product or other context. Any
-questions around specific expectations and requirements can be raised with the Parsec maintainers
-through the available [community channels](https://github.com/parallaxsecond/community).
+All releases should follow the [Parsec Release
+Checklist](https://parallaxsecond.github.io/parsec-book/contributing/release_checklist.html) and
+ensure that the new release works on a fixed set of platforms. By complying with the Release
+Checklist, the release should not contain any known security vulnerabilities, there should be no
+added regression on the release tests and the quality requirements (coding style, best practices,
+etc.) of the project should be met. Parsec is a public open source project and it can be used in a
+variety of contexts. It is the responsibility of the system integrator or Parsec adopter to ensure
+its suitability for use in any product or other context. Any questions around specific expectations
+and requirements can be raised with the Parsec maintainers through the available [community
+channels](https://github.com/parallaxsecond/community).
 
 ## Feature Branches
 
