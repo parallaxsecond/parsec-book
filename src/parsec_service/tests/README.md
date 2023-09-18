@@ -16,9 +16,10 @@ multithreaded client. Valid requests are sent intermittently so as to check that
 still up and working correctly.
 
 The `ci.sh` script executes all tests and is used on the CI.
-[`rustfmt`](https://github.com/rust-lang/rustfmt) and
-[`clippy`](https://github.com/rust-lang/rust-clippy) are needed for code formatting and static
-checks.
+
+Parsec's code style is enforced by [`rustfmt`](https://github.com/rust-lang/rustfmt) and
+[`clippy`](https://github.com/rust-lang/rust-clippy), which are needed for code formatting and
+static lint checks respectively. A documentation style is also enforced by `cargo test --doc`.
 
 You can see a (partial) code coverage figure [here](https://app.codecov.io/gh/parallaxsecond/parsec)
 - partial because only a subset of the tests can be run with the code coverage instrumentation
