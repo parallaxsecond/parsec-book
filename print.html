@@ -4215,10 +4215,10 @@ is persisted through service restarts.</p>
 <p>The stress test simply constructs and sends random requests as fast as possible using a
 multithreaded client. Valid requests are sent intermittently so as to check that the service is
 still up and working correctly.</p>
-<p>The <code>ci.sh</code> script executes all tests and is used on the CI.
-<a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a> and
-<a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed for code formatting and static
-checks.</p>
+<p>The <code>ci.sh</code> script executes all tests and is used on the CI.</p>
+<p>Parsec's code style is enforced by <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a> and
+<a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a>, which are needed for code formatting and
+static lint checks respectively. A documentation style is also enforced by <code>cargo test --doc</code>.</p>
 <p>You can see a (partial) code coverage figure <a href="https://app.codecov.io/gh/parallaxsecond/parsec">here</a></p>
 <ul>
 <li>partial because only a subset of the tests can be run with the code coverage instrumentation
@@ -5021,6 +5021,12 @@ algorithms as a bitfield like in the spec, a rich Rust-native type was used.</p>
 <p>Buffers should be zeroed out after usage if they contain any sensitive data.</p>
 <p>Logs should not contain sensitive data, and should only present detailed data and error information
 (such as stack traces) if configured so.</p>
+<p>Parsec should follow the <a href="https://doc.rust-lang.org/nightly/style-guide/#rust-style-guide">Rust Style
+Guide</a> and <a href="https://rust-lang.github.io/rust-clippy/master/index.html">Rust official
+lints</a>, both of which are enforced by the
+tools mentioned in the <a href="https://parallaxsecond.github.io/parsec-book/parsec_service/tests/index.html">How to test
+Parsec</a> section, on
+static checks.</p>
 <p>New functionality is properly tested.</p>
 <h2 id="threat-model"><a class="header" href="#threat-model">Threat model</a></h2>
 <p>The <a href="https://parallaxsecond.github.io/parsec-book/parsec_security/parsec_threat_model/threat_model.html">threat
@@ -5506,13 +5512,16 @@ whether they meet the requirements and expectations of the end users. Any regres
 the creation of a new GitHub issue and will be flagged to the community for assessment as to whether
 it is a blocking issue for the release.</p>
 <h2 id="release-expectations"><a class="header" href="#release-expectations">Release Expectations</a></h2>
-<p>Formal release expectations are still to be determined but all releases should follow the <a href="https://parallaxsecond.github.io/parsec-book/contributing/release_checklist.html">Parsec
-Release Checklist</a>
-and enure that the new release works on a fixed set of platforms. Parsec is a public open source
-project and it can be used in a variety of contexts. It is the responsibility of the system
-integrator or Parsec adopter to ensure its suitability for use in any product or other context. Any
-questions around specific expectations and requirements can be raised with the Parsec maintainers
-through the available <a href="https://github.com/parallaxsecond/community">community channels</a>.</p>
+<p>All releases should follow the <a href="https://parallaxsecond.github.io/parsec-book/contributing/release_checklist.html">Parsec Release
+Checklist</a> and
+ensure that the new release works on a fixed set of platforms. By complying with the Release
+Checklist, the release should not contain any known security vulnerabilities, there should be no
+added regression on the release tests and the quality requirements (coding style, best practices,
+etc.) of the project should be met. Parsec is a public open source project and it can be used in a
+variety of contexts. It is the responsibility of the system integrator or Parsec adopter to ensure
+its suitability for use in any product or other context. Any questions around specific expectations
+and requirements can be raised with the Parsec maintainers through the available <a href="https://github.com/parallaxsecond/community">community
+channels</a>.</p>
 <h2 id="feature-branches"><a class="header" href="#feature-branches">Feature Branches</a></h2>
 <p>For complex features whose development is likely to go beyond the code freeze date for the next
 scheduled release, the use of feature branches may be appropriate, and this can be agreed between

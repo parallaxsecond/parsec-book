@@ -179,10 +179,10 @@ is persisted through service restarts.</p>
 <p>The stress test simply constructs and sends random requests as fast as possible using a
 multithreaded client. Valid requests are sent intermittently so as to check that the service is
 still up and working correctly.</p>
-<p>The <code>ci.sh</code> script executes all tests and is used on the CI.
-<a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a> and
-<a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a> are needed for code formatting and static
-checks.</p>
+<p>The <code>ci.sh</code> script executes all tests and is used on the CI.</p>
+<p>Parsec's code style is enforced by <a href="https://github.com/rust-lang/rustfmt"><code>rustfmt</code></a> and
+<a href="https://github.com/rust-lang/rust-clippy"><code>clippy</code></a>, which are needed for code formatting and
+static lint checks respectively. A documentation style is also enforced by <code>cargo test --doc</code>.</p>
 <p>You can see a (partial) code coverage figure <a href="https://app.codecov.io/gh/parallaxsecond/parsec">here</a></p>
 <ul>
 <li>partial because only a subset of the tests can be run with the code coverage instrumentation
