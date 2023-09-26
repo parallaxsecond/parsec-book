@@ -12,7 +12,7 @@ code.
 This document describes the principles, patterns and low-level details of the wire protocol. This
 covers the details that are common to all messages that pass between the service and its clients.
 This document is *not* an API specification for the service. Individual API operations, along with
-their behaviours, inputs and outputs are described separately in the API specification. The wire
+their behaviors, inputs and outputs are described separately in the API specification. The wire
 protocol is the underlying message-passing mechanism that enables the API.
 
 ## Audience
@@ -43,9 +43,9 @@ distinction between them.
 
 ### Analogy With HTTP and REST
 
-The request-response pattern of the wire protocol is intentionally modelled on the familiar notion
-of calling a REST API over HTTP. In fact, one of the guiding principles of the wire protocol design
-has been to create something that might loosely be called a "lightweight REST". This term must be
+The request-response pattern of the wire protocol is intentionally modeled on the familiar notion of
+calling a REST API over HTTP. In fact, one of the guiding principles of the wire protocol design has
+been to create something that might loosely be called a "lightweight REST". This term must be
 applied with caution, however. REST is a collection of architectural principles, not a protocol. It
 does not follow that all of the RESTful principles are adopted here. However, thinking of the wire
 protocol as being like a web service protocol, only without any dependency on HTTP or similar

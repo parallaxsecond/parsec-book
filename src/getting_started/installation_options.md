@@ -108,7 +108,7 @@ can get familiar with Parsec by downloading the latest release from GitHub and r
 as a quick-start package. This is currently supported for any 64-bit Linux system running on the x86
 architecture.
 
-**Note:** this method is suitable for familiarisation and experimentation only. **Do not** use this
+**Note:** this method is suitable for familiarization and experimentation only. **Do not** use this
 method in production environments. To securely install Parsec on Linux for production, check [this
 guide instead](../parsec_service/install_parsec_linux.md).
 
@@ -271,7 +271,7 @@ A6 F5 90 24 DF FF 50 1F 29 2E
 ....
 ```
 
-The `parsec-cli-tests.sh` script also accepts some command-line parameters to adjust its behaviour.
+The `parsec-cli-tests.sh` script also accepts some command-line parameters to adjust its behavior.
 You can use the `-h` option to get additional help on these.
 
 **Note:** If openssl is not installed into a directory included in `PATH` then you also need to
@@ -287,7 +287,7 @@ If you'd like to isolate your quickstart experience to a temporary Docker contai
 familiar with Parsec by utilizing a pre-built image available on ghcr.io. This is currently
 supported for any system able to run 64-bit Linux x86 Docker images.
 
-**Note:** this method is suitable for familiarisation and experimentation only. **Do not** use this
+**Note:** this method is suitable for familiarization and experimentation only. **Do not** use this
 method in production environments. To securely install Parsec on Linux for production, check [this
 guide instead](../parsec_service/install_parsec_linux.md).
 
@@ -421,7 +421,7 @@ A6 F5 90 24 DF FF 50 1F 29 2E
 ....
 ```
 
-The `parsec-cli-tests.sh` script also accepts some command-line parameters to adjust its behaviour.
+The `parsec-cli-tests.sh` script also accepts some command-line parameters to adjust its behavior.
 You can use the `-h` option to get additional help on these.
 
 ## Option 4: Build from Source Code

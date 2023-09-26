@@ -3,7 +3,7 @@
 ## Introduction
 
 This document introduces the API contract that exists between the client and the service, covering
-its general principles and organisation. Use this document in combination with the [**wire protocol
+its general principles and organization. Use this document in combination with the [**wire protocol
 specification**](wire_protocol.md) and the [**operation directory**](operations) as a reference
 guide for the development of client libraries.
 
@@ -101,9 +101,9 @@ through updates, the allowed changes are restricted to the following:
 
 - Adding a new *optional* field to an existing type. If not set, the contract containing the new
    field should behave exactly the same as the version without it. The new field should be ignored
-   if not recognised by an old version. That means that the functionality brought by a new optional
+   if not recognized by an old version. That means that the functionality brought by a new optional
    field might not be exercised if the service is older than the client, without an error returned.
-- Adding a new variant to an existing enumerated type. If not recognised during deserialization, the
+- Adding a new variant to an existing enumerated type. If not recognized during deserialization, the
    `InvalidEncoding` error should be returned.
 
 In the future, [capabilities discovery](https://github.com/parallaxsecond/parsec/issues/426)
@@ -117,8 +117,8 @@ have been introduced, it may sometimes be necessary to deprecate specific operat
 often be to encourage the use of a new operation with an improved feature set and a different
 contract. Deprecation is largely a documentation exercise: the [**operation directory**](operations)
 will indicate when an operation has been deprecated. This does not mean that the operation will no
-longer work. It simply means that any new use of the operation is strongly discouraged in favour of
-a better alternative.
+longer work. It simply means that any new use of the operation is strongly discouraged in favor of a
+better alternative.
 
 ## Capability Checks
 
@@ -151,7 +151,7 @@ should remain the same over time, even across system resets.
 The granularity of application identities is not defined. In particular, there is no assumption that
 a client *application* corresponds precisely with a single client *process*. A client application
 might be composed of multiple processes. Conversely, a single process might contain multiple
-distinct client applications. Client applications might also be organised into isolated environments
+distinct client applications. Client applications might also be organized into isolated environments
 such as containers. Provided that client application is able to present a unique and stable identity
 string for each API call, it does not matter how they are structured and deployed.
 
@@ -184,7 +184,7 @@ self-declared UID matches the actual UID of the connecting process via the Unix 
 mechanism.
 
 When it makes an API request, the client needs to tell the server which kind of authentication is
-being used. This is so that the server knows how to interepret the bytes in the **authentication**
+being used. This is so that the server knows how to interpret the bytes in the **authentication**
 field of the request. As described in the [**wire protocol specification**](wire_protocol.md), the
 client does this by setting an integer value in the **auth type** field of the request header. The
 permitted numerical values for this field are given as follows:-
@@ -268,7 +268,7 @@ invoked to export the key (and the key's usage policy permits for such an export
 The use of string names offers greater flexibility in how names can be chosen and structured. It
 allows for names to be readable and meaningful. It also allows for names to follow a structured
 pattern with separators, similar to a file path. This allows keys to not only be named in meaningful
-ways, but also for them to be organised according to a meaningful structure, just like files on a
+ways, but also for them to be organized according to a meaningful structure, just like files on a
 file system. Keys with a similar purpose, for example, can be stored in the same part of the
 notional "tree".
 

@@ -1,6 +1,6 @@
 # ListProviders
 
-Gets a prioritised list of available Parsec providers to be used by clients. Opcode: 8 (`0x0008`)
+Gets a prioritized list of available Parsec providers to be used by clients. Opcode: 8 (`0x0008`)
 
 ## Parameters
 

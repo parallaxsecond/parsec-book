@@ -60,7 +60,7 @@ key in the keystore backend. Providers should implement the following policies t
    `psa_destroy_key` when implementing those `Provide` methods.
 
 The goal of those policies is to make sure, in a best-effort way, that key management operations
-have the behaviour wanted: it is possible to create a key with the same name if the key
+have the behavior wanted: it is possible to create a key with the same name if the key
 creation/deletion operation failed and that at any given time only valid keys can be used.
 
 Because of those policies focused on clients' convenience, it might be possible that some keys
