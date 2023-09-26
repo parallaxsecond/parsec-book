@@ -168,7 +168,7 @@
                     <main>
                         <h1 id="source-code-structure"><a class="header" href="#source-code-structure">Source Code Structure</a></h1>
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
-<p>This document presents the overall organisation of the source code repository, and provides pointers
+<p>This document presents the overall organization of the source code repository, and provides pointers
 to key definitions and implementations.</p>
 <h2 id="audience"><a class="header" href="#audience">Audience</a></h2>
 <p>An understanding of the source code repository structure is essential for developers who are
@@ -187,14 +187,14 @@ Hardware Security Module (HSM), Trusted Platform Module (TPM) or Trusted Applica
 API</a>.
 PSA Crypto is specifically a C interface. This project takes the operations of that C interface and
 wraps each of them in an IPC <a href="../parsec_client/wire_protocol.html">wire protocol</a>. There is
-intentionally a very close correpondence between the two APIs, and the contracts of the operations
+intentionally a very close correspondence between the two APIs, and the contracts of the operations
 are identical in the majority of cases. However, the service also exposes a number of new operations
 that are designed to help clients consume it more easily.</p>
-<p>The Parsec project is organised over <a href="https://github.com/parallaxsecond">multiple repositories</a>. The
+<p>The Parsec project is organized over <a href="https://github.com/parallaxsecond">multiple repositories</a>. The
 remainder of the document will examine the contents of some of these.</p>
 <h2 id="the-parsec-repository"><a class="header" href="#the-parsec-repository">The Parsec Repository</a></h2>
 <p>The <code>parsec</code> repository contains the code for the service. The service is written in
-<a href="https://www.rust-lang.org"><strong>Rust</strong></a>. Rust projects are organised into modular units known as
+<a href="https://www.rust-lang.org"><strong>Rust</strong></a>. Rust projects are organized into modular units known as
 <a href="https://doc.rust-lang.org/beta/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong>crates</strong></a>,
 each of which is formed of one or more
 <a href="https://doc.rust-lang.org/beta/book/ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong>modules</strong></a>,

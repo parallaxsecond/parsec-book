@@ -188,7 +188,7 @@ Apache-2.0. Contributions to this project are accepted under the same license.</
 provide a common <a href="parsec_client/api_overview.html">API</a> to secure services in a platform-agnostic way.</p>
 <p>Parsec aims to define a universal software standard for interacting with secure object storage and
 cryptography services, creating a common way to interface with functions that would traditionally
-have been accessed by more specialised APIs. Parsec establishes an ecosystem of developer-friendly
+have been accessed by more specialized APIs. Parsec establishes an ecosystem of developer-friendly
 libraries in a variety of popular programming languages. Each library is designed to be highly
 ergonomic and simple to consume. This growing ecosystem will put secure facilities at the fingertips
 of developers across a broad range of use cases in infrastructure computing, edge computing and the
@@ -334,7 +334,7 @@ highly-idiomatic developer experience.</p>
 filled with conveniences to eliminate complexity unless complexity is required. The Parsec API is
 functionally equivalent with the PSA Crypto API, and none of this functional completeness is lost in
 the client layer. All possible variants of key type and algorithm type are exposed in case they are
-needed. But the client library offers smart default behaviours so that simple use cases can be
+needed. But the client library offers smart default behaviors so that simple use cases can be
 achieved with very little code. Parsec enables client code to be small and elegant. And even if it
 needs to be less small, it should still be elegant.</p>
 <h1 id="source-code-structure"><a class="header" href="#source-code-structure">Source Code Structure</a></h1>
@@ -357,7 +357,7 @@ able to install via your package manager, or use a different method. Go
 <p>You can consume Parsec API's in several programming languages. You can learn how to do this
 <a href="getting_started/../parsec_users.html">here</a>.</p>
 <h2 id="i-want-to-use-parsec-from-the-command-line"><a class="header" href="#i-want-to-use-parsec-from-the-command-line">I Want to Use Parsec from the Command Line</a></h2>
-<p>Take your first steps with Parsec using the command-line <code>parsec-tool</code>. Follow our <a href="getting_started/parsec_tool_use.html">familiarisation
+<p>Take your first steps with Parsec using the command-line <code>parsec-tool</code>. Follow our <a href="getting_started/parsec_tool_use.html">familiarization
 guide</a> to learn how to use the tool to check the service configuration, create
 key pairs, sign/decrypt messages and create certificate requests.</p>
 <h2 id="i-want-to-understand-how-parsec-works-internally"><a class="header" href="#i-want-to-understand-how-parsec-works-internally">I Want to Understand How Parsec Works Internally</a></h2>
@@ -468,7 +468,7 @@ started, and that your current user is a member of the <code>parsec-clients</cod
 can get familiar with Parsec by downloading the latest release from GitHub and running it manually
 as a quick-start package. This is currently supported for any 64-bit Linux system running on the x86
 architecture.</p>
-<p><strong>Note:</strong> this method is suitable for familiarisation and experimentation only. <strong>Do not</strong> use this
+<p><strong>Note:</strong> this method is suitable for familiarization and experimentation only. <strong>Do not</strong> use this
 method in production environments. To securely install Parsec on Linux for production, check <a href="getting_started/../parsec_service/install_parsec_linux.html">this
 guide instead</a>.</p>
 <h3 id="check-that-your-system-is-suitable"><a class="header" href="#check-that-your-system-is-suitable">Check that Your System is Suitable</a></h3>
@@ -568,7 +568,7 @@ Testing Mbed Crypto provider
 A6 F5 90 24 DF FF 50 1F 29 2E
 ....
 </code></pre>
-<p>The <code>parsec-cli-tests.sh</code> script also accepts some command-line parameters to adjust its behaviour.
+<p>The <code>parsec-cli-tests.sh</code> script also accepts some command-line parameters to adjust its behavior.
 You can use the <code>-h</code> option to get additional help on these.</p>
 <p><strong>Note:</strong> If openssl is not installed into a directory included in <code>PATH</code> then you also need to
 define <code>OPENSSL</code> environment variable with a full path to it:</p>
@@ -578,7 +578,7 @@ define <code>OPENSSL</code> environment variable with a full path to it:</p>
 <p>If you'd like to isolate your quickstart experience to a temporary Docker container, you can get
 familiar with Parsec by utilizing a pre-built image available on ghcr.io. This is currently
 supported for any system able to run 64-bit Linux x86 Docker images.</p>
-<p><strong>Note:</strong> this method is suitable for familiarisation and experimentation only. <strong>Do not</strong> use this
+<p><strong>Note:</strong> this method is suitable for familiarization and experimentation only. <strong>Do not</strong> use this
 method in production environments. To securely install Parsec on Linux for production, check <a href="getting_started/../parsec_service/install_parsec_linux.html">this
 guide instead</a>.</p>
 <h3 id="check-that-your-system-is-suitable-1"><a class="header" href="#check-that-your-system-is-suitable-1">Check that Your System is Suitable</a></h3>
@@ -661,7 +661,7 @@ Testing Mbed Crypto provider
 A6 F5 90 24 DF FF 50 1F 29 2E
 ....
 </code></pre>
-<p>The <code>parsec-cli-tests.sh</code> script also accepts some command-line parameters to adjust its behaviour.
+<p>The <code>parsec-cli-tests.sh</code> script also accepts some command-line parameters to adjust its behavior.
 You can use the <code>-h</code> option to get additional help on these.</p>
 <h2 id="option-4-build-from-source-code"><a class="header" href="#option-4-build-from-source-code">Option 4: Build from Source Code</a></h2>
 <p>If the above installation options are not suitable, please refer to the instructions for <a href="getting_started/../parsec_service/build_run.html">building
@@ -1088,7 +1088,7 @@ provides the official documentation for the API</li>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="api-overview"><a class="header" href="#api-overview">API Overview</a></h1>
 <h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
 <p>This document introduces the API contract that exists between the client and the service, covering
-its general principles and organisation. Use this document in combination with the <a href="parsec_client/wire_protocol.html"><strong>wire protocol
+its general principles and organization. Use this document in combination with the <a href="parsec_client/wire_protocol.html"><strong>wire protocol
 specification</strong></a> and the <a href="parsec_client/operations"><strong>operation directory</strong></a> as a reference
 guide for the development of client libraries.</p>
 <h2 id="audience"><a class="header" href="#audience">Audience</a></h2>
@@ -1171,9 +1171,9 @@ through updates, the allowed changes are restricted to the following:</p>
 <ul>
 <li>Adding a new <em>optional</em> field to an existing type. If not set, the contract containing the new
 field should behave exactly the same as the version without it. The new field should be ignored
-if not recognised by an old version. That means that the functionality brought by a new optional
+if not recognized by an old version. That means that the functionality brought by a new optional
 field might not be exercised if the service is older than the client, without an error returned.</li>
-<li>Adding a new variant to an existing enumerated type. If not recognised during deserialization, the
+<li>Adding a new variant to an existing enumerated type. If not recognized during deserialization, the
 <code>InvalidEncoding</code> error should be returned.</li>
 </ul>
 <p>In the future, <a href="https://github.com/parallaxsecond/parsec/issues/426">capabilities discovery</a>
@@ -1185,8 +1185,8 @@ have been introduced, it may sometimes be necessary to deprecate specific operat
 often be to encourage the use of a new operation with an improved feature set and a different
 contract. Deprecation is largely a documentation exercise: the <a href="parsec_client/operations"><strong>operation directory</strong></a>
 will indicate when an operation has been deprecated. This does not mean that the operation will no
-longer work. It simply means that any new use of the operation is strongly discouraged in favour of
-a better alternative.</p>
+longer work. It simply means that any new use of the operation is strongly discouraged in favor of a
+better alternative.</p>
 <h2 id="capability-checks"><a class="header" href="#capability-checks">Capability Checks</a></h2>
 <p>The API includes a capability check operation, which allows the client to determine the set of
 operations that are available. There are two reasons why the client needs this capability check:</p>
@@ -1213,7 +1213,7 @@ should remain the same over time, even across system resets.</p>
 <p>The granularity of application identities is not defined. In particular, there is no assumption that
 a client <em>application</em> corresponds precisely with a single client <em>process</em>. A client application
 might be composed of multiple processes. Conversely, a single process might contain multiple
-distinct client applications. Client applications might also be organised into isolated environments
+distinct client applications. Client applications might also be organized into isolated environments
 such as containers. Provided that client application is able to present a unique and stable identity
 string for each API call, it does not matter how they are structured and deployed.</p>
 <h2 id="authentication-and-sessions"><a class="header" href="#authentication-and-sessions">Authentication and Sessions</a></h2>
@@ -1240,7 +1240,7 @@ specification</strong></a>.</p>
 self-declared UID matches the actual UID of the connecting process via the Unix peer credentials
 mechanism.</p>
 <p>When it makes an API request, the client needs to tell the server which kind of authentication is
-being used. This is so that the server knows how to interepret the bytes in the <strong>authentication</strong>
+being used. This is so that the server knows how to interpret the bytes in the <strong>authentication</strong>
 field of the request. As described in the <a href="parsec_client/wire_protocol.html"><strong>wire protocol specification</strong></a>, the
 client does this by setting an integer value in the <strong>auth type</strong> field of the request header. The
 permitted numerical values for this field are given as follows:-</p>
@@ -1312,7 +1312,7 @@ invoked to export the key (and the key's usage policy permits for such an export
 <p>The use of string names offers greater flexibility in how names can be chosen and structured. It
 allows for names to be readable and meaningful. It also allows for names to follow a structured
 pattern with separators, similar to a file path. This allows keys to not only be named in meaningful
-ways, but also for them to be organised according to a meaningful structure, just like files on a
+ways, but also for them to be organized according to a meaningful structure, just like files on a
 file system. Keys with a similar purpose, for example, can be stored in the same part of the
 notional &quot;tree&quot;.</p>
 <p>Key names adopt a path structure similar to Unix file paths, such as <code>/keys/rsa/my_key_1</code>.</p>
@@ -1351,7 +1351,7 @@ code.</p>
 <p>This document describes the principles, patterns and low-level details of the wire protocol. This
 covers the details that are common to all messages that pass between the service and its clients.
 This document is <em>not</em> an API specification for the service. Individual API operations, along with
-their behaviours, inputs and outputs are described separately in the API specification. The wire
+their behaviors, inputs and outputs are described separately in the API specification. The wire
 protocol is the underlying message-passing mechanism that enables the API.</p>
 <h2 id="audience-1"><a class="header" href="#audience-1">Audience</a></h2>
 <p>A thorough understanding of the wire protocol is necessary if you are developing new capabilities
@@ -1373,9 +1373,9 @@ forming responses, and transmitting those responses back to the client. The term
 to refer generically to requests and responses in contexts where there is no need to draw a
 distinction between them.</p>
 <h3 id="analogy-with-http-and-rest"><a class="header" href="#analogy-with-http-and-rest">Analogy With HTTP and REST</a></h3>
-<p>The request-response pattern of the wire protocol is intentionally modelled on the familiar notion
-of calling a REST API over HTTP. In fact, one of the guiding principles of the wire protocol design
-has been to create something that might loosely be called a &quot;lightweight REST&quot;. This term must be
+<p>The request-response pattern of the wire protocol is intentionally modeled on the familiar notion of
+calling a REST API over HTTP. In fact, one of the guiding principles of the wire protocol design has
+been to create something that might loosely be called a &quot;lightweight REST&quot;. This term must be
 applied with caution, however. REST is a collection of architectural principles, not a protocol. It
 does not follow that all of the RESTful principles are adopted here. However, thinking of the wire
 protocol as being like a web service protocol, only without any dependency on HTTP or similar
@@ -2608,7 +2608,7 @@ the key’s usage flags.</p>
 <p><a href="https://github.com/parallaxsecond/parsec-operations/blob/master/protobuf/psa_export_public_key.proto">Protobuf</a></p>
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="listproviders"><a class="header" href="#listproviders">ListProviders</a></h1>
-<p>Gets a prioritised list of available Parsec providers to be used by clients. Opcode: 8 (<code>0x0008</code>)</p>
+<p>Gets a prioritized list of available Parsec providers to be used by clients. Opcode: 8 (<code>0x0008</code>)</p>
 <h2 id="parameters-7"><a class="header" href="#parameters-7">Parameters</a></h2>
 <p>No parameters are needed for this operation.</p>
 <h2 id="results-7"><a class="header" href="#results-7">Results</a></h2>
@@ -3497,7 +3497,7 @@ They cover the following concepts:</p>
 <li><a href="parsec_service/interfaces_and_dataflow.html">Interfaces and Dataflow</a> - description of all the components forming
 the Parsec service and their interactions</li>
 <li><a href="parsec_service/source_code_structure.html">Source Code Structure</a> - overview of Parsec service source code
-organisation</li>
+organization</li>
 <li><a href="parsec_service/providers.html">Parsec Providers</a> - overview of current Parsec providers</li>
 <li><a href="parsec_service/converters.html">Parsec Converters</a> - overview of current Parsec converters</li>
 <li><a href="parsec_service/authenticators.html">Parsec Authenticators</a> - overview of current Parsec authenticators</li>
@@ -3642,7 +3642,7 @@ transport endpoint by the <code>FrontEndHandler</code>, thus completing the cycl
 <p><em>Copyright 2019 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="source-code-structure-1"><a class="header" href="#source-code-structure-1">Source Code Structure</a></h1>
 <h2 id="introduction-5"><a class="header" href="#introduction-5">Introduction</a></h2>
-<p>This document presents the overall organisation of the source code repository, and provides pointers
+<p>This document presents the overall organization of the source code repository, and provides pointers
 to key definitions and implementations.</p>
 <h2 id="audience-2"><a class="header" href="#audience-2">Audience</a></h2>
 <p>An understanding of the source code repository structure is essential for developers who are
@@ -3661,14 +3661,14 @@ Hardware Security Module (HSM), Trusted Platform Module (TPM) or Trusted Applica
 API</a>.
 PSA Crypto is specifically a C interface. This project takes the operations of that C interface and
 wraps each of them in an IPC <a href="parsec_service/../parsec_client/wire_protocol.html">wire protocol</a>. There is
-intentionally a very close correpondence between the two APIs, and the contracts of the operations
+intentionally a very close correspondence between the two APIs, and the contracts of the operations
 are identical in the majority of cases. However, the service also exposes a number of new operations
 that are designed to help clients consume it more easily.</p>
-<p>The Parsec project is organised over <a href="https://github.com/parallaxsecond">multiple repositories</a>. The
+<p>The Parsec project is organized over <a href="https://github.com/parallaxsecond">multiple repositories</a>. The
 remainder of the document will examine the contents of some of these.</p>
 <h2 id="the-parsec-repository"><a class="header" href="#the-parsec-repository">The Parsec Repository</a></h2>
 <p>The <code>parsec</code> repository contains the code for the service. The service is written in
-<a href="https://www.rust-lang.org"><strong>Rust</strong></a>. Rust projects are organised into modular units known as
+<a href="https://www.rust-lang.org"><strong>Rust</strong></a>. Rust projects are organized into modular units known as
 <a href="https://doc.rust-lang.org/beta/book/ch07-00-managing-growing-projects-with-packages-crates-and-modules.html"><strong>crates</strong></a>,
 each of which is formed of one or more
 <a href="https://doc.rust-lang.org/beta/book/ch07-02-defining-modules-to-control-scope-and-privacy.html"><strong>modules</strong></a>,
@@ -3921,8 +3921,8 @@ SQLite database stored on disk at a given path.</p>
 <p>This KIM is intended as a more flexible, safe, and stable alternative to the on-disk manager and is
 the recommended choice for any new deployments.</p>
 <h1 id="on-disk-key-info-manager"><a class="header" href="#on-disk-key-info-manager">On-Disk Key Info Manager</a></h1>
-<p><strong>Warning:</strong> The on-disk KIM will be deprecated in future versions of the Parsec service in favour
-of the SQLite manager described above.</p>
+<p><strong>Warning:</strong> The on-disk KIM will be deprecated in future versions of the Parsec service in favor of
+the SQLite manager described above.</p>
 <p>The on-disk KIM stores the mapping between key identity and key information directly on disk, in a
 folder with a configurable path.</p>
 <p>The application and key name length are limited by the operating system Parsec is running on.</p>
@@ -3979,7 +3979,7 @@ exists. If it does not, add the key to a <code>to_delete</code> list and then de
 <code>psa_destroy_key</code> when implementing those <code>Provide</code> methods.</li>
 </ul>
 <p>The goal of those policies is to make sure, in a best-effort way, that key management operations
-have the behaviour wanted: it is possible to create a key with the same name if the key
+have the behavior wanted: it is possible to create a key with the same name if the key
 creation/deletion operation failed and that at any given time only valid keys can be used.</p>
 <p>Because of those policies focused on clients' convenience, it might be possible that some keys
 become &quot;zombies&quot; in the keystore: they can no longer be accessed via Parsec but still exist.</p>
@@ -4363,7 +4363,7 @@ folder contain the configuration needed to run Parsec for the corresponding test
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/normal.rs">All providers normal e2e tests</a></td><td>End-to-end tests on a service with all providers. Mostly to test core operations.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/cross.rs">All providers cross-providers e2e tests</a></td><td>Test that the output of various operations from different providers is accepted by the other providers.</td></tr>
-<tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/config">All providers configuration e2e tests</a></td><td>These check if the behaviour of the service is correct before and after reloading with a different configuration.</td></tr>
+<tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/config">All providers configuration e2e tests</a></td><td>These check if the behavior of the service is correct before and after reloading with a different configuration.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/all_providers/multitenancy.rs">All providers multitenancy e2e tests</a></td><td>Test that multiple tenants of Parsec using different authentication methods can not access each other's keys.</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/tree/master/e2e_tests/tests/per_provider/normal_tests">Per provider normal tests</a></td><td>E2E tests checking most cryptographic operations on a single provider. Parsec results are also verified with third party software crypto implementations (ring, the rsa crate, etc...).</td></tr>
 <tr><td><a href="https://github.com/parallaxsecond/parsec/blob/main/e2e_tests/tests/per_provider/key_mappings.rs">Per provider key mappings tests</a></td><td>E2E tests checking that key created by an older version of Parsec can still be retrieved and used correctly. It also checks that wrong mappings are deleted.</td></tr>
@@ -4400,7 +4400,7 @@ provider is included for cross-compilation to aarch64. You can see details of th
 <a href="https://github.com/parallaxsecond/parsec/blob/main/test/cross-compile.sh">here</a>. All other CI jobs
 run in <code>x86_64-linux-gnu</code>.</p>
 <h2 id="in-dependencies"><a class="header" href="#in-dependencies">In dependencies</a></h2>
-<p>The dependencies that we maintain in the <code>parallaxsecond</code> organisation also contain their own set of
+<p>The dependencies that we maintain in the <code>parallaxsecond</code> organization also contain their own set of
 integration and unit tests: <code>parsec-interface-rs</code>, <code>rust-psa-crypto</code>, <code>rust-tss-esapi</code>, and
 <code>rust-cryptoki</code>.</p>
 <p><em>Copyright 2020 Contributors to the Parsec project.</em></p>
@@ -4436,7 +4436,7 @@ model.</p>
 <li>Communication with clients
 <ol>
 <li>Definition of requests/responses (their format)</li>
-<li>Definition of operation contracts (their intended behaviour)</li>
+<li>Definition of operation contracts (their intended behavior)</li>
 <li>Definition of Listeners endpoints (how to contact Parsec)</li>
 </ol>
 </li>
@@ -4467,16 +4467,16 @@ to the list above and looked in detail below.</p>
 </ul>
 <div class="table-wrapper"><table><thead><tr><th>Stability Requirement</th><th>Stability Definition</th><th>Stability Enforcement</th><th>Stability Test</th></tr></thead><tbody>
 <tr><td>Communication with clients (requests/responses)</td><td>Requests and responses must be understood correctly by different versions of the service/clients.</td><td>The Wire Protocol is <a href="parsec_service/../parsec_client/wire_protocol.html#wire-protocol-versions">stable by design</a>.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/388">Done</a></td></tr>
-<tr><td>Communication with clients (operation contracts)</td><td>The behaviour of operations must remain the same for all versions of the service.</td><td>There is a <a href="https://parallaxsecond.github.io/parsec-book/parsec_client/operations/index.html">defined behaviour</a> for all operations that is respected.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/389">Done</a></td></tr>
+<tr><td>Communication with clients (operation contracts)</td><td>The behavior of operations must remain the same for all versions of the service.</td><td>There is a <a href="https://parallaxsecond.github.io/parsec-book/parsec_client/operations/index.html">defined behavior</a> for all operations that is respected.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/389">Done</a></td></tr>
 <tr><td>Communication with clients (listeners endpoint)</td><td>Listeners endpoint must be discovered in a stable way.</td><td>A <a href="parsec_service/../parsec_client/api_overview.html#service-discovery">service discovery mechanism</a> exists.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/390">Done</a></td></tr>
 <tr><td>Authenticators</td><td>Authentication requests sent by future stable versions of Parsec should be understood by the same version of the authenticators present on the system.</td><td>Unix Peer Crendentials: based on top of stable C standard library APIs. JWT SVID: authentication is based on the <a href="https://github.com/spiffe/spiffe/blob/master/standards/SPIFFE_Workload_API.md">SPIFFE Workload API</a> which is a standard and should remain stable.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/391">Done</a></td></tr>
 <tr><td>CLI invocation</td><td>Old CLI invocations of Parsec should still work with for future stable Parsec versions. Optional flags should have the same defaults.</td><td>CLI flags should not be removed. Defaults should not be changed. New flags should be optional.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/392">Done</a></td></tr>
 <tr><td>Configuration file</td><td>Old configuration files should still work with future stable Parsec versions, with the same default for optional options.</td><td>Configuration options should not disappear in future stable Parsec versions. Configuration defaults should remain the same. New options should be optional.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/393">Done</a></td></tr>
 <tr><td>Persistent state (key mappings)</td><td>Old key mappings should still be read correctly by future stable Parsec versions.</td><td>The way the KIM persistently stores the mappings need to be backward-compatible in regards with reading/writing.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/394">Done</a> for the Mbed Crypto, PKCS11 and TPM providers.</td></tr>
-<tr><td>OS signals</td><td>OS signals should still have the same behaviour in future stable Parsec versions.</td><td>Signal handlers must not be removed in Parsec.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/395">Done</a></td></tr>
+<tr><td>OS signals</td><td>OS signals should still have the same behavior in future stable Parsec versions.</td><td>Signal handlers must not be removed in Parsec.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/395">Done</a></td></tr>
 <tr><td>systemd communication</td><td>systemd should receive the same status information from Parsec in future stable versions.</td><td>Status notifications must not be removed.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/396">Done</a></td></tr>
 <tr><td>Dynamic libraries dependencies</td><td>Linking and loading the same versions of libraries should still work in future stable versions of Parsec.</td><td>Stable versions of Parsec should not require newer dependencies.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/397">Done</a> and see <a href="parsec_service/stability.html#dynamic-libraries">the list</a></td></tr>
-<tr><td>Environment variables</td><td>Environment variables should still have the same behaviour in future stable Parsec versions.</td><td>Environment variable behaviours must not be removed in Parsec.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/405">Done</a></td></tr>
+<tr><td>Environment variables</td><td>Environment variables should still have the same behavior in future stable Parsec versions.</td><td>Environment variable behaviors must not be removed in Parsec.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/405">Done</a></td></tr>
 <tr><td>Hardware backends</td><td>Communication with hardware backends for crypto and key management should still work in future Parsec versions.</td><td>The communication channels with the hardware backends should remain the same.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/412">Done</a></td></tr>
 <tr><td>Build toolchain</td><td>Parsec build should not break for defined versions of the Rust compiler.</td><td>Each commit is tested with specific supported versions of the Rust compiler.</td><td><a href="https://github.com/parallaxsecond/parsec/issues/408">Done</a></td></tr>
 </tbody></table>
@@ -4494,7 +4494,7 @@ Crypto compliant version of Mbed Crypto, stability guarantees will be made on th
 <p>The Trusted Service provider is currently built using a pre-release version of the Trusted Services
 library. We aim to keep the Parsec service aligned with recent revisions of the TS code, however
 since no release has been made, no guarantees can be offered about stability. At the time of
-writing, no platform is officially supported for Trused Services deployments.</p>
+writing, no platform is officially supported for Trusted Services deployments.</p>
 <p><em>Copyright 2021 Contributors to the Parsec project.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="parsec-security"><a class="header" href="#parsec-security">Parsec Security</a></h1>
 <p>Find in this section security related articles:</p>
@@ -5135,7 +5135,7 @@ client library and protobuf on the client side. Take care when deciding on datat
 should be wrapped in either
 <a href="https://docs.rs/zeroize/latest/zeroize/struct.Zeroizing.html"><code>Zeroizing</code></a> or
 <a href="https://docs.rs/secrecy/latest/secrecy/struct.Secret.html"><code>Secret</code></a> (choose depending on the
-sensitivity of the data. Favour
+sensitivity of the data. Favor
 <a href="https://docs.rs/zeroize/latest/zeroize/struct.Zeroizing.html"><code>Zeroizing</code></a> unless there is a clear
 requirement for <a href="https://docs.rs/secrecy/latest/secrecy/struct.Secret.html"><code>Secret</code></a>) to ensure
 they are wiped from memory when dropped and should not have any output for debugging. The operation
@@ -5283,7 +5283,7 @@ to publish a crate, check out the <a href="contributing/package_management.html#
 <li>Follow the instructions <a href="https://doc.rust-lang.org/cargo/reference/publishing.html">here</a> to
 create your account and to set your workspace up.</li>
 <li>If you'd like to publish a new version of an existing crate using the ownership granted to the
-Parallaxsecond Admin group, you need to enable crates.io to access that organisation. You can do
+Parallaxsecond Admin group, you need to enable crates.io to access that organization. You can do
 so from the <a href="https://github.com/settings/applications">applications page</a> in your account
 settings - in the <a href="https://github.com/settings/connections/applications/9fe8110dfe185fe90b5c">crates.io
 application</a> settings
@@ -5366,7 +5366,7 @@ about or would want to discuss such an approach, we welcome discussions and prop
 community channels!</p>
 <h3 id="docker-images"><a class="header" href="#docker-images">Docker images</a></h3>
 <p>End-to-end testing for the Parsec service (and for some of the other projects under the
-Parallaxsecond organisation) is built on top of Docker images. These images are required because of
+Parallaxsecond organization) is built on top of Docker images. These images are required because of
 the multitude of dependencies needed, generally for connecting to various backends through 3rd party
 libraries. The Docker images separate the process of setting up this environment from the actual
 running of tests, allowing very short CI runs.</p>
@@ -5756,7 +5756,7 @@ Each one offers a highly-designed developer experience tailored to the programmi
 providing the API in a form that is simple to consume and hard to get wrong. This means that it
 has facilities for things like smart defaulting, so that the client application can call APIs
 with fewer arguments and simplified contracts that are tailored for specific use cases. The
-client library is then fundamentally an adaptor or wrapper: it converts between the simplified
+client library is then fundamentally an adapter or wrapper: it converts between the simplified
 developer experience and the comprehensive API definition based on the PSA Crypto API. It makes
 calls to the security service according to the defined <a href="archive/../parsec_client/wire_protocol.html"><strong>wire protocol
 specification</strong></a>.</li>
@@ -5916,7 +5916,7 @@ header can be used in a variety of ways. It would be entirely possible for the c
 simply pass its application identity directly as a cleartext string. The security service would
 support this (and it offers an authentication style known as <strong>direct authentication</strong> for this
 purpose). This is simple, and works well in a demo or proof-of-concept environment. But it is not
-suitable for a deployed system architecture, because it does not fulfil the stated design goal of
+suitable for a deployed system architecture, because it does not fulfill the stated design goal of
 secretless communication.</p>
 <p>One solution to this problem is for the authentication header to contain a payload that not only
 includes the application identity, but also proves cryptographically that it is from a valid client.
@@ -5936,7 +5936,7 @@ relationships that were defined above.</p>
 <p>Another solution to the authentication problem is to use Unix peer credentials with the <a href="archive/../parsec_service/authenticators.html">Unix peer
 credentials authenticator</a>. Unix peer credentials are
 connection metadata which specify the effective Unix user ID (UID) and group ID (GID) of the
-connecting process. When using a Unix domain sockets tranport, the endpoints can get each other's
+connecting process. When using a Unix domain sockets transport, the endpoints can get each other's
 UID and GID via the operating system.</p>
 <p>In Unix peer credential authentication, the connecting process self-declares its UID inside the
 authentication header of the request. The Parsec service validates that the self-declared UID
@@ -5965,7 +5965,7 @@ maintaining the trust relationships between the orchestrator, identity provider 
 service.</p>
 <p>Trust relationships require intermediate key pairs to be generated periodically in order to fulfil
 the stated design objective around short-lived cryptography. The root key pairs generated in the
-bootstrapping phase do not fulfil this objective by themselves.</p>
+bootstrapping phase do not fulfill this objective by themselves.</p>
 <p>Intermediate key pairs are generated by both the orchestrator and identity provider. Each component
 stores its private key in local process memory, but needs to share the public key. As with the
 bootstrapping flows, the orchestrator shares its public key with the identity provider, and the
@@ -6013,8 +6013,8 @@ software or hardware. Once the operation has been executed, the results can be m
 the client library, which can once again implement whatever simplifications or interpretations are
 required to make them suitable for the application developer.</p>
 <h3 id="sequence-diagram"><a class="header" href="#sequence-diagram">Sequence Diagram</a></h3>
-<p>All flows are summarised and captured in the sequence diagram below. The diagram attempts to collect
-together and summarise all of the flows that are needed for bootstrapping, background operations and
+<p>All flows are summarized and captured in the sequence diagram below. The diagram attempts to collect
+together and summarize all of the flows that are needed for bootstrapping, background operations and
 also general usage as described above. In order to strike the right balance between completeness and
 simplicity, the flow diagram does not include every possible path. In particular, the actions taken
 in response to errors or failed verifications are not captured here.</p>

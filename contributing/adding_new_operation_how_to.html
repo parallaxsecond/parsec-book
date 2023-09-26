@@ -196,7 +196,7 @@ client library and protobuf on the client side. Take care when deciding on datat
 should be wrapped in either
 <a href="https://docs.rs/zeroize/latest/zeroize/struct.Zeroizing.html"><code>Zeroizing</code></a> or
 <a href="https://docs.rs/secrecy/latest/secrecy/struct.Secret.html"><code>Secret</code></a> (choose depending on the
-sensitivity of the data. Favour
+sensitivity of the data. Favor
 <a href="https://docs.rs/zeroize/latest/zeroize/struct.Zeroizing.html"><code>Zeroizing</code></a> unless there is a clear
 requirement for <a href="https://docs.rs/secrecy/latest/secrecy/struct.Secret.html"><code>Secret</code></a>) to ensure
 they are wiped from memory when dropped and should not have any output for debugging. The operation

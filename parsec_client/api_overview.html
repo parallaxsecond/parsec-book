@@ -169,7 +169,7 @@
                         <h1 id="api-overview"><a class="header" href="#api-overview">API Overview</a></h1>
 <h2 id="introduction"><a class="header" href="#introduction">Introduction</a></h2>
 <p>This document introduces the API contract that exists between the client and the service, covering
-its general principles and organisation. Use this document in combination with the <a href="wire_protocol.html"><strong>wire protocol
+its general principles and organization. Use this document in combination with the <a href="wire_protocol.html"><strong>wire protocol
 specification</strong></a> and the <a href="operations"><strong>operation directory</strong></a> as a reference
 guide for the development of client libraries.</p>
 <h2 id="audience"><a class="header" href="#audience">Audience</a></h2>
@@ -252,9 +252,9 @@ through updates, the allowed changes are restricted to the following:</p>
 <ul>
 <li>Adding a new <em>optional</em> field to an existing type. If not set, the contract containing the new
 field should behave exactly the same as the version without it. The new field should be ignored
-if not recognised by an old version. That means that the functionality brought by a new optional
+if not recognized by an old version. That means that the functionality brought by a new optional
 field might not be exercised if the service is older than the client, without an error returned.</li>
-<li>Adding a new variant to an existing enumerated type. If not recognised during deserialization, the
+<li>Adding a new variant to an existing enumerated type. If not recognized during deserialization, the
 <code>InvalidEncoding</code> error should be returned.</li>
 </ul>
 <p>In the future, <a href="https://github.com/parallaxsecond/parsec/issues/426">capabilities discovery</a>
@@ -266,8 +266,8 @@ have been introduced, it may sometimes be necessary to deprecate specific operat
 often be to encourage the use of a new operation with an improved feature set and a different
 contract. Deprecation is largely a documentation exercise: the <a href="operations"><strong>operation directory</strong></a>
 will indicate when an operation has been deprecated. This does not mean that the operation will no
-longer work. It simply means that any new use of the operation is strongly discouraged in favour of
-a better alternative.</p>
+longer work. It simply means that any new use of the operation is strongly discouraged in favor of a
+better alternative.</p>
 <h2 id="capability-checks"><a class="header" href="#capability-checks">Capability Checks</a></h2>
 <p>The API includes a capability check operation, which allows the client to determine the set of
 operations that are available. There are two reasons why the client needs this capability check:</p>
@@ -294,7 +294,7 @@ should remain the same over time, even across system resets.</p>
 <p>The granularity of application identities is not defined. In particular, there is no assumption that
 a client <em>application</em> corresponds precisely with a single client <em>process</em>. A client application
 might be composed of multiple processes. Conversely, a single process might contain multiple
-distinct client applications. Client applications might also be organised into isolated environments
+distinct client applications. Client applications might also be organized into isolated environments
 such as containers. Provided that client application is able to present a unique and stable identity
 string for each API call, it does not matter how they are structured and deployed.</p>
 <h2 id="authentication-and-sessions"><a class="header" href="#authentication-and-sessions">Authentication and Sessions</a></h2>
@@ -321,7 +321,7 @@ specification</strong></a>.</p>
 self-declared UID matches the actual UID of the connecting process via the Unix peer credentials
 mechanism.</p>
 <p>When it makes an API request, the client needs to tell the server which kind of authentication is
-being used. This is so that the server knows how to interepret the bytes in the <strong>authentication</strong>
+being used. This is so that the server knows how to interpret the bytes in the <strong>authentication</strong>
 field of the request. As described in the <a href="wire_protocol.html"><strong>wire protocol specification</strong></a>, the
 client does this by setting an integer value in the <strong>auth type</strong> field of the request header. The
 permitted numerical values for this field are given as follows:-</p>
@@ -393,7 +393,7 @@ invoked to export the key (and the key's usage policy permits for such an export
 <p>The use of string names offers greater flexibility in how names can be chosen and structured. It
 allows for names to be readable and meaningful. It also allows for names to follow a structured
 pattern with separators, similar to a file path. This allows keys to not only be named in meaningful
-ways, but also for them to be organised according to a meaningful structure, just like files on a
+ways, but also for them to be organized according to a meaningful structure, just like files on a
 file system. Keys with a similar purpose, for example, can be stored in the same part of the
 notional &quot;tree&quot;.</p>
 <p>Key names adopt a path structure similar to Unix file paths, such as <code>/keys/rsa/my_key_1</code>.</p>
