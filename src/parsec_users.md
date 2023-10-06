@@ -16,6 +16,9 @@ Parsec Client Libraries are available in the following languages:
 - [Java](https://github.com/parallaxsecond/parsec-client-java): both a native Parsec client, as well
    as a JCA implementation based on that client.
 - [Go](https://github.com/parallaxsecond/parsec-client-go): work in progress!
+- [Erlang](https://github.com/jbevemyr/parsec-client-erlang): native Parsec client with both a high
+   level API and a low level API. The low level API supports all Parsec API calls with protobuf
+   specifications.
 
 Also have a look at [`parsec-tool`](https://github.com/parallaxsecond/parsec-tool), a command-line
 client to access Parsec from the terminal.
