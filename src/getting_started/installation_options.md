@@ -241,13 +241,14 @@ export PARSEC_SERVICE_ENDPOINT="unix:$(pwd)/parsec.sock"
 ```
 
 If parsec-tool is not installed into a directory included in `PATH`, then you also need to define
-`PARSEC_TOOL` environment variable with a full path to it:
+the `PARSEC_TOOL` environment variable with a full path to it. Assuming the current working
+directory is `quickstart-1.2.0-linux_x86_64/quickstart`:
 
 ```
-export PARSEC_TOOL="$(pwd)/parsec-tool"
+export PARSEC_TOOL="$(pwd)/../bin/parsec-tool"
 ```
 
-To run the script, simply execute it without any arguments as follows:
+To run the script from the same directory, simply execute it without any arguments as follows:
 
 ```
 ./parsec-cli-tests.sh
