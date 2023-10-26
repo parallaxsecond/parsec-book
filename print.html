@@ -483,11 +483,11 @@ can check by running the following command:</p>
 <pre><code>ldd --version
 </code></pre>
 <h3 id="download-the-latest-quick-start-release-bundle"><a class="header" href="#download-the-latest-quick-start-release-bundle">Download the Latest Quick-Start Release Bundle</a></h3>
-<p>Run the following command to download and unpack the <code>quickstart-1.2.0-linux_x86_64</code> folder.</p>
-<pre><code>curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.2.0/quickstart-1.2.0-linux_x86_64.tar.gz | tar xz
+<p>Run the following command to download and unpack the <code>quickstart-1.3.0-linux-x86_64</code> folder.</p>
+<pre><code>curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.3.0/quickstart-1.3.0-linux-x86_64.tar.gz | tar xz
 </code></pre>
 <p>The resulting directory contains the following structure</p>
-<pre><code>quickstart-1.2.0-linux_x86_64
+<pre><code>quickstart-1.3.0-linux-x86_64
 ├── bin
 │   ├── parsec                 # The parsec binary
 │   └── parsec-tool            # The parsec client tool
@@ -497,9 +497,9 @@ can check by running the following command:</p>
     ├── config.toml            # The config file used by parsec
     └── parsec-cli-tests.sh    # Standard parsec-tool tests
 </code></pre>
-<p>The following examples assume you've navigated to the <code>quickstart-1.2.0-linux_x86_64/quickstart</code>
+<p>The following examples assume you've navigated to the <code>quickstart-1.3.0-linux-x86_64/quickstart</code>
 directory, so let's do that now.</p>
-<pre><code>cd quickstart-1.2.0-linux_x86_64/quickstart
+<pre><code>cd quickstart-1.3.0-linux-x86_64/quickstart
 </code></pre>
 <h3 id="configure-your-environment"><a class="header" href="#configure-your-environment">Configure Your Environment</a></h3>
 <p>Calls to the <code>parsec-tool</code> assume that the environment variable <code>PARSEC_SERVICE_ENDPOINT</code> has been
@@ -552,10 +552,11 @@ be set as follows:</p>
 <pre><code>export PARSEC_SERVICE_ENDPOINT=&quot;unix:$(pwd)/parsec.sock&quot;
 </code></pre>
 <p>If parsec-tool is not installed into a directory included in <code>PATH</code>, then you also need to define
-<code>PARSEC_TOOL</code> environment variable with a full path to it:</p>
-<pre><code>export PARSEC_TOOL=&quot;$(pwd)/parsec-tool&quot;
+the <code>PARSEC_TOOL</code> environment variable with a full path to it. Assuming the current working
+directory is <code>quickstart-1.3.0-linux-x86_64/quickstart</code>:</p>
+<pre><code>export PARSEC_TOOL=&quot;$(pwd)/../bin/parsec-tool&quot;
 </code></pre>
-<p>To run the script, simply execute it without any arguments as follows:</p>
+<p>To run the script from the same directory, simply execute it without any arguments as follows:</p>
 <pre><code>./parsec-cli-tests.sh
 </code></pre>
 <p>The script will run a sequence of operations and produce output along the following lines:</p>
@@ -4024,7 +4025,7 @@ owners and permissions need to be set up on multiple folders. For testing only, 
 Parsec from the current directory, have the key information mappings in <code>./mappings</code> and the socket
 at <code>/tmp/parsec.sock</code>. The test configuration will make those choices.</p>
 <p>Clone the Parsec service repo,</p>
-<pre><code>git clone --branch 1.2.0 https://github.com/parallaxsecond/parsec.git
+<pre><code>git clone --branch 1.3.0 https://github.com/parallaxsecond/parsec.git
 </code></pre>
 <p>Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
 the test configuration:</p>
@@ -4430,7 +4431,7 @@ B without breaking anything</em>.</p>
 without breaking anything. The only exception is for the communication channel with clients where
 any version of the client library can successfully communicate with any version of the service.</p>
 <p>The principle of <a href="https://semver.org/">semantic versioning</a> is used to describe the stability of
-Parsec versions and when breaking changes are done. If <code>parsec</code> version is at <code>1.2.0</code> then all
+Parsec versions and when breaking changes are done. If <code>parsec</code> version is at <code>1.3.0</code> then all
 future stable version to that will be <code>1.x.y</code>. Note that, although semver is used to describe Parsec
 stability, it is a strong goal for Parsec to remain stable at a <code>1.x.y</code> version. This document
 introduces the efforts that are made so that a <code>MAJOR</code> version bump should hopefully never happen.</p>
