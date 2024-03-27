@@ -22,7 +22,7 @@ cargo install parsec-tool
 For building it, use the following commands:
 
 ```
-git clone git@github.com:parallaxsecond/parsec-tool.git
+git clone https://github.com/parallaxsecond/parsec-tool.git
 cd parsec-tool
 cargo build
 ```
