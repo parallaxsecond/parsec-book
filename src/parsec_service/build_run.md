@@ -128,6 +128,6 @@ sudo apt install protobuf-compiler
 
 The Parsec service can be cross-compiled to other target triplets. You might need to install a
 cross-compilation C toolchain for the target you want to compile for. The default ones are indicated
-in the `.cargo/config` file.
+in `parsec-service-test-cross-compile.Dockerfile`.
 
 *Copyright 2022 Contributors to the Parsec project.*
