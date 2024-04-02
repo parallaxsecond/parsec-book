@@ -124,16 +124,16 @@ ldd --version
 
 ### Download the Latest Quick-Start Release Bundle
 
-Run the following command to download and unpack the `quickstart-1.3.0-linux-x86_64` folder.
+Run the following command to download and unpack the `quickstart-1.4.0-linux-x86_64` folder.
 
 ```
-curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.3.0/quickstart-1.3.0-linux-x86_64.tar.gz | tar xz
+curl -s -N -L https://github.com/parallaxsecond/parsec/releases/download/1.4.0/quickstart-1.4.0-linux-x86_64.tar.gz | tar xz
 ```
 
 The resulting directory contains the following structure
 
 ```
-quickstart-1.3.0-linux-x86_64
+quickstart-1.4.0-linux-x86_64
 ├── bin
 │   ├── parsec                 # The parsec binary
 │   └── parsec-tool            # The parsec client tool
@@ -144,11 +144,11 @@ quickstart-1.3.0-linux-x86_64
     └── parsec-cli-tests.sh    # Standard parsec-tool tests
 ```
 
-The following examples assume you've navigated to the `quickstart-1.3.0-linux-x86_64/quickstart`
+The following examples assume you've navigated to the `quickstart-1.4.0-linux-x86_64/quickstart`
 directory, so let's do that now.
 
 ```
-cd quickstart-1.3.0-linux-x86_64/quickstart
+cd quickstart-1.4.0-linux-x86_64/quickstart
 ```
 
 ### Configure Your Environment
@@ -242,7 +242,7 @@ export PARSEC_SERVICE_ENDPOINT="unix:$(pwd)/parsec.sock"
 
 If parsec-tool is not installed into a directory included in `PATH`, then you also need to define
 the `PARSEC_TOOL` environment variable with a full path to it. Assuming the current working
-directory is `quickstart-1.3.0-linux-x86_64/quickstart`:
+directory is `quickstart-1.4.0-linux-x86_64/quickstart`:
 
 ```
 export PARSEC_TOOL="$(pwd)/../bin/parsec-tool"
