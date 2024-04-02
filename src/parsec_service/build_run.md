@@ -36,7 +36,7 @@ at `/tmp/parsec.sock`. The test configuration will make those choices.
 Clone the Parsec service repo,
 
 ```
-git clone --branch 1.3.0 https://github.com/parallaxsecond/parsec.git
+git clone --branch 1.4.0 https://github.com/parallaxsecond/parsec.git
 ```
 
 Having cloned the Parsec repository, to build and run from source using the Mbed Crypto provider and
