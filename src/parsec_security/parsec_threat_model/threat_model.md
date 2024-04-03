@@ -233,7 +233,7 @@ can also create a spoofed hardware interface.
 
 |   | Description                                                                                                          | Mitigation          | Assets        |
 |---|----------------------------------------------------------------------------------------------------------------------|---------------------|---------------|
-| S | An attacker impersonates a hardware module or uses a malicious module plugged to the machine.                        | O-1, ASUM-2         | AS4, AS6      |
+| S | An attacker impersonates a hardware module or uses a malicious module plugged to the machine.                        | O-1, ASUM-1         | AS4, AS6, AS7 |
 | T | An attacker modifies the response of a hardware command.                                                             | O-8, U-3, M-10      | AS4, AS6      |
 | R | Responses cannot be proven to originate from the hardware module.                                                    | U-7                 |               |
 | I | An attacker can read the content of a command response.                                                              | U-3, M-10, O-8      | AS3, AS4, AS5 |
