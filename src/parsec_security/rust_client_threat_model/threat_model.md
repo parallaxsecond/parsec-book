@@ -24,6 +24,8 @@ by Parsec cannot be guaranteed.
    application.
 3. The client application obtains or generates a persistent name that it uses consistently for
    accessing its service-side assets.
+4. Invoking third party libraries using unsafe calls relies on their respective threat models and
+   assurances, and is outside of the scope of the parsec client.
 
 ## Assets
 
@@ -122,8 +124,9 @@ sensitive information.
 | ID | Justification                                                                                                                                                | Consequences                                                                                                                                     |
 |----|--------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
 | 0  | Client library dependencies are not checked for Security Vulnerabilities.                                                                                    | A vulnerability in one of the Parsec client dependencies will also impact the client application and the data it shares with the Parsec library. |
-| 1  | Authenticity of responses is not ensured through a MAC or asymmetric signature – it relies on trust in the platform administrator.                           | Any response from the service could have been spoofed or altered by any entity with sufficient capabilities.                                     |
-| 2  | Parsec does not currently clear sensitive data in memory after use. [This is looked at here](https://github.com/parallaxsecond/parsec-client-rust/issues/9). | Any data that passes through the client library could be read after the memory is released.                                                      |
+| 1  | Provider libraries using unsafe calls are not checked by Parsec                                                                                              | Provider libraries using unsafe calls rely on their respective threat models and assurances, and is outside of the scope of the parsec service.  |
+| 2  | Authenticity of responses is not ensured through a MAC or asymmetric signature – it relies on trust in the platform administrator.                           | Any response from the service could have been spoofed or altered by any entity with sufficient capabilities.                                     |
+| 3  | Parsec does not currently clear sensitive data in memory after use. [This is looked at here](https://github.com/parallaxsecond/parsec-client-rust/issues/9). | Any data that passes through the client library could be read after the memory is released.                                                      |
 
 ## Mitigations
 
